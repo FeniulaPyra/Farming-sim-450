@@ -105,11 +105,8 @@ public class Inventory
 					//if they are the same item and they add up to a smaller amount than the stack size
 					ItemStack leftovers = i.CombineStacks(item, STACK_SIZE);
 
-					Debug.Log(i.Amount);
-
 					if (leftovers != null && leftovers.Amount > 0)
 					{
-						Debug.Log("leftovers=" + leftovers.Amount);
 						AddItems(leftovers);
 					}
 					return;

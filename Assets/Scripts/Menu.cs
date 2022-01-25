@@ -16,6 +16,11 @@ public class Menu : MonoBehaviour
 	public GameObject InventorySlotPrefab;
 	public GameObject selectedItem;
 
+	public enum MenuControls
+	{
+		OPEN_INVENTORY = KeyCode.I
+	}
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -24,6 +29,8 @@ public class Menu : MonoBehaviour
 		inv = new Inventory();
 		
 		InventorySlots = new GameObject[Inventory.ROWS,Inventory.COLUMNS];
+
+		InventoryMenu.SetActive(false);
 
 		foreach (GameObject g in gameItemPrefabs)
 		{
@@ -93,7 +100,6 @@ public class Menu : MonoBehaviour
 
 		if (inv.selectedStack != null)
 		{
-			Debug.Log("helo" + inv.SelectedStack.Amount);
 			selectedItemLabel.text = "" + inv.SelectedStack.Amount;
 			selectedItemIcon.enabled = true;
 			selectedItemIcon.sprite = inv.SelectedStack.Item.spr;
@@ -147,6 +153,18 @@ public class Menu : MonoBehaviour
 		//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
 
 		selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+		if (Input.GetKeyDown((KeyCode)MenuControls.OPEN_INVENTORY))
+		{
+			InventoryMenu.SetActive(!InventoryMenu.activeSelf);
+			if(!InventoryMenu.activeSelf && inv.selectedStack != null)
+			{
+				inv.AddItems(inv.selectedStack);
+				inv.selectedStack = null;
+			}
+			UpdateInventory();
+		}
+
 
 	}
 }
