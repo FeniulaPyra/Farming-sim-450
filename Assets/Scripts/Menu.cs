@@ -19,10 +19,11 @@ public class Menu : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		InventorySlots = new GameObject[4,9];
 		gameItems = new List<Item>();
+		//TODO have this be grabbed from the player once that is be do be done-ificated
 		inv = new Inventory();
 		
+		InventorySlots = new GameObject[Inventory.ROWS,Inventory.COLUMNS];
 
 		foreach (GameObject g in gameItemPrefabs)
 		{
@@ -34,9 +35,9 @@ public class Menu : MonoBehaviour
 		int gap = 10;
 
 		//creates buttons for every inventory slot
-		for (int r = 0; r < 4; r++)
+		for (int r = 0; r < Inventory.ROWS; r++)
 		{
-			for (int c = 0; c < 9; c++)
+			for (int c = 0; c < Inventory.COLUMNS; c++)
 			{
 				//the inventory slot button
 				GameObject slot = InventorySlots[r, c] = Instantiate(InventorySlotPrefab);
@@ -106,9 +107,9 @@ public class Menu : MonoBehaviour
 		}
 
 		//updates inventory slots
-		for (int r = 0; r < 4; r++)
+		for (int r = 0; r < Inventory.ROWS; r++)
 		{
-			for (int c = 0; c < 9; c++)
+			for (int c = 0; c < Inventory.COLUMNS; c++)
 			{
 
 				//gets the inventory slot menu button and info about the inventory slog

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Inventory
 {
 	public static int STACK_SIZE = 99;
-	
+	public static int ROWS = 4;
+	public static int COLUMNS = 9;
+
 	private ItemStack[,] items;
 
 	public ItemStack selectedStack;
@@ -17,7 +19,7 @@ public class Inventory
 
 	public Inventory()
 	{
-		items = new ItemStack[4,9];
+		items = new ItemStack[ROWS,COLUMNS];
 		selectedStack = null;
 	}
 
