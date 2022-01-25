@@ -17,11 +17,10 @@ public class Mushrooms : MonoBehaviour
     bool isMoist = false;
     #endregion
 
-    #region Miscellaneous Variables
-    //The id/name of the mushroom
-    string ID = "Super Shroom";
-    //The base monetary value of the mushroom
-    int baseValue = 500;
+    #region Miscellaneous Variables 
+    //The id/name of the mushroom, //The base monetary value of the mushroom
+    public string ID = "Super Shroom"; 
+    public int baseValue = 500;
     #endregion
 
     // Start is called before the first frame update
@@ -38,7 +37,7 @@ public class Mushrooms : MonoBehaviour
         {
             Debug.Log("Mushroom now moist");
             isMoist = true;
-            GrowMushroom();
+            //GrowMushroom();
         }
 
         //Temp code; just making sure Unity can call the method and make it work if the mushroom is dry
