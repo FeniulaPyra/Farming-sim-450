@@ -7,11 +7,18 @@ public class Mushrooms : MonoBehaviour
 {
     #region Life and Death Variables
     //constant that defines the greatest stage of growth. Once the mushroom is at this stage, it's fully grown
+    //constant cannot be public, and therefore cannot be shared within another script
     const int maxGrowthStage = 3;
+
+    public int GetMaxGrowthStage()
+    {
+        return maxGrowthStage;
+    }
+
     //constant that defines how many days the mushroom can survive being neglected. If the number of days is ever greater than this, the mushroom has died
     const int maxDaysWithoutWater = 3;
     //represents the mushroom's current stage of growth
-    float growthStage = 1.00f;
+    public float growthStage = 1.00f;
     //number of days without water
     int daysWithoutWater;
     //whether or not it's been watered
@@ -42,6 +49,14 @@ public class Mushrooms : MonoBehaviour
             isMoist = true;
             //GrowMushroom();
         }
+
+        //Just for testing things related to mushroom growth
+        /*if (Input.GetKeyDown(KeyCode.G))
+        {
+            Debug.Log("Mushroom has grown");
+            growthStage++;
+            //GrowMushroom();
+        }*/
 
         //Temp code; just making sure Unity can call the method and make it work if the mushroom is dry
         if (Input.GetKeyDown(KeyCode.D))

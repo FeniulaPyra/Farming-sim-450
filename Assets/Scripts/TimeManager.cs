@@ -15,6 +15,9 @@ public class TimeManager : MonoBehaviour
     //Timer to keep track of time passed
     float dayTimer = daysInSeconds;
 
+    //Reference to the FarmManager so it can access the dictionary that has all of the mushrooms
+    public FarmManager management = new FarmManager();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,11 +47,22 @@ public class TimeManager : MonoBehaviour
     //Method to change the day and call grow Mushroom
     void AdvanceDay()
     {
-        Mushrooms TestShroom = FindObjectOfType<Mushrooms>();
+        /*Mushrooms TestShroom = FindObjectOfType<Mushrooms>();
 
         Debug.Log($"{TestShroom} is worth {TestShroom.baseValue}");
 
-        TestShroom.GrowMushroom();
+        TestShroom.GrowMushroom();*/
+
+        //Uses the Farm Managers dictionary of mushrooms to grow each mushroom
+        foreach (KeyValuePair<Vector3Int, Mushrooms> shroom in management.mushroomsAndTiles)
+        {
+            Debug.Log($"{shroom.Value} is worth {shroom.Value.baseValue}");
+
+            shroom.Value.GrowMushroom();
+        }
+
+        //Once all of the mushrooms grow, call spread once.
+        management.SpreadMushroom();
 
         dayTimer = daysInSeconds;
     }

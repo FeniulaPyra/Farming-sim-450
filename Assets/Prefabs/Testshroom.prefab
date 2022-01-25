@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c376132fd3605f47984f2433a561f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  growthStage: 1
+  ID: Super Shroom
+  baseValue: 500
+  mushroomTile: {fileID: 11400000, guid: b1eb0096dc6976b4da1571edd9be7dce, type: 2}
