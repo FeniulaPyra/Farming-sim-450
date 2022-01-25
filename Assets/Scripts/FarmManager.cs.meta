@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: a420b12ecaffc164cbf3c74e16b065c6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mushromPrefab: {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

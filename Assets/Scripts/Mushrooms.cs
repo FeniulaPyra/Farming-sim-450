@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Mushrooms : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Mushrooms : MonoBehaviour
     //The id/name of the mushroom, //The base monetary value of the mushroom
     public string ID = "Super Shroom"; 
     public int baseValue = 500;
+    //Solely for Testing purposes; currently a placeholder
+    public Tile mushroomTile;
     #endregion
 
     // Start is called before the first frame update

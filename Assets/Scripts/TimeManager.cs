@@ -33,7 +33,7 @@ public class TimeManager : MonoBehaviour
         //Also temp code
         //Counts down the day, then when it's over, calls the method
         dayTimer -= Time.deltaTime;
-        Debug.Log($"There are {dayTimer} seconds remaining");
+        //Debug.Log($"There are {dayTimer} seconds remaining");
 
         if(dayTimer <= 0.00f)
         {
