@@ -6,7 +6,7 @@ public class TimeManager : MonoBehaviour
 {
     //Length of the day in minutes
     //static int daysInMinutes = 24;
-    static float daysInMinutes = 0.25f;
+    static float daysInMinutes = 0.33f;
     
     //Length of day in seconds; actually used for timekeeping
     //static int daysInSeconds = daysInMinutes * 60;
@@ -16,7 +16,7 @@ public class TimeManager : MonoBehaviour
     float dayTimer = daysInSeconds;
 
     //Reference to the FarmManager so it can access the dictionary that has all of the mushrooms
-    public FarmManager management = new FarmManager();
+    public FarmManager management;// = new FarmManager();
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class TimeManager : MonoBehaviour
         //Also temp code
         //Counts down the day, then when it's over, calls the method
         dayTimer -= Time.deltaTime;
-        //Debug.Log($"There are {dayTimer} seconds remaining");
+        Debug.Log($"There are {dayTimer} seconds remaining");
 
         if(dayTimer <= 0.00f)
         {

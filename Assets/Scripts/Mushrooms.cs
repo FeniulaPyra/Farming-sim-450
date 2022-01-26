@@ -51,12 +51,12 @@ public class Mushrooms : MonoBehaviour
         }
 
         //Just for testing things related to mushroom growth
-        /*if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("Mushroom has grown");
+            //Debug.Log("Mushroom has grown");
             growthStage++;
             //GrowMushroom();
-        }*/
+        }
 
         //Temp code; just making sure Unity can call the method and make it work if the mushroom is dry
         if (Input.GetKeyDown(KeyCode.D))
