@@ -14,9 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 direction;
 
+    private Vector2 facing;
+
+    public Vector2 Facing => facing;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        facing = Vector2.one;
     }
 
     void Update()
@@ -25,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction.magnitude > 1)
             direction = direction.normalized;
+
+        if (rb.velocity.magnitude > 0.1)
+            facing = rb.velocity.normalized;
     }
 
     private void FixedUpdate()

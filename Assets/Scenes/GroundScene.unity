@@ -51991,6 +51991,7 @@ GameObject:
   - component: {fileID: 964130515}
   - component: {fileID: 964130517}
   - component: {fileID: 964130516}
+  - component: {fileID: 964130518}
   m_Layer: 0
   m_Name: Crops
   m_TagString: Untagged
@@ -52172,6 +52173,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &964130518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964130514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a420b12ecaffc164cbf3c74e16b065c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mushromPrefab: {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
 --- !u!1 &965008472
 GameObject:
   m_ObjectHideFlags: 0
@@ -52223,6 +52237,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
   m_PrefabInstance: {fileID: 7752269456879133806}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1281256933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7752269456424297128, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+  m_PrefabInstance: {fileID: 7752269456879133806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1281256936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281256933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369a69b5bf91aa04a82551d1aba3cb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmManager: {fileID: 964130518}
 --- !u!1 &1840140367
 GameObject:
   m_ObjectHideFlags: 0

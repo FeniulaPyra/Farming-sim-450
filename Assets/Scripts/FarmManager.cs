@@ -40,10 +40,10 @@ public class FarmManager : MonoBehaviour
         }
 
         //Testing purposes; This line of code actually puts the tile at that position
-        farmField.SetTile(new Vector3Int(-11, 3, 0), plantedMushrooms[0].GetComponent<Mushrooms>().mushroomTile);
+        //farmField.SetTile(new Vector3Int(-11, 3, 0), plantedMushrooms[0].GetComponent<Mushrooms>().mushroomTile);
 
         //At this specific position, you know about this specific script instance
-        mushroomsAndTiles[new Vector3Int(-11, 3, 0)] = plantedMushrooms[0].GetComponent<Mushrooms>();
+        //mushroomsAndTiles[new Vector3Int(-11, 3, 0)] = plantedMushrooms[0].GetComponent<Mushrooms>();
 
     }
 
@@ -60,6 +60,15 @@ public class FarmManager : MonoBehaviour
                 farmField.SetTile(shroom.Key, null);
             }
         }
+    }
+
+    public void TileInteract(Vector3Int tile, string tool)
+    {
+        Debug.Log("Do interaction! @" + tile);
+
+        if (!mushroomsAndTiles.ContainsKey(tile)) return;
+
+        // Do interaction
     }
 
     public void SpreadMushroom()
