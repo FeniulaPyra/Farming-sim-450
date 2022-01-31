@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        facing = Vector2.one;
+        facing = new Vector2(1, 0);
     }
 
     void Update()
@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
         if (direction.magnitude > 1)
             direction = direction.normalized;
 
-        if (rb.velocity.magnitude > 0.1)
-            facing = rb.velocity.normalized;
+        if (direction.magnitude > 0.1)
+            facing = direction.normalized;
     }
 
     private void FixedUpdate()
@@ -40,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         var desiredVelocity = direction * movementSpeed;
         var move = desiredVelocity - rb.velocity;
 
-        sr.flipX = desiredVelocity.x < 0;
+        if (rb.velocity.magnitude > 0.1)
+            sr.flipX = rb.velocity.x < 0;
 
         rb.velocity += move;
     }
