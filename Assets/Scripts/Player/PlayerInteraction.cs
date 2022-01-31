@@ -43,6 +43,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             farmManager.TileInteract(focusTilePosition, "till");
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            farmManager.TileInteract(focusTilePosition, "seed");
+        }
 
         var indicatorPos = focusTilePosition;
         if (displayIndicator)

@@ -51991,7 +51991,6 @@ GameObject:
   - component: {fileID: 964130515}
   - component: {fileID: 964130517}
   - component: {fileID: 964130516}
-  - component: {fileID: 964130518}
   m_Layer: 0
   m_Name: Crops
   m_TagString: Untagged
@@ -52173,19 +52172,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &964130518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 964130514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a420b12ecaffc164cbf3c74e16b065c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mushromPrefab: {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
 --- !u!1 &965008472
 GameObject:
   m_ObjectHideFlags: 0
@@ -52254,7 +52240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369a69b5bf91aa04a82551d1aba3cb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farmManager: {fileID: 964130518}
+  farmManager: {fileID: 2068960239}
   indicator: {fileID: 1642525208}
   displayIndicator: 1
 --- !u!1 &1642525206
@@ -52437,6 +52423,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1025754823}
   followSpeed: 5
+--- !u!1 &2068960238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068960241}
+  - component: {fileID: 2068960240}
+  - component: {fileID: 2068960239}
+  - component: {fileID: 2068960242}
+  m_Layer: 0
+  m_Name: ManagerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2068960239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068960238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a420b12ecaffc164cbf3c74e16b065c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmField: {fileID: 964130517}
+  mushroomPrefab: {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
+  tilePrefab: {fileID: 4961404438599231594, guid: 46343c075cc3fe6409476cbb45399088, type: 3}
+--- !u!114 &2068960240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068960238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66bf7288ed7c224bafceb8f01b3779d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  management: {fileID: 0}
+--- !u!4 &2068960241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068960238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2728817, y: -0.6854146, z: -6.960806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2068960242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068960238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69af93aa6ae738418e21abd47e42d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mushroomList:
+  - key: Super Shroom
+    value: {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
 --- !u!1001 &7752269456879133806
 PrefabInstance:
   m_ObjectHideFlags: 0

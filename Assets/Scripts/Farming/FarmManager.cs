@@ -6,28 +6,34 @@ using UnityEngine.Tilemaps;
 public class FarmManager : MonoBehaviour
 {
     //Tilemap from the thing it is one, to keep track of crops
-    Tilemap farmField;
+    public Tilemap farmField;
     //Testing purposes; list of gameobject children
     //List<GameObject> children = new List<GameObject>();
     List<Transform> plantedMushrooms = new List<Transform>();
     //Reference to the Mushroom Prefab for creating new mushrooms
-    public GameObject mushromPrefab;
+    public GameObject mushroomPrefab;
+    //public MushroomManager mushroomManager;
 
     //Testing only; attempt at making a dictionary
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
-    public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
+    //public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
+    public Dictionary<Vector3Int, Tile> mushroomsAndTiles = new Dictionary<Vector3Int, Tile>();
+
+    //EmptyTilePrefab
+    public Tile tilePrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        farmField = gameObject.GetComponent<Tilemap>();
+        //Finding Crops, then getting it's tilemap; likely a temp solution
+        //farmField = GameObject.Find("Crops").GetComponent<Tilemap>();
 
         //Can be used to figure out where the (0, 0) of the tilemap is, which could be useful
         Debug.Log($"The origin is: {farmField.origin}");
         //The bottom left point of a tile is its actual coordinates
         Debug.Log($"I am the tile: {farmField.GetTile(new Vector3Int(-11, 3, 0))}");
 
-        foreach(Transform child in transform)
+        /*foreach(Transform child in transform)
         {
             //Should only add mushrooms
             //Testing purposes; might have to be moved elsewhere
@@ -37,13 +43,26 @@ public class FarmManager : MonoBehaviour
             }
             //Debug.Log($"I've added {child}");
             //Debug.Log($"It is worth {child.GetComponent<Mushrooms>().baseValue}");
-        }
+        }*/
 
         //Testing purposes; This line of code actually puts the tile at that position
         //farmField.SetTile(new Vector3Int(-11, 3, 0), plantedMushrooms[0].GetComponent<Mushrooms>().mushroomTile);
 
         //At this specific position, you know about this specific script instance
-        //mushroomsAndTiles[new Vector3Int(-11, 3, 0)] = plantedMushrooms[0].GetComponent<Mushrooms>();
+        //mushroomsAndTiles.Add(new Vector3Int(-11, 3, 0), plantedMushrooms[0].GetComponent<Tile>());
+
+        //Making a random set of tiles
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                Vector3Int cropPos = new Vector3Int(i, j, 0);
+                Tile testTile = Instantiate(tilePrefab, cropPos, Quaternion.identity, transform);
+
+                mushroomsAndTiles.Add(cropPos, testTile);
+                farmField.SetTile(cropPos, testTile.tileSprite);
+            }
+        }
 
     }
 
@@ -53,7 +72,7 @@ public class FarmManager : MonoBehaviour
         //When mushroom destroys itself, the tile stays
         //Check the dictionary to see if the associated script still exists
         //if it doesn't, set tile to null
-        foreach (KeyValuePair<Vector3Int, Mushrooms> shroom in mushroomsAndTiles)
+        foreach (KeyValuePair<Vector3Int, Tile> shroom in mushroomsAndTiles)
         {
             if(shroom.Value == null)
             {
@@ -69,6 +88,28 @@ public class FarmManager : MonoBehaviour
         if (!mushroomsAndTiles.ContainsKey(tile)) return;
 
         // Do interaction
+        //Tilling field
+        if (tool == "till" && mushroomsAndTiles[tile].isTilled == false)
+        {
+            mushroomsAndTiles[tile].isTilled = true;
+            Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
+        }
+        //planting
+        if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
+        {
+            //has plant is true, destroys tile, and puts mushroom in its place
+            Destroy(mushroomsAndTiles[tile]);
+            mushroomsAndTiles.Remove(tile);
+            GameObject newMushroom = Instantiate(mushroomPrefab, tile, Quaternion.identity, transform);
+            mushroomsAndTiles.Add(tile, newMushroom.GetComponent<Tile>());
+            farmField.SetTile(tile, newMushroom.GetComponent<Tile>().tileSprite);
+            mushroomsAndTiles[tile].hasPlant = true;
+        }
+    }
+
+    public void Plant()
+    {
+
     }
 
     public void SpreadMushroom()
@@ -98,11 +139,18 @@ public class FarmManager : MonoBehaviour
                 if (farmField.GetTile(tileToTest) != null)
                 {
 
+                    //Casting all tiles to Mushrooms in order to access Mushrooms only variables
+                    //Changed GetComponents to tiles
+                    //Changed MushroomTile to TileBase since Unity wouldn't stpo crying about it
+                    //Might need new solution if not proper
+
+                    Mushrooms compareShroom = (Mushrooms)mushroomsAndTiles[tileToTest];
+
                     Debug.Log($"Found a tile at {tileToTest}!");
 
                     //If it exists, get the mushroom script it's attached to
                     //see if it's fully grown
-                    if (mushroomsAndTiles[tileToTest].growthStage >= mushroomsAndTiles[tileToTest].GetMaxGrowthStage())
+                    if (compareShroom.growthStage >= compareShroom.GetMaxGrowthStage())
                     {
                         Vector3Int above = new Vector3Int(tileToTest.x, tileToTest.y + 1, 0);
                         Vector3Int below = new Vector3Int(tileToTest.x, tileToTest.y - 1, 0);
@@ -114,29 +162,29 @@ public class FarmManager : MonoBehaviour
                         //If yes, instantiate mushroom prefab, set it's tile to that empty space, and add it as child to farmfield
                         if (farmField.GetTile(above) == null && above.y <= topBound)
                         {
-                            mushroomsAndTiles[above] = Instantiate(mushromPrefab, above, Quaternion.identity).GetComponent<Mushrooms>();
-                            farmField.SetTile(above, mushroomsAndTiles[above].mushroomTile);
+                            mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
+                            farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
                             mushroomsAndTiles[above].transform.parent = this.transform;
                         }
 
                         if (farmField.GetTile(below) == null && below.y >= bottomBound)
                         {
-                            mushroomsAndTiles[below] = Instantiate(mushromPrefab, below, Quaternion.identity).GetComponent<Mushrooms>();
-                            farmField.SetTile(below, mushroomsAndTiles[below].mushroomTile);
+                            mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
+                            farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
                             mushroomsAndTiles[below].transform.parent = this.transform;
                         }
 
                         if (farmField.GetTile(left) == null && left.x >= leftBound)
                         {
-                            mushroomsAndTiles[left] = Instantiate(mushromPrefab, left, Quaternion.identity).GetComponent<Mushrooms>();
-                            farmField.SetTile(left, mushroomsAndTiles[left].mushroomTile);
+                            mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
+                            farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
                             mushroomsAndTiles[left].transform.parent = this.transform;
                         }
 
                         if (farmField.GetTile(right) == null && right.x <= rightBound)
                         {
-                            mushroomsAndTiles[right] = Instantiate(mushromPrefab, right, Quaternion.identity).GetComponent<Mushrooms>();
-                            farmField.SetTile(right, mushroomsAndTiles[right].mushroomTile);
+                            mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
+                            farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
                             mushroomsAndTiles[right].transform.parent = this.transform;
                         }
                     }

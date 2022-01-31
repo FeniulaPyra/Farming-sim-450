@@ -21,7 +21,10 @@ public class TimeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log($"There are {daysInMinutes} minutes in the day and {daysInSeconds} seconds in the day");   
+        Debug.Log($"There are {daysInMinutes} minutes in the day and {daysInSeconds} seconds in the day");
+
+        //Getting Time Manager
+        management = FindObjectOfType<FarmManager>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class TimeManager : MonoBehaviour
         //Also temp code
         //Counts down the day, then when it's over, calls the method
         dayTimer -= Time.deltaTime;
-        Debug.Log($"There are {dayTimer} seconds remaining");
+        //Debug.Log($"There are {dayTimer} seconds remaining");
 
         if(dayTimer <= 0.00f)
         {
@@ -54,11 +57,13 @@ public class TimeManager : MonoBehaviour
         TestShroom.GrowMushroom();*/
 
         //Uses the Farm Managers dictionary of mushrooms to grow each mushroom
-        foreach (KeyValuePair<Vector3Int, Mushrooms> shroom in management.mushroomsAndTiles)
+        foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
         {
-            Debug.Log($"{shroom.Value} is worth {shroom.Value.baseValue}");
+            Mushrooms newShroom = (Mushrooms)shroom.Value;
 
-            shroom.Value.GrowMushroom();
+            Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
+
+            newShroom.GrowMushroom();
         }
 
         //Once all of the mushrooms grow, call spread once.

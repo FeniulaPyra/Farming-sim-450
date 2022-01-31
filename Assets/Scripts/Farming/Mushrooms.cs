@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class Mushrooms : MonoBehaviour
+
+public class Mushrooms : Tile
 {
     #region Life and Death Variables
     //constant that defines the greatest stage of growth. Once the mushroom is at this stage, it's fully grown
@@ -21,16 +21,12 @@ public class Mushrooms : MonoBehaviour
     public float growthStage = 1.00f;
     //number of days without water
     int daysWithoutWater;
-    //whether or not it's been watered
-    bool isMoist = false;
     #endregion
 
     #region Miscellaneous Variables 
     //The id/name of the mushroom, //The base monetary value of the mushroom
-    public string ID = "Super Shroom"; 
+    public string ID = "Super Shroom";
     public int baseValue = 500;
-    //Solely for Testing purposes; currently a placeholder
-    public Tile mushroomTile;
     #endregion
 
     // Start is called before the first frame update
@@ -43,7 +39,7 @@ public class Mushrooms : MonoBehaviour
     void Update()
     {
         //Temp code; just making sure Unity can call the method and make it work if the mushroom is moist
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Debug.Log("Mushroom now moist");
             isMoist = true;
@@ -51,7 +47,7 @@ public class Mushrooms : MonoBehaviour
         }
 
         //Just for testing things related to mushroom growth
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             //Debug.Log("Mushroom has grown");
             growthStage++;
@@ -59,7 +55,7 @@ public class Mushrooms : MonoBehaviour
         }
 
         //Temp code; just making sure Unity can call the method and make it work if the mushroom is dry
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Mushroom now dry");
             isMoist = false;
@@ -67,7 +63,7 @@ public class Mushrooms : MonoBehaviour
         }
 
         //Temp code; just making sure Unity can access the misc variables
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             Debug.Log($"Mushroom is named {ID} and is worth {baseValue} G.");
         }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5879598989684422948
+--- !u!1 &5530479321342306429
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4291080513148623506}
-  - component: {fileID: 4467474593834117858}
+  - component: {fileID: 1541542981226076802}
+  - component: {fileID: 4961404438599231594}
   m_Layer: 0
-  m_Name: Testshroom
+  m_Name: TilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4291080513148623506
+--- !u!4 &1541542981226076802
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5879598989684422948}
+  m_GameObject: {fileID: 5530479321342306429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2728817, y: -0.6854146, z: -6.960806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4467474593834117858
+--- !u!114 &4961404438599231594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5879598989684422948}
+  m_GameObject: {fileID: 5530479321342306429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c376132fd3605f47984f2433a561f42, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c287d7a865272c4b9470af47b08bcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isTilled: 0
   isMoist: 0
   hasPlant: 0
-  tileSprite: {fileID: 11400000, guid: b1eb0096dc6976b4da1571edd9be7dce, type: 2}
-  growthStage: 1
-  ID: Super Shroom
-  baseValue: 500
+  tileSprite: {fileID: 11400000, guid: 8bbe4e54291948e458d230a3b600cade, type: 2}
