@@ -27,12 +27,19 @@ public class Mushrooms : Tile
     //The id/name of the mushroom, //The base monetary value of the mushroom
     public string ID = "Super Shroom";
     public int baseValue = 500;
+
+    //For inventory interaction
+    public Item mushroomItem;
+    public Sprite spr;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Setting item's values
+        mushroomItem = new Item();
+        mushroomItem.name = ID;
+        mushroomItem.spr = spr;
     }
 
     // Update is called once per frame
@@ -49,7 +56,7 @@ public class Mushrooms : Tile
         //Just for testing things related to mushroom growth
         if (Input.GetKeyDown(KeyCode.X))
         {
-            //Debug.Log("Mushroom has grown");
+            Debug.Log("Mushroom has grown");
             growthStage++;
             //GrowMushroom();
         }
