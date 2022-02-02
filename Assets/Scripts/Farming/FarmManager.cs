@@ -44,7 +44,7 @@ public class FarmManager : MonoBehaviour
 
                 mushroomsAndTiles.Add(cropPos, testTile);
                 //farmField.SetTile(cropPos, testTile.tileSprite);
-                //tillableGround.SetTile(cropPos, testTile.tileSprite);
+                tillableGround.SetTile(cropPos, testTile.tileSprite);
             }
         }
 
@@ -76,7 +76,7 @@ public class FarmManager : MonoBehaviour
         if (tool == "till" && mushroomsAndTiles[tile].isTilled == false)
         {
             mushroomsAndTiles[tile].isTilled = true;
-            //tillableGround.SetTile(tile, tilePrefab.tilledGround);
+            tillableGround.SetTile(tile, tilePrefab.tilledGround);
             Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
         }
         //planting
@@ -116,7 +116,7 @@ public class FarmManager : MonoBehaviour
             //Doesn't care if the plant has already been watered; just cares that there's a plant
             mushroomsAndTiles[tile].isMoist = true;
             Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
-            //tillableGround.SetTile(tile, tilePrefab.wateredGround);
+            tillableGround.SetTile(tile, tilePrefab.wateredGround);
         }
         //Harvesting
         //Might cause problems if the hasPlant of that tile is not set back to false, even though the tile itself ceases to exist
@@ -124,15 +124,19 @@ public class FarmManager : MonoBehaviour
         {
             //convert tile to mushroom
             Mushrooms harvestShroom = (Mushrooms)mushroomsAndTiles[tile];
-            if (harvestShroom.growthStage >= harvestShroom.GetMaxGrowthStage())
+
+            //Destroy mushroom and add to inventory
+            Destroy(mushroomsAndTiles[tile]);
+            //mushroomsAndTiles.Remove(tile);
+            farmField.SetTile(tile, null);
+            tillableGround.SetTile(tile, tilePrefab.tileSprite);
+            ItemStack itemToAdd = new ItemStack(harvestShroom.mushroomItem, 1);
+            playerInventory.AddItems(itemToAdd);
+
+            /*if (harvestShroom.growthStage >= harvestShroom.GetMaxGrowthStage())
             {
-                //Destroy mushroom and add to inventory
-                Destroy(mushroomsAndTiles[tile]);
-                mushroomsAndTiles.Remove(tile);
-                farmField.SetTile(tile, null);
-                ItemStack itemToAdd = new ItemStack(harvestShroom.mushroomItem, 1);
-                playerInventory.AddItems(itemToAdd);
-            }
+                
+            }*/
         }
     }
 
