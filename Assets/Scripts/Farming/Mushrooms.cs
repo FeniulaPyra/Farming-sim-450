@@ -8,7 +8,7 @@ public class Mushrooms : Tile
     #region Life and Death Variables
     //constant that defines the greatest stage of growth. Once the mushroom is at this stage, it's fully grown
     //constant cannot be public, and therefore cannot be shared within another script
-    const int maxGrowthStage = 3;
+    public int maxGrowthStage;// = 3;
 
     public int GetMaxGrowthStage()
     {
@@ -85,6 +85,7 @@ public class Mushrooms : Tile
             if (growthStage < maxGrowthStage)
             {
                 growthStage++;
+                tileSprite = sprites[Mathf.FloorToInt(growthStage - 1)];
             }
 
             daysWithoutWater = 0;

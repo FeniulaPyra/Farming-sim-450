@@ -6,7 +6,7 @@ public class TimeManager : MonoBehaviour
 {
     //Length of the day in minutes
     //static int daysInMinutes = 24;
-    static float daysInMinutes = 0.125f;
+    static float daysInMinutes = 0.25f;
     
     //Length of day in seconds; actually used for timekeeping
     //static int daysInSeconds = daysInMinutes * 60;
@@ -63,7 +63,12 @@ public class TimeManager : MonoBehaviour
                 newShroom.GrowMushroom();
 
                 newShroom.isMoist = false;
+
+                //Set the tile again, in case the mushroom has grown
+                management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
             }
+
+            
         }
 
         //Once all of the mushrooms grow, call spread once.

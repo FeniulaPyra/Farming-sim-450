@@ -123,67 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &354843683
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4291080513148623506, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4467474593834117858, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: spr
-      value: 
-      objectReference: {fileID: 6896417841489334675, guid: b397689f58031c441aa763d8045ed029, type: 3}
-    - target: {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-      propertyPath: m_Name
-      value: Testshroom
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
 --- !u!1 &546037799
 GameObject:
   m_ObjectHideFlags: 0
@@ -52516,8 +52455,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmField: {fileID: 964130517}
+  tillableGround: {fileID: 546037802}
   mushroomManager: {fileID: 2068960242}
-  tilePrefab: {fileID: 4961404438599231594, guid: 46343c075cc3fe6409476cbb45399088, type: 3}
+  tilePrefab: {fileID: 8646498163281013957, guid: b73f6f505ac6e2a438e851afd1879e8f, type: 3}
 --- !u!114 &2068960240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52558,8 +52498,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mushroomList:
-  - {fileID: 5879598989684422948, guid: b42ed603e269bc541b8e95f514f03453, type: 3}
-  - {fileID: 4155193033271134697, guid: 5bdb18eff7810384581eca07994dcf88, type: 3}
+  - {fileID: 2536459904192622106, guid: 6611e5bd4b468d64395f2d090d74ca5a, type: 3}
+  - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
+  - {fileID: 2384392086033523595, guid: e80c533e3c8719242a312eec3a8e6a8c, type: 3}
 --- !u!1001 &7752269456879133806
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class FarmManager : MonoBehaviour
 {
     //Tilemap from the thing it is one, to keep track of crops
     public Tilemap farmField;
+    public Tilemap tillableGround;
     List<Transform> plantedMushrooms = new List<Transform>();
 
     //Reference to the Mushroom Prefab for creating new mushrooms
@@ -42,7 +43,8 @@ public class FarmManager : MonoBehaviour
                 Tile testTile = Instantiate(tilePrefab, cropPos, Quaternion.identity, transform);
 
                 mushroomsAndTiles.Add(cropPos, testTile);
-                farmField.SetTile(cropPos, testTile.tileSprite);
+                //farmField.SetTile(cropPos, testTile.tileSprite);
+                //tillableGround.SetTile(cropPos, testTile.tileSprite);
             }
         }
 
@@ -74,6 +76,7 @@ public class FarmManager : MonoBehaviour
         if (tool == "till" && mushroomsAndTiles[tile].isTilled == false)
         {
             mushroomsAndTiles[tile].isTilled = true;
+            //tillableGround.SetTile(tile, tilePrefab.tilledGround);
             Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
         }
         //planting
@@ -94,7 +97,11 @@ public class FarmManager : MonoBehaviour
             {
                 GameObject newMushroom = Instantiate(mushroomPrefab, tile, Quaternion.identity, transform);
                 mushroomsAndTiles.Add(tile, newMushroom.GetComponent<Tile>());
+
                 farmField.SetTile(tile, newMushroom.GetComponent<Tile>().tileSprite);
+
+                //Returned nothing. Issue with tile
+                Debug.Log($"Planting Debug 3: {newMushroom.GetComponent<Mushrooms>().ID}");
                 mushroomsAndTiles[tile].hasPlant = true;
                 Debug.Log($"You just planted a {mushroomPrefab.GetComponent<Mushrooms>().ID}");
             }
@@ -109,6 +116,7 @@ public class FarmManager : MonoBehaviour
             //Doesn't care if the plant has already been watered; just cares that there's a plant
             mushroomsAndTiles[tile].isMoist = true;
             Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
+            //tillableGround.SetTile(tile, tilePrefab.wateredGround);
         }
         //Harvesting
         //Might cause problems if the hasPlant of that tile is not set back to false, even though the tile itself ceases to exist
@@ -177,10 +185,8 @@ public class FarmManager : MonoBehaviour
                             Vector3Int right = new Vector3Int(tileToTest.x + 1, tileToTest.y, 0);
 
 
-                            //If it is, go back to tile, search four adjacent spaces to see if they're within bounds and gettile is null, meaning they're empty
-                            //If yes, instantiate mushroom prefab, set it's tile to that empty space, and add it as child to farmfield
-                            //Change is null to has plant
-                            if (mushroomsAndTiles[above].hasPlant == false && above.y <= topBound)//if (farmField.GetTile(above) == null && above.y <= topBound)
+                            //If the tile is in the dictionary, doesn't have a plant, and isn't outside of the bounds of the field
+                            if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].hasPlant == false && above.y <= topBound)
                             {
                                 Debug.Log("Above");
                                 mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
@@ -189,7 +195,7 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[above].hasPlant = true;
                             }
 
-                            if (mushroomsAndTiles[below].hasPlant == false && below.y >= bottomBound)//if (farmField.GetTile(below) == null && below.y >= bottomBound)
+                            if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].hasPlant == false && below.y >= bottomBound)
                             {
                                 Debug.Log("Below");
                                 mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
@@ -198,7 +204,7 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[below].hasPlant = true;
                             }
 
-                            if (mushroomsAndTiles[left].hasPlant == false && left.x >= leftBound)//if (farmField.GetTile(left) == null && left.x >= leftBound)
+                            if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].hasPlant == false && left.x >= leftBound)
                             {
                                 Debug.Log("Left");
                                 mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
@@ -207,7 +213,7 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[left].hasPlant = true;
                             }
 
-                            if (mushroomsAndTiles[right].hasPlant == false && right.x <= rightBound)//if (farmField.GetTile(right) == null && right.x <= rightBound)
+                            if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].hasPlant == false && right.x <= rightBound)
                             {
                                 Debug.Log("Right");
                                 mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();

@@ -16,6 +16,12 @@ public class Tile : MonoBehaviour
     //Solely for Testing purposes; currently a placeholder
     //public Tile mushroomTile;
     public TileBase tileSprite;
+    //List of tiles to easily handle multiple mushroom growth stages
+    public List<TileBase> sprites = new List<TileBase>();
+
+    //ground tile sprites for tilled ground
+    public TileBase tilledGround;
+    public TileBase wateredGround;
 
     // Start is called before the first frame update
     void Start()

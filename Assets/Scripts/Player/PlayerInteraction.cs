@@ -43,10 +43,20 @@ public class PlayerInteraction : MonoBehaviour
         {
             farmManager.TileInteract(focusTilePosition, "till");
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            farmManager.TileInteract(focusTilePosition, "seed", "Red Shroom");
+        }
         if (Input.GetKeyDown(KeyCode.G))
         {
-            farmManager.TileInteract(focusTilePosition, "seed", "Shiitake");
+            farmManager.TileInteract(focusTilePosition, "seed", "Purple Shroom");
         }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            farmManager.TileInteract(focusTilePosition, "seed", "Glowy Shroom");
+        }
+
         if (Input.GetKeyDown(KeyCode.H))
         {
             farmManager.TileInteract(focusTilePosition, "watering can");
