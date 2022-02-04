@@ -14,9 +14,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private bool displayIndicator;
 
+    [SerializeField]
+    private Vector3 interactionOffset;
+
     private PlayerMovement playerMovement;
 
     private Vector3Int focusTilePosition;
+    private Vector3Int currentPlayerPos;
 
     public bool DisplayIndicator { 
         get => displayIndicator; 
@@ -33,11 +37,29 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         var facing = playerMovement.Facing;
-        var pos = transform.position;
-        focusTilePosition = new Vector3Int(Mathf.RoundToInt(pos.x + facing.x), Mathf.RoundToInt(pos.y + facing.y), 0);
-        Debug.DrawRay(transform.position, facing, Color.red);
+        var pos = transform.position + interactionOffset;
+        var rPos = new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), Mathf.RoundToInt(pos.z));
 
+        if (Vector2.Distance(pos, rPos) < 0.5f && (currentPlayerPos.x != rPos.x || currentPlayerPos.y != rPos.y))
+        {
+            currentPlayerPos = new Vector3Int((int)rPos.x, (int)rPos.y, 0);
+        }
 
+        focusTilePosition = new Vector3Int(Mathf.RoundToInt(currentPlayerPos.x + facing.x), Mathf.RoundToInt(currentPlayerPos.y + facing.y), 0);
+
+        var indicatorPos = focusTilePosition;
+        if (displayIndicator)
+            indicatorPos.z = 0;
+        else
+            indicatorPos.z = 11;
+
+        indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+
+        CheckInteraction();
+    }
+
+    private void CheckInteraction()
+    {
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -48,10 +70,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             farmManager.TileInteract(focusTilePosition, "seed", "Red Shroom");
         }
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             farmManager.TileInteract(focusTilePosition, "seed", "Purple Shroom");
         }
+
         if (Input.GetKeyDown(KeyCode.B))
         {
             farmManager.TileInteract(focusTilePosition, "seed", "Glowy Shroom");
@@ -61,18 +85,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             farmManager.TileInteract(focusTilePosition, "watering can");
         }
+
         if (Input.GetKeyDown(KeyCode.J))
         {
             farmManager.TileInteract(focusTilePosition, "sickle");
         }
 
-        var indicatorPos = focusTilePosition;
-        if (displayIndicator)
-            indicatorPos.z = 0;
-        else
-            indicatorPos.z = 11;
-
-        indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
     }
 
     private void OnDrawGizmos()
@@ -80,8 +98,14 @@ public class PlayerInteraction : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(focusTilePosition, Vector3.one);
 
+        /*
         var inTile = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(inTile, Vector3.one);
+        */
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(currentPlayerPos, Vector3.one);
+        Gizmos.DrawWireSphere(currentPlayerPos, 0.5f);
     }
 }

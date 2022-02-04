@@ -21,7 +21,7 @@ public class TimeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log($"There are {daysInMinutes} minutes in the day and {daysInSeconds} seconds in the day");
+        // Debug.Log($"There are {daysInMinutes} minutes in the day and {daysInSeconds} seconds in the day");
 
         //Getting Time Manager
         management = FindObjectOfType<FarmManager>();
@@ -39,7 +39,7 @@ public class TimeManager : MonoBehaviour
         //Also temp code
         //Counts down the day, then when it's over, calls the method
         dayTimer -= Time.deltaTime;
-        Debug.Log($"There are {dayTimer} seconds remaining");
+        // Debug.Log($"There are {dayTimer} seconds remaining");
 
         if(dayTimer <= 0.00f)
         {

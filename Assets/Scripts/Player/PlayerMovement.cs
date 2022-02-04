@@ -32,7 +32,14 @@ public class PlayerMovement : MonoBehaviour
             direction = direction.normalized;
 
         if (direction.magnitude > 0.1)
+        {
             facing = direction.normalized;
+        
+            if(facing.y != 0 && facing.x != 0)
+            {
+                facing.y = 0;
+            }
+        }
     }
 
     private void FixedUpdate()

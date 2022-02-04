@@ -52243,6 +52243,7 @@ MonoBehaviour:
   farmManager: {fileID: 2068960239}
   indicator: {fileID: 1642525208}
   displayIndicator: 1
+  interactionOffset: {x: 0, y: -0.5, z: 0}
 --- !u!1 &1642525206
 GameObject:
   m_ObjectHideFlags: 0
