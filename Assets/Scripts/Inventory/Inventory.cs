@@ -8,6 +8,13 @@ public class Inventory
 	public static int ROWS = 4;
 	public static int COLUMNS = 9;
 
+	public int hotbarRowNumber;
+	public int slotHeld;
+
+	public GameObject player;
+
+	public bool isShown;
+
 	private ItemStack[,] items;
 
 	public ItemStack selectedStack;
@@ -17,17 +24,40 @@ public class Inventory
 		get{return selectedStack;}
 	}
 
+	public ItemStack[] SelectedHotbar
+	{
+		get
+		{
+			ItemStack[] row = new ItemStack[COLUMNS];
+			for (int i = 0; i < COLUMNS; i++)
+			{
+				row[i] = items[hotbarRowNumber, COLUMNS];
+			}
+
+			return row;
+		}
+	}
+
 	public Inventory()
 	{
 		items = new ItemStack[ROWS,COLUMNS];
 		selectedStack = null;
 	}
 
+	/// <summary>
+	/// Picks up and selects the given Itemstack. To be used with SelectSlot.
+	/// </summary>
+	/// <param name="stack">The stack to select</param>
 	public void SelectStack(ItemStack stack)
 	{
 		selectedStack = stack;
 	}
 
+	/// <summary>
+	/// Selects the slot at the given row/column coordinates
+	/// </summary>
+	/// <param name="row">the row of the selected slot</param>
+	/// <param name="column">the column of the selected slot</param>
 	public void SelectSlot(int row, int column)
 	{
 		if (selectedStack != null)
@@ -87,6 +117,11 @@ public class Inventory
 		}
 	}
 
+	/// <summary>
+	/// Adds the given stack of items to the inventory. Any extras will 
+	/// be dropped on the ground if the inventory is closed or selected if the inventory is open.
+	/// </summary>
+	/// <param name="item">an ItemStack of the items to be added</param>
 	public void AddItems(ItemStack item)
 	{
 		for(int r = 0; r < 4; r++)
@@ -113,5 +148,63 @@ public class Inventory
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Adds the given amount of a given item to the inventory.
+	/// </summary>
+	/// <param name="item">The item to add</param>
+	/// <param name="amount">the amount of the item to be added</param>
+	public void AddItems(Item item, int amount)
+	{
+		this.AddItems(new ItemStack(item, amount));
+	}
+
+	public bool IsTooFull(ItemStack items)
+	{
+		//check if inventory is too full to fit new item
+		return true;
+	}
+
+	/// <summary>
+	/// This row is selected as the hotbar.
+	/// selecting the row does not change its order in the inventory array.
+	/// </summary>
+	public void selectHotbar(int rowNumber)
+	{
+		this.hotbarRowNumber = rowNumber;
+
+	}
+
+	/// <summary>
+	/// Selects the next row in the inventory. Loops around - if the user 
+	/// has the last row selected and tries to select the next row, the first
+	/// row in the inventory will be selected instead.
+	/// </summary>
+	public void selectNextHotbar()
+	{
+		hotbarRowNumber = (hotbarRowNumber + 1) % 4;
+	}
+
+	public ItemStack[] GetHotbarItems()
+	{
+
+	}
+
+	public ItemStack HoldItem(int hotbarSlot)
+	{
+
+	}
+
+	public void DropItems() { }
+
+	public void DropSelectedItems()
+	{
+		//GameObject.Instantiate
+	}
+
+	public void DropItemsInSlot()
+	{
+
 	}
 }

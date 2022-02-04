@@ -143,16 +143,19 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
-		Vector2 pos;
-		RectTransformUtility.ScreenPointToLocalPointInRectangle(
-		   InventoryMenu.transform.parent.transform as RectTransform, Input.mousePosition,
-		   InventoryMenu.transform.parent.GetComponent<Canvas>().worldCamera,
-		   out pos);
+		
+		if(InventoryMenu.activeSelf)
+		{
+			//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
+			Vector2 pos;
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(
+			   InventoryMenu.transform.parent.transform as RectTransform, Input.mousePosition,
+			   InventoryMenu.transform.parent.GetComponent<Canvas>().worldCamera,
+			   out pos);
+			//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
 
-		//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
-
-		selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+			selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+		}
 
 		if (Input.GetKeyDown((KeyCode)MenuControls.OPEN_INVENTORY))
 		{
@@ -162,6 +165,8 @@ public class Menu : MonoBehaviour
 				inv.AddItems(inv.selectedStack);
 				inv.selectedStack = null;
 			}
+
+			inv.isShown = InventoryMenu.activeSelf;
 			UpdateInventory();
 		}
 
