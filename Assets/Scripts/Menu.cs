@@ -20,6 +20,8 @@ public class Menu : MonoBehaviour
 	private GameObject[] HotbarSlots;
 	public GameObject HeldHotbarItem;
 
+	public GameObject FarmManager;
+
 	public enum MenuControls
 	{
 		OPEN_INVENTORY = KeyCode.I,
@@ -34,8 +36,8 @@ public class Menu : MonoBehaviour
     {
 		gameItems = new List<Item>();
 		//TODO have this be grabbed from the player once that is be do be done-ificated
-		inv = new Inventory();
-		
+		inv = FarmManager.GetComponent<FarmManager>().playerInventory; //new Inventory();
+
 		InventorySlots = new GameObject[Inventory.ROWS,Inventory.COLUMNS];
 		HotbarSlots = new GameObject[Inventory.COLUMNS];
 		//hides inventory menu at start.
@@ -82,12 +84,14 @@ public class Menu : MonoBehaviour
 					slotIcon.sprite = null;
 				}
 				int x = r, y = c;
+
 				//adds click event listener to select slot.
 				slot.GetComponent<Button>().onClick.AddListener(delegate {
+					Debug.Log("Clicked button");
 					inv.SelectSlot(x, y);
 					UpdateInventory();
 				});
-				slot.GetComponent<Button>().onClick.AddListener(UpdateInventory);
+				//slot.GetComponent<Button>().onClick.AddListener(UpdateInventory);
 
 				//adds the slot to the inventory menu
 				slot.transform.SetParent(InventoryMenu.transform, false);
