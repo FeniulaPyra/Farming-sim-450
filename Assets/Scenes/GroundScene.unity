@@ -163,7 +163,7 @@ MonoBehaviour:
   selectedItem: {fileID: 1407797290}
   HotbarGameobject: {fileID: 1216943103}
   HeldHotbarItem: {fileID: 1404613527}
-  FarmManager: {fileID: 0}
+  FarmManager: {fileID: 2068960238}
 --- !u!114 &24585729
 MonoBehaviour:
   m_ObjectHideFlags: 0
