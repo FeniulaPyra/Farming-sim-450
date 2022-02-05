@@ -24,6 +24,9 @@ public class Inventory
 		get{return selectedStack;}
 	}
 
+	/// <summary>
+	/// The itemstacks in the currently selected hotbar row
+	/// </summary>
 	public ItemStack[] SelectedHotbar
 	{
 		get
@@ -35,6 +38,16 @@ public class Inventory
 			}
 
 			return row;
+		}
+	}
+	/// <summary>
+	/// The Currently held item
+	/// </summary>
+	public ItemStack HeldItem
+	{
+		get
+		{
+			return SelectedHotbar[slotHeld];
 		}
 	}
 
@@ -183,20 +196,72 @@ public class Inventory
 	/// </summary>
 	public void selectNextHotbar()
 	{
-		hotbarRowNumber = (hotbarRowNumber + 1) % 4;
+		hotbarRowNumber = (hotbarRowNumber + 1) % ROWS;
 	}
 
+	/// <summary>
+	/// Selects the previous row in the inventory. Loops around - if the user 
+	/// has the first row selected aand tries to select the previous row, the 
+	/// last row in the inventory will be selected instead
+	/// </summary>
+	public void selectPreviousHotbar()
+	{
+		hotbarRowNumber = (hotbarRowNumber - 1);
+		if (hotbarRowNumber < 0)
+			hotbarRowNumber = ROWS - 1;
+	}
+
+	/// <summary>
+	/// Returns the items in the row currently selected as the hotbar
+	/// </summary>
+	/// <returns>an array of ItemStacks representing the current hotbar items</returns>
 	public ItemStack[] GetHotbarItems()
 	{
+		ItemStack[] row = new ItemStack[COLUMNS];
+		for (int i = 0; i < COLUMNS; i++)
+		{
+			row[i] = items[hotbarRowNumber, COLUMNS];
+		}
 
+		return row;
 	}
 
-	public ItemStack HoldItem(int hotbarSlot)
+	/// <summary>
+	/// Selects the given slot of the hotbar for the player to hold or equip
+	/// </summary>
+	/// <param name="hotbarSlot">The column in the hotbar row of the item for the player to hold</param>
+	public void HoldItem(int hotbarSlot)
 	{
-
+		if (hotbarSlot < 0) hotbarSlot = 0;
+		if (hotbarSlot > COLUMNS) hotbarSlot = COLUMNS - 1;
+		slotHeld = hotbarSlot; 
 	}
 
-	public void DropItems() { }
+	/// <summary>
+	/// Rotates to the next item in the hotbar. Loops around - if the user
+	/// is holding the last item in the hotbar and attempts to select the
+	/// next item, the first item in the hotbar will be selected
+	/// </summary>
+	public void HoldNextItem()
+	{
+		slotHeld = (slotHeld + 1) % COLUMNS;
+	}
+
+	/// <summary>
+	/// Rotates to the previous item in the hotbar. Loops around - if the user
+	/// is holding the first item in the hotbar and attempts to select the
+	/// next item, the last item in the hotbar will be selected
+	/// </summary>
+	public void HoldPreviousItem()
+	{
+		slotHeld = (slotHeld - 1);
+		if (slotHeld < 0)
+			slotHeld = COLUMNS - 1;
+	}
+
+	public void DropItems() {
+
+	}
 
 	public void DropSelectedItems()
 	{
