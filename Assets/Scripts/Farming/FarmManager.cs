@@ -65,11 +65,15 @@ public class FarmManager : MonoBehaviour
         }
     }
 
-    public void TileInteract(Vector3Int tile, string tool, string mushID = "null")
+    public void TileInteract(Vector3Int tile, string tool)
     {
         Debug.Log("Do interaction! @" + tile);
 
         if (!mushroomsAndTiles.ContainsKey(tile)) return;
+
+        //force to all lowercase, just in case
+        //tool = tool.ToLower();
+        Debug.Log($"I am the tool: {tool}");
 
         // Do interaction
         //Tilling field
@@ -80,17 +84,25 @@ public class FarmManager : MonoBehaviour
             Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
         }
         //planting
-        if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
+        //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
+        //Might have to account for naming being similar, but not the same, which would throw things off.
+        //Dictionary Keys are the IDs of the Mushrooms, which are all formatted like "Descriptor Shroom", so the item names must be the same
+        if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true)
+        //if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
         {
             //has plant is true, destroys tile and removes from dictionary, and puts mushroom in its place
             Destroy(mushroomsAndTiles[tile]);
             mushroomsAndTiles.Remove(tile);
 
-            //setting mushroomPrefab based on the type of mushroom plants
-            if(mushID != "null" && mushroomManager.mushroomVariants.ContainsKey(mushID))
+            if (mushroomManager.mushroomVariants.ContainsKey(tool))
             {
-                mushroomPrefab = mushroomManager.mushroomVariants[mushID];
+                mushroomPrefab = mushroomManager.mushroomVariants[tool];
             }
+            //setting mushroomPrefab based on the type of mushroom plants
+            /*if(mushID != "null" && mushroomManager.mushroomVariants.ContainsKey(mushID))
+            {
+                mushroomPrefab = mushroomManager.mushroomVariants[tool];
+            }*/
 
             //Since mushroom is determined by a non null string, if the string is nonsense
             if (mushroomPrefab != null)

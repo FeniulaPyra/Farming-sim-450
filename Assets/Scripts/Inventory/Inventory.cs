@@ -34,7 +34,7 @@ public class Inventory
 			ItemStack[] row = new ItemStack[COLUMNS];
 			for (int i = 0; i < COLUMNS; i++)
 			{
-				row[i] = items[hotbarRowNumber, COLUMNS];
+				row[i] = items[hotbarRowNumber, i];
 			}
 
 			return row;

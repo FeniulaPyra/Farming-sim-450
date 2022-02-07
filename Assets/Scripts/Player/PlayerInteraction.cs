@@ -60,35 +60,12 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckInteraction()
     {
+        string itemName = farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item.name;
+
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.F))
         {
-            farmManager.TileInteract(focusTilePosition, "till");
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            farmManager.TileInteract(focusTilePosition, "seed", "Red Shroom");
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            farmManager.TileInteract(focusTilePosition, "seed", "Purple Shroom");
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            farmManager.TileInteract(focusTilePosition, "seed", "Glowy Shroom");
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            farmManager.TileInteract(focusTilePosition, "watering can");
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            farmManager.TileInteract(focusTilePosition, "sickle");
+            farmManager.TileInteract(focusTilePosition, itemName);
         }
 
     }

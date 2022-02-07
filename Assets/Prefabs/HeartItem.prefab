@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Heart
   spr: {fileID: 21300000, guid: a22351fedb3d75848a9742c16aecc850, type: 3}
+  itemObj: {fileID: 0}
+  manager: {fileID: 0}

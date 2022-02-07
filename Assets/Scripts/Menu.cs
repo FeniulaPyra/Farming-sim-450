@@ -135,8 +135,11 @@ public class Menu : MonoBehaviour
 		//debugging stuff
 		inv.AddItems(new ItemStack(gameItems[0], 10));
 		inv.AddItems(new ItemStack(gameItems[1], 10));
-		inv.AddItems(new ItemStack(gameItems[1], 50));
-		UpdateInventory();
+		inv.AddItems(new ItemStack(gameItems[2], 1));
+        inv.AddItems(new ItemStack(gameItems[3], 1));
+        inv.AddItems(new ItemStack(gameItems[4], 1));
+        inv.AddItems(new ItemStack(gameItems[5], 1));
+        UpdateInventory();
     }
 
 	void UpdateInventory()
