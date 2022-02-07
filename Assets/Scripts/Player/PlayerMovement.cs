@@ -34,10 +34,11 @@ public class PlayerMovement : MonoBehaviour
         if (direction.magnitude > 0.1)
         {
             facing = direction.normalized;
-        
-            if(facing.y != 0 && facing.x != 0)
+
+            if (facing.y != 0 && facing.x != 0)
             {
-                facing.y = 0;
+                if (facing.x < facing.y) facing.x = 0;
+                else facing.y = 0;
             }
         }
     }

@@ -17,6 +17,9 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private Vector3 interactionOffset;
 
+    [SerializeField]
+    private float maxDistanceToInteraction = 1.25f;
+
     private PlayerMovement playerMovement;
 
     private Vector3Int focusTilePosition;
@@ -46,14 +49,17 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         focusTilePosition = new Vector3Int(Mathf.RoundToInt(currentPlayerPos.x + facing.x), Mathf.RoundToInt(currentPlayerPos.y + facing.y), 0);
-
         var indicatorPos = focusTilePosition;
         if (displayIndicator)
             indicatorPos.z = 0;
         else
             indicatorPos.z = 11;
 
-        indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        var targetPos = focusTilePosition;
+        if (Vector2.Distance(new Vector2(targetPos.x, targetPos.y), pos) > maxDistanceToInteraction)
+            targetPos = new Vector3Int((int)rPos.x, (int)rPos.y, targetPos.z);
+
+        indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
 
         CheckInteraction();
     }
