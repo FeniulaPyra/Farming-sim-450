@@ -34,7 +34,7 @@ public class Inventory
 			ItemStack[] row = new ItemStack[COLUMNS];
 			for (int i = 0; i < COLUMNS; i++)
 			{
-				row[i] = items[hotbarRowNumber, COLUMNS];
+				row[i] = items[hotbarRowNumber, i];
 			}
 
 			return row;
@@ -55,6 +55,8 @@ public class Inventory
 	{
 		items = new ItemStack[ROWS,COLUMNS];
 		selectedStack = null;
+		selectHotbar(0);
+		HoldItem(0);
 	}
 
 	/// <summary>
@@ -148,7 +150,7 @@ public class Inventory
 					items[r, c] = item;
 					return;
 				}
-				else if(i.Item == item.Item && i.Amount < STACK_SIZE)
+				else if(i.Item.name == item.Item.name && i.Amount < STACK_SIZE)
 				{
 					//if they are the same item and they add up to a smaller amount than the stack size
 					ItemStack leftovers = i.CombineStacks(item, STACK_SIZE);
@@ -173,9 +175,33 @@ public class Inventory
 		this.AddItems(new ItemStack(item, amount));
 	}
 
+	/// <summary>
+	/// Checks if the inventory is too full to recieve an item
+	/// </summary>
+	/// <param name="items">the items the user wants to put in the inventory</param>
+	/// <returns>true if the inventory is too full, false if there is space.</returns>
 	public bool IsTooFull(ItemStack items)
 	{
 		//check if inventory is too full to fit new item
+
+		for(int r =0; r < ROWS; r++)
+		{
+			for(int c = 0; c < COLUMNS; c++)
+			{
+				ItemStack slot = this.items[r, c];
+				//is there an open space in the inventory?
+				if(slot == null)
+				{
+					Debug.Log("isnull");
+					return false;
+				}
+				//is there a stack that has space to add items?
+				if(slot.Item.name == items.Item.name && slot.Amount + items.Amount <= STACK_SIZE)
+				{
+					return false;
+				}
+			}
+		}
 		return true;
 	}
 
@@ -258,18 +284,21 @@ public class Inventory
 		if (slotHeld < 0)
 			slotHeld = COLUMNS - 1;
 	}
-
-	public void DropItems() {
-
+	
+	/// <summary>
+	/// Removes the item stack currently held by the player
+	/// </summary>
+	public void DeleteHeldItemStack()
+	{
+		items[hotbarRowNumber, slotHeld] = null;
+		HoldItem(slotHeld);
 	}
 
-	public void DropSelectedItems()
+	/// <summary>
+	/// Deletes the selected item stack.
+	/// </summary>
+	public void DeleteSelectedItemStack()
 	{
-		//GameObject.Instantiate
-	}
-
-	public void DropItemsInSlot()
-	{
-
+		selectedStack = null;
 	}
 }
