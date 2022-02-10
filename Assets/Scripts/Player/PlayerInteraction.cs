@@ -66,7 +66,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CheckInteraction()
     {
-        string itemName = farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item.name;
+		string itemName = "";
+		if (farmManager.GetComponent<FarmManager>().playerInventory.HeldItem != null)
+			itemName = farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item.name;
 
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.F))
