@@ -220,6 +220,7 @@ public class Menu : MonoBehaviour
 			}
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}
+		inv.HoldItem(inv.slotHeld);
 		//updates held item indicator
 		HeldHotbarItem.transform.position = HotbarSlots[inv.slotHeld].transform.position;
 	}
@@ -234,13 +235,8 @@ public class Menu : MonoBehaviour
 		//this is so dumb
 		for(int i = 0, len = gameItemPrefabs.Count; i < len; i++)
 		{
-			//thi sis the most stupid and roundabout way its justa  dictionary
-			//why didnt i just make a fucking dictionary
-			//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 			if(gameItems[i].name == itemname)
 			{
-				//i miss javascript
-				//im not stupid in javascritp (yes i amm)
 				return gameItemPrefabs[i];
 			}
 		}
@@ -308,21 +304,21 @@ public class Menu : MonoBehaviour
 
 		if(Input.GetKeyDown((KeyCode)MenuControls.DROP))
 		{
-			if (InventoryMenu.active)
+			if (InventoryMenu.active && inv.selectedStack != null)
 			{
 				//drop selected Item
 				for (int i = 0; i < inv.selectedStack.Amount; i++)
 				{
-					Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
+					Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
 				}
 				inv.DeleteSelectedItemStack(); 
 			}
-			else
+			else if(inv.HeldItem != null)
 			{
 				//drop held item
 				for (int i = 0; i < inv.HeldItem.Amount; i++)
 				{
-					Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
+					Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
 				}
 				inv.DeleteHeldItemStack(); 
 			}

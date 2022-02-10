@@ -25,15 +25,12 @@ public class Item : MonoBehaviour
 	//public void OnCollisionEnter2D(Collision2D collision)
 	private void Update()
 	{
-		//maybe better way to check this?
-		//if(collision.gameObject.name == "Player")
-		if( Vector2.Distance(itemObj.transform.position, player.transform.position) < 1) 
+
+		if( Vector2.Distance(itemObj.transform.position, player.transform.position) < .5) 
 		{
-			//Debug.Log("SMACKed  into the player !");
 			ItemStack items = new ItemStack(this, 1);
 			if (!manager.playerInventory.IsTooFull(items))
 			{
-				Debug.Log("go in tha invnetoyr!!!1!");
 				manager.playerInventory.AddItems(items);
 				Object.Destroy(this.gameObject);
 			}
