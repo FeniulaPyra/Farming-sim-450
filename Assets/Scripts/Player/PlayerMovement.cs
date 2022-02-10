@@ -11,6 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sr;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
+    [SerializeField]
+    private float footstepDelay = 0.15f;
+    private float footstepTimer = 0;
+
     private Rigidbody2D rb;
     private Vector2 direction;
 
@@ -40,6 +47,20 @@ public class PlayerMovement : MonoBehaviour
                 if (facing.x < facing.y) facing.x = 0;
                 else facing.y = 0;
             }
+        }
+
+        if (rb.velocity.magnitude > 0.1)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0)
+            {
+                audioManager.PlaySoundAtPosition(transform.position, Sounds.Footstep);
+                footstepTimer = footstepDelay;
+            }
+        }
+        else
+        {
+            footstepTimer = 0;
         }
     }
 
