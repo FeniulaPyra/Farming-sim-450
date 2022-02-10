@@ -135,20 +135,26 @@ public class FarmManager : MonoBehaviour
         if (tool == "sickle" && mushroomsAndTiles[tile].hasPlant == true)
         {
             //convert tile to mushroom
-            Mushrooms harvestShroom = (Mushrooms)mushroomsAndTiles[tile];
+            GameObject harvestShroomObject = mushroomsAndTiles[tile].gameObject;
+            Item harvestShroom = harvestShroomObject.GetComponent<Item>();
 
             //Destroy mushroom and add to inventory
             Destroy(mushroomsAndTiles[tile]);
             //mushroomsAndTiles.Remove(tile);
             farmField.SetTile(tile, null);
             tillableGround.SetTile(tile, tilePrefab.tileSprite);
-            ItemStack itemToAdd = new ItemStack(harvestShroom.mushroomItem, 1);
-            playerInventory.AddItems(itemToAdd);
 
-            /*if (harvestShroom.growthStage >= harvestShroom.GetMaxGrowthStage())
+            //harvestShroomObject.GetComponent<SpriteRenderer>().enabled = true;
+            Instantiate(harvestShroom, tile + new Vector3Int(2, 0, 0), Quaternion.identity);
+
+            
+            if (harvestShroomObject.GetComponent<Mushrooms>().growthStage >= harvestShroomObject.GetComponent<Mushrooms>().GetMaxGrowthStage())
             {
-                
-            }*/
+                ItemStack itemToAdd = new ItemStack(harvestShroom, 1);
+                Debug.Log("Added Item");
+                playerInventory.AddItems(itemToAdd);
+
+            }
         }
     }
 
