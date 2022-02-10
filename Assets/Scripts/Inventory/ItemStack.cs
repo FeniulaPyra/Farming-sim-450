@@ -29,7 +29,7 @@ public class ItemStack
 	/// <returns>ItemStack of the leftover items.</returns>
 	public ItemStack CombineStacks(ItemStack stack, int maxStackSize)
 	{
-		if(stack.Item != this.Item)
+		if(stack.Item.name != this.Item.name)
 		{
 			throw new ArgumentException("Stacks are of different items. Can not combine.");
 		}

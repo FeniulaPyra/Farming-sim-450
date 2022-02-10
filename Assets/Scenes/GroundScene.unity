@@ -168,6 +168,7 @@ MonoBehaviour:
   HotbarGameobject: {fileID: 1216943103}
   HeldHotbarItem: {fileID: 1404613527}
   FarmManager: {fileID: 2068960238}
+  player: {fileID: 1281256933}
 --- !u!114 &24585729
 MonoBehaviour:
   m_ObjectHideFlags: 0

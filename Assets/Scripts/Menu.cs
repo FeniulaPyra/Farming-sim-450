@@ -21,6 +21,7 @@ public class Menu : MonoBehaviour
 	public GameObject HeldHotbarItem;
 
 	public GameObject FarmManager;
+	public GameObject player;
 
 	public enum MenuControls
 	{
@@ -28,7 +29,8 @@ public class Menu : MonoBehaviour
 		NEXT_HOTBAR = KeyCode.UpArrow,
 		PREV_HOTBAR = KeyCode.DownArrow,
 		NEXT_HOTBAR_SLOT = KeyCode.RightArrow,
-		PREV_HOTBAR_SLOT = KeyCode.LeftArrow
+		PREV_HOTBAR_SLOT = KeyCode.LeftArrow,
+		DROP = KeyCode.Q
 	}
 
 	// Start is called before the first frame update
@@ -222,6 +224,29 @@ public class Menu : MonoBehaviour
 		HeldHotbarItem.transform.position = HotbarSlots[inv.slotHeld].transform.position;
 	}
 
+	/// <summary>
+	/// Summary of the situation is i have coded myself into a hole.
+	/// I'm gonna need to just sit down and redo the whole item system
+	/// and how the other classes interact with it cuz its a mess rn
+	/// </summary>
+	private GameObject GetItemPrefab(string itemname)
+	{
+		//this is so dumb
+		for(int i = 0, len = gameItemPrefabs.Count; i < len; i++)
+		{
+			//thi sis the most stupid and roundabout way its justa  dictionary
+			//why didnt i just make a fucking dictionary
+			//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+			if(gameItems[i].name == itemname)
+			{
+				//i miss javascript
+				//im not stupid in javascritp (yes i amm)
+				return gameItemPrefabs[i];
+			}
+		}
+		return null;
+	}
+
 	// Update is called once per frame
 	void Update()
     {
@@ -245,7 +270,6 @@ public class Menu : MonoBehaviour
 			if(Input.GetKeyDown("" + numKey))
 			{
 				inv.HoldItem(numKey - 1);
-				UpdateInventory();
 			}
 		}
 
@@ -253,24 +277,20 @@ public class Menu : MonoBehaviour
 		if(Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR))
 		{
 			inv.selectNextHotbar();
-			UpdateInventory();
 		}
 		if(Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR))
 		{
 			inv.selectPreviousHotbar();
-			UpdateInventory();
 		}
 
 		//rotate held item
 		if(Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR_SLOT))
 		{
 			inv.HoldNextItem();
-			UpdateInventory();
 		}
 		if(Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR_SLOT))
 		{
 			inv.HoldPreviousItem();
-			UpdateInventory();
 		}
 
 		//open/close inventory
@@ -284,9 +304,29 @@ public class Menu : MonoBehaviour
 			}
 
 			inv.isShown = InventoryMenu.activeSelf;
-			UpdateInventory();
 		}
 
-
+		if(Input.GetKeyDown((KeyCode)MenuControls.DROP))
+		{
+			if (InventoryMenu.active)
+			{
+				//drop selected Item
+				for (int i = 0; i < inv.selectedStack.Amount; i++)
+				{
+					Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
+				}
+				inv.DeleteSelectedItemStack(); 
+			}
+			else
+			{
+				//drop held item
+				for (int i = 0; i < inv.HeldItem.Amount; i++)
+				{
+					Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
+				}
+				inv.DeleteHeldItemStack(); 
+			}
+		}
+		UpdateInventory();
 	}
 }
