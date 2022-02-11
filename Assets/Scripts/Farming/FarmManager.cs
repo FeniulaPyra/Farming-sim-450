@@ -149,8 +149,10 @@ public class FarmManager : MonoBehaviour
 
             //Destroy mushroom and add to inventory
             Destroy(mushroomsAndTiles[tile]);
-            //mushroomsAndTiles.Remove(tile);
-            farmField.SetTile(tile, null);
+			//mushroomsAndTiles.Remove(tile);
+			//resets the tile;
+			mushroomsAndTiles[tile] = Instantiate(tilePrefab, tile, Quaternion.identity, transform);
+			farmField.SetTile(tile, null);
             tillableGround.SetTile(tile, tilePrefab.tileSprite);
 
             //Instatiates the Prefab on the ground so that the player picks it up by walking over it
