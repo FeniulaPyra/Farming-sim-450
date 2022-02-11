@@ -56,8 +56,9 @@ public class TimeManager : MonoBehaviour
         {
             if(shroom.Value == null)
             {
-                management.mushroomsAndTiles.Remove(shroom.Key);
-                shroom.Value.isTilled = false;
+				continue;
+                //management.mushroomsAndTiles.Remove(shroom.Key);
+                //shroom.Value.isTilled = false;
             }
             else
             {
