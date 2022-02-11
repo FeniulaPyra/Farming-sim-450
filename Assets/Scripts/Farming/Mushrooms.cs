@@ -16,7 +16,7 @@ public class Mushrooms : Tile
     }
 
     //constant that defines how many days the mushroom can survive being neglected. If the number of days is ever greater than this, the mushroom has died
-    const int maxDaysWithoutWater = 3;
+    const int maxDaysWithoutWater = 0;
     //represents the mushroom's current stage of growth
     public float growthStage = 1.00f;
     //number of days without water
@@ -29,7 +29,7 @@ public class Mushrooms : Tile
     public int baseValue = 500;
 
     //For inventory interaction
-    public Item mushroomItem;
+    public GameObject mushroomItem;
     public Sprite spr;
     #endregion
 
@@ -37,9 +37,9 @@ public class Mushrooms : Tile
     void Start()
     {
         //Setting item's values
-        mushroomItem = new Item();
+        /*mushroomItem = new Item();
         mushroomItem.name = ID;
-        mushroomItem.spr = spr;
+        mushroomItem.spr = spr;*/
     }
 
     // Update is called once per frame

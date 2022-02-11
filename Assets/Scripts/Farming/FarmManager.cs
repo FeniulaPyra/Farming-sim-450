@@ -135,26 +135,26 @@ public class FarmManager : MonoBehaviour
         if (tool == "sickle" && mushroomsAndTiles[tile].hasPlant == true)
         {
             //convert tile to mushroom
-            GameObject harvestShroomObject = mushroomsAndTiles[tile].gameObject;
-            Item harvestShroom = harvestShroomObject.GetComponent<Item>();
+            Mushrooms harvestShroom = (Mushrooms)mushroomsAndTiles[tile];
+            GameObject harvestShroomItem = harvestShroom.mushroomItem;
 
             //Destroy mushroom and add to inventory
             Destroy(mushroomsAndTiles[tile]);
-            //mushroomsAndTiles.Remove(tile);
+            mushroomsAndTiles.Remove(tile);
             farmField.SetTile(tile, null);
             tillableGround.SetTile(tile, tilePrefab.tileSprite);
 
-            //harvestShroomObject.GetComponent<SpriteRenderer>().enabled = true;
-            Instantiate(harvestShroom, tile + new Vector3Int(2, 0, 0), Quaternion.identity);
+            //Instatiates the Prefab on the ground so that the player picks it up by walking over it
+            GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
 
             
-            if (harvestShroomObject.GetComponent<Mushrooms>().growthStage >= harvestShroomObject.GetComponent<Mushrooms>().GetMaxGrowthStage())
+            /*if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
             {
-                ItemStack itemToAdd = new ItemStack(harvestShroom, 1);
+                ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
                 Debug.Log("Added Item");
                 playerInventory.AddItems(itemToAdd);
 
-            }
+            }*/
         }
     }
 

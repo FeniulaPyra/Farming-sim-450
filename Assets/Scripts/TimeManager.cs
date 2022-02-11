@@ -39,7 +39,7 @@ public class TimeManager : MonoBehaviour
         //Also temp code
         //Counts down the day, then when it's over, calls the method
         dayTimer -= Time.deltaTime;
-        // Debug.Log($"There are {dayTimer} seconds remaining");
+         Debug.Log($"There are {dayTimer} seconds remaining");
 
         if(dayTimer <= 0.00f)
         {
@@ -54,18 +54,25 @@ public class TimeManager : MonoBehaviour
         //Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day
         foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
         {
-            if(shroom.Value.GetComponent<Mushrooms>() != null)
+            if(shroom.Value == null)
             {
-                Mushrooms newShroom = (Mushrooms)shroom.Value;
+                management.mushroomsAndTiles.Remove(shroom.Key);
+            }
+            else
+            {
+                if (shroom.Value.GetComponent<Mushrooms>() != null)
+                {
+                    Mushrooms newShroom = (Mushrooms)shroom.Value;
 
-                Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
+                    Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
 
-                newShroom.GrowMushroom();
+                    newShroom.GrowMushroom();
 
-                newShroom.isMoist = false;
+                    newShroom.isMoist = false;
 
-                //Set the tile again, in case the mushroom has grown
-                management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
+                    //Set the tile again, in case the mushroom has grown
+                    management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
+                }
             }
 
             

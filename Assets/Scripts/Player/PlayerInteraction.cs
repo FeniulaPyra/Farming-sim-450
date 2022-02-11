@@ -71,8 +71,20 @@ public class PlayerInteraction : MonoBehaviour
 			itemName = farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item.name;
 
         // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && itemName != "")
         {
+            if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+            {
+                ItemStack minusOne = new ItemStack(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item, -1);
+                farmManager.GetComponent<FarmManager>().playerInventory.AddItems(minusOne);
+            }
+
+            //gets rid of the item if the stack is empty
+            if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount == 0)
+            {
+                farmManager.GetComponent<FarmManager>().playerInventory.DeleteHeldItemStack();
+            }
+
             farmManager.TileInteract(focusTilePosition, itemName);
         }
 
