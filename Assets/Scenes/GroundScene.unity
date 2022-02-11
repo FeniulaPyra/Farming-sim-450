@@ -52548,6 +52548,7 @@ MonoBehaviour:
   indicator: {fileID: 1642525208}
   displayIndicator: 1
   interactionOffset: {x: 0, y: -0.25, z: 0}
+  maxDistanceToInteraction: 1.25
 --- !u!1001 &1395445130
 PrefabInstance:
   m_ObjectHideFlags: 0
