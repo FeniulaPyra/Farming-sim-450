@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: f6752a88dab44f6489688ee1929c8ee8
+guid: 9b6680acc9e118447870648c5da84e73
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2734654818317320051
-    second: mushroom_tiles_noground_0
+      213: -5601960209085357685
+    second: ground_tiles 1_0
   - first:
-      213: -845409859444092067
-    second: mushroom_tiles_noground_1
+      213: 8347989485760409046
+    second: ground_tiles 1_1
   - first:
-      213: -5945468528372191483
-    second: mushroom_tiles_noground_2
-  - first:
-      213: -703930949698735261
-    second: mushroom_tiles_noground_3
-  - first:
-      213: 910068595495026757
-    second: mushroom_tiles_noground_4
-  - first:
-      213: 6744539905796576864
-    second: mushroom_tiles_noground_5
+      213: 8976116772846441974
+    second: ground_tiles 1_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mushroom_tiles_noground_0
+      name: ground_tiles 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -123,35 +114,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37f3d15811273f520800000000000000
-      internalID: 2734654818317320051
+      spriteID: b81289bced6d142b0800000000000000
+      internalID: -5601960209085357685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mushroom_tiles_noground_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d53d83646308444f0800000000000000
-      internalID: -845409859444092067
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mushroom_tiles_noground_2
+      name: ground_tiles 1_1
       rect:
         serializedVersion: 2
         x: 0
@@ -165,35 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50f6c17bfd37d7da0800000000000000
-      internalID: -5945468528372191483
+      spriteID: 6dde17f25340ad370800000000000000
+      internalID: 8347989485760409046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mushroom_tiles_noground_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 363bdc4e7822b36f0800000000000000
-      internalID: -703930949698735261
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mushroom_tiles_noground_4
+      name: ground_tiles 1_2
       rect:
         serializedVersion: 2
         x: 0
@@ -207,29 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54048bbd09631ac00800000000000000
-      internalID: 910068595495026757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mushroom_tiles_noground_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 066937a6f4b699d50800000000000000
-      internalID: 6744539905796576864
+      spriteID: 6f510fbb5a2919c70800000000000000
+      internalID: 8976116772846441974
       vertices: []
       indices: 
       edges: []
