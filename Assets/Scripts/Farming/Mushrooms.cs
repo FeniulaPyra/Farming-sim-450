@@ -98,7 +98,10 @@ public class Mushrooms : Tile
 
             if (daysWithoutWater > maxDaysWithoutWater)
             {
-                Destroy(gameObject);
+				this.isTilled = false;
+				this.isMoist = false;
+				hasPlant = false;
+				Destroy(gameObject);
             }
 
             Debug.Log($"I'm at growth stage {growthStage} and it's been {daysWithoutWater} days since I've been watered.");

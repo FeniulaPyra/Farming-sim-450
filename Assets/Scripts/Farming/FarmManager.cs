@@ -53,16 +53,23 @@ public class FarmManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //When mushroom destroys itself, the tile stays
-        //Check the dictionary to see if the associated script still exists
-        //if it doesn't, set tile to null
-        foreach (KeyValuePair<Vector3Int, Tile> shroom in mushroomsAndTiles)
-        {
-            if(shroom.Value == null)
+		//When mushroom destroys itself, the tile stays
+		//Check the dictionary to see if the associated script still exists
+		//if it doesn't, set tile to null
+		List<Vector3Int> deadPlants = new List<Vector3Int>();
+		foreach (KeyValuePair<Vector3Int, Tile> shroom in mushroomsAndTiles)
+		{
+			if (shroom.Value == null)
             {
-                farmField.SetTile(shroom.Key, null);
+				farmField.SetTile(shroom.Key, null);
             }
         }
+
+		//clears dead plants
+		foreach(Vector3Int plantPosition in deadPlants)
+		{
+			mushroomsAndTiles[plantPosition] = Instantiate(tilePrefab, plantPosition, Quaternion.identity, transform);
+		}
     }
 
     public void TileInteract(Vector3Int tile, string tool)

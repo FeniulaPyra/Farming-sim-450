@@ -108,8 +108,8 @@ public class Menu : MonoBehaviour
 		{
 			//the inventory slot button
 			GameObject slot = HotbarSlots[c] = Instantiate(InventorySlotPrefab);
-			slot.transform.position = new Vector2(startingX + (c + 1) * 74 - 10, startingY -84);
-
+			slot.transform.position = new Vector2(startingX + (c + 1) * 74 - 10,
+				startingY);
 			//the text and image of the button
 			Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
 			Text slotLabel = slot.transform.GetChild(1).GetComponent<Text>();
