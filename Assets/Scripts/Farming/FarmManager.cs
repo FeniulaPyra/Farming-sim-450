@@ -68,12 +68,14 @@ public class FarmManager : MonoBehaviour
     public void TileInteract(Vector3Int tile, string tool)
     {
         Debug.Log("Do interaction! @" + tile);
+        Debug.Log($"I am tilled: {mushroomsAndTiles[tile].isTilled}");
 
         if (!mushroomsAndTiles.ContainsKey(tile)) return;
 
         //force to all lowercase, just in case
         //tool = tool.ToLower();
-        Debug.Log($"I am the tool: {tool}");
+        //Debug.Log($"I am the tool: {tool}");
+        
 
         // Do interaction
         //Tilling field
@@ -81,7 +83,7 @@ public class FarmManager : MonoBehaviour
         {
             mushroomsAndTiles[tile].isTilled = true;
             tillableGround.SetTile(tile, tilePrefab.tilledGround);
-            Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
+            //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
         }
         //planting
         //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
@@ -140,14 +142,16 @@ public class FarmManager : MonoBehaviour
 
             //Destroy mushroom and add to inventory
             Destroy(mushroomsAndTiles[tile]);
-            mushroomsAndTiles.Remove(tile);
+            //mushroomsAndTiles.Remove(tile);
             farmField.SetTile(tile, null);
             tillableGround.SetTile(tile, tilePrefab.tileSprite);
 
             //Instatiates the Prefab on the ground so that the player picks it up by walking over it
             GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
 
-            
+            mushroomsAndTiles[tile].isTilled = false;
+
+
             /*if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
             {
                 ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
