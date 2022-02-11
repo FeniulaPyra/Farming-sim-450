@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: watering can
-  spr: {fileID: 7615517831003101548, guid: b397689f58031c441aa763d8045ed029, type: 3}
+  spr: {fileID: 21300000, guid: bf9dafb3966889843b6eaa2e584a7bb1, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
+  player: {fileID: 0}
 --- !u!212 &3764497302912388010
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7615517831003101548, guid: b397689f58031c441aa763d8045ed029, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf9dafb3966889843b6eaa2e584a7bb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
