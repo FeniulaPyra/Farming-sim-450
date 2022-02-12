@@ -156,12 +156,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameItemPrefabs:
-  - {fileID: 1097006804490081459, guid: dddc023219c2c0c418f9ca4252d8ae01, type: 3}
-  - {fileID: 4531815587464690269, guid: e6dc829c9e9cb7d40aea77825e4234e3, type: 3}
   - {fileID: 4619897200971512286, guid: 593d0004673ec1b46a91de5061aa7b75, type: 3}
-  - {fileID: 7337407058563008808, guid: c531b6d1bf3d50a4d8f78f3d485442ca, type: 3}
   - {fileID: 2623421839622235092, guid: 70f2692e8b787c543a528231efa3e375, type: 3}
   - {fileID: 2832637054430782259, guid: 5553ac5584ac5704da9bda5f4e046527, type: 3}
+  - {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
+  - {fileID: 7242777236307338255, guid: 86b1e4091a61234408a3a89037e4e487, type: 3}
+  - {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
   InventoryMenu: {fileID: 1606855893}
   InventorySlotPrefab: {fileID: 2982890735467331394, guid: 9e6b3e24f56bc8b46b8cbc1065bc7da2, type: 3}
   selectedItem: {fileID: 1407797290}
