@@ -56,7 +56,7 @@ MonoBehaviour:
   growthStage: 1
   ID: Glowy Shroom
   baseValue: 500
-  mushroomItem: {fileID: 0}
+  mushroomItem: {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
   spr: {fileID: 0}
   mushroomsToHybridize:
   - Red Shroom

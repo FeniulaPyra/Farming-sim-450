@@ -258,6 +258,7 @@ public class FarmManager : MonoBehaviour
                                         farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
                                         mushroomsAndTiles[above].transform.parent = this.transform;
                                         mushroomsAndTiles[above].hasPlant = true;
+                                        mushroomsAndTiles[above].isTilled = true;
                                     }
                                     else
                                     {
@@ -293,6 +294,7 @@ public class FarmManager : MonoBehaviour
                                         farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
                                         mushroomsAndTiles[below].transform.parent = this.transform;
                                         mushroomsAndTiles[below].hasPlant = true;
+                                        mushroomsAndTiles[below].isTilled = true;
                                     }
                                     else
                                     {
@@ -329,6 +331,7 @@ public class FarmManager : MonoBehaviour
                                         farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
                                         mushroomsAndTiles[left].transform.parent = this.transform;
                                         mushroomsAndTiles[left].hasPlant = true;
+                                        mushroomsAndTiles[left].isTilled = true;
                                     }
                                     else
                                     {
@@ -366,6 +369,7 @@ public class FarmManager : MonoBehaviour
                                         farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
                                         mushroomsAndTiles[right].transform.parent = this.transform;
                                         mushroomsAndTiles[right].hasPlant = true;
+                                        mushroomsAndTiles[right].isTilled = true;
                                     }
                                     else
                                     {
