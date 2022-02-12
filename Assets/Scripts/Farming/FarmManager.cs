@@ -75,7 +75,7 @@ public class FarmManager : MonoBehaviour
     public void TileInteract(Vector3Int tile, string tool)
     {
         Debug.Log("Do interaction! @" + tile);
-        Debug.Log($"I am tilled: {mushroomsAndTiles[tile].isTilled}");
+        //Debug.Log($"I am tilled: {mushroomsAndTiles[tile].isTilled}");
 
         if (!mushroomsAndTiles.ContainsKey(tile)) return;
 
@@ -99,6 +99,9 @@ public class FarmManager : MonoBehaviour
         if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true)
         //if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
         {
+            //see if the tile was already moist
+            bool tempMoist = mushroomsAndTiles[tile].isMoist;
+
             //has plant is true, destroys tile and removes from dictionary, and puts mushroom in its place
             Destroy(mushroomsAndTiles[tile]);
             mushroomsAndTiles.Remove(tile);
@@ -124,6 +127,7 @@ public class FarmManager : MonoBehaviour
                 //Returned nothing. Issue with tile
                 Debug.Log($"Planting Debug 3: {newMushroom.GetComponent<Mushrooms>().ID}");
                 mushroomsAndTiles[tile].hasPlant = true;
+                mushroomsAndTiles[tile].isMoist = tempMoist;
                 Debug.Log($"You just planted a {mushroomPrefab.GetComponent<Mushrooms>().ID}");
             }
             else
@@ -132,7 +136,7 @@ public class FarmManager : MonoBehaviour
             }
         }
         //Watering
-        if (tool == "watering can" && mushroomsAndTiles[tile].hasPlant == true)
+        if (tool == "watering can")// && mushroomsAndTiles[tile].hasPlant == true)
         {
             //Doesn't care if the plant has already been watered; just cares that there's a plant
             mushroomsAndTiles[tile].isMoist = true;
@@ -155,19 +159,18 @@ public class FarmManager : MonoBehaviour
 			farmField.SetTile(tile, null);
             tillableGround.SetTile(tile, tilePrefab.tileSprite);
 
-            //Instatiates the Prefab on the ground so that the player picks it up by walking over it
-            GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
 
-            mushroomsAndTiles[tile].isTilled = false;
-
-
-            /*if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
+            if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
             {
-                ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
+                /*ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
                 Debug.Log("Added Item");
-                playerInventory.AddItems(itemToAdd);
+                playerInventory.AddItems(itemToAdd);*/
 
-            }*/
+                //Instatiates the Prefab on the ground so that the player picks it up by walking over it
+                GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
+
+                mushroomsAndTiles[tile].isTilled = false;
+            }
         }
     }
 
@@ -220,8 +223,14 @@ public class FarmManager : MonoBehaviour
                             Vector3Int right = new Vector3Int(tileToTest.x + 1, tileToTest.y, 0);
 
 
+                            //For Hybridization, change the below if statements
+                            //The if stays, for regular spreading
+                            //Add elses, which *should* call if there is something there
+                            //Then inside the else, check if the other is part of a specific hybrid dictionary and if a hybrid can be made
+                            //If a hybrid cannot be made, continue the loop and do nothing
+
                             //If the tile is in the dictionary, doesn't have a plant, and isn't outside of the bounds of the field
-                            if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].hasPlant == false && above.y <= topBound)
+                            if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].hasPlant == false && mushroomsAndTiles[above].isTilled == true && above.y <= topBound)
                             {
                                 Debug.Log("Above");
                                 mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
@@ -230,7 +239,7 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[above].hasPlant = true;
                             }
 
-                            if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].hasPlant == false && below.y >= bottomBound)
+                            if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].hasPlant == false && mushroomsAndTiles[below].isTilled == true && below.y >= bottomBound)
                             {
                                 Debug.Log("Below");
                                 mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
@@ -239,7 +248,7 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[below].hasPlant = true;
                             }
 
-                            if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].hasPlant == false && left.x >= leftBound)
+                            if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].hasPlant == false && mushroomsAndTiles[left].isTilled == true && left.x >= leftBound)
                             {
                                 Debug.Log("Left");
                                 mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
@@ -248,7 +257,7 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[left].hasPlant = true;
                             }
 
-                            if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].hasPlant == false && right.x <= rightBound)
+                            if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].hasPlant == false && mushroomsAndTiles[right].isTilled == true && right.x <= rightBound)
                             {
                                 Debug.Log("Right");
                                 mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
@@ -256,12 +265,12 @@ public class FarmManager : MonoBehaviour
                                 mushroomsAndTiles[right].transform.parent = this.transform;
                                 mushroomsAndTiles[right].hasPlant = true;
                             }
+
+                            Debug.Log("End of SpreadMushroom");
                         }
                     }
                 }
             }
         }
-
-        Debug.Log("End of SpreadMushroom");
     }
 }

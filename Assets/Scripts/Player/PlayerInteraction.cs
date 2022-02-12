@@ -67,22 +67,25 @@ public class PlayerInteraction : MonoBehaviour
     private void CheckInteraction()
     {
 		string itemName = "";
-		if (farmManager.GetComponent<FarmManager>().playerInventory.HeldItem != null)
-			itemName = farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item.name;
+        Inventory playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
+        Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
+
+        if (playerInventory.HeldItem != null)
+			itemName = playerInventory.HeldItem.Item.name;
 
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.F) && itemName != "")
         {
-            if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+            if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles.ContainsKey(focusTilePosition) && mushroomsAndTiles[focusTilePosition].isTilled == true)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
             {
-                ItemStack minusOne = new ItemStack(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item, -1);
-                farmManager.GetComponent<FarmManager>().playerInventory.AddItems(minusOne);
+                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                playerInventory.AddItems(minusOne);
             }
 
             //gets rid of the item if the stack is empty
-            if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount == 0)
+            if(playerInventory.HeldItem.Amount == 0)
             {
-                farmManager.GetComponent<FarmManager>().playerInventory.DeleteHeldItemStack();
+                playerInventory.DeleteHeldItemStack();
             }
 
             farmManager.TileInteract(focusTilePosition, itemName);

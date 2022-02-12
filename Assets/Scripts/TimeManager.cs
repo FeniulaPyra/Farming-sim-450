@@ -74,10 +74,9 @@ public class TimeManager : MonoBehaviour
 
                     //Set the tile again, in case the mushroom has grown
                     management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
+                    management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
                 }
             }
-
-            
         }
 
         //Once all of the mushrooms grow, call spread once.
