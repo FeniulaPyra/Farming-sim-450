@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -32,9 +34,23 @@ public class PlayerInteraction : MonoBehaviour
         } 
     }
 
+    //Stamina, which serves the same purpose as time
+    public TMP_Text staminaDisplay;
+    public int playerStamina = 0;
+    int maxPlayerStamina = 100;
+
+    public int GetMaxPlayerStamina()
+    {
+        return maxPlayerStamina;
+    }
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+
+        playerStamina = maxPlayerStamina;
+
+        staminaDisplay.text = $"Stamina: {playerStamina}";
     }
 
     private void Update()
@@ -87,6 +103,33 @@ public class PlayerInteraction : MonoBehaviour
             {
                 playerInventory.DeleteHeldItemStack();
             }
+
+            //before actually doing interaction, deduct player stamina accordingly
+            //switch on the four main item types, then some default value for everything else
+            if (itemName.Contains("Shroom"))
+            {
+                playerStamina -= 2;
+            }
+            else
+            {
+                switch (itemName)
+                {
+                    case "till":
+                        playerStamina -= 10;
+                        break;
+                    case "watering can":
+                        playerStamina -= 3;
+                        break;
+                    case "sickle":
+                        playerStamina -= 6;
+                        break;
+                    default:
+                        playerStamina -= 5;
+                        break;
+                }
+            }
+
+            staminaDisplay.text = $"Stamina: {playerStamina}";
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }

@@ -20,6 +20,9 @@ public class TimeManager : MonoBehaviour
     //Reference to the FarmManager so it can access the dictionary that has all of the mushrooms
     public FarmManager management;
 
+    //for keeping track of player stamina, which is time
+    public PlayerInteraction staminaTracker;
+
     //variables for displaying the date and time and their corresponding text object
     //1-7 for Sun - Sat
     int dayNum = 1;
@@ -32,11 +35,6 @@ public class TimeManager : MonoBehaviour
     public TMP_Text seasonDisplay;
     int yearNum = 1;
     public TMP_Text yearDisplay;
-    int hourCount = 6;
-    public TMP_Text hourDisplay;
-    int minuteCount = 0;
-    public TMP_Text minuteDisplay;
-
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +49,7 @@ public class TimeManager : MonoBehaviour
         seasonDisplay.text = "Spring";
         yearDisplay.text = "Year 1";
 
-        DisplayTime();
+        //DisplayTime();
     }
 
     // Update is called once per frame
@@ -63,16 +61,32 @@ public class TimeManager : MonoBehaviour
             AdvanceDay();
         }
 
-        DisplayTime();
-
-        //Also temp code
+        //DisplayTime();
         //Counts down the day, then when it's over, calls the method
-        //dayTimer -= Time.deltaTime;
-         Debug.Log($"There are {dayTimer} seconds remaining");
 
         if(dayTimer <= 0.00f)
         {
             AdvanceDay();
+        }
+
+        if (staminaTracker.playerStamina <= 0)
+        {
+            Sleep(12);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            Sleep(4);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            Sleep(6);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            Sleep(8);
         }
     }
 
@@ -116,7 +130,36 @@ public class TimeManager : MonoBehaviour
         DisplayDate();
     }
 
-    public void DisplayTime()
+    /// <summary>
+    /// Method for sleeping.
+    /// Sole parameter is how long you want to sleep for
+    /// </summary>
+    /// <param name="duration"></param>
+    public void Sleep(float duration)
+    {
+        //max stamina multiplied by duration/8. This is so that a full 8 hours of sleep would get you all stamina back
+        //Might need to be tweaked, since a measly four hours still restores half stamina
+        float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
+
+        Debug.Log($"Duration is {duration}");
+        Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
+        Debug.Log($"Multiplying by {duration/8}");
+        Debug.Log($"Adding {staminaToAdd} stamina");
+
+        staminaTracker.playerStamina += (int)staminaToAdd;
+
+        //cap stamina if it exceeds limit
+        if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
+        {
+            staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
+        }
+
+        staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+
+        AdvanceDay();
+    }
+
+    /*public void DisplayTime()
     {
         //display hour
         if(minuteCount == 59)
@@ -162,7 +205,7 @@ public class TimeManager : MonoBehaviour
         {
             minuteDisplay.text = minuteCount.ToString(); ;
         }
-    }
+    }*/
 
     /// <summary>
     /// Method that displays the in game date
