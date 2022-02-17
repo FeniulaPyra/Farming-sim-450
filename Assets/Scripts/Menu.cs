@@ -8,17 +8,33 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
 	public Inventory inv;
+
+	//the item prefabs and their respective attached item script
 	public List<GameObject> gameItemPrefabs;
 	private List<Item> gameItems;
 
+	//inventory ui objects
 	public GameObject InventoryMenu;
 	private GameObject[,] InventorySlots;
 	public GameObject InventorySlotPrefab;
+
+	//the ui object that represents the currently selected item. hovers over the players mouse.
 	public GameObject selectedItem;
 
+	//hotbar ui objects
 	public GameObject HotbarGameobject;
 	private GameObject[] HotbarSlots;
 	public GameObject HeldHotbarItem;
+	public GameObject HotbarIndicator;
+	public GameObject HotbarItemLabel;
+	public GameObject InventoryItemLabel;
+
+
+	private int startingX = -296-64;
+	private int startingY = -148;
+	private int gap = 10;
+
+	public int invHotbarNum;
 
 	public GameObject FarmManager;
 	public GameObject player;
@@ -52,9 +68,9 @@ public class Menu : MonoBehaviour
 		}
 
 		//top left of the inventory menu
-		int startingX = -333;
-		int startingY = -148;
-		int gap = 10;
+
+		HotbarItemLabel.GetComponent<Text>().text = "butthoels";
+		Debug.Log(HotbarItemLabel.GetComponent<Text>().text);
 
 		//creates buttons for every inventory slot
 		for (int r = 0; r < Inventory.ROWS; r++)
@@ -68,6 +84,7 @@ public class Menu : MonoBehaviour
 				//the text and image of the button
 				Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
 				Text slotLabel = slot.transform.GetChild(1).GetComponent<Text>();
+				Text slotItemLabel = slot.transform.GetChild(2).GetComponent<Text>();
 
 				//the item in the corresponding slot in the inventory object
 				ItemStack currentSlot = inv.GetSlot(r, c);
@@ -76,6 +93,7 @@ public class Menu : MonoBehaviour
 				if (currentSlot != null)
 				{
 					slotLabel.text = "" + currentSlot.Amount;
+					slotItemLabel.text = "" + currentSlot.Item.name;
 					slot.name = "R" + r + " C" + currentSlot.Item.name;
 					slotIcon.sprite = currentSlot.Item.spr;
 				}
@@ -97,6 +115,7 @@ public class Menu : MonoBehaviour
 
 				//adds the slot to the inventory menu
 				slot.transform.SetParent(InventoryMenu.transform, false);
+				HotbarIndicator.transform.SetParent(InventoryMenu.transform, false);
 
 			}
 		}
@@ -134,9 +153,11 @@ public class Menu : MonoBehaviour
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}
 
+
+
 		//debugging stuff
-		inv.AddItems(new ItemStack(gameItems[0], 10));
-		inv.AddItems(new ItemStack(gameItems[1], 10));
+		//inv.AddItems(new ItemStack(gameItems[0], 10));
+		//inv.AddItems(new ItemStack(gameItems[1], 10));
 		inv.AddItems(new ItemStack(gameItems[2], 1));
         inv.AddItems(new ItemStack(gameItems[3], 1));
         inv.AddItems(new ItemStack(gameItems[4], 1));
@@ -146,6 +167,7 @@ public class Menu : MonoBehaviour
 
 	void UpdateInventory()
 	{
+		invHotbarNum = inv.hotbarRowNumber;
 		//updates selected item
 		Image selectedItemIcon = selectedItem.transform.GetChild(0).GetComponent<Image>();
 		Text selectedItemLabel = selectedItem.transform.GetChild(1).GetComponent<Text>();
@@ -164,6 +186,16 @@ public class Menu : MonoBehaviour
 
 		}
 
+		HotbarIndicator.transform.localPosition =
+			new Vector2(
+			0,
+			(inv.hotbarRowNumber-1) * 74 - 10);
+
+		if (inv.HeldItem != null)
+			HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name;
+		else
+			HotbarItemLabel.GetComponent<Text>().text = "";
+
 		//updates inventory slots
 		for (int r = 0; r < Inventory.ROWS; r++)
 		{
@@ -174,6 +206,7 @@ public class Menu : MonoBehaviour
 				GameObject slot = InventorySlots[r, c];
 				Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
 				Text slotLabel = slot.transform.GetChild(1).GetComponent<Text>();
+				Text slotItemLabel = slot.transform.GetChild(2).GetComponent<Text>();
 				//corresponding inventory slot
 				ItemStack currentSlot = inv.GetSlot(r, c);
 
@@ -181,11 +214,13 @@ public class Menu : MonoBehaviour
 				if (currentSlot != null)
 				{
 					slotLabel.text = "" + currentSlot.Amount;
+					slotItemLabel.text = "" + currentSlot.Item.name;
 					slotIcon.sprite = currentSlot.Item.spr;
 				}
 				else
 				{
 					slotLabel.text = "";
+					slotItemLabel.text = "";
 					slotIcon.sprite = null;
 				}
 			}
