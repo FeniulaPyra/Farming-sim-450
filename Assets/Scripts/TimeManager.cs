@@ -85,6 +85,7 @@ public class TimeManager : MonoBehaviour
 
         //DisplayTime();
         //Counts down the day, then when it's over, calls the method
+        dayTimer -= Time.deltaTime;
 
         if(dayTimer <= 0.00f)
         {
