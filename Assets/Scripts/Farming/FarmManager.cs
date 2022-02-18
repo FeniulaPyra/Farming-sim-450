@@ -86,7 +86,7 @@ public class FarmManager : MonoBehaviour
 
         // Do interaction
         //Tilling field
-        if (tool == "till" && mushroomsAndTiles[tile].isTilled == false)
+        if (tool == "Hoe" && mushroomsAndTiles[tile].isTilled == false)
         {
             mushroomsAndTiles[tile].isTilled = true;
             tillableGround.SetTile(tile, tilePrefab.tilledGround);
@@ -137,7 +137,7 @@ public class FarmManager : MonoBehaviour
             }
         }
         //Watering
-        if (tool == "watering can" && mushroomsAndTiles[tile].isTilled== true)
+        if (tool == "Watering Can" && mushroomsAndTiles[tile].isTilled== true)
         {
             //Doesn't care if the plant has already been watered; just cares that there's a plant
             mushroomsAndTiles[tile].isMoist = true;
@@ -146,7 +146,7 @@ public class FarmManager : MonoBehaviour
         }
         //Harvesting
         //Might cause problems if the hasPlant of that tile is not set back to false, even though the tile itself ceases to exist
-        if (tool == "sickle" && mushroomsAndTiles[tile].hasPlant == true)
+        if (tool == "Sickle" && mushroomsAndTiles[tile].hasPlant == true)
         {
             //convert tile to mushroom
             Mushrooms harvestShroom = (Mushrooms)mushroomsAndTiles[tile];
