@@ -89,47 +89,53 @@ public class PlayerInteraction : MonoBehaviour
         if (playerInventory.HeldItem != null)
 			itemName = playerInventory.HeldItem.Item.name;
 
-        // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.E) && itemName != "")
+        //gets rid of the item if the stack is empty
+        if (playerInventory.HeldItem != null)
         {
-            if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles.ContainsKey(focusTilePosition) && mushroomsAndTiles[focusTilePosition].isTilled == true)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
-            {
-                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                playerInventory.AddItems(minusOne);
-            }
-
-            //gets rid of the item if the stack is empty
-            if(playerInventory.HeldItem.Amount == 0)
+            if (playerInventory.HeldItem.Amount <= 0)
             {
                 playerInventory.DeleteHeldItemStack();
             }
+        }
 
-            //before actually doing interaction, deduct player stamina accordingly
-            //switch on the four main item types, then some default value for everything else
-            if (itemName.Contains("Shroom"))
+        // Get Whatever input
+        if (Input.GetKeyDown(KeyCode.E) && itemName != "")
+        {
+            if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
-                playerStamina -= 2;
-            }
-            else
-            {
-                switch (itemName)
+                if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                 {
-                    case "till":
-                        playerStamina -= 10;
-                        break;
-                    case "watering can":
-                        playerStamina -= 3;
-                        break;
-                    case "sickle":
-                        playerStamina -= 6;
-                        break;
-                    default:
-                        playerStamina -= 5;
-                        break;
+                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
                 }
+
+                //before actually doing interaction, deduct player stamina accordingly
+                //switch on the four main item types, then some default value for everything else
+                if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                {
+                    playerStamina -= 2;
+                }
+                else if(itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
+                {
+                    playerStamina -= 6;
+                }
+                else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true)
+                {
+                    playerStamina -= 3;
+                }
+                else if(itemName == "Hoe")
+                {
+                    playerStamina -= 10;
+                }
+            }
+            else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
+            {
+                playerStamina -= 5;
             }
 
             staminaDisplay.text = $"Stamina: {playerStamina}";
+
+
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }

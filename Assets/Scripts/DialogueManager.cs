@@ -225,7 +225,7 @@ public class DialogueManager : MonoBehaviour
             characterSprite.sprite = convoToPlay[i].characterSprite;
             Debug.Log($"This is the sprite: {convoToPlay[i].characterSprite}");
 
-            yield return StartCoroutine(WaitForInput(KeyCode.Return));
+            yield return StartCoroutine(WaitForInput(KeyCode.Space));
             //timer = timerDefault;
         }
 

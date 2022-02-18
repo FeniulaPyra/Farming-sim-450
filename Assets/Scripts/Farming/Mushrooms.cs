@@ -16,11 +16,13 @@ public class Mushrooms : Tile
     }
 
     //constant that defines how many days the mushroom can survive being neglected. If the number of days is ever greater than this, the mushroom has died
-    const int maxDaysWithoutWater = 0;
+    public int maxDaysWithoutWater = 2;
     //represents the mushroom's current stage of growth
     public float growthStage = 1.00f;
     //number of days without water
-    int daysWithoutWater;
+    public int daysWithoutWater;
+
+    public bool readyToDie;
     #endregion
 
     #region Miscellaneous Variables 
@@ -118,7 +120,8 @@ public class Mushrooms : Tile
 				this.isTilled = false;
 				this.isMoist = false;
 				hasPlant = false;
-				Destroy(gameObject);
+                //Destroy(gameObject);
+                readyToDie = true;
             }
 
             Debug.Log($"I'm at growth stage {growthStage} and it's been {daysWithoutWater} days since I've been watered.");

@@ -6,17 +6,6 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    //Length of the day in minutes
-    //static int daysInMinutes = 24;
-    static float daysInMinutes = 0.25f;
-    
-    //Length of day in seconds; actually used for timekeeping
-    //static int daysInSeconds = daysInMinutes * 60;
-    static float daysInSeconds = daysInMinutes * 60f;
-
-    //Timer to keep track of time passed
-    float dayTimer = daysInSeconds;
-
     //Reference to the FarmManager so it can access the dictionary that has all of the mushrooms
     public FarmManager management;
 
@@ -83,15 +72,6 @@ public class TimeManager : MonoBehaviour
             AdvanceDay();
         }
 
-        //DisplayTime();
-        //Counts down the day, then when it's over, calls the method
-        dayTimer -= Time.deltaTime;
-
-        if(dayTimer <= 0.00f)
-        {
-            AdvanceDay();
-        }
-
         if (staminaTracker.playerStamina <= 0)
         {
             Sleep(12);
@@ -118,6 +98,7 @@ public class TimeManager : MonoBehaviour
     /// </summary>
     void AdvanceDay()
     {
+        Vector3Int keyToReplace = Vector3Int.zero;
 
         //Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day
         foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
@@ -132,6 +113,13 @@ public class TimeManager : MonoBehaviour
             {
                 if (shroom.Value.GetComponent<Mushrooms>() != null)
                 {
+                    if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
+                    {
+                        Debug.Log("The mushroom is ready to die");
+
+                        keyToReplace = shroom.Key;
+                    }
+
                     Mushrooms newShroom = (Mushrooms)shroom.Value;
 
                     Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
@@ -143,9 +131,37 @@ public class TimeManager : MonoBehaviour
                     //Set the tile again, in case the mushroom has grown
                     management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
                     management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
+
+                    /*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
+                    {
+                        //convert tile to mushroom
+                        //Mushrooms deadShroom = (Mushrooms)shroom.Value;
+                        Tile deadShroom = shroom.Value;
+
+                        //Destroy mushroom and add to inventory
+                        Destroy(shroom.Value);
+                        //mushroomsAndTiles.Remove(tile);
+                        //resets the tile;
+                        deadShroom = Instantiate(management.tilePrefab, shroom.Key, Quaternion.identity, transform);
+                        management.farmField.SetTile(shroom.Key, null);
+                        management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tileSprite);
+
+                        shroom.Value.GetComponent<Tile>().isTilled = false;
+                    }*/
                 }
             }
         }
+
+        //After looping through the dictionary, do things to the specific mushrooms you need to destroy
+        if (keyToReplace != Vector3Int.zero)
+        {
+            Destroy(management.mushroomsAndTiles[keyToReplace].gameObject);
+            management.mushroomsAndTiles[keyToReplace] = Instantiate(management.tilePrefab, keyToReplace, Quaternion.identity, transform);
+            management.farmField.SetTile(keyToReplace, null);
+            management.tillableGround.SetTile(keyToReplace, management.tilePrefab.tileSprite);
+        }
+
+
 
         //Once all of the mushrooms grow, call spread once.
         management.SpreadMushroom();
@@ -181,54 +197,6 @@ public class TimeManager : MonoBehaviour
 
         AdvanceDay();
     }
-
-    /*public void DisplayTime()
-    {
-        //display hour
-        if(minuteCount == 59)
-        {
-            if (hourCount < 24)
-            {
-                hourCount++;
-            }
-            else
-            {
-                hourCount = 0;
-
-                //Advances the day if the clock passes midnight, which just makes sense
-                AdvanceDay();
-            }
-
-        }
-
-        if(hourCount < 10)
-        {
-            hourDisplay.text = $"0{hourCount}:";
-        }
-        else
-        {
-            hourDisplay.text = $"{hourCount}:";
-        }
-
-        //display minute
-        if (minuteCount == 59)
-        {
-            minuteCount = 0;
-        }
-        else
-        {
-            minuteCount += 1;
-        }
-
-        if (minuteCount < 10)
-        {
-            minuteDisplay.text = $"0{minuteCount}";
-        }
-        else
-        {
-            minuteDisplay.text = minuteCount.ToString(); ;
-        }
-    }*/
 
     /// <summary>
     /// Method that displays the in game date
@@ -386,7 +354,5 @@ public class TimeManager : MonoBehaviour
                 dayDisplay.text = "";
                 break;
         }
-
-        dayTimer = daysInSeconds;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory
 {
-	public static int STACK_SIZE = 99;
+	public /*static*/ int STACK_SIZE = 99;
 	public static int ROWS = 4;
 	public static int COLUMNS = 9;
 

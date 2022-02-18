@@ -96,14 +96,14 @@ public class FarmManager : MonoBehaviour
         //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
         //Might have to account for naming being similar, but not the same, which would throw things off.
         //Dictionary Keys are the IDs of the Mushrooms, which are all formatted like "Descriptor Shroom", so the item names must be the same
-        if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true)
+        if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true && mushroomsAndTiles[tile].hasPlant == false)
         //if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
         {
             //see if the tile was already moist
             bool tempMoist = mushroomsAndTiles[tile].isMoist;
 
             //has plant is true, destroys tile and removes from dictionary, and puts mushroom in its place
-            Destroy(mushroomsAndTiles[tile]);
+            Destroy(mushroomsAndTiles[tile].gameObject);
             mushroomsAndTiles.Remove(tile);
 
             if (mushroomManager.mushroomVariants.ContainsKey(tool))
@@ -153,7 +153,7 @@ public class FarmManager : MonoBehaviour
             GameObject harvestShroomItem = harvestShroom.mushroomItem;
 
             //Destroy mushroom and add to inventory
-            Destroy(mushroomsAndTiles[tile]);
+            Destroy(mushroomsAndTiles[tile].gameObject);
 			//mushroomsAndTiles.Remove(tile);
 			//resets the tile;
 			mushroomsAndTiles[tile] = Instantiate(tilePrefab, tile, Quaternion.identity, transform);
@@ -252,7 +252,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[aboveShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[above]);
+                                        Destroy(mushroomsAndTiles[above].gameObject);
 
                                         mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
@@ -288,7 +288,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[belowShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[below]);
+                                        Destroy(mushroomsAndTiles[below].gameObject);
 
                                         mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
@@ -325,7 +325,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[leftShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[left]);
+                                        Destroy(mushroomsAndTiles[left].gameObject);
 
                                         mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
@@ -363,7 +363,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[rightShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[right]);
+                                        Destroy(mushroomsAndTiles[right].gameObject);
 
                                         mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
