@@ -34,8 +34,57 @@ public class DialogueManager : MonoBehaviour
 
     //Testing
     string greaterConvoID;
+
+    //reference to time manage
+    [SerializeField]
+    TimeManager timeManager;
+
+    //ints to track seasonal dialogue
+    int springConvoStart = 0;
+    int springConvoEnd = 1;
+    int summerConvoStart = 2;
+    int summerConvoEnd = 3;
+    int fallConvoStart;
+    int fallConvoEnd;
+    int winterConvoStart;
+    int winterConvoEnd;
     #endregion
 
+    public int GetSpringStart()
+    {
+        return springConvoStart;
+    }
+    public int GetSpringEnd()
+    {
+        return springConvoEnd;
+    }
+
+    public int GetSummerStart()
+    {
+        return summerConvoStart;
+    }
+    public int GetSummerEnd()
+    {
+        return summerConvoEnd;
+    }
+
+    public int GetFallStart()
+    {
+        return fallConvoStart;
+    }
+    public int GetFallEnd()
+    {
+        return fallConvoEnd;
+    }
+
+    public int GetWinterStart()
+    {
+        return winterConvoStart;
+    }
+    public int GetWinterEnd()
+    {
+        return winterConvoEnd;
+    }
     //All variables currently public, but will be changed later as necessary
     [System.Serializable]
     public class NPCDialogue
@@ -62,13 +111,10 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeManager = FindObjectOfType<TimeManager>();
+
         //SetConversations(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        //Screwed up; the <= ran it twice, when it should've ran once
-        for (int i = 0; i < conversationIDs.Count; i++)
-        {
-            Debug.Log("Loop");
-            conversations[conversationIDs[i]] = dialogueLists[i].convoDialogue;
-        }
+        SetConversations();
 
         //playerScript = FindObjectOfType<PlayerMove>();
 
@@ -87,6 +133,55 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetConversations()
+    {
+        //Clear dictionary
+        conversations.Clear();
+
+        switch (timeManager.GetSeasonNum())
+        {
+            case 1:
+                //Screwed up; the <= ran it twice, when it should've ran once
+                for (int i = springConvoStart; i <= springConvoEnd; i++)
+                {
+                    Debug.Log("Loop");
+                    conversations[conversationIDs[i]] = dialogueLists[i].convoDialogue;
+                }
+
+                convoID = conversationIDs[springConvoStart];
+                break;
+            case 2:
+                for (int i = summerConvoStart; i <= summerConvoEnd; i++)
+                {
+                    Debug.Log("Loop");
+                    conversations[conversationIDs[i]] = dialogueLists[i].convoDialogue;
+                }
+
+                convoID = conversationIDs[summerConvoStart];
+                break;
+            case 3:
+                for (int i = fallConvoStart; i <= fallConvoEnd; i++)
+                {
+                    Debug.Log("Loop");
+                    conversations[conversationIDs[i]] = dialogueLists[i].convoDialogue;
+                }
+
+                convoID = conversationIDs[fallConvoStart];
+                break;
+            case 4:
+                for (int i = winterConvoStart; i <= winterConvoEnd; i++)
+                {
+                    Debug.Log("Loop");
+                    conversations[conversationIDs[i]] = dialogueLists[i].convoDialogue;
+                }
+
+                convoID = conversationIDs[winterConvoStart];
+                break;
+            default:
+                break;
+        }
     }
 
     //As long as the key passed in is not being pressed, nothing happens. When it is, it tells the Play Dialogue Coroutine to wait a little bit before moving on
@@ -133,6 +228,14 @@ public class DialogueManager : MonoBehaviour
             yield return StartCoroutine(WaitForInput(KeyCode.Return));
             //timer = timerDefault;
         }
+
+        nameText.gameObject.SetActive(false);
+
+        dialogueText.gameObject.SetActive(false);
+
+        textBoxImage.gameObject.SetActive(false);
+
+        characterSprite.gameObject.SetActive(false);
 
         Debug.Log($"For conversation ID {convoID}");
 

@@ -31,10 +31,21 @@ public class TimeManager : MonoBehaviour
     int dateNum = 1;
     public TMP_Text dateDisplay;
     //1 - 4 for Spr - Win
+    [SerializeField]
     int seasonNum = 1;
     public TMP_Text seasonDisplay;
     int yearNum = 1;
     public TMP_Text yearDisplay;
+
+    //Random array of DialogueManagers to handle NPC Dialogue
+    DialogueManager[] NPCs = new DialogueManager[100];
+    [SerializeField]
+    List<DialogueManager> NPCList = new List<DialogueManager>();
+
+    public int GetSeasonNum()
+    {
+        return seasonNum;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +59,17 @@ public class TimeManager : MonoBehaviour
         dateDisplay.text = "1";
         seasonDisplay.text = "Spring";
         yearDisplay.text = "Year 1";
+
+        //Gets all NPCs and saves them so their dialogue can later be updated
+        NPCs = FindObjectsOfType<DialogueManager>();
+
+        for (int i = 0; i < NPCs.Length; i++)
+        {
+            if (NPCs[i] != null)
+            {
+                NPCList.Add(NPCs[i]);
+            }
+        }
 
         //DisplayTime();
     }
@@ -216,11 +238,16 @@ public class TimeManager : MonoBehaviour
         if (seasonNum == 4 && dateNum == 30)
         {
             yearNum++;
+
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                NPCList[i].SetConversations();
+            }
         }
 
         yearDisplay.text = $"Year {yearNum}";
 
-        //change season
+        //change season; reset NPC dialogue at end of season, otherwise, just move on to the next day's piece of dialogue
         if (dateNum == 30)
         {
             if (seasonNum == 4)
@@ -230,6 +257,63 @@ public class TimeManager : MonoBehaviour
             else
             {
                 seasonNum++;
+            }
+
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                NPCList[i].SetConversations();
+            }
+        }
+        else
+        {
+            //Change NPC Dialogue
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                switch (seasonNum)
+                {
+                    case 1:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetSpringEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetSpringStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    case 2:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetSummerEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetSummerStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    case 3:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetFallEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetFallStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    case 4:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetWinterEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetWinterStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
