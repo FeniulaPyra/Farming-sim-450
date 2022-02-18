@@ -156,8 +156,8 @@ public class Menu : MonoBehaviour
 
 
 		//debugging stuff
-		//inv.AddItems(new ItemStack(gameItems[0], 10));
-		//inv.AddItems(new ItemStack(gameItems[1], 10));
+		inv.AddItems(new ItemStack(gameItems[0], 1));
+		inv.AddItems(new ItemStack(gameItems[1], 1));
 		inv.AddItems(new ItemStack(gameItems[2], 1));
         inv.AddItems(new ItemStack(gameItems[3], 1));
         inv.AddItems(new ItemStack(gameItems[4], 1));
