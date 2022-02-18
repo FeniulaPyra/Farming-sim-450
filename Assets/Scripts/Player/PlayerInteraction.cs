@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -32,9 +34,23 @@ public class PlayerInteraction : MonoBehaviour
         } 
     }
 
+    //Stamina, which serves the same purpose as time
+    public TMP_Text staminaDisplay;
+    public int playerStamina = 0;
+    int maxPlayerStamina = 100;
+
+    public int GetMaxPlayerStamina()
+    {
+        return maxPlayerStamina;
+    }
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
+
+        playerStamina = maxPlayerStamina;
+
+        staminaDisplay.text = $"Stamina: {playerStamina}";
     }
 
     private void Update()
@@ -67,23 +83,53 @@ public class PlayerInteraction : MonoBehaviour
     private void CheckInteraction()
     {
 		string itemName = "";
-		if (farmManager.GetComponent<FarmManager>().playerInventory.HeldItem != null)
-			itemName = farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item.name;
+        Inventory playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
+        Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
+
+        if (playerInventory.HeldItem != null)
+			itemName = playerInventory.HeldItem.Item.name;
 
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.F) && itemName != "")
         {
-            if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+            if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles.ContainsKey(focusTilePosition) && mushroomsAndTiles[focusTilePosition].isTilled == true)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
             {
-                ItemStack minusOne = new ItemStack(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Item, -1);
-                farmManager.GetComponent<FarmManager>().playerInventory.AddItems(minusOne);
+                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                playerInventory.AddItems(minusOne);
             }
 
             //gets rid of the item if the stack is empty
-            if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount == 0)
+            if(playerInventory.HeldItem.Amount == 0)
             {
-                farmManager.GetComponent<FarmManager>().playerInventory.DeleteHeldItemStack();
+                playerInventory.DeleteHeldItemStack();
             }
+
+            //before actually doing interaction, deduct player stamina accordingly
+            //switch on the four main item types, then some default value for everything else
+            if (itemName.Contains("Shroom"))
+            {
+                playerStamina -= 2;
+            }
+            else
+            {
+                switch (itemName)
+                {
+                    case "till":
+                        playerStamina -= 10;
+                        break;
+                    case "watering can":
+                        playerStamina -= 3;
+                        break;
+                    case "sickle":
+                        playerStamina -= 6;
+                        break;
+                    default:
+                        playerStamina -= 5;
+                        break;
+                }
+            }
+
+            staminaDisplay.text = $"Stamina: {playerStamina}";
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }

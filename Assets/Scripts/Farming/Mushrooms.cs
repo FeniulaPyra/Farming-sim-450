@@ -33,6 +33,17 @@ public class Mushrooms : Tile
     public Sprite spr;
     #endregion
 
+    #region Hybridization
+
+    //List of names of mushrooms you can hybridize with
+    public List<string> mushroomsToHybridize = new List<string>();
+    //List of gameobjects that are the resultant hybrids
+    public List<GameObject> mushroomHybrids = new List<GameObject>();
+    //Dictionary that uses the above to keep track of things
+    public Dictionary<string, GameObject> hybridDictionary = new Dictionary<string, GameObject>();
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +51,12 @@ public class Mushrooms : Tile
         /*mushroomItem = new Item();
         mushroomItem.name = ID;
         mushroomItem.spr = spr;*/
+
+        //populating hybrid dictionary
+        for (int i = 0; i < mushroomsToHybridize.Count; i++)
+        {
+            hybridDictionary[mushroomsToHybridize[i]] = mushroomHybrids[i];
+        }
     }
 
     // Update is called once per frame

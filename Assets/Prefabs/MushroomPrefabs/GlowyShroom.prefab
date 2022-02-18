@@ -50,8 +50,15 @@ MonoBehaviour:
   sprites:
   - {fileID: 11400000, guid: 821849bc9bd3ba34d8e1a74893a6a0de, type: 2}
   - {fileID: 11400000, guid: 1a6050785f33e964ea7ab1591d8a3bfb, type: 2}
+  tilledGround: {fileID: 0}
+  wateredGround: {fileID: 0}
   maxGrowthStage: 2
   growthStage: 1
   ID: Glowy Shroom
   baseValue: 500
+  mushroomItem: {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
   spr: {fileID: 0}
+  mushroomsToHybridize:
+  - Red Shroom
+  mushroomHybrids:
+  - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}

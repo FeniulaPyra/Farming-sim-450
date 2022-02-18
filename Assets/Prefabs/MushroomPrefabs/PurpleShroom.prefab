@@ -50,8 +50,13 @@ MonoBehaviour:
   sprites:
   - {fileID: 11400000, guid: 3bb0e510c912bf0419c9eafca04d44d0, type: 2}
   - {fileID: 11400000, guid: 40e1609b5230f2e429ca399e08a7894c, type: 2}
+  tilledGround: {fileID: 0}
+  wateredGround: {fileID: 0}
   maxGrowthStage: 2
   growthStage: 1
   ID: Purple Shroom
   baseValue: 500
+  mushroomItem: {fileID: 7242777236307338255, guid: 86b1e4091a61234408a3a89037e4e487, type: 3}
   spr: {fileID: 0}
+  mushroomsToHybridize: []
+  mushroomHybrids: []
