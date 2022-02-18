@@ -90,7 +90,7 @@ public class PlayerInteraction : MonoBehaviour
 			itemName = playerInventory.HeldItem.Item.name;
 
         // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.F) && itemName != "")
+        if (Input.GetKeyDown(KeyCode.E) && itemName != "")
         {
             if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles.ContainsKey(focusTilePosition) && mushroomsAndTiles[focusTilePosition].isTilled == true)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
             {
