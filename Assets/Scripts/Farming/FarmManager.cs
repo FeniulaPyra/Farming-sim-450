@@ -86,7 +86,7 @@ public class FarmManager : MonoBehaviour
 
         // Do interaction
         //Tilling field
-        if (tool == "till" && mushroomsAndTiles[tile].isTilled == false)
+        if (tool == "Hoe" && mushroomsAndTiles[tile].isTilled == false)
         {
             mushroomsAndTiles[tile].isTilled = true;
             tillableGround.SetTile(tile, tilePrefab.tilledGround);
@@ -96,14 +96,14 @@ public class FarmManager : MonoBehaviour
         //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
         //Might have to account for naming being similar, but not the same, which would throw things off.
         //Dictionary Keys are the IDs of the Mushrooms, which are all formatted like "Descriptor Shroom", so the item names must be the same
-        if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true)
+        if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true && mushroomsAndTiles[tile].hasPlant == false)
         //if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
         {
             //see if the tile was already moist
             bool tempMoist = mushroomsAndTiles[tile].isMoist;
 
             //has plant is true, destroys tile and removes from dictionary, and puts mushroom in its place
-            Destroy(mushroomsAndTiles[tile]);
+            Destroy(mushroomsAndTiles[tile].gameObject);
             mushroomsAndTiles.Remove(tile);
 
             if (mushroomManager.mushroomVariants.ContainsKey(tool))
@@ -137,7 +137,7 @@ public class FarmManager : MonoBehaviour
             }
         }
         //Watering
-        if (tool == "watering can" && mushroomsAndTiles[tile].isTilled== true)
+        if (tool == "Watering Can" && mushroomsAndTiles[tile].isTilled== true)
         {
             //Doesn't care if the plant has already been watered; just cares that there's a plant
             mushroomsAndTiles[tile].isMoist = true;
@@ -146,14 +146,14 @@ public class FarmManager : MonoBehaviour
         }
         //Harvesting
         //Might cause problems if the hasPlant of that tile is not set back to false, even though the tile itself ceases to exist
-        if (tool == "sickle" && mushroomsAndTiles[tile].hasPlant == true)
+        if (tool == "Sickle" && mushroomsAndTiles[tile].hasPlant == true)
         {
             //convert tile to mushroom
             Mushrooms harvestShroom = (Mushrooms)mushroomsAndTiles[tile];
             GameObject harvestShroomItem = harvestShroom.mushroomItem;
 
             //Destroy mushroom and add to inventory
-            Destroy(mushroomsAndTiles[tile]);
+            Destroy(mushroomsAndTiles[tile].gameObject);
 			//mushroomsAndTiles.Remove(tile);
 			//resets the tile;
 			mushroomsAndTiles[tile] = Instantiate(tilePrefab, tile, Quaternion.identity, transform);
@@ -252,7 +252,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[aboveShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[above]);
+                                        Destroy(mushroomsAndTiles[above].gameObject);
 
                                         mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
@@ -288,7 +288,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[belowShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[below]);
+                                        Destroy(mushroomsAndTiles[below].gameObject);
 
                                         mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
@@ -325,7 +325,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[leftShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[left]);
+                                        Destroy(mushroomsAndTiles[left].gameObject);
 
                                         mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
@@ -363,7 +363,7 @@ public class FarmManager : MonoBehaviour
                                     {
                                         mushroomPrefab = compareShroom.hybridDictionary[rightShroom.ID];
 
-                                        Destroy(mushroomsAndTiles[right]);
+                                        Destroy(mushroomsAndTiles[right].gameObject);
 
                                         mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);

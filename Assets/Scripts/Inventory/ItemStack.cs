@@ -15,6 +15,7 @@ public class ItemStack
 		get { return amount; }
 	}
 
+
 	public ItemStack(Item item, int count)
 	{
 		this.item = item;

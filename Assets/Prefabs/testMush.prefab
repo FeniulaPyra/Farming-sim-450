@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd24587c8bbe3bc4e8c2d0f4098a3028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Red Shroom
+  name: Red Shroom Seeds
   spr: {fileID: 5676557975786801406, guid: b397689f58031c441aa763d8045ed029, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
+  player: {fileID: 0}
 --- !u!212 &-6140956903664013146
 SpriteRenderer:
   m_ObjectHideFlags: 0

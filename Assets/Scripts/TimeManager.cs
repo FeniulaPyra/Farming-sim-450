@@ -6,17 +6,6 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
-    //Length of the day in minutes
-    //static int daysInMinutes = 24;
-    static float daysInMinutes = 0.25f;
-    
-    //Length of day in seconds; actually used for timekeeping
-    //static int daysInSeconds = daysInMinutes * 60;
-    static float daysInSeconds = daysInMinutes * 60f;
-
-    //Timer to keep track of time passed
-    float dayTimer = daysInSeconds;
-
     //Reference to the FarmManager so it can access the dictionary that has all of the mushrooms
     public FarmManager management;
 
@@ -31,10 +20,21 @@ public class TimeManager : MonoBehaviour
     int dateNum = 1;
     public TMP_Text dateDisplay;
     //1 - 4 for Spr - Win
+    [SerializeField]
     int seasonNum = 1;
     public TMP_Text seasonDisplay;
     int yearNum = 1;
     public TMP_Text yearDisplay;
+
+    //Random array of DialogueManagers to handle NPC Dialogue
+    DialogueManager[] NPCs = new DialogueManager[100];
+    [SerializeField]
+    List<DialogueManager> NPCList = new List<DialogueManager>();
+
+    public int GetSeasonNum()
+    {
+        return seasonNum;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +49,17 @@ public class TimeManager : MonoBehaviour
         seasonDisplay.text = "Spring";
         yearDisplay.text = "Year 1";
 
+        //Gets all NPCs and saves them so their dialogue can later be updated
+        NPCs = FindObjectsOfType<DialogueManager>();
+
+        for (int i = 0; i < NPCs.Length; i++)
+        {
+            if (NPCs[i] != null)
+            {
+                NPCList.Add(NPCs[i]);
+            }
+        }
+
         //DisplayTime();
     }
 
@@ -57,14 +68,6 @@ public class TimeManager : MonoBehaviour
     {
         //Temp code; just making sure Unity can call the method
         if (Input.GetKeyDown(KeyCode.N))
-        {
-            AdvanceDay();
-        }
-
-        //DisplayTime();
-        //Counts down the day, then when it's over, calls the method
-
-        if(dayTimer <= 0.00f)
         {
             AdvanceDay();
         }
@@ -95,6 +98,7 @@ public class TimeManager : MonoBehaviour
     /// </summary>
     void AdvanceDay()
     {
+        Vector3Int keyToReplace = Vector3Int.zero;
 
         //Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day
         foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
@@ -109,6 +113,13 @@ public class TimeManager : MonoBehaviour
             {
                 if (shroom.Value.GetComponent<Mushrooms>() != null)
                 {
+                    if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
+                    {
+                        Debug.Log("The mushroom is ready to die");
+
+                        keyToReplace = shroom.Key;
+                    }
+
                     Mushrooms newShroom = (Mushrooms)shroom.Value;
 
                     Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
@@ -120,9 +131,37 @@ public class TimeManager : MonoBehaviour
                     //Set the tile again, in case the mushroom has grown
                     management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
                     management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
+
+                    /*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
+                    {
+                        //convert tile to mushroom
+                        //Mushrooms deadShroom = (Mushrooms)shroom.Value;
+                        Tile deadShroom = shroom.Value;
+
+                        //Destroy mushroom and add to inventory
+                        Destroy(shroom.Value);
+                        //mushroomsAndTiles.Remove(tile);
+                        //resets the tile;
+                        deadShroom = Instantiate(management.tilePrefab, shroom.Key, Quaternion.identity, transform);
+                        management.farmField.SetTile(shroom.Key, null);
+                        management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tileSprite);
+
+                        shroom.Value.GetComponent<Tile>().isTilled = false;
+                    }*/
                 }
             }
         }
+
+        //After looping through the dictionary, do things to the specific mushrooms you need to destroy
+        if (keyToReplace != Vector3Int.zero)
+        {
+            Destroy(management.mushroomsAndTiles[keyToReplace].gameObject);
+            management.mushroomsAndTiles[keyToReplace] = Instantiate(management.tilePrefab, keyToReplace, Quaternion.identity, transform);
+            management.farmField.SetTile(keyToReplace, null);
+            management.tillableGround.SetTile(keyToReplace, management.tilePrefab.tileSprite);
+        }
+
+
 
         //Once all of the mushrooms grow, call spread once.
         management.SpreadMushroom();
@@ -160,54 +199,6 @@ public class TimeManager : MonoBehaviour
         AdvanceDay();
     }
 
-    /*public void DisplayTime()
-    {
-        //display hour
-        if(minuteCount == 59)
-        {
-            if (hourCount < 24)
-            {
-                hourCount++;
-            }
-            else
-            {
-                hourCount = 0;
-
-                //Advances the day if the clock passes midnight, which just makes sense
-                AdvanceDay();
-            }
-
-        }
-
-        if(hourCount < 10)
-        {
-            hourDisplay.text = $"0{hourCount}:";
-        }
-        else
-        {
-            hourDisplay.text = $"{hourCount}:";
-        }
-
-        //display minute
-        if (minuteCount == 59)
-        {
-            minuteCount = 0;
-        }
-        else
-        {
-            minuteCount += 1;
-        }
-
-        if (minuteCount < 10)
-        {
-            minuteDisplay.text = $"0{minuteCount}";
-        }
-        else
-        {
-            minuteDisplay.text = minuteCount.ToString(); ;
-        }
-    }*/
-
     /// <summary>
     /// Method that displays the in game date
     /// </summary>
@@ -217,11 +208,16 @@ public class TimeManager : MonoBehaviour
         if (seasonNum == 4 && dateNum == 30)
         {
             yearNum++;
+
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                NPCList[i].SetConversations();
+            }
         }
 
         yearDisplay.text = $"Year {yearNum}";
 
-        //change season
+        //change season; reset NPC dialogue at end of season, otherwise, just move on to the next day's piece of dialogue
         if (dateNum == 30)
         {
             if (seasonNum == 4)
@@ -231,6 +227,63 @@ public class TimeManager : MonoBehaviour
             else
             {
                 seasonNum++;
+            }
+
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                NPCList[i].SetConversations();
+            }
+        }
+        else
+        {
+            //Change NPC Dialogue
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                switch (seasonNum)
+                {
+                    case 1:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetSpringEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetSpringStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    case 2:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetSummerEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetSummerStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    case 3:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetFallEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetFallStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    case 4:
+                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetWinterEnd()])
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetWinterStart()];
+                        }
+                        else
+                        {
+                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -302,7 +355,5 @@ public class TimeManager : MonoBehaviour
                 dayDisplay.text = "";
                 break;
         }
-
-        dayTimer = daysInSeconds;
     }
 }
