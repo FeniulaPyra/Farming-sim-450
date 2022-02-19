@@ -39,6 +39,8 @@ public class PlayerInteraction : MonoBehaviour
     public int playerStamina = 0;
     int maxPlayerStamina = 100;
 
+    public Image TimeRadial;
+
     public int GetMaxPlayerStamina()
     {
         return maxPlayerStamina;
@@ -130,6 +132,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             staminaDisplay.text = $"Stamina: {playerStamina}";
+            TimeRadial.fillAmount = (float)playerStamina/100;
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }

@@ -155,6 +155,7 @@ public class TimeManager : MonoBehaviour
         }
 
         staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+        staminaTracker.TimeRadial.fillAmount = (float)staminaTracker.playerStamina / 100;
 
         AdvanceDay();
     }
