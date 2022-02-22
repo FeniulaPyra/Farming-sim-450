@@ -53217,51 +53217,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1010841807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1010841809}
-  - component: {fileID: 1010841808}
-  m_Layer: 0
-  m_Name: SaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1010841808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010841807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d433a24a2e0d4974ba2f430dd7e80a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveName: testSave
-  player: {fileID: 1281256933}
---- !u!4 &1010841809
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010841807}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1025754823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
@@ -54952,6 +54907,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1281256933}
+    - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 1281256936}
     - target: {fileID: 2053923597524535470, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: m_Name
       value: ManagerObject
@@ -54969,25 +54932,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 911556064}
     - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
-      propertyPath: management
-      value: 
-      objectReference: {fileID: 2068960239}
-    - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: dateDisplay
       value: 
       objectReference: {fileID: 917050267}
     - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
-      propertyPath: hourDisplay
-      value: 
-      objectReference: {fileID: 1377426781}
-    - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: yearDisplay
       value: 
       objectReference: {fileID: 1553263166}
-    - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
-      propertyPath: minuteDisplay
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: seasonDisplay
       value: 

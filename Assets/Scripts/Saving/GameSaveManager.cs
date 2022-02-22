@@ -11,6 +11,8 @@ public class GameSaveManager : MonoBehaviour
 
     [Header("Data to Save")]
     public GameObject player;
+    public TimeManager timeManager;
+    public PlayerInteraction playerInteraction;
 
     private string constantPath;
 
@@ -28,8 +30,7 @@ public class GameSaveManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.O))
         {
-            var time = System.DateTime.Now;
-            SaveGame(saveName + "-at-" + time.Hour + "." + time.Minute + "." + time.Second + "." + time.Millisecond);
+            SaveGame(saveName + "-at-" + timeManager.DayNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
         }
 
         if(Input.GetKeyDown(KeyCode.P))
@@ -57,6 +58,8 @@ public class GameSaveManager : MonoBehaviour
         var pRotation = pTransform.rotation.eulerAngles;
         sw.WriteLine($"{pPosition.x},{pPosition.y},{pPosition.z}");
         sw.WriteLine($"{pRotation.x},{pRotation.y},{pRotation.z}");
+        sw.WriteLine($"{timeManager.DayNumber},{timeManager.DateNumber},{timeManager.YearNumber},{timeManager.SeasonNumber}");
+        sw.WriteLine($"{playerInteraction.PlayerStamina}");
 
         sw.Close();
 
@@ -78,15 +81,26 @@ public class GameSaveManager : MonoBehaviour
             float.Parse(readPos[2])
             );
 
-        readPos = sr.ReadLine().Split(',');
+        var readRot = sr.ReadLine().Split(',');
         var rot = Quaternion.Euler(
-            float.Parse(readPos[0]),
-            float.Parse(readPos[1]),
-            float.Parse(readPos[2])
+            float.Parse(readRot[0]),
+            float.Parse(readRot[1]),
+            float.Parse(readRot[2])
             );
 
         player.transform.position = pos;
         player.transform.rotation = rot;
+
+        var readDate = sr.ReadLine().Split(',');
+        timeManager.SetDate(
+            int.Parse(readDate[0]),
+            int.Parse(readDate[1]),
+            int.Parse(readDate[2]),
+            int.Parse(readDate[3])
+            ); 
+
+        var readStamina = sr.ReadLine();
+        playerInteraction.SetStamina(int.Parse(readStamina));
     }
 
     void DeleteSave(string saveName)
@@ -140,7 +154,7 @@ public class GameSaveManager : MonoBehaviour
                 {
                     GUILayout.BeginHorizontal();
                     if (GUILayout.Button(save))
-                    {
+                    { 
                         LoadGame(save);
                         displayLoadMenu = false;
                     }

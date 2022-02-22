@@ -31,10 +31,13 @@ public class TimeManager : MonoBehaviour
     [SerializeField]
     List<DialogueManager> NPCList = new List<DialogueManager>();
 
-    public int GetSeasonNum()
-    {
-        return seasonNum;
-    }
+    public int DayNumber => dateNum;
+
+    public int DateNumber => dateNum;
+
+    public int YearNumber => yearNum;
+
+    public int SeasonNumber => seasonNum;
 
     // Start is called before the first frame update
     void Start()
@@ -166,44 +169,6 @@ public class TimeManager : MonoBehaviour
         //Once all of the mushrooms grow, call spread once.
         management.SpreadMushroom();
 
-        DisplayDate();
-    }
-
-    /// <summary>
-    /// Method for sleeping.
-    /// Sole parameter is how long you want to sleep for
-    /// </summary>
-    /// <param name="duration"></param>
-    public void Sleep(float duration)
-    {
-        //max stamina multiplied by duration/8. This is so that a full 8 hours of sleep would get you all stamina back
-        //Might need to be tweaked, since a measly four hours still restores half stamina
-        float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
-
-        Debug.Log($"Duration is {duration}");
-        Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
-        Debug.Log($"Multiplying by {duration/8}");
-        Debug.Log($"Adding {staminaToAdd} stamina");
-
-        staminaTracker.playerStamina += (int)staminaToAdd;
-
-        //cap stamina if it exceeds limit
-        if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
-        {
-            staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
-        }
-
-        staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
-        staminaTracker.TimeRadial.fillAmount = (float)staminaTracker.playerStamina / 100;
-
-        AdvanceDay();
-    }
-
-    /// <summary>
-    /// Method that displays the in game date
-    /// </summary>
-    public void DisplayDate()
-    {
         //change year
         if (seasonNum == 4 && dateNum == 30)
         {
@@ -214,8 +179,6 @@ public class TimeManager : MonoBehaviour
                 NPCList[i].SetConversations();
             }
         }
-
-        yearDisplay.text = $"Year {yearNum}";
 
         //change season; reset NPC dialogue at end of season, otherwise, just move on to the next day's piece of dialogue
         if (dateNum == 30)
@@ -287,6 +250,67 @@ public class TimeManager : MonoBehaviour
             }
         }
 
+        //change the date
+        if (dateNum == 30)
+        {
+            dateNum = 1;
+        }
+        else
+        {
+            dateNum++;
+        }
+
+        //change the day
+        if (dayNum == 7)
+        {
+            dayNum = 1;
+        }
+        else
+        {
+            dayNum++;
+        }
+
+        DisplayDate();
+    }
+
+    /// <summary>
+    /// Method for sleeping.
+    /// Sole parameter is how long you want to sleep for
+    /// </summary>
+    /// <param name="duration"></param>
+    public void Sleep(float duration)
+    {
+        //max stamina multiplied by duration/8. This is so that a full 8 hours of sleep would get you all stamina back
+        //Might need to be tweaked, since a measly four hours still restores half stamina
+        float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
+
+        Debug.Log($"Duration is {duration}");
+        Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
+        Debug.Log($"Multiplying by {duration/8}");
+        Debug.Log($"Adding {staminaToAdd} stamina");
+
+        staminaTracker.playerStamina += (int)staminaToAdd;
+
+        //cap stamina if it exceeds limit
+        if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
+        {
+            staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
+        }
+
+        staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+
+        AdvanceDay();
+    }
+
+    /// <summary>
+    /// Method that displays the in game date
+    /// </summary>
+    public void DisplayDate()
+    {
+        
+
+        yearDisplay.text = $"Year {yearNum}";
+
         switch (seasonNum)
         {
             case 1:
@@ -306,27 +330,7 @@ public class TimeManager : MonoBehaviour
                 break;
         }
 
-        //change the date
-        if (dateNum == 30)
-        {
-            dateNum = 1;
-        }
-        else
-        {
-            dateNum++;
-        }
-
         dateDisplay.text = dateNum.ToString();
-
-        //change the day
-        if (dayNum == 7)
-        {
-            dayNum = 1;
-        }
-        else
-        {
-            dayNum++;
-        }
 
         switch (dayNum)
         {
@@ -355,5 +359,15 @@ public class TimeManager : MonoBehaviour
                 dayDisplay.text = "";
                 break;
         }
+    }
+
+    public void SetDate(int day, int date, int year, int season)
+    {
+        dayNum = day;
+        dateNum = date;
+        yearNum = year;
+        seasonNum = season;
+
+        DisplayDate();
     }
 }
