@@ -26,6 +26,10 @@ public class TimeManager : MonoBehaviour
     int yearNum = 1;
     public TMP_Text yearDisplay;
 
+    //For night
+    public bool isNight;
+    public Image nightImage;
+
     //Random array of DialogueManagers to handle NPC Dialogue
     DialogueManager[] NPCs = new DialogueManager[100];
     [SerializeField]
@@ -70,6 +74,14 @@ public class TimeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             AdvanceDay();
+        }
+
+        if (isNight == false && staminaTracker.playerStamina <= 20)
+        {
+            nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.25f);
+            Debug.Log($"The color is {nightImage.color}");
+
+            isNight = true;
         }
 
         if (staminaTracker.playerStamina <= 0)
@@ -205,6 +217,11 @@ public class TimeManager : MonoBehaviour
 
         staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
         staminaTracker.TimeRadial.fillAmount = (float)staminaTracker.playerStamina / 100;
+
+        //Night or day, depending
+        //nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.01f);
+
+        //isNight = false;
 
         AdvanceDay();
     }
