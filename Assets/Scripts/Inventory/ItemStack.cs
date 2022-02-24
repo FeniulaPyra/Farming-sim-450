@@ -51,6 +51,31 @@ public class ItemStack
 			return null;
 		}
 	}
+	/// <summary>
+	/// Removes a given amount of items from this item stack
+	/// </summary>
+	/// <param name="amount">the amount of items to remove</param>
+	/// <returns>Will return 0 or a negative number if there are no more items in this stack. If it returns
+	/// a negative number, it means there are still items to be removed (the amount removed is greater
+	/// than the amount of items in this stack). If it returns a positive number, there are still items
+	/// left in this stack (the amount of items removed are less than the number of items in this stack).</returns>
+	public int RemoveItems(int amount)
+	{
+		if(amount < this.amount)
+		{
+			this.amount -= amount;
+			return this.amount;
+		}
+		else if(amount > this.amount) 
+		{
+			this.amount = 0;
+			return this.amount - amount;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 
 	/// <summary>
 	/// Splits this stack into two halves.

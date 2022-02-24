@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -301,4 +302,71 @@ public class Inventory
 	{
 		selectedStack = null;
 	}
+	
+	/// <summary>
+	/// Sets a slot of the inventory to a given set of items. Will skip if 
+	/// the slot x and y are out of bounds.
+	/// </summary>
+	/// <param name="slotX"> The column of the slot to be set</param>
+	/// <param name="slotY"> The row of the slot to be set</param>
+	/// <param name="newItems">The items the slot will be set to</param>
+	public void SetItem(int slotX, int slotY, ItemStack newItems)
+	{
+		//exit if OOB
+		if (slotX >= COLUMNS || slotX < 0 || slotY >= ROWS || slotY < 0) return;
+
+		items[slotX, slotY] = newItems;
+	}
+
+	/// <summary>
+	/// Deletes the items at the given slot positino
+	/// </summary>
+	/// <param name="slotX">the column of the slot to be cleared</param>
+	/// <param name="slotY">the row of the slot to be cleared</param>
+	public void DeleteSlot(int slotX, int slotY)
+	{
+		items[slotX, slotY] = null;
+	}
+
+	public void RemoveItems(Item item, int amount)
+	{
+		//all the slots with the given items
+		List<int[]> slotsWithItems = new List<int[]>();
+		int totalItems = 0;
+		for(int r = 0; r < ROWS; r++)
+		{
+			for(int c = 0; c < COLUMNS; c++)
+			{
+				if(items[r, c].Item.name == item.name)
+				{
+					int[] slot = { r, c };
+					slotsWithItems.Add(slot);
+					totalItems += items[r, c].Amount;
+				}
+			}
+		}
+
+		//throws an error if there isnt enough items in the inventory;
+		if(totalItems < amount)
+		{
+			throw new ArgumentException("Not enough items");
+		}
+
+		int leftovers = amount;
+		foreach(int[] s in slotsWithItems)
+		{
+			ItemStack i = items[s[0], s[1]];
+			if (i.Item.name == item.name)
+			{
+				leftovers = i.RemoveItems(leftovers);
+				if(leftovers == 0)
+				{
+					DeleteSlot(s[0], s[1]);
+				}
+				if (leftovers > 0) break;
+				if (leftovers < 0) leftovers *= -1;
+			}
+		}
+	}
+
 }
