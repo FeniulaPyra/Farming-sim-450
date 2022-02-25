@@ -9,6 +9,8 @@ public class TimeManager : MonoBehaviour
     //Reference to the FarmManager so it can access the dictionary that has all of the mushrooms
     public FarmManager management;
 
+    public ShippingBin shippingBin;
+
     //for keeping track of player stamina, which is time
     public PlayerInteraction staminaTracker;
 
@@ -291,6 +293,8 @@ public class TimeManager : MonoBehaviour
         {
             dayNum++;
         }
+
+        shippingBin.PayPlayer();
 
         DisplayDate();
     }

@@ -50,6 +50,8 @@ MonoBehaviour:
   spr: {fileID: -703930949698735261, guid: f6752a88dab44f6489688ee1929c8ee8, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
+  isSellable: 1
+  sellValue: 500
   player: {fileID: 0}
 --- !u!212 &5197921192561006129
 SpriteRenderer:

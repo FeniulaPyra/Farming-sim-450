@@ -49,6 +49,8 @@ public class PlayerInteraction : MonoBehaviour
     //boolean for whether or not the player is talking
     public bool isTalking;
 
+    public int playerGold;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();

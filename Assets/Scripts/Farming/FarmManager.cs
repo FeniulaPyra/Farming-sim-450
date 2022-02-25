@@ -235,7 +235,7 @@ public class FarmManager : MonoBehaviour
                             //If a hybrid cannot be made, continue the loop and do nothing
 
                             //If the tile is in the dictionary, doesn't have a plant, and isn't outside of the bounds of the field
-                            if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].isTilled == true && above.y <= topBound)
+                            if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].isTilled == true)// && above.y <= topBound)
                             {
                                 if(mushroomsAndTiles[above].hasPlant == false)
                                 {
@@ -267,7 +267,7 @@ public class FarmManager : MonoBehaviour
                                 }
                             }
 
-                            if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].isTilled == true && below.y >= bottomBound)
+                            if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].isTilled == true)// && below.y >= bottomBound)
                             {
                                 if (mushroomsAndTiles[below].hasPlant == false)
                                 {
@@ -300,7 +300,7 @@ public class FarmManager : MonoBehaviour
                                 
                             }
 
-                            if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].isTilled == true && left.x >= leftBound)
+                            if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].isTilled == true)// && left.x >= leftBound)
                             {
                                 if (mushroomsAndTiles[left].hasPlant == false)
                                 {
@@ -334,7 +334,7 @@ public class FarmManager : MonoBehaviour
                                 
                             }
 
-                            if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].isTilled == true && right.x <= rightBound)
+                            if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].isTilled == true)// && right.x <= rightBound)
                             {
                                 if (mushroomsAndTiles[right].hasPlant == false)
                                 {
