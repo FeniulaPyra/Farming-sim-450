@@ -29,6 +29,8 @@ public class BasicEntity : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         facing = new Vector2(1, 0);
+
+        player = GameObject.FindObjectOfType<PlayerMovement>().transform;
     }
 
     void Update()

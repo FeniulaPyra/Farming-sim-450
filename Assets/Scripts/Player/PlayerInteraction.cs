@@ -83,6 +83,8 @@ public class PlayerInteraction : MonoBehaviour
         indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
 
         CheckInteraction();
+
+        TimeRadial.fillAmount = Mathf.Lerp(TimeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
     }
 
     private void CheckInteraction()
@@ -141,11 +143,16 @@ public class PlayerInteraction : MonoBehaviour
             staminaDisplay.text = $"Stamina: {playerStamina}";
             TimeRadial.fillAmount = (float)playerStamina/100;
 
-
-
             farmManager.TileInteract(focusTilePosition, itemName);
         }
 
+    }
+
+    public int PlayerStamina => playerStamina;
+
+    public void SetStamina(int stamina)
+    {
+        playerStamina = stamina;
     }
 
     private void OnDrawGizmos()

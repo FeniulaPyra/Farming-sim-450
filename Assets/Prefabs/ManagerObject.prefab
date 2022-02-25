@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2053923597524535472}
   - component: {fileID: 2053923597524535471}
   - component: {fileID: 2053923597524535474}
+  - component: {fileID: 814468119183037380}
   m_Layer: 0
   m_Name: ManagerObject
   m_TagString: Untagged
@@ -45,7 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66bf7288ed7c224bafceb8f01b3779d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  management: {fileID: 0}
+  management: {fileID: 2053923597524535471}
+  staminaTracker: {fileID: 0}
+  dayDisplay: {fileID: 0}
+  dateDisplay: {fileID: 0}
+  seasonNum: 1
+  seasonDisplay: {fileID: 0}
+  yearDisplay: {fileID: 0}
+  NPCList: []
 --- !u!114 &2053923597524535471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,3 +86,19 @@ MonoBehaviour:
   - {fileID: 2536459904192622106, guid: 6611e5bd4b468d64395f2d090d74ca5a, type: 3}
   - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
   - {fileID: 2384392086033523595, guid: e80c533e3c8719242a312eec3a8e6a8c, type: 3}
+--- !u!114 &814468119183037380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053923597524535470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d433a24a2e0d4974ba2f430dd7e80a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveName: Test-Save
+  player: {fileID: 0}
+  timeManager: {fileID: 2053923597524535472}
+  playerInteraction: {fileID: 0}

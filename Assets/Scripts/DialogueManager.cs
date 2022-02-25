@@ -145,7 +145,7 @@ public class DialogueManager : MonoBehaviour
         //Clear dictionary
         conversations.Clear();
 
-        switch (timeManager.GetSeasonNum())
+        switch (timeManager.SeasonNumber)
         {
             case 1:
                 //Screwed up; the <= ran it twice, when it should've ran once
