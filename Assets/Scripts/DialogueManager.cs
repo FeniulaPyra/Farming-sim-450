@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
 
     #region Variables
 
+    public Collider2D playerCollider;
+
     //All other variables
     public TMP_Text nameText;
     public TMP_Text dialogueText;
@@ -38,6 +40,7 @@ public class DialogueManager : MonoBehaviour
     //reference to time manage
     [SerializeField]
     TimeManager timeManager;
+    PlayerInteraction playerInteraction;
 
     //ints to track seasonal dialogue
     int springConvoStart = 0;
@@ -112,6 +115,8 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         timeManager = FindObjectOfType<TimeManager>();
+
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         //SetConversations(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         SetConversations();
@@ -199,7 +204,7 @@ public class DialogueManager : MonoBehaviour
     //Is a coroutine so the for loop for dialogue doesn't immediately blaze through the conversation list
     public IEnumerator PlayDialogue(string convoID)
     {
-        //playerScript.inDialogue = true;
+        playerInteraction.isTalking = true;
 
         //Get a dictionary to play
         List<NPCDialogue> convoToPlay = conversations[convoID];
@@ -239,13 +244,13 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log($"For conversation ID {convoID}");
 
-
+        playerInteraction.isTalking = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Tested with Debug.Log. The player's collider is named "PlayerCollider", so this should just work
-        if (collision.name == "PlayerCollider" && Input.GetKeyDown(KeyCode.Space))
+        if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && playerInteraction.isTalking == false)
         {
             Debug.Log($"My ID is {convoID}");
             StartCoroutine(PlayDialogue(convoID));

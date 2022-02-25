@@ -12,7 +12,8 @@ public class FarmManager : MonoBehaviour
 
     //Reference to the Mushroom Prefab for creating new mushrooms
     /*public*/ GameObject mushroomPrefab;
-    public MushroomManager mushroomManager;
+	GameObject originalMushroom;
+	public MushroomManager mushroomManager;
 
     //Testing only; attempt at making a dictionary
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
@@ -177,7 +178,9 @@ public class FarmManager : MonoBehaviour
 
     public void SpreadMushroom()
     {
-        Debug.Log("Beginning of SpreadMushroom");
+		// = mushroomManager.mushroomVariants["Red Shroom"];
+
+		Debug.Log("Beginning of SpreadMushroom");
 
         //The bounds of the crop field
         int leftBound = farmField.cellBounds.x;
@@ -206,7 +209,8 @@ public class FarmManager : MonoBehaviour
                     {
                         Mushrooms compareShroom = (Mushrooms)mushroomsAndTiles[tileToTest];
 
-                        mushroomPrefab = mushroomManager.mushroomVariants[compareShroom.ID];
+                        originalMushroom = mushroomManager.mushroomVariants[compareShroom.ID];
+						mushroomPrefab = originalMushroom;
 
                         Debug.Log($"Found a tile at {tileToTest}!");
                         Debug.Log($"compareShroom is a {compareShroom.ID}!");
@@ -347,6 +351,7 @@ public class FarmManager : MonoBehaviour
                                 if (mushroomsAndTiles[right].hasPlant == false)
                                 {
                                     Debug.Log("Right");
+									mushroomPrefab = originalMushroom;
                                     mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
                                     farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
                                     mushroomsAndTiles[right].transform.parent = this.transform;

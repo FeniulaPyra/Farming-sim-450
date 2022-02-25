@@ -26,6 +26,10 @@ public class TimeManager : MonoBehaviour
     int yearNum = 1;
     public TMP_Text yearDisplay;
 
+    //For night
+    public bool isNight;
+    public Image nightImage;
+
     //Random array of DialogueManagers to handle NPC Dialogue
     DialogueManager[] NPCs = new DialogueManager[100];
     [SerializeField]
@@ -75,6 +79,14 @@ public class TimeManager : MonoBehaviour
             AdvanceDay();
         }
 
+        if (isNight == false && staminaTracker.playerStamina <= 20)
+        {
+            nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.25f);
+            Debug.Log($"The color is {nightImage.color}");
+
+            isNight = true;
+        }
+
         if (staminaTracker.playerStamina <= 0)
         {
             Sleep(12);
@@ -109,33 +121,35 @@ public class TimeManager : MonoBehaviour
             if(shroom.Value == null)
             {
 				continue;
-                //management.mushroomsAndTiles.Remove(shroom.Key);
-                //shroom.Value.isTilled = false;
-            }
-            else
+				//management.mushroomsAndTiles.Remove(shroom.Key);
+				//shroom.Value.isTilled = false;
+
+
+			}
+			else
             {
-                if (shroom.Value.GetComponent<Mushrooms>() != null)
-                {
-                    if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
-                    {
-                        Debug.Log("The mushroom is ready to die");
+				if (shroom.Value.GetComponent<Mushrooms>() != null)
+				{
+					if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
+					{
+						Debug.Log("The mushroom is ready to die");
 
-                        keyToReplace = shroom.Key;
-                    }
+						keyToReplace = shroom.Key;
+					}
 
-                    Mushrooms newShroom = (Mushrooms)shroom.Value;
+					Mushrooms newShroom = (Mushrooms)shroom.Value;
 
-                    Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
+					Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
 
-                    newShroom.GrowMushroom();
+					newShroom.GrowMushroom();
 
-                    newShroom.isMoist = false;
+					newShroom.isMoist = false;
 
-                    //Set the tile again, in case the mushroom has grown
-                    management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
-                    management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
+					//Set the tile again, in case the mushroom has grown
+					management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
+					management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
 
-                    /*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
+					/*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
                     {
                         //convert tile to mushroom
                         //Mushrooms deadShroom = (Mushrooms)shroom.Value;
@@ -151,7 +165,15 @@ public class TimeManager : MonoBehaviour
 
                         shroom.Value.GetComponent<Tile>().isTilled = false;
                     }*/
-                }
+				}
+				else
+				{
+					if (shroom.Value.isTilled)
+					{
+						management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
+						shroom.Value.isMoist = false;
+					}
+				}
             }
         }
 

@@ -46,6 +46,9 @@ public class PlayerInteraction : MonoBehaviour
         return maxPlayerStamina;
     }
 
+    //boolean for whether or not the player is talking
+    public bool isTalking;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -103,7 +106,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.E) && itemName != "")
+        if (Input.GetKeyDown(KeyCode.Space) && itemName != "" && isTalking == false)
         {
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
@@ -117,24 +120,24 @@ public class PlayerInteraction : MonoBehaviour
                 //switch on the four main item types, then some default value for everything else
                 if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
                 {
-                    playerStamina -= 2;
+                    ReduceStamina(2);
                 }
                 else if(itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
                 {
-                    playerStamina -= 6;
+                    ReduceStamina(6);
                 }
                 else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true)
                 {
-                    playerStamina -= 3;
+                    ReduceStamina(3);
                 }
                 else if(itemName == "Hoe")
                 {
-                    playerStamina -= 10;
+                    ReduceStamina(10);
                 }
             }
             else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
             {
-                playerStamina -= 5;
+                ReduceStamina(5);
             }
 
             staminaDisplay.text = $"Stamina: {playerStamina}";
@@ -166,5 +169,11 @@ public class PlayerInteraction : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(currentPlayerPos, Vector3.one);
         Gizmos.DrawWireSphere(currentPlayerPos, 0.5f);
+    }
+
+    //Simple function for reducing stamina. IF anything needs to be changed, change it here and only here
+    public void ReduceStamina(int amount)
+    {
+        playerStamina -= amount;
     }
 }
