@@ -138,6 +138,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             staminaDisplay.text = $"Stamina: {playerStamina}";
+            TimeRadial.fillAmount = (float)playerStamina/100;
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }
