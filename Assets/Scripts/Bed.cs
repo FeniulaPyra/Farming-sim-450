@@ -97,6 +97,16 @@ public class Bed : MonoBehaviour
             choiceArrow1Image.gameObject.SetActive(true);
             choiceArrow2Image.gameObject.SetActive(false);
         }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && choiceArrow2Image.isActiveAndEnabled == false)
+        {
+            choiceArrow1Image.gameObject.SetActive(false);
+            choiceArrow2Image.gameObject.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && choiceArrow2Image.isActiveAndEnabled == true)
+        {
+            choiceArrow1Image.gameObject.SetActive(true);
+            choiceArrow2Image.gameObject.SetActive(false);
+        }
 
         //Selection
         //Morning

@@ -264,10 +264,6 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[above].hasPlant = true;
                                         mushroomsAndTiles[above].isTilled = true;
                                     }
-                                    else
-                                    {
-                                        continue;
-                                    }
                                 }
                             }
 
@@ -299,10 +295,6 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[below].transform.parent = this.transform;
                                         mushroomsAndTiles[below].hasPlant = true;
                                         mushroomsAndTiles[below].isTilled = true;
-                                    }
-                                    else
-                                    {
-                                        continue;
                                     }
                                 }
                                 
@@ -336,10 +328,6 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[left].transform.parent = this.transform;
                                         mushroomsAndTiles[left].hasPlant = true;
                                         mushroomsAndTiles[left].isTilled = true;
-                                    }
-                                    else
-                                    {
-                                        continue;
                                     }
                                 }
 
@@ -375,10 +363,6 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[right].transform.parent = this.transform;
                                         mushroomsAndTiles[right].hasPlant = true;
                                         mushroomsAndTiles[right].isTilled = true;
-                                    }
-                                    else
-                                    {
-                                        continue;
                                     }
                                 }
                                 
