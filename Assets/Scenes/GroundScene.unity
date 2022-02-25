@@ -55488,6 +55488,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1281256933}
+    - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 1281256936}
     - target: {fileID: 2053923597524535470, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: m_Name
       value: ManagerObject
