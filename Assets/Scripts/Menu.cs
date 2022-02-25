@@ -41,11 +41,11 @@ public class Menu : MonoBehaviour
 
 	public enum MenuControls
 	{
-		OPEN_INVENTORY = KeyCode.I,
-		NEXT_HOTBAR = KeyCode.UpArrow,
-		PREV_HOTBAR = KeyCode.DownArrow,
-		NEXT_HOTBAR_SLOT = KeyCode.RightArrow,
-		PREV_HOTBAR_SLOT = KeyCode.LeftArrow,
+		OPEN_INVENTORY = KeyCode.E,
+		NEXT_HOTBAR = KeyCode.I,
+		PREV_HOTBAR = KeyCode.K,
+		NEXT_HOTBAR_SLOT = KeyCode.L,
+		PREV_HOTBAR_SLOT = KeyCode.J,
 		DROP = KeyCode.Q
 	}
 
