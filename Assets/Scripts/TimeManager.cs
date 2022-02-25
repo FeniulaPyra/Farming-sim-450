@@ -319,7 +319,7 @@ public class TimeManager : MonoBehaviour
             staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
         }
 
-        staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+        //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
 
         AdvanceDay();
     }

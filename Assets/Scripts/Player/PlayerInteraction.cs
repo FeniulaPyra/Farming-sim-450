@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     //Stamina, which serves the same purpose as time
-    public TMP_Text staminaDisplay;
+    //public TMP_Text staminaDisplay;
     public int playerStamina = 0;
     int maxPlayerStamina = 100;
 
@@ -55,7 +55,7 @@ public class PlayerInteraction : MonoBehaviour
 
         playerStamina = maxPlayerStamina;
 
-        staminaDisplay.text = $"Stamina: {playerStamina}";
+        //staminaDisplay.text = $"Stamina: {playerStamina}";
     }
 
     private void Update()
@@ -126,11 +126,11 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     ReduceStamina(6);
                 }
-                else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true)
+                else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
                 {
                     ReduceStamina(3);
                 }
-                else if(itemName == "Hoe")
+                else if(itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
                 {
                     ReduceStamina(10);
                 }
@@ -139,8 +139,17 @@ public class PlayerInteraction : MonoBehaviour
             {
                 ReduceStamina(5);
             }
+            else if (mushroomsAndTiles.ContainsKey(focusTilePosition) == false && itemName == "Hoe")
+            {
+                Vector3Int cropPos = focusTilePosition;
+                Tile testTile = Instantiate(farmManager.tilePrefab, cropPos, Quaternion.identity, transform);
 
-            staminaDisplay.text = $"Stamina: {playerStamina}";
+                mushroomsAndTiles.Add(cropPos, testTile);
+                //farmField.SetTile(cropPos, testTile.tileSprite);
+                farmManager.tillableGround.SetTile(cropPos, testTile.unTilledGround);
+            }
+
+            //staminaDisplay.text = $"Stamina: {playerStamina}";
             TimeRadial.fillAmount = (float)playerStamina/100;
 
             farmManager.TileInteract(focusTilePosition, itemName);

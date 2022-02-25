@@ -48,5 +48,6 @@ MonoBehaviour:
   hasPlant: 0
   tileSprite: {fileID: 11400000, guid: dfca11792222e5a46aeaf66cb240449f, type: 2}
   sprites: []
+  unTilledGround: {fileID: 11400000, guid: dfca11792222e5a46aeaf66cb240449f, type: 2}
   tilledGround: {fileID: 11400000, guid: 75df9868a6564c54a8c0274207540410, type: 2}
   wateredGround: {fileID: 11400000, guid: 53a4bdf0d6b0f79459945b7513d334cf, type: 2}

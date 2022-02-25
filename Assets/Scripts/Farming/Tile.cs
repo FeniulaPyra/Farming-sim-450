@@ -20,6 +20,7 @@ public class Tile : MonoBehaviour
     public List<TileBase> sprites = new List<TileBase>();
 
     //ground tile sprites for tilled ground
+    public TileBase unTilledGround;
     public TileBase tilledGround;
     public TileBase wateredGround;
 

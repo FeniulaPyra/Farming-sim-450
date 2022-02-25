@@ -53918,7 +53918,6 @@ MonoBehaviour:
   displayIndicator: 1
   interactionOffset: {x: 0, y: -0.25, z: 0}
   maxDistanceToInteraction: 1.25
-  staminaDisplay: {fileID: 1377426781}
   playerStamina: 0
   TimeRadial: {fileID: 508372017}
   isTalking: 0
@@ -54041,7 +54040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377426780
 RectTransform:
   m_ObjectHideFlags: 0
