@@ -11,14 +11,28 @@ public class FarmManager : MonoBehaviour
     List<Transform> plantedMushrooms = new List<Transform>();
 
     //Reference to the Mushroom Prefab for creating new mushrooms
-    /*public*/ GameObject mushroomPrefab;
-	GameObject originalMushroom;
-	public MushroomManager mushroomManager;
+    /*public*/
+    GameObject mushroomPrefab;
+    GameObject originalMushroom;
+    public MushroomManager mushroomManager;
 
     //Testing only; attempt at making a dictionary
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
     //public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
     public Dictionary<Vector3Int, Tile> mushroomsAndTiles = new Dictionary<Vector3Int, Tile>();
+
+    public Tile this[Vector3Int key]
+    {
+        get
+        {
+            return mushroomsAndTiles[key];
+        }
+        set
+        {
+            mushroomsAndTiles[key] = value;
+        }
+    }
+
 
     //EmptyTilePrefab
     public Tile tilePrefab;
