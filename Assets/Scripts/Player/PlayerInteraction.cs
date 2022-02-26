@@ -62,7 +62,22 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        var facing = playerMovement.Facing;
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var facing = mousePos - transform.position;
+
+        if (Mathf.Abs(facing.x) > Mathf.Abs(facing.y))
+        {
+            facing.y = 0;
+            facing.x = Mathf.Abs(facing.x) < 1 ? facing.x : 1 * Mathf.Sign(facing.x);
+        } else
+        {
+            facing.x = 0;
+            facing.y = Mathf.Abs(facing.y) < 1 ? facing.y : 1 * Mathf.Sign(facing.y);
+        }
+
+        //Debug.DrawLine(transform.position, mousePos);
+        //Debug.DrawRay(transform.position, facing, Color.red);
+
         var pos = transform.position + interactionOffset;
         var rPos = new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), Mathf.RoundToInt(pos.z));
 
@@ -83,6 +98,7 @@ public class PlayerInteraction : MonoBehaviour
             targetPos = new Vector3Int((int)rPos.x, (int)rPos.y, targetPos.z);
 
         indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
+        focusTilePosition = targetPos;
 
         CheckInteraction();
 
