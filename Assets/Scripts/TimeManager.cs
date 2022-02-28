@@ -115,7 +115,7 @@ public class TimeManager : MonoBehaviour
     /// </summary>
     void AdvanceDay()
     {
-        Vector3Int keyToReplace = Vector3Int.zero;
+        List<Vector3Int> keysToReplace = new List<Vector3Int>();
 
         //Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day
         foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
@@ -136,7 +136,7 @@ public class TimeManager : MonoBehaviour
 					{
 						Debug.Log("The mushroom is ready to die");
 
-						keyToReplace = shroom.Key;
+						keysToReplace.Add(shroom.Key);
 					}
 
 					Mushrooms newShroom = (Mushrooms)shroom.Value;
@@ -180,12 +180,12 @@ public class TimeManager : MonoBehaviour
         }
 
         //After looping through the dictionary, do things to the specific mushrooms you need to destroy
-        if (keyToReplace != Vector3Int.zero)
+        for (int i = 0; i < keysToReplace.Count; i++)
         {
-            Destroy(management.mushroomsAndTiles[keyToReplace].gameObject);
-            management.mushroomsAndTiles[keyToReplace] = Instantiate(management.tilePrefab, keyToReplace, Quaternion.identity, transform);
-            management.farmField.SetTile(keyToReplace, null);
-            management.tillableGround.SetTile(keyToReplace, management.tilePrefab.tileSprite);
+            Destroy(management.mushroomsAndTiles[keysToReplace[i]].gameObject);
+            management.mushroomsAndTiles[keysToReplace[i]] = Instantiate(management.tilePrefab, keysToReplace[i], Quaternion.identity, transform);
+            management.farmField.SetTile(keysToReplace[i], null);
+            management.tillableGround.SetTile(keysToReplace[i], management.tilePrefab.tileSprite);
         }
 
 

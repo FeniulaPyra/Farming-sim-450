@@ -15,6 +15,7 @@ public class FarmManager : MonoBehaviour
     GameObject mushroomPrefab;
     GameObject originalMushroom;
     public MushroomManager mushroomManager;
+    public TileManager tileManager;
 
     //Testing only; attempt at making a dictionary
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
@@ -80,8 +81,21 @@ public class FarmManager : MonoBehaviour
             }
         }
 
-		//clears dead plants
-		foreach(Vector3Int plantPosition in deadPlants)
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            tileManager.SaveFieldObjects();
+
+            Debug.Log("Saved");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            tileManager.LoadFieldObjects();
+
+            Debug.Log("Loaded");
+        }
+
+        //clears dead plants
+        foreach (Vector3Int plantPosition in deadPlants)
 		{
 			mushroomsAndTiles[plantPosition] = Instantiate(tilePrefab, plantPosition, Quaternion.identity, transform);
 		}
