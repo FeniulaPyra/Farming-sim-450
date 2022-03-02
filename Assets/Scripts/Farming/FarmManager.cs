@@ -265,9 +265,11 @@ public class FarmManager : MonoBehaviour
                             //If the tile is in the dictionary, doesn't have a plant, and isn't outside of the bounds of the field
                             if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].isTilled == true)// && above.y <= topBound)
                             {
-                                if(mushroomsAndTiles[above].hasPlant == false)
+                                if (mushroomsAndTiles[above].hasPlant == false)
                                 {
                                     Debug.Log("Above");
+                                    mushroomPrefab = originalMushroom;
+                                    Destroy(mushroomsAndTiles[above].gameObject);
                                     mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
                                     farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
                                     mushroomsAndTiles[above].transform.parent = this.transform;
@@ -300,6 +302,8 @@ public class FarmManager : MonoBehaviour
                                 if (mushroomsAndTiles[below].hasPlant == false)
                                 {
                                     Debug.Log("Below");
+                                    mushroomPrefab = originalMushroom;
+                                    Destroy(mushroomsAndTiles[below].gameObject);
                                     mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
                                     farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
                                     mushroomsAndTiles[below].transform.parent = this.transform;
@@ -325,7 +329,6 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[below].isTilled = true;
                                     }
                                 }
-                                
                             }
 
                             if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].isTilled == true)// && left.x >= leftBound)
@@ -333,6 +336,8 @@ public class FarmManager : MonoBehaviour
                                 if (mushroomsAndTiles[left].hasPlant == false)
                                 {
                                     Debug.Log("Left");
+                                    mushroomPrefab = originalMushroom;
+                                    Destroy(mushroomsAndTiles[left].gameObject);
                                     mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
                                     farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
                                     mushroomsAndTiles[left].transform.parent = this.transform;
@@ -359,7 +364,6 @@ public class FarmManager : MonoBehaviour
                                     }
                                 }
 
-                                
                             }
 
                             if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].isTilled == true)// && right.x <= rightBound)
@@ -368,6 +372,7 @@ public class FarmManager : MonoBehaviour
                                 {
                                     Debug.Log("Right");
 									mushroomPrefab = originalMushroom;
+                                    Destroy(mushroomsAndTiles[right].gameObject);
                                     mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
                                     farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
                                     mushroomsAndTiles[right].transform.parent = this.transform;
@@ -393,7 +398,7 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[right].isTilled = true;
                                     }
                                 }
-                                
+
                             }
 
                             Debug.Log("End of SpreadMushroom");

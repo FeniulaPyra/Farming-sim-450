@@ -24,6 +24,8 @@ public class Tile : MonoBehaviour
     public TileBase tilledGround;
     public TileBase wateredGround;
 
+    public Vector3Int position;
+
     // Start is called before the first frame update
     void Start()
     {
