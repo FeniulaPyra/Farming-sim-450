@@ -375,7 +375,7 @@ public class Inventory
 	/// arrays containging item ids and ammounts.
 	/// </summary>
 	/// <returns>An array with ids and amounts formatted as [itemid, amount]</returns>
-	public int[,][] GetSaveableInventory()
+	public List<int> GetSaveableInventory()
 	{
 		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
@@ -400,6 +400,7 @@ public class Inventory
 			}
 		}
 
+		return sinv;
 		///BAD stuff >:( (goes in the timeout corner)
 		/*
 		int[,][] sinv = new int[ROWS, COLUMNS][];
@@ -431,7 +432,7 @@ public class Inventory
 	/// <returns>the id of the given item</returns>
 	public int FindItemID(Item i)
 	{
-		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList();
 		for(int j = 0; j < itemsDict.Count; j++)
 		{
@@ -449,7 +450,7 @@ public class Inventory
 	/// <param name="sinv">the saved inventoyr</param>
 	public void SetSaveableInventory(List<int> sinv)
 	{
-		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList();
 
 		for(int i = 0, j = 0; i < sinv.Count; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
