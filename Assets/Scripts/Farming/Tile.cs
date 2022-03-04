@@ -26,15 +26,25 @@ public class Tile : MonoBehaviour
 
     public Vector3Int position;
 
-    // Start is called before the first frame update
-    void Start()
+    public SaveTile AsSaveTile()
     {
-        
+        return new SaveTile(isTilled, isMoist, hasPlant, position);
     }
+}
 
-    // Update is called once per frame
-    void Update()
+[System.Serializable]
+public class SaveTile
+{
+    public bool isTilled;
+    public bool isMoist;
+    public bool hasPlant;
+    public Vector3Int position;
+
+    public SaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position)
     {
-        
+        this.isTilled = isTilled;
+        this.isMoist = isMoist;
+        this.hasPlant = hasPlant;
+        this.position = position;
     }
 }

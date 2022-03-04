@@ -146,4 +146,44 @@ public class Mushrooms : Tile
         }*/
         #endregion
     }
+
+    public new MushroomSaveTile AsSaveTile()
+    {
+        return new MushroomSaveTile(
+            isTilled, 
+            isMoist, 
+            hasPlant, 
+            position,
+            growthStage,
+            maxGrowthStage,
+            daysWithoutWater,
+            maxDaysWithoutWater,
+            readyToDie,
+            ID,
+            baseValue
+            );
+    }
+}
+
+[System.Serializable]
+public class MushroomSaveTile : SaveTile
+{
+    public float growthStage;
+    public int maxGrowthStage;
+    public int daysWithoutWater;
+    public int maxDaysWithoutWater;
+    public bool readyToDie;
+    public string ID;
+    public int baseValue;
+
+    public MushroomSaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position, float growthStage, int maxGrowthStage, int daysWithoutWater, int maxDaysWithoutWater, bool readyToDie, string iD, int baseValue) : base(isTilled, isMoist, hasPlant, position)
+    {
+        this.growthStage = growthStage;
+        this.maxGrowthStage = maxGrowthStage;
+        this.daysWithoutWater = daysWithoutWater;
+        this.maxDaysWithoutWater = maxDaysWithoutWater;
+        this.readyToDie = readyToDie;
+        ID = iD;
+        this.baseValue = baseValue;
+    }
 }
