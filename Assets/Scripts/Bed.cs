@@ -113,7 +113,6 @@ public class Bed : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && choiceArrow1Image.isActiveAndEnabled == true)
         {
             Debug.Log("Worked");
-            timeManager.nightImage.color = new Color(timeManager.nightImage.color.r, timeManager.nightImage.color.g, timeManager.nightImage.color.b, 0f);
             timeManager.isNight = false;
             timeManager.Sleep(8);
             playerInteraction.isTalking = false;
@@ -122,7 +121,6 @@ public class Bed : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Space) && choiceArrow2Image.isActiveAndEnabled == true)
         {
             Debug.Log("Worked 2");
-            timeManager.nightImage.color = new Color(timeManager.nightImage.color.r, timeManager.nightImage.color.g, timeManager.nightImage.color.b, 0.25f);
             timeManager.isNight = true;
             timeManager.Sleep(8);
             playerInteraction.isTalking = false;

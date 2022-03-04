@@ -164,7 +164,8 @@ public class PlayerInteraction : MonoBehaviour
 
                 mushroomsAndTiles.Add(cropPos, testTile);
                 //farmField.SetTile(cropPos, testTile.tileSprite);
-                farmManager.tillableGround.SetTile(cropPos, testTile.unTilledGround);
+                testTile.tileSprite = testTile.sprites[0];
+                farmManager.tillableGround.SetTile(cropPos, testTile.tileSprite);
             }
 
             //staminaDisplay.text = $"Stamina: {playerStamina}";

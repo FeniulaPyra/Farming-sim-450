@@ -81,12 +81,18 @@ public class TimeManager : MonoBehaviour
             AdvanceDay();
         }
 
-        if (isNight == false && staminaTracker.playerStamina <= 20)
+        if (staminaTracker.playerStamina <= 20)
+        {
+            isNight = true;
+        }
+
+        if (isNight == true)
         {
             nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.25f);
-            Debug.Log($"The color is {nightImage.color}");
-
-            isNight = true;
+        }
+        else
+        {
+            nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.0f);
         }
 
         if (staminaTracker.playerStamina <= 0)
@@ -149,9 +155,11 @@ public class TimeManager : MonoBehaviour
 
 					//Set the tile again, in case the mushroom has grown
 					management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
-					management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
+                    shroom.Value.tileSprite = shroom.Value.sprites[1];
+                    management.tillableGround.SetTile(shroom.Key, management.tilePrefab.sprites[1]);
+                    //management.tillableGround.SetTile(shroom.Key, shroom.Value.tileSprite);
 
-					/*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
+                    /*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
                     {
                         //convert tile to mushroom
                         //Mushrooms deadShroom = (Mushrooms)shroom.Value;
@@ -167,13 +175,17 @@ public class TimeManager : MonoBehaviour
 
                         shroom.Value.GetComponent<Tile>().isTilled = false;
                     }*/
-				}
+                }
 				else
 				{
 					if (shroom.Value.isTilled)
 					{
-						management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tilledGround);
-						shroom.Value.isMoist = false;
+                        //management.tilePrefab.tileSprite = management.tilePrefab.sprites[1];
+                        shroom.Value.tileSprite = shroom.Value.sprites[1];
+
+                        //management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tileSprite);
+                        management.tillableGround.SetTile(shroom.Key, shroom.Value.tileSprite);
+                        shroom.Value.isMoist = false;
 					}
 				}
             }
@@ -185,7 +197,7 @@ public class TimeManager : MonoBehaviour
             Destroy(management.mushroomsAndTiles[keysToReplace[i]].gameObject);
             management.mushroomsAndTiles[keysToReplace[i]] = Instantiate(management.tilePrefab, keysToReplace[i], Quaternion.identity, transform);
             management.farmField.SetTile(keysToReplace[i], null);
-            management.tillableGround.SetTile(keysToReplace[i], management.tilePrefab.tileSprite);
+            management.tillableGround.SetTile(keysToReplace[i], management.tilePrefab.sprites[0]);
         }
 
 

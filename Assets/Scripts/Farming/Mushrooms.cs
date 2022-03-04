@@ -154,6 +154,7 @@ public class Mushrooms : Tile
             isMoist, 
             hasPlant, 
             position,
+            sprites.IndexOf(tileSprite),
             growthStage,
             maxGrowthStage,
             daysWithoutWater,
@@ -176,7 +177,7 @@ public class MushroomSaveTile : SaveTile
     public string ID;
     public int baseValue;
 
-    public MushroomSaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position, float growthStage, int maxGrowthStage, int daysWithoutWater, int maxDaysWithoutWater, bool readyToDie, string iD, int baseValue) : base(isTilled, isMoist, hasPlant, position)
+    public MushroomSaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position, int spriteIndex, float growthStage, int maxGrowthStage, int daysWithoutWater, int maxDaysWithoutWater, bool readyToDie, string iD, int baseValue) : base(isTilled, isMoist, hasPlant, position, spriteIndex)
     {
         this.growthStage = growthStage;
         this.maxGrowthStage = maxGrowthStage;

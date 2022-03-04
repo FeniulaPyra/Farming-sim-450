@@ -60,6 +60,7 @@ public class FarmManager : MonoBehaviour
 
                 mushroomsAndTiles.Add(cropPos, testTile);
                 //farmField.SetTile(cropPos, testTile.tileSprite);
+                testTile.tileSprite = testTile.sprites[0];
                 tillableGround.SetTile(cropPos, testTile.tileSprite);
             }
         }
@@ -118,7 +119,11 @@ public class FarmManager : MonoBehaviour
         if (tool == "Hoe" && mushroomsAndTiles[tile].isTilled == false)
         {
             mushroomsAndTiles[tile].isTilled = true;
-            tillableGround.SetTile(tile, tilePrefab.tilledGround);
+            //tilePrefab.tileSprite = tilePrefab.sprites[1];
+            mushroomsAndTiles[tile].tileSprite = mushroomsAndTiles[tile].sprites[1];
+            Debug.Log($"Hoe'd Ground; index is now {tilePrefab.sprites.IndexOf(tilePrefab.tileSprite)}");
+            //tillableGround.SetTile(tile, tilePrefab.tileSprite);
+            tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
             //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
         }
         //planting
@@ -168,10 +173,23 @@ public class FarmManager : MonoBehaviour
         //Watering
         if (tool == "Watering Can" && mushroomsAndTiles[tile].isTilled== true)
         {
-            //Doesn't care if the plant has already been watered; just cares that there's a plant
-            mushroomsAndTiles[tile].isMoist = true;
-            Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
-            tillableGround.SetTile(tile, tilePrefab.wateredGround);
+            if (mushroomsAndTiles[tile].hasPlant == true)
+            {
+                //Doesn't care if the plant has already been watered; just cares that there's a plant
+                mushroomsAndTiles[tile].isMoist = true;
+                Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
+                tillableGround.SetTile(tile, tilePrefab.sprites[2]);
+            }
+            else
+            {
+                //Doesn't care if the plant has already been watered; just cares that there's a plant
+                mushroomsAndTiles[tile].isMoist = true;
+                Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
+                //tilePrefab.tileSprite = tilePrefab.sprites[2];
+                mushroomsAndTiles[tile].tileSprite = mushroomsAndTiles[tile].sprites[2];
+                //tillableGround.SetTile(tile, tilePrefab.tileSprite);
+                tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
+            }
         }
         //Harvesting
         //Might cause problems if the hasPlant of that tile is not set back to false, even though the tile itself ceases to exist
@@ -187,7 +205,7 @@ public class FarmManager : MonoBehaviour
 			//resets the tile;
 			mushroomsAndTiles[tile] = Instantiate(tilePrefab, tile, Quaternion.identity, transform);
 			farmField.SetTile(tile, null);
-            tillableGround.SetTile(tile, tilePrefab.tileSprite);
+            tillableGround.SetTile(tile, tilePrefab.sprites[0]);
 
 
             if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
