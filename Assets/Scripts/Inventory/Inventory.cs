@@ -380,6 +380,28 @@ public class Inventory
 		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
 
+		List<int> sinv = new List<int>(); //len should be row * col * 2;
+
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				ItemStack i = items[r, c];
+				if(i == null)
+				{
+					sinv.Add(-1);
+					sinv.Add(0);
+				}
+				else
+				{
+					sinv.Add(FindItemID(i.Item));
+					sinv.Add(i.Amount);
+				}
+			}
+		}
+
+		///BAD stuff >:( (goes in the timeout corner)
+		/*
 		int[,][] sinv = new int[ROWS, COLUMNS][];
 		for (int r = 0; r < ROWS; r++)
 		{
@@ -399,6 +421,7 @@ public class Inventory
 			}
 		}
 		return sinv;
+		*/
 	}
 
 	/// <summary>
@@ -416,6 +439,7 @@ public class Inventory
 				return j;
 		}
 		return -1;
+		
 	}
 
 	/// <summary>
@@ -423,11 +447,26 @@ public class Inventory
 	/// an actual invengtory
 	/// </summary>
 	/// <param name="sinv">the saved inventoyr</param>
-	public void SetSaveableInventory(int[,][] sinv)
+	public void SetSaveableInventory(List<int> sinv)
 	{
 		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList();
 
+		for(int i = 0, j = 0; i < sinv.Count; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
+		{
+			if (sinv[0] < 0) continue;
+
+			int r = (int)Math.Floor((double)(j / ROWS));
+			int c = j % ROWS;
+
+			ItemStack iStack = new ItemStack(itemsDict[sinv[i]], sinv[i + 1]);
+
+			items[r, c] = iStack;
+		}
+
+
+		//MOORREE BAD STUFF >>>:(
+		/*
 		for (int r = 0; r < ROWS; r++)
 		{
 			for (int c = 0; c < COLUMNS; c++)
@@ -440,5 +479,6 @@ public class Inventory
 				}
 			}
 		}
+		*/
 	}
 }
