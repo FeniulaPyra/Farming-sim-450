@@ -453,7 +453,7 @@ public class Inventory
 		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList();
 
-		for(int i = 0, j = 0; i < sinv.Count; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
+		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
 			if (sinv[0] < 0) continue;
 
