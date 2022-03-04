@@ -89,7 +89,7 @@ public class FarmManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            tileManager.LoadFieldObjects();
+            tileManager.LoadFieldObjects(tileManager.fieldObjects);
 
             Debug.Log("Loaded");
         }
