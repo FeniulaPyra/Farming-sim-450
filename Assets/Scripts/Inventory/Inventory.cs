@@ -25,6 +25,8 @@ public class Inventory
 		get{return selectedStack;}
 	}
 
+	private Dictionary<string, Item> itemDict;
+
 	/// <summary>
 	/// The itemstacks in the currently selected hotbar row
 	/// </summary>
@@ -368,5 +370,75 @@ public class Inventory
 			}
 		}
 	}
+	/// <summary>
+	/// Returns the inventory as a 2d array of 
+	/// arrays containging item ids and ammounts.
+	/// </summary>
+	/// <returns>An array with ids and amounts formatted as [itemid, amount]</returns>
+	public int[,][] GetSaveableInventory()
+	{
+		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
 
+		int[,][] sinv = new int[ROWS, COLUMNS][];
+		for (int r = 0; r < ROWS; r++)
+		{
+			for(int c = 0; c<COLUMNS; c++) {
+				sinv[r, c] = new int[2];
+				ItemStack invSlot = items[r, c];
+				if (invSlot == null)
+				{
+					sinv[r, c][0] = FindItemID(invSlot.Item);
+					sinv[r, c][1] = invSlot.Amount;
+				}
+				else
+				{
+					sinv[r, c][0] = -1;
+					sinv[r, c][1] = 0;
+				}
+			}
+		}
+		return sinv;
+	}
+
+	/// <summary>
+	/// gets the id of a given item
+	/// </summary>
+	/// <param name="i">the item whose id is to be found</param>
+	/// <returns>the id of the given item</returns>
+	public int FindItemID(Item i)
+	{
+		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		List<Item> itemsDict = menu.GetGameItemList();
+		for(int j = 0; j < itemsDict.Count; j++)
+		{
+			if (itemsDict[j].name == i.name)
+				return j;
+		}
+		return -1;
+	}
+
+	/// <summary>
+	/// takes the same thing the other function returns and turns it into
+	/// an actual invengtory
+	/// </summary>
+	/// <param name="sinv">the saved inventoyr</param>
+	public void SetSaveableInventory(int[,][] sinv)
+	{
+		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		List<Item> itemsDict = menu.GetGameItemList();
+
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				if (sinv[r, c][0] == -1) continue;
+				else
+				{
+					ItemStack iStack = new ItemStack(itemsDict[sinv[r, c][0]], sinv[r, c][1]);
+					items[r, c] = iStack;
+				}
+			}
+		}
+	}
 }
