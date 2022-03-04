@@ -360,4 +360,9 @@ public class Menu : MonoBehaviour
 		}
 		UpdateInventory();
 	}
+	
+	public List<Item> GetGameItemList()
+	{
+		return gameItems;
+	}
 }
