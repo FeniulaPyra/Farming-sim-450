@@ -55631,6 +55631,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1281256933}
     - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: farmManager
+      value: 
+      objectReference: {fileID: 2068960239}
+    - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: tileManager
+      value: 
+      objectReference: {fileID: 2068960244}
+    - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 1281256936}

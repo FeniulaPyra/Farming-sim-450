@@ -19,16 +19,18 @@ public class TileManager : MonoBehaviour
         
     }
 
-    public List<Tile> SaveFieldObjects()
+    public void SaveFieldObjects(out List<SaveTile> farmland, out List<MushroomSaveTile> mushrooms)
     {
         //Clears list so it doesn't go 16 -> 32 -> 48...
         fieldObjects.Clear();
+
+        farmland = new List<SaveTile>();
+        mushrooms = new List<MushroomSaveTile>();
 
         //MAking tiles and mushrooms to actually save information
         //Tile newTile = new Tile();
         //Mushrooms newMushroom = new Mushrooms();
 
-        
         foreach (KeyValuePair<Vector3Int, Tile> v in farmManager.mushroomsAndTiles)
         {
             //Saving mushroom and tile information and adding them to the list for later use
@@ -54,6 +56,7 @@ public class TileManager : MonoBehaviour
                 newMushroom.spr = v.Value.GetComponent<Mushrooms>().spr;
 
                 fieldObjects.Add(newMushroom);
+                mushrooms.Add(v.Value.GetComponent<Mushrooms>().AsSaveTile());
 
                 Debug.Log($"Testing, Testing, 1, 2, 3: {newMushroom.ID}");
             }
@@ -69,126 +72,125 @@ public class TileManager : MonoBehaviour
 
                 newTile.position = v.Key;
 
-                fieldObjects.Add(newTile);
+                fieldObjects.Add(v.Value);
+                farmland.Add(v.Value.AsSaveTile());
             }
         }
-
-        return fieldObjects;
     }
 
-    public void LoadFieldObjects(List<Tile> tilesToLoad)
+    public void LoadFieldObjects(List<SaveTile> tilesToLoad, List<MushroomSaveTile> mushrooms)
     {
-        List<Vector3Int> keys = new List<Vector3Int>();
-        GameObject toInstantiate;
-
-        //Actually getting the keys, since Unity doesn't like trying to change a dictionary mid-foreach
-        foreach (KeyValuePair<Vector3Int, Tile> v in farmManager.mushroomsAndTiles)
-        {
-            keys.Add(v.Key);
-            Destroy(v.Value.gameObject);
-        }
-
-        farmManager.mushroomsAndTiles.Clear();
-
-        Debug.Log($"There are this many keys: {keys.Count}");
-
-        for (int i = 0; i < keys.Count; i++)
-        {
-            //Destroy and remove whatever is there; make a clean slate
-            //Destroy(farmManager.mushroomsAndTiles[keys[i]].gameObject);
-            //farmManager.mushroomsAndTiles.Remove(keys[i]);
-            //farmManager.mushroomsAndTiles.Clear();
-
-            //Instantiating a mushroom
-            if (tilesToLoad[i] is Mushrooms)
-            {
-                //Mushrooms mushroom = (Mushrooms)fieldObjects[i];
-
-                Mushrooms mushroom = tilesToLoad[i] as Mushrooms;
-
-                Debug.Log($"My name is {mushroom.ID}");
-
-                toInstantiate = farmManager.mushroomManager.mushroomVariants[mushroom.ID];
-
-                //toInstantiate = Instantiate(toInstantiate, keys[i], Quaternion.identity, transform);
-                toInstantiate = Instantiate(toInstantiate, mushroom.position, Quaternion.identity, transform);
-
-
-                if (farmManager.mushroomsAndTiles.ContainsKey(mushroom.position) == false)//if (farmManager.mushroomsAndTiles.ContainsKey(keys[i]) == false)
-                {
-                    farmManager.mushroomsAndTiles.Add(mushroom.position, toInstantiate.GetComponent<Tile>());//farmManager.mushroomsAndTiles.Add(keys[i], toInstantiate.GetComponent<Tile>());
-                }
-
-                /*farmManager.farmField.SetTile(keys[i], tilesToLoad[i].tileSprite);
-
-                farmManager.mushroomsAndTiles[keys[i]].hasPlant = true;
-                farmManager.mushroomsAndTiles[keys[i]].isTilled = true;
-                farmManager.mushroomsAndTiles[keys[i]].isMoist = tilesToLoad[i].isMoist;*/
-
-                farmManager.farmField.SetTile(mushroom.position, tilesToLoad[i].tileSprite);
-
-                farmManager.mushroomsAndTiles[mushroom.position].hasPlant = true;
-                farmManager.mushroomsAndTiles[mushroom.position].isTilled = true;
-                farmManager.mushroomsAndTiles[mushroom.position].isMoist = tilesToLoad[i].isMoist;
-            }
-            else
-            {
-                //-sample[keys[i]] = Instantiate(farmManager.tilePrefab, keys[i], Quaternion.identity, transform);
-
-                //Destroy(farmManager.mushroomsAndTiles[keys[i]].gameObject);
-                farmManager.mushroomsAndTiles[tilesToLoad[i].position] = Instantiate(farmManager.tilePrefab, tilesToLoad[i].position, Quaternion.identity, transform);//farmManager.mushroomsAndTiles[keys[i]] = Instantiate(farmManager.tilePrefab, keys[i], Quaternion.identity, transform);
-
-
-                if (farmManager.mushroomsAndTiles.ContainsKey(tilesToLoad[i].position) == false)//if (farmManager.mushroomsAndTiles.ContainsKey(keys[i]) == false)
-                {
-                    farmManager.mushroomsAndTiles.Add(tilesToLoad[i].position, farmManager.tilePrefab);//farmManager.mushroomsAndTiles.Add(keys[i], farmManager.tilePrefab);
-                }
-
-                /*farmManager.farmField.SetTile(keys[i], null);
-                farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.tileSprite);
-
-                farmManager.mushroomsAndTiles[keys[i]].isTilled = tilesToLoad[i].isTilled;
-                farmManager.mushroomsAndTiles[keys[i]].isMoist = tilesToLoad[i].isMoist;*/
-
-                farmManager.farmField.SetTile(tilesToLoad[i].position, null);
-                farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.tileSprite);
-
-                farmManager.mushroomsAndTiles[tilesToLoad[i].position].isTilled = tilesToLoad[i].isTilled;
-                farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist = tilesToLoad[i].isMoist;
-            }
-
-            //Setting ground accordingly
-            if (farmManager.mushroomsAndTiles[tilesToLoad[i].position].isTilled == true && farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist == false)
-            {
-                Debug.Log("Tilled");
-                farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.tilledGround);
-            }
-            else if (farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist == true)
-            {
-                Debug.Log("Watered");
-                farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.wateredGround);
-            }
-            else
-            {
-                Debug.Log("Plain");
-                farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.unTilledGround);
-            }
-
-            /*if (farmManager.mushroomsAndTiles[keys[i]].isTilled == true && farmManager.mushroomsAndTiles[keys[i]].isMoist == false)
-            {
-                Debug.Log("Tilled");
-                farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.tilledGround);
-            }
-            else if (farmManager.mushroomsAndTiles[keys[i]].isMoist == true)
-            {
-                Debug.Log("Watered");
-                farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.wateredGround);
-            }
-            else
-            {
-                Debug.Log("Plain");
-                farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.unTilledGround);
-            }*/
-        }
+        //List<Vector3Int> keys = new List<Vector3Int>();
+        //GameObject toInstantiate;
+        //
+        ////Actually getting the keys, since Unity doesn't like trying to change a dictionary mid-foreach
+        //foreach (KeyValuePair<Vector3Int, Tile> v in farmManager.mushroomsAndTiles)
+        //{
+        //    keys.Add(v.Key);
+        //    Destroy(v.Value.gameObject);
+        //}
+        //
+        //farmManager.mushroomsAndTiles.Clear();
+        //
+        //Debug.Log($"There are this many keys: {keys.Count}");
+        //
+        //for (int i = 0; i < keys.Count; i++)
+        //{
+        //    //Destroy and remove whatever is there; make a clean slate
+        //    //Destroy(farmManager.mushroomsAndTiles[keys[i]].gameObject);
+        //    //farmManager.mushroomsAndTiles.Remove(keys[i]);
+        //    //farmManager.mushroomsAndTiles.Clear();
+        //
+        //    //Instantiating a mushroom
+        //    if (tilesToLoad[i] is Mushrooms)
+        //    {
+        //        //Mushrooms mushroom = (Mushrooms)fieldObjects[i];
+        //
+        //        Mushrooms mushroom = tilesToLoad[i] as Mushrooms;
+        //
+        //        Debug.Log($"My name is {mushroom.ID}");
+        //
+        //        toInstantiate = farmManager.mushroomManager.mushroomVariants[mushroom.ID];
+        //
+        //        //toInstantiate = Instantiate(toInstantiate, keys[i], Quaternion.identity, transform);
+        //        toInstantiate = Instantiate(toInstantiate, mushroom.position, Quaternion.identity, transform);
+        //
+        //
+        //        if (farmManager.mushroomsAndTiles.ContainsKey(mushroom.position) == false)//if (farmManager.mushroomsAndTiles.ContainsKey(keys[i]) == false)
+        //        {
+        //            farmManager.mushroomsAndTiles.Add(mushroom.position, toInstantiate.GetComponent<Tile>());//farmManager.mushroomsAndTiles.Add(keys[i], toInstantiate.GetComponent<Tile>());
+        //        }
+        //
+        //        /*farmManager.farmField.SetTile(keys[i], tilesToLoad[i].tileSprite);
+        //
+        //        farmManager.mushroomsAndTiles[keys[i]].hasPlant = true;
+        //        farmManager.mushroomsAndTiles[keys[i]].isTilled = true;
+        //        farmManager.mushroomsAndTiles[keys[i]].isMoist = tilesToLoad[i].isMoist;*/
+        //
+        //        farmManager.farmField.SetTile(mushroom.position, tilesToLoad[i].tileSprite);
+        //
+        //        farmManager.mushroomsAndTiles[mushroom.position].hasPlant = true;
+        //        farmManager.mushroomsAndTiles[mushroom.position].isTilled = true;
+        //        farmManager.mushroomsAndTiles[mushroom.position].isMoist = tilesToLoad[i].isMoist;
+        //    }
+        //    else
+        //    {
+        //        //-sample[keys[i]] = Instantiate(farmManager.tilePrefab, keys[i], Quaternion.identity, transform);
+        //
+        //        //Destroy(farmManager.mushroomsAndTiles[keys[i]].gameObject);
+        //        farmManager.mushroomsAndTiles[tilesToLoad[i].position] = Instantiate(farmManager.tilePrefab, tilesToLoad[i].position, Quaternion.identity, transform);//farmManager.mushroomsAndTiles[keys[i]] = Instantiate(farmManager.tilePrefab, keys[i], Quaternion.identity, transform);
+        //
+        //
+        //        if (farmManager.mushroomsAndTiles.ContainsKey(tilesToLoad[i].position) == false)//if (farmManager.mushroomsAndTiles.ContainsKey(keys[i]) == false)
+        //        {
+        //            farmManager.mushroomsAndTiles.Add(tilesToLoad[i].position, farmManager.tilePrefab);//farmManager.mushroomsAndTiles.Add(keys[i], farmManager.tilePrefab);
+        //        }
+        //
+        //        /*farmManager.farmField.SetTile(keys[i], null);
+        //        farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.tileSprite);
+        //
+        //        farmManager.mushroomsAndTiles[keys[i]].isTilled = tilesToLoad[i].isTilled;
+        //        farmManager.mushroomsAndTiles[keys[i]].isMoist = tilesToLoad[i].isMoist;*/
+        //
+        //        farmManager.farmField.SetTile(tilesToLoad[i].position, null);
+        //        farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.tileSprite);
+        //
+        //        farmManager.mushroomsAndTiles[tilesToLoad[i].position].isTilled = tilesToLoad[i].isTilled;
+        //        farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist = tilesToLoad[i].isMoist;
+        //    }
+        //
+        //    //Setting ground accordingly
+        //    if (farmManager.mushroomsAndTiles[tilesToLoad[i].position].isTilled == true && farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist == false)
+        //    {
+        //        Debug.Log("Tilled");
+        //        farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.tilledGround);
+        //    }
+        //    else if (farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist == true)
+        //    {
+        //        Debug.Log("Watered");
+        //        farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.wateredGround);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("Plain");
+        //        farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.tilePrefab.unTilledGround);
+        //    }
+        //
+        //    /*if (farmManager.mushroomsAndTiles[keys[i]].isTilled == true && farmManager.mushroomsAndTiles[keys[i]].isMoist == false)
+        //    {
+        //        Debug.Log("Tilled");
+        //        farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.tilledGround);
+        //    }
+        //    else if (farmManager.mushroomsAndTiles[keys[i]].isMoist == true)
+        //    {
+        //        Debug.Log("Watered");
+        //        farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.wateredGround);
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("Plain");
+        //        farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.unTilledGround);
+        //    }*/
+        //}
     }
 }

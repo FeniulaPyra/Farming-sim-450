@@ -13,6 +13,8 @@ public class GameSaveManager : MonoBehaviour
     public GameObject player;
     public TimeManager timeManager;
     public PlayerInteraction playerInteraction;
+    public TileManager tileManager;
+    public FarmManager farmManager;
 
     private string constantPath;
 
@@ -51,16 +53,25 @@ public class GameSaveManager : MonoBehaviour
         var path = constantPath + "/saves/" + saveName;
         Debug.Log("Saving game to " + path);
 
+        var save = new GameSave();
+        save.position = player.transform.position;
+        save.isNight = timeManager.isNight;
+        save.date = new Vector4(
+            timeManager.DayNumber,
+            timeManager.DateNumber,
+            timeManager.YearNumber,
+            timeManager.SeasonNumber
+            );
+        save.stamina = playerInteraction.PlayerStamina;
+        tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
+        save.farmTiles = farmland;
+        save.mushrooms = mushrooms;
+        save.inventory = farmManager.playerInventory.GetSaveableInventory();
+
+        var json = JsonUtility.ToJson(save);
+
         StreamWriter sw = new StreamWriter(path);
-
-        var pTransform = player.transform;
-        var pPosition = pTransform.position;
-        var pRotation = pTransform.rotation.eulerAngles;
-        sw.WriteLine($"{pPosition.x},{pPosition.y},{pPosition.z}");
-        sw.WriteLine($"{pRotation.x},{pRotation.y},{pRotation.z}");
-        sw.WriteLine($"{timeManager.DayNumber},{timeManager.DateNumber},{timeManager.YearNumber},{timeManager.SeasonNumber}");
-        sw.WriteLine($"{playerInteraction.PlayerStamina}");
-
+        sw.WriteLine(json);
         sw.Close();
 
         saves = FindAllSaves();
@@ -74,33 +85,22 @@ public class GameSaveManager : MonoBehaviour
 
         StreamReader sr = new StreamReader(path);
 
-        var readPos = sr.ReadLine().Split(',');
-        var pos = new Vector3(
-            float.Parse(readPos[0]),
-            float.Parse(readPos[1]),
-            float.Parse(readPos[2])
-            );
+        var json = sr.ReadLine();
+        var save = JsonUtility.FromJson<GameSave>(json);
 
-        var readRot = sr.ReadLine().Split(',');
-        var rot = Quaternion.Euler(
-            float.Parse(readRot[0]),
-            float.Parse(readRot[1]),
-            float.Parse(readRot[2])
-            );
-
-        player.transform.position = pos;
-        player.transform.rotation = rot;
-
-        var readDate = sr.ReadLine().Split(',');
+        player.transform.position = save.position;
+        timeManager.isNight = save.isNight;
         timeManager.SetDate(
-            int.Parse(readDate[0]),
-            int.Parse(readDate[1]),
-            int.Parse(readDate[2]),
-            int.Parse(readDate[3])
-            ); 
+            (int)save.date.x,
+            (int)save.date.y,
+            (int)save.date.z,
+            (int)save.date.w
+            );
+        playerInteraction.SetStamina((int)save.stamina);
+        tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
+        farmManager.playerInventory.SetSaveableInventory(save.inventory);
 
-        var readStamina = sr.ReadLine();
-        playerInteraction.SetStamina(int.Parse(readStamina));
+        sr.Close();
     }
 
     void DeleteSave(string saveName)
@@ -178,5 +178,17 @@ public class GameSaveManager : MonoBehaviour
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
+    }
+
+    [System.Serializable]
+    private class GameSave
+    {
+        public Vector3 position;
+        public bool isNight;
+        public Vector4 date;
+        public int stamina;
+        public List<SaveTile> farmTiles;
+        public List<MushroomSaveTile> mushrooms;
+        public int[,][] inventory;
     }
 }

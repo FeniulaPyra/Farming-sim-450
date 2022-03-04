@@ -377,7 +377,7 @@ public class Inventory
 	/// <returns>An array with ids and amounts formatted as [itemid, amount]</returns>
 	public int[,][] GetSaveableInventory()
 	{
-		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
 
 		int[,][] sinv = new int[ROWS, COLUMNS][];
@@ -386,7 +386,7 @@ public class Inventory
 			for(int c = 0; c<COLUMNS; c++) {
 				sinv[r, c] = new int[2];
 				ItemStack invSlot = items[r, c];
-				if (invSlot == null)
+				if (invSlot != null)
 				{
 					sinv[r, c][0] = FindItemID(invSlot.Item);
 					sinv[r, c][1] = invSlot.Amount;

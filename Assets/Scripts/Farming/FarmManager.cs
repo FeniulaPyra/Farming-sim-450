@@ -81,18 +81,18 @@ public class FarmManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            tileManager.SaveFieldObjects();
-
-            Debug.Log("Saved");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            tileManager.LoadFieldObjects(tileManager.fieldObjects);
-
-            Debug.Log("Loaded");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    tileManager.SaveFieldObjects();
+        //
+        //    Debug.Log("Saved");
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    tileManager.LoadFieldObjects(tileManager.fieldObjects);
+        //
+        //    Debug.Log("Loaded");
+        //}
 
         //clears dead plants
         foreach (Vector3Int plantPosition in deadPlants)
