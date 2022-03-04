@@ -189,6 +189,6 @@ public class GameSaveManager : MonoBehaviour
         public int stamina;
         public List<SaveTile> farmTiles;
         public List<MushroomSaveTile> mushrooms;
-        public int[,][] inventory;
+        public List<int> inventory;
     }
 }

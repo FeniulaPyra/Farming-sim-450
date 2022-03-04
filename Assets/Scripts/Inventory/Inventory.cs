@@ -375,11 +375,35 @@ public class Inventory
 	/// arrays containging item ids and ammounts.
 	/// </summary>
 	/// <returns>An array with ids and amounts formatted as [itemid, amount]</returns>
-	public int[,][] GetSaveableInventory()
+	public List<int> GetSaveableInventory()
 	{
 		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
 
+		List<int> sinv = new List<int>(); //len should be row * col * 2;
+
+
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				ItemStack i = items[r, c];
+				if(i == null)
+				{
+					sinv.Add(-1);
+					sinv.Add(0);
+				}
+				else
+				{
+					sinv.Add(FindItemID(i.Item));
+					sinv.Add(i.Amount);
+				}
+			}
+		}
+
+		return sinv;
+		///BAD stuff >:( (goes in the timeout corner)
+		/*
 		int[,][] sinv = new int[ROWS, COLUMNS][];
 		for (int r = 0; r < ROWS; r++)
 		{
@@ -399,6 +423,7 @@ public class Inventory
 			}
 		}
 		return sinv;
+		*/
 	}
 
 	/// <summary>
@@ -408,7 +433,7 @@ public class Inventory
 	/// <returns>the id of the given item</returns>
 	public int FindItemID(Item i)
 	{
-		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList();
 		for(int j = 0; j < itemsDict.Count; j++)
 		{
@@ -416,6 +441,7 @@ public class Inventory
 				return j;
 		}
 		return -1;
+		
 	}
 
 	/// <summary>
@@ -423,11 +449,30 @@ public class Inventory
 	/// an actual invengtory
 	/// </summary>
 	/// <param name="sinv">the saved inventoyr</param>
-	public void SetSaveableInventory(int[,][] sinv)
+	public void SetSaveableInventory(List<int> sinv)
 	{
-		Menu menu = GameObject.Find("Menu").GetComponent<Menu>();
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		List<Item> itemsDict = menu.GetGameItemList();
 
+		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
+		{
+			if (sinv[i] < 0) continue;
+
+			int r = (int)Math.Floor((double)(j / COLUMNS));
+			int c = j % COLUMNS;
+
+			Debug.Log("r" + r + "c" + c);
+			Debug.Log(sinv[i]);
+			Debug.Log(itemsDict[sinv[i]]);
+
+			ItemStack iStack = new ItemStack(itemsDict[sinv[i]], sinv[i + 1]);
+
+			items[r, c] = iStack;
+		}
+
+
+		//MOORREE BAD STUFF >>>:(
+		/*
 		for (int r = 0; r < ROWS; r++)
 		{
 			for (int c = 0; c < COLUMNS; c++)
@@ -440,5 +485,6 @@ public class Inventory
 				}
 			}
 		}
+		*/
 	}
 }
