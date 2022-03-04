@@ -456,12 +456,14 @@ public class Inventory
 
 		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
-			Debug.Log(i);
-			Debug.Log(sinv[i]);
 			if (sinv[i] < 0) continue;
 
-			int r = (int)Math.Floor((double)(j / ROWS));
-			int c = j % ROWS;
+			int r = (int)Math.Floor((double)(j / COLUMNS));
+			int c = j % COLUMNS;
+
+			Debug.Log("r" + r + "c" + c);
+			Debug.Log(sinv[i]);
+			Debug.Log(itemsDict[sinv[i]]);
 
 			ItemStack iStack = new ItemStack(itemsDict[sinv[i]], sinv[i + 1]);
 
