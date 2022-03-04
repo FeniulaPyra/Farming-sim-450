@@ -157,16 +157,6 @@ public class PlayerInteraction : MonoBehaviour
             {
                 ReduceStamina(5);
             }
-            else if (mushroomsAndTiles.ContainsKey(focusTilePosition) == false && itemName == "Hoe")
-            {
-                Vector3Int cropPos = focusTilePosition;
-                Tile testTile = Instantiate(farmManager.tilePrefab, cropPos, Quaternion.identity, transform);
-
-                mushroomsAndTiles.Add(cropPos, testTile);
-                //farmField.SetTile(cropPos, testTile.tileSprite);
-                testTile.tileSprite = testTile.sprites[0];
-                farmManager.tillableGround.SetTile(cropPos, testTile.tileSprite);
-            }
 
             //staminaDisplay.text = $"Stamina: {playerStamina}";
             TimeRadial.fillAmount = (float)playerStamina/100;

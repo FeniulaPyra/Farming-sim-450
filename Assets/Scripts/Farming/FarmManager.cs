@@ -51,9 +51,9 @@ public class FarmManager : MonoBehaviour
         Debug.Log($"I am the tile: {farmField.GetTile(new Vector3Int(-11, 3, 0))}");
 
         //Making a random set of tiles
-        for (int i = 0; i < 4; i++)
+        for (int i = -5; i <= 5; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = -9; j <= 1; j++)
             {
                 Vector3Int cropPos = new Vector3Int(i, j, 0);
                 Tile testTile = Instantiate(tilePrefab, cropPos, Quaternion.identity, transform);
