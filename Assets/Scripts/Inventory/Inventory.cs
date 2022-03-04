@@ -382,6 +382,7 @@ public class Inventory
 
 		List<int> sinv = new List<int>(); //len should be row * col * 2;
 
+
 		for (int r = 0; r < ROWS; r++)
 		{
 			for (int c = 0; c < COLUMNS; c++)
@@ -455,7 +456,9 @@ public class Inventory
 
 		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
-			if (sinv[0] < 0) continue;
+			Debug.Log(i);
+			Debug.Log(sinv[i]);
+			if (sinv[i] < 0) continue;
 
 			int r = (int)Math.Floor((double)(j / ROWS));
 			int c = j % ROWS;
