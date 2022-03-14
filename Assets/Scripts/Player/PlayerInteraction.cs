@@ -51,12 +51,15 @@ public class PlayerInteraction : MonoBehaviour
 
     public int playerGold;
 
+    Inventory playerInventory;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
 
         playerStamina = maxPlayerStamina;
 
+        playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
     }
 
@@ -100,31 +103,38 @@ public class PlayerInteraction : MonoBehaviour
         indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
         focusTilePosition = targetPos;
 
-        CheckInteraction();
+        if (playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
+        {
+            CheckInteraction();
+        }
 
         TimeRadial.fillAmount = Mathf.Lerp(TimeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
     }
 
     private void CheckInteraction()
     {
-		string itemName = "";
-        Inventory playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
+        string itemName = "";
+        
         Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
 
-        if (playerInventory.HeldItem != null)
-			itemName = playerInventory.HeldItem.Item.name;
+        //if (playerInventory.HeldItem != null)
+		itemName = playerInventory.HeldItem.Item.name;
 
         //gets rid of the item if the stack is empty
-        if (playerInventory.HeldItem != null)
+        if (playerInventory.HeldItem.Amount <= 0)
+        {
+            playerInventory.DeleteHeldItemStack();
+        }
+        /*if (playerInventory.HeldItem.Item != null)
         {
             if (playerInventory.HeldItem.Amount <= 0)
             {
                 playerInventory.DeleteHeldItemStack();
             }
-        }
+        }*/
 
         // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.Space) && itemName != "" && isTalking == false)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
         {
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
@@ -138,24 +148,24 @@ public class PlayerInteraction : MonoBehaviour
                 //switch on the four main item types, then some default value for everything else
                 if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
                 {
-                    ReduceStamina(2);
+                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
                 }
                 else if(itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
                 {
-                    ReduceStamina(6);
+                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
                 }
                 else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
                 {
-                    ReduceStamina(3);
+                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
                 }
                 else if(itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
                 {
-                    ReduceStamina(10);
+                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
                 }
             }
             else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
             {
-                ReduceStamina(5);
+                ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
             }
 
             //staminaDisplay.text = $"Stamina: {playerStamina}";

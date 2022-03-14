@@ -53,6 +53,7 @@ MonoBehaviour:
   isSellable: 1
   sellValue: 500
   player: {fileID: 0}
+  staminaUsed: 2
 --- !u!212 &8540437080830487021
 SpriteRenderer:
   m_ObjectHideFlags: 0

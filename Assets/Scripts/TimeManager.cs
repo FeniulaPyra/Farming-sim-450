@@ -75,11 +75,6 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Temp code; just making sure Unity can call the method
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            AdvanceDay();
-        }
 
         if (staminaTracker.playerStamina <= 20)
         {
@@ -97,22 +92,7 @@ public class TimeManager : MonoBehaviour
 
         if (staminaTracker.playerStamina <= 0)
         {
-            Sleep(12);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            Sleep(4);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            Sleep(6);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad8))
-        {
-            Sleep(8);
+            Sleep(5);
         }
     }
 
@@ -121,6 +101,8 @@ public class TimeManager : MonoBehaviour
     /// </summary>
     void AdvanceDay()
     {
+        Debug.Log("Advancing with Day");
+
         List<Vector3Int> keysToReplace = new List<Vector3Int>();
 
         //Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day

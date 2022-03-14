@@ -15,14 +15,14 @@ public class Bed : MonoBehaviour
 
     //Sleep Selection
     public TMP_Text dialogueText;
-    public TMP_Text choice1Text;
-    public TMP_Text choice2Text;
 
     //The tex box itself
     public Image textBoxImage;
     public Image choiceBoxImage;
-    public Image choiceArrow1Image;
-    public Image choiceArrow2Image;
+
+    //buttons
+    public Button morningButton;
+    public Button nightButton;
 
     // Start is called before the first frame update
     void Start()
@@ -34,18 +34,14 @@ public class Bed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInteraction.isTalking == true)
-        {
-            
 
-            SleepSelection();
-        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && playerInteraction.isTalking == false)
         {
+            Debug.Log("Interacting with bed");
             SetTextObjectsActive(true);
             playerInteraction.isTalking = true;
         }
@@ -54,37 +50,45 @@ public class Bed : MonoBehaviour
     void SetTextObjectsActive(bool how)
     {
         dialogueText.text = "How long would you like to sleep?";
-        choice1Text.text = "Until morning";
-        choice2Text.text = "Until night";
 
         //Making the UI elements that make this possible visible or hidden
         if (how  == true)
         {
             dialogueText.gameObject.SetActive(true);
-            choice1Text.gameObject.SetActive(true);
-            choice2Text.gameObject.SetActive(true);
 
             
             textBoxImage.gameObject.SetActive(true);
             choiceBoxImage.gameObject.SetActive(true);
-            choiceArrow1Image.gameObject.SetActive(false);
-            choiceArrow2Image.gameObject.SetActive(false);
         }
         else
         {
             dialogueText.gameObject.SetActive(false);
-            choice1Text.gameObject.SetActive(false);
-            choice2Text.gameObject.SetActive(false);
 
 
             textBoxImage.gameObject.SetActive(false);
             choiceBoxImage.gameObject.SetActive(false);
-            choiceArrow1Image.gameObject.SetActive(false);
-            choiceArrow2Image.gameObject.SetActive(false);
         }
     }
 
-    void SleepSelection()
+    public void SleepToMorning()
+    {
+        Debug.Log("Worked");
+        timeManager.isNight = false;
+        timeManager.Sleep(8);
+        playerInteraction.isTalking = false;
+        SetTextObjectsActive(false);
+    }
+
+    public void SleepToNight()
+    {
+        Debug.Log("Worked 2");
+        timeManager.isNight = true;
+        timeManager.Sleep(8);
+        playerInteraction.isTalking = false;
+        SetTextObjectsActive(false);
+    }
+
+    /*void SleepSelection()
     {
         //Movement
         if (Input.GetKeyDown(KeyCode.DownArrow) && choiceArrow2Image.isActiveAndEnabled == false)
@@ -128,5 +132,5 @@ public class Bed : MonoBehaviour
         }
 
         //timeManager.Sleep(8);
-    }
+    }*/
 }

@@ -48,7 +48,10 @@ MonoBehaviour:
   spr: {fileID: 21300000, guid: 9d2ca81e514448b47ac67f2f67ea6e8f, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
+  isSellable: 0
+  sellValue: 0
   player: {fileID: 0}
+  staminaUsed: 6
 --- !u!212 &-1061809455214255276
 SpriteRenderer:
   m_ObjectHideFlags: 0

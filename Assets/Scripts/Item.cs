@@ -17,6 +17,8 @@ public class Item : MonoBehaviour
 
 	public static int DISTANCE_TO_PICKUP = 1;
 
+    public int staminaUsed;
+
 	public void Start()
 	{
 		itemObj = gameObject;

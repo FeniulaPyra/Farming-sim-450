@@ -191,13 +191,27 @@ public class Menu : MonoBehaviour
 			0,
 			(inv.hotbarRowNumber-1) * 74 - 10);
 
-		if (inv.HeldItem != null)
-			HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name;
-		else
-			HotbarItemLabel.GetComponent<Text>().text = "";
+        if (inv.HeldItem != null)
+        {
+            HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name;
+            if (inv.HeldItem.Item.staminaUsed > 0)
+            {
+                HotbarItemLabel.GetComponent<Text>().text += $" (-{inv.HeldItem.Item.staminaUsed} Stamina)";
+            }
+        }
+        else
+        {
+            HotbarItemLabel.GetComponent<Text>().text = "";
+        }
+        /*if (inv.HeldItem != null)
+            HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name;
+            if (inv.HeldItem.Item.staminaUsed > 0)
+                HotbarItemLabel.GetComponent<Text>().text += $" - {inv.HeldItem.Item.staminaUsed} Stamina";
+        else
+            HotbarItemLabel.GetComponent<Text>().text = "";*/
 
-		//updates inventory slots
-		for (int r = 0; r < Inventory.ROWS; r++)
+        //updates inventory slots
+        for (int r = 0; r < Inventory.ROWS; r++)
 		{
 			for (int c = 0; c < Inventory.COLUMNS; c++)
 			{
