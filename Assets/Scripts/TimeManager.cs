@@ -93,6 +93,8 @@ public class TimeManager : MonoBehaviour
         if (staminaTracker.playerStamina <= 0)
         {
             Sleep(5);
+            isNight = false;
+            staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
         }
     }
 

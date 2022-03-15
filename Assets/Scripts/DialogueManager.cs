@@ -192,17 +192,19 @@ public class DialogueManager : MonoBehaviour
     //As long as the key passed in is not being pressed, nothing happens. When it is, it tells the Play Dialogue Coroutine to wait a little bit before moving on
     IEnumerator WaitForInput(KeyCode key)
     {
+        Debug.Log("Waiting");
+
         while (Input.GetKeyDown(key) == false)
         {
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
     }
 
     //method to play out a conversation, using it's ID to find it
     //Is a coroutine so the for loop for dialogue doesn't immediately blaze through the conversation list
-    public IEnumerator PlayDialogue(string convoID)
+    public IEnumerator PlayDialogue(string convoID, KeyCode wait)
     {
         playerInteraction.isTalking = true;
 
@@ -222,15 +224,14 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < convoToPlay.Count; i++)
         {
             //Just using Debug.Log for now
-            Debug.Log($"The character's name is {convoToPlay[i].characterName}, and they have to say {convoToPlay[i].dialogue}");
+            Debug.Log($"Iteration {i}");
 
             nameText.text = convoToPlay[i].characterName;
-            Debug.Log($"I am nameText: {nameText.text}");
             dialogueText.text = convoToPlay[i].dialogue;
             characterSprite.sprite = convoToPlay[i].characterSprite;
-            Debug.Log($"This is the sprite: {convoToPlay[i].characterSprite}");
 
-            yield return StartCoroutine(WaitForInput(KeyCode.Space));
+            //yield return StartCoroutine(WaitForInput(KeyCode.Space));
+            yield return StartCoroutine(WaitForInput(wait));
             //timer = timerDefault;
         }
 
@@ -247,7 +248,7 @@ public class DialogueManager : MonoBehaviour
         playerInteraction.isTalking = false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         //Tested with Debug.Log. The player's collider is named "PlayerCollider", so this should just work
         if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && playerInteraction.isTalking == false)
@@ -256,5 +257,5 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(PlayDialogue(convoID));
             //Debug.Log($"Inside the trigger; other is {collision.name}");
         }
-    }
+    }*/
 }

@@ -53,6 +53,13 @@ public class PlayerInteraction : MonoBehaviour
 
     Inventory playerInventory;
 
+    //List of interactable objects
+    [SerializeField]
+    List<InteractableObjects> objects = new List<InteractableObjects>();
+
+    //Random array of DialogueManagers to handle NPC Dialogue
+    InteractableObjects[] objectsArray = new InteractableObjects[100];
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -61,6 +68,17 @@ public class PlayerInteraction : MonoBehaviour
 
         playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
+
+        //Gets all interactable objectss and saves them
+        objectsArray = FindObjectsOfType<InteractableObjects>();
+
+        for (int i = 0; i < objectsArray.Length; i++)
+        {
+            if (objectsArray[i] != null)
+            {
+                objects.Add(objectsArray[i]);
+            }
+        }
     }
 
     private void Update()
@@ -109,6 +127,8 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         TimeRadial.fillAmount = Mathf.Lerp(TimeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
+
+        StartCoroutine(InteractionChecker());
     }
 
     private void CheckInteraction()
@@ -174,6 +194,63 @@ public class PlayerInteraction : MonoBehaviour
             farmManager.TileInteract(focusTilePosition, itemName);
         }
 
+    }
+
+    /// <summary>
+    /// IEnumerator appears to be necessary
+    /// The spacebar needed to check for interaction in the first place, if the player is interacting with an NPC, also triggers to WaitForInput in Dialogue Manager
+    /// That means it waits half a second before moving onto the next piece of dialogue without warning
+    /// This pauses for a very brief amount of time so that first spacebar press doesn't register for the WaitForInput
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator InteractionChecker()
+    {
+        //checks if the player hits the key for interaction
+        //Debug.Log($"Interact talking: {playerInteraction.isTalking}");
+        if (Input.GetKeyDown(KeyCode.Space) && isTalking == false || Input.GetKeyDown(KeyCode.Mouse0) && isTalking == false)
+        {
+            KeyCode dialoguePress = KeyCode.Space;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                dialoguePress = KeyCode.Space;
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                dialoguePress = KeyCode.Mouse0;
+            }
+
+            //goes through all interactable objects
+            for (int i = 0; i < objects.Count; i++)
+            {
+                //Sees how close the player is to them
+                float distance = Vector2.Distance(gameObject.transform.position, objects[i].gameObject.transform.position);
+
+                //1 seems like a fine number
+                if (distance <= 1.0f)
+                {
+                    //switch on name to see what it is
+                    switch (objects[i].name)
+                    {
+                        case "npc":
+                            Debug.Log("Interact update");
+                            yield return new WaitForSeconds(0.025f);
+                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                            StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID, dialoguePress));
+                            break;
+                        case "shipping bin":
+                            objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
+                            break;
+                        case "bed":
+                            objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        //Debug.Log($"Distance to player and {objects[0].gameObject.name} is {Vector2.Distance(gameObject.transform.position, objects[0].gameObject.transform.position)}");
     }
 
     public int PlayerStamina => playerStamina;

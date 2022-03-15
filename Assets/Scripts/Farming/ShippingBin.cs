@@ -26,15 +26,15 @@ public class ShippingBin : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && player.isTalking == false)
         {
             PutItemInBin();
         }
-    }
+    }*/
 
-    void PutItemInBin()
+    public void PutItemInBin()
     {
         //Removes currently held item from inventory and adds it to list
         if (playerInventory.HeldItem.Item.isSellable == true)

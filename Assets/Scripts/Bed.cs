@@ -37,7 +37,7 @@ public class Bed : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && playerInteraction.isTalking == false)
         {
@@ -45,9 +45,9 @@ public class Bed : MonoBehaviour
             SetTextObjectsActive(true);
             playerInteraction.isTalking = true;
         }
-    }
+    }*/
 
-    void SetTextObjectsActive(bool how)
+    public void SetTextObjectsActive(bool how)
     {
         dialogueText.text = "How long would you like to sleep?";
 
