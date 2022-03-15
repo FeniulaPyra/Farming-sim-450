@@ -19,6 +19,9 @@ public class Item : MonoBehaviour
 
     public int staminaUsed;
 
+    public bool isEdible;
+    public int staminaToRestore;
+
 	public void Start()
 	{
 		itemObj = gameObject;

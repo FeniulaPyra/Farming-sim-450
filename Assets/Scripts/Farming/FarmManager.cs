@@ -215,6 +215,20 @@ public class FarmManager : MonoBehaviour
                 playerInventory.AddItems(itemToAdd);*/
 
                 //Instatiates the Prefab on the ground so that the player picks it up by walking over it
+                for (int i = 0; i < 3; i++)
+                {
+                    GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
+                }
+
+                mushroomsAndTiles[tile].isTilled = false;
+            }
+            else
+            {
+                /*ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
+                Debug.Log("Added Item");
+                playerInventory.AddItems(itemToAdd);*/
+
+                //Instatiates the Prefab on the ground so that the player picks it up by walking over it
                 GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
 
                 mushroomsAndTiles[tile].isTilled = false;
@@ -264,7 +278,7 @@ public class FarmManager : MonoBehaviour
 
                         //If it exists, get the mushroom script it's attached to
                         //see if it's fully grown
-                        if (compareShroom.growthStage >= compareShroom.GetMaxGrowthStage())
+                        if (compareShroom.growthStage >= compareShroom.GetMaxGrowthStage() && compareShroom.daysSinceFullyGrown >= 2)
                         {
                             Debug.Log("Inside of spreading");
 

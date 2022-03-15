@@ -54,6 +54,8 @@ MonoBehaviour:
   sellValue: 500
   player: {fileID: 0}
   staminaUsed: 2
+  isEdible: 1
+  staminaToRestore: 5
 --- !u!212 &5197921192561006129
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class Mushrooms : Tile
     //number of days without water
     public int daysWithoutWater;
 
+    public int daysSinceFullyGrown;
+
     public bool readyToDie;
     #endregion
 
@@ -125,6 +127,11 @@ public class Mushrooms : Tile
             }
 
             Debug.Log($"I'm at growth stage {growthStage} and it's been {daysWithoutWater} days since I've been watered.");
+        }
+
+        if (growthStage >= maxGrowthStage)
+        {
+            daysSinceFullyGrown++;
         }
         #region Alternative mushroom growth
         //Mushrooms still grow if not moist, but more slowly

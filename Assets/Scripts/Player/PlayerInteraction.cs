@@ -182,6 +182,19 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
                 }
+
+                if (playerInventory.HeldItem.Item.isEdible == true)
+                {
+                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                }
+            }
+            else if (playerInventory.HeldItem.Item.isEdible == true)
+            {
+                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
             }
             else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
             {
