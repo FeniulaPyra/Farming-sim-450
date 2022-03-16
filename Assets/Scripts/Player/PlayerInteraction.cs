@@ -60,6 +60,10 @@ public class PlayerInteraction : MonoBehaviour
     //Random array of DialogueManagers to handle NPC Dialogue
     InteractableObjects[] objectsArray = new InteractableObjects[100];
 
+    //Timer for eating
+    [SerializeField]
+    int eatingTimer;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -120,6 +124,29 @@ public class PlayerInteraction : MonoBehaviour
             CheckInteraction();
         }
 
+        //If you're holding something you can eat and holding down the interaction key
+        if (playerInventory.HeldItem != null)
+        {
+            //If you change item and it isn't edible, or if you stop holding down the key, reset eating
+            if (playerInventory.HeldItem.Item.isEdible == true && Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
+            {
+                eatingTimer++;
+
+                if (eatingTimer >= 50)
+                {
+                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+
+                    eatingTimer = 0;
+                }
+            }
+            else
+            {
+                eatingTimer = 0;
+            }
+        }
+
         TimeRadial.fillAmount = Mathf.Lerp(TimeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
 
         StartCoroutine(InteractionChecker());
@@ -154,9 +181,17 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                 {
+                    Debug.Log("Plant One");
                     ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
                     playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
                 }
+                /*else if (playerInventory.HeldItem.Item.isEdible == true)
+                {
+                    Debug.Log("Restore One");
+                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                }*/
 
                 //before actually doing interaction, deduct player stamina accordingly
                 //switch on the four main item types, then some default value for everything else
@@ -176,20 +211,13 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
                 }
-
-                if (playerInventory.HeldItem.Item.isEdible == true)
-                {
-                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-                }
             }
-            else if (playerInventory.HeldItem.Item.isEdible == true)
+            /*else if (playerInventory.HeldItem.Item.isEdible == true)
             {
                 ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
                 playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
                 SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-            }
+            }*/
             else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
             {
                 ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
