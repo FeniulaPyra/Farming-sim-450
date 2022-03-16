@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe06a0540b38c6489b44d535de12afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 10
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -144,7 +144,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  seekDistance: 1
+  seekDistance: 3
   sr: {fileID: 8540437080830487021}
   player: {fileID: 0}
 --- !u!50 &-134270093447180747
