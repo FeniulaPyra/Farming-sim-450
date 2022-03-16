@@ -48359,7 +48359,7 @@ MonoBehaviour:
   farmManager: {fileID: 2068960239}
   indicator: {fileID: 1642525208}
   displayIndicator: 1
-  interactionOffset: {x: 0, y: -0.25, z: 0}
+  interactionOffset: {x: 0, y: 0, z: 0}
   maxDistanceToInteraction: 1.25
   playerStamina: 0
   TimeRadial: {fileID: 508372017}
