@@ -86,15 +86,8 @@ public class PlayerInteraction : MonoBehaviour
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var facing = mousePos - transform.position;
 
-        if (Mathf.Abs(facing.x) > Mathf.Abs(facing.y))
-        {
-            facing.y = 0;
-            facing.x = Mathf.Abs(facing.x) < 1 ? facing.x : 1 * Mathf.Sign(facing.x);
-        } else
-        {
-            facing.x = 0;
-            facing.y = Mathf.Abs(facing.y) < 1 ? facing.y : 1 * Mathf.Sign(facing.y);
-        }
+        facing.y = Mathf.Abs(facing.y) < 1 ? facing.y : 1 * Mathf.Sign(facing.y);
+        facing.x = Mathf.Abs(facing.x) < 1 ? facing.x : 1 * Mathf.Sign(facing.x);
 
         //Debug.DrawLine(transform.position, mousePos);
         //Debug.DrawRay(transform.position, facing, Color.red);
@@ -118,7 +111,8 @@ public class PlayerInteraction : MonoBehaviour
         if (Vector2.Distance(new Vector2(targetPos.x, targetPos.y), pos) > maxDistanceToInteraction)
             targetPos = new Vector3Int((int)rPos.x, (int)rPos.y, targetPos.z);
 
-        indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
+        //indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
+        indicator.position = targetPos;
         focusTilePosition = targetPos;
 
         if (playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
