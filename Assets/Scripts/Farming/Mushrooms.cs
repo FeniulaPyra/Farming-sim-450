@@ -46,18 +46,29 @@ public class Mushrooms : Tile
     //Dictionary that uses the above to keep track of things
     public Dictionary<string, GameObject> hybridDictionary = new Dictionary<string, GameObject>();
 
-    #endregion
+	#endregion
+
+	private SpriteRenderer bubble;
+	/// <summary>
+	/// 0 - water
+	/// 1 - sickle
+	/// 3 - zzzz
+	/// </summary>
+	public List<Sprite> popupBubbles;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Setting item's values
-        /*mushroomItem = new Item();
+		//Setting item's values
+		/*mushroomItem = new Item();
         mushroomItem.name = ID;
         mushroomItem.spr = spr;*/
 
-        //populating hybrid dictionary
-        for (int i = 0; i < mushroomsToHybridize.Count; i++)
+		bubble = this.gameObject.AddComponent<SpriteRenderer>();
+		bubble.transform.position = new Vector2(bubble.transform.position.x, bubble.transform.position.y + .5f);
+
+		//populating hybrid dictionary
+		for (int i = 0; i < mushroomsToHybridize.Count; i++)
         {
             hybridDictionary[mushroomsToHybridize[i]] = mushroomHybrids[i];
         }
@@ -95,6 +106,20 @@ public class Mushrooms : Tile
         {
             Debug.Log($"Mushroom is named {ID} and is worth {baseValue} G.");
         }
+
+		//show bubble
+		if(isMoist)
+		{
+			bubble.sprite = popupBubbles[2];
+		}
+		else if (growthStage >= maxGrowthStage)
+		{
+			bubble.sprite = popupBubbles[1];
+		}
+		else
+		{
+			bubble.sprite = popupBubbles[0];
+		}
     }
 
     //Method where the mushrooms check to see if they grow or not
@@ -132,6 +157,7 @@ public class Mushrooms : Tile
         if (growthStage >= maxGrowthStage)
         {
             daysSinceFullyGrown++;
+			
         }
         #region Alternative mushroom growth
         //Mushrooms still grow if not moist, but more slowly

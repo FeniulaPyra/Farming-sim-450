@@ -50,10 +50,13 @@ MonoBehaviour:
   sprites:
   - {fileID: 11400000, guid: 3e190fae922bdb0469138c94d2f0c6e8, type: 2}
   - {fileID: 11400000, guid: c6acad2767fe3164d8a8caf1c1cb9f93, type: 2}
-  tilledGround: {fileID: 0}
-  wateredGround: {fileID: 0}
+  position: {x: 0, y: 0, z: 0}
   maxGrowthStage: 2
+  maxDaysWithoutWater: 2
   growthStage: 1
+  daysWithoutWater: 0
+  daysSinceFullyGrown: 0
+  readyToDie: 0
   ID: Red Shroom
   baseValue: 500
   mushroomItem: {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
@@ -62,3 +65,7 @@ MonoBehaviour:
   - Glowy Shroom
   mushroomHybrids:
   - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
+  popupBubbles:
+  - {fileID: 197977402183842498, guid: 912aca4fe4286844fb18650a425ddef6, type: 3}
+  - {fileID: -4922744508091928825, guid: 912aca4fe4286844fb18650a425ddef6, type: 3}
+  - {fileID: -1975370417923881737, guid: 912aca4fe4286844fb18650a425ddef6, type: 3}
