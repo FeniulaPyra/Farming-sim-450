@@ -96,12 +96,14 @@ public class Menu : MonoBehaviour
 					slotItemLabel.text = "" + currentSlot.Item.name;
 					slot.name = "R" + r + " C" + currentSlot.Item.name;
 					slotIcon.sprite = currentSlot.Item.spr;
+					slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
 				}
 				else
 				{
 					slotLabel.text = "";
 					slot.name = "R" + r + " C" + c;
 					slotIcon.sprite = null;
+					slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
 				}
 				int x = r, y = c;
 
@@ -142,6 +144,8 @@ public class Menu : MonoBehaviour
 				slotLabel.text = "" + currentSlot.Amount;
 				slot.name = "Hotbar Slot " + currentSlot.Item.name;
 				slotIcon.sprite = currentSlot.Item.spr;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
+
 			}
 			else
 			{
@@ -149,6 +153,8 @@ public class Menu : MonoBehaviour
 				slot.name = "Hotbar Slot " + c;
 				slot.name = "Hotbar Slot " + c;
 				slotIcon.sprite = null;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
+
 			}
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}
@@ -230,12 +236,16 @@ public class Menu : MonoBehaviour
 					slotLabel.text = "" + currentSlot.Amount;
 					slotItemLabel.text = "" + currentSlot.Item.name;
 					slotIcon.sprite = currentSlot.Item.spr;
+					slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
+
 				}
 				else
 				{
 					slotLabel.text = "";
 					slotItemLabel.text = "";
 					slotIcon.sprite = null;
+					slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
+
 				}
 			}
 		}
@@ -259,6 +269,7 @@ public class Menu : MonoBehaviour
 				slotLabel.text = "" + currentSlot.Amount;
 				slot.name = "Hotbar Slot " + currentSlot.Item.name;
 				slotIcon.sprite = currentSlot.Item.spr;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
 			}
 			else
 			{
@@ -266,6 +277,7 @@ public class Menu : MonoBehaviour
 				slot.name = "Hotbar Slot " + c;
 				slot.name = "Hotbar Slot " + c;
 				slotIcon.sprite = null;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
 			}
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}

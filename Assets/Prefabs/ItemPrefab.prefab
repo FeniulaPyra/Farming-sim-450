@@ -99,3 +99,9 @@ MonoBehaviour:
   spr: {fileID: 0}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
+  isSellable: 0
+  sellValue: 0
+  player: {fileID: 0}
+  staminaUsed: 0
+  isEdible: 0
+  staminaToRestore: 0
