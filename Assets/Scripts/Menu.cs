@@ -39,6 +39,9 @@ public class Menu : MonoBehaviour
 	public GameObject FarmManager;
 	public GameObject player;
 
+	public double MouseScrollDeadzone;
+	public double currentMouseScroll;
+
 	public enum MenuControls
 	{
 		OPEN_INVENTORY = KeyCode.E,
@@ -306,9 +309,9 @@ public class Menu : MonoBehaviour
 
 	// Update is called once per frame
 	void Update()
-    {
-		
-		if(InventoryMenu.activeSelf)
+	{
+
+		if (InventoryMenu.activeSelf)
 		{
 			//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
 			Vector2 pos;
@@ -322,33 +325,61 @@ public class Menu : MonoBehaviour
 		}
 
 		//selects hotbar item to pressed numkey
-		for(int numKey = 0; numKey <= 9; numKey++)
+		for (int numKey = 0; numKey <= 9; numKey++)
 		{
-			if(Input.GetKeyDown("" + numKey))
+			if (Input.GetKeyDown("" + numKey))
 			{
 				inv.HoldItem(numKey - 1);
 			}
 		}
 
 		//rotate hotbar
-		if(Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR))
+		if (Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR))
 		{
 			inv.selectNextHotbar();
 		}
-		if(Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR))
+		if (Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR))
 		{
 			inv.selectPreviousHotbar();
 		}
 
 		//rotate held item
-		if(Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR_SLOT))
+		if (Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR_SLOT))
 		{
 			inv.HoldNextItem();
 		}
-		if(Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR_SLOT))
+		if (Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR_SLOT))
 		{
 			inv.HoldPreviousItem();
 		}
+
+		float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+		//scroll controls - putting in seperate if because i am lazy and i
+		//dont like when the lines get too long
+		if (Input.GetKey(KeyCode.LeftControl)) {
+			if (scroll < -MouseScrollDeadzone)
+			{
+				inv.selectNextHotbar();
+			}
+			if (scroll > MouseScrollDeadzone)
+			{
+				inv.selectPreviousHotbar();
+			}
+		}
+		else
+		{
+			if (scroll < -MouseScrollDeadzone)
+			{
+				inv.HoldNextItem();
+			}
+			if (scroll > MouseScrollDeadzone)
+			{
+				inv.HoldPreviousItem();
+			}
+		}
+
+
 
 		//open/close inventory
 		if (Input.GetKeyDown((KeyCode)MenuControls.OPEN_INVENTORY))
