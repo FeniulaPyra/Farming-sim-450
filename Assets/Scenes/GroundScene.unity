@@ -50803,7 +50803,7 @@ MonoBehaviour:
       emotion: 
   timeManager: {fileID: 0}
   springConvoStart: 0
-  springConvoEnd: 10
+  springConvoEnd: 9
   summerConvoStart: 2
   summerConvoEnd: 3
   fallConvoStart: 0

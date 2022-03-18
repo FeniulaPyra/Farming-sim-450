@@ -47,12 +47,15 @@ public class ShippingBin : MonoBehaviour
     public void PutItemInBin()
     {
         //Removes currently held item from inventory and adds it to list
-        if (playerInventory.HeldItem.Item.isSellable == true)
+        if (playerInventory.HeldItem != null)
         {
-            itemsToSell.Add(playerInventory.HeldItem.Item);
+            if (playerInventory.HeldItem.Item.isSellable == true)
+            {
+                itemsToSell.Add(playerInventory.HeldItem.Item);
 
-            ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-            playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+            }
         }
     }
 
@@ -67,7 +70,7 @@ public class ShippingBin : MonoBehaviour
 
         goldDisplay.text = $"{player.playerGold} G";
 
-        if (player.playerGold > oldGold)
+        if (player.playerGold > oldGold && farmingTutorial.eatingAfter == true)
         {
             farmingTutorial.shippedAfter = true;
         }

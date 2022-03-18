@@ -45,6 +45,8 @@ public class TimeManager : MonoBehaviour
 
     public int SeasonNumber => seasonNum;
 
+    public FarmingTutorial farmingTutorial;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +72,8 @@ public class TimeManager : MonoBehaviour
         }
 
         //DisplayTime();
+
+        farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
     // Update is called once per frame
@@ -292,6 +296,22 @@ public class TimeManager : MonoBehaviour
 
         shippingBin.PayPlayer();
 
+        //Tutorial Softlock Prevention
+        //If the player ships all of their mushrooms instead of planting one, the spreading would NEVER happen and they wouldn't be able to finish the tutorial
+        if (farmingTutorial.shippedAfter == true && farmingTutorial.spreadAfter == false)
+        {
+            Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+        }
+        else if (farmingTutorial.plantedAfter == false)
+        {
+            Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+        }
+        else if (farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
+        {
+            Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+            Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+        }
+
         DisplayDate();
     }
 
@@ -320,6 +340,11 @@ public class TimeManager : MonoBehaviour
         }
 
         //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+
+        if (farmingTutorial.wateredAfter == true)
+        {
+            farmingTutorial.sleptAfter = true;
+        }
 
         AdvanceDay();
     }

@@ -24,15 +24,11 @@ public class Bed : MonoBehaviour
     public Button morningButton;
     public Button nightButton;
 
-    public FarmingTutorial farmingTutorial;
-
     // Start is called before the first frame update
     void Start()
     {
         timeManager = FindObjectOfType<TimeManager>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
-
-        farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
     // Update is called once per frame
@@ -81,8 +77,6 @@ public class Bed : MonoBehaviour
         timeManager.Sleep(8);
         playerInteraction.isTalking = false;
         SetTextObjectsActive(false);
-
-        farmingTutorial.sleptAfter = true;
     }
 
     public void SleepToNight()
@@ -92,8 +86,6 @@ public class Bed : MonoBehaviour
         timeManager.Sleep(8);
         playerInteraction.isTalking = false;
         SetTextObjectsActive(false);
-
-        farmingTutorial.sleptAfter = true;
     }
 
     /*void SleepSelection()
