@@ -306,6 +306,10 @@ public class TimeManager : MonoBehaviour
         {
             Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
         }
+        else if (farmingTutorial.eatingAfter == true && farmingTutorial.shippedAfter == false)
+        {
+            Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+        }
         else if (farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
         {
             Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
