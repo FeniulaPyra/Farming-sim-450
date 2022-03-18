@@ -47335,7 +47335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -48240,6 +48240,140 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
   m_PrefabInstance: {fileID: 7752269456879133806}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1153197842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153197843}
+  - component: {fileID: 1153197845}
+  - component: {fileID: 1153197844}
+  m_Layer: 5
+  m_Name: GoldDisplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1153197843
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153197842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2103923920}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -184.4, y: 177}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1153197844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153197842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 26
+  m_fontSizeBase: 26
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1153197845
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153197842}
+  m_CullTransparentMesh: 1
 --- !u!1 &1216943103
 GameObject:
   m_ObjectHideFlags: 0
@@ -48445,6 +48579,8 @@ MonoBehaviour:
   playerGold: 0
   objects: []
   eatingTimer: 0
+  eatingCooldown: 1
+  farmingTutorial: {fileID: 0}
 --- !u!58 &1318270118 stripped
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 7752269457178815590, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
@@ -48919,6 +49055,140 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 545935086122269672, guid: 9e6b3e24f56bc8b46b8cbc1065bc7da2, type: 3}
   m_PrefabInstance: {fileID: 1395445130}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1516198832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1516198833}
+  - component: {fileID: 1516198835}
+  - component: {fileID: 1516198834}
+  m_Layer: 5
+  m_Name: Gold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1516198833
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516198832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2103923920}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -250, y: 177.39}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1516198834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516198832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Gold: '
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 26
+  m_fontSizeBase: 26
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1516198835
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1516198832}
+  m_CullTransparentMesh: 1
 --- !u!1 &1553263164
 GameObject:
   m_ObjectHideFlags: 0
@@ -49374,7 +49644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642525206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49777,7 +50047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840140367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 3.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49928,7 +50198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -50212,6 +50482,8 @@ RectTransform:
   - {fileID: 1377426780}
   - {fileID: 508372016}
   - {fileID: 1621016934}
+  - {fileID: 1516198833}
+  - {fileID: 1153197843}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50345,6 +50617,265 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+--- !u!114 &2110825985474254689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110825985474254690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c40bae79608b6314ca6da9d3f5e2f47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convoID: 
+  playerCollider: {fileID: 1318270118}
+  nameText: {fileID: 1653731716}
+  dialogueText: {fileID: 326167650}
+  textBoxImage: {fileID: 665832430}
+  characterSprite: {fileID: 1334446515}
+  conversationIDs:
+  - Tilling
+  - Planting
+  - Watering
+  - Sleeping
+  - Harvesting
+  - Eating
+  - Shipping & Spreading
+  - Post-Shipping
+  - Post-Spreading / Hybridization
+  - Post-Hybridization / Saving
+  dialogueLists:
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Welcome to Mushrune! Press Space to continue.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: I'm going to run you through the basics of the game. First things
+        first, preparing the ground for crops.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: You can move with WASD, and interact with space or the left mouse
+        button.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Go ahead and till whatever tile you want with the hoe you're holding
+        on the field below.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Now that you've tilled the ground, it's time to plant.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Use your mouse's scrollwheel, J or L, or 1 - 9 on your keyboard
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: To select one of the mushrooms, and plant it
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Now you've planted something. Next, to water it.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Your crops let you know what they need, so keep an eye on the little
+        bubbles above them.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Now that you've watered them, there's nothing more you can do today.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Time to sleep. Go to the bed and interact with it. It's completely
+        up to you when you wake up.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: If you go to your field, you'll see that your crops have grown.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Now's the time to reap the fruits of your labor with your sickle.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: All that farming works up quite the appetite. How about a snack?
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: You can hold down space or the mouse button for a second to eat a
+        mushroom and recover some stamina. Try it out.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Pay attention to the heart at the top of the screen. It tracks stamina,
+        if you didn't already notice.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: 'You can do more than just eat your crops. You can sell them, too. '
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: There's a shipping bin to the left of the field. Interact with it
+        while holding a mushroom and you'll put it in.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: While you're at it, plant another mushroom and water it.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Till a few of the spots adjacent to it, too. It'll make sense in
+        time. Then go to bed.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: If you look in the top left, you'll see that you got paid for your
+        crops.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Your mushroom is grown, but go ahead and sleep again.
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Your mushroom went and spread. A day after being fully grown, they
+        do that.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Just about done. Here's a red and glowy mushroom, in case you sold
+        them all.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Plant them one space apart from each other, and till the tile between
+        them.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Now just pass two days so they'll spread like that last mushroom
+      emotion: 
+  - convoDialogue:
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: If you check out your field, you'll see that they made a purple mushroom
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: Certain species cross breed when they spread into each other like
+        that
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: That's everything you need to know, really. One final thing, though.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: If you need a break, press the O key to save your game. Then you
+        can load your save with P. That's off to the side.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: If you need a break, press the O key to save your game. Then you
+        can load your save with P. That's off to the side.
+      emotion: 
+    - characterName: Tutorial Manager
+      characterSprite: {fileID: 0}
+      dialogue: That's all there is to teach you. Hope you have fun.
+      emotion: 
+  timeManager: {fileID: 0}
+  springConvoStart: 0
+  springConvoEnd: 10
+  summerConvoStart: 2
+  summerConvoEnd: 3
+  fallConvoStart: 0
+  fallConvoEnd: 0
+  winterConvoStart: 0
+  winterConvoEnd: 0
+--- !u!1 &2110825985474254690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110825985474254694}
+  - component: {fileID: 2110825985474254689}
+  - component: {fileID: 2110825985474254691}
+  m_Layer: 0
+  m_Name: TutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2110825985474254691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110825985474254690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36da34e2a9374a4418a15c1819b3fe90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redShroom: {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
+  glowyShroom: {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
+  tutorialStarted: 0
+  tutorialComplete: 0
+  tilledBefore: 0
+  tilledAfter: 0
+  plantedBefore: 0
+  plantedAfter: 0
+  wateredBefore: 0
+  wateredAfter: 0
+  sleptBefore: 0
+  sleptAfter: 0
+  harvestedBefore: 0
+  harvestedAfter: 0
+  eatingBefore: 0
+  eatingAfter: 0
+  shippedBefore: 0
+  shippedAfter: 0
+  spreadBefore: 0
+  spreadAfter: 0
+  hybridBefore: 0
+  hybridAfter: 0
+--- !u!4 &2110825985474254694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110825985474254690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.64, y: 2.5, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4226742885656092938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50548,7 +51079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50613,7 +51144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8363235534574056502, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8363235534574056502, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -50651,6 +51182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
+      propertyPath: goldDisplay
+      value: 
+      objectReference: {fileID: 1153197844}
     - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: playerCollider
       value: 

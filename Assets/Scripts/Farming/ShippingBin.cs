@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ShippingBin : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class ShippingBin : MonoBehaviour
     [SerializeField]
     List<Item> itemsToSell = new List<Item>();
 
+    public TMP_Text goldDisplay;
+
+    public FarmingTutorial farmingTutorial;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +24,10 @@ public class ShippingBin : MonoBehaviour
         playerInventory = farmManager.playerInventory;
 
         player = FindObjectOfType<PlayerInteraction>();
+
+        goldDisplay.text = $"{player.playerGold} G";
+
+        farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
     // Update is called once per frame
@@ -48,9 +58,18 @@ public class ShippingBin : MonoBehaviour
 
     public void PayPlayer()
     {
+        int oldGold = player.playerGold;
+
         foreach (Item item in itemsToSell)
         {
             player.playerGold += item.sellValue;
+        }
+
+        goldDisplay.text = $"{player.playerGold} G";
+
+        if (player.playerGold > oldGold)
+        {
+            farmingTutorial.shippedAfter = true;
         }
 
         itemsToSell.Clear();

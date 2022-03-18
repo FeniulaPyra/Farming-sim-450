@@ -63,7 +63,7 @@ public class TimeManager : MonoBehaviour
 
         for (int i = 0; i < NPCs.Length; i++)
         {
-            if (NPCs[i] != null)
+            if (NPCs[i] != null && NPCs[i].gameObject.name != "TutorialManager")
             {
                 NPCList.Add(NPCs[i]);
             }

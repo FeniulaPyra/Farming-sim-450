@@ -43,14 +43,14 @@ public class DialogueManager : MonoBehaviour
     PlayerInteraction playerInteraction;
 
     //ints to track seasonal dialogue
-    int springConvoStart = 0;
-    int springConvoEnd = 1;
-    int summerConvoStart = 2;
-    int summerConvoEnd = 3;
-    int fallConvoStart;
-    int fallConvoEnd;
-    int winterConvoStart;
-    int winterConvoEnd;
+    public int springConvoStart = 0;
+    public int springConvoEnd = 1;
+    public int summerConvoStart = 2;
+    public int summerConvoEnd = 3;
+    public int fallConvoStart;
+    public int fallConvoEnd;
+    public int winterConvoStart;
+    public int winterConvoEnd;
     #endregion
 
     public int GetSpringStart()
@@ -219,8 +219,6 @@ public class DialogueManager : MonoBehaviour
 
         textBoxImage.gameObject.SetActive(true);
 
-        characterSprite.gameObject.SetActive(true);
-
         for (int i = 0; i < convoToPlay.Count; i++)
         {
             //Just using Debug.Log for now
@@ -229,6 +227,15 @@ public class DialogueManager : MonoBehaviour
             nameText.text = convoToPlay[i].characterName;
             dialogueText.text = convoToPlay[i].dialogue;
             characterSprite.sprite = convoToPlay[i].characterSprite;
+
+            if (convoToPlay[i].characterSprite == null)
+            {
+                characterSprite.gameObject.SetActive(false);
+            }
+            else
+            {
+                characterSprite.gameObject.SetActive(true);
+            }
 
             //yield return StartCoroutine(WaitForInput(KeyCode.Space));
             yield return StartCoroutine(WaitForInput(wait));

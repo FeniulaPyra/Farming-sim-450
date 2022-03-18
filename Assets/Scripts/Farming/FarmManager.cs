@@ -17,6 +17,8 @@ public class FarmManager : MonoBehaviour
     public MushroomManager mushroomManager;
     public TileManager tileManager;
 
+    public FarmingTutorial farmingTutorial;
+
     //Testing only; attempt at making a dictionary
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
     //public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
@@ -64,6 +66,8 @@ public class FarmManager : MonoBehaviour
                 tillableGround.SetTile(cropPos, testTile.tileSprite);
             }
         }
+
+        farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
     }
 
@@ -125,6 +129,7 @@ public class FarmManager : MonoBehaviour
             //tillableGround.SetTile(tile, tilePrefab.tileSprite);
             tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
             //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
+            farmingTutorial.tilledAfter = true;
         }
         //planting
         //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
@@ -164,6 +169,8 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isTilled = true;
                 mushroomsAndTiles[tile].isMoist = tempMoist;
                 Debug.Log($"You just planted a {mushroomPrefab.GetComponent<Mushrooms>().ID}");
+
+                farmingTutorial.plantedAfter = true;
             }
             else
             {
@@ -179,6 +186,8 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isMoist = true;
                 Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
                 tillableGround.SetTile(tile, tilePrefab.sprites[2]);
+
+                farmingTutorial.wateredAfter = true;
             }
             else
             {
@@ -233,6 +242,8 @@ public class FarmManager : MonoBehaviour
 
                 mushroomsAndTiles[tile].isTilled = false;
             }
+
+            farmingTutorial.harvestedAfter = true;
         }
     }
 
@@ -307,6 +318,8 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[above].transform.parent = this.transform;
                                     mushroomsAndTiles[above].hasPlant = true;
                                     mushroomsAndTiles[above].isTilled = true;
+
+                                    farmingTutorial.spreadAfter = true;
                                 }
                                 else
                                 {
@@ -325,6 +338,8 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[above].transform.parent = this.transform;
                                         mushroomsAndTiles[above].hasPlant = true;
                                         mushroomsAndTiles[above].isTilled = true;
+
+                                        farmingTutorial.hybridAfter = true;
                                     }
                                 }
                             }
@@ -341,6 +356,8 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[below].transform.parent = this.transform;
                                     mushroomsAndTiles[below].hasPlant = true;
                                     mushroomsAndTiles[below].isTilled = true;
+
+                                    farmingTutorial.spreadAfter = true;
                                 }
                                 else
                                 {
@@ -359,6 +376,8 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[below].transform.parent = this.transform;
                                         mushroomsAndTiles[below].hasPlant = true;
                                         mushroomsAndTiles[below].isTilled = true;
+
+                                        farmingTutorial.hybridAfter = true;
                                     }
                                 }
                             }
@@ -375,6 +394,8 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[left].transform.parent = this.transform;
                                     mushroomsAndTiles[left].hasPlant = true;
                                     mushroomsAndTiles[left].isTilled = true;
+
+                                    farmingTutorial.spreadAfter = true;
                                 }
                                 else
                                 {
@@ -393,6 +414,8 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[left].transform.parent = this.transform;
                                         mushroomsAndTiles[left].hasPlant = true;
                                         mushroomsAndTiles[left].isTilled = true;
+
+                                        farmingTutorial.hybridAfter = true;
                                     }
                                 }
 
@@ -410,6 +433,8 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[right].transform.parent = this.transform;
                                     mushroomsAndTiles[right].hasPlant = true;
                                     mushroomsAndTiles[right].isTilled = true;
+
+                                    farmingTutorial.spreadAfter = true;
                                 }
                                 else
                                 {
@@ -428,6 +453,8 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[right].transform.parent = this.transform;
                                         mushroomsAndTiles[right].hasPlant = true;
                                         mushroomsAndTiles[right].isTilled = true;
+
+                                        farmingTutorial.hybridAfter = true;
                                     }
                                 }
 

@@ -63,6 +63,10 @@ public class PlayerInteraction : MonoBehaviour
     //Timer for eating
     [SerializeField]
     int eatingTimer;
+    bool canEat = true;
+    public float eatingCooldown = 1.0f;
+
+    public FarmingTutorial farmingTutorial;
 
     private void Start()
     {
@@ -83,6 +87,8 @@ public class PlayerInteraction : MonoBehaviour
                 objects.Add(objectsArray[i]);
             }
         }
+
+        farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
     private void Update()
@@ -128,7 +134,7 @@ public class PlayerInteraction : MonoBehaviour
         if (playerInventory.HeldItem != null)
         {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
-            if (playerInventory.HeldItem.Item.isEdible == true && Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
+            if (playerInventory.HeldItem.Item.isEdible == true && canEat == true && Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
             {
                 eatingTimer++;
 
@@ -139,12 +145,24 @@ public class PlayerInteraction : MonoBehaviour
                     SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
 
                     eatingTimer = 0;
+
+                    canEat = false;
+                    eatingCooldown = 1.0f;
+
+                    farmingTutorial.eatingAfter = true;
                 }
             }
             else
             {
                 eatingTimer = 0;
             }
+        }
+
+        eatingCooldown -= Time.deltaTime;
+
+        if (canEat == false && eatingCooldown <= 0.0f)
+        {
+            canEat = true;
         }
 
         TimeRadial.fillAmount = Mathf.Lerp(TimeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
