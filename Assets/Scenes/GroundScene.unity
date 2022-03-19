@@ -48569,12 +48569,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmManager: {fileID: 2068960239}
+  indicatorImage: {fileID: 1642525207}
   indicator: {fileID: 1642525208}
   displayIndicator: 1
   interactionOffset: {x: 0, y: 0, z: 0}
-  maxDistanceToInteraction: 1.25
+  maxInteractionDistance: 1.25
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.39215687}
   playerStamina: 0
-  TimeRadial: {fileID: 508372017}
+  timeRadial: {fileID: 0}
   isTalking: 0
   playerGold: 0
   objects: []

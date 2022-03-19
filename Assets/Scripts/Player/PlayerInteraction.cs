@@ -11,6 +11,9 @@ public class PlayerInteraction : MonoBehaviour
     private FarmManager farmManager;
 
     [SerializeField]
+    private SpriteRenderer indicatorImage;
+
+    [SerializeField]
     private Transform indicator;
 
     [SerializeField]
@@ -20,12 +23,20 @@ public class PlayerInteraction : MonoBehaviour
     private Vector3 interactionOffset;
 
     [SerializeField]
-    private float maxDistanceToInteraction = 1.25f;
+    private float maxInteractionDistance = 1.25f;
+
+    [SerializeField]
+    private Color activeColor;
+
+    [SerializeField]
+    private Color inactiveColor;
 
     private PlayerMovement playerMovement;
 
     private Vector3Int focusTilePosition;
-    private Vector3Int currentPlayerPos;
+    private Vector3 playerPosition;
+    private bool interactInRange;
+    private bool canInteract;
 
     public bool DisplayIndicator { 
         get => displayIndicator; 
@@ -34,12 +45,21 @@ public class PlayerInteraction : MonoBehaviour
         } 
     }
 
+    public bool CanInteract
+    {
+        get => canInteract;
+        set
+        {
+            canInteract = value;
+        }
+    }
+
     //Stamina, which serves the same purpose as time
     //public TMP_Text staminaDisplay;
     public int playerStamina = 0;
     int maxPlayerStamina = 100;
 
-    public Image TimeRadial;
+    public Image timeRadial;
 
     public int GetMaxPlayerStamina()
     {
@@ -93,39 +113,32 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
+        playerPosition = transform.position;
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var facing = mousePos - transform.position;
+        focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
 
-        facing.y = Mathf.Abs(facing.y) < 1 ? facing.y : 1 * Mathf.Sign(facing.y);
-        facing.x = Mathf.Abs(facing.x) < 1 ? facing.x : 1 * Mathf.Sign(facing.x);
-
-        //Debug.DrawLine(transform.position, mousePos);
-        //Debug.DrawRay(transform.position, facing, Color.red);
-
-        var pos = transform.position + interactionOffset;
-        var rPos = new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), Mathf.RoundToInt(pos.z));
-
-        if (Vector2.Distance(pos, rPos) < 0.5f && (currentPlayerPos.x != rPos.x || currentPlayerPos.y != rPos.y))
-        {
-            currentPlayerPos = new Vector3Int((int)rPos.x, (int)rPos.y, 0);
-        }
-
-        focusTilePosition = new Vector3Int(Mathf.RoundToInt(currentPlayerPos.x + facing.x), Mathf.RoundToInt(currentPlayerPos.y + facing.y), 0);
         var indicatorPos = focusTilePosition;
         if (displayIndicator)
             indicatorPos.z = 0;
         else
             indicatorPos.z = 11;
 
-        var targetPos = focusTilePosition;
-        if (Vector2.Distance(new Vector2(targetPos.x, targetPos.y), pos) > maxDistanceToInteraction)
-            targetPos = new Vector3Int((int)rPos.x, (int)rPos.y, targetPos.z);
+        indicator.position = Vector3.Lerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        //indicator.position = indicatorPos;
 
-        //indicator.position = Vector3.Lerp(indicator.position, targetPos, Time.deltaTime * 25);
-        indicator.position = targetPos;
-        focusTilePosition = targetPos;
+        Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
 
-        if (playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
+        if(Vector2.Distance(playerPosition + interactionOffset, (Vector2Int)focusTilePosition) < maxInteractionDistance)
+        {
+            indicatorImage.color = activeColor;
+            interactInRange = true;
+        } else
+        {
+            indicatorImage.color = inactiveColor;
+            interactInRange = false;
+        }
+
+        if (canInteract && interactInRange && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
         {
             CheckInteraction();
         }
@@ -165,7 +178,7 @@ public class PlayerInteraction : MonoBehaviour
             canEat = true;
         }
 
-        TimeRadial.fillAmount = Mathf.Lerp(TimeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
+        timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
 
         StartCoroutine(InteractionChecker());
     }
@@ -242,7 +255,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             //staminaDisplay.text = $"Stamina: {playerStamina}";
-            TimeRadial.fillAmount = (float)playerStamina/100;
+            timeRadial.fillAmount = (float)playerStamina/100;
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }
@@ -325,8 +338,8 @@ public class PlayerInteraction : MonoBehaviour
         */
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(currentPlayerPos, Vector3.one);
-        Gizmos.DrawWireSphere(currentPlayerPos, 0.5f);
+        Gizmos.DrawWireCube(playerPosition, Vector3.one);
+        Gizmos.DrawWireSphere(playerPosition, 0.5f);
     }
 
     //Simple function for reducing stamina. IF anything needs to be changed, change it here and only here

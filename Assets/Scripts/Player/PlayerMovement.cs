@@ -15,8 +15,17 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
 
     private Vector2 facing;
-
     public Vector2 Facing => facing;
+
+    private bool frozen;
+    public bool Frozen
+    {
+        get => frozen;
+        set
+        {
+            frozen = value;
+        }
+    }
 
     void Start()
     {
@@ -30,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (direction.magnitude > 1)
             direction = direction.normalized;
+
+        if (frozen) return;
 
         if (direction.magnitude > 0.1)
         {
@@ -45,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (frozen) return;
+
         var desiredVelocity = direction * movementSpeed;
         var move = desiredVelocity - rb.velocity;
 
