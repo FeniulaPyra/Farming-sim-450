@@ -123,8 +123,8 @@ public class PlayerInteraction : MonoBehaviour
         else
             indicatorPos.z = 11;
 
-        indicator.position = Vector3.Lerp(indicator.position, indicatorPos, Time.deltaTime * 25);
-        //indicator.position = indicatorPos;
+        //indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        indicator.position = indicatorPos;
 
         Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
 
