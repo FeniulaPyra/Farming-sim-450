@@ -207,6 +207,7 @@ public class DialogueManager : MonoBehaviour
     public IEnumerator PlayDialogue(string convoID, KeyCode wait)
     {
         playerInteraction.isTalking = true;
+        playerInteraction.CanInteract = false;
 
         //Get a dictionary to play
         List<NPCDialogue> convoToPlay = conversations[convoID];
@@ -253,6 +254,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log($"For conversation ID {convoID}");
 
         playerInteraction.isTalking = false;
+        playerInteraction.CanInteract = true;
     }
 
     /*private void OnTriggerStay2D(Collider2D collision)

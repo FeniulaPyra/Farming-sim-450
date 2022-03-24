@@ -36,6 +36,7 @@ public class PlayerInteraction : MonoBehaviour
     private Vector3Int focusTilePosition;
     private Vector3 playerPosition;
     private bool interactInRange;
+    [SerializeField]
     private bool canInteract;
 
     public bool DisplayIndicator { 
@@ -83,6 +84,7 @@ public class PlayerInteraction : MonoBehaviour
     //Timer for eating
     [SerializeField]
     int eatingTimer;
+    [SerializeField]
     bool canEat = true;
     public float eatingCooldown = 1.0f;
 
@@ -141,29 +143,29 @@ public class PlayerInteraction : MonoBehaviour
         if (canInteract && interactInRange && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
         {
             CheckInteraction();
-        }
 
-        //If you're holding something you can eat and holding down the interaction key
-        if (playerInventory.HeldItem != null)
-        {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
-            if (playerInventory.HeldItem.Item.isEdible == true && canEat == true && Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
+            if (playerInventory.HeldItem.Item.isEdible == true && canEat == true)
             {
-                eatingTimer++;
-
-                if (eatingTimer >= 50)
+                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
                 {
-                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                    eatingTimer++;
 
-                    eatingTimer = 0;
+                    if (eatingTimer >= 50)
+                    {
+                        ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                        playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
 
-                    canEat = false;
-                    eatingCooldown = 1.0f;
+                        eatingTimer = 0;
 
-                    farmingTutorial.eatingAfter = true;
+                        canEat = false;
+                        eatingCooldown = 1.0f;
+
+                        farmingTutorial.eatingAfter = true;
+                    }
                 }
+
             }
             else
             {
