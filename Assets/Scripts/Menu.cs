@@ -52,6 +52,17 @@ public class Menu : MonoBehaviour
 		DROP = KeyCode.Q
 	}
 
+	public enum MenuState
+	{
+		NO_MENU,
+		INVENTORY,
+		PAUSE,
+		SETTINGS,
+		HELP
+	}
+
+	MenuState state = MenuState.NO_MENU;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -311,109 +322,145 @@ public class Menu : MonoBehaviour
 	void Update()
 	{
 
+		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		if (InventoryMenu.activeSelf)
 		{
-			//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
-			Vector2 pos;
-			RectTransformUtility.ScreenPointToLocalPointInRectangle(
-			   InventoryMenu.transform.parent.transform as RectTransform, Input.mousePosition,
-			   InventoryMenu.transform.parent.GetComponent<Canvas>().worldCamera,
-			   out pos);
-			//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
-
-			selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 		}
+		Debug.Log("menustate: " + state);
 
-		//selects hotbar item to pressed numkey
-		for (int numKey = 0; numKey <= 9; numKey++)
+		switch(state)
 		{
-			if (Input.GetKeyDown("" + numKey))
-			{
-				inv.HoldItem(numKey - 1);
-			}
-		}
+			case MenuState.INVENTORY:
+				//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
+				Vector2 pos;
+				RectTransformUtility.ScreenPointToLocalPointInRectangle(
+				InventoryMenu.transform.parent.transform as RectTransform, Input.mousePosition,
+				InventoryMenu.transform.parent.GetComponent<Canvas>().worldCamera,
+					out pos);
+				//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
 
-		//rotate hotbar
-		if (Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR))
-		{
-			inv.selectNextHotbar();
-		}
-		if (Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR))
-		{
-			inv.selectPreviousHotbar();
-		}
+				selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-		//rotate held item
-		if (Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR_SLOT))
-		{
-			inv.HoldNextItem();
-		}
-		if (Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR_SLOT))
-		{
-			inv.HoldPreviousItem();
-		}
-
-		float scroll = Input.GetAxis("Mouse ScrollWheel");
-
-		//scroll controls - putting in seperate if because i am lazy and i
-		//dont like when the lines get too long
-		if (Input.GetKey(KeyCode.LeftControl)) {
-			if (scroll < -MouseScrollDeadzone)
-			{
-				inv.selectNextHotbar();
-			}
-			if (scroll > MouseScrollDeadzone)
-			{
-				inv.selectPreviousHotbar();
-			}
-		}
-		else
-		{
-			if (scroll < -MouseScrollDeadzone)
-			{
-				inv.HoldNextItem();
-			}
-			if (scroll > MouseScrollDeadzone)
-			{
-				inv.HoldPreviousItem();
-			}
-		}
-
-
-
-		//open/close inventory
-		if (Input.GetKeyDown((KeyCode)MenuControls.OPEN_INVENTORY))
-		{
-			InventoryMenu.SetActive(!InventoryMenu.activeSelf);
-			if(!InventoryMenu.activeSelf && inv.selectedStack != null)
-			{
-				inv.AddItems(inv.selectedStack);
-				inv.selectedStack = null;
-			}
-
-			inv.isShown = InventoryMenu.activeSelf;
-		}
-
-		if(Input.GetKeyDown((KeyCode)MenuControls.DROP))
-		{
-			if (InventoryMenu.active && inv.selectedStack != null)
-			{
-				//drop selected Item
-				for (int i = 0; i < inv.selectedStack.Amount; i++)
+				//drop selected item
+				if(Input.GetKeyDown(KeyCode.Q))
 				{
-					Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+					if (InventoryMenu.active && inv.selectedStack != null)
+					{
+						//drop selected Item
+						for (int i = 0; i < inv.selectedStack.Amount; i++)
+						{
+							Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+						}
+						inv.DeleteSelectedItemStack();
+					}
 				}
-				inv.DeleteSelectedItemStack(); 
-			}
-			else if(inv.HeldItem != null)
-			{
+
+				//scroll hotbar up and down
+				if (scroll < -MouseScrollDeadzone)
+				{
+					inv.selectNextHotbar();
+				}
+				if (scroll > MouseScrollDeadzone)
+				{
+					inv.selectPreviousHotbar();
+				}
+
+				//close inventory
+				if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
+				{
+					if(inv.selectedStack != null)
+					{
+						inv.AddItems(inv.selectedStack);
+						inv.selectedStack = null;
+					}
+					InventoryMenu.SetActive(false);
+					state = MenuState.NO_MENU;
+				}
+				break;
+			case MenuState.PAUSE:
+				break;
+			case MenuState.SETTINGS:
+				break;
+			case MenuState.HELP:
+				break;
+			case MenuState.NO_MENU:
+				//selects hotbar item to pressed numkey
+				for (int numKey = 0; numKey <= 9; numKey++)
+				{
+					if (Input.GetKeyDown("" + numKey))
+					{
+						inv.HoldItem(numKey - 1);
+					}
+				}
+				
+				//rotate hotbar
+				if (Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR))
+				{
+					inv.selectNextHotbar();
+				}
+				if (Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR))
+				{
+					inv.selectPreviousHotbar();
+				}
+
+				//rotate held item
+				if (Input.GetKeyDown((KeyCode)MenuControls.NEXT_HOTBAR_SLOT))
+				{
+					inv.HoldNextItem();
+				}
+				if (Input.GetKeyDown((KeyCode)MenuControls.PREV_HOTBAR_SLOT))
+				{
+					inv.HoldPreviousItem();
+				}
+
+				//scroll controls - putting in seperate if because i am lazy and i
+				//dont like when the lines get too long
+				if (Input.GetKey(KeyCode.LeftControl)) {
+					if (scroll < -MouseScrollDeadzone)
+					{
+						inv.selectNextHotbar();
+					}
+					if (scroll > MouseScrollDeadzone)
+					{
+						inv.selectPreviousHotbar();
+					}
+				}
+				else
+				{
+					if (scroll < -MouseScrollDeadzone)
+					{
+						inv.HoldNextItem();
+					}
+					if (scroll > MouseScrollDeadzone)
+					{
+						inv.HoldPreviousItem();
+					}
+				}
+
+				//open/close inventory
+				if (Input.GetKeyDown(KeyCode.E))
+				{
+					InventoryMenu.SetActive(true);//!InventoryMenu.activeSelf);
+					state = MenuState.INVENTORY;
+				}
+
 				//drop held item
-				for (int i = 0; i < inv.HeldItem.Amount; i++)
+				if(Input.GetKeyDown(KeyCode.Q))
 				{
-					Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+					if(inv.HeldItem != null)
+					{
+						//drop held item
+						for (int i = 0; i < inv.HeldItem.Amount; i++)
+						{
+							Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+						}
+						inv.DeleteHeldItemStack(); 
+					}
 				}
-				inv.DeleteHeldItemStack(); 
-			}
+
+				break;
+			default:
+				break;
 		}
 		UpdateInventory();
 	}
