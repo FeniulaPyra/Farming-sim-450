@@ -68,7 +68,7 @@ public class Mushrooms : Tile
         mushroomItem.spr = spr;*/
 
 		bubble = this.gameObject.AddComponent<SpriteRenderer>();
-		bubble.transform.position = new Vector2(bubble.transform.position.x, bubble.transform.position.y + .5f);
+		bubble.transform.position = new Vector3(bubble.transform.position.x, bubble.transform.position.y + .5f, -10);
 
 		ShowPopupBubblesToggle = GameObject.Find("Menus").GetComponent<Menu>().BubbleToggle.GetComponent<Toggle>();
 
