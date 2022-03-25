@@ -19,6 +19,10 @@ public class Menu : MonoBehaviour
 	public GameObject InventorySlotPrefab;
 
 	public GameObject PauseMenu;
+	public GameObject SettingsMenu;
+
+	public GameObject BubbleToggle;
+
 
 	//the ui object that represents the currently selected item. hovers over the players mouse.
 	public GameObject selectedItem;
@@ -388,6 +392,12 @@ public class Menu : MonoBehaviour
 				}
 				break;
 			case MenuState.SETTINGS:
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					SettingsMenu.SetActive(false);
+					PauseMenu.SetActive(true);
+					state = MenuState.PAUSE;
+				}
 				break;
 			case MenuState.HELP:
 				break;
@@ -489,6 +499,13 @@ public class Menu : MonoBehaviour
 	{
 		PauseMenu.SetActive(false);
 		state = MenuState.NO_MENU;
+	}
+
+	public void OpenSettings()
+	{
+		PauseMenu.SetActive(false);
+		SettingsMenu.SetActive(true);
+		state = MenuState.SETTINGS;
 	}
 
 	//quits game - for button use;
