@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 //using UnityEngine.UIElements;
 
 
@@ -20,6 +22,9 @@ public class Menu : MonoBehaviour
 
 	public GameObject PauseMenu;
 	public GameObject SettingsMenu;
+	public GameObject HelpMenu;
+	public GameObject SaveMenu;
+	public GameObject LoadMenu;
 
 	public GameObject BubbleToggle;
 
@@ -400,6 +405,12 @@ public class Menu : MonoBehaviour
 				}
 				break;
 			case MenuState.HELP:
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					HelpMenu.SetActive(false);
+					PauseMenu.SetActive(true);
+					state = MenuState.PAUSE;
+				}
 				break;
 			case MenuState.NO_MENU:
 				//selects hotbar item to pressed numkey
@@ -512,5 +523,18 @@ public class Menu : MonoBehaviour
 	public void QuitGame()
 	{
 		Application.Quit();
+	}
+
+	//switches to main menu scene - for button use
+	public void ReturnToMenu()
+	{
+		SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
+	}
+
+	public void OpenHelp()
+	{
+		PauseMenu.SetActive(false);
+		HelpMenu.SetActive(true);
+		state = MenuState.HELP;
 	}
 }
