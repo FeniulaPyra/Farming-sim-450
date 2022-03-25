@@ -48221,7 +48221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a22351fedb3d75848a9742c16aecc850, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cae39fc369a8154baddcf1cdc8d653c, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -53542,6 +53542,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: up
+      value: 
+      objectReference: {fileID: 4950577986329706749, guid: 1854c545065914d488d44645a94d951a, type: 3}
+    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: down
+      value: 
+      objectReference: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
+    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: left
+      value: 
+      objectReference: {fileID: -529932451917715602, guid: 1854c545065914d488d44645a94d951a, type: 3}
+    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: right
+      value: 
+      objectReference: {fileID: -5690383699158048128, guid: 1854c545065914d488d44645a94d951a, type: 3}
     - target: {fileID: 7752269456424297128, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -53594,6 +53610,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7752269456871954605, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
     - target: {fileID: 7752269457178815590, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Radius
       value: 0.5

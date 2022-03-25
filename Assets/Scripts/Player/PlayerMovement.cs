@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 direction;
 
+	public Sprite left;
+	public Sprite right;
+	public Sprite up;
+	public Sprite down;
+
     private Vector2 facing;
     public Vector2 Facing => facing;
 
@@ -52,6 +57,15 @@ public class PlayerMovement : MonoBehaviour
                 else facing.y = 0;
             }
         }
+
+		//matches sprite to movement
+		Debug.Log("dir x " + direction.x);
+		Debug.Log("dir Y " + direction.y);
+		if (Input.GetKeyDown(KeyCode.W)) sr.sprite = up;
+		else if (Input.GetKeyDown(KeyCode.A)) sr.sprite = left;
+		else if (Input.GetKeyDown(KeyCode.S)) sr.sprite = down;
+		else if (Input.GetKeyDown(KeyCode.D)) sr.sprite = right;
+
     }
 
     private void FixedUpdate()
@@ -60,9 +74,9 @@ public class PlayerMovement : MonoBehaviour
 
         var desiredVelocity = direction * movementSpeed;
         var move = desiredVelocity - rb.velocity;
-
+		/*
         if (rb.velocity.magnitude > 0.1)
-            sr.flipX = rb.velocity.x < 0;
+            sr.flipX = rb.velocity.x < 0;*/
 
         rb.velocity += move;
     }
