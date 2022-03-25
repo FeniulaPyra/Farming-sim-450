@@ -18,6 +18,8 @@ public class Menu : MonoBehaviour
 	private GameObject[,] InventorySlots;
 	public GameObject InventorySlotPrefab;
 
+	public GameObject PauseMenu;
+
 	//the ui object that represents the currently selected item. hovers over the players mouse.
 	public GameObject selectedItem;
 
@@ -378,6 +380,12 @@ public class Menu : MonoBehaviour
 				}
 				break;
 			case MenuState.PAUSE:
+
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					PauseMenu.SetActive(false);
+					state = MenuState.NO_MENU;
+				}
 				break;
 			case MenuState.SETTINGS:
 				break;
@@ -457,6 +465,12 @@ public class Menu : MonoBehaviour
 						inv.DeleteHeldItemStack(); 
 					}
 				}
+				
+				if(Input.GetKeyDown(KeyCode.Escape))
+				{
+					PauseMenu.SetActive(true);
+					state = MenuState.PAUSE;
+				}
 
 				break;
 			default:
@@ -468,5 +482,18 @@ public class Menu : MonoBehaviour
 	public List<Item> GetGameItemList()
 	{
 		return gameItems;
+	}
+	
+	//hides the pause menu - for button use
+	public void HidePauseMenu()
+	{
+		PauseMenu.SetActive(false);
+		state = MenuState.NO_MENU;
+	}
+
+	//quits game - for button use;
+	public void QuitGame()
+	{
+		Application.Quit();
 	}
 }
