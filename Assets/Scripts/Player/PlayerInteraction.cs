@@ -221,11 +221,11 @@ public class PlayerInteraction : MonoBehaviour
 
         if (playerStamina < 101)
         {
-            timeRadial2.fillAmount = 0;
+            timeRadial2.fillAmount = Mathf.Lerp(timeRadial2.fillAmount, 0, 10 * Time.deltaTime);
         }
         else if (playerStamina < 201)
         {
-            timeRadial3.fillAmount = 0;
+            timeRadial3.fillAmount = Mathf.Lerp(timeRadial3.fillAmount, 0, 10 * Time.deltaTime);
         }
 
         staminaDisplay.text = $"{playerStamina}";
