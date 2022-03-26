@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Mushrooms : Tile
@@ -56,6 +57,8 @@ public class Mushrooms : Tile
 	/// </summary>
 	public List<Sprite> popupBubbles;
 
+	public Toggle ShowPopupBubblesToggle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +68,9 @@ public class Mushrooms : Tile
         mushroomItem.spr = spr;*/
 
 		bubble = this.gameObject.AddComponent<SpriteRenderer>();
-		bubble.transform.position = new Vector2(bubble.transform.position.x, bubble.transform.position.y + .5f);
+		bubble.transform.position = new Vector3(bubble.transform.position.x, bubble.transform.position.y + .5f, -10);
+
+		ShowPopupBubblesToggle = GameObject.Find("Menus").GetComponent<Menu>().BubbleToggle.GetComponent<Toggle>();
 
 		//populating hybrid dictionary
 		for (int i = 0; i < mushroomsToHybridize.Count; i++)
@@ -120,6 +125,7 @@ public class Mushrooms : Tile
 		{
 			bubble.sprite = popupBubbles[0];
 		}
+		bubble.enabled = ShowPopupBubblesToggle.isOn;
     }
 
     //Method where the mushrooms check to see if they grow or not
