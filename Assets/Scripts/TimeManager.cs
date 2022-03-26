@@ -96,6 +96,7 @@ public class TimeManager : MonoBehaviour
 
         if (staminaTracker.playerStamina <= 0)
         {
+            Sleep(0);
             Sleep(5);
             isNight = false;
             staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
@@ -116,6 +117,8 @@ public class TimeManager : MonoBehaviour
         {
             if(shroom.Value == null)
             {
+                Debug.Log($"null at {shroom.Key}");
+
 				continue;
 				//management.mushroomsAndTiles.Remove(shroom.Key);
 				//shroom.Value.isTilled = false;
@@ -126,13 +129,6 @@ public class TimeManager : MonoBehaviour
             {
 				if (shroom.Value.GetComponent<Mushrooms>() != null)
 				{
-					if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
-					{
-						Debug.Log("The mushroom is ready to die");
-
-						keysToReplace.Add(shroom.Key);
-					}
-
 					Mushrooms newShroom = (Mushrooms)shroom.Value;
 
 					Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
@@ -143,8 +139,15 @@ public class TimeManager : MonoBehaviour
 
 					//Set the tile again, in case the mushroom has grown
 					management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
-                    shroom.Value.tileSprite = shroom.Value.sprites[1];
+                    //shroom.Value.tileSprite = shroom.Value.sprites[1];
                     management.tillableGround.SetTile(shroom.Key, management.tilePrefab.sprites[1]);
+
+                    if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
+                    {
+                        Debug.Log("The mushroom is ready to die");
+
+                        keysToReplace.Add(shroom.Key);
+                    }
                     //management.tillableGround.SetTile(shroom.Key, shroom.Value.tileSprite);
 
                     /*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
@@ -298,17 +301,13 @@ public class TimeManager : MonoBehaviour
 
         //Tutorial Softlock Prevention
         //If the player ships all of their mushrooms instead of planting one, the spreading would NEVER happen and they wouldn't be able to finish the tutorial
-        if (farmingTutorial.shippedAfter == true && farmingTutorial.spreadAfter == false)
+        //Could easily be exploited by sleeping in order to get 99 mushrooms
+        //However, it's purpose is to keep the player from finding themselves without mushrooms and therefore unable to finish tutorial
+        //Temp solution
+        //Once some sort of shop exists, start player with enough money to buy a few mushrooms and get rid of this
+        if (farmingTutorial.spreadAfter == false)
         {
             Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
-        }
-        else if (farmingTutorial.plantedAfter == false)
-        {
-            Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
-        }
-        else if (farmingTutorial.eatingAfter == true && farmingTutorial.shippedAfter == false)
-        {
-            Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
         }
         else if (farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
         {

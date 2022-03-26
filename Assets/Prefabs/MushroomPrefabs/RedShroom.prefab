@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6acad2767fe3164d8a8caf1c1cb9f93, type: 2}
   position: {x: 0, y: 0, z: 0}
   maxGrowthStage: 2
-  maxDaysWithoutWater: 2
+  maxDaysWithoutWater: 3
   growthStage: 1
   daysWithoutWater: 0
   daysSinceFullyGrown: 0
@@ -69,3 +69,4 @@ MonoBehaviour:
   - {fileID: 197977402183842498, guid: 912aca4fe4286844fb18650a425ddef6, type: 3}
   - {fileID: -4922744508091928825, guid: 912aca4fe4286844fb18650a425ddef6, type: 3}
   - {fileID: -1975370417923881737, guid: 912aca4fe4286844fb18650a425ddef6, type: 3}
+  ShowPopupBubblesToggle: {fileID: 0}

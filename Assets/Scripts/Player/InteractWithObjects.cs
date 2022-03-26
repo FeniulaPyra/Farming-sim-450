@@ -13,6 +13,9 @@ public class InteractWithObjects : MonoBehaviour
 
     PlayerInteraction playerInteraction;
 
+    [SerializeField]
+    Bed bed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,11 @@ public class InteractWithObjects : MonoBehaviour
             if (objectsArray[i] != null)
             {
                 objects.Add(objectsArray[i]);
+
+                if (objects[objects.Count - 1].GetComponent<Bed>() != null)
+                {
+                    bed = objects[objects.Count - 1].GetComponent<Bed>();
+                }
             }
         }
 
@@ -77,6 +85,11 @@ public class InteractWithObjects : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            bed.SetTextObjectsActive(false);
         }
 
         //Debug.Log($"Distance to player and {objects[0].gameObject.name} is {Vector2.Distance(gameObject.transform.position, objects[0].gameObject.transform.position)}");

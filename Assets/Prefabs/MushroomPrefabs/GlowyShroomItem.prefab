@@ -55,7 +55,7 @@ MonoBehaviour:
   player: {fileID: 0}
   staminaUsed: 2
   isEdible: 1
-  staminaToRestore: 5
+  staminaToRestore: 10
 --- !u!212 &7045756798802460592
 SpriteRenderer:
   m_ObjectHideFlags: 0

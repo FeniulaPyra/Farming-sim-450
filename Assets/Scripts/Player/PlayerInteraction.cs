@@ -56,7 +56,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     //Stamina, which serves the same purpose as time
-    //public TMP_Text staminaDisplay;
+    public TMP_Text staminaDisplay;
     public int playerStamina = 0;
     int maxPlayerStamina = 100;
 
@@ -90,6 +90,9 @@ public class PlayerInteraction : MonoBehaviour
 
     public FarmingTutorial farmingTutorial;
 
+    [SerializeField]
+    Bed bed;
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -107,6 +110,11 @@ public class PlayerInteraction : MonoBehaviour
             if (objectsArray[i] != null)
             {
                 objects.Add(objectsArray[i]);
+
+                if (objects[objects.Count - 1].GetComponent<Bed>() != null)
+                {
+                    bed = objects[objects.Count - 1].GetComponent<Bed>();
+                }
             }
         }
 
@@ -180,7 +188,20 @@ public class PlayerInteraction : MonoBehaviour
             canEat = true;
         }
 
+        //Stop all player movement when in dialogue
+        if (isTalking == true)
+        {
+            CanInteract = false;
+            playerMovement.Frozen = true;
+        }
+        else
+        {
+            CanInteract = true;
+            playerMovement.Frozen = false;
+        }
+
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
+        staminaDisplay.text = $"{playerStamina}";
 
         StartCoroutine(InteractionChecker());
     }
@@ -316,6 +337,13 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
             }
+        }
+
+        //Escape is mapped to the pause menu
+        //Allows the player to back out of the bed menu, if they accidentally interacted with it
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            bed.SetTextObjectsActive(false);
         }
 
         //Debug.Log($"Distance to player and {objects[0].gameObject.name} is {Vector2.Distance(gameObject.transform.position, objects[0].gameObject.transform.position)}");

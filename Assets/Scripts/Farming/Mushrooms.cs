@@ -137,7 +137,7 @@ public class Mushrooms : Tile
             if (growthStage < maxGrowthStage)
             {
                 growthStage++;
-                tileSprite = sprites[Mathf.FloorToInt(growthStage - 1)];
+                //tileSprite = sprites[Mathf.FloorToInt(growthStage - 1)];
             }
 
             daysWithoutWater = 0;
@@ -148,7 +148,7 @@ public class Mushrooms : Tile
         {
             daysWithoutWater++;
 
-            if (daysWithoutWater > maxDaysWithoutWater)
+            if (daysWithoutWater >= maxDaysWithoutWater)
             {
 				this.isTilled = false;
 				this.isMoist = false;
@@ -163,7 +163,7 @@ public class Mushrooms : Tile
         if (growthStage >= maxGrowthStage)
         {
             daysSinceFullyGrown++;
-			
+            tileSprite = sprites[Mathf.FloorToInt(growthStage - 1)];
         }
         #region Alternative mushroom growth
         //Mushrooms still grow if not moist, but more slowly
