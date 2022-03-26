@@ -282,7 +282,6 @@ public class FarmManager : MonoBehaviour
                 //Calls gettile at that point
                 if (farmField.GetTile(tileToTest) != null && mushroomsAndTiles.ContainsKey(tileToTest) == true)
                 {
-
                     //Casting all tiles to Mushrooms in order to access Mushrooms only variables
                     //Changed GetComponents to tiles
                     //Changed MushroomTile to TileBase since Unity wouldn't stpo crying about it
@@ -310,6 +309,8 @@ public class FarmManager : MonoBehaviour
                             Vector3Int left = new Vector3Int(tileToTest.x - 1, tileToTest.y, 0);
                             Vector3Int right = new Vector3Int(tileToTest.x + 1, tileToTest.y, 0);
 
+                            int randomSpread = Random.Range(1, 100 + 1);
+                            Debug.Log($"RandomSpread is: {randomSpread}");
 
                             //For Hybridization, change the below if statements
                             //The if stays, for regular spreading
@@ -318,182 +319,191 @@ public class FarmManager : MonoBehaviour
                             //If a hybrid cannot be made, continue the loop and do nothing
 
                             //If the tile is in the dictionary, doesn't have a plant, and isn't outside of the bounds of the field
-                            if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].isTilled == true)// && above.y <= topBound)
+                            if (randomSpread >= 1 && randomSpread <= 25)
                             {
-                                if (mushroomsAndTiles[above].hasPlant == false)
+                                if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].isTilled == true)// && above.y <= topBound)
                                 {
-                                    Debug.Log("Above");
-                                    mushroomPrefab = originalMushroom;
-                                    Destroy(mushroomsAndTiles[above].gameObject);
-                                    mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
-                                    farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
-                                    mushroomsAndTiles[above].transform.parent = this.transform;
-                                    mushroomsAndTiles[above].hasPlant = true;
-                                    mushroomsAndTiles[above].isTilled = true;
-
-                                    if (farmingTutorial.shippedAfter == true)
+                                    if (mushroomsAndTiles[above].hasPlant == false)
                                     {
-                                        farmingTutorial.spreadAfter = true;
-                                    }
-                                }
-                                else
-                                {
-                                    Debug.Log("Make Hybrid");
-
-                                    Mushrooms aboveShroom = (Mushrooms)mushroomsAndTiles[above];
-
-                                    if (compareShroom.hybridDictionary.ContainsKey(aboveShroom.ID))
-                                    {
-                                        mushroomPrefab = compareShroom.hybridDictionary[aboveShroom.ID];
-
+                                        Debug.Log("Above");
+                                        mushroomPrefab = originalMushroom;
                                         Destroy(mushroomsAndTiles[above].gameObject);
-
                                         mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
                                         mushroomsAndTiles[above].transform.parent = this.transform;
                                         mushroomsAndTiles[above].hasPlant = true;
                                         mushroomsAndTiles[above].isTilled = true;
 
-                                        if (farmingTutorial.spreadAfter == true)
+                                        if (farmingTutorial.shippedAfter == true)
                                         {
-                                            farmingTutorial.hybridAfter = true;
+                                            farmingTutorial.spreadAfter = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("Make Hybrid");
+
+                                        Mushrooms aboveShroom = (Mushrooms)mushroomsAndTiles[above];
+
+                                        if (compareShroom.hybridDictionary.ContainsKey(aboveShroom.ID))
+                                        {
+                                            mushroomPrefab = compareShroom.hybridDictionary[aboveShroom.ID];
+
+                                            Destroy(mushroomsAndTiles[above].gameObject);
+
+                                            mushroomsAndTiles[above] = Instantiate(mushroomPrefab, above, Quaternion.identity).GetComponent<Tile>();
+                                            farmField.SetTile(above, mushroomsAndTiles[above].tileSprite);
+                                            mushroomsAndTiles[above].transform.parent = this.transform;
+                                            mushroomsAndTiles[above].hasPlant = true;
+                                            mushroomsAndTiles[above].isTilled = true;
+
+                                            if (farmingTutorial.spreadAfter == true)
+                                            {
+                                                farmingTutorial.hybridAfter = true;
+                                            }
                                         }
                                     }
                                 }
                             }
-
-                            if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].isTilled == true)// && below.y >= bottomBound)
+                            else if (randomSpread >= 26 && randomSpread <= 50)
                             {
-                                if (mushroomsAndTiles[below].hasPlant == false)
+                                if (mushroomsAndTiles.ContainsKey(below) == true && mushroomsAndTiles[below].isTilled == true)// && below.y >= bottomBound)
                                 {
-                                    Debug.Log("Below");
-                                    mushroomPrefab = originalMushroom;
-                                    Destroy(mushroomsAndTiles[below].gameObject);
-                                    mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
-                                    farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
-                                    mushroomsAndTiles[below].transform.parent = this.transform;
-                                    mushroomsAndTiles[below].hasPlant = true;
-                                    mushroomsAndTiles[below].isTilled = true;
-
-                                    if (farmingTutorial.shippedAfter == true)
+                                    if (mushroomsAndTiles[below].hasPlant == false)
                                     {
-                                        farmingTutorial.spreadAfter = true;
-                                    }
-                                }
-                                else
-                                {
-                                    Debug.Log("Make Hybrid");
-
-                                    Mushrooms belowShroom = (Mushrooms)mushroomsAndTiles[below];
-
-                                    if (compareShroom.hybridDictionary.ContainsKey(belowShroom.ID))
-                                    {
-                                        mushroomPrefab = compareShroom.hybridDictionary[belowShroom.ID];
-
+                                        Debug.Log("Below");
+                                        mushroomPrefab = originalMushroom;
                                         Destroy(mushroomsAndTiles[below].gameObject);
-
                                         mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
                                         mushroomsAndTiles[below].transform.parent = this.transform;
                                         mushroomsAndTiles[below].hasPlant = true;
                                         mushroomsAndTiles[below].isTilled = true;
 
-                                        if (farmingTutorial.spreadAfter == true)
+                                        if (farmingTutorial.shippedAfter == true)
                                         {
-                                            farmingTutorial.hybridAfter = true;
+                                            farmingTutorial.spreadAfter = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Debug.Log("Make Hybrid");
+
+                                        Mushrooms belowShroom = (Mushrooms)mushroomsAndTiles[below];
+
+                                        if (compareShroom.hybridDictionary.ContainsKey(belowShroom.ID))
+                                        {
+                                            mushroomPrefab = compareShroom.hybridDictionary[belowShroom.ID];
+
+                                            Destroy(mushroomsAndTiles[below].gameObject);
+
+                                            mushroomsAndTiles[below] = Instantiate(mushroomPrefab, below, Quaternion.identity).GetComponent<Tile>();
+                                            farmField.SetTile(below, mushroomsAndTiles[below].tileSprite);
+                                            mushroomsAndTiles[below].transform.parent = this.transform;
+                                            mushroomsAndTiles[below].hasPlant = true;
+                                            mushroomsAndTiles[below].isTilled = true;
+
+                                            if (farmingTutorial.spreadAfter == true)
+                                            {
+                                                farmingTutorial.hybridAfter = true;
+                                            }
                                         }
                                     }
                                 }
                             }
-
-                            if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].isTilled == true)// && left.x >= leftBound)
+                            else if (randomSpread >= 51 && randomSpread <= 75)
                             {
-                                if (mushroomsAndTiles[left].hasPlant == false)
+                                if (mushroomsAndTiles.ContainsKey(left) && mushroomsAndTiles[left].isTilled == true)// && left.x >= leftBound)
                                 {
-                                    Debug.Log("Left");
-                                    mushroomPrefab = originalMushroom;
-                                    Destroy(mushroomsAndTiles[left].gameObject);
-                                    mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
-                                    farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
-                                    mushroomsAndTiles[left].transform.parent = this.transform;
-                                    mushroomsAndTiles[left].hasPlant = true;
-                                    mushroomsAndTiles[left].isTilled = true;
-
-                                    if (farmingTutorial.shippedAfter == true)
+                                    if (mushroomsAndTiles[left].hasPlant == false)
                                     {
-                                        farmingTutorial.spreadAfter = true;
-                                    }
-                                }
-                                else
-                                {
-                                    Debug.Log("Make Hybrid");
-
-                                    Mushrooms leftShroom = (Mushrooms)mushroomsAndTiles[left];
-
-                                    if (compareShroom.hybridDictionary.ContainsKey(leftShroom.ID))
-                                    {
-                                        mushroomPrefab = compareShroom.hybridDictionary[leftShroom.ID];
-
+                                        Debug.Log("Left");
+                                        mushroomPrefab = originalMushroom;
                                         Destroy(mushroomsAndTiles[left].gameObject);
-
                                         mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
                                         mushroomsAndTiles[left].transform.parent = this.transform;
                                         mushroomsAndTiles[left].hasPlant = true;
                                         mushroomsAndTiles[left].isTilled = true;
 
-                                        if (farmingTutorial.spreadAfter == true)
+                                        if (farmingTutorial.shippedAfter == true)
                                         {
-                                            farmingTutorial.hybridAfter = true;
+                                            farmingTutorial.spreadAfter = true;
                                         }
                                     }
-                                }
-
-                            }
-
-                            if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].isTilled == true)// && right.x <= rightBound)
-                            {
-                                if (mushroomsAndTiles[right].hasPlant == false)
-                                {
-                                    Debug.Log("Right");
-									mushroomPrefab = originalMushroom;
-                                    Destroy(mushroomsAndTiles[right].gameObject);
-                                    mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
-                                    farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
-                                    mushroomsAndTiles[right].transform.parent = this.transform;
-                                    mushroomsAndTiles[right].hasPlant = true;
-                                    mushroomsAndTiles[right].isTilled = true;
-
-                                    if (farmingTutorial.shippedAfter == true)
+                                    else
                                     {
-                                        farmingTutorial.spreadAfter = true;
+                                        Debug.Log("Make Hybrid");
+
+                                        Mushrooms leftShroom = (Mushrooms)mushroomsAndTiles[left];
+
+                                        if (compareShroom.hybridDictionary.ContainsKey(leftShroom.ID))
+                                        {
+                                            mushroomPrefab = compareShroom.hybridDictionary[leftShroom.ID];
+
+                                            Destroy(mushroomsAndTiles[left].gameObject);
+
+                                            mushroomsAndTiles[left] = Instantiate(mushroomPrefab, left, Quaternion.identity).GetComponent<Tile>();
+                                            farmField.SetTile(left, mushroomsAndTiles[left].tileSprite);
+                                            mushroomsAndTiles[left].transform.parent = this.transform;
+                                            mushroomsAndTiles[left].hasPlant = true;
+                                            mushroomsAndTiles[left].isTilled = true;
+
+                                            if (farmingTutorial.spreadAfter == true)
+                                            {
+                                                farmingTutorial.hybridAfter = true;
+                                            }
+                                        }
                                     }
+
                                 }
-                                else
+                            }
+                            else if (randomSpread >= 76 && randomSpread <= 100)
+                            {
+                                if (mushroomsAndTiles.ContainsKey(right) && mushroomsAndTiles[right].isTilled == true)// && right.x <= rightBound)
                                 {
-                                    Debug.Log("Make Hybrid");
-
-                                    Mushrooms rightShroom = (Mushrooms)mushroomsAndTiles[right];
-
-                                    if (compareShroom.hybridDictionary.ContainsKey(rightShroom.ID))
+                                    if (mushroomsAndTiles[right].hasPlant == false)
                                     {
-                                        mushroomPrefab = compareShroom.hybridDictionary[rightShroom.ID];
-
+                                        Debug.Log("Right");
+                                        mushroomPrefab = originalMushroom;
                                         Destroy(mushroomsAndTiles[right].gameObject);
-
                                         mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
                                         farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
                                         mushroomsAndTiles[right].transform.parent = this.transform;
                                         mushroomsAndTiles[right].hasPlant = true;
                                         mushroomsAndTiles[right].isTilled = true;
 
-                                        if (farmingTutorial.spreadAfter == true)
+                                        if (farmingTutorial.shippedAfter == true)
                                         {
-                                            farmingTutorial.hybridAfter = true;
+                                            farmingTutorial.spreadAfter = true;
                                         }
                                     }
-                                }
+                                    else
+                                    {
+                                        Debug.Log("Make Hybrid");
 
+                                        Mushrooms rightShroom = (Mushrooms)mushroomsAndTiles[right];
+
+                                        if (compareShroom.hybridDictionary.ContainsKey(rightShroom.ID))
+                                        {
+                                            mushroomPrefab = compareShroom.hybridDictionary[rightShroom.ID];
+
+                                            Destroy(mushroomsAndTiles[right].gameObject);
+
+                                            mushroomsAndTiles[right] = Instantiate(mushroomPrefab, right, Quaternion.identity).GetComponent<Tile>();
+                                            farmField.SetTile(right, mushroomsAndTiles[right].tileSprite);
+                                            mushroomsAndTiles[right].transform.parent = this.transform;
+                                            mushroomsAndTiles[right].hasPlant = true;
+                                            mushroomsAndTiles[right].isTilled = true;
+
+                                            if (farmingTutorial.spreadAfter == true)
+                                            {
+                                                farmingTutorial.hybridAfter = true;
+                                            }
+                                        }
+                                    }
+
+                                }
                             }
 
                             Debug.Log("End of SpreadMushroom");
