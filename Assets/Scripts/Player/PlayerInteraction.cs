@@ -142,8 +142,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (canInteract && interactInRange && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
         {
-            CheckInteraction();
-
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
             if (playerInventory.HeldItem.Item.isEdible == true && canEat == true)
             {
@@ -171,6 +169,8 @@ public class PlayerInteraction : MonoBehaviour
             {
                 eatingTimer = 0;
             }
+
+            CheckInteraction();
         }
 
         eatingCooldown -= Time.deltaTime;
