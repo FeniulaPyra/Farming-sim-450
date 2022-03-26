@@ -58,14 +58,16 @@ public class PlayerInteraction : MonoBehaviour
     //Stamina, which serves the same purpose as time
     public TMP_Text staminaDisplay;
     public int playerStamina = 0;
-    int maxPlayerStamina = 100;
+    //int maxPlayerStamina = 100;
 
     public Image timeRadial;
+    public Image timeRadial2;
+    public Image timeRadial3;
 
-    public int GetMaxPlayerStamina()
+    /*public int GetMaxPlayerStamina()
     {
         return maxPlayerStamina;
-    }
+    }*/
 
     //boolean for whether or not the player is talking
     public bool isTalking;
@@ -97,7 +99,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
 
-        playerStamina = maxPlayerStamina;
+        //playerStamina = maxPlayerStamina;
+        playerStamina = 100;
+
+        timeRadial2.fillAmount = 0;
+        timeRadial3.fillAmount = 0;
 
         playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
@@ -204,6 +210,24 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
+        if (playerStamina > 100 && playerStamina <= 200)
+        {
+            timeRadial2.fillAmount = Mathf.Lerp(timeRadial2.fillAmount, (float)(playerStamina % 100) / 100, 10 * Time.deltaTime);
+        }
+        else if (playerStamina > 200)
+        {
+            timeRadial3.fillAmount = Mathf.Lerp(timeRadial3.fillAmount, (float)(playerStamina % 100) / 100, 10 * Time.deltaTime);
+        }
+
+        if (playerStamina < 101)
+        {
+            timeRadial2.fillAmount = 0;
+        }
+        else if (playerStamina < 201)
+        {
+            timeRadial3.fillAmount = 0;
+        }
+
         staminaDisplay.text = $"{playerStamina}";
 
         StartCoroutine(InteractionChecker());
@@ -281,7 +305,7 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             //staminaDisplay.text = $"Stamina: {playerStamina}";
-            timeRadial.fillAmount = (float)playerStamina/100;
+            //timeRadial.fillAmount = (float)playerStamina/100;
 
             farmManager.TileInteract(focusTilePosition, itemName);
         }

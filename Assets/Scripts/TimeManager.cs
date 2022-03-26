@@ -327,20 +327,32 @@ public class TimeManager : MonoBehaviour
     {
         //max stamina multiplied by duration/8. This is so that a full 8 hours of sleep would get you all stamina back
         //Might need to be tweaked, since a measly four hours still restores half stamina
-        float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
+        //float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
+
+        //Do nothing is above 100
+        if (staminaTracker.playerStamina > 100)
+        {
+            return;
+        }
+
+        float staminaToAdd = 100 * (duration / 8);
 
         Debug.Log($"Duration is {duration}");
-        Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
+        //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
         Debug.Log($"Multiplying by {duration/8}");
         Debug.Log($"Adding {staminaToAdd} stamina");
 
         staminaTracker.playerStamina += (int)staminaToAdd;
 
         //cap stamina if it exceeds limit
-        if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
+        if (staminaTracker.playerStamina > 100)
+        {
+            staminaTracker.playerStamina = 100;
+        }
+        /*if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
         {
             staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
-        }
+        }*/
 
         //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
 
