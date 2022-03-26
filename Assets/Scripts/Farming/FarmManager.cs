@@ -129,7 +129,10 @@ public class FarmManager : MonoBehaviour
             //tillableGround.SetTile(tile, tilePrefab.tileSprite);
             tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
             //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
-            farmingTutorial.tilledAfter = true;
+            if (farmingTutorial.tutorialStarted == true)
+            {
+                farmingTutorial.tilledAfter = true;
+            }
         }
         //planting
         //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
@@ -170,7 +173,10 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isMoist = tempMoist;
                 Debug.Log($"You just planted a {mushroomPrefab.GetComponent<Mushrooms>().ID}");
 
-                farmingTutorial.plantedAfter = true;
+                if (farmingTutorial.tilledAfter == true)
+                {
+                    farmingTutorial.plantedAfter = true;
+                }
             }
             else
             {
@@ -187,7 +193,10 @@ public class FarmManager : MonoBehaviour
                 Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
                 tillableGround.SetTile(tile, tilePrefab.sprites[2]);
 
-                farmingTutorial.wateredAfter = true;
+                if (farmingTutorial.plantedAfter == true)
+                {
+                    farmingTutorial.wateredAfter = true;
+                }
             }
             else
             {
@@ -243,7 +252,10 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isTilled = false;
             }
 
-            farmingTutorial.harvestedAfter = true;
+            if (farmingTutorial.sleptAfter == true)
+            {
+                farmingTutorial.harvestedAfter = true;
+            }
         }
     }
 
@@ -319,7 +331,10 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[above].hasPlant = true;
                                     mushroomsAndTiles[above].isTilled = true;
 
-                                    farmingTutorial.spreadAfter = true;
+                                    if (farmingTutorial.shippedAfter == true)
+                                    {
+                                        farmingTutorial.spreadAfter = true;
+                                    }
                                 }
                                 else
                                 {
@@ -339,7 +354,10 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[above].hasPlant = true;
                                         mushroomsAndTiles[above].isTilled = true;
 
-                                        farmingTutorial.hybridAfter = true;
+                                        if (farmingTutorial.spreadAfter == true)
+                                        {
+                                            farmingTutorial.hybridAfter = true;
+                                        }
                                     }
                                 }
                             }
@@ -357,7 +375,10 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[below].hasPlant = true;
                                     mushroomsAndTiles[below].isTilled = true;
 
-                                    farmingTutorial.spreadAfter = true;
+                                    if (farmingTutorial.shippedAfter == true)
+                                    {
+                                        farmingTutorial.spreadAfter = true;
+                                    }
                                 }
                                 else
                                 {
@@ -377,7 +398,10 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[below].hasPlant = true;
                                         mushroomsAndTiles[below].isTilled = true;
 
-                                        farmingTutorial.hybridAfter = true;
+                                        if (farmingTutorial.spreadAfter == true)
+                                        {
+                                            farmingTutorial.hybridAfter = true;
+                                        }
                                     }
                                 }
                             }
@@ -395,7 +419,10 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[left].hasPlant = true;
                                     mushroomsAndTiles[left].isTilled = true;
 
-                                    farmingTutorial.spreadAfter = true;
+                                    if (farmingTutorial.shippedAfter == true)
+                                    {
+                                        farmingTutorial.spreadAfter = true;
+                                    }
                                 }
                                 else
                                 {
@@ -415,7 +442,10 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[left].hasPlant = true;
                                         mushroomsAndTiles[left].isTilled = true;
 
-                                        farmingTutorial.hybridAfter = true;
+                                        if (farmingTutorial.spreadAfter == true)
+                                        {
+                                            farmingTutorial.hybridAfter = true;
+                                        }
                                     }
                                 }
 
@@ -434,7 +464,10 @@ public class FarmManager : MonoBehaviour
                                     mushroomsAndTiles[right].hasPlant = true;
                                     mushroomsAndTiles[right].isTilled = true;
 
-                                    farmingTutorial.spreadAfter = true;
+                                    if (farmingTutorial.shippedAfter == true)
+                                    {
+                                        farmingTutorial.spreadAfter = true;
+                                    }
                                 }
                                 else
                                 {
@@ -454,7 +487,10 @@ public class FarmManager : MonoBehaviour
                                         mushroomsAndTiles[right].hasPlant = true;
                                         mushroomsAndTiles[right].isTilled = true;
 
-                                        farmingTutorial.hybridAfter = true;
+                                        if (farmingTutorial.spreadAfter == true)
+                                        {
+                                            farmingTutorial.hybridAfter = true;
+                                        }
                                     }
                                 }
 

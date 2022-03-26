@@ -168,7 +168,10 @@ public class PlayerInteraction : MonoBehaviour
                         canEat = false;
                         eatingCooldown = 1.0f;
 
-                        farmingTutorial.eatingAfter = true;
+                        if (farmingTutorial.harvestedAfter == true)
+                        {
+                            farmingTutorial.eatingAfter = true;
+                        }
                     }
                 }
 
