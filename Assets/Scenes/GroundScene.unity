@@ -53376,8 +53376,8 @@ MonoBehaviour:
       emotion: 
     - characterName: Tutorial Manager
       characterSprite: {fileID: 0}
-      dialogue: Till a few of the spots adjacent to it, too. It'll make sense in
-        time. Then go to bed.
+      dialogue: Till the four tiles adjacent to it, too. It'll make sense in time.
+        Then go to bed.
       emotion: 
   - convoDialogue:
     - characterName: Tutorial Manager
