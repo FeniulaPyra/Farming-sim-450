@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: BabyGlowyShroom
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 2734654818317320051, guid: f6752a88dab44f6489688ee1929c8ee8, type: 3}
+  m_DefaultSprite: {fileID: -4394055915626653182, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
