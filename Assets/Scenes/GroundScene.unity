@@ -53306,6 +53306,87 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8328016189830511571, guid: cf7f08a7fa597f2429a568ed996f2ce5, type: 3}
   m_PrefabInstance: {fileID: 2348339908426429844}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1915323938
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7306506824798824624, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: objective
+      value: 
+      objectReference: {fileID: 537273402}
+    - target: {fileID: 7306506824798824625, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_Name
+      value: TutorialManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: nameText
+      value: 
+      objectReference: {fileID: 1653731716}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 326167650}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: textBoxImage
+      value: 
+      objectReference: {fileID: 665832430}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 1318270118}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: characterSprite
+      value: 
+      objectReference: {fileID: 1334446515}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
 --- !u!1 &1930545017
 GameObject:
   m_ObjectHideFlags: 0
@@ -54139,270 +54220,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
---- !u!114 &2110825985474254689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110825985474254690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40bae79608b6314ca6da9d3f5e2f47b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convoID: 
-  playerCollider: {fileID: 1318270118}
-  nameText: {fileID: 1653731716}
-  dialogueText: {fileID: 326167650}
-  textBoxImage: {fileID: 665832430}
-  characterSprite: {fileID: 1334446515}
-  conversationIDs:
-  - Tilling
-  - Planting
-  - Watering
-  - Sleeping
-  - Harvesting
-  - Eating
-  - Shipping & Spreading
-  - Post-Shipping
-  - Post-Spreading / Hybridization
-  - Post-Hybridization / Saving
-  dialogueLists:
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Welcome to Mushrune! Press Space to continue.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: I'm going to run you through the basics of the game. First things
-        first, preparing the ground for crops.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: You can move with WASD, and interact with space or the left mouse
-        button.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Go ahead and till whatever tile you want with the hoe you're holding
-        on the field below.
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Now that you've tilled the ground, it's time to plant.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Use your mouse's scrollwheel, J or L, or 1 - 9 on your keyboard
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: To select one of the mushrooms, and plant it
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Now you've planted something. Next, to water it.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Your crops let you know what they need, so keep an eye on the little
-        bubbles above them.
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Now that you've watered them, there's nothing more you can do today.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Time to sleep. Go to the bed and interact with it. It's completely
-        up to you when you wake up.
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: If you go to your field, you'll see that your crops have grown.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Now's the time to reap the fruits of your labor with your sickle.
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: All that farming works up quite the appetite. How about a snack?
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: You can hold down space or the mouse button for a second to eat a
-        mushroom and recover some stamina. Try it out.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Pay attention to the circle at the top of the screen. It tracks stamina,
-        if you didn't already notice.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: You can also mouse over it to see exactly how much stamina you have
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: 'You can do more than just eat your crops. You can sell them, too. '
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: There's a shipping bin to the left of the field. Interact with it
-        while holding a mushroom and you'll put it in.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: While you're at it, plant another mushroom and water it.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Till the four tiles adjacent to it, too. It'll make sense in time.
-        Then go to bed.
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: If you look in the top left, you'll see that you got paid for your
-        crops.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Your mushroom is grown, but go ahead and sleep again.
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Your mushroom went and spread. A day after being fully grown, they
-        do that.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Just about done. Here's a red and glowy mushroom, in case you sold
-        them all.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Plant them one space apart from each other, and till the tile between
-        them.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Now just pass two days so they'll spread like that last mushroom
-      emotion: 
-  - convoDialogue:
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: If you check out your field, you'll see that they made a purple mushroom
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: Certain species cross breed when they spread into each other like
-        that
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: That's everything you need to know, really. One final thing, though.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: If you need a break, press the O key to save your game. Then you
-        can load your save with P. That's off to the side.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: If you need a break, press the O key to save your game. Then you
-        can load your save with P. That's off to the side.
-      emotion: 
-    - characterName: Tutorial Manager
-      characterSprite: {fileID: 0}
-      dialogue: That's all there is to teach you. Hope you have fun.
-      emotion: 
-  timeManager: {fileID: 0}
-  springConvoStart: 0
-  springConvoEnd: 9
-  summerConvoStart: 2
-  summerConvoEnd: 3
-  fallConvoStart: 0
-  fallConvoEnd: 0
-  winterConvoStart: 0
-  winterConvoEnd: 0
---- !u!1 &2110825985474254690
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2110825985474254694}
-  - component: {fileID: 2110825985474254689}
-  - component: {fileID: 2110825985474254691}
-  m_Layer: 0
-  m_Name: TutorialManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2110825985474254691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110825985474254690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36da34e2a9374a4418a15c1819b3fe90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redShroom: {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
-  glowyShroom: {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
-  objective: {fileID: 537273402}
-  tutorialStarted: 0
-  tutorialComplete: 0
-  tilledBefore: 0
-  tilledAfter: 0
-  plantedBefore: 0
-  plantedAfter: 0
-  wateredBefore: 0
-  wateredAfter: 0
-  sleptBefore: 0
-  sleptAfter: 0
-  harvestedBefore: 0
-  harvestedAfter: 0
-  eatingBefore: 0
-  eatingAfter: 0
-  shippedBefore: 0
-  shippedAfter: 0
-  spreadBefore: 0
-  spreadAfter: 0
-  hybridBefore: 0
-  hybridAfter: 0
---- !u!4 &2110825985474254694
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110825985474254690}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.64, y: 2.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2348339908426429844
 PrefabInstance:
   m_ObjectHideFlags: 0
