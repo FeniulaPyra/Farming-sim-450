@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -226,11 +226,15 @@ public class Menu : MonoBehaviour
 
         if (inv.HeldItem != null)
         {
-            HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name;
+            HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name + "\n";
             if (inv.HeldItem.Item.staminaUsed > 0)
             {
-                HotbarItemLabel.GetComponent<Text>().text += $" (-{inv.HeldItem.Item.staminaUsed} Stamina)";
+                HotbarItemLabel.GetComponent<Text>().text += $" (Use: -{inv.HeldItem.Item.staminaUsed} Stamina)";
             }
+			if(inv.HeldItem.Item.isEdible)
+			{
+				HotbarItemLabel.GetComponent<Text>().text += $" (Eat: +{inv.HeldItem.Item.staminaToRestore} Stamina)";
+			}
         }
         else
         {
