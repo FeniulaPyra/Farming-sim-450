@@ -51,7 +51,7 @@ MonoBehaviour:
   itemObj: {fileID: 0}
   manager: {fileID: 0}
   isSellable: 1
-  sellValue: 500
+  sellValue: 50
   player: {fileID: 0}
   staminaUsed: 2
   isEdible: 1

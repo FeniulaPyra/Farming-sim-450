@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour
 
 	//the item prefabs and their respective attached item script
 	public List<GameObject> gameItemPrefabs;
-	private List<Item> gameItems;
+	public List<Item> gameItems;
 
 	//inventory ui objects
 	public GameObject InventoryMenu;
@@ -25,6 +25,7 @@ public class Menu : MonoBehaviour
 	public GameObject HelpMenu;
 	public GameObject SaveMenu;
 	public GameObject LoadMenu;
+	public GameObject ShopMenu;
 
 	public GameObject BubbleToggle;
 
@@ -69,7 +70,8 @@ public class Menu : MonoBehaviour
 		INVENTORY,
 		PAUSE,
 		SETTINGS,
-		HELP
+		HELP,
+		SHOP
 	}
 
 	MenuState state = MenuState.NO_MENU;
@@ -412,6 +414,14 @@ public class Menu : MonoBehaviour
 					state = MenuState.PAUSE;
 				}
 				break;
+			case MenuState.SHOP:
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					ShopMenu.SetActive(false);
+					PauseMenu.SetActive(true);
+					state = MenuState.PAUSE;
+				}
+				break;
 			case MenuState.NO_MENU:
 				//selects hotbar item to pressed numkey
 				for (int numKey = 0; numKey <= 9; numKey++)
@@ -536,5 +546,11 @@ public class Menu : MonoBehaviour
 		PauseMenu.SetActive(false);
 		HelpMenu.SetActive(true);
 		state = MenuState.HELP;
+	}
+	public void OpenShop()
+	{
+		PauseMenu.SetActive(false);
+		ShopMenu.SetActive(true);
+		state = MenuState.SHOP;
 	}
 }
