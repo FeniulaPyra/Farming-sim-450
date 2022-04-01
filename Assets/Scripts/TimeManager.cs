@@ -329,39 +329,46 @@ public class TimeManager : MonoBehaviour
         //Might need to be tweaked, since a measly four hours still restores half stamina
         //float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
 
-        //Do nothing is above 100
-        if (staminaTracker.playerStamina > 100)
-        {
-            return;
-        }
-
-        float staminaToAdd = 100 * (duration / 8);
-
-        Debug.Log($"Duration is {duration}");
-        //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
-        Debug.Log($"Multiplying by {duration/8}");
-        Debug.Log($"Adding {staminaToAdd} stamina");
-
-        staminaTracker.playerStamina += (int)staminaToAdd;
-
-        //cap stamina if it exceeds limit
-        if (staminaTracker.playerStamina > 100)
-        {
-            staminaTracker.playerStamina = 100;
-        }
-        /*if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
-        {
-            staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
-        }*/
-
-        //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
-
-        if (farmingTutorial.wateredAfter == true)
+	if (farmingTutorial.wateredAfter == true)
         {
             farmingTutorial.sleptAfter = true;
         }
 
-        AdvanceDay();
+        //Do nothing is above 100
+        if (staminaTracker.playerStamina > 100)
+        {
+            AdvanceDay();
+	    //return;
+        }
+	else
+	{
+	    float staminaToAdd = 100 * (duration / 8);
+
+            Debug.Log($"Duration is {duration}");
+            //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
+            Debug.Log($"Multiplying by {duration/8}");
+            Debug.Log($"Adding {staminaToAdd} stamina");
+
+            staminaTracker.playerStamina += (int)staminaToAdd;
+
+            //cap stamina if it exceeds limit
+            if (staminaTracker.playerStamina > 100)
+            {
+                staminaTracker.playerStamina = 100;
+            }
+            /*if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
+            {
+                staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
+            }*/
+
+            //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+
+            
+
+            AdvanceDay();
+	}
+
+        
     }
 
     /// <summary>
