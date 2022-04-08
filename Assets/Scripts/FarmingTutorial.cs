@@ -53,6 +53,12 @@ public class FarmingTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Rwplay Text
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+        }
+
         //First step
         //Hoe
         if (tutorialStarted == false)
@@ -132,7 +138,7 @@ public class FarmingTutorial : MonoBehaviour
             eatingBefore = true;
             self.convoID = self.conversationIDs[6];
 
-            objective.text = $"Current Objective: Ship mushroom; prep new mushroom and till adjacent tiles";
+            objective.text = $"Current Objective: Ship mushroom and go to sleep";
 
             StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
         }
@@ -144,7 +150,7 @@ public class FarmingTutorial : MonoBehaviour
             shippedBefore = true;
             self.convoID = self.conversationIDs[7];
 
-            objective.text = $"Current Objective: Sleep again now that mushroom is grown";
+            objective.text = $"Current Objective: Plant and water mushroom, then sleep for two days";
 
             StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
         }

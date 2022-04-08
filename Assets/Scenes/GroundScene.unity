@@ -281,7 +281,6 @@ GameObject:
   - component: {fileID: 80900816}
   - component: {fileID: 80900819}
   - component: {fileID: 80900818}
-  - component: {fileID: 80900817}
   m_Layer: 5
   m_Name: TimeRadial2
   m_TagString: Untagged
@@ -305,22 +304,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.999999, y: 165}
+  m_AnchoredPosition: {x: -10, y: 165}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &80900817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80900815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b804dc13e764d744584cf2e05fb6cbb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staminaDisplay: {fileID: 1377426781}
 --- !u!114 &80900818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +796,7 @@ RectTransform:
   m_Children:
   - {fileID: 665832429}
   - {fileID: 1334446513}
+  - {fileID: 2098316658}
   - {fileID: 326167649}
   - {fileID: 1653731715}
   - {fileID: 954436411}
@@ -929,12 +916,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 261602774}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -54.60562, y: -92.32504}
-  m_SizeDelta: {x: 490.7887, y: 31.1581}
+  m_AnchoredPosition: {x: -70, y: -92}
+  m_SizeDelta: {x: 490, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326167650
 MonoBehaviour:
@@ -965,7 +952,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -48350,7 +48337,6 @@ GameObject:
   - component: {fileID: 508372016}
   - component: {fileID: 508372018}
   - component: {fileID: 508372017}
-  - component: {fileID: 508372019}
   m_Layer: 5
   m_Name: TimeRadial
   m_TagString: Untagged
@@ -48415,19 +48401,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508372015}
   m_CullTransparentMesh: 1
---- !u!114 &508372019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508372015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b804dc13e764d744584cf2e05fb6cbb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staminaDisplay: {fileID: 1377426781}
 --- !u!1 &537273401
 GameObject:
   m_ObjectHideFlags: 0
@@ -48552,14 +48525,14 @@ RectTransform:
   m_GameObject: {fileID: 537273401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 261602774}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -600, y: 200}
+  m_AnchoredPosition: {x: -700, y: 200}
   m_SizeDelta: {x: 230, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &552669635
@@ -48721,7 +48694,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &665832429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48739,7 +48712,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -7.5, y: -96}
-  m_SizeDelta: {x: 700, y: 150}
+  m_SizeDelta: {x: 900, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665832430
 MonoBehaviour:
@@ -49584,7 +49557,7 @@ RectTransform:
   - {fileID: 2047033713}
   - {fileID: 442438185}
   m_Father: {fileID: 261602774}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -50134,7 +50107,7 @@ RectTransform:
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_Children: []
   m_Father: {fileID: 261602774}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -50924,7 +50897,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -278, y: -20}
-  m_SizeDelta: {x: 100, y: 234.0728}
+  m_SizeDelta: {x: 100, y: 235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1334446514
 Canvas:
@@ -51665,7 +51638,7 @@ RectTransform:
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_Children: []
   m_Father: {fileID: 261602774}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -52835,12 +52808,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 261602774}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -149, y: -48}
-  m_SizeDelta: {x: 104.682, y: 26.7247}
+  m_AnchoredPosition: {x: -110, y: -40}
+  m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653731716
 MonoBehaviour:
@@ -53321,6 +53294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824625, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: nameText
       value: 
@@ -53334,6 +53311,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 665832430}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: tutorialImage
+      value: 
+      objectReference: {fileID: 2098316660}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: playerCollider
       value: 
       objectReference: {fileID: 1318270118}
@@ -53341,6 +53322,139 @@ PrefabInstance:
       propertyPath: characterSprite
       value: 
       objectReference: {fileID: 1334446515}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[0].convoDialogue.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[1].convoDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[9].convoDialogue.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[0].convoDialogue.Array.data[4].dialogue
+      value: If you need to see any part of the tutorial again, just press the (T)utorial
+        key.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[1].convoDialogue.Array.data[1].dialogue
+      value: Use your mouse's scrollwheel, J or L, or 1 - 9 on your keyboard to select
+        one of the mushrooms, and plant it
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[2].dialogue
+      value: Pay attention to the circle at the top of the screen. It tracks stamina.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[3].dialogue
+      value: You can also mouse over it to see exactly how much stamina you have.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[2].dialogue
+      value: Once you do that, go ahead and sleep. You get paid overnight.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[1].dialogue
+      value: Now, plant a mushroom, water it, and till any of the tiles adjacent
+        to it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[2].dialogue
+      value: Go to sleep once so it grows, then go to sleep again. That's all you
+        need to do.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[8].convoDialogue.Array.data[2].dialogue
+      value: Plant them one space apart from each other, and till the tile between
+        them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[8].convoDialogue.Array.data[3].dialogue
+      value: Now just pass two days so they'll spread like that last mushroom.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[9].convoDialogue.Array.data[0].dialogue
+      value: If you check out your field, you'll see that they made a purple mushroom.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[9].convoDialogue.Array.data[1].dialogue
+      value: Certain species cross breed when they spread into each other like that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[9].convoDialogue.Array.data[4].dialogue
+      value: That's all there is to teach you. Hope you have fun.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[0].convoDialogue.Array.data[3].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 99fdfcdb99a7792428363cd3ec6f985b, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[0].convoDialogue.Array.data[4].characterName
+      value: Tutorial Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[1].convoDialogue.Array.data[1].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 3560bb7ad32b3584a8ea6c150b097bdd, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[2].convoDialogue.Array.data[0].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 2cb19c7545e46074f9bf106fcf3c1fd9, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[3].convoDialogue.Array.data[1].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 03e2b2e2c2fc83b419a817315e8eb733, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[4].convoDialogue.Array.data[1].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 488bb6969ed02b3428b94c8428722e01, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[0].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 6191b27a6225e1243ab686c337c754e7, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[1].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: ee956703edce5e24783facfa4303a2cc, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[0].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 50e457742405622438dce9b9d9e58aa7, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[1].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: d4790d379b3116e4cba01180074f6688, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[1].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: d132a0333d1a020469e3810fa389121a, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[2].characterName
+      value: Tutorial Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[2].tutorialImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[8].convoDialogue.Array.data[2].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 55a415020a61c1447a0d819aaeae08ce, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[0].convoDialogue.Array.data[3].characterSprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824629, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -53530,7 +53644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.999999, y: 165}
+  m_AnchoredPosition: {x: -10, y: 165}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1932043081
@@ -53900,6 +54014,103 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094532392}
+  m_CullTransparentMesh: 1
+--- !u!1 &2098316657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2098316658}
+  - component: {fileID: 2098316661}
+  - component: {fileID: 2098316660}
+  - component: {fileID: 2098316659}
+  m_Layer: 5
+  m_Name: Tutorial Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2098316658
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098316657}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 261602774}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -278, y: 140.3}
+  m_SizeDelta: {x: 500, y: 235}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &2098316659
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098316657}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -1
+  m_TargetDisplay: 0
+--- !u!114 &2098316660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098316657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 99fdfcdb99a7792428363cd3ec6f985b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2098316661
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098316657}
   m_CullTransparentMesh: 1
 --- !u!1 &2103923916
 GameObject:
@@ -54368,6 +54579,10 @@ PrefabInstance:
       propertyPath: textBoxImage
       value: 
       objectReference: {fileID: 665832430}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: tutorialImage
+      value: 
+      objectReference: {fileID: 2098316660}
     - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
       propertyPath: playerCollider
       value: 

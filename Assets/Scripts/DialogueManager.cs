@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
 
     //The .sprite property of this is set to the npcdialaogue sprite
     public Image characterSprite;
+    public Image tutorialImage;
 
     //list of strings that will act as keys for the dictionary
     public List<string> conversationIDs = new List<string>();
@@ -97,6 +98,7 @@ public class DialogueManager : MonoBehaviour
         
         //The character's sprite
         public Sprite characterSprite;
+        public Sprite tutorialImage;
 
         //What the character says
         public string dialogue;
@@ -228,6 +230,7 @@ public class DialogueManager : MonoBehaviour
             nameText.text = convoToPlay[i].characterName;
             dialogueText.text = convoToPlay[i].dialogue;
             characterSprite.sprite = convoToPlay[i].characterSprite;
+            tutorialImage.sprite = convoToPlay[i].tutorialImage;
 
             if (convoToPlay[i].characterSprite == null)
             {
@@ -236,6 +239,15 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 characterSprite.gameObject.SetActive(true);
+            }
+
+            if (convoToPlay[i].tutorialImage == null)
+            {
+                tutorialImage.gameObject.SetActive(false);
+            }
+            else
+            {
+                tutorialImage.gameObject.SetActive(true);
             }
 
             //yield return StartCoroutine(WaitForInput(KeyCode.Space));
@@ -250,6 +262,8 @@ public class DialogueManager : MonoBehaviour
         textBoxImage.gameObject.SetActive(false);
 
         characterSprite.gameObject.SetActive(false);
+
+        tutorialImage.gameObject.SetActive(false);
 
         Debug.Log($"For conversation ID {convoID}");
 
