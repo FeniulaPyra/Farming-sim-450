@@ -54604,6 +54604,14 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4226742886614438254, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438254, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438254, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.64
       objectReference: {fileID: 0}
@@ -54652,6 +54660,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4301840419856902466, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301840419856902466, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4301840419856902467, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_RootOrder
       value: 9
