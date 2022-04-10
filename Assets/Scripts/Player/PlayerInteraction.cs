@@ -165,9 +165,10 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (eatingTimer >= 50)
                     {
-                        ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                        playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+						//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+						//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+						playerInventory.RemoveHeldItems(1);
+						SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
 
                         eatingTimer = 0;
 
@@ -260,11 +261,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
+				Item heldItem = playerInventory.HeldItem.Item;
                 if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                 {
                     Debug.Log("Plant One");
-                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+					//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+					//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+					playerInventory.RemoveHeldItems(1);
                 }
                 /*else if (playerInventory.HeldItem.Item.isEdible == true)
                 {
@@ -278,19 +281,19 @@ public class PlayerInteraction : MonoBehaviour
                 //switch on the four main item types, then some default value for everything else
                 if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
                 else if(itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
                 else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
                 else if(itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
             }
             /*else if (playerInventory.HeldItem.Item.isEdible == true)

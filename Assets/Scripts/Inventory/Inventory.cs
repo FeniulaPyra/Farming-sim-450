@@ -370,6 +370,23 @@ public class Inventory
 			}
 		}
 	}
+	
+	public void RemoveHeldItems(int amount)
+	{
+		if(HeldItem == null)
+		{
+			return;
+		}
+		else
+		{
+			HeldItem.RemoveItems(1);
+			if(HeldItem.Amount < 1)
+			{
+				DeleteHeldItemStack();
+			}
+		}
+	}
+
 	/// <summary>
 	/// Returns the inventory as a 2d array of 
 	/// arrays containging item ids and ammounts.
