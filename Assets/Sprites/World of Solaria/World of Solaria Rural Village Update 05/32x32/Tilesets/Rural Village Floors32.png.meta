@@ -1,355 +1,349 @@
 fileFormatVersion: 2
-guid: 89a7f28a8bc8dde4e9322ec78e7f4b21
+guid: 3a37925642ca9c545b10ab135fcca837
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3135182224130709470
-    second: Rural Village Decoration32_0
+      213: -4755129569531819181
+    second: Rural Village Floors32_0
   - first:
-      213: 3196766346706993825
-    second: Rural Village Decoration32_1
+      213: -6817525677021214916
+    second: Rural Village Floors32_1
   - first:
-      213: -3641992139766027153
-    second: Rural Village Decoration32_2
+      213: 3655891545485098797
+    second: Rural Village Floors32_2
   - first:
-      213: 5304090424835824571
-    second: Rural Village Decoration32_3
+      213: 7154187024910608370
+    second: Rural Village Floors32_3
   - first:
-      213: 7420395383609873262
-    second: Rural Village Decoration32_4
+      213: 503478766769807045
+    second: Rural Village Floors32_4
   - first:
-      213: 996175675003227196
-    second: Rural Village Decoration32_5
+      213: 1046350197964089865
+    second: Rural Village Floors32_5
   - first:
-      213: -3875958594034364199
-    second: Rural Village Decoration32_6
+      213: 8058889013753423558
+    second: Rural Village Floors32_6
   - first:
-      213: 5256718167425672804
-    second: Rural Village Decoration32_7
+      213: 3357873772062237173
+    second: Rural Village Floors32_7
   - first:
-      213: -8587199594110833245
-    second: Rural Village Decoration32_8
+      213: 7491725069029459580
+    second: Rural Village Floors32_8
   - first:
-      213: -8413485546774167126
-    second: Rural Village Decoration32_9
+      213: -1013080138613300023
+    second: Rural Village Floors32_9
   - first:
-      213: -7402549828881284263
-    second: Rural Village Decoration32_10
+      213: 5601320847973253078
+    second: Rural Village Floors32_10
   - first:
-      213: -462493785904052417
-    second: Rural Village Decoration32_11
+      213: 6762300755605235827
+    second: Rural Village Floors32_11
   - first:
-      213: -8968210391219125132
-    second: Rural Village Decoration32_12
+      213: -6164139014035028758
+    second: Rural Village Floors32_12
   - first:
-      213: 954522516760914707
-    second: Rural Village Decoration32_13
+      213: -5934536957458522957
+    second: Rural Village Floors32_13
   - first:
-      213: -4143209725630807837
-    second: Rural Village Decoration32_14
+      213: 2893128993799638598
+    second: Rural Village Floors32_14
   - first:
-      213: -4861472161170049021
-    second: Rural Village Decoration32_15
+      213: 1734832455776459395
+    second: Rural Village Floors32_15
   - first:
-      213: -1319512311764525622
-    second: Rural Village Decoration32_16
+      213: 2521714435574082776
+    second: Rural Village Floors32_16
   - first:
-      213: -8412918262970920214
-    second: Rural Village Decoration32_17
+      213: -736318873130666431
+    second: Rural Village Floors32_17
   - first:
-      213: 8218031648487543592
-    second: Rural Village Decoration32_18
+      213: -1154679012605446496
+    second: Rural Village Floors32_18
   - first:
-      213: 70394632366225947
-    second: Rural Village Decoration32_19
+      213: -4194689266799539883
+    second: Rural Village Floors32_19
   - first:
-      213: 5290885856236142394
-    second: Rural Village Decoration32_20
+      213: -6963402022723937173
+    second: Rural Village Floors32_20
   - first:
-      213: -8604342220613208116
-    second: Rural Village Decoration32_21
+      213: 6673809883538169578
+    second: Rural Village Floors32_21
   - first:
-      213: 7781063729962434771
-    second: Rural Village Decoration32_22
+      213: 3130689540939936724
+    second: Rural Village Floors32_22
   - first:
-      213: -2583484337617420625
-    second: Rural Village Decoration32_23
+      213: -7989086749147305220
+    second: Rural Village Floors32_23
   - first:
-      213: -7866478576912753012
-    second: Rural Village Decoration32_24
+      213: -8322488785244608985
+    second: Rural Village Floors32_24
   - first:
-      213: -1171501431650375092
-    second: Rural Village Decoration32_25
+      213: -6982689938208979430
+    second: Rural Village Floors32_25
   - first:
-      213: -7533561845247150776
-    second: Rural Village Decoration32_26
+      213: 9075565705943633396
+    second: Rural Village Floors32_26
   - first:
-      213: -5925090390918475496
-    second: Rural Village Decoration32_27
+      213: 8430803379708103147
+    second: Rural Village Floors32_27
   - first:
-      213: -3197775950056507131
-    second: Rural Village Decoration32_28
+      213: -7407709284576480899
+    second: Rural Village Floors32_28
   - first:
-      213: 464226191916938691
-    second: Rural Village Decoration32_29
+      213: -1831998097565767076
+    second: Rural Village Floors32_29
   - first:
-      213: 4105501269505612969
-    second: Rural Village Decoration32_30
+      213: 187857078220642120
+    second: Rural Village Floors32_30
   - first:
-      213: -8892078315119376949
-    second: Rural Village Decoration32_31
+      213: 6568827032625438426
+    second: Rural Village Floors32_31
   - first:
-      213: -2846447260897346588
-    second: Rural Village Decoration32_32
+      213: -5283943669175532024
+    second: Rural Village Floors32_32
   - first:
-      213: -2505759198281642514
-    second: Rural Village Decoration32_33
+      213: 5531796056238807748
+    second: Rural Village Floors32_33
   - first:
-      213: 1925033013891370359
-    second: Rural Village Decoration32_34
+      213: 6540432141067654262
+    second: Rural Village Floors32_34
   - first:
-      213: 7672240841353872269
-    second: Rural Village Decoration32_35
+      213: 7597695336234250515
+    second: Rural Village Floors32_35
   - first:
-      213: 6252510132328796663
-    second: Rural Village Decoration32_36
+      213: -2957391080397379010
+    second: Rural Village Floors32_36
   - first:
-      213: -6966550512384705944
-    second: Rural Village Decoration32_37
+      213: -744158033060171356
+    second: Rural Village Floors32_37
   - first:
-      213: -4105258075457210873
-    second: Rural Village Decoration32_38
+      213: 8040617324984383649
+    second: Rural Village Floors32_38
   - first:
-      213: 676666323463914383
-    second: Rural Village Decoration32_39
+      213: 702436422943005102
+    second: Rural Village Floors32_39
   - first:
-      213: 4510617061367747711
-    second: Rural Village Decoration32_40
+      213: 5877090105527953901
+    second: Rural Village Floors32_40
   - first:
-      213: 5352074391094953999
-    second: Rural Village Decoration32_41
+      213: 282997328692110273
+    second: Rural Village Floors32_41
   - first:
-      213: 3971045289676283919
-    second: Rural Village Decoration32_42
+      213: 6059183383197434181
+    second: Rural Village Floors32_42
   - first:
-      213: 2038977254893207724
-    second: Rural Village Decoration32_43
+      213: 5826398895247301936
+    second: Rural Village Floors32_43
   - first:
-      213: 5377562371032224401
-    second: Rural Village Decoration32_44
+      213: -1295467108844242740
+    second: Rural Village Floors32_44
   - first:
-      213: 1504020595593303676
-    second: Rural Village Decoration32_45
+      213: 616707647989367897
+    second: Rural Village Floors32_45
   - first:
-      213: 5603100583325620318
-    second: Rural Village Decoration32_46
+      213: 2026291510779105057
+    second: Rural Village Floors32_46
   - first:
-      213: -8393548642425452905
-    second: Rural Village Decoration32_47
+      213: -9146144944568908341
+    second: Rural Village Floors32_47
   - first:
-      213: 1895524700478806397
-    second: Rural Village Decoration32_48
+      213: -5722402276744519766
+    second: Rural Village Floors32_48
   - first:
-      213: 2909366837158092781
-    second: Rural Village Decoration32_49
+      213: -3601530191730510107
+    second: Rural Village Floors32_49
   - first:
-      213: -7761219410168715456
-    second: Rural Village Decoration32_50
+      213: -3741551701996961628
+    second: Rural Village Floors32_50
   - first:
-      213: -1241869030739036303
-    second: Rural Village Decoration32_51
+      213: -4200968145794349073
+    second: Rural Village Floors32_51
   - first:
-      213: -1217248745219946983
-    second: Rural Village Decoration32_52
+      213: -5443851059182499174
+    second: Rural Village Floors32_52
   - first:
-      213: -8731304093063720085
-    second: Rural Village Decoration32_53
+      213: -111636752396483376
+    second: Rural Village Floors32_53
   - first:
-      213: -3367927656240467938
-    second: Rural Village Decoration32_54
+      213: -1666380914700420409
+    second: Rural Village Floors32_54
   - first:
-      213: 7088411151273951334
-    second: Rural Village Decoration32_55
+      213: -1783517622652310570
+    second: Rural Village Floors32_55
   - first:
-      213: -5890718264492839304
-    second: Rural Village Decoration32_56
+      213: 548289742441869959
+    second: Rural Village Floors32_56
   - first:
-      213: -7679083388311930822
-    second: Rural Village Decoration32_57
+      213: 1898527758612444100
+    second: Rural Village Floors32_57
   - first:
-      213: -761866347036683019
-    second: Rural Village Decoration32_58
+      213: -928480155976745640
+    second: Rural Village Floors32_58
   - first:
-      213: 7615277761929357129
-    second: Rural Village Decoration32_59
+      213: -8249911474799738779
+    second: Rural Village Floors32_59
   - first:
-      213: 3411345080653854999
-    second: Rural Village Decoration32_60
+      213: 6592660229205500320
+    second: Rural Village Floors32_60
   - first:
-      213: 4875734933961138281
-    second: Rural Village Decoration32_61
+      213: 2379291328947706767
+    second: Rural Village Floors32_61
   - first:
-      213: -8357050108914990685
-    second: Rural Village Decoration32_62
+      213: -87054786096748349
+    second: Rural Village Floors32_62
   - first:
-      213: 4519634487283619775
-    second: Rural Village Decoration32_63
+      213: -5129899452997603951
+    second: Rural Village Floors32_63
   - first:
-      213: -434580070991196619
-    second: Rural Village Decoration32_64
+      213: 8303767012871587673
+    second: Rural Village Floors32_64
   - first:
-      213: 962563536641522709
-    second: Rural Village Decoration32_65
+      213: 7274263501950579794
+    second: Rural Village Floors32_65
   - first:
-      213: -600414172262576213
-    second: Rural Village Decoration32_66
+      213: 6254141190345321434
+    second: Rural Village Floors32_66
   - first:
-      213: -6851425449731848453
-    second: Rural Village Decoration32_67
+      213: -7138826473711977096
+    second: Rural Village Floors32_67
   - first:
-      213: -5558831167409002942
-    second: Rural Village Decoration32_68
+      213: -5444445149406427490
+    second: Rural Village Floors32_68
   - first:
-      213: 4340917115610283
-    second: Rural Village Decoration32_69
+      213: 579887957410358677
+    second: Rural Village Floors32_69
   - first:
-      213: -8950437643911361187
-    second: Rural Village Decoration32_70
+      213: -2289013677962156139
+    second: Rural Village Floors32_70
   - first:
-      213: 2963842105015315830
-    second: Rural Village Decoration32_71
+      213: 7714542105201821075
+    second: Rural Village Floors32_71
   - first:
-      213: 7535407024100158040
-    second: Rural Village Decoration32_72
+      213: -4709531990179876209
+    second: Rural Village Floors32_72
   - first:
-      213: -7863125558132389324
-    second: Rural Village Decoration32_73
+      213: 4556938156731910460
+    second: Rural Village Floors32_73
   - first:
-      213: -1058727967920238516
-    second: Rural Village Decoration32_74
+      213: -5415901036873366449
+    second: Rural Village Floors32_74
   - first:
-      213: 4897446134654677359
-    second: Rural Village Decoration32_75
+      213: -4170419871437747315
+    second: Rural Village Floors32_75
   - first:
-      213: -7025979329611544952
-    second: Rural Village Decoration32_76
+      213: 6699247768104559618
+    second: Rural Village Floors32_76
   - first:
-      213: -2564376775681224831
-    second: Rural Village Decoration32_77
+      213: -2890539944790637701
+    second: Rural Village Floors32_77
   - first:
-      213: -7282229100315713966
-    second: Rural Village Decoration32_78
+      213: 6320908454211504805
+    second: Rural Village Floors32_78
   - first:
-      213: 293250266571801591
-    second: Rural Village Decoration32_79
+      213: -5046633872347880412
+    second: Rural Village Floors32_79
   - first:
-      213: -657440079325105005
-    second: Rural Village Decoration32_80
+      213: 8412238051451344115
+    second: Rural Village Floors32_80
   - first:
-      213: -5988458289188241474
-    second: Rural Village Decoration32_81
+      213: -6983052985850867727
+    second: Rural Village Floors32_81
   - first:
-      213: -2265209302660867732
-    second: Rural Village Decoration32_82
+      213: -7684610727089721679
+    second: Rural Village Floors32_82
   - first:
-      213: 8907343930107251312
-    second: Rural Village Decoration32_83
+      213: 1820254961339961734
+    second: Rural Village Floors32_83
   - first:
-      213: -5993224471183306262
-    second: Rural Village Decoration32_84
+      213: 1700109751191726088
+    second: Rural Village Floors32_84
   - first:
-      213: 6293859700811226956
-    second: Rural Village Decoration32_85
+      213: -2560543600466352670
+    second: Rural Village Floors32_85
   - first:
-      213: -6522188083633709342
-    second: Rural Village Decoration32_86
+      213: 3327389448011100891
+    second: Rural Village Floors32_86
   - first:
-      213: -2276694811856501639
-    second: Rural Village Decoration32_87
+      213: 6747219836702721607
+    second: Rural Village Floors32_87
   - first:
-      213: -411271765221096605
-    second: Rural Village Decoration32_88
+      213: -7224413196970874703
+    second: Rural Village Floors32_88
   - first:
-      213: 510017251806332522
-    second: Rural Village Decoration32_89
+      213: -3452167283911808698
+    second: Rural Village Floors32_89
   - first:
-      213: 8584445913473791985
-    second: Rural Village Decoration32_90
+      213: 4221331701958070505
+    second: Rural Village Floors32_90
   - first:
-      213: -6853010538857121878
-    second: Rural Village Decoration32_91
+      213: -6754481055459878859
+    second: Rural Village Floors32_91
   - first:
-      213: -4991201245222720638
-    second: Rural Village Decoration32_92
+      213: 7188904949781292887
+    second: Rural Village Floors32_92
   - first:
-      213: -183330978384996412
-    second: Rural Village Decoration32_93
+      213: -4278580241789567709
+    second: Rural Village Floors32_93
   - first:
-      213: 4213762040898456509
-    second: Rural Village Decoration32_94
+      213: 3606644665546954303
+    second: Rural Village Floors32_94
   - first:
-      213: -4615816646036930882
-    second: Rural Village Decoration32_95
+      213: 2802830528419212996
+    second: Rural Village Floors32_95
   - first:
-      213: -4529300565929090022
-    second: Rural Village Decoration32_96
+      213: 3636756511827268137
+    second: Rural Village Floors32_96
   - first:
-      213: 2414347022290714813
-    second: Rural Village Decoration32_97
+      213: 7777581439141319927
+    second: Rural Village Floors32_97
   - first:
-      213: -7714411569537032579
-    second: Rural Village Decoration32_98
+      213: 8039825496925621868
+    second: Rural Village Floors32_98
   - first:
-      213: -432540634458446227
-    second: Rural Village Decoration32_99
+      213: -5685717349991387219
+    second: Rural Village Floors32_99
   - first:
-      213: -8390273794083606917
-    second: Rural Village Decoration32_100
+      213: -5918018572973847699
+    second: Rural Village Floors32_100
   - first:
-      213: -7881026124726156229
-    second: Rural Village Decoration32_101
+      213: 7002802312651220247
+    second: Rural Village Floors32_101
   - first:
-      213: 4198621120723147634
-    second: Rural Village Decoration32_102
+      213: 2406032454737381196
+    second: Rural Village Floors32_102
   - first:
-      213: 6349760953260234199
-    second: Rural Village Decoration32_103
+      213: 7577527074833498441
+    second: Rural Village Floors32_103
   - first:
-      213: 7724039809523178788
-    second: Rural Village Decoration32_104
+      213: 419769005143037895
+    second: Rural Village Floors32_104
   - first:
-      213: -3416324625998857828
-    second: Rural Village Decoration32_105
+      213: 573675373444768800
+    second: Rural Village Floors32_105
   - first:
-      213: 4387711959743411928
-    second: Rural Village Decoration32_106
+      213: -3339682753149958488
+    second: Rural Village Floors32_106
   - first:
-      213: -6000726865375134655
-    second: Rural Village Decoration32_107
+      213: 4463235433038347008
+    second: Rural Village Floors32_107
   - first:
-      213: 3461693942357036693
-    second: Rural Village Decoration32_108
+      213: 4082845018939129104
+    second: Rural Village Floors32_108
   - first:
-      213: -1588762465430305218
-    second: Rural Village Decoration32_109
+      213: 2866519766477916594
+    second: Rural Village Floors32_109
   - first:
-      213: -7323398383557381335
-    second: Rural Village Decoration32_110
+      213: 1915469046124917535
+    second: Rural Village Floors32_110
   - first:
-      213: -5168307920844840710
-    second: Rural Village Decoration32_111
+      213: 4451123768518967840
+    second: Rural Village Floors32_111
   - first:
-      213: -6578568971768447997
-    second: Rural Village Decoration32_112
+      213: -1930927815590474514
+    second: Rural Village Floors32_112
   - first:
-      213: 5878149331306079811
-    second: Rural Village Decoration32_113
-  - first:
-      213: -5482323617879875808
-    second: Rural Village Decoration32_114
-  - first:
-      213: 7147335103155047815
-    second: Rural Village Decoration32_115
+      213: -656387975543549763
+    second: Rural Village Floors32_113
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -394,7 +388,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -439,7 +433,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rural Village Decoration32_0
+      name: Rural Village Floors32_0
       rect:
         serializedVersion: 2
         x: 0
@@ -453,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 228e198c0689d74d0800000000000000
-      internalID: -3135182224130709470
+      spriteID: 35b891ba9d2620eb0800000000000000
+      internalID: -4755129569531819181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_1
+      name: Rural Village Floors32_1
       rect:
         serializedVersion: 2
         x: 32
@@ -474,14 +468,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2c46d1e023d5c20800000000000000
-      internalID: 3196766346706993825
+      spriteID: c37cb0e74884361a0800000000000000
+      internalID: -6817525677021214916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_2
+      name: Rural Village Floors32_2
       rect:
         serializedVersion: 2
         x: 64
@@ -495,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6c2b7ae17b057dc0800000000000000
-      internalID: -3641992139766027153
+      spriteID: d2f3ef9adf55cb230800000000000000
+      internalID: 3655891545485098797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_3
+      name: Rural Village Floors32_3
       rect:
         serializedVersion: 2
         x: 96
@@ -516,14 +510,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbbd3ec932aeb9940800000000000000
-      internalID: 5304090424835824571
+      spriteID: 2f76184d137c84360800000000000000
+      internalID: 7154187024910608370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_4
+      name: Rural Village Floors32_4
       rect:
         serializedVersion: 2
         x: 128
@@ -537,14 +531,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e63d305594a8af660800000000000000
-      internalID: 7420395383609873262
+      spriteID: 5ce14455547bcf600800000000000000
+      internalID: 503478766769807045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_5
+      name: Rural Village Floors32_5
       rect:
         serializedVersion: 2
         x: 160
@@ -558,14 +552,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3cc37a9f7023dd00800000000000000
-      internalID: 996175675003227196
+      spriteID: 90a2f4416f1658e00800000000000000
+      internalID: 1046350197964089865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_6
+      name: Rural Village Floors32_6
       rect:
         serializedVersion: 2
         x: 192
@@ -579,14 +573,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d09576c134d53ac0800000000000000
-      internalID: -3875958594034364199
+      spriteID: 6c622153cdce6df60800000000000000
+      internalID: 8058889013753423558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_7
+      name: Rural Village Floors32_7
       rect:
         serializedVersion: 2
         x: 224
@@ -600,14 +594,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 466efbd625d93f840800000000000000
-      internalID: 5256718167425672804
+      spriteID: 5f1ee58a760999e20800000000000000
+      internalID: 3357873772062237173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_8
+      name: Rural Village Floors32_8
       rect:
         serializedVersion: 2
         x: 256
@@ -621,14 +615,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ad25a1577324d880800000000000000
-      internalID: -8587199594110833245
+      spriteID: c76c366e144f7f760800000000000000
+      internalID: 7491725069029459580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_9
+      name: Rural Village Floors32_9
       rect:
         serializedVersion: 2
         x: 288
@@ -642,14 +636,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa184a5c87b4d3b80800000000000000
-      internalID: -8413485546774167126
+      spriteID: 9c463f04bf0d0f1f0800000000000000
+      internalID: -1013080138613300023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_10
+      name: Rural Village Floors32_10
       rect:
         serializedVersion: 2
         x: 320
@@ -663,14 +657,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9530769a62cd44990800000000000000
-      internalID: -7402549828881284263
+      spriteID: 6df7f6852a3ebbd40800000000000000
+      internalID: 5601320847973253078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_11
+      name: Rural Village Floors32_11
       rect:
         serializedVersion: 2
         x: 352
@@ -684,14 +678,182 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f370d542a54e499f0800000000000000
-      internalID: -462493785904052417
+      spriteID: 378a43285b488dd50800000000000000
+      internalID: 6762300755605235827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_12
+      name: Rural Village Floors32_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae4c05ac934947aa0800000000000000
+      internalID: -6164139014035028758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bcd148641a44ada0800000000000000
+      internalID: -5934536957458522957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e8fcccd75762820800000000000000
+      internalID: 2893128993799638598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38adf5f4dec531810800000000000000
+      internalID: 1734832455776459395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc2e552bedeef220800000000000000
+      internalID: 2521714435574082776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14671a5d2e118c5f0800000000000000
+      internalID: -736318873130666431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6bd084e81c9ffe0800000000000000
+      internalID: -1154679012605446496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5590545165879c5c0800000000000000
+      internalID: -4194689266799539883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_20
       rect:
         serializedVersion: 2
         x: 0
@@ -705,14 +867,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 474ca603a248a8380800000000000000
-      internalID: -8968210391219125132
+      spriteID: b6c9d4701c60d5f90800000000000000
+      internalID: -6963402022723937173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_13
+      name: Rural Village Floors32_21
       rect:
         serializedVersion: 2
         x: 32
@@ -726,14 +888,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31b65a5fb252f3d00800000000000000
-      internalID: 954522516760914707
+      spriteID: aee98cecab22e9c50800000000000000
+      internalID: 6673809883538169578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_14
+      name: Rural Village Floors32_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d371c5ec81727b20800000000000000
+      internalID: 3130689540939936724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_23
       rect:
         serializedVersion: 2
         x: 96
@@ -747,14 +930,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e005d9c4bc5086c0800000000000000
-      internalID: -4143209725630807837
+      spriteID: cfa6b4dfdef012190800000000000000
+      internalID: -7989086749147305220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_15
+      name: Rural Village Floors32_24
       rect:
         serializedVersion: 2
         x: 128
@@ -768,14 +951,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 308320c93d4988cb0800000000000000
-      internalID: -4861472161170049021
+      spriteID: 726a2545b84908c80800000000000000
+      internalID: -8322488785244608985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_16
+      name: Rural Village Floors32_25
       rect:
         serializedVersion: 2
         x: 160
@@ -789,14 +972,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acd55842b8620bde0800000000000000
-      internalID: -1319512311764525622
+      spriteID: a160c504f70881f90800000000000000
+      internalID: -6982689938208979430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_17
+      name: Rural Village Floors32_26
       rect:
         serializedVersion: 2
         x: 192
@@ -810,14 +993,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae2d833d96f4f3b80800000000000000
-      internalID: -8412918262970920214
+      spriteID: 4fdcc76dce2e2fd70800000000000000
+      internalID: 9075565705943633396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_18
+      name: Rural Village Floors32_27
       rect:
         serializedVersion: 2
         x: 224
@@ -831,14 +1014,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82394094e305c0270800000000000000
-      internalID: 8218031648487543592
+      spriteID: be90aaa610b300570800000000000000
+      internalID: 8430803379708103147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_19
+      name: Rural Village Floors32_28
       rect:
         serializedVersion: 2
         x: 256
@@ -852,14 +1035,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1a78409b871af000800000000000000
-      internalID: 70394632366225947
+      spriteID: d71b47547a7823990800000000000000
+      internalID: -7407709284576480899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_20
+      name: Rural Village Floors32_29
       rect:
         serializedVersion: 2
         x: 288
@@ -873,17 +1056,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ff71867a00d6940800000000000000
-      internalID: 5290885856236142394
+      spriteID: c5aa665cf6f6396e0800000000000000
+      internalID: -1831998097565767076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_21
+      name: Rural Village Floors32_30
       rect:
         serializedVersion: 2
-        x: 320
+        x: 448
         y: 320
         width: 32
         height: 32
@@ -894,17 +1077,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc7347e865c379880800000000000000
-      internalID: -8604342220613208116
+      spriteID: 84752ef64076b9200800000000000000
+      internalID: 187857078220642120
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_22
+      name: Rural Village Floors32_31
       rect:
         serializedVersion: 2
-        x: 352
+        x: 512
         y: 320
         width: 32
         height: 32
@@ -915,14 +1098,77 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d0461f8c34ebfb60800000000000000
-      internalID: 7781063729962434771
+      spriteID: ade5f9e0269292b50800000000000000
+      internalID: 6568827032625438426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_23
+      name: Rural Village Floors32_32
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8064e997a39aba6b0800000000000000
+      internalID: -5283943669175532024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_33
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ca55065433e4cc40800000000000000
+      internalID: 5531796056238807748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_34
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67492ed216844ca50800000000000000
+      internalID: 6540432141067654262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_35
       rect:
         serializedVersion: 2
         x: 0
@@ -936,14 +1182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fae378dceae952cd0800000000000000
-      internalID: -2583484337617420625
+      spriteID: 31172eb67af607960800000000000000
+      internalID: 7597695336234250515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_24
+      name: Rural Village Floors32_36
       rect:
         serializedVersion: 2
         x: 32
@@ -957,14 +1203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8e15e5a967a4d290800000000000000
-      internalID: -7866478576912753012
+      spriteID: e3a61073b7c35f6d0800000000000000
+      internalID: -2957391080397379010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_25
+      name: Rural Village Floors32_37
       rect:
         serializedVersion: 2
         x: 64
@@ -978,14 +1224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4a2e90a7adfdbfe0800000000000000
-      internalID: -1171501431650375092
+      spriteID: 4a1f1be26383ca5f0800000000000000
+      internalID: -744158033060171356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_26
+      name: Rural Village Floors32_38
       rect:
         serializedVersion: 2
         x: 96
@@ -999,14 +1245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8457b909a69637790800000000000000
-      internalID: -7533561845247150776
+      spriteID: 1a8bb862bd2069f60800000000000000
+      internalID: 8040617324984383649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_27
+      name: Rural Village Floors32_39
       rect:
         serializedVersion: 2
         x: 128
@@ -1020,14 +1266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81159339ea9d5cda0800000000000000
-      internalID: -5925090390918475496
+      spriteID: ea950da743e8fb900800000000000000
+      internalID: 702436422943005102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_28
+      name: Rural Village Floors32_40
       rect:
         serializedVersion: 2
         x: 160
@@ -1041,14 +1287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 509389947b73f93d0800000000000000
-      internalID: -3197775950056507131
+      spriteID: de9e4f4105e9f8150800000000000000
+      internalID: 5877090105527953901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_29
+      name: Rural Village Floors32_41
       rect:
         serializedVersion: 2
         x: 192
@@ -1062,14 +1308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c534a01343417600800000000000000
-      internalID: 464226191916938691
+      spriteID: 1c3e31132986de300800000000000000
+      internalID: 282997328692110273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_30
+      name: Rural Village Floors32_42
       rect:
         serializedVersion: 2
         x: 224
@@ -1083,14 +1329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ac1cc917aba9f830800000000000000
-      internalID: 4105501269505612969
+      spriteID: 541ce602f2b861450800000000000000
+      internalID: 6059183383197434181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_31
+      name: Rural Village Floors32_43
       rect:
         serializedVersion: 2
         x: 256
@@ -1104,14 +1350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc50b5872edf89480800000000000000
-      internalID: -8892078315119376949
+      spriteID: 03d91f6fce68bd050800000000000000
+      internalID: 5826398895247301936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_32
+      name: Rural Village Floors32_44
       rect:
         serializedVersion: 2
         x: 288
@@ -1125,17 +1371,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4eb745e1c436f78d0800000000000000
-      internalID: -2846447260897346588
+      spriteID: cc8f2273783950ee0800000000000000
+      internalID: -1295467108844242740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_33
+      name: Rural Village Floors32_45
       rect:
         serializedVersion: 2
-        x: 320
+        x: 448
         y: 288
         width: 32
         height: 32
@@ -1146,17 +1392,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eed41c50941c93dd0800000000000000
-      internalID: -2505759198281642514
+      spriteID: 9544ca0a65cfe8800800000000000000
+      internalID: 616707647989367897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_34
+      name: Rural Village Floors32_46
       rect:
         serializedVersion: 2
-        x: 352
+        x: 480
         y: 288
         width: 32
         height: 32
@@ -1167,14 +1413,119 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d05eda35717ba10800000000000000
-      internalID: 1925033013891370359
+      spriteID: 12fc06fa465de1c10800000000000000
+      internalID: 2026291510779105057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_35
+      name: Rural Village Floors32_47
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc54cba91ad521180800000000000000
+      internalID: -9146144944568908341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_48
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaf91c8a271f590b0800000000000000
+      internalID: -5722402276744519766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_49
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e6fe025f5bc40ec0800000000000000
+      internalID: -3601530191730510107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_50
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a086b5fc86531cc0800000000000000
+      internalID: -3741551701996961628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe74235aab923b5c0800000000000000
+      internalID: -4200968145794349073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_52
       rect:
         serializedVersion: 2
         x: 32
@@ -1188,14 +1539,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d83442c5566497a60800000000000000
-      internalID: 7672240841353872269
+      spriteID: a9a0b4fed4e8374b0800000000000000
+      internalID: -5443851059182499174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_36
+      name: Rural Village Floors32_53
       rect:
         serializedVersion: 2
         x: 64
@@ -1209,14 +1560,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f11dff86d065c650800000000000000
-      internalID: 6252510132328796663
+      spriteID: 0d4878517f2637ef0800000000000000
+      internalID: -111636752396483376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_37
+      name: Rural Village Floors32_54
       rect:
         serializedVersion: 2
         x: 96
@@ -1230,14 +1581,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86a7e772837d15f90800000000000000
-      internalID: -6966550512384705944
+      spriteID: 7ca7ace0363dfd8e0800000000000000
+      internalID: -1666380914700420409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_38
+      name: Rural Village Floors32_55
       rect:
         serializedVersion: 2
         x: 128
@@ -1251,14 +1602,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 706b11de7813707c0800000000000000
-      internalID: -4105258075457210873
+      spriteID: 6dbe823fb2caf37e0800000000000000
+      internalID: -1783517622652310570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_39
+      name: Rural Village Floors32_56
       rect:
         serializedVersion: 2
         x: 160
@@ -1272,14 +1623,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f834981af60046900800000000000000
-      internalID: 676666323463914383
+      spriteID: 782fc34ad9aeb9700800000000000000
+      internalID: 548289742441869959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_40
+      name: Rural Village Floors32_57
       rect:
         serializedVersion: 2
         x: 192
@@ -1293,14 +1644,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7414aca15ee89e30800000000000000
-      internalID: 4510617061367747711
+      spriteID: 4c3305800fce85a10800000000000000
+      internalID: 1898527758612444100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_41
+      name: Rural Village Floors32_58
       rect:
         serializedVersion: 2
         x: 224
@@ -1314,14 +1665,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f080eac5d43664a40800000000000000
-      internalID: 5352074391094953999
+      spriteID: 85db10aa7306d13f0800000000000000
+      internalID: -928480155976745640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_42
+      name: Rural Village Floors32_59
       rect:
         serializedVersion: 2
         x: 256
@@ -1335,14 +1686,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f00a426c6acfb1730800000000000000
-      internalID: 3971045289676283919
+      spriteID: 560842c393d628d80800000000000000
+      internalID: -8249911474799738779
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_43
+      name: Rural Village Floors32_60
       rect:
         serializedVersion: 2
         x: 288
@@ -1356,56 +1707,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca0c207a207eb4c10800000000000000
-      internalID: 2038977254893207724
+      spriteID: 0a1a3ae8c85dd7b50800000000000000
+      internalID: 6592660229205500320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_44
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19212e22c70f0aa40800000000000000
-      internalID: 5377562371032224401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_45
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 256
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c76d53753ca5fd410800000000000000
-      internalID: 1504020595593303676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_46
+      name: Rural Village Floors32_61
       rect:
         serializedVersion: 2
         x: 0
@@ -1419,14 +1728,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5858e54b4632cd40800000000000000
-      internalID: 5603100583325620318
+      spriteID: f8b581f8bd0f40120800000000000000
+      internalID: 2379291328947706767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_47
+      name: Rural Village Floors32_62
       rect:
         serializedVersion: 2
         x: 32
@@ -1440,98 +1749,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 796c44b0bff148b80800000000000000
-      internalID: -8393548642425452905
+      spriteID: 3c8a4be1228bacef0800000000000000
+      internalID: -87054786096748349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_48
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7994031ca14e4a10800000000000000
-      internalID: 1895524700478806397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_49
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: def1c1259b5206820800000000000000
-      internalID: 2909366837158092781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_50
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 047e601311c9a4490800000000000000
-      internalID: -7761219410168715456
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_51
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 177bd3d32bef3cee0800000000000000
-      internalID: -1241869030739036303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_52
+      name: Rural Village Floors32_63
       rect:
         serializedVersion: 2
         x: 192
@@ -1545,14 +1770,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91600e927b67b1fe0800000000000000
-      internalID: -1217248745219946983
+      spriteID: 19d6b9a70afeec8b0800000000000000
+      internalID: -5129899452997603951
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_53
+      name: Rural Village Floors32_64
       rect:
         serializedVersion: 2
         x: 224
@@ -1566,14 +1791,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b63d503103d24d680800000000000000
-      internalID: -8731304093063720085
+      spriteID: 95741db5a18ec3370800000000000000
+      internalID: 8303767012871587673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_54
+      name: Rural Village Floors32_65
       rect:
         serializedVersion: 2
         x: 256
@@ -1587,14 +1812,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e10b29404a7b241d0800000000000000
-      internalID: -3367927656240467938
+      spriteID: 2547a544d1063f460800000000000000
+      internalID: 7274263501950579794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_55
+      name: Rural Village Floors32_66
       rect:
         serializedVersion: 2
         x: 288
@@ -1608,56 +1833,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6600a95d2681f5260800000000000000
-      internalID: 7088411151273951334
+      spriteID: adbeba9d64c2bc650800000000000000
+      internalID: 6254141190345321434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_56
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87eaff4e2f6ff3ea0800000000000000
-      internalID: -5890718264492839304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_57
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 224
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a387017085a6e6590800000000000000
-      internalID: -7679083388311930822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_58
+      name: Rural Village Floors32_67
       rect:
         serializedVersion: 2
         x: 0
@@ -1671,14 +1854,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f4dd8a089e4d65f0800000000000000
-      internalID: -761866347036683019
+      spriteID: 87d3e31352bcdec90800000000000000
+      internalID: -7138826473711977096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_59
+      name: Rural Village Floors32_68
       rect:
         serializedVersion: 2
         x: 32
@@ -1692,98 +1875,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9472bb9e6c6eea960800000000000000
-      internalID: 7615277761929357129
+      spriteID: e9608868bf17174b0800000000000000
+      internalID: -5444445149406427490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_60
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71936aad648875f20800000000000000
-      internalID: 3411345080653854999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_61
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96067b5f6171aa340800000000000000
-      internalID: 4875734933961138281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_62
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a18bf7143bc50c80800000000000000
-      internalID: -8357050108914990685
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_63
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb71521ce97f8be30800000000000000
-      internalID: 4519634487283619775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_64
+      name: Rural Village Floors32_69
       rect:
         serializedVersion: 2
         x: 192
@@ -1797,14 +1896,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53e0b1a5abf08f9f0800000000000000
-      internalID: -434580070991196619
+      spriteID: 595a8fe560d2c0800800000000000000
+      internalID: 579887957410358677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_65
+      name: Rural Village Floors32_70
       rect:
         serializedVersion: 2
         x: 224
@@ -1818,14 +1917,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51cf24bcf66bb5d00800000000000000
-      internalID: 962563536641522709
+      spriteID: 5972e07003acb30e0800000000000000
+      internalID: -2289013677962156139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_66
+      name: Rural Village Floors32_71
       rect:
         serializedVersion: 2
         x: 256
@@ -1839,14 +1938,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bafcd20dd76eaa7f0800000000000000
-      internalID: -600414172262576213
+      spriteID: 3954959db2f8f0b60800000000000000
+      internalID: 7714542105201821075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_67
+      name: Rural Village Floors32_72
       rect:
         serializedVersion: 2
         x: 288
@@ -1860,56 +1959,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf689a79ad8dae0a0800000000000000
-      internalID: -6851425449731848453
+      spriteID: f827dfa6b9164aeb0800000000000000
+      internalID: -4709531990179876209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_68
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 246673451801bd2b0800000000000000
-      internalID: -5558831167409002942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_69
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba4eca68a0c6f0000800000000000000
-      internalID: 4340917115610283
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_70
+      name: Rural Village Floors32_73
       rect:
         serializedVersion: 2
         x: 0
@@ -1923,14 +1980,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5d01626268a9c380800000000000000
-      internalID: -8950437643911361187
+      spriteID: c39cd6f1c1f7d3f30800000000000000
+      internalID: 4556938156731910460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_71
+      name: Rural Village Floors32_74
       rect:
         serializedVersion: 2
         x: 32
@@ -1944,14 +2001,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67da8cff0bea12920800000000000000
-      internalID: 2963842105015315830
+      spriteID: f444e7e93bad6d4b0800000000000000
+      internalID: -5415901036873366449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_72
+      name: Rural Village Floors32_75
       rect:
         serializedVersion: 2
         x: 64
@@ -1965,77 +2022,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85a297d93c4239860800000000000000
-      internalID: 7535407024100158040
+      spriteID: d8b09b60931bf16c0800000000000000
+      internalID: -4170419871437747315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_73
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43a493b27f090e290800000000000000
-      internalID: -7863125558132389324
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_74
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c40d756c584ae41f0800000000000000
-      internalID: -1058727967920238516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_75
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f61b3bacf4937f340800000000000000
-      internalID: 4897446134654677359
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_76
+      name: Rural Village Floors32_76
       rect:
         serializedVersion: 2
         x: 192
@@ -2049,14 +2043,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88644436605be7e90800000000000000
-      internalID: -7025979329611544952
+      spriteID: 2046338d95288fc50800000000000000
+      internalID: 6699247768104559618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_77
+      name: Rural Village Floors32_77
       rect:
         serializedVersion: 2
         x: 224
@@ -2070,14 +2064,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18f424fb8e0896cd0800000000000000
-      internalID: -2564376775681224831
+      spriteID: b734da52c3db2e7d0800000000000000
+      internalID: -2890539944790637701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_78
+      name: Rural Village Floors32_78
       rect:
         serializedVersion: 2
         x: 256
@@ -2091,14 +2085,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25e5ba6573350fa90800000000000000
-      internalID: -7282229100315713966
+      spriteID: 5aa4a0fdfb068b750800000000000000
+      internalID: 6320908454211504805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_79
+      name: Rural Village Floors32_79
       rect:
         serializedVersion: 2
         x: 288
@@ -2112,56 +2106,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f30d415095d11400800000000000000
-      internalID: 293250266571801591
+      spriteID: 42420473b31c6f9b0800000000000000
+      internalID: -5046633872347880412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_80
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 394f8ba2bbd40e6f0800000000000000
-      internalID: -657440079325105005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_81
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebff0b80ae8b4eca0800000000000000
-      internalID: -5988458289188241474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_82
+      name: Rural Village Floors32_80
       rect:
         serializedVersion: 2
         x: 0
@@ -2175,14 +2127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c691dfc042c5090e0800000000000000
-      internalID: -2265209302660867732
+      spriteID: 3f418c610f54eb470800000000000000
+      internalID: 8412238051451344115
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_83
+      name: Rural Village Floors32_81
       rect:
         serializedVersion: 2
         x: 32
@@ -2196,14 +2148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07a464e7c1e3d9b70800000000000000
-      internalID: 8907343930107251312
+      spriteID: 1ffc0a2ae46371f90800000000000000
+      internalID: -6983052985850867727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_84
+      name: Rural Village Floors32_82
       rect:
         serializedVersion: 2
         x: 64
@@ -2217,56 +2169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae1d0ffc81ac3dca0800000000000000
-      internalID: -5993224471183306262
+      spriteID: 1be29ae2247ca5590800000000000000
+      internalID: -7684610727089721679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_85
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4fdff43d08485750800000000000000
-      internalID: 6293859700811226956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_86
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 128
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ee1ab47e788c75a0800000000000000
-      internalID: -6522188083633709342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_87
+      name: Rural Village Floors32_83
       rect:
         serializedVersion: 2
         x: 192
@@ -2280,14 +2190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 974815d812e8760e0800000000000000
-      internalID: -2276694811856501639
+      spriteID: 6819f434e38d24910800000000000000
+      internalID: 1820254961339961734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_88
+      name: Rural Village Floors32_84
       rect:
         serializedVersion: 2
         x: 224
@@ -2301,14 +2211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36349df228eda4af0800000000000000
-      internalID: -411271765221096605
+      spriteID: 808e5f6afc0089710800000000000000
+      internalID: 1700109751191726088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_89
+      name: Rural Village Floors32_85
       rect:
         serializedVersion: 2
         x: 256
@@ -2322,14 +2232,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a66cc330df1f31700800000000000000
-      internalID: 510017251806332522
+      spriteID: 2e5ad46692f177cd0800000000000000
+      internalID: -2560543600466352670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_90
+      name: Rural Village Floors32_86
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd2b51ed2134d2e20800000000000000
+      internalID: 3327389448011100891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_87
       rect:
         serializedVersion: 2
         x: 0
@@ -2343,14 +2274,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f7b8227314122770800000000000000
-      internalID: 8584445913473791985
+      spriteID: 746822471b0f2ad50800000000000000
+      internalID: 6747219836702721607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_91
+      name: Rural Village Floors32_88
       rect:
         serializedVersion: 2
         x: 32
@@ -2364,14 +2295,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa7b965493735e0a0800000000000000
-      internalID: -6853010538857121878
+      spriteID: 1b828e3597abdbb90800000000000000
+      internalID: -7224413196970874703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_92
+      name: Rural Village Floors32_89
       rect:
         serializedVersion: 2
         x: 64
@@ -2385,56 +2316,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28b230879e0bbbab0800000000000000
-      internalID: -4991201245222720638
+      spriteID: 649263945207710d0800000000000000
+      internalID: -3452167283911808698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_93
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c7990d427da47df0800000000000000
-      internalID: -183330978384996412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_94
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dbb07cf204a4a7a30800000000000000
-      internalID: 4213762040898456509
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_95
+      name: Rural Village Floors32_90
       rect:
         serializedVersion: 2
         x: 192
@@ -2448,14 +2337,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebe32a0573351ffb0800000000000000
-      internalID: -4615816646036930882
+      spriteID: 9e05e4e31de259a30800000000000000
+      internalID: 4221331701958070505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_96
+      name: Rural Village Floors32_91
       rect:
         serializedVersion: 2
         x: 224
@@ -2469,14 +2358,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1422dee121b421c0800000000000000
-      internalID: -4529300565929090022
+      spriteID: 538553f44434342a0800000000000000
+      internalID: -6754481055459878859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_97
+      name: Rural Village Floors32_92
       rect:
         serializedVersion: 2
         x: 256
@@ -2490,14 +2379,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db0092433db718120800000000000000
-      internalID: 2414347022290714813
+      spriteID: 757e2cf96fe14c360800000000000000
+      internalID: 7188904949781292887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_98
+      name: Rural Village Floors32_93
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32db02160fd6f94c0800000000000000
+      internalID: -4278580241789567709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_94
       rect:
         serializedVersion: 2
         x: 0
@@ -2511,14 +2421,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7ed49adc87e0f490800000000000000
-      internalID: -7714411569537032579
+      spriteID: f36dbf8e6306d0230800000000000000
+      internalID: 3606644665546954303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_99
+      name: Rural Village Floors32_95
       rect:
         serializedVersion: 2
         x: 32
@@ -2532,14 +2442,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d66ae2ca59e4ff9f0800000000000000
-      internalID: -432540634458446227
+      spriteID: 4ce2c0cf387a5e620800000000000000
+      internalID: 2802830528419212996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_100
+      name: Rural Village Floors32_96
       rect:
         serializedVersion: 2
         x: 64
@@ -2553,17 +2463,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7ea0671072cf8b80800000000000000
-      internalID: -8390273794083606917
+      spriteID: 9229d0677ca587230800000000000000
+      internalID: 3636756511827268137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_101
+      name: Rural Village Floors32_97
       rect:
         serializedVersion: 2
-        x: 96
+        x: 192
         y: 64
         width: 32
         height: 32
@@ -2574,35 +2484,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b34cf1abe78f0a290800000000000000
-      internalID: -7881026124726156229
+      spriteID: 7f490bb8c158feb60800000000000000
+      internalID: 7777581439141319927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_102
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27bd72ff9af744a30800000000000000
-      internalID: 4198621120723147634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rural Village Decoration32_103
+      name: Rural Village Floors32_98
       rect:
         serializedVersion: 2
         x: 224
@@ -2616,14 +2505,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d5d8bbc1f1ee1850800000000000000
-      internalID: 6349760953260234199
+      spriteID: c6e416051b2339f60800000000000000
+      internalID: 8039825496925621868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_104
+      name: Rural Village Floors32_99
       rect:
         serializedVersion: 2
         x: 256
@@ -2637,14 +2526,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42dda95784d413b60800000000000000
-      internalID: 7724039809523178788
+      spriteID: dafec74c1364811b0800000000000000
+      internalID: -5685717349991387219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_105
+      name: Rural Village Floors32_100
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6bcabf7679fedda0800000000000000
+      internalID: -5918018572973847699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_101
       rect:
         serializedVersion: 2
         x: 0
@@ -2658,14 +2568,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c993be56ad6c690d0800000000000000
-      internalID: -3416324625998857828
+      spriteID: 7152cd5d993fe2160800000000000000
+      internalID: 7002802312651220247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_106
+      name: Rural Village Floors32_102
       rect:
         serializedVersion: 2
         x: 32
@@ -2679,14 +2589,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d63d31c7c844ec30800000000000000
-      internalID: 4387711959743411928
+      spriteID: c47cea615c1f36120800000000000000
+      internalID: 2406032454737381196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_107
+      name: Rural Village Floors32_103
       rect:
         serializedVersion: 2
         x: 64
@@ -2700,14 +2610,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14cfb2b85b229bca0800000000000000
-      internalID: -6000726865375134655
+      spriteID: 9410b532ab8c82960800000000000000
+      internalID: 7577527074833498441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_108
+      name: Rural Village Floors32_104
       rect:
         serializedVersion: 2
         x: 96
@@ -2721,14 +2631,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59e005bbc486a0030800000000000000
-      internalID: 3461693942357036693
+      spriteID: 7c71547afa153d500800000000000000
+      internalID: 419769005143037895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_109
+      name: Rural Village Floors32_105
       rect:
         serializedVersion: 2
         x: 128
@@ -2742,14 +2652,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e368d8f84f493f9e0800000000000000
-      internalID: -1588762465430305218
+      spriteID: 024a09276ba16f700800000000000000
+      internalID: 573675373444768800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_110
+      name: Rural Village Floors32_106
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a68ffbfa3017a1d0800000000000000
+      internalID: -3339682753149958488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_107
       rect:
         serializedVersion: 2
         x: 224
@@ -2763,14 +2694,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 923746f98ff0e5a90800000000000000
-      internalID: -7323398383557381335
+      spriteID: 00bff27aaf890fd30800000000000000
+      internalID: 4463235433038347008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_111
+      name: Rural Village Floors32_108
       rect:
         serializedVersion: 2
         x: 256
@@ -2784,17 +2715,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af0a430345b7648b0800000000000000
-      internalID: -5168307920844840710
+      spriteID: 01df6d2b9ed29a830800000000000000
+      internalID: 4082845018939129104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_112
+      name: Rural Village Floors32_109
       rect:
         serializedVersion: 2
-        x: 0
+        x: 288
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b94d864a8ce7c720800000000000000
+      internalID: 2866519766477916594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rural Village Floors32_110
+      rect:
+        serializedVersion: 2
+        x: 192
         y: 0
         width: 32
         height: 32
@@ -2805,17 +2757,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30cb55bff5a34b4a0800000000000000
-      internalID: -6578568971768447997
+      spriteID: f133888e2fc159a10800000000000000
+      internalID: 1915469046124917535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_113
+      name: Rural Village Floors32_111
       rect:
         serializedVersion: 2
-        x: 32
+        x: 224
         y: 0
         width: 32
         height: 32
@@ -2826,17 +2778,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 346e23d4ca1639150800000000000000
-      internalID: 5878149331306079811
+      spriteID: 0220fd10c7195cd30800000000000000
+      internalID: 4451123768518967840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_114
+      name: Rural Village Floors32_112
       rect:
         serializedVersion: 2
-        x: 64
+        x: 256
         y: 0
         width: 32
         height: 32
@@ -2847,17 +2799,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02f198457bfdae3b0800000000000000
-      internalID: -5482323617879875808
+      spriteID: eec0fc8d167f335e0800000000000000
+      internalID: -1930927815590474514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rural Village Decoration32_115
+      name: Rural Village Floors32_113
       rect:
         serializedVersion: 2
-        x: 128
+        x: 288
         y: 0
         width: 32
         height: 32
@@ -2868,8 +2820,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78d8c3a786f603360800000000000000
-      internalID: 7147335103155047815
+      spriteID: db093ea2d9a04e6f0800000000000000
+      internalID: -656387975543549763
       vertices: []
       indices: 
       edges: []
