@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Rural_Village_Walls32_21
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -5836318190980920397, guid: 8b9a6b3a865476b4182cc32f3fef0f03, type: 3}
+  m_Sprite: {fileID: 8253521842322313446, guid: 1cf7bcfac9132084db374303d5541280, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
