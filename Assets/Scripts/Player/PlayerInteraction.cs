@@ -134,7 +134,7 @@ public class PlayerInteraction : MonoBehaviour
         focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
 
         var indicatorPos = focusTilePosition;
-        if (displayIndicator)
+        if (displayIndicator && canInteract)
             indicatorPos.z = 0;
         else
             indicatorPos.z = 11;
@@ -154,7 +154,7 @@ public class PlayerInteraction : MonoBehaviour
             interactInRange = false;
         }
 
-        if (canInteract && interactInRange && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
+        if (canInteract && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
         {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
             if (playerInventory.HeldItem.Item.isEdible == true && canEat == true)
@@ -188,7 +188,8 @@ public class PlayerInteraction : MonoBehaviour
                 eatingTimer = 0;
             }
 
-            CheckInteraction();
+            if (interactInRange)
+                CheckInteraction();
         }
 
         eatingCooldown -= Time.deltaTime;
@@ -203,11 +204,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             CanInteract = false;
             playerMovement.Frozen = true;
+            canInteract = false;
         }
         else
         {
             CanInteract = true;
             playerMovement.Frozen = false;
+            canInteract = true;
         }
 
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
