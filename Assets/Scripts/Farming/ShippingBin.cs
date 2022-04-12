@@ -17,6 +17,8 @@ public class ShippingBin : MonoBehaviour
 
     public FarmingTutorial farmingTutorial;
 
+    public CalculateFarmNetWorth netWorth;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +68,15 @@ public class ShippingBin : MonoBehaviour
         foreach (Item item in itemsToSell)
         {
             player.playerGold += item.sellValue;
+
+            if (item.rare == true)
+            {
+                netWorth.CalculateNetWorth(100);
+            }
+            else
+            {
+                netWorth.CalculateNetWorth(50);
+            }
         }
 
         goldDisplay.text = $"{player.playerGold} G";

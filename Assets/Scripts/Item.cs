@@ -21,6 +21,7 @@ public class Item : MonoBehaviour
 
     public bool isEdible;
     public int staminaToRestore;
+    public bool rare;
 
 	public void Start()
 	{

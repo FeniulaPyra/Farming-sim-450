@@ -8,6 +8,7 @@ public class ShopMenu : MonoBehaviour
 	public GameObject FarmManager;
 	public GameObject menuObj;
 	public GameObject playerObj;
+    public CalculateFarmNetWorth netWorth;
 
 	List<Item> items;
 	Inventory inv;
@@ -45,5 +46,8 @@ public class ShopMenu : MonoBehaviour
 
 		inv.AddItems(new ItemStack(shroom, 1));
 		player.playerGold -= (int)Mathf.Floor(cost);
+
+        //reduce farm's net worth by half of item worth
+        netWorth.CalculateNetWorth(-((int)Mathf.Floor(cost / 2)));
 	}
 }

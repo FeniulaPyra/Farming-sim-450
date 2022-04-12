@@ -51533,6 +51533,7 @@ MonoBehaviour:
   FarmManager: {fileID: 2068960238}
   menuObj: {fileID: 24585727}
   playerObj: {fileID: 1281256933}
+  netWorth: {fileID: 2068960245}
 --- !u!1 &1491809647
 GameObject:
   m_ObjectHideFlags: 0
@@ -53940,6 +53941,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldObjects: []
   farmManager: {fileID: 2068960239}
+--- !u!114 &2068960245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068960238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21ad9a8e46702b42b976520f6f4b577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmNetWorth: 0
 --- !u!1 &2094532392
 GameObject:
   m_ObjectHideFlags: 0
@@ -54334,6 +54348,10 @@ PrefabInstance:
       value: ManagerObject
       objectReference: {fileID: 0}
     - target: {fileID: 2053923597524535471, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: netWorth
+      value: 
+      objectReference: {fileID: 2068960245}
+    - target: {fileID: 2053923597524535471, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: farmField
       value: 
       objectReference: {fileID: 552669638}
@@ -54345,6 +54363,10 @@ PrefabInstance:
       propertyPath: tillableGround
       value: 
       objectReference: {fileID: 348731578}
+    - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: netWorth
+      value: 
+      objectReference: {fileID: 2068960245}
     - target: {fileID: 2053923597524535472, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: dayDisplay
       value: 
@@ -54902,6 +54924,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
+      propertyPath: netWorth
+      value: 
+      objectReference: {fileID: 2068960245}
     - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: goldDisplay
       value: 

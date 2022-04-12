@@ -19,6 +19,8 @@ public class FarmManager : MonoBehaviour
 
     public FarmingTutorial farmingTutorial;
 
+    public CalculateFarmNetWorth netWorth;
+
     //Testing only; attempt at making a dictionary
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
     //public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
@@ -236,6 +238,7 @@ public class FarmManager : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
+                    netWorth.CalculateNetWorth(1);
                 }
 
                 mushroomsAndTiles[tile].isTilled = false;
@@ -248,6 +251,7 @@ public class FarmManager : MonoBehaviour
 
                 //Instatiates the Prefab on the ground so that the player picks it up by walking over it
                 GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
+                netWorth.CalculateNetWorth(1);
 
                 mushroomsAndTiles[tile].isTilled = false;
             }

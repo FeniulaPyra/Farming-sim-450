@@ -14,6 +14,9 @@ public class TimeManager : MonoBehaviour
     //for keeping track of player stamina, which is time
     public PlayerInteraction staminaTracker;
 
+    //Net worth goes up slightly each day
+    public CalculateFarmNetWorth netWorth;
+
     //variables for displaying the date and time and their corresponding text object
     //1-7 for Sun - Sat
     int dayNum = 1;
@@ -296,6 +299,8 @@ public class TimeManager : MonoBehaviour
         {
             dayNum++;
         }
+
+        netWorth.CalculateNetWorth(5);
 
         shippingBin.PayPlayer();
 

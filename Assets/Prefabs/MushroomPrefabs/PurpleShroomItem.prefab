@@ -56,6 +56,7 @@ MonoBehaviour:
   staminaUsed: 2
   isEdible: 1
   staminaToRestore: 15
+  rare: 1
 --- !u!212 &5197921192561006129
 SpriteRenderer:
   m_ObjectHideFlags: 0
