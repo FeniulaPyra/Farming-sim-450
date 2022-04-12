@@ -7,6 +7,14 @@ public class CalculateFarmNetWorth : MonoBehaviour
     [SerializeField]
     int farmNetWorth;
 
+    public int FarmNetWorth
+    {
+        get
+        {
+            return farmNetWorth;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

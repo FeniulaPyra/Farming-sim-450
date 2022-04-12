@@ -54667,6 +54667,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+--- !u!1 &4226742885656092939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4226742886614438250, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+  m_PrefabInstance: {fileID: 4226742885656092938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4226742885656092940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226742885656092939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b04d1863748e1c04bba6ccb1de38ed7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questActive: 0
+  questComplete: 0
+  requiredNetWorth: 0
+  netWorth: {fileID: 0}
+  questType: 0
+  requiredItemList: []
+  moneyRequired: 0
+  moneyEarnedSinceQuestStart: 0
+  daysToQuestFail: 0
 --- !u!1001 &4301840419408792247
 PrefabInstance:
   m_ObjectHideFlags: 0
