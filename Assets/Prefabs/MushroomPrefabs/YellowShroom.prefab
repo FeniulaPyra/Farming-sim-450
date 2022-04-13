@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8325710169533739494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7372237995263855830}
+  - component: {fileID: 7536474093749491951}
+  m_Layer: 0
+  m_Name: YellowShroom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7372237995263855830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325710169533739494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2728817, y: -0.6854146, z: -6.960806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7536474093749491951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325710169533739494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c376132fd3605f47984f2433a561f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTilled: 0
+  isMoist: 0
+  hasPlant: 0
+  tileSprite: {fileID: 11400000, guid: ccdcecd3171289044a719d2e09fee7b1, type: 2}
+  sprites:
+  - {fileID: 11400000, guid: ccdcecd3171289044a719d2e09fee7b1, type: 2}
+  - {fileID: 11400000, guid: 99342ba7e37b6ee4eaa9ccf03fed5e67, type: 2}
+  position: {x: 0, y: 0, z: 0}
+  maxGrowthStage: 2
+  maxDaysWithoutWater: 3
+  growthStage: 1
+  daysWithoutWater: 0
+  daysSinceFullyGrown: 0
+  readyToDie: 0
+  ID: Yellow Shroom
+  baseValue: 50
+  mushroomItem: {fileID: 8813085541527367879, guid: 778bd3d5f0681d64eba38cfdc1e8795d, type: 3}
+  spr: {fileID: 0}
+  mushroomsToHybridize:
+  - Glowy Shroom
+  - Red Shroom
+  mushroomHybrids:
+  - {fileID: 6316829673517393620, guid: 1e95a83935891cb4189683c365d71677, type: 3}
+  - {fileID: 182084621642607171, guid: a29b400ca69678147ab5e843473ebbf4, type: 3}
+  popupBubbles:
+  - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
+  - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
+  - {fileID: 6188888031017698190, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
+  ShowPopupBubblesToggle: {fileID: 0}

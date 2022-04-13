@@ -134,7 +134,7 @@ public class PlayerInteraction : MonoBehaviour
         focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
 
         var indicatorPos = focusTilePosition;
-        if (displayIndicator)
+        if (displayIndicator && canInteract)
             indicatorPos.z = 0;
         else
             indicatorPos.z = 11;
@@ -154,7 +154,7 @@ public class PlayerInteraction : MonoBehaviour
             interactInRange = false;
         }
 
-        if (canInteract && interactInRange && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
+        if (canInteract && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
         {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
             if (playerInventory.HeldItem.Item.isEdible == true && canEat == true)
@@ -165,9 +165,10 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (eatingTimer >= 50)
                     {
-                        ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                        playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+						//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+						//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+						playerInventory.RemoveHeldItems(1);
+						SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
 
                         eatingTimer = 0;
 
@@ -187,7 +188,8 @@ public class PlayerInteraction : MonoBehaviour
                 eatingTimer = 0;
             }
 
-            CheckInteraction();
+            if (interactInRange)
+                CheckInteraction();
         }
 
         eatingCooldown -= Time.deltaTime;
@@ -202,11 +204,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             CanInteract = false;
             playerMovement.Frozen = true;
+            canInteract = false;
         }
         else
         {
             CanInteract = true;
             playerMovement.Frozen = false;
+            canInteract = true;
         }
 
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
@@ -260,11 +264,13 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
+				Item heldItem = playerInventory.HeldItem.Item;
                 if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                 {
                     Debug.Log("Plant One");
-                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+					//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+					//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+					playerInventory.RemoveHeldItems(1);
                 }
                 /*else if (playerInventory.HeldItem.Item.isEdible == true)
                 {
@@ -278,19 +284,19 @@ public class PlayerInteraction : MonoBehaviour
                 //switch on the four main item types, then some default value for everything else
                 if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
                 else if(itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
                 else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
                 else if(itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
                 {
-                    ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                    ReduceStamina(heldItem.staminaUsed);
                 }
             }
             /*else if (playerInventory.HeldItem.Item.isEdible == true)

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4226742886614438250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.64, y: 2.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +52,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   textBoxImage: {fileID: 0}
   characterSprite: {fileID: 0}
+  tutorialImage: {fileID: 0}
   conversationIDs:
   - TestConvo
   - TestConvoDay2
@@ -61,56 +62,76 @@ MonoBehaviour:
   - convoDialogue:
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: This is just a test
       emotion: 
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: This is a second piece of dialogue
       emotion: 
     - characterName: Freya
       characterSprite: {fileID: 21300000, guid: db2865300545d334cb61431eea47879c, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: And this is a new character
       emotion: 
   - convoDialogue:
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: This is day two of testing
       emotion: 
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: Hopefully it's still working
       emotion: 
     - characterName: Freya
       characterSprite: {fileID: 21300000, guid: db2865300545d334cb61431eea47879c, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: It would be depressing if it didn't
       emotion: 
   - convoDialogue:
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: First Day of Summer
       emotion: 
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: Can it work in between seasons?
       emotion: 
     - characterName: Freya
       characterSprite: {fileID: 21300000, guid: db2865300545d334cb61431eea47879c, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: We will have to find out
       emotion: 
   - convoDialogue:
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: This should be the end
       emotion: 
     - characterName: Amir
       characterSprite: {fileID: 21300000, guid: 68269a6d51e6c254fada2b1a0ce9e158, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: Sweet Release
       emotion: 
     - characterName: Freya
       characterSprite: {fileID: 21300000, guid: db2865300545d334cb61431eea47879c, type: 3}
+      tutorialImage: {fileID: 0}
       dialogue: This calls for a celebration
       emotion: 
   timeManager: {fileID: 0}
+  springConvoStart: 0
+  springConvoEnd: 1
+  summerConvoStart: 2
+  summerConvoEnd: 3
+  fallConvoStart: 0
+  fallConvoEnd: 0
+  winterConvoStart: 0
+  winterConvoEnd: 0
 --- !u!61 &4226742886614438248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,3 +222,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: npc
+  interactBubble: {fileID: -4785508164627963645, guid: 51575d60edb2717498d41a2192b16db8, type: 3}

@@ -63,7 +63,7 @@ public class ItemStack
 	/// left in this stack (the amount of items removed are less than the number of items in this stack).</returns>
 	public int RemoveItems(int amount)
 	{
-		if(amount < this.amount)
+		if(amount <= this.amount)
 		{
 			this.amount -= amount;
 			return this.amount;

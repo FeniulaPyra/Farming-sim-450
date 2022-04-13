@@ -1,31 +1,19 @@
 fileFormatVersion: 2
-guid: a7d5ec5a12ba1ea4f8a77b48002890e2
+guid: 1cf7bcfac9132084db374303d5541280
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6260102128009069228
-    second: new_shrooms_0
+      213: -350969307844624135
+    second: more_fences_0
   - first:
-      213: -4185785154265468254
-    second: new_shrooms_1
+      213: -8088587530585137918
+    second: more_fences_1
   - first:
-      213: 3826740476665247267
-    second: new_shrooms_2
+      213: 6785024268580710902
+    second: more_fences_2
   - first:
-      213: -4229918997657812670
-    second: new_shrooms_3
-  - first:
-      213: 7914579771006009706
-    second: new_shrooms_4
-  - first:
-      213: -4394055915626653182
-    second: new_shrooms_5
-  - first:
-      213: 3969587581221887651
-    second: new_shrooms_6
-  - first:
-      213: -1009826910563278123
-    second: new_shrooms_7
+      213: 8253521842322313446
+    second: more_fences_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -70,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,55 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: new_shrooms_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45d3a523846af19a0800000000000000
-      internalID: -6260102128009069228
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: new_shrooms_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a237e5549a19e5c0800000000000000
-      internalID: -4185785154265468254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: new_shrooms_2
+      name: more_fences_0
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +117,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 326bd3740305b1530800000000000000
-      internalID: 3826740476665247267
+      spriteID: 9f04bd6264b112bf0800000000000000
+      internalID: -350969307844624135
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_shrooms_3
+      name: more_fences_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 32
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,62 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2410eeb251f4c45c0800000000000000
-      internalID: -4229918997657812670
+      spriteID: 20d91d00f709fbf80800000000000000
+      internalID: -8088587530585137918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_shrooms_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a614e455e5c36dd60800000000000000
-      internalID: 7914579771006009706
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: new_shrooms_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20a9ed9ec6d2503c0800000000000000
-      internalID: -4394055915626653182
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: new_shrooms_6
+      name: more_fences_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ae58839fdec61730800000000000000
-      internalID: 3969587581221887651
+      spriteID: 6f96829af9f392e50800000000000000
+      internalID: 6785024268580710902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_shrooms_7
+      name: more_fences_3
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d2ee3f66cf5cf1f0800000000000000
-      internalID: -1009826910563278123
+      spriteID: 6e09c85f2666a8270800000000000000
+      internalID: 8253521842322313446
       vertices: []
       indices: 
       edges: []

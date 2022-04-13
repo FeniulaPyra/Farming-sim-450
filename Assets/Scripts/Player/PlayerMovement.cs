@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         set
         {
             frozen = value;
+
+            rb.velocity = Vector2.zero;
         }
     }
 

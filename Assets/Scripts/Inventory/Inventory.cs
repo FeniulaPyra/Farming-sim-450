@@ -370,6 +370,23 @@ public class Inventory
 			}
 		}
 	}
+	
+	public void RemoveHeldItems(int amount)
+	{
+		if(HeldItem == null)
+		{
+			return;
+		}
+		else
+		{
+			HeldItem.RemoveItems(1);
+			if(HeldItem.Amount < 1)
+			{
+				DeleteHeldItemStack();
+			}
+		}
+	}
+
 	/// <summary>
 	/// Returns the inventory as a 2d array of 
 	/// arrays containging item ids and ammounts.
@@ -486,5 +503,36 @@ public class Inventory
 			}
 		}
 		*/
+	}
+
+	/// <summary>
+	/// Counts the number of a given item and returns its amount
+	/// </summary>
+	/// <param name="i">item to count</param>
+	/// <returns>amount of item in inventory</returns>
+	public int CountItem(Item i)
+	{
+		return CountItem(i.name);
+	}
+
+	/// <summary>
+	/// Counts the number of a given item and returns its amount
+	/// </summary>
+	/// <param name="name">name of item to count</param>
+	/// <returns>amount of item in inventory</returns>
+	public int CountItem(String name)
+	{
+		int amt = 0;
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				
+				ItemStack slot = this.items[r, c];
+				if (slot != null && slot.Item.name == name)
+					amt += slot.Amount;
+			}
+		}
+		return amt;
 	}
 }

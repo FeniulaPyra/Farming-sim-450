@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: ground
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -5501630112818903837, guid: b397689f58031c441aa763d8045ed029, type: 3}
+  m_DefaultSprite: {fileID: -3727364620269087539, guid: 9a0aab07a75308a419c9ba0d39895c60, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -5501630112818903837, guid: b397689f58031c441aa763d8045ed029, type: 3}
-    - {fileID: 5306446809137559511, guid: b397689f58031c441aa763d8045ed029, type: 3}
-    - {fileID: -1007682015698450451, guid: b397689f58031c441aa763d8045ed029, type: 3}
+    - {fileID: -3727364620269087539, guid: 9a0aab07a75308a419c9ba0d39895c60, type: 3}
+    - {fileID: 571849894211425569, guid: 9a0aab07a75308a419c9ba0d39895c60, type: 3}
+    - {fileID: 3942831722156708857, guid: 8f05c02a0e913cb4eaab17137f7facc5, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

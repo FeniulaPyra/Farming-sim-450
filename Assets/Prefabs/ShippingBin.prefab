@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCollider: {fileID: 0}
   itemsToSell: []
+  goldDisplay: {fileID: 0}
+  farmingTutorial: {fileID: 0}
 --- !u!61 &8363235534574056500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,3 +140,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: shipping bin
+  interactBubble: {fileID: -4785508164627963645, guid: 51575d60edb2717498d41a2192b16db8, type: 3}

@@ -58,13 +58,17 @@ MonoBehaviour:
   daysSinceFullyGrown: 0
   readyToDie: 0
   ID: Red Shroom
-  baseValue: 500
+  baseValue: 50
   mushroomItem: {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
   spr: {fileID: 0}
   mushroomsToHybridize:
   - Glowy Shroom
+  - Yellow Shroom
+  - White Shroom
   mushroomHybrids:
   - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
+  - {fileID: 182084621642607171, guid: a29b400ca69678147ab5e843473ebbf4, type: 3}
+  - {fileID: 5359719316037611136, guid: b334dfe8fa3fc884fa5ceccd662579a6, type: 3}
   popupBubbles:
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}

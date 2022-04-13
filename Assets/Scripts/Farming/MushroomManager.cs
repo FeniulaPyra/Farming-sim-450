@@ -20,6 +20,7 @@ public class MushroomManager : MonoBehaviour
         //Sets the Mushroom Variant Key to the mushroom's ID
         foreach (GameObject shroom in mushroomList)
         {
+			Debug.Log(shroom.name);
             mushroomVariants[shroom.GetComponent<Mushrooms>().ID] = shroom;
         }
 
