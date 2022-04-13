@@ -159,9 +159,16 @@ MonoBehaviour:
   - {fileID: 4619897200971512286, guid: 593d0004673ec1b46a91de5061aa7b75, type: 3}
   - {fileID: 2623421839622235092, guid: 70f2692e8b787c543a528231efa3e375, type: 3}
   - {fileID: 2832637054430782259, guid: 5553ac5584ac5704da9bda5f4e046527, type: 3}
-  - {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
-  - {fileID: 7242777236307338255, guid: 86b1e4091a61234408a3a89037e4e487, type: 3}
   - {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
+  - {fileID: 8813085541527367879, guid: 778bd3d5f0681d64eba38cfdc1e8795d, type: 3}
+  - {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
+  - {fileID: 9009726858204251956, guid: 359c54a52d5c06646bfa69502a640b3f, type: 3}
+  - {fileID: 8362033817072945122, guid: 2aaecc332cac9124e9a7a5bb3c486966, type: 3}
+  - {fileID: 2179316091092785578, guid: f74dfbb31b90b884abfcd7b4c4dc2aeb, type: 3}
+  - {fileID: 5803227097497796006, guid: f00fe76f0a3f2944eb64f801974964d4, type: 3}
+  - {fileID: 7242777236307338255, guid: 86b1e4091a61234408a3a89037e4e487, type: 3}
+  - {fileID: 8163426280570198016, guid: fc11e31a28fdd37499691bb233d0336f, type: 3}
+  - {fileID: 5954010232996325769, guid: 0f9d05d3986fe0b4a9e33a161579aa01, type: 3}
   gameItems: []
   InventoryMenu: {fileID: 1606855893}
   InventorySlotPrefab: {fileID: 2982890735467331394, guid: 9e6b3e24f56bc8b46b8cbc1065bc7da2, type: 3}
@@ -54835,6 +54842,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[3]
+      value: 
+      objectReference: {fileID: 6316829673517393620, guid: 1e95a83935891cb4189683c365d71677, type: 3}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[4]
+      value: 
+      objectReference: {fileID: 182084621642607171, guid: a29b400ca69678147ab5e843473ebbf4, type: 3}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[5]
+      value: 
+      objectReference: {fileID: 8008231197605254317, guid: 81e4bb96032702843868bf4b98a015b9, type: 3}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[6]
+      value: 
+      objectReference: {fileID: 5359719316037611136, guid: b334dfe8fa3fc884fa5ceccd662579a6, type: 3}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[7]
+      value: 
+      objectReference: {fileID: 9004802341860874568, guid: 2ac530f6447a0ef44aa2a2285995a6ad, type: 3}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[8]
+      value: 
+      objectReference: {fileID: 5645724758440649290, guid: 8de05fc976a993242912baecf63bb449, type: 3}
+    - target: {fileID: 2053923597524535474, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: mushroomList.Array.data[9]
+      value: 
+      objectReference: {fileID: 8325710169533739494, guid: 3a25d3eeb2d65f64d94a6d399f2db2b8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
 --- !u!1001 &2348339908426429844

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2536459904192622106
+--- !u!1 &5645724758440649290
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2536459904192622104}
-  - component: {fileID: 2536459904192622105}
+  - component: {fileID: 6601163168331259770}
+  - component: {fileID: 6144483064758045507}
   m_Layer: 0
-  m_Name: RedShroom
+  m_Name: WhiteShroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2536459904192622104
+--- !u!4 &6601163168331259770
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536459904192622106}
+  m_GameObject: {fileID: 5645724758440649290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2728817, y: -0.6854146, z: -6.960806}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2536459904192622105
+--- !u!114 &6144483064758045507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536459904192622106}
+  m_GameObject: {fileID: 5645724758440649290}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c376132fd3605f47984f2433a561f42, type: 3}
@@ -46,10 +46,10 @@ MonoBehaviour:
   isTilled: 0
   isMoist: 0
   hasPlant: 0
-  tileSprite: {fileID: 11400000, guid: 3e190fae922bdb0469138c94d2f0c6e8, type: 2}
+  tileSprite: {fileID: 11400000, guid: 2687f68a2e58b1748968ed4a3701108f, type: 2}
   sprites:
-  - {fileID: 11400000, guid: 3e190fae922bdb0469138c94d2f0c6e8, type: 2}
-  - {fileID: 11400000, guid: c6acad2767fe3164d8a8caf1c1cb9f93, type: 2}
+  - {fileID: 11400000, guid: 2687f68a2e58b1748968ed4a3701108f, type: 2}
+  - {fileID: 11400000, guid: 4d5a2ab9ba66eec4fbd49df05437253c, type: 2}
   position: {x: 0, y: 0, z: 0}
   maxGrowthStage: 2
   maxDaysWithoutWater: 3
@@ -57,17 +57,15 @@ MonoBehaviour:
   daysWithoutWater: 0
   daysSinceFullyGrown: 0
   readyToDie: 0
-  ID: Red Shroom
+  ID: White Shroom
   baseValue: 50
-  mushroomItem: {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
+  mushroomItem: {fileID: 9009726858204251956, guid: 359c54a52d5c06646bfa69502a640b3f, type: 3}
   spr: {fileID: 0}
   mushroomsToHybridize:
-  - Glowy Shroom
-  - Yellow Shroom
-  - White Shroom
+  - Shroom Shady
+  - Red Shroom
   mushroomHybrids:
-  - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
-  - {fileID: 182084621642607171, guid: a29b400ca69678147ab5e843473ebbf4, type: 3}
+  - {fileID: 8008231197605254317, guid: 81e4bb96032702843868bf4b98a015b9, type: 3}
   - {fileID: 5359719316037611136, guid: b334dfe8fa3fc884fa5ceccd662579a6, type: 3}
   popupBubbles:
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}

@@ -58,7 +58,7 @@ MonoBehaviour:
   daysSinceFullyGrown: 0
   readyToDie: 0
   ID: Purple Shroom
-  baseValue: 500
+  baseValue: 150
   mushroomItem: {fileID: 7242777236307338255, guid: 86b1e4091a61234408a3a89037e4e487, type: 3}
   spr: {fileID: 0}
   mushroomsToHybridize: []

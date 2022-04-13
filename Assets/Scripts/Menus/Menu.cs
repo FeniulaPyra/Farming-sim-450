@@ -50,6 +50,7 @@ public class Menu : MonoBehaviour
 
 	public GameObject FarmManager;
 	public GameObject player;
+	private PlayerInteraction pi;
 
 	public double MouseScrollDeadzone;
 	public double currentMouseScroll;
@@ -82,6 +83,7 @@ public class Menu : MonoBehaviour
 		gameItems = new List<Item>();
 		//TODO have this be grabbed from the player once that is be do be done-ificated
 		inv = FarmManager.GetComponent<FarmManager>().playerInventory; //new Inventory();
+		pi = player.GetComponent<PlayerInteraction>();
 
 		InventorySlots = new GameObject[Inventory.ROWS,Inventory.COLUMNS];
 		HotbarSlots = new GameObject[Inventory.COLUMNS];
@@ -195,6 +197,8 @@ public class Menu : MonoBehaviour
         inv.AddItems(new ItemStack(gameItems[3], 1));
         inv.AddItems(new ItemStack(gameItems[4], 1));
         inv.AddItems(new ItemStack(gameItems[5], 1));
+        inv.AddItems(new ItemStack(gameItems[6], 1));
+        inv.AddItems(new ItemStack(gameItems[7], 1));
         UpdateInventory();
     }
 
@@ -209,14 +213,13 @@ public class Menu : MonoBehaviour
 		{
 			selectedItemLabel.text = "" + inv.SelectedStack.Amount;
 			selectedItemIcon.enabled = true;
-			selectedItemIcon.sprite = inv.SelectedStack.Item.spr;
+			selectedItemIcon.sprite = inv.SelectedStack.Item.spr;	
 		}
 		else
 		{
 			selectedItemLabel.text = "";
 			selectedItemIcon.sprite = null;
 			selectedItemIcon.enabled = false;
-
 		}
 
 		HotbarIndicator.transform.localPosition =
@@ -357,7 +360,7 @@ public class Menu : MonoBehaviour
 				//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
 
 				selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
+				
 				//drop selected item
 				if(Input.GetKeyDown(KeyCode.Q))
 				{
@@ -385,13 +388,16 @@ public class Menu : MonoBehaviour
 				//close inventory
 				if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
 				{
-					if(inv.selectedStack != null)
+					if (inv.selectedStack != null)
 					{
 						inv.AddItems(inv.selectedStack);
 						inv.selectedStack = null;
 					}
 					InventoryMenu.SetActive(false);
+					inv.isShown = false;
+					selectedItem.SetActive(false);
 					state = MenuState.NO_MENU;
+					pi.CanInteract = true;
 				}
 				break;
 			case MenuState.PAUSE:
@@ -400,6 +406,7 @@ public class Menu : MonoBehaviour
 				{
 					PauseMenu.SetActive(false);
 					state = MenuState.NO_MENU;
+					pi.CanInteract = true;
 				}
 				break;
 			case MenuState.SETTINGS:
@@ -408,6 +415,7 @@ public class Menu : MonoBehaviour
 					SettingsMenu.SetActive(false);
 					PauseMenu.SetActive(true);
 					state = MenuState.PAUSE;
+					pi.CanInteract = true;
 				}
 				break;
 			case MenuState.HELP:
@@ -416,6 +424,7 @@ public class Menu : MonoBehaviour
 					HelpMenu.SetActive(false);
 					PauseMenu.SetActive(true);
 					state = MenuState.PAUSE;
+					pi.CanInteract = true;
 				}
 				break;
 			case MenuState.SHOP:
@@ -424,6 +433,7 @@ public class Menu : MonoBehaviour
 					ShopMenu.SetActive(false);
 					PauseMenu.SetActive(true);
 					state = MenuState.PAUSE;
+					pi.CanInteract = true;
 				}
 				break;
 			case MenuState.NO_MENU:
@@ -483,14 +493,17 @@ public class Menu : MonoBehaviour
 				//open/close inventory
 				if (Input.GetKeyDown(KeyCode.E))
 				{
+					inv.isShown = true;
 					InventoryMenu.SetActive(true);//!InventoryMenu.activeSelf);
+					selectedItem.SetActive(true);
 					state = MenuState.INVENTORY;
+					pi.CanInteract = false;
 				}
 
 				//drop held item
 				if(Input.GetKeyDown(KeyCode.Q))
 				{
-					if(inv.HeldItem != null)
+					if (inv.HeldItem != null)
 					{
 						//drop held item
 						for (int i = 0; i < inv.HeldItem.Amount; i++)
@@ -503,6 +516,7 @@ public class Menu : MonoBehaviour
 				
 				if(Input.GetKeyDown(KeyCode.Escape))
 				{
+					pi.CanInteract = false;
 					PauseMenu.SetActive(true);
 					state = MenuState.PAUSE;
 				}
