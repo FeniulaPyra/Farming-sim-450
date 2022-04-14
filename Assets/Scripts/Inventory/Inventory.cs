@@ -142,6 +142,34 @@ public class Inventory
 	/// <param name="item">an ItemStack of the items to be added</param>
 	public void AddItems(ItemStack item)
 	{
+		Vector2Int openSlot = new Vector2Int(-1, -1);
+		for (int r = 0; r < 4; r++)
+		{
+			for (int c = 0; c < 9; c++)
+			{
+				ItemStack i = items[r, c];
+				if(i != null && i.Item.name == item.Item.name && i.Amount < STACK_SIZE)
+				{
+					//if they are the same item and they add up to a smaller amount than the stack size
+					ItemStack leftovers = i.CombineStacks(item, STACK_SIZE);
+
+					if (leftovers != null && leftovers.Amount > 0)
+					{
+						AddItems(leftovers);
+					}
+					return;
+				}
+				//if there is an empty slot, set it as a backup slot
+				else if (i == null && openSlot.x < 0)
+				{
+					openSlot = new Vector2Int(r, c);
+				}
+			}
+		}
+		//if there wasn't already a slot with this type of item, add it to the empty slot
+		items[openSlot.x, openSlot.y] = item;
+
+		/*
 		for(int r = 0; r < 4; r++)
 		{
 			for(int c = 0; c < 9; c++)
@@ -165,7 +193,7 @@ public class Inventory
 					return;
 				}
 			}
-		}
+		}*/
 	}
 
 	/// <summary>
