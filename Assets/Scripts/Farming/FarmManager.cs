@@ -23,8 +23,9 @@ public class FarmManager : MonoBehaviour
     //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
     //public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
     public Dictionary<Vector3Int, Tile> mushroomsAndTiles = new Dictionary<Vector3Int, Tile>();
+	public Dictionary<Vector3Int, bool> visitedTiles = new Dictionary<Vector3Int, bool>();
 
-    public Tile this[Vector3Int key]
+	public Tile this[Vector3Int key]
     {
         get
         {
@@ -37,8 +38,14 @@ public class FarmManager : MonoBehaviour
     }
 
 
-    //EmptyTilePrefab
-    public Tile tilePrefab;
+	int leftBound;
+	int bottomBound;
+
+	int rightBound;
+	int topBound;
+
+	//EmptyTilePrefab
+	public Tile tilePrefab;
 
     //Creating an inventory; will probably need to be a reference later
     public Inventory playerInventory = new Inventory();
@@ -61,15 +68,35 @@ public class FarmManager : MonoBehaviour
                 Tile testTile = Instantiate(tilePrefab, cropPos, Quaternion.identity, transform);
 
                 mushroomsAndTiles.Add(cropPos, testTile);
+				Debug.Log("START TILE + " + cropPos);
+				visitedTiles.Add(cropPos, false);
                 //farmField.SetTile(cropPos, testTile.tileSprite);
                 testTile.tileSprite = testTile.sprites[0];
                 tillableGround.SetTile(cropPos, testTile.tileSprite);
             }
         }
 
-        farmingTutorial = FindObjectOfType<FarmingTutorial>();
+		leftBound = farmField.cellBounds.x;
+		bottomBound = farmField.cellBounds.y;
+
+		rightBound = leftBound + farmField.cellBounds.size.x;
+		topBound = farmField.cellBounds.size.y;
+
+		farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
     }
+
+	private void ResetVisited()
+	{
+		for (int i = -5; i <= 5; i++)
+		{
+			for (int j = -9; j <= 1; j++)
+			{
+				Vector3Int cropPos = new Vector3Int(i, j, 0);
+				visitedTiles[cropPos] = false;
+			}
+		}
+	}
 
     // Update is called once per frame
     void Update()
@@ -261,24 +288,19 @@ public class FarmManager : MonoBehaviour
 
     public void SpreadMushroom()
     {
-		// = mushroomManager.mushroomVariants["Red Shroom"];
-
 		Debug.Log("Beginning of SpreadMushroom");
-
-        //The bounds of the crop field
-        int leftBound = farmField.cellBounds.x;
-        int bottomBound = farmField.cellBounds.y;
-
-        int rightBound = leftBound + farmField.cellBounds.size.x;
-        int topBound = farmField.cellBounds.size.y;
-
-        //Nested For Loop, going through the x bound and y bounds of farmfield
-        for (int x = leftBound; x < rightBound; x++)
+		ResetVisited();
+        //looping through the x bound and y bounds of farmfield
+        for (int x = leftBound + 1; x < rightBound - 1; x++)
         {
-            for (int y = bottomBound; y < topBound; y++)
+            for (int y = bottomBound + 1; y < topBound - 1; y++)
             {
-                Vector3Int tileToTest = new Vector3Int(x, y, 0);
-                
+                Vector3Int tileToTest = new Vector3Int(y, x, 0);
+				CheckTile(tileToTest);
+
+				#region old
+				/*
+
                 //Calls gettile at that point
                 if (farmField.GetTile(tileToTest) != null && mushroomsAndTiles.ContainsKey(tileToTest) == true)
                 {
@@ -309,7 +331,8 @@ public class FarmManager : MonoBehaviour
                             Vector3Int left = new Vector3Int(tileToTest.x - 1, tileToTest.y, 0);
                             Vector3Int right = new Vector3Int(tileToTest.x + 1, tileToTest.y, 0);
 
-                            int numTilled = 0;
+
+							int numTilled = 0;
                             int spreadChance = 0;
 
                             if (mushroomsAndTiles.ContainsKey(above) && mushroomsAndTiles[above].isTilled == true)
@@ -370,7 +393,7 @@ public class FarmManager : MonoBehaviour
                                             farmingTutorial.spreadAfter = true;
                                         }
                                     }
-                                    else
+                                    else 
                                     {
                                         Debug.Log("Make Hybrid");
 
@@ -556,7 +579,144 @@ public class FarmManager : MonoBehaviour
                         }
                     }
                 }
-            }
+				*/
+				#endregion
+
+			}
         }
     }
+
+	private static Vector3Int[] adjacentVectors =
+	{
+		new Vector3Int(0,1,0),
+		new Vector3Int(0,-1,0),
+		new Vector3Int(1,0,0),
+		new Vector3Int(-1,0,0)
+	};
+
+	public void CheckTile(Vector3Int tilePos)
+	{
+		//if this tile has already been visited, exit. 
+		#region note
+		//this will happen if a previous tile hybridized with this one,
+		//or this tile was spread to.
+		#endregion
+		Debug.Log("TILEPOS + " + tilePos);
+		
+		if (!visitedTiles.ContainsKey(tilePos) || visitedTiles[tilePos]) return;
+
+		//checks that the tile exists
+		Tile tile = mushroomsAndTiles[tilePos];
+		Mushrooms thisShroom = tile.GetComponent<Mushrooms>();
+
+		//if this shroom exists and is an adult
+		if (thisShroom != null 
+			&& thisShroom.growthStage >= thisShroom.GetMaxGrowthStage()
+			&& thisShroom.daysSinceFullyGrown >= 2)
+		{
+			//Valid spreadable directions
+			List < Vector3Int> adjacents = new List<Vector3Int>();
+
+			//checks adjacent tiles for if they are spreadable (i.e. tilled and plantless)
+			for (int i = 0; i < 4; i++)
+			{
+				if (!mushroomsAndTiles.ContainsKey(tilePos + adjacentVectors[i]))
+					continue;
+				Tile adj = mushroomsAndTiles[tilePos + adjacentVectors[i]];
+				//if adjacent tile is empty and tilled, add it to spreadable areas
+				if (adj != null && adj.isTilled && !adj.hasPlant)
+				{
+					adjacents.Add(adjacentVectors[i]);
+				}
+			}
+
+			//exit if there are no spreadable tiles
+			if (adjacents.Count < 1) return;
+
+			//picks a random direction of tile and sets that as the tile to spread to
+			Vector3Int dirToSpread = adjacents[Random.Range(0, adjacents.Count)];
+
+			//the position and tile of the tile to spread
+			Vector3Int spreadTilePos = dirToSpread + tilePos;
+			Tile spreadTo = mushroomsAndTiles[spreadTilePos];
+
+			//the position and tile of the next tile over - will be for hybridization
+			Vector3Int parentTilePos = spreadTilePos + dirToSpread;
+			
+			//checks that possible parent tile exists
+			if (mushroomsAndTiles.ContainsKey(parentTilePos))
+			{
+				Tile possibleParent = mushroomsAndTiles[parentTilePos];
+
+				Mushrooms parent = possibleParent.GetComponent<Mushrooms>();
+				
+				/*	checks that parent 
+				 *	- exists
+				 *	- has not been visited
+				 *	- can be hybridized with this one
+				 *	- is an adult mushroom 
+				 */
+				if (parent != null
+					&& !visitedTiles[parentTilePos] 
+					&& ((Mushrooms)tile).hybridDictionary.ContainsKey(parent.ID) 
+					&& parent.growthStage >= parent.GetMaxGrowthStage()
+					&& parent.daysSinceFullyGrown >= 2)
+				{
+					Hybridize(thisShroom, parent, spreadTilePos);
+
+					visitedTiles[parentTilePos] = true;
+					visitedTiles[spreadTilePos] = true;
+				}
+				else
+				{
+					Spread(thisShroom, spreadTilePos);
+					//sets these tiles as visited
+					visitedTiles[spreadTilePos] = true;
+				}
+			}
+			else
+			{
+				Spread(thisShroom, spreadTilePos);
+				visitedTiles[spreadTilePos] = true;
+
+			}
+
+		}
+		visitedTiles[tilePos] = true;
+	}
+
+	private void Hybridize(Mushrooms thisShroom, Mushrooms parent, Vector3Int spreadTo)
+	{
+		GameObject mushroomPrefab = thisShroom.hybridDictionary[parent.ID];
+
+		Destroy(mushroomsAndTiles[spreadTo].gameObject);
+		//creates new mushroom tile
+		mushroomsAndTiles[spreadTo] = Instantiate(mushroomPrefab, spreadTo, Quaternion.identity).GetComponent<Tile>();
+		farmField.SetTile(spreadTo, mushroomsAndTiles[spreadTo].tileSprite);
+		mushroomsAndTiles[spreadTo].transform.parent = this.transform;
+		mushroomsAndTiles[spreadTo].hasPlant = true;
+		mushroomsAndTiles[spreadTo].isTilled = true;
+
+		if (farmingTutorial.spreadAfter == true)
+		{
+			farmingTutorial.hybridAfter = true;
+		}
+	}
+	private void Spread(Mushrooms thisShroom, Vector3Int spreadTo)
+	{
+		//spread
+		GameObject mushroomPrefab = mushroomManager.mushroomVariants[thisShroom.ID];
+
+		Destroy(mushroomsAndTiles[spreadTo].gameObject);
+		mushroomsAndTiles[spreadTo] = Instantiate(mushroomPrefab, spreadTo, Quaternion.identity).GetComponent<Tile>();
+		farmField.SetTile(spreadTo, mushroomsAndTiles[spreadTo].tileSprite);
+		mushroomsAndTiles[spreadTo].transform.parent = this.transform;
+		mushroomsAndTiles[spreadTo].hasPlant = true;
+		mushroomsAndTiles[spreadTo].isTilled = true;
+
+		if (farmingTutorial.shippedAfter == true)
+		{
+			farmingTutorial.spreadAfter = true;
+		}
+	}
 }
