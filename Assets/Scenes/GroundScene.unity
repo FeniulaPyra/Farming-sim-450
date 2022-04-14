@@ -55058,6 +55058,114 @@ PrefabInstance:
       propertyPath: characterSprite
       value: 
       objectReference: {fileID: 1334446515}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: myQuests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questIDs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: myQuests.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: myQuests.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questIDs.Array.data[0]
+      value: TestQuestBegin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questIDs.Array.data[1]
+      value: TestQuestEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questIDs.Array.data[2]
+      value: TestQuest2Begin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questIDs.Array.data[3]
+      value: TestQuest2End
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[0].convoDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[1].convoDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[2].convoDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[3].convoDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[0].convoDialogue.Array.data[0].dialogue
+      value: This is just a test quest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[0].convoDialogue.Array.data[1].dialogue
+      value: Be a darling and get me 4 Red Shrooms, okay?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[1].convoDialogue.Array.data[0].dialogue
+      value: Wonderful! It worked perfetly!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[2].convoDialogue.Array.data[0].dialogue
+      value: So the first quest worked
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[2].convoDialogue.Array.data[1].dialogue
+      value: LEt's do four glowy shrooms this time
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[3].convoDialogue.Array.data[0].dialogue
+      value: So it's over
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[3].convoDialogue.Array.data[1].dialogue
+      value: That is fantastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[0].convoDialogue.Array.data[0].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[0].convoDialogue.Array.data[1].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[1].convoDialogue.Array.data[0].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[2].convoDialogue.Array.data[0].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[2].convoDialogue.Array.data[1].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[3].convoDialogue.Array.data[0].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226742886614438249, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+      propertyPath: questLists.Array.data[3].convoDialogue.Array.data[1].characterName
+      value: Ryza
+      objectReference: {fileID: 0}
     - target: {fileID: 4226742886614438250, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
       propertyPath: m_Name
       value: DialogueManager
@@ -55137,15 +55245,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04d1863748e1c04bba6ccb1de38ed7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questActive: 0
-  questComplete: 0
-  requiredNetWorth: 0
   netWorth: {fileID: 0}
-  questType: 0
-  requiredItemList: []
-  moneyRequired: 0
-  moneyEarnedSinceQuestStart: 0
-  daysToQuestFail: 0
+  activeQuest:
+    questActive: 0
+    readyToReport: 0
+    questComplete: 0
+    beginID: 
+    endID: 
+    requiredNetWorth: 0
+    questType: 0
+    requiredItemList: []
+    requiredItemsCountList: 
+    requiredItemsAmountList: 
+    moneyRequired: 0
+    moneyEarnedSinceQuestStart: 0
+    daysToQuestFail: 0
+  questIndex: 0
+  miniQuests:
+  - questActive: 0
+    readyToReport: 0
+    questComplete: 0
+    beginID: TestQuestBegin
+    endID: TestQuestEnd
+    requiredNetWorth: 50
+    questType: 0
+    requiredItemList:
+    - {fileID: 7890201832734258743, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
+    requiredItemsCountList: 
+    requiredItemsAmountList: 04000000
+    moneyRequired: 0
+    moneyEarnedSinceQuestStart: 0
+    daysToQuestFail: 0
+  - questActive: 0
+    readyToReport: 0
+    questComplete: 0
+    beginID: TestQuest2Begin
+    endID: TestQuest2End
+    requiredNetWorth: 100
+    questType: 0
+    requiredItemList:
+    - {fileID: 8682807788186878876, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
+    requiredItemsCountList: 
+    requiredItemsAmountList: 04000000
+    moneyRequired: 0
+    moneyEarnedSinceQuestStart: 0
+    daysToQuestFail: 0
 --- !u!1001 &4301840419408792247
 PrefabInstance:
   m_ObjectHideFlags: 0

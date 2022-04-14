@@ -35,6 +35,18 @@ public class DialogueManager : MonoBehaviour
     //Dictionary of conversation IDs and a list of NPC dialogue
     public Dictionary<string, List<NPCDialogue>> conversations = new Dictionary<string, List<NPCDialogue>>();
 
+    //For quests
+    [SerializeField]
+    public Quests myQuests;
+
+    public List<string> questIDs = new List<string>();
+    [SerializeField]
+    public List<NPCDialogueList> questLists = new List<NPCDialogueList>();
+    public Dictionary<string, List<NPCDialogue>> quests = new Dictionary<string, List<NPCDialogue>>();
+    [SerializeField] int questNumber;
+
+    public string oldConvoID;
+
     //Testing
     string greaterConvoID;
 
@@ -122,6 +134,7 @@ public class DialogueManager : MonoBehaviour
 
         //SetConversations(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         SetConversations();
+        LoadQuests();
 
         //playerScript = FindObjectOfType<PlayerMove>();
 
@@ -134,12 +147,22 @@ public class DialogueManager : MonoBehaviour
         //textBoxImage.GetComponent<Image>().color = new Color(textBoxImage.GetComponent<Image>().color.r, textBoxImage.GetComponent<Image>().color.g, textBoxImage.GetComponent<Image>().color.b, 0.0f);
 
         characterSprite.gameObject.SetActive(false);
+
+        myQuests = gameObject.GetComponent<Quests>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Checking if the player can do a quest
+    }
+
+    public void LoadQuests()
+    {
+        for (int i = 0; i < questIDs.Count; i++)
+        {
+            quests[questIDs[i]] = questLists[i].convoDialogue;
+        }
     }
 
     public void SetConversations()
@@ -211,8 +234,21 @@ public class DialogueManager : MonoBehaviour
         playerInteraction.isTalking = true;
         playerInteraction.CanInteract = false;
 
+        List<NPCDialogue> convoToPlay = conversations[conversationIDs[0]];
+
         //Get a dictionary to play
-        List<NPCDialogue> convoToPlay = conversations[convoID];
+        if (conversations.ContainsKey(convoID))
+        {
+            convoToPlay = conversations[convoID];
+        }
+        else if (quests.ContainsKey(convoID))
+        {
+            convoToPlay = quests[convoID];
+        }
+        else
+        {
+            yield return null;
+        }
 
         greaterConvoID = convoID;
 
@@ -269,6 +305,25 @@ public class DialogueManager : MonoBehaviour
 
         playerInteraction.isTalking = false;
         playerInteraction.CanInteract = true;
+
+        if (quests.ContainsKey(convoID))
+        {
+
+            if (myQuests.activeQuest.questActive != true)
+            {
+                myQuests.activeQuest.questActive = true;
+            }
+
+            if (myQuests.activeQuest.questComplete == false && myQuests.activeQuest.readyToReport == true)
+            {
+                myQuests.activeQuest.questComplete = true;
+            }
+
+            Debug.Log("Quest now active");
+            Debug.Log($"Quest oldConvoID is {oldConvoID}");
+            this.convoID = oldConvoID;
+            //Debug.Log("Quest id replaced");
+        }
     }
 
     /*private void OnTriggerStay2D(Collider2D collision)

@@ -232,6 +232,11 @@ public class TimeManager : MonoBehaviour
             //Change NPC Dialogue
             for (int i = 0; i < NPCList.Count; i++)
             {
+                if (NPCList[i].oldConvoID != "")
+                {
+                    NPCList[i].convoID = NPCList[i].oldConvoID;
+                } 
+
                 switch (seasonNum)
                 {
                     case 1:
@@ -303,6 +308,31 @@ public class TimeManager : MonoBehaviour
         netWorth.CalculateNetWorth(5);
 
         shippingBin.PayPlayer();
+
+        //Final thing in a day that determines net worth. If it goes over a threshold, activate a quest
+        foreach (DialogueManager npc in NPCList)
+        {
+            if (netWorth.FarmNetWorth >= npc.myQuests.activeQuest.requiredNetWorth && npc.myQuests.activeQuest.questActive == false)
+            {
+                npc.oldConvoID = npc.convoID;
+                npc.convoID = npc.myQuests.activeQuest.beginID;
+                Debug.Log("Quest id is now active");
+            }
+
+            /*if (npc.myQuests.activeQuest.questActive == true && npc.myQuests.activeQuest.readyToReport == true)
+            {
+                npc.oldConvoID = npc.convoID;
+                npc.convoID = npc.myQuests.activeQuest.endID;
+            }*/
+
+            if (npc.myQuests.activeQuest.questType == Quests.QuestType.TimedCollection || npc.myQuests.activeQuest.questType == Quests.QuestType.TimedFundraising)
+            {
+                if (npc.myQuests.activeQuest.daysToQuestFail > 0)
+                {
+                    npc.myQuests.activeQuest.daysToQuestFail--;
+                }
+            }
+        }
 
         //Tutorial Softlock Prevention
         //If the player ships all of their mushrooms instead of planting one, the spreading would NEVER happen and they wouldn't be able to finish the tutorial

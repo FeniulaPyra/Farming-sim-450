@@ -165,10 +165,10 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (eatingTimer >= 50)
                     {
-						//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-						//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-						playerInventory.RemoveHeldItems(1);
-						SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                        //ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                        //playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                        playerInventory.RemoveHeldItems(1);
 
                         eatingTimer = 0;
 

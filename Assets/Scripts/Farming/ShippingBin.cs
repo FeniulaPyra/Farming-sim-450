@@ -86,6 +86,11 @@ public class ShippingBin : MonoBehaviour
             farmingTutorial.shippedAfter = true;
         }
 
+        if (true)
+        {
+
+        }
+
         itemsToSell.Clear();
     }
 }
