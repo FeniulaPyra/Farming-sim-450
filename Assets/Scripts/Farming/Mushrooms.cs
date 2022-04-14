@@ -54,6 +54,7 @@ public class Mushrooms : Tile
 	/// 0 - water
 	/// 1 - sickle
 	/// 3 - zzzz
+	/// 4 - going to die
 	/// </summary>
 	public List<Sprite> popupBubbles;
 
@@ -113,7 +114,11 @@ public class Mushrooms : Tile
         }
 
 		//show bubble
-		if(isMoist)
+		if(daysWithoutWater >= maxDaysWithoutWater - 1 && !isMoist)
+		{
+			bubble.sprite = popupBubbles[3];
+		}
+		else if(isMoist)
 		{
 			bubble.sprite = popupBubbles[2];
 		}

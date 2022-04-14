@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd24587c8bbe3bc4e8c2d0f4098a3028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Shroom Shady
+  name: Pink Shroom
   spr: {fileID: -1704486911872819553, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
@@ -56,6 +56,7 @@ MonoBehaviour:
   staminaUsed: 2
   isEdible: 1
   staminaToRestore: 15
+  rare: 0
 --- !u!212 &8047497676083996055
 SpriteRenderer:
   m_ObjectHideFlags: 0
