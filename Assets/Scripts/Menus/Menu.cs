@@ -27,6 +27,9 @@ public class Menu : MonoBehaviour
 	public GameObject LoadMenu;
 	public GameObject ShopMenu;
 
+	public GameObject gameInfo;
+	public GameObject controls;
+
 	public GameObject BubbleToggle;
 
 
@@ -538,6 +541,7 @@ public class Menu : MonoBehaviour
 	{
 		PauseMenu.SetActive(false);
 		state = MenuState.NO_MENU;
+		pi.CanInteract = true;
 	}
 
 	public void OpenSettings()
@@ -545,6 +549,7 @@ public class Menu : MonoBehaviour
 		PauseMenu.SetActive(false);
 		SettingsMenu.SetActive(true);
 		state = MenuState.SETTINGS;
+		pi.CanInteract = false;
 	}
 
 	//quits game - for button use;
@@ -564,11 +569,40 @@ public class Menu : MonoBehaviour
 		PauseMenu.SetActive(false);
 		HelpMenu.SetActive(true);
 		state = MenuState.HELP;
+		pi.CanInteract = false;
+
+	}
+
+	public void CloseHelp()
+	{
+		HelpMenu.SetActive(false);
+		PauseMenu.SetActive(true);
+		state = MenuState.PAUSE;
 	}
 	public void OpenShop()
 	{
 		PauseMenu.SetActive(false);
 		ShopMenu.SetActive(true);
 		state = MenuState.SHOP;
+		pi.CanInteract = false;
+
+	}
+
+	public void OpenControls()
+	{
+		if(state == MenuState.HELP)
+		{
+			gameInfo.SetActive(false);
+			controls.SetActive(true);
+		}
+	}
+
+	public void OpenGameInfo()
+	{
+		if (state == MenuState.HELP)
+		{
+			gameInfo.SetActive(true);
+			controls.SetActive(false);
+		}
 	}
 }
