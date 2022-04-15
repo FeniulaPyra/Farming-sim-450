@@ -74,7 +74,7 @@ public class BasicEntity : MonoBehaviour
     {
         var dist = Vector2.Distance(target.position, transform.position);
 
-        var desiredVelocity = (target.position - transform.position) * movementSpeed * speedCurve.Evaluate((dist / (maxSeekDistance - minSeekDistance)));
+		var desiredVelocity = (target.position - transform.position) * movementSpeed * dist;//speedCurve.Evaluate((dist / (maxSeekDistance - minSeekDistance)));
         desiredVelocity.z = 0;
 
         var move = new Vector2(desiredVelocity.x, desiredVelocity.y) - rb.velocity;
