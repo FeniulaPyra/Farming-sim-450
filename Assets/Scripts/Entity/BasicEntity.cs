@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicEntity : MonoBehaviour
 {
     [SerializeField]
     private float movementSpeed = 1;
+
+	public Slider size;
 
     [SerializeField]
     private AnimationCurve speedCurve;
@@ -43,7 +46,9 @@ public class BasicEntity : MonoBehaviour
 
     void Update()
     {
-        if (rb.velocity.magnitude > 0.1)
+		if (size) this.transform.localScale = new Vector3(size.value, size.value, 1);
+
+		if (rb.velocity.magnitude > 0.1)
         {
             facing = rb.velocity.normalized;
 

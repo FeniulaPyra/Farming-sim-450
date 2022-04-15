@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class FarmingTutorial : MonoBehaviour
 {
     //softlock prevention
     public GameObject redShroom;
     public GameObject glowyShroom;
+
+	public Toggle enableTutorial;
 
     //Player Guidance
     public TMP_Text objective;
@@ -53,6 +56,9 @@ public class FarmingTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		//skips if tutorial is not enabled
+		if (!enableTutorial.isOn) return;
+
         //Rwplay Text
         if (Input.GetKeyDown(KeyCode.T))
         {

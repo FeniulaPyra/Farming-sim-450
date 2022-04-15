@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class FarmManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class FarmManager : MonoBehaviour
     public TileManager tileManager;
 
     public FarmingTutorial farmingTutorial;
+	public Toggle needsTill;
 
     public CalculateFarmNetWorth netWorth;
 
@@ -628,7 +630,7 @@ public class FarmManager : MonoBehaviour
 					continue;
 				Tile adj = mushroomsAndTiles[tilePos + adjacentVectors[i]];
 				//if adjacent tile is empty and tilled, add it to spreadable areas
-				if (adj != null && adj.isTilled && !adj.hasPlant)
+				if (adj != null && (adj.isTilled || !needsTill.isOn)&& !adj.hasPlant)
 				{
 					adjacents.Add(adjacentVectors[i]);
 				}
