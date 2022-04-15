@@ -10,14 +10,22 @@ public class BasicEntity : MonoBehaviour
     [SerializeField]
     private AnimationCurve speedCurve;
 
+    [Header("Seek Distnaces")]
     [SerializeField]
-    private float seekDistance = 1;
+    private float maxSeekDistance = 1;
+    [SerializeField]
+    private float minSeekDistance = 1;
+
 
     [SerializeField]
     private SpriteRenderer sr;
 
     [SerializeField]
     private Transform player;
+
+    [Header("Sprites")]
+    [SerializeField] public Sprite normalImage;
+    [SerializeField] public Sprite pettingImage;
 
     private Rigidbody2D rb;
 
@@ -47,7 +55,8 @@ public class BasicEntity : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Vector2.Distance(transform.position, player.position) < seekDistance)
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance < maxSeekDistance && distance > minSeekDistance)
             Seek(player);
         else
         {
@@ -60,7 +69,7 @@ public class BasicEntity : MonoBehaviour
     {
         var dist = Vector2.Distance(target.position, transform.position);
 
-        var desiredVelocity = (target.position - transform.position) * movementSpeed * speedCurve.Evaluate(1 - (dist / seekDistance));
+        var desiredVelocity = (target.position - transform.position) * movementSpeed * speedCurve.Evaluate((dist / (maxSeekDistance - minSeekDistance)));
         desiredVelocity.z = 0;
 
         var move = new Vector2(desiredVelocity.x, desiredVelocity.y) - rb.velocity;
@@ -69,5 +78,15 @@ public class BasicEntity : MonoBehaviour
             sr.flipX = rb.velocity.x < 0;
 
         rb.velocity += move;
+    }
+
+    private void OnMouseEnter()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = pettingImage;
+    }
+
+    private void OnMouseExit()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = normalImage;
     }
 }
