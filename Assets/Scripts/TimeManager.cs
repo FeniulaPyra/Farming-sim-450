@@ -50,6 +50,10 @@ public class TimeManager : MonoBehaviour
 
     public FarmingTutorial farmingTutorial;
 
+    Inventory inventory;
+
+    MushroomManager mushroomManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +81,10 @@ public class TimeManager : MonoBehaviour
         //DisplayTime();
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
+
+        inventory = FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
+
+        mushroomManager = FindObjectOfType<MushroomManager>();
     }
 
     // Update is called once per frame
@@ -335,19 +343,39 @@ public class TimeManager : MonoBehaviour
         }
 
         //Tutorial Softlock Prevention
-        //If the player ships all of their mushrooms instead of planting one, the spreading would NEVER happen and they wouldn't be able to finish the tutorial
-        //Could easily be exploited by sleeping in order to get 99 mushrooms
-        //However, it's purpose is to keep the player from finding themselves without mushrooms and therefore unable to finish tutorial
-        //Temp solution
-        //Once some sort of shop exists, start player with enough money to buy a few mushrooms and get rid of this
+        //Check all mushroom names. If none of them are there, instantiate one.
         if (farmingTutorial.spreadAfter == false)
         {
-            Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+            for (int i = 0; i < mushroomManager.mushroomList.Count; i++)
+            {
+                if (inventory.CountItem(mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID) <= 0)
+                {
+                    Debug.Log($"MushroomList[{i}] is a {mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID}");
+
+                    if (i == mushroomManager.mushroomList.Count - 1)
+                    {
+                        Debug.Log($"No softlock; i is {i}");
+                        Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
         else if (farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
         {
-            Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-            Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+            if (inventory.CountItem("Red Shroom") <= 0)
+            {
+                Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+            }
+            if (inventory.CountItem("Glowy Shroom") <= 0)
+            {
+                Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+            }
         }
 
         DisplayDate();

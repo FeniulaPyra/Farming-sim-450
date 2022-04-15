@@ -54325,9 +54325,6 @@ MonoBehaviour:
   isTalking: 0
   playerGold: 0
   objects: []
-  eatingTimer: 0
-  canEat: 1
-  eatingCooldown: 1
   farmingTutorial: {fileID: 0}
   bed: {fileID: 0}
 --- !u!1 &1291988337
@@ -57926,6 +57923,11 @@ PrefabInstance:
         one of the mushrooms, and plant it
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[1].dialogue
+      value: You can press the F key to eat a mushroom and recover some stamina.
+        Try it out.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[2].dialogue
       value: Pay attention to the circle at the top of the screen. It tracks stamina.
       objectReference: {fileID: 0}
@@ -57946,6 +57948,11 @@ PrefabInstance:
       propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[2].dialogue
       value: Go to sleep once so it grows, then go to sleep again. That's all you
         need to do.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[8].convoDialogue.Array.data[1].dialogue
+      value: Just about done. You've been given a red or glowy shroom, in case you
+        sold them all.
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[8].convoDialogue.Array.data[2].dialogue
