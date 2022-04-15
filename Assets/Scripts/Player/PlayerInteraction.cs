@@ -83,13 +83,6 @@ public class PlayerInteraction : MonoBehaviour
     //Random array of DialogueManagers to handle NPC Dialogue
     InteractableObjects[] objectsArray = new InteractableObjects[100];
 
-    //Timer for eating
-    [SerializeField]
-    int eatingTimer;
-    [SerializeField]
-    bool canEat = true;
-    public float eatingCooldown = 1.0f;
-
     public FarmingTutorial farmingTutorial;
 
     [SerializeField]
@@ -157,46 +150,20 @@ public class PlayerInteraction : MonoBehaviour
         if (canInteract && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
         {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
-            if (playerInventory.HeldItem.Item.isEdible == true && canEat == true)
+            if (playerInventory.HeldItem.Item.isEdible == true && Input.GetKeyDown(KeyCode.F))
             {
-                if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Mouse0))
+
+                SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                playerInventory.RemoveHeldItems(1);
+
+                if (farmingTutorial.harvestedAfter == true)
                 {
-                    eatingTimer++;
-
-                    if (eatingTimer >= 50)
-                    {
-                        //ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                        //playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-                        playerInventory.RemoveHeldItems(1);
-
-                        eatingTimer = 0;
-
-                        canEat = false;
-                        eatingCooldown = 1.0f;
-
-                        if (farmingTutorial.harvestedAfter == true)
-                        {
-                            farmingTutorial.eatingAfter = true;
-                        }
-                    }
+                    farmingTutorial.eatingAfter = true;
                 }
-
-            }
-            else
-            {
-                eatingTimer = 0;
             }
 
             if (interactInRange)
                 CheckInteraction();
-        }
-
-        eatingCooldown -= Time.deltaTime;
-
-        if (canEat == false && eatingCooldown <= 0.0f)
-        {
-            canEat = true;
         }
 
         //Stop all player movement when in dialogue
