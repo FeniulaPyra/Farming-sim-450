@@ -88,8 +88,8 @@ public class Menu : MonoBehaviour
 		inv = FarmManager.GetComponent<FarmManager>().playerInventory; //new Inventory();
 		pi = player.GetComponent<PlayerInteraction>();
 
-		InventorySlots = new GameObject[Inventory.ROWS,Inventory.COLUMNS];
-		HotbarSlots = new GameObject[Inventory.COLUMNS];
+		InventorySlots = new GameObject[inv.ROWS, inv.COLUMNS];
+		HotbarSlots = new GameObject[inv.COLUMNS];
 		//hides inventory menu at start.
 		InventoryMenu.SetActive(false);
 
@@ -105,9 +105,9 @@ public class Menu : MonoBehaviour
 		Debug.Log(HotbarItemLabel.GetComponent<Text>().text);
 
 		//creates buttons for every inventory slot
-		for (int r = 0; r < Inventory.ROWS; r++)
+		for (int r = 0; r < inv.ROWS; r++)
 		{
-			for (int c = 0; c < Inventory.COLUMNS; c++)
+			for (int c = 0; c < inv.COLUMNS; c++)
 			{
 				//the inventory slot button
 				GameObject slot = InventorySlots[r, c] = Instantiate(InventorySlotPrefab);
@@ -157,7 +157,7 @@ public class Menu : MonoBehaviour
 		//highlights selected hotbar + item
 
 		//shows/generates hotbar
-		for (int c = 0; c < Inventory.COLUMNS; c++)
+		for (int c = 0; c < inv.COLUMNS; c++)
 		{
 			//the inventory slot button
 			GameObject slot = HotbarSlots[c] = Instantiate(InventorySlotPrefab);
@@ -254,9 +254,9 @@ public class Menu : MonoBehaviour
             HotbarItemLabel.GetComponent<Text>().text = "";*/
 
         //updates inventory slots
-        for (int r = 0; r < Inventory.ROWS; r++)
+        for (int r = 0; r < inv.ROWS; r++)
 		{
-			for (int c = 0; c < Inventory.COLUMNS; c++)
+			for (int c = 0; c < inv.COLUMNS; c++)
 			{
 
 				//gets the inventory slot menu button and info about the inventory slot
@@ -288,7 +288,7 @@ public class Menu : MonoBehaviour
 		}
 
 		//updates hotbar
-		for (int c = 0; c < Inventory.COLUMNS; c++)
+		for (int c = 0; c < inv.COLUMNS; c++)
 		{
 			//the inventory slot button
 			GameObject slot = HotbarSlots[c];

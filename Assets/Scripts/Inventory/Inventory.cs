@@ -6,8 +6,8 @@ using UnityEngine;
 public class Inventory
 {
 	public /*static*/ int STACK_SIZE = 99;
-	public static int ROWS = 4;
-	public static int COLUMNS = 9;
+	public int ROWS; //4
+	public int COLUMNS; //9
 
 	public int hotbarRowNumber;
 	public int slotHeld;
@@ -54,8 +54,10 @@ public class Inventory
 		}
 	}
 
-	public Inventory()
+	public Inventory(int rows, int columns)
 	{
+		ROWS = rows;
+		COLUMNS = columns;
 		items = new ItemStack[ROWS,COLUMNS];
 		selectedStack = null;
 		selectHotbar(0);
