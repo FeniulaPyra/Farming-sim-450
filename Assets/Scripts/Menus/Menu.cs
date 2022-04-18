@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
 	public Inventory inv;
+	public Inventory shippingInventory;
 
 	//the item prefabs and their respective attached item script
 	public List<GameObject> gameItemPrefabs;
@@ -26,6 +27,7 @@ public class Menu : MonoBehaviour
 	public GameObject SaveMenu;
 	public GameObject LoadMenu;
 	public GameObject ShopMenu;
+	public GameObject ShippingMenu;
 
 	public GameObject gameInfo;
 	public GameObject controls;
@@ -44,6 +46,7 @@ public class Menu : MonoBehaviour
 	public GameObject HotbarItemLabel;
 	public GameObject InventoryItemLabel;
 
+	public GameObject[] ShippingBinSlots;
 
 	private int startingX = -296-64;
 	private int startingY = -148;
@@ -52,6 +55,7 @@ public class Menu : MonoBehaviour
 	public int invHotbarNum;
 
 	public GameObject FarmManager;
+	public GameObject ShippingBin;
 	public GameObject player;
 	private PlayerInteraction pi;
 
@@ -75,7 +79,8 @@ public class Menu : MonoBehaviour
 		PAUSE,
 		SETTINGS,
 		HELP,
-		SHOP
+		SHOP,
+		SHIPPING_BIN
 	}
 
 	MenuState state = MenuState.NO_MENU;
@@ -86,10 +91,16 @@ public class Menu : MonoBehaviour
 		gameItems = new List<Item>();
 		//TODO have this be grabbed from the player once that is be do be done-ificated
 		inv = FarmManager.GetComponent<FarmManager>().playerInventory; //new Inventory();
+		shippingInventory = ShippingBin.GetComponent<ShippingBin>().inventory;
 		pi = player.GetComponent<PlayerInteraction>();
-
 		InventorySlots = new GameObject[inv.ROWS, inv.COLUMNS];
 		HotbarSlots = new GameObject[inv.COLUMNS];
+		if (shippingInventory != null) Debug.Log("SHIPPING BIN EXISTS!!!!!!");
+		else Debug.Log("SHIPPING BIN DOESNT EXIST AAAAAAAAAA");
+		//Debug.Log("Shipping inventory columns" + "shippingInventory.COLUMNS");
+		ShippingBinSlots = new GameObject[9];
+		
+
 		//hides inventory menu at start.
 		InventoryMenu.SetActive(false);
 
@@ -190,11 +201,47 @@ public class Menu : MonoBehaviour
 			}
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}
+		
+		for(int c = 0; c < shippingInventory.COLUMNS; c++)
+		{
+			GameObject slot = ShippingBinSlots[c] = Instantiate(InventorySlotPrefab);
+			slot.transform.position = new Vector2(startingX + (c + 1) * 74 - 10, -170);
 
+			//the text and image of the button
+			Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
+			Text slotLabel = slot.transform.GetChild(1).GetComponent<Text>();
+			Text slotItemLabel = slot.transform.GetChild(2).GetComponent<Text>();
 
+			//the item in the corresponding slot in the inventory object
+			ItemStack currentSlot = shippingInventory.GetSlot(0, c);
+
+			//labels the slot
+			if (currentSlot != null)
+			{
+				slotLabel.text = "" + currentSlot.Amount;
+				slotItemLabel.text = "" + currentSlot.Item.name;
+				slot.name = $"C {currentSlot.Item.name}";
+				slotIcon.sprite = currentSlot.Item.spr;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
+			}
+			else
+			{
+				slotLabel.text = "";
+				slot.name = "C" + c;
+				slotIcon.sprite = null;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
+			}
+
+			slot.GetComponent<Button>().onClick.AddListener(delegate {
+				Debug.Log("Clicked button");
+				shippingInventory.SelectSlot(0, c);
+				UpdateInventory();
+			});
+		}
 
 		//debugging stuff
 		inv.AddItems(new ItemStack(gameItems[0], 1));
+		shippingInventory.AddItems(new ItemStack(gameItems[0], 1));
 		inv.AddItems(new ItemStack(gameItems[1], 1));
 		inv.AddItems(new ItemStack(gameItems[2], 1));
         inv.AddItems(new ItemStack(gameItems[3], 1));
@@ -354,16 +401,7 @@ public class Menu : MonoBehaviour
 		switch(state)
 		{
 			case MenuState.INVENTORY:
-				//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
-				Vector2 pos;
-				RectTransformUtility.ScreenPointToLocalPointInRectangle(
-				InventoryMenu.transform.parent.transform as RectTransform, Input.mousePosition,
-				InventoryMenu.transform.parent.GetComponent<Canvas>().worldCamera,
-					out pos);
-				//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
-
-				selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-				
+				MakeSelectFollowMouse();
 				//drop selected item
 				if(Input.GetKeyDown(KeyCode.Q))
 				{
@@ -437,6 +475,19 @@ public class Menu : MonoBehaviour
 					PauseMenu.SetActive(true);
 					state = MenuState.PAUSE;
 					pi.CanInteract = true;
+				}
+				break;
+			case MenuState.SHIPPING_BIN:
+				MakeSelectFollowMouse();
+
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					ShippingMenu.SetActive(false);
+					InventoryMenu.SetActive(false);
+					selectedItem.SetActive(false);
+					state = MenuState.NO_MENU;
+					pi.CanInteract = true;
+
 				}
 				break;
 			case MenuState.NO_MENU:
@@ -604,5 +655,32 @@ public class Menu : MonoBehaviour
 			gameInfo.SetActive(true);
 			controls.SetActive(false);
 		}
+	}
+
+	public void OpenShippingBin()
+	{
+		if(state == MenuState.NO_MENU)
+		{
+			InventoryMenu.SetActive(true);
+			ShippingMenu.SetActive(true);
+			selectedItem.SetActive(true);
+			state = MenuState.SHIPPING_BIN;
+			pi.CanInteract = false;
+
+		}
+	}
+
+	public void MakeSelectFollowMouse()
+	{
+		//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
+		Vector2 pos;
+		RectTransformUtility.ScreenPointToLocalPointInRectangle(
+		InventoryMenu.transform.parent.transform as RectTransform, Input.mousePosition,
+		InventoryMenu.transform.parent.GetComponent<Canvas>().worldCamera,
+			out pos);
+		//transform.position = InventoryMenu.transform.parent.transform.TransformPoint(pos);
+
+		selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
 	}
 }

@@ -145,9 +145,9 @@ public class Inventory
 	public void AddItems(ItemStack item)
 	{
 		Vector2Int openSlot = new Vector2Int(-1, -1);
-		for (int r = 0; r < 4; r++)
+		for (int r = 0; r < ROWS; r++)
 		{
-			for (int c = 0; c < 9; c++)
+			for (int c = 0; c < COLUMNS; c++)
 			{
 				ItemStack i = items[r, c];
 				if(i != null && i.Item.name == item.Item.name && i.Amount < STACK_SIZE)

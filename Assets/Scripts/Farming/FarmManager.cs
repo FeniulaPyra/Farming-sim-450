@@ -52,7 +52,7 @@ public class FarmManager : MonoBehaviour
 	public Tile tilePrefab;
 
     //Creating an inventory; will probably need to be a reference later
-    public Inventory playerInventory = new Inventory(4, 9);
+    public Inventory playerInventory = new Inventory(5, 9);
 
     // Start is called before the first frame update
     void Start()
