@@ -6,37 +6,33 @@ using UnityEngine.UI;
 public class BasicEntity : MonoBehaviour
 {
     [SerializeField]
-    private float movementSpeed = 1;
+    protected float movementSpeed = 1;
 
 	public Slider size;
 
     [SerializeField]
-    private AnimationCurve speedCurve;
+    protected AnimationCurve speedCurve;
 
     [Header("Seek Distnaces")]
     [SerializeField]
-    private float maxSeekDistance = 1;
+    protected float maxSeekDistance = 1;
     [SerializeField]
-    private float minSeekDistance = 1;
+    protected float minSeekDistance = 1;
 
-
-    [SerializeField]
-    private SpriteRenderer sr;
 
     [SerializeField]
-    private Transform player;
+    protected SpriteRenderer sr;
 
-    [Header("Sprites")]
-    [SerializeField] public Sprite normalImage;
-    [SerializeField] public Sprite pettingImage;
+    [SerializeField]
+    protected Transform player;
 
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    private Vector2 facing;
+    protected Vector2 facing;
 
     public Vector2 Facing => facing;
 
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         facing = new Vector2(1, 0);
@@ -44,7 +40,7 @@ public class BasicEntity : MonoBehaviour
         player = GameObject.FindObjectOfType<PlayerMovement>().transform;
     }
 
-    void Update()
+    protected virtual void Update()
     {
 		if (size) this.transform.localScale = new Vector3(size.value, size.value, 1);
 
@@ -58,7 +54,7 @@ public class BasicEntity : MonoBehaviour
             }
         }
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance < maxSeekDistance && distance > minSeekDistance)
@@ -83,15 +79,5 @@ public class BasicEntity : MonoBehaviour
             sr.flipX = rb.velocity.x < 0;
 
         rb.velocity += move;
-    }
-
-    private void OnMouseEnter()
-    {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = pettingImage;
-    }
-
-    private void OnMouseExit()
-    {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = normalImage;
     }
 }

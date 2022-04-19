@@ -23,6 +23,7 @@ public class Item : MonoBehaviour
     public int staminaToRestore;
     public bool rare;
 
+
 	public void Start()
 	{
 		itemObj = gameObject;

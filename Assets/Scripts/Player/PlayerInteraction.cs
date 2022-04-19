@@ -229,9 +229,10 @@ public class PlayerInteraction : MonoBehaviour
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
         {
+            Item heldItem = playerInventory.HeldItem.Item;
+
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
-				Item heldItem = playerInventory.HeldItem.Item;
                 if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                 {
                     Debug.Log("Plant One");
@@ -253,15 +254,15 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
-                else if(itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
+                else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
-                else if(itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
+                else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
-                else if(itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
+                else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
@@ -276,6 +277,16 @@ public class PlayerInteraction : MonoBehaviour
             {
                 ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
             }
+
+            if (itemName.Contains("Pet"))
+            {
+                Vector3 position = this.gameObject.transform.position;
+                position.x -= 1.5f;
+                heldItem.itemObj.transform.localPosition = position;
+                Instantiate(heldItem.itemObj);
+                playerInventory.RemoveHeldItems(1);
+            }
+
 
             //staminaDisplay.text = $"Stamina: {playerStamina}";
             //timeRadial.fillAmount = (float)playerStamina/100;
