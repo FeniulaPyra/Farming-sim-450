@@ -55,6 +55,9 @@ public class DialogueManager : MonoBehaviour
     TimeManager timeManager;
     PlayerInteraction playerInteraction;
 
+    //for disabling the hotbar during dialogue
+    Menu menu;
+
     //ints to track seasonal dialogue
     public int springConvoStart = 0;
     public int springConvoEnd = 1;
@@ -149,6 +152,8 @@ public class DialogueManager : MonoBehaviour
         characterSprite.gameObject.SetActive(false);
 
         myQuests = gameObject.GetComponent<Quests>();
+
+        menu = FindObjectOfType<Menu>();
     }
 
     // Update is called once per frame
@@ -258,6 +263,8 @@ public class DialogueManager : MonoBehaviour
 
         textBoxImage.gameObject.SetActive(true);
 
+        menu.HotbarGameobject.SetActive(false);
+
         for (int i = 0; i < convoToPlay.Count; i++)
         {
             //Just using Debug.Log for now
@@ -305,6 +312,8 @@ public class DialogueManager : MonoBehaviour
 
         playerInteraction.isTalking = false;
         playerInteraction.CanInteract = true;
+
+        menu.HotbarGameobject.SetActive(true);
 
         if (quests.ContainsKey(convoID))
         {

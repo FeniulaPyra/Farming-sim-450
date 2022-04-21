@@ -58238,8 +58238,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
-      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.size
+      propertyPath: dialogueLists.Array.data[3].convoDialogue.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.size
@@ -58260,6 +58264,10 @@ PrefabInstance:
         one of the mushrooms, and plant it
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[3].convoDialogue.Array.data[2].dialogue
+      value: If you accidentally interact with the bed, hit backspace to cancel.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[5].convoDialogue.Array.data[1].dialogue
       value: You can press the F key to eat a mushroom and recover some stamina.
         Try it out.
@@ -58273,7 +58281,33 @@ PrefabInstance:
       value: You can also mouse over it to see exactly how much stamina you have.
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[0].dialogue
+      value: 'You can do more than just eat your crops. You can sell them, too. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[1].dialogue
+      value: There's a shipping bin to the left of the field.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[2].dialogue
+      value: Interact with it to open the shipping bin menu.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[3].dialogue
+      value: You can place items in the hotbar that appears to mark them for sale.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[4].dialogue
+      value: Some items, you can't sell, so don't worry about accidentally shipping
+        them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[5].dialogue
+      value: Once you do that, hit escape to exit the menu and go ahead and sleep.
+        You get paid overnight.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[6].dialogue
       value: Once you do that, go ahead and sleep. You get paid overnight.
       objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
@@ -58333,6 +58367,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 03e2b2e2c2fc83b419a817315e8eb733, type: 3}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[3].convoDialogue.Array.data[2].characterName
+      value: Tutorial Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[3].convoDialogue.Array.data[2].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 03e2b2e2c2fc83b419a817315e8eb733, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[4].convoDialogue.Array.data[1].tutorialImage
       value: 
       objectReference: {fileID: 21300000, guid: 488bb6969ed02b3428b94c8428722e01, type: 3}
@@ -58347,11 +58389,31 @@ PrefabInstance:
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[0].tutorialImage
       value: 
-      objectReference: {fileID: 21300000, guid: 50e457742405622438dce9b9d9e58aa7, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[1].tutorialImage
       value: 
-      objectReference: {fileID: 21300000, guid: d4790d379b3116e4cba01180074f6688, type: 3}
+      objectReference: {fileID: 21300000, guid: e48a72b6fa4158f4b9eaaccad078b020, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[2].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: ee799e475c52919408ec76641f03c4c3, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[3].tutorialImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 58dbd1ad04c4eeb4298c3afcee1d7ae8, type: 3}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[4].characterName
+      value: Tutorial Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[5].characterName
+      value: Tutorial Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: dialogueLists.Array.data[6].convoDialogue.Array.data[6].characterName
+      value: Tutorial Manager
+      objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824626, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: dialogueLists.Array.data[7].convoDialogue.Array.data[1].tutorialImage
       value: 
