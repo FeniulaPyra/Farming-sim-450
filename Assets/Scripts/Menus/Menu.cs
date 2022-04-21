@@ -619,10 +619,15 @@ public class Menu : MonoBehaviour
 				//close shipping bin
 				if (Input.GetKeyDown(KeyCode.Escape))
 				{
-					if (curSelected != null)
+					if (inv.selectedStack != null)
 					{
-						inv.AddItems(curSelected);
-						curSelected = null;
+						inv.AddItems(inv.selectedStack);
+						inv.selectedStack = null;
+					}
+					if(shippingInventory.selectedStack != null)
+					{
+						shippingInventory.AddItems(shippingInventory.selectedStack);
+						shippingInventory.selectedStack = null;
 					}
 					ShippingMenu.SetActive(false);
 					InventoryMenu.SetActive(false);

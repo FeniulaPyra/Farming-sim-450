@@ -30,11 +30,23 @@ public class ShopMenu : MonoBehaviour
 
 	public void BuyRedShroom()
 	{
+		BuyItem(3);
+	}
+	public void BuyYellowShroom()
+	{
+		BuyItem(4);
+	}
+	public void BuyBlueShroom()
+	{
 		BuyItem(5);
 	}
-	public void ByBlueShroom()
+	public void BuyWhiteShroom()
 	{
-		BuyItem(3);
+		BuyItem(6);
+	}
+	public void BuyBlackShroom()
+	{
+		BuyItem(7);
 	}
 
 	private void BuyItem(int itemID)
