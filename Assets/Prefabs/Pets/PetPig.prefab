@@ -150,7 +150,7 @@ MonoBehaviour:
   player: {fileID: 0}
   normalImage: {fileID: -5165375248245898838, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   pettingImage: {fileID: 3622617476283443989, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
-  petItem: {fileID: 8681727996585695852, guid: 2690a0728f10eb14c9112b88b14168c0, type: 3}
+  petItem: {fileID: 1867982695906281330, guid: 74f0a2584d87f3d47942180ee5500ee0, type: 3}
   manager: {fileID: 0}
 --- !u!58 &-7621692882675924025
 CircleCollider2D:

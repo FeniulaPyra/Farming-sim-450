@@ -150,7 +150,7 @@ MonoBehaviour:
   player: {fileID: 0}
   normalImage: {fileID: -3390864385390669722, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   pettingImage: {fileID: 5462246071958893280, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
-  petItem: {fileID: 8681727996585695852, guid: 2690a0728f10eb14c9112b88b14168c0, type: 3}
+  petItem: {fileID: 9025411608452749625, guid: abda6d40c09386d4fb2640d59d2c62c1, type: 3}
   manager: {fileID: 0}
 --- !u!70 &8885976268714191525
 CapsuleCollider2D:
