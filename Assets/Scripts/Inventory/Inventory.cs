@@ -6,8 +6,8 @@ using UnityEngine;
 public class Inventory
 {
 	public /*static*/ int STACK_SIZE = 99;
-	public static int ROWS = 4;
-	public static int COLUMNS = 9;
+	public int ROWS; //4
+	public int COLUMNS; //9
 
 	public int hotbarRowNumber;
 	public int slotHeld;
@@ -54,8 +54,10 @@ public class Inventory
 		}
 	}
 
-	public Inventory()
+	public Inventory(int rows, int columns)
 	{
+		ROWS = rows;
+		COLUMNS = columns;
 		items = new ItemStack[ROWS,COLUMNS];
 		selectedStack = null;
 		selectHotbar(0);
@@ -143,9 +145,9 @@ public class Inventory
 	public void AddItems(ItemStack item)
 	{
 		Vector2Int openSlot = new Vector2Int(-1, -1);
-		for (int r = 0; r < 4; r++)
+		for (int r = 0; r < ROWS; r++)
 		{
-			for (int c = 0; c < 9; c++)
+			for (int c = 0; c < COLUMNS; c++)
 			{
 				ItemStack i = items[r, c];
 				if(i != null && i.Item.name == item.Item.name && i.Amount < STACK_SIZE)
@@ -343,8 +345,8 @@ public class Inventory
 	public void SetItem(int slotX, int slotY, ItemStack newItems)
 	{
 		//exit if OOB
-		if (slotX >= COLUMNS || slotX < 0 || slotY >= ROWS || slotY < 0) return;
-
+		if (slotX >= ROWS || slotX < 0 || slotY >= COLUMNS || slotY < 0) return;
+		Debug.Log("setting items");
 		items[slotX, slotY] = newItems;
 	}
 

@@ -8,8 +8,8 @@ using System;
 public class ItemStack
 {
 	private Item item;
-	public Item Item{
-		get{return item;}
+	public Item Item {
+		get { return item; }
 	}
 	private int amount;
 	public int Amount
@@ -22,6 +22,12 @@ public class ItemStack
 	{
 		this.item = item;
 		this.amount = count;
+	}
+
+	public ItemStack(ItemStack copy)
+	{
+		this.item = copy.item;
+		this.amount = copy.amount;
 	}
 
 	/// <summary>

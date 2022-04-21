@@ -9,6 +9,7 @@ public class ShippingBin : MonoBehaviour
     public Collider2D playerCollider;
     FarmManager farmManager;
     Inventory playerInventory;
+	public Inventory inventory;
     PlayerInteraction player;
     [SerializeField]
     List<Item> itemsToSell = new List<Item>();
@@ -19,9 +20,16 @@ public class ShippingBin : MonoBehaviour
 
     public CalculateFarmNetWorth netWorth;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		inventory = new Inventory(1, 9);
+		
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
+
         farmManager = FindObjectOfType<FarmManager>();
         playerInventory = farmManager.playerInventory;
 

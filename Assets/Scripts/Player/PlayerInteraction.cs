@@ -88,8 +88,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     Bed bed;
 
-    private void Start()
+	public Menu menu;
+
+
+	private void Start()
     {
+		menu = GameObject.Find("Menus").GetComponent<Menu>();
+
         playerMovement = GetComponent<PlayerMovement>();
 
         //playerStamina = maxPlayerStamina;
@@ -327,7 +332,8 @@ public class PlayerInteraction : MonoBehaviour
                             StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID, dialoguePress));
                             break;
                         case "shipping bin":
-                            objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
+							menu.OpenShippingBin();
+							//objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
                             break;
                         case "bed":
                             objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
