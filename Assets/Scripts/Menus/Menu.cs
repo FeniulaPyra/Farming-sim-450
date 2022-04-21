@@ -279,6 +279,7 @@ public class Menu : MonoBehaviour
 					//selected stack copy
 					ItemStack invSelected = new ItemStack(inv.selectedStack);
 
+					if (!invSelected.Item.isEdible) return;
 					//clicked slot is empty
 					if (shippingInventory.GetSlot(0, y) == null)
 					{
