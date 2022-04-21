@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8102649829989478568}
   - component: {fileID: 8102649829989478571}
   - component: {fileID: 8102649829989478569}
-  - component: {fileID: 8102649829989478582}
   - component: {fileID: 8102649829989478570}
+  - component: {fileID: 3992399335056382043}
   m_Layer: 0
   m_Name: PetDuck
   m_TagString: Untagged
@@ -97,7 +97,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.6588817
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -106,32 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &8102649829989478582
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8102649829989478573}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &8102649829989478570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +152,19 @@ MonoBehaviour:
   pettingImage: {fileID: 1350507181869813336, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   petItem: {fileID: 8681727996585695852, guid: 2690a0728f10eb14c9112b88b14168c0, type: 3}
   manager: {fileID: 0}
+--- !u!70 &3992399335056382043
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8102649829989478573}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06, y: -0.06}
+  m_Size: {x: 0.56365985, y: 0.9054594}
+  m_Direction: 0
