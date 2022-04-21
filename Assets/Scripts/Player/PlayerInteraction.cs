@@ -283,7 +283,7 @@ public class PlayerInteraction : MonoBehaviour
                 ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
             }
 
-            if (itemName.Contains("Pet"))
+            if (itemName.Contains("Pet") && !itemName.Contains("Petrified"))
             {
                 Vector3 position = this.gameObject.transform.position;
                 position.x -= 1.5f;
