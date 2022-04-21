@@ -345,8 +345,8 @@ public class Inventory
 	public void SetItem(int slotX, int slotY, ItemStack newItems)
 	{
 		//exit if OOB
-		if (slotX >= COLUMNS || slotX < 0 || slotY >= ROWS || slotY < 0) return;
-
+		if (slotX >= ROWS || slotX < 0 || slotY >= COLUMNS || slotY < 0) return;
+		Debug.Log("setting items");
 		items[slotX, slotY] = newItems;
 	}
 

@@ -37,6 +37,7 @@ public class Menu : MonoBehaviour
 
 	//the ui object that represents the currently selected item. hovers over the players mouse.
 	public GameObject selectedItem;
+	ItemStack curSelected;
 
 	//hotbar ui objects
 	public GameObject HotbarGameobject;
@@ -95,9 +96,7 @@ public class Menu : MonoBehaviour
 		pi = player.GetComponent<PlayerInteraction>();
 		InventorySlots = new GameObject[inv.ROWS, inv.COLUMNS];
 		HotbarSlots = new GameObject[inv.COLUMNS];
-		if (shippingInventory != null) Debug.Log("SHIPPING BIN EXISTS!!!!!!");
-		else Debug.Log("SHIPPING BIN DOESNT EXIST AAAAAAAAAA");
-		//Debug.Log("Shipping inventory columns" + "shippingInventory.COLUMNS");
+
 		ShippingBinSlots = new GameObject[9];
 		
 
@@ -152,8 +151,39 @@ public class Menu : MonoBehaviour
 
 				//adds click event listener to select slot.
 				slot.GetComponent<Button>().onClick.AddListener(delegate {
-					Debug.Log("Clicked button");
-					inv.SelectSlot(x, y);
+					Debug.Log("Clicked Inventory button");
+					//if the curently selecteditem isn ot from the inventory, simply select the shipping bin stack
+					if (shippingInventory.selectedStack == null)
+					{
+						inv.SelectSlot(x, y);
+					}
+					//if the currently selcected stack is in the inventory, swap if possible.
+					else
+					{
+
+						//selected stack copy
+						ItemStack shippingSelected = new ItemStack(shippingInventory.selectedStack);
+
+						//clicked slot is empty
+						if (inv.GetSlot(x, y) == null)
+						{
+							//add item to slot
+							inv.SetItem(x, y, shippingSelected);
+
+							//clear selected item
+							shippingInventory.selectedStack = null;
+						}
+						//clicked slot has an item
+						else
+						{
+							//set selected stack to item
+							shippingInventory.selectedStack = inv.GetSlot(x, y);
+							Debug.Log(inv.selectedStack.Item.name);
+
+							//set slot to item
+							inv.SetItem(x, y, shippingSelected);
+						}
+					}
 					UpdateInventory();
 				});
 				//slot.GetComponent<Button>().onClick.AddListener(UpdateInventory);
@@ -202,6 +232,7 @@ public class Menu : MonoBehaviour
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}
 		
+		//generates shipping bin slots
 		for(int c = 0; c < shippingInventory.COLUMNS; c++)
 		{
 			GameObject slot = ShippingBinSlots[c] = Instantiate(InventorySlotPrefab);
@@ -231,17 +262,52 @@ public class Menu : MonoBehaviour
 				slotIcon.sprite = null;
 				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
 			}
+			int y = c;
 
+			//when clicked swaps the thing
 			slot.GetComponent<Button>().onClick.AddListener(delegate {
-				Debug.Log("Clicked button");
-				shippingInventory.SelectSlot(0, c);
+
+				//if the curently selecteditem isn ot from the inventory, simply select the shipping bin stack
+				if (inv.selectedStack == null)
+				{
+					shippingInventory.SelectSlot(0, y);
+				}
+				//if the currently selcected stack is in the inventory, swap if possible.
+				else
+				{
+
+					//selected stack copy
+					ItemStack invSelected = new ItemStack(inv.selectedStack);
+
+					//clicked slot is empty
+					if (shippingInventory.GetSlot(0, y) == null)
+					{
+						//add item to slot
+						shippingInventory.SetItem(0, y, invSelected);
+
+						//clear selected item
+						inv.selectedStack = null;
+					}
+					//clicked slot has an item
+					else
+					{
+						//set selected stack to item
+						inv.selectedStack = shippingInventory.GetSlot(0, y);
+						Debug.Log(inv.selectedStack.Item.name);
+
+						//set slot to item
+						shippingInventory.SetItem(0, y, invSelected);
+					}
+				}
+
 				UpdateInventory();
 			});
+			slot.transform.SetParent(ShippingMenu.transform, false);
 		}
 
 		//debugging stuff
 		inv.AddItems(new ItemStack(gameItems[0], 1));
-		shippingInventory.AddItems(new ItemStack(gameItems[0], 1));
+		//shippingInventory.AddItems(new ItemStack(gameItems[0], 1));
 		inv.AddItems(new ItemStack(gameItems[1], 1));
 		inv.AddItems(new ItemStack(gameItems[2], 1));
         inv.AddItems(new ItemStack(gameItems[3], 1));
@@ -255,15 +321,21 @@ public class Menu : MonoBehaviour
 	void UpdateInventory()
 	{
 		invHotbarNum = inv.hotbarRowNumber;
+		if (shippingInventory.selectedStack != null)
+			curSelected = shippingInventory.selectedStack;
+		else
+			curSelected = inv.selectedStack;
+
+
 		//updates selected item
 		Image selectedItemIcon = selectedItem.transform.GetChild(0).GetComponent<Image>();
 		Text selectedItemLabel = selectedItem.transform.GetChild(1).GetComponent<Text>();
 
-		if (inv.selectedStack != null)
+		if (curSelected != null)
 		{
-			selectedItemLabel.text = "" + inv.SelectedStack.Amount;
+			selectedItemLabel.text = "" + curSelected.Amount;
 			selectedItemIcon.enabled = true;
-			selectedItemIcon.sprite = inv.SelectedStack.Item.spr;	
+			selectedItemIcon.sprite = curSelected.Item.spr;
 		}
 		else
 		{
@@ -275,33 +347,33 @@ public class Menu : MonoBehaviour
 		HotbarIndicator.transform.localPosition =
 			new Vector2(
 			0,
-			(inv.hotbarRowNumber-1) * 74 - 10);
+			(inv.hotbarRowNumber - 1) * 74 - 10);
 
-        if (inv.HeldItem != null)
-        {
-            HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name + "\n";
-            if (inv.HeldItem.Item.staminaUsed > 0)
-            {
-                HotbarItemLabel.GetComponent<Text>().text += $" (Use: -{inv.HeldItem.Item.staminaUsed} Stamina)";
-            }
-			if(inv.HeldItem.Item.isEdible)
+		if (inv.HeldItem != null)
+		{
+			HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name + "\n";
+			if (inv.HeldItem.Item.staminaUsed > 0)
+			{
+				HotbarItemLabel.GetComponent<Text>().text += $" (Use: -{inv.HeldItem.Item.staminaUsed} Stamina)";
+			}
+			if (inv.HeldItem.Item.isEdible)
 			{
 				HotbarItemLabel.GetComponent<Text>().text += $" (Eat: +{inv.HeldItem.Item.staminaToRestore} Stamina)";
 			}
-        }
-        else
-        {
-            HotbarItemLabel.GetComponent<Text>().text = "";
-        }
-        /*if (inv.HeldItem != null)
+		}
+		else
+		{
+			HotbarItemLabel.GetComponent<Text>().text = "";
+		}
+		/*if (inv.HeldItem != null)
             HotbarItemLabel.GetComponent<Text>().text = inv.HeldItem.Item.name;
             if (inv.HeldItem.Item.staminaUsed > 0)
                 HotbarItemLabel.GetComponent<Text>().text += $" - {inv.HeldItem.Item.staminaUsed} Stamina";
         else
             HotbarItemLabel.GetComponent<Text>().text = "";*/
 
-        //updates inventory slots
-        for (int r = 0; r < inv.ROWS; r++)
+		//updates inventory slots
+		for (int r = 0; r < inv.ROWS; r++)
 		{
 			for (int c = 0; c < inv.COLUMNS; c++)
 			{
@@ -365,6 +437,36 @@ public class Menu : MonoBehaviour
 			}
 			slot.transform.SetParent(HotbarGameobject.transform, false);
 		}
+
+		for (int c = 0; c < shippingInventory.COLUMNS; c++)
+		{
+			GameObject slot = ShippingBinSlots[c];
+
+			//the text and image of the button
+			Image slotIcon = slot.transform.GetChild(0).GetComponent<Image>();
+			Text slotLabel = slot.transform.GetChild(1).GetComponent<Text>();
+
+			//the item in the corresponding slot in the inventory object
+			ItemStack currentSlot = shippingInventory.GetSlot(0, c);
+
+			//labels the slot
+			if (currentSlot != null)
+			{
+				slotLabel.text = "" + currentSlot.Amount;
+				slot.name = "Shipping Slot " + currentSlot.Item.name;
+				slotIcon.sprite = currentSlot.Item.spr;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 100);
+			}
+			else
+			{
+				slotLabel.text = "";
+				slot.name = "Shipping Slot " + c;
+				slot.name = "Shipping Slot " + c;
+				slotIcon.sprite = null;
+				slotIcon.color = new Color(slotIcon.color.r, slotIcon.color.g, slotIcon.color.b, 0);
+			}
+		}
+
 		inv.HoldItem(inv.slotHeld);
 		//updates held item indicator
 		HeldHotbarItem.transform.position = HotbarSlots[inv.slotHeld].transform.position;
@@ -401,6 +503,7 @@ public class Menu : MonoBehaviour
 		switch(state)
 		{
 			case MenuState.INVENTORY:
+				#region MenuState.INVENTORY
 				MakeSelectFollowMouse();
 				//drop selected item
 				if(Input.GetKeyDown(KeyCode.Q))
@@ -441,8 +544,9 @@ public class Menu : MonoBehaviour
 					pi.CanInteract = true;
 				}
 				break;
+			#endregion
 			case MenuState.PAUSE:
-
+				#region MenuState.PAUSE
 				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					PauseMenu.SetActive(false);
@@ -450,7 +554,9 @@ public class Menu : MonoBehaviour
 					pi.CanInteract = true;
 				}
 				break;
+			#endregion
 			case MenuState.SETTINGS:
+				#region MenuState.SETTINGS
 				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					SettingsMenu.SetActive(false);
@@ -459,7 +565,9 @@ public class Menu : MonoBehaviour
 					pi.CanInteract = true;
 				}
 				break;
+				#endregion
 			case MenuState.HELP:
+				#region MenuState.HELP
 				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					HelpMenu.SetActive(false);
@@ -468,7 +576,9 @@ public class Menu : MonoBehaviour
 					pi.CanInteract = true;
 				}
 				break;
+				#endregion
 			case MenuState.SHOP:
+				#region MenuState.SHOP
 				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					ShopMenu.SetActive(false);
@@ -477,11 +587,42 @@ public class Menu : MonoBehaviour
 					pi.CanInteract = true;
 				}
 				break;
+				#endregion
 			case MenuState.SHIPPING_BIN:
+				#region MenuState.SHIPPING_BIN
 				MakeSelectFollowMouse();
+				//drop selected item
+				if (Input.GetKeyDown(KeyCode.Q))
+				{
+					if (InventoryMenu.active && curSelected != null)
+					{
+						//drop selected Item
+						for (int i = 0; i < curSelected.Amount; i++)
+						{
+							Instantiate(GetItemPrefab(curSelected.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+						}
+						inv.DeleteSelectedItemStack();
+					}
+				}
 
+				//scroll hotbar up and down
+				if (scroll < -MouseScrollDeadzone)
+				{
+					inv.selectNextHotbar();
+				}
+				if (scroll > MouseScrollDeadzone)
+				{
+					inv.selectPreviousHotbar();
+				}
+
+				//close shipping bin
 				if (Input.GetKeyDown(KeyCode.Escape))
 				{
+					if (curSelected != null)
+					{
+						inv.AddItems(curSelected);
+						curSelected = null;
+					}
 					ShippingMenu.SetActive(false);
 					InventoryMenu.SetActive(false);
 					selectedItem.SetActive(false);
@@ -490,7 +631,9 @@ public class Menu : MonoBehaviour
 
 				}
 				break;
+				#endregion
 			case MenuState.NO_MENU:
+				#region MenuState.NO_MENU
 				//selects hotbar item to pressed numkey
 				for (int numKey = 0; numKey <= 9; numKey++)
 				{
@@ -576,6 +719,7 @@ public class Menu : MonoBehaviour
 				}
 
 				break;
+				#endregion
 			default:
 				break;
 		}
@@ -683,4 +827,5 @@ public class Menu : MonoBehaviour
 		selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
 	}
+
 }
