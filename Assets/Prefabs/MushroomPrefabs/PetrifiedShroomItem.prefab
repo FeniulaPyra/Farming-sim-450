@@ -146,12 +146,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxSeekDistance: 1
+  maxSeekDistance: 2
   minSeekDistance: 1
   sr: {fileID: 5261745667560311804}
   player: {fileID: 0}
-  normalImage: {fileID: 0}
-  pettingImage: {fileID: 0}
 --- !u!50 &4764056508480503656
 Rigidbody2D:
   serializedVersion: 4
