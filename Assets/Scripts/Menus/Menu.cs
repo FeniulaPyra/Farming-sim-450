@@ -81,7 +81,8 @@ public class Menu : MonoBehaviour
 		SETTINGS,
 		HELP,
 		SHOP,
-		SHIPPING_BIN
+		SHIPPING_BIN,
+		BED
 	}
 
 	MenuState state = MenuState.NO_MENU;
@@ -822,6 +823,24 @@ public class Menu : MonoBehaviour
 
 		}
 	}
+
+	public void OpenBed()
+    {
+		if(state == MenuState.NO_MENU)
+        {
+			state = MenuState.BED;
+			pi.CanInteract = false;
+        }
+    }
+
+	public void CloseBed()
+    {
+		if(state == MenuState.BED)
+        {
+			state = MenuState.NO_MENU;
+			pi.CanInteract = true;
+        }
+    }
 
 	public void MakeSelectFollowMouse()
 	{

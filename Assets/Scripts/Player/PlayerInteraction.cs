@@ -348,6 +348,7 @@ public class PlayerInteraction : MonoBehaviour
                             break;
                         case "bed":
                             objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
+                            menu.OpenBed();
                             break;
                         default:
                             break;
@@ -358,9 +359,10 @@ public class PlayerInteraction : MonoBehaviour
 
         //Escape is mapped to the pause menu
         //Allows the player to back out of the bed menu, if they accidentally interacted with it
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             bed.SetTextObjectsActive(false);
+            menu.CloseBed();
         }
 
         //Debug.Log($"Distance to player and {objects[0].gameObject.name} is {Vector2.Distance(gameObject.transform.position, objects[0].gameObject.transform.position)}");
