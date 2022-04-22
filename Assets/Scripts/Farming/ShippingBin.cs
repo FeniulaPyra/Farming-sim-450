@@ -9,6 +9,7 @@ public class ShippingBin : MonoBehaviour
     public Collider2D playerCollider;
     FarmManager farmManager;
     Inventory playerInventory;
+	public Inventory inventory;
     PlayerInteraction player;
     [SerializeField]
     List<Item> itemsToSell = new List<Item>();
@@ -19,9 +20,16 @@ public class ShippingBin : MonoBehaviour
 
     public CalculateFarmNetWorth netWorth;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		inventory = new Inventory(1, 9);
+		
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
+
         farmManager = FindObjectOfType<FarmManager>();
         playerInventory = farmManager.playerInventory;
 
@@ -65,7 +73,31 @@ public class ShippingBin : MonoBehaviour
     {
         int oldGold = player.playerGold;
 
-        foreach (Item item in itemsToSell)
+        for (int i = 0; i < inventory.ROWS; i++)
+        {
+            for (int j = 0; j < inventory.COLUMNS; j++)
+            {
+                ItemStack itemToSell = inventory.GetSlot(i, j);
+
+                if (itemToSell != null && itemToSell.Item.isSellable)
+                {
+                    player.playerGold += itemToSell.Item.sellValue * itemToSell.Amount;
+
+                    if (itemToSell.Item.rare == true)
+                    {
+                        netWorth.CalculateNetWorth(50 * itemToSell.Amount);
+                    }
+                    else
+                    {
+                        netWorth.CalculateNetWorth(25 * itemToSell.Amount);
+                    }
+
+                    inventory.DeleteSlot(i, j);
+                }
+            }
+        }
+
+        /*foreach (Item item in itemsToSell)
         {
             player.playerGold += item.sellValue;
 
@@ -77,7 +109,7 @@ public class ShippingBin : MonoBehaviour
             {
                 netWorth.CalculateNetWorth(50);
             }
-        }
+        }*/
 
         goldDisplay.text = $"{player.playerGold} G";
 
@@ -91,6 +123,6 @@ public class ShippingBin : MonoBehaviour
 
         }
 
-        itemsToSell.Clear();
+        //itemsToSell.Clear();
     }
 }

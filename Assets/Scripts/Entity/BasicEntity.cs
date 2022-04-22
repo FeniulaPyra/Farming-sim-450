@@ -8,6 +8,7 @@ public class BasicEntity : MonoBehaviour
     [SerializeField]
     protected float movementSpeed = 1;
 
+	public GameObject menu;
 	public Slider size;
 
     [SerializeField]
@@ -36,7 +37,8 @@ public class BasicEntity : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         facing = new Vector2(1, 0);
-
+		menu = GameObject.Find("Menus");
+		size = menu.GetComponentInChildren<Slider>(true);
         player = GameObject.FindObjectOfType<PlayerMovement>().transform;
     }
 

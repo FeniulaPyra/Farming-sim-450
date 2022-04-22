@@ -56,7 +56,7 @@ MonoBehaviour:
   staminaUsed: 2
   isEdible: 1
   staminaToRestore: 15
-  rare: 0
+  rare: 1
 --- !u!212 &8047497676083996055
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  size: {fileID: 0}
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -145,7 +146,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  seekDistance: 3
+  maxSeekDistance: 2
+  minSeekDistance: 1
   sr: {fileID: 8047497676083996055}
   player: {fileID: 0}
 --- !u!50 &7257086352372044035

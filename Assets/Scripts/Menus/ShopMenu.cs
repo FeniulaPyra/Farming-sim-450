@@ -30,11 +30,55 @@ public class ShopMenu : MonoBehaviour
 
 	public void BuyRedShroom()
 	{
+		BuyItem(3);
+	}
+	public void BuyYellowShroom()
+	{
+		BuyItem(4);
+	}
+	public void BuyBlueShroom()
+	{
 		BuyItem(5);
 	}
-	public void ByBlueShroom()
+	public void BuyWhiteShroom()
 	{
-		BuyItem(3);
+		BuyItem(6);
+	}
+	public void BuyBlackShroom()
+	{
+		BuyItem(7);
+	}
+	public void BuyDog()
+	{
+		BuyItem(13);
+	}
+	public void BuyCat()
+	{
+		BuyItem(14);
+	}
+	public void BuyFrog()
+	{
+		BuyItem(15);
+	}
+	public void BuyDuck()
+	{
+		BuyItem(16);
+	}
+	public void BuyCow()
+	{
+		BuyItem(17);
+	}
+	public void BuyChicken()
+	{
+		BuyItem(18);
+	}
+	public void BuyPig()
+	{
+		BuyItem(19);
+	}
+	public void BuySheep()
+	{
+		BuyItem(20);
 	}
 
 	private void BuyItem(int itemID)

@@ -88,8 +88,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     Bed bed;
 
-    private void Start()
+	public Menu menu;
+
+
+	private void Start()
     {
+		menu = GameObject.Find("Menus").GetComponent<Menu>();
+
         playerMovement = GetComponent<PlayerMovement>();
 
         //playerStamina = maxPlayerStamina;
@@ -278,7 +283,7 @@ public class PlayerInteraction : MonoBehaviour
                 ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
             }
 
-            if (itemName.Contains("Pet"))
+            if (itemName.Contains("Pet") && !itemName.Contains("Petrified"))
             {
                 Vector3 position = this.gameObject.transform.position;
                 position.x -= 1.5f;
@@ -338,7 +343,8 @@ public class PlayerInteraction : MonoBehaviour
                             StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID, dialoguePress));
                             break;
                         case "shipping bin":
-                            objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
+							menu.OpenShippingBin();
+							//objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
                             break;
                         case "bed":
                             objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
