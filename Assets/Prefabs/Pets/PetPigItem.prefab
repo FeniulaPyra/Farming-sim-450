@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pet Pig
   spr: {fileID: -5165375248245898838, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
-  itemObj: {fileID: 6924948639593615759, guid: fda1b3bb09ee3074b9e2dd6754307b69, type: 3}
+  itemObj: {fileID: 4897618734945656533, guid: 77083b3543808e844a23906fc9484c49, type: 3}
   manager: {fileID: 0}
   isSellable: 1
   sellValue: 1000
