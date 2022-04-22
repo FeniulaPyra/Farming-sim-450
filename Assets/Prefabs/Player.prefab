@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7752269456424297129}
   - component: {fileID: 7752269456424297126}
   - component: {fileID: 7752269456424297127}
+  - component: {fileID: 1281256936}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +47,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -69,6 +70,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   sr: {fileID: 7752269456871954605}
+  left: {fileID: -529932451917715602, guid: 1854c545065914d488d44645a94d951a, type: 3}
+  right: {fileID: -5690383699158048128, guid: 1854c545065914d488d44645a94d951a, type: 3}
+  up: {fileID: 4950577986329706749, guid: 1854c545065914d488d44645a94d951a, type: 3}
+  down: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
+--- !u!114 &1281256936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752269456424297128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369a69b5bf91aa04a82551d1aba3cb33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmManager: {fileID: 0}
+  indicatorImage: {fileID: 0}
+  indicator: {fileID: 0}
+  displayIndicator: 1
+  interactionOffset: {x: 0, y: 0, z: 0}
+  maxInteractionDistance: 2
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.39215687}
+  canInteract: 0
+  staminaDisplay: {fileID: 0}
+  playerStamina: 0
+  timeRadial: {fileID: 0}
+  timeRadial2: {fileID: 0}
+  timeRadial3: {fileID: 0}
+  isTalking: 0
+  playerGold: 0
+  objects: []
+  farmingTutorial: {fileID: 0}
+  bed: {fileID: 0}
+  menu: {fileID: 0}
 --- !u!1 &7752269456871954607
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,10 +174,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1190745841
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 67556bacedb61474480c98852b2fa463, type: 3}
+  m_Sprite: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

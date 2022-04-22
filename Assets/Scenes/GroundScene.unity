@@ -55891,11 +55891,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7752269456424297128, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
   m_PrefabInstance: {fileID: 7752269456879133806}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1281256936
+--- !u!114 &1281256936 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+  m_PrefabInstance: {fileID: 7752269456879133806}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281256933}
   m_Enabled: 1
@@ -55903,26 +55902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369a69b5bf91aa04a82551d1aba3cb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farmManager: {fileID: 2068960239}
-  indicatorImage: {fileID: 1642525207}
-  indicator: {fileID: 1642525208}
-  displayIndicator: 1
-  interactionOffset: {x: 0, y: 0, z: 0}
-  maxInteractionDistance: 1.25
-  activeColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.39215687}
-  canInteract: 0
-  staminaDisplay: {fileID: 1377426781}
-  playerStamina: 0
-  timeRadial: {fileID: 508372017}
-  timeRadial2: {fileID: 80900818}
-  timeRadial3: {fileID: 1932043082}
-  isTalking: 0
-  playerGold: 0
-  objects: []
-  farmingTutorial: {fileID: 0}
-  bed: {fileID: 0}
-  menu: {fileID: 0}
 --- !u!1 &1291988337
 GameObject:
   m_ObjectHideFlags: 0
@@ -62073,33 +62052,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7752269456424297126, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_Mass
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: up
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: indicator
       value: 
-      objectReference: {fileID: 4950577986329706749, guid: 1854c545065914d488d44645a94d951a, type: 3}
-    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: down
+      objectReference: {fileID: 1642525208}
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: timeRadial
       value: 
-      objectReference: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
-    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: left
+      objectReference: {fileID: 508372017}
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: farmManager
       value: 
-      objectReference: {fileID: -529932451917715602, guid: 1854c545065914d488d44645a94d951a, type: 3}
-    - target: {fileID: 7752269456424297127, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: right
+      objectReference: {fileID: 2068960239}
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: timeRadial2
       value: 
-      objectReference: {fileID: -5690383699158048128, guid: 1854c545065914d488d44645a94d951a, type: 3}
+      objectReference: {fileID: 80900818}
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: timeRadial3
+      value: 
+      objectReference: {fileID: 1932043082}
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: indicatorImage
+      value: 
+      objectReference: {fileID: 1642525207}
+    - target: {fileID: 1281256936, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: staminaDisplay
+      value: 
+      objectReference: {fileID: 1377426781}
     - target: {fileID: 7752269456424297128, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752269456424297128, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_RootOrder
@@ -62143,26 +62126,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752269456424297129, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752269456871954605, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
-    - target: {fileID: 7752269456871954605, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752269456871954605, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1190745841
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752269457178815590, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_Radius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7752269457178815590, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-      propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
