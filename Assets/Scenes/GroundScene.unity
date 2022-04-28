@@ -421,6 +421,7 @@ MonoBehaviour:
   MouseScrollDeadzone: 0.1
   currentMouseScroll: 0
   cam: {fileID: 1840140369}
+  state: 0
 --- !u!114 &24585729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61958,11 +61959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4301840419856902467, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4301840419856902467, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4301840419856902467, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_LocalPosition.z
