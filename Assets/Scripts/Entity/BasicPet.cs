@@ -24,7 +24,8 @@ public class BasicPet : BasicEntity
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+		base.Update();
+		if (size) this.transform.localScale = new Vector3(size.value, size.value, 1);
     }
 
     protected override void FixedUpdate()

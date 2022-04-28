@@ -44,7 +44,6 @@ public class BasicEntity : MonoBehaviour
 
     protected virtual void Update()
     {
-		if (size) this.transform.localScale = new Vector3(size.value, size.value, 1);
 
 		if (rb.velocity.magnitude > 0.1)
         {
