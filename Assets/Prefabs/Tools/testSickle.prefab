@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6549609000272695969}
   - component: {fileID: 7855144954880188191}
   - component: {fileID: -1061809455214255276}
+  - component: {fileID: -2342875307094313407}
+  - component: {fileID: 6409869345732599287}
   m_Layer: 0
   m_Name: testSickle
   m_TagString: Untagged
@@ -52,6 +54,9 @@ MonoBehaviour:
   sellValue: 0
   player: {fileID: 0}
   staminaUsed: 6
+  isEdible: 0
+  staminaToRestore: 0
+  rare: 0
 --- !u!212 &-1061809455214255276
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103,3 +108,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2342875307094313407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832637054430782259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fe06a0540b38c6489b44d535de12afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  menu: {fileID: 0}
+  size: {fileID: 0}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSeekDistance: 1.4
+  minSeekDistance: 0
+  sr: {fileID: -1061809455214255276}
+  player: {fileID: 0}
+--- !u!50 &6409869345732599287
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832637054430782259}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
