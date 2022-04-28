@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  menu: {fileID: 0}
   size: {fileID: 0}
   speedCurve:
     serializedVersion: 2
@@ -146,8 +147,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxSeekDistance: 2
-  minSeekDistance: 1
+  maxSeekDistance: 1.4
+  minSeekDistance: 0
   sr: {fileID: 7045756798802460592}
   player: {fileID: 0}
 --- !u!50 &2735823683429752712

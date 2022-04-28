@@ -518,7 +518,8 @@ public class Menu : MonoBehaviour
 						//drop selected Item
 						for (int i = 0; i < inv.selectedStack.Amount; i++)
 						{
-							Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+							float theta = Random.Range(0, 2 * Mathf.PI);
+							Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 						}
 						inv.DeleteSelectedItemStack();
 					}
@@ -715,7 +716,10 @@ public class Menu : MonoBehaviour
 						//drop held item
 						for (int i = 0; i < inv.HeldItem.Amount; i++)
 						{
-							Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
+							float theta = Random.Range(0, 2 * Mathf.PI);
+							//Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
+
+							Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 						}
 						inv.DeleteHeldItemStack(); 
 					}
