@@ -24,11 +24,15 @@ public class Bed : MonoBehaviour
     public Button morningButton;
     public Button nightButton;
 
+	public GameObject menus;
+	private Menu menu;
+
     // Start is called before the first frame update
     void Start()
     {
         timeManager = FindObjectOfType<TimeManager>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
+		menu = menus.GetComponent<Menu>(); //ah yes the menu here is made out of menus
     }
 
     // Update is called once per frame
@@ -77,6 +81,7 @@ public class Bed : MonoBehaviour
         timeManager.Sleep(8);
         playerInteraction.isTalking = false;
         SetTextObjectsActive(false);
+		menu.CloseBed();
     }
 
     public void SleepToNight()
@@ -86,6 +91,7 @@ public class Bed : MonoBehaviour
         timeManager.Sleep(8);
         playerInteraction.isTalking = false;
         SetTextObjectsActive(false);
+		menu.CloseBed();
     }
 
     /*void SleepSelection()
