@@ -63,6 +63,8 @@ public class Menu : MonoBehaviour
 	public double MouseScrollDeadzone;
 	public double currentMouseScroll;
 
+	public Camera cam;
+
 	public enum MenuControls
 	{
 		OPEN_INVENTORY = KeyCode.E,
@@ -716,10 +718,11 @@ public class Menu : MonoBehaviour
 						//drop held item
 						for (int i = 0; i < inv.HeldItem.Amount; i++)
 						{
-							float theta = Random.Range(0, 2 * Mathf.PI);
+							DropItem(inv.HeldItem.Item);
+							//float theta = Random.Range(0, 2 * Mathf.PI);
 							//Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 
-							Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
+							//Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 						}
 						inv.DeleteHeldItemStack(); 
 					}
@@ -859,6 +862,18 @@ public class Menu : MonoBehaviour
 		selectedItem.transform.position = InventoryMenu.transform.parent.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
 	}
+	public void DropItem(Item i)
+	{
+		//float theta = Random.Range(0, 2 * Mathf.PI);
+		Vector3 mouse = Input.mousePosition;
+		mouse.z = 10;
+		Vector2 worldMouse = cam.ScreenToWorldPoint(Input.mousePosition);
 
+		Vector2 vec = worldMouse - (Vector2)player.transform.position;
+		float theta = Mathf.Atan2(vec.y, vec.x);
+
+		Instantiate(GetItemPrefab(i.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
+
+	}
 
 }

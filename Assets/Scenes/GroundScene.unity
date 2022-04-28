@@ -420,6 +420,7 @@ MonoBehaviour:
   player: {fileID: 1281256933}
   MouseScrollDeadzone: 0.1
   currentMouseScroll: 0
+  cam: {fileID: 1840140369}
 --- !u!114 &24585729
 MonoBehaviour:
   m_ObjectHideFlags: 0
