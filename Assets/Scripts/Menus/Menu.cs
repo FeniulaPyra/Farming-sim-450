@@ -65,6 +65,9 @@ public class Menu : MonoBehaviour
 
 	public Camera cam;
 
+    //Player's bed
+    Bed bed;
+
 	public enum MenuControls
 	{
 		OPEN_INVENTORY = KeyCode.E,
@@ -88,6 +91,7 @@ public class Menu : MonoBehaviour
 		DIALOG
 	}
 
+    [SerializeField]
 	MenuState state = MenuState.NO_MENU;
 
 	// Start is called before the first frame update
@@ -324,6 +328,8 @@ public class Menu : MonoBehaviour
         inv.AddItems(new ItemStack(gameItems[6], 1));
         inv.AddItems(new ItemStack(gameItems[7], 1));
         UpdateInventory();
+
+        bed = FindObjectOfType<Bed>().GetComponent<Bed>();
     }
 
 	void UpdateInventory()
@@ -508,11 +514,13 @@ public class Menu : MonoBehaviour
 		}
 		Debug.Log("menustate: " + state);
 
+        Debug.Log("Before switch");
 		switch(state)
 		{
 			case MenuState.INVENTORY:
-				#region MenuState.INVENTORY
-				MakeSelectFollowMouse();
+                #region MenuState.INVENTORY
+                Debug.Log("Inventory swtichcase");
+                MakeSelectFollowMouse();
 				//drop selected item
 				if(Input.GetKeyDown(KeyCode.Q))
 				{
@@ -555,8 +563,9 @@ public class Menu : MonoBehaviour
 				break;
 			#endregion
 			case MenuState.PAUSE:
-				#region MenuState.PAUSE
-				if (Input.GetKeyDown(KeyCode.Escape))
+                #region MenuState.PAUSE
+                Debug.Log("Pause swtichcase");
+                if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					PauseMenu.SetActive(false);
 					state = MenuState.NO_MENU;
@@ -565,8 +574,9 @@ public class Menu : MonoBehaviour
 				break;
 			#endregion
 			case MenuState.SETTINGS:
-				#region MenuState.SETTINGS
-				if (Input.GetKeyDown(KeyCode.Escape))
+                #region MenuState.SETTINGS
+                Debug.Log("Settings swtichcase");
+                if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					SettingsMenu.SetActive(false);
 					PauseMenu.SetActive(true);
@@ -576,8 +586,9 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.HELP:
-				#region MenuState.HELP
-				if (Input.GetKeyDown(KeyCode.Escape))
+                #region MenuState.HELP
+                Debug.Log("Help swtichcase");
+                if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					HelpMenu.SetActive(false);
 					PauseMenu.SetActive(true);
@@ -587,8 +598,9 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.SHOP:
-				#region MenuState.SHOP
-				if (Input.GetKeyDown(KeyCode.Escape))
+                #region MenuState.SHOP
+                Debug.Log("Shop swtichcase");
+                if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					ShopMenu.SetActive(false);
 					PauseMenu.SetActive(true);
@@ -598,8 +610,9 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.SHIPPING_BIN:
-				#region MenuState.SHIPPING_BIN
-				MakeSelectFollowMouse();
+                #region MenuState.SHIPPING_BIN
+                Debug.Log("Bin swtichcase");
+                MakeSelectFollowMouse();
 				//drop selected item
 				if (Input.GetKeyDown(KeyCode.Q))
 				{
@@ -647,9 +660,10 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.NO_MENU:
-				#region MenuState.NO_MENU
-				//selects hotbar item to pressed numkey
-				for (int numKey = 0; numKey <= 9; numKey++)
+                #region MenuState.NO_MENU
+                Debug.Log("Bin swtichcase");
+                //selects hotbar item to pressed numkey
+                for (int numKey = 0; numKey <= 9; numKey++)
 				{
 					if (Input.GetKeyDown("" + numKey))
 					{
@@ -737,11 +751,17 @@ public class Menu : MonoBehaviour
 				}
 
 				break;
-				#endregion
+            #endregion
+            case MenuState.DIALOG:
+                Debug.Log("Dialog default");
+                break;
 			default:
-				break;
+                Debug.Log("default switch");
+                break;
 		}
-		UpdateInventory();
+        Debug.Log("After switch");
+
+        UpdateInventory();
 	}
 	
 	public List<Item> GetGameItemList()
@@ -837,6 +857,7 @@ public class Menu : MonoBehaviour
 		if(state == MenuState.NO_MENU)
         {
 			state = MenuState.BED;
+            bed.SetTextObjectsActive(true);
 			pi.CanInteract = false;
         }
     }
@@ -846,7 +867,8 @@ public class Menu : MonoBehaviour
 		if(state == MenuState.BED)
         {
 			state = MenuState.NO_MENU;
-			pi.CanInteract = true;
+            bed.SetTextObjectsActive(false);
+            pi.CanInteract = true;
         }
     }
 

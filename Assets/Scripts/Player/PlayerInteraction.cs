@@ -331,7 +331,7 @@ public class PlayerInteraction : MonoBehaviour
                 float distance = Vector2.Distance(gameObject.transform.position, objects[i].gameObject.transform.position);
 
                 //1 seems like a fine number
-                if (distance <= 1.0f)
+                if (distance <= 1.0f && objects[i].enabled == true)
                 {
                     //switch on name to see what it is
                     switch (objects[i].name)
@@ -347,7 +347,7 @@ public class PlayerInteraction : MonoBehaviour
 							//objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
                             break;
                         case "bed":
-                            objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
+                            //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
                             menu.OpenBed();
                             break;
                         default:
@@ -359,7 +359,7 @@ public class PlayerInteraction : MonoBehaviour
 
         //Escape is mapped to the pause menu
         //Allows the player to back out of the bed menu, if they accidentally interacted with it
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && isTalking == false)
         {
             bed.SetTextObjectsActive(false);
             menu.CloseBed();

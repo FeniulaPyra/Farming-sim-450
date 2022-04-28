@@ -236,6 +236,8 @@ public class DialogueManager : MonoBehaviour
     //Is a coroutine so the for loop for dialogue doesn't immediately blaze through the conversation list
     public IEnumerator PlayDialogue(string convoID, KeyCode wait)
     {
+        menu.OpenDialog();
+
         playerInteraction.isTalking = true;
         playerInteraction.CanInteract = false;
 
@@ -333,6 +335,8 @@ public class DialogueManager : MonoBehaviour
             this.convoID = oldConvoID;
             //Debug.Log("Quest id replaced");
         }
+
+        menu.CloseDialog();
     }
 
     /*private void OnTriggerStay2D(Collider2D collision)

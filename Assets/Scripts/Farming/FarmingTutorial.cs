@@ -47,10 +47,16 @@ public class FarmingTutorial : MonoBehaviour
     public bool hybridBefore;
     public bool hybridAfter;
 
+    [SerializeField]
+    InteractableObjects shippingBin;
+
     // Start is called before the first frame update
     void Start()
     {
         self = GetComponentInParent<DialogueManager>();
+
+        shippingBin = FindObjectOfType<ShippingBin>().GetComponent<InteractableObjects>();
+        shippingBin.enabled = false;
     }
 
     // Update is called once per frame
@@ -145,6 +151,8 @@ public class FarmingTutorial : MonoBehaviour
             self.convoID = self.conversationIDs[6];
 
             objective.text = $"Current Objective: Ship mushroom and go to sleep";
+
+            shippingBin.enabled = true;
 
             StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
         }
