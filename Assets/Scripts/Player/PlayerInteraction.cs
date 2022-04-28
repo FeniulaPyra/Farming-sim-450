@@ -340,7 +340,7 @@ public class PlayerInteraction : MonoBehaviour
                             Debug.Log("Interact update");
                             yield return new WaitForSeconds(0.025f);
                             //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                            StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID, dialoguePress));
+                            StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
                             break;
                         case "shipping bin":
 							menu.OpenShippingBin();

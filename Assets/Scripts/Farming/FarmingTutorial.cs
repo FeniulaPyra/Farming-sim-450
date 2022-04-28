@@ -68,7 +68,7 @@ public class FarmingTutorial : MonoBehaviour
         //Rwplay Text
         if (Input.GetKeyDown(KeyCode.T))
         {
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //First step
@@ -80,7 +80,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Till the field using the hoe";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Ground hoe'd
@@ -92,7 +92,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Plant a Mushroom";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Planted
@@ -104,7 +104,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Water the mushroom";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Watered
@@ -116,7 +116,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Sleep so mushroom grows";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //New Day
@@ -128,7 +128,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Harvest grown mushroom";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Harvested
@@ -140,7 +140,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Eat Mushroom to recover stamina";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Full
@@ -154,7 +154,7 @@ public class FarmingTutorial : MonoBehaviour
 
             shippingBin.enabled = true;
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Shipping done
@@ -166,7 +166,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Plant and water mushroom, then sleep for two days";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Spread
@@ -181,7 +181,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread";
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
         }
 
         //Hybridization
@@ -193,7 +193,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.gameObject.SetActive(false);
 
-            StartCoroutine(self.PlayDialogue(self.convoID, KeyCode.Space));
+            StartCoroutine(self.PlayDialogue(self.convoID));
 
             tutorialComplete = true;
         }

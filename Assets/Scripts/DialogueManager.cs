@@ -220,11 +220,11 @@ public class DialogueManager : MonoBehaviour
     }
 
     //As long as the key passed in is not being pressed, nothing happens. When it is, it tells the Play Dialogue Coroutine to wait a little bit before moving on
-    IEnumerator WaitForInput(KeyCode key)
+    IEnumerator WaitForInput(KeyCode key, KeyCode secondKey)
     {
         Debug.Log("Waiting");
 
-        while (Input.GetKeyDown(key) == false)
+        while (Input.GetKeyDown(key) == false && Input.GetKeyDown(secondKey) == false)
         {
             yield return null;
         }
@@ -234,7 +234,7 @@ public class DialogueManager : MonoBehaviour
 
     //method to play out a conversation, using it's ID to find it
     //Is a coroutine so the for loop for dialogue doesn't immediately blaze through the conversation list
-    public IEnumerator PlayDialogue(string convoID, KeyCode wait)
+    public IEnumerator PlayDialogue(string convoID)
     {
         menu.OpenDialog();
 
@@ -296,7 +296,7 @@ public class DialogueManager : MonoBehaviour
             }
 
             //yield return StartCoroutine(WaitForInput(KeyCode.Space));
-            yield return StartCoroutine(WaitForInput(wait));
+            yield return StartCoroutine(WaitForInput(KeyCode.Space, KeyCode.Mouse0));
             //timer = timerDefault;
         }
 
