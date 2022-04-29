@@ -736,16 +736,16 @@ public class Menu : MonoBehaviour
 					if (inv.HeldItem != null)
 					{
 						//drop held item
-						for (int i = 0; i < inv.HeldItem.Amount; i++)
-						{
+						//for (int i = 0; i < inv.HeldItem.Amount; i++)
+						//{
 							DropItem(inv.HeldItem.Item);
-							//float theta = Random.Range(0, 2 * Mathf.PI);
-							//Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
+						//float theta = Random.Range(0, 2 * Mathf.PI);
+						//Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 
-							//Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
-						}
+						//Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
+						//}
 						if (!inv.HeldItem.Item.name.Contains("Pet") || inv.HeldItem.Item.name.Contains("Petrified")) //disabled because bug
-							inv.DeleteHeldItemStack(); 
+							inv.RemoveHeldItems(1);//DeleteHeldItemStack(); 
 					}
 				}
 				
