@@ -522,19 +522,22 @@ public class Menu : MonoBehaviour
                 Debug.Log("Inventory swtichcase");
                 MakeSelectFollowMouse();
 				//drop selected item
-				if(Input.GetKeyDown(KeyCode.Q))
+				//disabled because unnecessary, untested, and most likely buggy
+				/*if (Input.GetKeyDown(KeyCode.Q))
 				{
 					if (InventoryMenu.active && inv.selectedStack != null)
 					{
 						//drop selected Item
 						for (int i = 0; i < inv.selectedStack.Amount; i++)
 						{
-							float theta = Random.Range(0, 2 * Mathf.PI);
-							Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
+							DropItem(inv.selectedStack.Item);
+							//float theta = Random.Range(0, 2 * Mathf.PI);
+							//Instantiate(GetItemPrefab(inv.selectedStack.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 						}
-						inv.DeleteSelectedItemStack();
+						if (!inv.selectedStack.Item.name.Contains("Pet") || inv.selectedStack.Item.name.Contains("Petrified")) return; //disabled because bug
+							inv.DeleteSelectedItemStack();
 					}
-				}
+				}*/
 
 				//scroll hotbar up and down
 				if (scroll < -MouseScrollDeadzone)
@@ -614,7 +617,8 @@ public class Menu : MonoBehaviour
                 Debug.Log("Bin swtichcase");
                 MakeSelectFollowMouse();
 				//drop selected item
-				if (Input.GetKeyDown(KeyCode.Q))
+				//disabled because unnecessary, untested, and most likely buggy
+				/*if (Input.GetKeyDown(KeyCode.Q))
 				{
 					if (InventoryMenu.active && curSelected != null)
 					{
@@ -623,9 +627,10 @@ public class Menu : MonoBehaviour
 						{
 							Instantiate(GetItemPrefab(curSelected.Item.name), player.transform.position + new Vector3(0, -1f, 0), Quaternion.identity);
 						}
-						inv.DeleteSelectedItemStack();
+						if (!curSelected.Item.name.Contains("Pet") || curSelected.Item.name.Contains("Petrified")) return; //disabled because bug
+							inv.DeleteSelectedItemStack();
 					}
-				}
+				}*/
 
 				//scroll hotbar up and down
 				if (scroll < -MouseScrollDeadzone)
@@ -739,7 +744,8 @@ public class Menu : MonoBehaviour
 
 							//Instantiate(GetItemPrefab(inv.HeldItem.Item.name), player.transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);
 						}
-						inv.DeleteHeldItemStack(); 
+						if (!inv.HeldItem.Item.name.Contains("Pet") || inv.HeldItem.Item.name.Contains("Petrified")) //disabled because bug
+							inv.DeleteHeldItemStack(); 
 					}
 				}
 				
@@ -902,6 +908,7 @@ public class Menu : MonoBehaviour
 	}
 	public void DropItem(Item i)
 	{
+		if (i.name.Contains("Pet") && !i.name.Contains("Petrified")) return; //disabled because bug
 		//float theta = Random.Range(0, 2 * Mathf.PI);
 		Vector3 mouse = Input.mousePosition;
 		mouse.z = 10;
