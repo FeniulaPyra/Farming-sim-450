@@ -327,12 +327,16 @@ public class PlayerInteraction : MonoBehaviour
             //goes through all interactable objects
             for (int i = 0; i < objects.Count; i++)
             {
-                //Sees how close the player is to them
-                float distance = Vector2.Distance(gameObject.transform.position, objects[i].gameObject.transform.position);
-
+				Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
+				Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
+				//Sees how close the player is to them
+				float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
+				if (objects[i].name == "Shop")
+					Debug.Log("SHOPDIST: " + distance);
                 //1 seems like a fine number
                 if (distance <= 1.0f && objects[i].enabled == true)
                 {
+					Debug.Log("CLOSE ENOUGH TO INTERACT WITH: " + objects[i].name);
                     //switch on name to see what it is
                     switch (objects[i].name)
                     {
@@ -350,6 +354,10 @@ public class PlayerInteraction : MonoBehaviour
                             //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
                             menu.OpenBed();
                             break;
+						case "Shop":
+							Debug.Log("SHOP INTERACTED");
+							menu.OpenShop();
+							break;
                         default:
                             break;
                     }

@@ -603,8 +603,8 @@ public class Menu : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					ShopMenu.SetActive(false);
-					PauseMenu.SetActive(true);
-					state = MenuState.PAUSE;
+					//PauseMenu.SetActive(true);
+					state = MenuState.NO_MENU;//PAUSE;
 					pi.CanInteract = true;
 				}
 				break;
