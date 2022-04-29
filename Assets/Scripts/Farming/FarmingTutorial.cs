@@ -63,8 +63,17 @@ public class FarmingTutorial : MonoBehaviour
     void Update()
     {
 		//skips if tutorial is not enabled
-		if (!enableTutorial.isOn) return;
-
+		if (!enableTutorial.isOn)
+		{
+			shippingBin.enabled = true;
+			return;
+		}
+		else if(!(eatingAfter == true))
+		{
+			shippingBin.enabled = false;
+			
+		}
+		
         //Rwplay Text
         if (Input.GetKeyDown(KeyCode.T))
         {
