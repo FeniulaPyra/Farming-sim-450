@@ -61732,7 +61732,7 @@ PrefabInstance:
     - target: {fileID: 4226742886614438251, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1365412046416368990, guid: 2bd6d07f6cfbce141b6d0707fdf72293, type: 3}
+      objectReference: {fileID: -4060919210459756606, guid: 6ee6966c8cce9c44c8578b1e59545fde, type: 3}
     - target: {fileID: 4226742886614438254, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
       propertyPath: m_RootOrder
       value: 7
