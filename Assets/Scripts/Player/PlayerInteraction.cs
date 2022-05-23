@@ -206,7 +206,23 @@ public class PlayerInteraction : MonoBehaviour
 
         staminaDisplay.text = $"{playerStamina}";
 
-        StartCoroutine(InteractionChecker());
+        //StartCoroutine(InteractionChecker());
+        InteractionChecker();
+    }
+
+    /// <summary>
+    /// Small method for stopping the player during dialogue, which apparently breaks Fungus
+    /// </summary>
+    public void StopPlayer()
+    {
+        isTalking = true;
+        CanInteract = false;
+    }
+
+    public void StartPlayer()
+    {
+        isTalking = false;
+        CanInteract = true;
     }
 
     private void CheckInteraction()
@@ -308,7 +324,64 @@ public class PlayerInteraction : MonoBehaviour
     /// This pauses for a very brief amount of time so that first spacebar press doesn't register for the WaitForInput
     /// </summary>
     /// <returns></returns>
-    public IEnumerator InteractionChecker()
+    public void InteractionChecker()
+    {
+        //checks if the player hits the key for interaction
+        //Debug.Log($"Interact talking: {playerInteraction.isTalking}");
+        if (Input.GetKeyDown(KeyCode.Space) && isTalking == false || Input.GetKeyDown(KeyCode.Mouse0) && isTalking == false)
+        {
+            KeyCode dialoguePress = KeyCode.Space;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                dialoguePress = KeyCode.Space;
+            }
+            else if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                dialoguePress = KeyCode.Mouse0;
+            }
+
+            //goes through all interactable objects
+            for (int i = 0; i < objects.Count; i++)
+            {
+                Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
+                Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
+                //Sees how close the player is to them
+                float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
+                if (objects[i].name == "Shop")
+                    Debug.Log("SHOPDIST: " + distance);
+                //1 seems like a fine number
+                if (distance <= 1.0f && objects[i].enabled == true)
+                {
+                    Debug.Log("CLOSE ENOUGH TO INTERACT WITH: " + objects[i].name);
+                    //switch on name to see what it is
+                    switch (objects[i].name)
+                    {
+                        case "npc":
+                            Debug.Log("Interact update");
+                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                            break;
+                        case "shipping bin":
+                            menu.OpenShippingBin();
+                            //objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
+                            break;
+                        case "bed":
+                            //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
+                            menu.OpenBed();
+                            break;
+                        case "Shop":
+                            Debug.Log("SHOP INTERACTED");
+                            menu.OpenShop();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    /*public IEnumerator InteractionChecker()
     {
         //checks if the player hits the key for interaction
         //Debug.Log($"Interact talking: {playerInteraction.isTalking}");
@@ -344,7 +417,7 @@ public class PlayerInteraction : MonoBehaviour
                             Debug.Log("Interact update");
                             yield return new WaitForSeconds(0.025f);
                             //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                            StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
                             break;
                         case "shipping bin":
 							menu.OpenShippingBin();
@@ -374,7 +447,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //Debug.Log($"Distance to player and {objects[0].gameObject.name} is {Vector2.Distance(gameObject.transform.position, objects[0].gameObject.transform.position)}");
-    }
+    }*/
 
     public int PlayerStamina => playerStamina;
 

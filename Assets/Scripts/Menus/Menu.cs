@@ -864,7 +864,11 @@ public class Menu : MonoBehaviour
         {
 			state = MenuState.BED;
             //bed.SetTextObjectsActive(true);
-            bed.MyFlowchart.ExecuteBlock("Start");
+            if (bed.MyFlowchart.isActiveAndEnabled == true)
+            {
+                bed.MyFlowchart.ExecuteBlock("Start");
+                Debug.Log("fungus");
+            }
 			pi.CanInteract = false;
         }
     }
@@ -874,7 +878,10 @@ public class Menu : MonoBehaviour
 		if(state == MenuState.BED)
         {
 			state = MenuState.NO_MENU;
-            bed.SetTextObjectsActive(false);
+            if (bed.MyFlowchart.isActiveAndEnabled == true)
+            {
+                bed.SetTextObjectsActive(false);
+            }
             pi.CanInteract = true;
         }
     }
