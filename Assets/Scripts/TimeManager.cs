@@ -36,9 +36,11 @@ public class TimeManager : MonoBehaviour
     public Image nightImage;
 
     //Random array of DialogueManagers to handle NPC Dialogue
-    DialogueManager[] NPCs = new DialogueManager[100];
+    //DialogueManager[] NPCs = new DialogueManager[100];
+    NPCManager[] NPCs = new NPCManager[100];
     [SerializeField]
-    List<DialogueManager> NPCList = new List<DialogueManager>();
+    //List<DialogueManager> NPCList = new List<DialogueManager>();
+    List<NPCManager> NPCList = new List<NPCManager>();
 
     public int DayNumber => dateNum;
 
@@ -68,7 +70,8 @@ public class TimeManager : MonoBehaviour
         yearDisplay.text = "Year 1";
 
         //Gets all NPCs and saves them so their dialogue can later be updated
-        NPCs = FindObjectsOfType<DialogueManager>();
+        //NPCs = FindObjectsOfType<DialogueManager>();
+        NPCs = FindObjectsOfType<NPCManager>();
 
         for (int i = 0; i < NPCs.Length; i++)
         {
@@ -212,10 +215,10 @@ public class TimeManager : MonoBehaviour
         {
             yearNum++;
 
-            for (int i = 0; i < NPCList.Count; i++)
+            /*for (int i = 0; i < NPCList.Count; i++)
             {
                 NPCList[i].SetConversations();
-            }
+            }*/
         }
 
         //change season; reset NPC dialogue at end of season, otherwise, just move on to the next day's piece of dialogue
@@ -230,12 +233,12 @@ public class TimeManager : MonoBehaviour
                 seasonNum++;
             }
 
-            for (int i = 0; i < NPCList.Count; i++)
+            /*for (int i = 0; i < NPCList.Count; i++)
             {
                 NPCList[i].SetConversations();
-            }
+            }*/
         }
-        else
+        /*else
         {
             //Change NPC Dialogue
             for (int i = 0; i < NPCList.Count; i++)
@@ -291,7 +294,7 @@ public class TimeManager : MonoBehaviour
                         break;
                 }
             }
-        }
+        }*/
 
         //change the date
         if (dateNum == 30)
@@ -318,7 +321,18 @@ public class TimeManager : MonoBehaviour
         shippingBin.PayPlayer();
 
         //Final thing in a day that determines net worth. If it goes over a threshold, activate a quest
-        foreach (DialogueManager npc in NPCList)
+        foreach (NPCManager npc in NPCList)
+        {
+            //change dialogue
+            npc.MyFlowchart.SetIntegerVariable("seasonNum", seasonNum);
+            npc.MyFlowchart.SetIntegerVariable("dateNum", dateNum);
+            npc.MyFlowchart.SetIntegerVariable("playerNetWorth", netWorth.FarmNetWorth);
+            npc.MyFlowchart.SetBooleanVariable("spokenToOnce", false);
+            npc.MyFlowchart.SetBooleanVariable("spokenToTwice", false);
+
+            //change net worth
+        }
+        /*foreach (DialogueManager npc in NPCList)
         {
             if (netWorth.FarmNetWorth >= npc.myQuests.activeQuest.requiredNetWorth && npc.myQuests.activeQuest.questActive == false)
             {
@@ -331,7 +345,7 @@ public class TimeManager : MonoBehaviour
             {
                 npc.oldConvoID = npc.convoID;
                 npc.convoID = npc.myQuests.activeQuest.endID;
-            }*/
+            }
 
             if (npc.myQuests.activeQuest.questType == Quests.QuestType.TimedCollection || npc.myQuests.activeQuest.questType == Quests.QuestType.TimedFundraising)
             {
@@ -340,7 +354,7 @@ public class TimeManager : MonoBehaviour
                     npc.myQuests.activeQuest.daysToQuestFail--;
                 }
             }
-        }
+        }*/
 
         //Tutorial Softlock Prevention
         //Check all mushroom names. If none of them are there, instantiate one.

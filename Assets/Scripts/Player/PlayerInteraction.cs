@@ -360,6 +360,7 @@ public class PlayerInteraction : MonoBehaviour
                             Debug.Log("Interact update");
                             //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
                             //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                            objects[i].gameObject.GetComponent<NPCManager>().MyFlowchart.ExecuteBlock("Start");
                             break;
                         case "shipping bin":
                             menu.OpenShippingBin();
