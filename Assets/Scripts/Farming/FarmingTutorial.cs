@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Fungus;
 
 public class FarmingTutorial : MonoBehaviour
 {
@@ -47,8 +48,22 @@ public class FarmingTutorial : MonoBehaviour
     public bool hybridBefore;
     public bool hybridAfter;
 
+    public Fungus.Flowchart flow;
+
     [SerializeField]
     InteractableObjects shippingBin;
+
+    string s;
+
+    public void SetS(string value)
+    {
+        s = value;
+    }
+
+    public void test()
+    {
+        Debug.Log($"I AM FUNGUS; HEAR ME {this.s}");
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +72,9 @@ public class FarmingTutorial : MonoBehaviour
 
         shippingBin = FindObjectOfType<ShippingBin>().GetComponent<InteractableObjects>();
         shippingBin.enabled = false;
+
+        flow.SetStringVariable("Test", "I am the new value");
+        flow.ExecuteBlock("Start");
     }
 
     // Update is called once per frame

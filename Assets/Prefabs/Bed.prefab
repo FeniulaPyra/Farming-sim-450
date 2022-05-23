@@ -104,6 +104,7 @@ MonoBehaviour:
   choiceBoxImage: {fileID: 0}
   morningButton: {fileID: 0}
   nightButton: {fileID: 0}
+  menus: {fileID: 0}
 --- !u!61 &4301840419856902466
 BoxCollider2D:
   m_ObjectHideFlags: 0
