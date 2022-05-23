@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using Fungus;
 
 //Script will be made with the intention of being used quest by quest
 //The script will handle a single quest only
@@ -12,9 +14,14 @@ public class Quests : MonoBehaviour
 
     FarmManager farmManager;
 
-    public miniQuest activeQuest;
+    //public miniQuest activeQuest;
 
-    DialogueManager myNPC;
+    //DialogueManager myNPC;
+    NPCManager myNPC;
+
+    //Flowchart of NPC that has the quest
+    Flowchart myFlowchart;
+
 
     [SerializeField]
     int questIndex;
@@ -27,62 +34,143 @@ public class Quests : MonoBehaviour
         TimedFundraising
     }
 
-    [System.Serializable]
-    public class miniQuest
-    {   
-        //For tracking when the player has started and completed a question
-        [SerializeField]
-        public bool questActive;
-        [SerializeField]
-        public bool readyToReport;
-        [SerializeField]
-        public bool questComplete;
+    [SerializeField]
+    bool questActive;
+    /*public bool GetQuestActive()
+    {
+        return questActive; 
+    }*/
+    public void SetQuestActive(bool value)
+    {
+        questActive = value;
+    }
 
-        //Tied to dialogue manager
-        public string beginID;
-        public string endID;
+    [SerializeField]
+    bool readyToReport;
+    public bool GetQuestReadyToReport()
+    {
+        return readyToReport;
+    }
+    public void SetQuestReadyToReport(bool value)
+    {
+        readyToReport = value;
+    }
 
-        [SerializeField]
-        //The minimum net worth the player's farm must have to make the quest run
-        public int requiredNetWorth;
-        
+    [SerializeField]
+    bool questComplete;
+    /*public bool GetQuestComplete()
+    {
+        return questComplete;
+    }*/
+    public void SetQuestComplete(bool value)
+    {
+        questComplete = value;
+    }
 
-        //Will determine what parts of update run each frame
-        public QuestType questType;
+    //For fundraising quests
+    [SerializeField]
+    int moneyRequired;
+    public int GetMoneyRequired()
+    {
+        return moneyRequired;
+    }
 
-        //For collection quests
-        public List<Item> requiredItemList = new List<Item>();
-        public List<int> requiredItemsCountList = new List<int>();
-        public List<int> requiredItemsAmountList = new List<int>();
+    [SerializeField]
+    int moneyEarnedSinceQuestStart = 0;
+    public int GetMoneySinceStart()
+    {
+        return moneyEarnedSinceQuestStart;
+    }
+    public void SetMoneySinceStart(int value)
+    {
+        moneyEarnedSinceQuestStart = value;
+    }
 
-        //For fundraising quests
-        public int moneyRequired;
-        public int moneyEarnedSinceQuestStart = 0;
+    //For timed Quests
+    [SerializeField]
+    int daysToQuestFail;
+    public int GetDaysToFail()
+    {
+        return daysToQuestFail;
+    }
+    public void SetDaysToFail(int value)
+    {
+        daysToQuestFail = value;
+    }
 
-        
 
-        public int MoneyEarnedSinceQuestStart
+
+    //Tied to dialogue manager
+    public string beginID;
+    public string endID;
+
+    [SerializeField]
+    //The minimum net worth the player's farm must have to make the quest run
+    public int requiredNetWorth;
+
+
+    //Will determine what parts of update run each frame
+    public QuestType questType;
+
+    //For collection quests
+    public List<Item> requiredItemList = new List<Item>();
+    //How many of them you have
+    public List<int> requiredItemsCountList = new List<int>();
+    //How many of them you need
+    public List<int> requiredItemsAmountList = new List<int>();
+
+    //public List<miniQuest> miniQuests = new List<miniQuest>();
+
+    /// <summary>
+    /// Big old function for setting quest parameters
+    /// </summary>
+    /// <param name="type">The type of quest; will determine how other things are set</param>
+    /// <param name="item1">The first of three potential items</param>
+    /// <param name="item2">The second of three potential items</param>
+    /// <param name="item3">The second of three potential items</param>
+    /// <param name="item1Count">How many of the first item the player needs</param>
+    /// <param name="Item2Count">How many of the second item the player needs</param>
+    /// <param name="Item3Count">How many of the third item the player needs</param>
+    /// <param name="goldRequired">How much gold the player needs for the quest</param>
+    /// <param name="daysToFail">How many days the player has until they fail the quest</param>
+    public void SetQuestParams(QuestType type, Item item1, Item item2, Item item3, int item1Count, int item2Count, int item3Count, int goldRequired, int daysToFail)
+    {
+        questType = type;
+
+        if (questType == QuestType.Collection || questType == QuestType.TimedCollection)
         {
-            set
-            {
-                moneyEarnedSinceQuestStart += value;
-            }
+            requiredItemList.Add(item1);
+            requiredItemList.Add(item2);
+            requiredItemList.Add(item3);
+            requiredItemsAmountList.Add(item1Count);
+            requiredItemsAmountList.Add(item2Count);
+            requiredItemsAmountList.Add(item3Count);
         }
-
-        //For timed Quests
-        [SerializeField]
-        public int daysToQuestFail;
-
-        public int DaysToQuestFail
+        else if (questType == QuestType.Fundraising || questType == QuestType.TimedFundraising)
         {
-            set
-            {
-                daysToQuestFail = value;
-            }
+            moneyRequired = goldRequired;
+        }
+        if (questType == QuestType.TimedCollection || questType == QuestType.TimedFundraising)
+        {
+            daysToQuestFail = daysToFail;
         }
     }
 
-    public List<miniQuest> miniQuests = new List<miniQuest>();
+    /// <summary>
+    /// Resetting the NPC's quest upon completion by changing all variables to default
+    /// </summary>
+    public void ResetQuest()
+    {
+        questActive = false;
+        readyToReport = false;
+        questComplete = false;
+        requiredItemList.Clear();
+        requiredItemsAmountList.Clear();
+        requiredItemsCountList.Clear();
+        moneyRequired = 0;
+        moneyEarnedSinceQuestStart = 0;
+        daysToQuestFail = 0;
+    }
     
 
     // Start is called before the first frame update
@@ -95,7 +183,7 @@ public class Quests : MonoBehaviour
         inventory = farmManager.GetComponent<FarmManager>().playerInventory;
 
         //populating list with something at start
-        foreach (miniQuest m in miniQuests)
+        /*foreach (miniQuest m in miniQuests)
         {
             foreach (Item i in m.requiredItemList)
             {
@@ -107,13 +195,61 @@ public class Quests : MonoBehaviour
 
         activeQuest = miniQuests[questIndex];
 
-        myNPC = gameObject.GetComponent<DialogueManager>();
+        
+
+        miniQuest testQuest = new miniQuest(50);*/
+
+        //myNPC = gameObject.GetComponent<DialogueManager>();
+        myNPC = gameObject.GetComponent<NPCManager>();
+
+        myFlowchart = gameObject.transform.Find("Quests").GetComponent<Flowchart>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        //Quest has been started
+        if (questActive == true && readyToReport == false)
+        {
+            if (questType == QuestType.Collection)
+            {
+                for (int i = 0; i < requiredItemList.Count; i++)
+                {
+                    requiredItemsCountList[i] = inventory.CountItem(requiredItemList[i].name);
+
+                    //Ex. if 5> 4
+                    if (requiredItemsCountList[i] >= requiredItemsAmountList[i])
+                    {
+                        if (i == requiredItemList.Count - 1)
+                        {
+                            //quest complete
+                            //Account for Fungus, somehow
+                            Debug.Log("Quest complete item");
+                            readyToReport = true;
+                            //myNPC.oldConvoID = myNPC.convoID;
+                            //myNPC.convoID = myNPC.myQuests.activeQuest.endID;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else if (questType == QuestType.Fundraising)
+            {
+                if (moneyEarnedSinceQuestStart > moneyRequired)
+                {
+                    //quest complete
+                    readyToReport = true;
+                }
+            }
+        }
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log($"There are {inventory.CountItem(miniQuests[0].requiredItemList[0].name)} {miniQuests[0].requiredItemList[0].name}s");
         }
@@ -128,12 +264,6 @@ public class Quests : MonoBehaviour
                 Debug.Log("New Quest");
             }
         }
-
-        /*if (activeQuest.readyToReport == true && activeQuest.questComplete == false)
-        {
-            myNPC.oldConvoID = myNPC.convoID;
-            myNPC.convoID = myNPC.myQuests.activeQuest.endID;
-        }*/
 
         if (activeQuest.questActive == true && activeQuest.readyToReport == false)
         {
@@ -214,6 +344,6 @@ public class Quests : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
     }
 }
