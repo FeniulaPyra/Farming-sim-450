@@ -323,14 +323,33 @@ public class TimeManager : MonoBehaviour
         //Final thing in a day that determines net worth. If it goes over a threshold, activate a quest
         foreach (NPCManager npc in NPCList)
         {
-            //change dialogue
+            //change dialogue and quest variables
             npc.MyFlowchart.SetIntegerVariable("seasonNum", seasonNum);
             npc.MyFlowchart.SetIntegerVariable("dateNum", dateNum);
             npc.MyFlowchart.SetIntegerVariable("playerNetWorth", netWorth.FarmNetWorth);
             npc.MyFlowchart.SetBooleanVariable("spokenToOnce", false);
             npc.MyFlowchart.SetBooleanVariable("spokenToTwice", false);
 
-            //change net worth
+            if (npc.gameObject.GetComponent<Quests>().GetQuestAccepted() == true)
+            {
+                if (npc.gameObject.GetComponent<Quests>().questType == Quests.QuestType.TimedCollection || npc.gameObject.GetComponent<Quests>().questType == Quests.QuestType.TimedFundraising)
+                {
+                    if (npc.gameObject.GetComponent<Quests>().GetDaysToFail() > 0)
+                    {
+                        npc.gameObject.GetComponent<Quests>().SetDaysToFail(npc.gameObject.GetComponent<Quests>().GetDaysToFail() - 1);
+
+                        Debug.Log($"Days remaining: {npc.gameObject.GetComponent<Quests>().GetDaysToFail()}");
+                    }
+                    else
+                    {
+                        npc.gameObject.GetComponent<Quests>().SetQuestFailed(true);
+                        npc.gameObject.GetComponent<Quests>().MyFlowchart.SetBooleanVariable("Quest1Failed", npc.gameObject.GetComponent<Quests>().GetQuestFailed());
+
+                        Debug.Log($"Days remaining: {npc.gameObject.GetComponent<Quests>().GetDaysToFail()}; Failed Quest?: {npc.gameObject.GetComponent<Quests>().GetQuestFailed()}");
+                    }
+                }
+            }
+
         }
         /*foreach (DialogueManager npc in NPCList)
         {

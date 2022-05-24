@@ -27,6 +27,13 @@ public class Quests : MonoBehaviour
     //Flowchart of NPC that has the quest
     Flowchart myFlowchart;
 
+    public Flowchart MyFlowchart
+    {
+        get
+        {
+            return myFlowchart;
+        }
+    }
 
     [SerializeField]
     int questIndex;
@@ -41,10 +48,10 @@ public class Quests : MonoBehaviour
 
     [SerializeField]
     bool questAccepted;
-    /*public bool GetQuestActive()
+    public bool GetQuestAccepted()
     {
-        return questActive; 
-    }*/
+        return questAccepted; 
+    }
     public void SetQuestAccepted(bool value)
     {
         questAccepted = value;
@@ -70,6 +77,17 @@ public class Quests : MonoBehaviour
     public void SetQuestComplete(bool value)
     {
         questComplete = value;
+    }
+
+    [SerializeField]
+    bool questFailed;
+    public bool GetQuestFailed()
+    {
+        return questFailed;
+    }
+    public void SetQuestFailed(bool value)
+    {
+        questFailed = value;
     }
 
     //For fundraising quests
@@ -242,6 +260,7 @@ public class Quests : MonoBehaviour
         questAccepted = false;
         readyToReport = false;
         questComplete = false;
+        questFailed = false;
         requiredItemList.Clear();
         requiredItemsAmountList.Clear();
         requiredItemsCountList.Clear();
