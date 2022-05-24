@@ -40,7 +40,7 @@ public class TimeManager : MonoBehaviour
     NPCManager[] NPCs = new NPCManager[100];
     [SerializeField]
     //List<DialogueManager> NPCList = new List<DialogueManager>();
-    List<NPCManager> NPCList = new List<NPCManager>();
+    public List<NPCManager> NPCList = new List<NPCManager>();
 
     public int DayNumber => dateNum;
 
@@ -64,7 +64,7 @@ public class TimeManager : MonoBehaviour
         //Getting Time Manager
         //management = FindObjectOfType<FarmManager>();
 
-        dayDisplay.text = "Sun";
+        dayDisplay.text = "Mon";
         dateDisplay.text = "1";
         seasonDisplay.text = "Spring";
         yearDisplay.text = "Year 1";
@@ -417,33 +417,33 @@ public class TimeManager : MonoBehaviour
             AdvanceDay();
 	    //return;
         }
-	else
-	{
-	    float staminaToAdd = 100 * (duration / 8);
+	    else
+	    {
+	        float staminaToAdd = 100 * (duration / 8);
 
-            Debug.Log($"Duration is {duration}");
-            //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
-            Debug.Log($"Multiplying by {duration/8}");
-            Debug.Log($"Adding {staminaToAdd} stamina");
+                Debug.Log($"Duration is {duration}");
+                //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
+                Debug.Log($"Multiplying by {duration/8}");
+                Debug.Log($"Adding {staminaToAdd} stamina");
 
-            staminaTracker.playerStamina += (int)staminaToAdd;
+                staminaTracker.playerStamina += (int)staminaToAdd;
 
-            //cap stamina if it exceeds limit
-            if (staminaTracker.playerStamina > 100)
-            {
-                staminaTracker.playerStamina = 100;
-            }
-            /*if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
-            {
-                staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
-            }*/
+                //cap stamina if it exceeds limit
+                if (staminaTracker.playerStamina > 100)
+                {
+                    staminaTracker.playerStamina = 100;
+                }
+                /*if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
+                {
+                    staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
+                }*/
 
-            //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
+                //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
 
             
 
-            AdvanceDay();
-	}
+                AdvanceDay();
+	    }
 
         
     }
@@ -481,25 +481,25 @@ public class TimeManager : MonoBehaviour
         switch (dayNum)
         {
             case 1:
-                dayDisplay.text = "Sun";
-                break;
-            case 2:
                 dayDisplay.text = "Mon";
                 break;
-            case 3:
+            case 2:
                 dayDisplay.text = "Tues";
                 break;
-            case 4:
+            case 3:
                 dayDisplay.text = "Wed";
                 break;
-            case 5:
+            case 4:
                 dayDisplay.text = "Thurs";
                 break;
-            case 6:
+            case 5:
                 dayDisplay.text = "Fri";
                 break;
-            case 7:
+            case 6:
                 dayDisplay.text = "Sat";
+                break;
+            case 7:
+                dayDisplay.text = "Sun";
                 break;
             default:
                 dayDisplay.text = "";
