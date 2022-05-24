@@ -369,7 +369,7 @@ public class Inventory
 		{
 			for(int c = 0; c < COLUMNS; c++)
 			{
-				if(items[r, c].Item.name == item.name)
+				if(items[r, c] != null && items[r, c].Item.name == item.name)
 				{
 					int[] slot = { r, c };
 					slotsWithItems.Add(slot);
