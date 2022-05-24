@@ -104,12 +104,20 @@ public class GameSaveManager : MonoBehaviour
         save.farmTiles = farmland;
         save.mushrooms = mushrooms;
         save.inventory = farmManager.playerInventory.GetSaveableInventory();
-        save.tutorialBools = new List<bool>();
+        //save.tutorialBools = new List<bool>();
         foreach (bool b in farmingTutorial.tutorialBools)
         {
             save.tutorialBools.Add(b);
         }
         save.tutorialObjective = farmingTutorial.objective.text;
+        
+        for (int i = 0; i < timeManager.NPCList.Count; i++)
+        {
+            timeManager.NPCList[i].SaveFlowcharts(out var startChart, out var questChart);
+            save.NPCStartflowcharts.Add(startChart);
+            save.NPCQuestflowcharts.Add(questChart);
+            Debug.Log($"Date?: {save.NPCStartflowcharts[0].dateNum}");
+        }
 
         var json = JsonUtility.ToJson(save);
 
@@ -147,6 +155,12 @@ public class GameSaveManager : MonoBehaviour
             farmingTutorial.tutorialBools[i] = save.tutorialBools[i];
         }
         farmingTutorial.objective.text = save.tutorialObjective;
+
+        for (int i = 0; i < timeManager.NPCList.Count; i++)
+        {
+            timeManager.NPCList[i].LoadFlowcharts(save.NPCStartflowcharts[i], save.NPCQuestflowcharts[i]);
+            Debug.Log($"Date?: {timeManager.NPCList[0].transform.Find("Start").GetComponent<Flowchart>().GetIntegerVariable("dateNum")}");
+        }
 
         sr.Close();
     }
@@ -238,7 +252,10 @@ public class GameSaveManager : MonoBehaviour
         public List<SaveTile> farmTiles;
         public List<MushroomSaveTile> mushrooms;
         public List<int> inventory;
-        public List<bool> tutorialBools;
+        public List<bool> tutorialBools = new List<bool>();
         public string tutorialObjective;
+        //public List<NPCManager> NPCs = new List<NPCManager>();
+        public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();
+        public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();
     }
 }

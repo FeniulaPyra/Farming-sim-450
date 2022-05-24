@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 779873868}
+  selectedFlowchart: {fileID: 1294487414}
 --- !u!4 &20066898
 Transform:
   m_ObjectHideFlags: 1
@@ -57412,6 +57412,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291988337}
   m_CullTransparentMesh: 1
+--- !u!114 &1294487414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5144697926450962826, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+  m_PrefabInstance: {fileID: 5144697927306309874}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1299776906
 GameObject:
   m_ObjectHideFlags: 0
@@ -64327,6 +64338,18 @@ PrefabInstance:
       propertyPath: _targetGameObject.gameObjectVal
       value: 
       objectReference: {fileID: 1216943103}
+    - target: {fileID: 5144697926863643032, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: blockName
+      value: Day 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144697926863643032, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: nodeRect.x
+      value: -374.02307
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144697926863643032, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: nodeRect.y
+      value: -133.65941
+      objectReference: {fileID: 0}
     - target: {fileID: 5144697928068725699, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
