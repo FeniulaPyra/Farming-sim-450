@@ -160,9 +160,9 @@ public class FarmManager : MonoBehaviour
             //tillableGround.SetTile(tile, tilePrefab.tileSprite);
             tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
             //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
-            if (farmingTutorial.tutorialStarted == true)
+            if (farmingTutorial.tutorialBools[0] == true)//(farmingTutorial.tutorialStarted == true)
             {
-                farmingTutorial.tilledAfter = true;
+                farmingTutorial.tutorialBools[2] = true;//farmingTutorial.tilledAfter = true;
             }
         }
         //planting
@@ -204,9 +204,9 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isMoist = tempMoist;
                 Debug.Log($"You just planted a {mushroomPrefab.GetComponent<Mushrooms>().ID}");
 
-                if (farmingTutorial.tilledAfter == true)
+                if (farmingTutorial.tutorialBools[2] == true)//(farmingTutorial.tilledAfter == true)
                 {
-                    farmingTutorial.plantedAfter = true;
+                    farmingTutorial.tutorialBools[4] = true;//farmingTutorial.plantedAfter = true;
                 }
             }
             else
@@ -224,9 +224,9 @@ public class FarmManager : MonoBehaviour
                 Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
                 tillableGround.SetTile(tile, tilePrefab.sprites[2]);
 
-                if (farmingTutorial.plantedAfter == true)
+                if (farmingTutorial.tutorialBools[4] == true)//(farmingTutorial.plantedAfter == true)
                 {
-                    farmingTutorial.wateredAfter = true;
+                    farmingTutorial.tutorialBools[6] = true;//farmingTutorial.wateredAfter = true;
                 }
             }
             else
@@ -285,9 +285,9 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isTilled = false;
             }
 
-            if (farmingTutorial.sleptAfter == true)
+            if (farmingTutorial.tutorialBools[8] == true)//(farmingTutorial.sleptAfter == true)
             {
-                farmingTutorial.harvestedAfter = true;
+                farmingTutorial.tutorialBools[10] = true;//farmingTutorial.harvestedAfter = true;
             }
         }
     }
@@ -703,10 +703,10 @@ public class FarmManager : MonoBehaviour
 		mushroomsAndTiles[spreadTo].hasPlant = true;
 		mushroomsAndTiles[spreadTo].isTilled = true;
 
-		if (farmingTutorial.spreadAfter == true)
-		{
-			farmingTutorial.hybridAfter = true;
-		}
+		if (farmingTutorial.tutorialBools[16] == true)//(farmingTutorial.spreadAfter == true)
+        {
+            farmingTutorial.tutorialBools[18] = true;//farmingTutorial.hybridAfter = true;
+        }
 	}
 	private void Spread(Mushrooms thisShroom, Vector3Int spreadTo)
 	{
@@ -720,9 +720,9 @@ public class FarmManager : MonoBehaviour
 		mushroomsAndTiles[spreadTo].hasPlant = true;
 		mushroomsAndTiles[spreadTo].isTilled = true;
 
-		if (farmingTutorial.shippedAfter == true)
-		{
-			farmingTutorial.spreadAfter = true;
-		}
+		if (farmingTutorial.tutorialBools[14] == true)//(farmingTutorial.shippedAfter == true)
+        {
+            farmingTutorial.tutorialBools[16] = true;//farmingTutorial.spreadAfter = true;
+        }
 	}
 }

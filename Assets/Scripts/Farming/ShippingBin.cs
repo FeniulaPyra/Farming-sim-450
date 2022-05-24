@@ -113,9 +113,9 @@ public class ShippingBin : MonoBehaviour
 
         goldDisplay.text = $"{player.playerGold} G";
 
-        if (player.playerGold > oldGold && farmingTutorial.eatingAfter == true)
+        if (player.playerGold > oldGold && farmingTutorial.tutorialBools[12] == true)//(player.playerGold > oldGold && farmingTutorial.eatingAfter == true)
         {
-            farmingTutorial.shippedAfter = true;
+            farmingTutorial.tutorialBools[14] = true;//farmingTutorial.shippedAfter = true;
         }
 
         if (true)
