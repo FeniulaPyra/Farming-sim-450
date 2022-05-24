@@ -358,7 +358,7 @@ public class TimeManager : MonoBehaviour
 
         //Tutorial Softlock Prevention
         //Check all mushroom names. If none of them are there, instantiate one.
-        if (farmingTutorial.spreadAfter == false)
+        if (farmingTutorial.tutorialBools[16] == false)//(farmingTutorial.spreadAfter == false)
         {
             for (int i = 0; i < mushroomManager.mushroomList.Count; i++)
             {
@@ -380,7 +380,7 @@ public class TimeManager : MonoBehaviour
                 }
             }
         }
-        else if (farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
+        else if (farmingTutorial.tutorialBools[16] == true && farmingTutorial.tutorialBools[18] == false)//(farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
         {
             if (inventory.CountItem("Red Shroom") <= 0)
             {
@@ -406,9 +406,9 @@ public class TimeManager : MonoBehaviour
         //Might need to be tweaked, since a measly four hours still restores half stamina
         //float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
 
-	if (farmingTutorial.wateredAfter == true)
+	    if (farmingTutorial.tutorialBools[6] == true)//(farmingTutorial.wateredAfter == true)
         {
-            farmingTutorial.sleptAfter = true;
+            farmingTutorial.tutorialBools[8] = true;//farmingTutorial.sleptAfter = true;
         }
 
         //Do nothing is above 100

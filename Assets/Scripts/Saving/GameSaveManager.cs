@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
 
 using System.IO;
 
@@ -15,34 +16,69 @@ public class GameSaveManager : MonoBehaviour
     public PlayerInteraction playerInteraction;
     public TileManager tileManager;
     public FarmManager farmManager;
+    public FarmingTutorial farmingTutorial;
 
     private string constantPath;
 
     private bool displayLoadMenu;
     private string[] saves;
 
+    //var path;
+    string path;
+    string originalPath;
+
+    [SerializeField]
+    Flowchart flowchart;
+
     // Start is called before the first frame update
     void Start()
     {
         constantPath = Application.persistentDataPath;
+
+        flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
+
+        originalPath = constantPath + "/saves/";
+        path = originalPath;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if (playerInteraction.CanInteract == true)
         {
-            SaveGame(saveName + "-at-" + timeManager.DayNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
-        }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
 
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            displayLoadMenu = true;
-            saves = FindAllSaves();
+                path += name;
+
+                Debug.Log($"Saved game to {path}");
+
+                if (File.Exists(path) == true)
+                {
+                    Debug.Log("Save does exist");
+                    flowchart.SetStringVariable("SaveName", name);
+                    flowchart.ExecuteBlock("Start");
+                }
+                else
+                {
+                    Debug.Log("Save does not exist");
+                    //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
+                    SaveGame(name);
+                }
+
+                path = originalPath;
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                displayLoadMenu = true;
+                saves = FindAllSaves();
+            }
         }
     }
 
-    void SaveGame(string saveName)
+    public void SaveGame(string saveName)
     {
         // Here is where saving happens...
         var folderPath = constantPath + "/saves/";
@@ -50,7 +86,8 @@ public class GameSaveManager : MonoBehaviour
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
 
-        var path = constantPath + "/saves/" + saveName;
+        //var path = constantPath + "/saves/" + saveName;
+        var path = originalPath + saveName;
         Debug.Log("Saving game to " + path);
 
         var save = new GameSave();
@@ -67,6 +104,12 @@ public class GameSaveManager : MonoBehaviour
         save.farmTiles = farmland;
         save.mushrooms = mushrooms;
         save.inventory = farmManager.playerInventory.GetSaveableInventory();
+        save.tutorialBools = new List<bool>();
+        foreach (bool b in farmingTutorial.tutorialBools)
+        {
+            save.tutorialBools.Add(b);
+        }
+        save.tutorialObjective = farmingTutorial.objective.text;
 
         var json = JsonUtility.ToJson(save);
 
@@ -99,6 +142,11 @@ public class GameSaveManager : MonoBehaviour
         playerInteraction.SetStamina((int)save.stamina);
         tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
         farmManager.playerInventory.SetSaveableInventory(save.inventory);
+        for (int i = 0; i < save.tutorialBools.Count; i++)
+        {
+            farmingTutorial.tutorialBools[i] = save.tutorialBools[i];
+        }
+        farmingTutorial.objective.text = save.tutorialObjective;
 
         sr.Close();
     }
@@ -190,5 +238,7 @@ public class GameSaveManager : MonoBehaviour
         public List<SaveTile> farmTiles;
         public List<MushroomSaveTile> mushrooms;
         public List<int> inventory;
+        public List<bool> tutorialBools;
+        public string tutorialObjective;
     }
 }

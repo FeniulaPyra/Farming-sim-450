@@ -161,9 +161,9 @@ public class PlayerInteraction : MonoBehaviour
                 SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
                 playerInventory.RemoveHeldItems(1);
 
-                if (farmingTutorial.harvestedAfter == true)
+                if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
                 {
-                    farmingTutorial.eatingAfter = true;
+                    farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
                 }
             }
 
@@ -172,7 +172,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //Stop all player movement when in dialogue
-        if (isTalking == true)
+        /*if (isTalking == true)
         {
             CanInteract = false;
             playerMovement.Frozen = true;
@@ -183,7 +183,7 @@ public class PlayerInteraction : MonoBehaviour
             CanInteract = true;
             playerMovement.Frozen = false;
             canInteract = true;
-        }
+        }*/
 
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
         if (playerStamina > 100 && playerStamina <= 200)
@@ -217,12 +217,16 @@ public class PlayerInteraction : MonoBehaviour
     {
         isTalking = true;
         CanInteract = false;
+        playerMovement.Frozen = true;
+        canInteract = false;
     }
 
     public void StartPlayer()
     {
         isTalking = false;
         CanInteract = true;
+        playerMovement.Frozen = false;
+        canInteract = true;
     }
 
     private void CheckInteraction()
