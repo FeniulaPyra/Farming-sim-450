@@ -503,7 +503,7 @@ RectTransform:
   - {fileID: 1551071482}
   - {fileID: 1424411981}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -999,6 +999,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121152480}
   m_CullTransparentMesh: 1
+--- !u!1 &173968546
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 173968548}
+  - component: {fileID: 173968547}
+  m_Layer: 0
+  m_Name: _FungusState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &173968547
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173968546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedFlowchart: {fileID: 0}
+--- !u!4 &173968548
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173968546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &190894234 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8328016189830511571, guid: cf7f08a7fa597f2429a568ed996f2ce5, type: 3}
@@ -1815,7 +1859,7 @@ RectTransform:
   - {fileID: 1153197843}
   - {fileID: 537273404}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -49998,7 +50042,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1707265020}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Bed, Assembly-CSharp
         m_MethodName: SleepToNight
         m_Mode: 1
@@ -51372,6 +51416,37 @@ RectTransform:
   m_AnchoredPosition: {x: 30.6, y: -43.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &644842171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4226742886614438250, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+  m_PrefabInstance: {fileID: 4226742885656092938}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 644842172}
+  m_Layer: 0
+  m_Name: 'DialogueManager (Missing Prefab with guid: 6d9ac94fe95ab7d4eb743538ca156b0c)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &644842172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 4226742886614438254, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+  m_PrefabInstance: {fileID: 4226742885656092938}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644842171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4226742885656092941}
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &665396631
 GameObject:
   m_ObjectHideFlags: 0
@@ -53270,7 +53345,7 @@ Transform:
   - {fileID: 552669636}
   - {fileID: 405427475}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &974978389
 PrefabInstance:
@@ -58256,7 +58331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1642630468
 GameObject:
@@ -58855,17 +58930,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8328016189830511571, guid: cf7f08a7fa597f2429a568ed996f2ce5, type: 3}
   m_PrefabInstance: {fileID: 6799506}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1707265020 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4301840419856902469, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
-  m_PrefabInstance: {fileID: 4301840419408792247}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f84b7ff5cc9f13498bd18fa3271c0c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1750287346 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
@@ -59271,7 +59335,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1840140371
 MonoBehaviour:
@@ -59374,6 +59438,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1887123035043367806, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7306506824798824624, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: objective
       value: 
@@ -60510,7 +60578,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1707265020}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Bed, Assembly-CSharp
         m_MethodName: SleepToMorning
         m_Mode: 1
@@ -60876,7 +60944,7 @@ RectTransform:
   - {fileID: 1377426780}
   - {fileID: 1621016934}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -61084,7 +61152,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114164587
 GameObject:
@@ -61381,7 +61449,7 @@ PrefabInstance:
       objectReference: {fileID: 1281256936}
     - target: {fileID: 2053923597524535473, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2053923597524535473, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61787,11 +61855,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
---- !u!1 &4226742885656092939 stripped
+--- !u!1 &4226742885656092939
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4226742886614438250, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
   m_PrefabInstance: {fileID: 4226742885656092938}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4226742885656092941}
+  - component: {fileID: 4226742885656092940}
+  m_Layer: 0
+  m_Name: Placeholder for referenced GameObject in Prefab instance (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &4226742885656092940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61805,50 +61885,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   netWorth: {fileID: 0}
-  activeQuest:
-    questActive: 0
-    readyToReport: 0
-    questComplete: 0
-    beginID: 
-    endID: 
-    requiredNetWorth: 0
-    questType: 0
-    requiredItemList: []
-    requiredItemsCountList: 
-    requiredItemsAmountList: 
-    moneyRequired: 0
-    moneyEarnedSinceQuestStart: 0
-    daysToQuestFail: 0
+  interaction: {fileID: 0}
   questIndex: 0
-  miniQuests:
-  - questActive: 0
-    readyToReport: 0
-    questComplete: 0
-    beginID: TestQuestBegin
-    endID: TestQuestEnd
-    requiredNetWorth: 50
-    questType: 0
-    requiredItemList:
-    - {fileID: 7890201832734258743, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
-    requiredItemsCountList: 
-    requiredItemsAmountList: 04000000
-    moneyRequired: 0
-    moneyEarnedSinceQuestStart: 0
-    daysToQuestFail: 0
-  - questActive: 0
-    readyToReport: 0
-    questComplete: 0
-    beginID: TestQuest2Begin
-    endID: TestQuest2End
-    requiredNetWorth: 100
-    questType: 0
-    requiredItemList:
-    - {fileID: 8682807788186878876, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
-    requiredItemsCountList: 
-    requiredItemsAmountList: 04000000
-    moneyRequired: 0
-    moneyEarnedSinceQuestStart: 0
-    daysToQuestFail: 0
+  questType: 0
+  questAccepted: 0
+  readyToReport: 0
+  questComplete: 0
+  questFailed: 0
+  moneyRequired: 0
+  moneyEarnedSinceQuestStart: 0
+  daysToQuestFail: 0
+  beginID: 
+  endID: 
+  requiredNetWorth: 0
+  requiredItemList: []
+  requiredItemsCountList: 
+  requiredItemsAmountList: 
+--- !u!4 &4226742885656092941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 9223372036854775807, guid: 6d9ac94fe95ab7d4eb743538ca156b0c, type: 3}
+  m_PrefabInstance: {fileID: 4226742885656092938}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226742885656092939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 644842172}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4301840419408792247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62056,7 +62122,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8189669987783190265, guid: 68616ca7a1b54474e8172b90d425255f, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8189669987783190265, guid: 68616ca7a1b54474e8172b90d425255f, type: 3}
       propertyPath: m_LocalPosition.x
