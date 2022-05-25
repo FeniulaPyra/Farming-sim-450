@@ -5,43 +5,43 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using TMPro;
 
-public class ScenePersistence : MonoBehaviour
+public class SceneTransitioner : MonoBehaviour
 {
-    public static ScenePersistence Instance;
-
-
-
-    /*public GameObject player;//The player themselves
+    public GameObject player;//The player themselves
     public TimeManager timeManager;//The date displayed in the top right
     public PlayerInteraction playerInteraction;//The player's stamina and how much money they have
     public TileManager tileManager;//Theplayer's field
     public FarmManager farmManager;//Mushrooms
-    public FarmingTutorial farmingTutorial;//The state of the tutorial. Shouldn't be an issue*/
+    public FarmingTutorial farmingTutorial;//The state of the tutorial. Shouldn't be an issue
 
-    //Always needs to be saved
-    //public string sceneType; //Type of scene to be saved, will be used for loading purposes
-    public Vector4 date; //The present in game date
-    public int stamina; //How much stamina the player has
-    public int gold; //How much gold the player has
-    public List<int> inventory; //The player's inventory
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        //Makes sure this is the only instance in existence by destroying any others that aren't it
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        player = GameObject.Find("Player");
+        timeManager = FindObjectOfType<TimeManager>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        tileManager = FindObjectOfType<TileManager>();
+        farmManager = FindObjectOfType<FarmManager>();
+        farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            timeManager.SaveDate();
+            farmManager.SaveInventory();
+            playerInteraction.SavePlayer();
+            SceneManager.LoadScene("FungusTestScene");
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            timeManager.SaveDate();
+            farmManager.SaveInventory();
+            playerInteraction.SavePlayer();
+            SceneManager.LoadScene("GroundScene");
+        }
     }
 
     public void SavePlayer()
@@ -189,7 +189,7 @@ public class ScenePersistence : MonoBehaviour
     }*/
 }
 
-/*public class PersistentScene
+public class PersistentScene
 {
     //Always needs to be saved
     public string sceneType; //Type of scene to be saved, will be used for loading purposes
@@ -221,4 +221,4 @@ public class ScenePersistence : MonoBehaviour
     public string tutorialObjective; //What the player currently needs to do in the tutorial; probably unneeded
     public Vector3 position;//Player's position; probably unneeded
     //public List<NPCManager> NPCs = new List<NPCManager>();
-}*/
+}

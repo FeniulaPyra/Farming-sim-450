@@ -19,15 +19,18 @@ public class TimeManager : MonoBehaviour
 
     //variables for displaying the date and time and their corresponding text object
     //1-7 for Sun - Sat
+    [SerializeField]
     int dayNum = 1;
     public TMP_Text dayDisplay;
     //1 - 30 for season length
+    [SerializeField]
     int dateNum = 1;
     public TMP_Text dateDisplay;
     //1 - 4 for Spr - Win
     [SerializeField]
     int seasonNum = 1;
     public TMP_Text seasonDisplay;
+    [SerializeField]
     int yearNum = 1;
     public TMP_Text yearDisplay;
 
@@ -89,7 +92,15 @@ public class TimeManager : MonoBehaviour
 
         mushroomManager = FindObjectOfType<MushroomManager>();
 
-        SetDate((int)ScenePersistence.Instance.date.x, (int)ScenePersistence.Instance.date.y, (int)ScenePersistence.Instance.date.z, (int)ScenePersistence.Instance.date.w);
+        if (ScenePersistence.Instance != null)
+        {
+            SetDate((int)ScenePersistence.Instance.date.x, (int)ScenePersistence.Instance.date.y, (int)ScenePersistence.Instance.date.z, (int)ScenePersistence.Instance.date.w);
+        }
+    }
+
+    public void SaveDate()
+    {
+        ScenePersistence.Instance.date = new Vector4(DayNumber, DateNumber, YearNumber, SeasonNumber);
     }
 
     // Update is called once per frame
