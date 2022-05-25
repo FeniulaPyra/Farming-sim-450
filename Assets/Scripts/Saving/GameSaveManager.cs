@@ -5,6 +5,7 @@ using Fungus;
 
 using System.IO;
 using System.Linq;
+using TMPro;
 
 public class GameSaveManager : MonoBehaviour
 {
@@ -101,6 +102,7 @@ public class GameSaveManager : MonoBehaviour
             timeManager.SeasonNumber
             );
         save.stamina = playerInteraction.PlayerStamina;
+        save.gold = playerInteraction.playerGold;
         tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
         save.farmTiles = farmland;
         save.mushrooms = mushrooms;
@@ -202,6 +204,8 @@ public class GameSaveManager : MonoBehaviour
             (int)save.date.w
             );
         playerInteraction.SetStamina((int)save.stamina);
+        playerInteraction.playerGold = save.gold;
+        GameObject.Find("GoldDisplay").GetComponent<TMP_Text>().text = $"{playerInteraction.playerGold} G";
         tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
         farmManager.playerInventory.SetSaveableInventory(save.inventory);
         if (farmingTutorial != null)
@@ -332,6 +336,7 @@ public class GameSaveManager : MonoBehaviour
         public bool isNight;
         public Vector4 date;
         public int stamina;
+        public int gold;
         public List<SaveTile> farmTiles;
         public List<MushroomSaveTile> mushrooms;
         public List<int> inventory;
