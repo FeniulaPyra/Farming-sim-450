@@ -88,6 +88,7 @@ public class FarmManager : MonoBehaviour
 
 		farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
+        playerInventory.SetSaveableInventory(ScenePersistence.Instance.inventory);
     }
 
 	private void ResetVisited()

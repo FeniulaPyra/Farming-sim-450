@@ -88,6 +88,8 @@ public class TimeManager : MonoBehaviour
         inventory = FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
 
         mushroomManager = FindObjectOfType<MushroomManager>();
+
+        SetDate((int)ScenePersistence.Instance.date.x, (int)ScenePersistence.Instance.date.y, (int)ScenePersistence.Instance.date.z, (int)ScenePersistence.Instance.date.w);
     }
 
     // Update is called once per frame

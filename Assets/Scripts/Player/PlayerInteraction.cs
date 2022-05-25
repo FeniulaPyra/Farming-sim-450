@@ -133,6 +133,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             StartPlayer();
         }
+
+        playerGold = ScenePersistence.Instance.gold;
+        SetStamina(ScenePersistence.Instance.stamina);
     }
 
     private void Update()
