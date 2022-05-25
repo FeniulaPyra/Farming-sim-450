@@ -33,6 +33,16 @@ public class BasicEntity : MonoBehaviour
 
     public Vector2 Facing => facing;
 
+    public void SaveEntity(out SaveEntity entity)
+    {
+        entity = new SaveEntity(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position);
+    }
+
+    public void LoadEntity()
+    {
+
+    }
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,4 +91,40 @@ public class BasicEntity : MonoBehaviour
 
         rb.velocity += move;
     }
+}
+
+[System.Serializable]
+public class SaveEntity
+{
+    public float speed;
+    public GameObject menu;
+    public Slider size;
+    public AnimationCurve curve;
+    float maxDistance;
+    float minDistance;
+    public SpriteRenderer renderer;
+    public Transform player;
+    public Rigidbody2D body;
+    Vector2 facing;
+
+    //Getting the gameobject the script is on and its position to later instantiate it
+    public GameObject self;
+    public Vector3 pos;
+
+    public SaveEntity(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos)
+    {
+        speed = mS;
+        menu = m;
+        size = s;
+        curve = sC;
+        maxDistance = maxD;
+        minDistance = minD;
+        renderer = sR;
+        player = p;
+        body = rB;
+        facing = f;
+        this.self = self;
+        this.pos = pos;
+    }
+
 }

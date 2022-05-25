@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicPet : BasicEntity  
 {
@@ -54,5 +55,28 @@ public class BasicPet : BasicEntity
                 Object.Destroy(this.gameObject);
             }
         }
+    }
+
+    public void SavePet(out SavePet pet)
+    {
+        pet = new SavePet(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, normalImage, pettingImage, petItem, manager);
+    }
+}
+
+[System.Serializable]
+public class SavePet : SaveEntity
+{
+
+    public Sprite normal;
+    public Sprite petting;
+    public Item pet;
+    public FarmManager manager;
+
+    public SavePet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos)
+    {
+        normal = n;
+        this.petting = petting;
+        this.pet = pet;
+        this.manager = manager;
     }
 }
