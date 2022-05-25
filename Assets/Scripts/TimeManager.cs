@@ -377,37 +377,40 @@ public class TimeManager : MonoBehaviour
 
         //Tutorial Softlock Prevention
         //Check all mushroom names. If none of them are there, instantiate one.
-        if (farmingTutorial.tutorialBools[16] == false)//(farmingTutorial.spreadAfter == false)
+        if (farmingTutorial != null)
         {
-            for (int i = 0; i < mushroomManager.mushroomList.Count; i++)
+            if (farmingTutorial.tutorialBools[16] == false)//(farmingTutorial.spreadAfter == false)
             {
-                if (inventory.CountItem(mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID) <= 0)
+                for (int i = 0; i < mushroomManager.mushroomList.Count; i++)
                 {
-                    Debug.Log($"MushroomList[{i}] is a {mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID}");
-
-                    if (i == mushroomManager.mushroomList.Count - 1)
+                    if (inventory.CountItem(mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID) <= 0)
                     {
-                        Debug.Log($"No softlock; i is {i}");
-                        Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
-                    }
+                        Debug.Log($"MushroomList[{i}] is a {mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID}");
 
-                    continue;
+                        if (i == mushroomManager.mushroomList.Count - 1)
+                        {
+                            Debug.Log($"No softlock; i is {i}");
+                            Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+                        }
+
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
-                else
+            }
+            else if (farmingTutorial.tutorialBools[16] == true && farmingTutorial.tutorialBools[18] == false)//(farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
+            {
+                if (inventory.CountItem("Red Shroom") <= 0)
                 {
-                    break;
+                    Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
                 }
-            }
-        }
-        else if (farmingTutorial.tutorialBools[16] == true && farmingTutorial.tutorialBools[18] == false)//(farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
-        {
-            if (inventory.CountItem("Red Shroom") <= 0)
-            {
-                Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-            }
-            if (inventory.CountItem("Glowy Shroom") <= 0)
-            {
-                Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+                if (inventory.CountItem("Glowy Shroom") <= 0)
+                {
+                    Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+                }
             }
         }
 
@@ -425,9 +428,12 @@ public class TimeManager : MonoBehaviour
         //Might need to be tweaked, since a measly four hours still restores half stamina
         //float staminaToAdd = staminaTracker.GetMaxPlayerStamina() * (duration/8);
 
-	    if (farmingTutorial.tutorialBools[6] == true)//(farmingTutorial.wateredAfter == true)
+        if (farmingTutorial != null)
         {
-            farmingTutorial.tutorialBools[8] = true;//farmingTutorial.sleptAfter = true;
+            if (farmingTutorial.tutorialBools[6] == true)//(farmingTutorial.wateredAfter == true)
+            {
+                farmingTutorial.tutorialBools[8] = true;//farmingTutorial.sleptAfter = true;
+            }
         }
 
         //Do nothing is above 100

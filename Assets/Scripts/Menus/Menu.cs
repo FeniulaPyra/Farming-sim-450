@@ -878,10 +878,6 @@ public class Menu : MonoBehaviour
 		if(state == MenuState.BED)
         {
 			state = MenuState.NO_MENU;
-            if (bed.MyFlowchart.isActiveAndEnabled == true)
-            {
-                bed.SetTextObjectsActive(false);
-            }
             pi.CanInteract = true;
         }
     }

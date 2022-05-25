@@ -105,11 +105,15 @@ public class GameSaveManager : MonoBehaviour
         save.farmTiles = farmland;
         save.mushrooms = mushrooms;
         save.inventory = farmManager.playerInventory.GetSaveableInventory();
-        foreach (bool b in farmingTutorial.tutorialBools)
+
+        if (farmingTutorial != null)
         {
-            save.tutorialBools.Add(b);
+            foreach (bool b in farmingTutorial.tutorialBools)
+            {
+                save.tutorialBools.Add(b);
+            }
+            save.tutorialObjective = farmingTutorial.objective.text;
         }
-        save.tutorialObjective = farmingTutorial.objective.text;
 
         timeManager.netWorth.SaveWorth(out var savedWorth);
         save.farmNetWorth = savedWorth;
@@ -200,11 +204,14 @@ public class GameSaveManager : MonoBehaviour
         playerInteraction.SetStamina((int)save.stamina);
         tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
         farmManager.playerInventory.SetSaveableInventory(save.inventory);
-        for (int i = 0; i < save.tutorialBools.Count; i++)
+        if (farmingTutorial != null)
         {
-            farmingTutorial.tutorialBools[i] = save.tutorialBools[i];
+            for (int i = 0; i < save.tutorialBools.Count; i++)
+            {
+                farmingTutorial.tutorialBools[i] = save.tutorialBools[i];
+            }
+            farmingTutorial.objective.text = save.tutorialObjective;
         }
-        farmingTutorial.objective.text = save.tutorialObjective;
 
         timeManager.netWorth.FarmNetWorth = save.farmNetWorth;
 

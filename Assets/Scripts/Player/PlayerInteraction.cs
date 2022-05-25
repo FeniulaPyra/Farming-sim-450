@@ -55,6 +55,11 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public bool GetCanInteract()
+    {
+        return canInteract;
+    }
+
     //Stamina, which serves the same purpose as time
     public TMP_Text staminaDisplay;
     public int playerStamina = 0;
@@ -123,6 +128,11 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
+
+        if (farmingTutorial == null)
+        {
+            StartPlayer();
+        }
     }
 
     private void Update()
@@ -161,9 +171,12 @@ public class PlayerInteraction : MonoBehaviour
                 SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
                 playerInventory.RemoveHeldItems(1);
 
-                if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
+                if (farmingTutorial != null)
                 {
-                    farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
+                    if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
+                    {
+                        farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
+                    }
                 }
             }
 
