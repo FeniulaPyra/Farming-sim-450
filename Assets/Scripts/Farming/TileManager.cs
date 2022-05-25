@@ -10,13 +10,26 @@ public class TileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (farmManager.farmField != null && farmManager.tillableGround != null)
+        {
+            LoadFieldObjects(ScenePersistence.Instance.farmTiles, ScenePersistence.Instance.mushrooms);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SaveFarm()
+    {
+        if (farmManager.farmField != null && farmManager.tillableGround != null)
+        {
+            SaveFieldObjects(out var farmland, out var mushrooms);
+            ScenePersistence.Instance.farmTiles = farmland;
+            ScenePersistence.Instance.mushrooms = mushrooms;
+        }
     }
 
     public void SaveFieldObjects(out List<SaveTile> farmland, out List<MushroomSaveTile> mushrooms)
@@ -124,7 +137,7 @@ public class TileManager : MonoBehaviour
                 farmManager.mushroomsAndTiles[mushrooms[i].position].isMoist = mushrooms[i].isMoist;
                 farmManager.mushroomsAndTiles[mushrooms[i].position].hasPlant = mushrooms[i].hasPlant;
                 farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite = farmManager.mushroomsAndTiles[mushrooms[i].position].sprites[mushrooms[i].spriteIndex];
-                farmManager.mushroomsAndTiles[mushrooms[i].position].position = mushrooms[i].position;
+                farmManager.mushroomsAndTiles[mushrooms[i].position].position = mushrooms[i].position;*/
 
 
                 farmManager.mushroomsAndTiles[mushrooms[i].position].GetComponent<Mushrooms>().growthStage = mushrooms[i].growthStage;
@@ -133,7 +146,7 @@ public class TileManager : MonoBehaviour
                 farmManager.mushroomsAndTiles[mushrooms[i].position].GetComponent<Mushrooms>().maxDaysWithoutWater = mushrooms[i].maxDaysWithoutWater;
                 farmManager.mushroomsAndTiles[mushrooms[i].position].GetComponent<Mushrooms>().readyToDie = mushrooms[i].readyToDie;
                 farmManager.mushroomsAndTiles[mushrooms[i].position].GetComponent<Mushrooms>().ID = mushrooms[i].ID;
-                farmManager.mushroomsAndTiles[mushrooms[i].position].GetComponent<Mushrooms>().baseValue = mushrooms[i].baseValue;*/
+                farmManager.mushroomsAndTiles[mushrooms[i].position].GetComponent<Mushrooms>().baseValue = mushrooms[i].baseValue;
         }
 
         for (int i = 0; i < tilesToLoad.Count; i++)
@@ -176,6 +189,13 @@ public class TileManager : MonoBehaviour
         //Setting ground accordingly
         foreach (KeyValuePair<Vector3Int, Tile> t in farmManager.mushroomsAndTiles)
         {
+            if (farmManager.mushroomsAndTiles[t.Value.position].hasPlant)
+            {
+                Debug.Log($"T is tilled?: {farmManager.mushroomsAndTiles[t.Value.position].isTilled}");
+                Debug.Log($"T is moist?: {farmManager.mushroomsAndTiles[t.Value.position].isMoist}");
+            }
+            //Debug.Log($"T has plant?: {farmManager.mushroomsAndTiles[t.Value.position].hasPlant}");
+
             if (farmManager.mushroomsAndTiles[t.Value.position].isTilled == true && farmManager.mushroomsAndTiles[t.Value.position].isMoist == false)
             {
                 Debug.Log("Tilled");

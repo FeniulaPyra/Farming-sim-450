@@ -33,13 +33,16 @@ public class SceneTransitioner : MonoBehaviour
             timeManager.SaveDate();
             farmManager.SaveInventory();
             playerInteraction.SavePlayer();
-            SceneManager.LoadScene("FungusTestScene");
+            tileManager.SaveFarm();
+            //SceneManager.LoadScene("FungusTestScene");
+            SceneManager.LoadScene("GroundScene 1");
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
             timeManager.SaveDate();
             farmManager.SaveInventory();
             playerInteraction.SavePlayer();
+            tileManager.SaveFarm();
             SceneManager.LoadScene("GroundScene");
         }
     }

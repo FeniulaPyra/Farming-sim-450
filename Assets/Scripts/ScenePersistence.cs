@@ -24,6 +24,8 @@ public class ScenePersistence : MonoBehaviour
     public int stamina; //How much stamina the player has
     public int gold; //How much gold the player has
     public List<int> inventory; //The player's inventory
+    public List<SaveTile> farmTiles;
+    public List<MushroomSaveTile> mushrooms;
 
     private void Awake()
     {
