@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &4829644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1173350220170174981, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+  m_PrefabInstance: {fileID: 39624696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36da34e2a9374a4418a15c1819b3fe90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5967451 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6075272586840731087, guid: 803c03dda4eb1a44ab50f3f015e29e69, type: 3}
@@ -280,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 257024930}
     - target: {fileID: 2908993290639692714, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2908993290639692714, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[0]
@@ -317,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 2908993290639692714, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[8]
       value: 
-      objectReference: {fileID: 39624714}
+      objectReference: {fileID: 39624814}
     - target: {fileID: 2908993290639692714, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[9]
       value: 
@@ -420,7 +431,11 @@ PrefabInstance:
       objectReference: {fileID: 1281256933}
     - target: {fileID: 4258592687627005438, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: nodeRect.x
-      value: 214.97293
+      value: 209.25864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258592687627005438, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: nodeRect.y
+      value: 194.47
       objectReference: {fileID: 0}
     - target: {fileID: 4270346792706357615, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: targetObject
@@ -875,15 +890,16 @@ MonoBehaviour:
   indentLevel: 0
   description: 
   targetObject: {fileID: 1281256933}
-  targetComponentAssemblyName: 
-  targetComponentFullname: 
-  targetComponentText: 
-  targetMethod: 
-  targetMethodText: 
+  targetComponentAssemblyName: PlayerInteraction, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: PlayerInteraction
+  targetMethod: StopPlayer
+  targetMethodText: 'StopPlayer (): Void'
   methodParameters: []
   saveReturnValue: 0
   returnValueVariableKey: 
-  returnValueType: 
+  returnValueType: System.Void
   showInherited: 0
   callMode: 0
 --- !u!114 &39624710
@@ -924,7 +940,36 @@ MonoBehaviour:
   - {fileID: 39624701}
   - {fileID: 39624700}
   - {fileID: 39624699}
+  - {fileID: 39624712}
   suppressAllAutoSelections: 0
+--- !u!114 &39624712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39624698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 149
+  indentLevel: 0
+  description: 
+  targetObject: {fileID: 1281256933}
+  targetComponentAssemblyName: PlayerInteraction, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: PlayerInteraction
+  targetMethod: StartPlayer
+  targetMethodText: 'StartPlayer (): Void'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!114 &39624714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4025050903005022447, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
@@ -1013,6 +1058,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &39624814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39624698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 150
+  indentLevel: 0
+  description: 
+  targetObject: {fileID: 1281256933}
+  targetComponentAssemblyName: PlayerInteraction, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: PlayerInteraction
+  targetMethod: StartPlayer
+  targetMethodText: 'StartPlayer (): Void'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!114 &80900818 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8847410811381868851, guid: 4f784039ed28f064493b64e01cdc6880, type: 3}
@@ -51393,7 +51466,7 @@ PrefabInstance:
     - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: farmingTutorial
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4829644}
     - target: {fileID: 814468119183037380, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: playerInteraction
       value: 

@@ -248,13 +248,15 @@ public class PlayerInteraction : MonoBehaviour
         
         Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
 
-        //if (playerInventory.HeldItem != null)
-		itemName = playerInventory.HeldItem.Item.name;
-
-        //gets rid of the item if the stack is empty
-        if (playerInventory.HeldItem.Amount <= 0)
+        if (playerInventory.HeldItem != null)
         {
-            playerInventory.DeleteHeldItemStack();
+            itemName = playerInventory.HeldItem.Item.name;
+
+            //gets rid of the item if the stack is empty
+            if (playerInventory.HeldItem.Amount <= 0)
+            {
+                playerInventory.DeleteHeldItemStack();
+            }
         }
         /*if (playerInventory.HeldItem.Item != null)
         {
