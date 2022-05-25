@@ -50154,6 +50154,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneTransitioner
       objectReference: {fileID: 0}
+    - target: {fileID: 2611954685971327011, guid: 91a42715f76c5b841b750671820200b3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611954685971327011, guid: 91a42715f76c5b841b750671820200b3, type: 3}
+      propertyPath: farmManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611954685971327011, guid: 91a42715f76c5b841b750671820200b3, type: 3}
+      propertyPath: tileManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611954685971327011, guid: 91a42715f76c5b841b750671820200b3, type: 3}
+      propertyPath: timeManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611954685971327011, guid: 91a42715f76c5b841b750671820200b3, type: 3}
+      propertyPath: playerInteraction
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2611954685971327012, guid: 91a42715f76c5b841b750671820200b3, type: 3}
       propertyPath: m_RootOrder
       value: 18
