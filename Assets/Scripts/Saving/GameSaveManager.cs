@@ -110,12 +110,23 @@ public class GameSaveManager : MonoBehaviour
             save.tutorialBools.Add(b);
         }
         save.tutorialObjective = farmingTutorial.objective.text;
-        
+
+        timeManager.netWorth.SaveWorth(out var savedWorth);
+        save.farmNetWorth = savedWorth;
+
+
         for (int i = 0; i < timeManager.NPCList.Count; i++)
         {
             timeManager.NPCList[i].SaveFlowcharts(out var startChart, out var questChart);
             save.NPCStartflowcharts.Add(startChart);
             save.NPCQuestflowcharts.Add(questChart);
+            //Going back up to access quests and then save them
+            Debug.Log($"Inventory before saving: {timeManager.NPCList[i].gameObject.GetComponent<Quests>().inventory.isShown}");
+            timeManager.NPCList[i].gameObject.GetComponent<Quests>().SaveQuest(out var saveQuest);
+            saveQuest.inventory = save.inventory;
+            //Debug.Log($"Inventory after saving: {saveQuest.inventory.isShown}");
+            save.NPCQuests.Add(saveQuest);
+            //Debug.Log($"Inventory after saving into list: {save.NPCQuests[i].inventory.isShown}");
             Debug.Log($"Date?: {save.NPCStartflowcharts[0].dateNum}");
         }
 
@@ -156,9 +167,14 @@ public class GameSaveManager : MonoBehaviour
         }
         farmingTutorial.objective.text = save.tutorialObjective;
 
+        timeManager.netWorth.FarmNetWorth = save.farmNetWorth;
+
         for (int i = 0; i < timeManager.NPCList.Count; i++)
         {
             timeManager.NPCList[i].LoadFlowcharts(save.NPCStartflowcharts[i], save.NPCQuestflowcharts[i]);
+            //Debug.Log($"Inventory before Loading: {save.NPCQuests[i].inventory.isShown}");
+            timeManager.NPCList[i].gameObject.GetComponent<Quests>().LoadQuest(save.NPCQuests[i]);
+            Debug.Log($"Inventory after Loading: {timeManager.NPCList[i].gameObject.GetComponent<Quests>().inventory.isShown}");
             Debug.Log($"Date?: {timeManager.NPCList[0].transform.Find("Start").GetComponent<Flowchart>().GetIntegerVariable("dateNum")}");
         }
 
@@ -255,7 +271,9 @@ public class GameSaveManager : MonoBehaviour
         public List<bool> tutorialBools = new List<bool>();
         public string tutorialObjective;
         //public List<NPCManager> NPCs = new List<NPCManager>();
+        public int farmNetWorth;
         public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();
         public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();
+        public List<SaveQuest> NPCQuests = new List<SaveQuest>();
     }
 }

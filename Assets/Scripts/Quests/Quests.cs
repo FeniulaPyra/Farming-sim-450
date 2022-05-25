@@ -9,8 +9,6 @@ using TMPro;
 //The script will handle a single quest only
 public class Quests : MonoBehaviour
 {
-    public Item test;
-
     public CalculateFarmNetWorth netWorth;
 
     public Inventory inventory;
@@ -45,6 +43,9 @@ public class Quests : MonoBehaviour
         TimedCollection,
         TimedFundraising
     }
+
+    //Will determine what parts of update run each frame
+    public QuestType questType;
 
     [SerializeField]
     bool questAccepted;
@@ -130,10 +131,6 @@ public class Quests : MonoBehaviour
     [SerializeField]
     //The minimum net worth the player's farm must have to make the quest run
     public int requiredNetWorth;
-
-
-    //Will determine what parts of update run each frame
-    public QuestType questType;
 
     //For collection quests
     public List<Item> requiredItemList = new List<Item>();
@@ -268,6 +265,34 @@ public class Quests : MonoBehaviour
         moneyEarnedSinceQuestStart = 0;
         daysToQuestFail = 0;
     }
+
+    public void SaveQuest(out SaveQuest saved)
+    {
+        saved = new SaveQuest(netWorth, interaction, farmManager, myNPC, myFlowchart, questType, questAccepted, readyToReport, questComplete, questFailed, moneyRequired, moneyEarnedSinceQuestStart, daysToQuestFail, requiredNetWorth, requiredItemList, requiredItemsCountList, requiredItemsAmountList);
+    }
+
+    public void LoadQuest(SaveQuest QuestToLoad)
+    {
+        netWorth = QuestToLoad.netWorth;
+
+        inventory.SetSaveableInventory(QuestToLoad.inventory);
+
+        interaction = QuestToLoad.interaction;
+        farmManager = QuestToLoad.farmManager;
+        myNPC = QuestToLoad.myNPC;
+        myFlowchart = QuestToLoad.myFlowchart;
+        questType = QuestToLoad.questType;
+        questAccepted = QuestToLoad.questAccepted;
+        readyToReport = QuestToLoad.readyToReport;
+        questComplete = QuestToLoad.questComplete;
+        questFailed = QuestToLoad.questFailed;
+        moneyRequired = QuestToLoad.moneyRequired;
+        moneyEarnedSinceQuestStart = QuestToLoad.moneyEarnedSinceQuestStart;
+        daysToQuestFail = QuestToLoad.daysToQuestFail;
+        requiredItemList = QuestToLoad.requiredItemList;
+        requiredItemsCountList = QuestToLoad.requiredItemsCountList;
+        requiredItemsAmountList = QuestToLoad.requiredItemsAmountList;
+    }
     
 
     // Start is called before the first frame update
@@ -311,11 +336,12 @@ public class Quests : MonoBehaviour
         //Quest has been started
         if (questAccepted == true && readyToReport == false)
         {
-            if (questType == QuestType.Collection)
+            if (questType == QuestType.Collection || questType == QuestType.TimedCollection)
             {
                 for (int i = 0; i < requiredItemList.Count; i++)
                 {
                     requiredItemsCountList[i] = inventory.CountItem(requiredItemList[i].name);
+                    //Debug.Log($"PRINT ME; You have {requiredItemsCountList[i]} of {requiredItemList[i].name}");
 
                     //Ex. if 5> 4
                     if (requiredItemsCountList[i] >= requiredItemsAmountList[i])
@@ -341,7 +367,7 @@ public class Quests : MonoBehaviour
                     }
                 }
             }
-            else if (questType == QuestType.Fundraising)
+            else if (questType == QuestType.Fundraising || questType == QuestType.TimedFundraising)
             {
                 if (moneyEarnedSinceQuestStart > moneyRequired)
                 {
@@ -447,5 +473,61 @@ public class Quests : MonoBehaviour
                 }
             }
         }*/
+    }
+}
+
+[System.Serializable]
+public class SaveQuest
+{
+    public CalculateFarmNetWorth netWorth;
+    //public Inventory inventory;
+    public List<int> inventory;
+    public PlayerInteraction interaction;
+    public FarmManager farmManager;
+
+    public NPCManager myNPC;
+    public Flowchart myFlowchart;
+
+    public Quests.QuestType questType;
+
+    public bool questAccepted;
+    public bool readyToReport;
+    public bool questComplete;
+    public bool questFailed;
+    public int moneyRequired;
+    public int moneyEarnedSinceQuestStart = 0;
+    public int daysToQuestFail;
+
+    public int requiredNetWorth;
+
+    public List<Item> requiredItemList = new List<Item>();
+    public List<int> requiredItemsCountList = new List<int>();
+    public List<int> requiredItemsAmountList = new List<int>();
+
+    //public SaveQuest(CalculateFarmNetWorth nW, Inventory i, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL)
+    public SaveQuest(CalculateFarmNetWorth nW, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL)
+    {
+        netWorth = nW;
+        interaction = pI;
+        farmManager = fM;
+
+        myNPC = npc;
+        myFlowchart = mF;
+
+        questType = qT;
+
+        questAccepted = qA;
+        readyToReport = rTR;
+        questComplete = qC;
+        questFailed = qF;
+        moneyRequired = mR;
+        moneyEarnedSinceQuestStart = mE;
+        daysToQuestFail = dTQF;
+
+        requiredNetWorth = rNW;
+
+        requiredItemList = rIL;
+        requiredItemsCountList = rICL;
+        requiredItemsAmountList = rIAL;
     }
 }
