@@ -58,6 +58,7 @@ MonoBehaviour:
   isEdible: 0
   staminaToRestore: 0
   rare: 0
+  type: pet
 --- !u!212 &4520553627292966351
 SpriteRenderer:
   m_ObjectHideFlags: 0

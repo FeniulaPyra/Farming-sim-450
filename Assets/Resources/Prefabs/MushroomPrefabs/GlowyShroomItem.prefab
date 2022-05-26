@@ -59,6 +59,7 @@ MonoBehaviour:
   isEdible: 1
   staminaToRestore: 10
   rare: 0
+  type: mushroom
 --- !u!212 &7045756798802460592
 SpriteRenderer:
   m_ObjectHideFlags: 0

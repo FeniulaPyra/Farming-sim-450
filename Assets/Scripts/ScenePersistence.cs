@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using TMPro;
+using Fungus;
 
 public class ScenePersistence : MonoBehaviour
 {
@@ -21,11 +22,24 @@ public class ScenePersistence : MonoBehaviour
     //Always needs to be saved
     //public string sceneType; //Type of scene to be saved, will be used for loading purposes
     public Vector4 date; //The present in game date
+
     public int stamina; //How much stamina the player has
     public int gold; //How much gold the player has
     public List<int> inventory; //The player's inventory
+
+    public int farmNetWorth;//The value of the player's farm. Used for quests
     public List<SaveTile> farmTiles;
     public List<MushroomSaveTile> mushrooms;
+
+    public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();//Fungus Flowcharts
+    public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();//Fungus Quest Flowcharts
+    public List<SaveQuest> NPCQuests = new List<SaveQuest>();//Quest Scripts
+    public List<string> NPCNames = new List<string>();//The names of all NPCs that this has
+
+    public List<SavePet> pets = new List<SavePet>(); //Any pets on the field when the player transitions scenes
+    public List<string> petNames = new List<string>(); //The name of the pet so its prefab can be easily spawned
+    public List<SaveEntity> entities = new List<SaveEntity>(); //Any pets on the field when the player transitions scenes
+    public List<string> entityNames = new List<string>(); //The name of the pet so its prefab can be easily spawned
 
     private void Awake()
     {

@@ -23,6 +23,8 @@ public class Item : MonoBehaviour
     public int staminaToRestore;
     public bool rare;
 
+    public string type;
+
 
 	public void Start()
 	{

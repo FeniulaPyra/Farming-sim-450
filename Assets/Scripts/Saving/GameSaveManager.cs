@@ -159,6 +159,7 @@ public class GameSaveManager : MonoBehaviour
             else
             {
                 e.SaveEntity(out SaveEntity entity);
+                entity.type = entity.gameObject.GetComponent<Item>().type;
                 save.entities.Add(entity);
                 if (save.entities[save.entities.Count - 1].self.name.Contains('('))
                 {
@@ -232,7 +233,17 @@ public class GameSaveManager : MonoBehaviour
 
         for (int i = 0; i < save.entities.Count; i++)
         {
-            Instantiate(Resources.Load($"Prefabs/MushroomPrefabs/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
+            switch (save.entities[i].type)
+            {
+                case "tool":
+                    Instantiate(Resources.Load($"Prefabs/Tools/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
+                    break;
+                case "mushroom":
+                    Instantiate(Resources.Load($"Prefabs/MushroomPrefabs/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
         }
 
         for (int i = 0; i < save.pets.Count; i++)

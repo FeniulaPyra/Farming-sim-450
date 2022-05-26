@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class TimeManager : MonoBehaviour
 {
@@ -78,7 +79,7 @@ public class TimeManager : MonoBehaviour
 
         for (int i = 0; i < NPCs.Length; i++)
         {
-            if (NPCs[i] != null && NPCs[i].gameObject.name != "TutorialManager")
+            if (NPCs[i] != null /*&& NPCs[i].gameObject.name != "TutorialManager"*/)
             {
                 NPCList.Add(NPCs[i]);
             }
@@ -95,12 +96,64 @@ public class TimeManager : MonoBehaviour
         if (ScenePersistence.Instance != null)
         {
             SetDate((int)ScenePersistence.Instance.date.x, (int)ScenePersistence.Instance.date.y, (int)ScenePersistence.Instance.date.z, (int)ScenePersistence.Instance.date.w);
+
+            netWorth.FarmNetWorth = ScenePersistence.Instance.farmNetWorth;
+
+            for (int i = 0; i < NPCList.Count; i++)
+            {
+                if (ScenePersistence.Instance.NPCNames.Contains(NPCList[i].MyName) == true)
+                {
+                    int index = ScenePersistence.Instance.NPCNames.IndexOf(NPCList[i].MyName);
+
+                    NPCList[i].LoadFlowcharts(ScenePersistence.Instance.NPCStartflowcharts[index], ScenePersistence.Instance.NPCQuestflowcharts[index]);
+                    NPCList[i].gameObject.GetComponent<Quests>().LoadQuest(ScenePersistence.Instance.NPCQuests[index]);
+
+                }
+            }
+        }
+    }
+
+    public void SaveNPCs()
+    {
+        //check if the scene persistence script contains the name of an NPC
+        for (int i = 0; i < NPCList.Count; i++)
+        {
+            //These need to happen regardless
+            NPCList[i].SaveFlowcharts(out var startChart, out var questChart);
+            NPCList[i].gameObject.GetComponent<Quests>().SaveQuest(out var saveQuest);
+            saveQuest.inventory = ScenePersistence.Instance.inventory;
+
+            //If it does contain it, just overwrite them
+            if (ScenePersistence.Instance.NPCNames.Contains(NPCList[i].MyName) == true)
+            {
+                //The index of the NPC to be overwritten, to avoid putting that in constantly
+                int index = ScenePersistence.Instance.NPCNames.IndexOf(NPCList[i].MyName);
+
+                ScenePersistence.Instance.NPCStartflowcharts[index] = startChart;
+                ScenePersistence.Instance.NPCQuestflowcharts[index] = questChart;
+                ScenePersistence.Instance.NPCQuests[index] = saveQuest;
+            }
+            //If it doesn't, add them
+            else
+            {
+                ScenePersistence.Instance.NPCStartflowcharts.Add(startChart);
+                ScenePersistence.Instance.NPCQuestflowcharts.Add(questChart);
+                ScenePersistence.Instance.NPCQuests.Add(saveQuest);
+                ScenePersistence.Instance.NPCNames.Add(NPCList[i].MyName);
+
+            }
         }
     }
 
     public void SaveDate()
     {
         ScenePersistence.Instance.date = new Vector4(DayNumber, DateNumber, YearNumber, SeasonNumber);
+    }
+
+    public void SaveWorth()
+    {
+        netWorth.SaveWorth(out var savedWorth);
+        ScenePersistence.Instance.farmNetWorth = savedWorth;
     }
 
     // Update is called once per frame

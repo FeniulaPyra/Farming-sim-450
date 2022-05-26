@@ -13,6 +13,7 @@ public class SceneTransitioner : MonoBehaviour
     public TileManager tileManager;//Theplayer's field
     public FarmManager farmManager;//Mushrooms
     public FarmingTutorial farmingTutorial;//The state of the tutorial. Shouldn't be an issue
+    public EntityManager entityManager;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class SceneTransitioner : MonoBehaviour
         tileManager = FindObjectOfType<TileManager>();
         farmManager = FindObjectOfType<FarmManager>();
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
+        entityManager = FindObjectOfType<EntityManager>();
     }
 
     // Update is called once per frame
@@ -30,21 +32,30 @@ public class SceneTransitioner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            timeManager.SaveDate();
-            farmManager.SaveInventory();
-            playerInteraction.SavePlayer();
-            tileManager.SaveFarm();
-            //SceneManager.LoadScene("FungusTestScene");
-            SceneManager.LoadScene("GroundScene 1");
+            //LoadScene("FungusTestScene");
+            LoadScene("GroundScene 1");
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            timeManager.SaveDate();
-            farmManager.SaveInventory();
-            playerInteraction.SavePlayer();
-            tileManager.SaveFarm();
-            SceneManager.LoadScene("GroundScene");
+            LoadScene("GroundScene");
         }
+    }
+
+    public void LoadScene(string sceneToLoad)
+    {
+        timeManager.SaveDate();
+        timeManager.SaveNPCs();
+
+        entityManager.SavePets();
+        entityManager.SaveEntities();
+
+        farmManager.SaveInventory();
+
+        playerInteraction.SavePlayer();
+
+        tileManager.SaveFarm();
+
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void SavePlayer()

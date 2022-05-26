@@ -59,7 +59,7 @@ public class BasicPet : BasicEntity
 
     public void SavePet(out SavePet pet)
     {
-        pet = new SavePet(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, normalImage, pettingImage, petItem, manager);
+        pet = new SavePet(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, normalImage, pettingImage, petItem, manager, gameObject);
     }
 }
 
@@ -72,7 +72,7 @@ public class SavePet : SaveEntity
     public Item pet;
     public FarmManager manager;
 
-    public SavePet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos)
+    public SavePet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager, GameObject gameObject) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos, gameObject)
     {
         normal = n;
         this.petting = petting;

@@ -35,7 +35,7 @@ public class BasicEntity : MonoBehaviour
 
     public void SaveEntity(out SaveEntity entity)
     {
-        entity = new SaveEntity(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position);
+        entity = new SaveEntity(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, gameObject);
     }
 
     public void LoadEntity()
@@ -111,7 +111,13 @@ public class SaveEntity
     public GameObject self;
     public Vector3 pos;
 
-    public SaveEntity(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos)
+    //For tracking the scene it's in; used for persistence and making sure it only spawns in inside of the scene it was left
+    public string sceneName;
+
+    public string type;
+    public GameObject gameObject;//Gameobject this entity was on. Used for getting its type
+
+    public SaveEntity(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, GameObject gameObject)
     {
         speed = mS;
         menu = m;
@@ -125,6 +131,7 @@ public class SaveEntity
         facing = f;
         this.self = self;
         this.pos = pos;
+        this.gameObject = gameObject;
     }
 
 }

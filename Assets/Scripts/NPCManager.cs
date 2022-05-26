@@ -9,6 +9,8 @@ public class NPCManager : MonoBehaviour
 
     Flowchart myFlowchart;
     Flowchart myQuestFlowchart;
+    [SerializeField]
+    string myName;
 
     public Flowchart MyFlowchart
     {
@@ -34,11 +36,20 @@ public class NPCManager : MonoBehaviour
         }
     }
 
+    public string MyName
+    {
+        get
+        {
+            return myName;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         myFlowchart = transform.Find("Start").GetComponent<Flowchart>();
         myQuestFlowchart = transform.Find("Quests").GetComponent<Flowchart>();
+        myName = gameObject.name;
     }
 
     // Update is called once per frame

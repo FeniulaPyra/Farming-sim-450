@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 7547765681838909839}
   - component: {fileID: 7804082817095242868}
   - component: {fileID: 7804082817095242869}
+  - component: {fileID: 3944247810893877655}
   m_Layer: 0
   m_Name: ManagerObject
   m_TagString: Untagged
@@ -398,10 +399,13 @@ MonoBehaviour:
   shippingBin: {fileID: 0}
   staminaTracker: {fileID: 0}
   netWorth: {fileID: 7804082817095242869}
+  dayNum: 1
   dayDisplay: {fileID: 0}
+  dateNum: 1
   dateDisplay: {fileID: 0}
   seasonNum: 1
   seasonDisplay: {fileID: 0}
+  yearNum: 1
   yearDisplay: {fileID: 0}
   isNight: 0
   nightImage: {fileID: 0}
@@ -497,3 +501,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   farmNetWorth: 0
+--- !u!114 &3944247810893877655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7804082817095242862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1204bfd683897469e5baf24a3ef539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
