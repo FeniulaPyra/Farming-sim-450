@@ -33,9 +33,6 @@ public class Quests : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    int questIndex;
-
     public enum QuestType
     {
         Collection,
@@ -138,6 +135,10 @@ public class Quests : MonoBehaviour
     public List<int> requiredItemsCountList = new List<int>();
     //How many of them you need
     public List<int> requiredItemsAmountList = new List<int>();
+
+    [SerializeField]
+    int questIndex;
+    public int finalQuestIndex;
 
     //public List<miniQuest> miniQuests = new List<miniQuest>();
 
@@ -264,11 +265,19 @@ public class Quests : MonoBehaviour
         moneyRequired = 0;
         moneyEarnedSinceQuestStart = 0;
         daysToQuestFail = 0;
+
+        if (questIndex < finalQuestIndex)
+        {
+            Debug.Log($"Quest Index is: {questIndex}; Quest Counter is {myFlowchart.GetIntegerVariable("questCounter")}");
+            questIndex++;
+            myFlowchart.SetIntegerVariable("questCounter", questIndex);
+            Debug.Log($"Quest Index is: {questIndex}; Quest Counter is {myFlowchart.GetIntegerVariable("questCounter")}");
+        }
     }
 
     public void SaveQuest(out SaveQuest saved)
     {
-        saved = new SaveQuest(netWorth, interaction, farmManager, myNPC, myFlowchart, questType, questAccepted, readyToReport, questComplete, questFailed, moneyRequired, moneyEarnedSinceQuestStart, daysToQuestFail, requiredNetWorth, requiredItemList, requiredItemsCountList, requiredItemsAmountList);
+        saved = new SaveQuest(netWorth, interaction, farmManager, myNPC, myFlowchart, questType, questAccepted, readyToReport, questComplete, questFailed, moneyRequired, moneyEarnedSinceQuestStart, daysToQuestFail, requiredNetWorth, requiredItemList, requiredItemsCountList, requiredItemsAmountList, questIndex, finalQuestIndex);
     }
 
     public void LoadQuest(SaveQuest QuestToLoad)
@@ -292,6 +301,8 @@ public class Quests : MonoBehaviour
         requiredItemList = QuestToLoad.requiredItemList;
         requiredItemsCountList = QuestToLoad.requiredItemsCountList;
         requiredItemsAmountList = QuestToLoad.requiredItemsAmountList;
+        questIndex = QuestToLoad.questIndex;
+        finalQuestIndex = QuestToLoad.finalQuestIndex;
     }
     
 
@@ -305,6 +316,8 @@ public class Quests : MonoBehaviour
         interaction = FindObjectOfType<PlayerInteraction>();
 
         inventory = farmManager.GetComponent<FarmManager>().playerInventory;
+
+        questIndex = 1;
 
         //populating list with something at start
         /*foreach (miniQuest m in miniQuests)
@@ -352,7 +365,7 @@ public class Quests : MonoBehaviour
                             //Account for Fungus, somehow
                             Debug.Log("Quest complete item");
                             readyToReport = true;
-                            myFlowchart.SetBooleanVariable("Quest1ReadyToReport", readyToReport);
+                            myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
                             //myNPC.oldConvoID = myNPC.convoID;
                             //myNPC.convoID = myNPC.myQuests.activeQuest.endID;
                         }
@@ -373,7 +386,7 @@ public class Quests : MonoBehaviour
                 {
                     //quest complete
                     readyToReport = true;
-                    myFlowchart.SetBooleanVariable("Quest1ReadyToReport", readyToReport);
+                    myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
                 }
             }
         }
@@ -504,8 +517,11 @@ public class SaveQuest
     public List<int> requiredItemsCountList = new List<int>();
     public List<int> requiredItemsAmountList = new List<int>();
 
+    public int questIndex;
+    public int finalQuestIndex;
+
     //public SaveQuest(CalculateFarmNetWorth nW, Inventory i, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL)
-    public SaveQuest(CalculateFarmNetWorth nW, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL)
+    public SaveQuest(CalculateFarmNetWorth nW, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL, int qI, int fQI)
     {
         netWorth = nW;
         interaction = pI;
@@ -529,5 +545,8 @@ public class SaveQuest
         requiredItemList = rIL;
         requiredItemsCountList = rICL;
         requiredItemsAmountList = rIAL;
+
+        questIndex = qI;
+        finalQuestIndex = fQI;
     }
 }

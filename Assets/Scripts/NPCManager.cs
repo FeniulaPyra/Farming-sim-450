@@ -62,7 +62,7 @@ public class NPCManager : MonoBehaviour
     {
         start = new SaveStartChart(myFlowchart.GetIntegerVariable("seasonNum"), myFlowchart.GetIntegerVariable("dateNum"), myFlowchart.GetIntegerVariable("playerNetWorth"), myFlowchart.GetBooleanVariable("spokenToOnce"), myFlowchart.GetBooleanVariable("spokenToTwice"), myFlowchart.GetBooleanVariable("questAccepted"), myFlowchart.GetBooleanVariable("questReadyToReport"), myFlowchart.GetBooleanVariable("questComplete"));
 
-        quests = new SaveQuestChart(myQuestFlowchart.GetBooleanVariable("Quest1Accepted"), myQuestFlowchart.GetBooleanVariable("Quest1ReadyToReport"), myQuestFlowchart.GetBooleanVariable("Quest1Complete"), myQuestFlowchart.GetBooleanVariable("Quest1Failed"), myQuestFlowchart.GetIntegerVariable("QuestCounter"));
+        quests = new SaveQuestChart(myQuestFlowchart.GetBooleanVariable("questAccepted"), myQuestFlowchart.GetBooleanVariable("questReadyToReport"), myQuestFlowchart.GetBooleanVariable("questComplete"), myQuestFlowchart.GetBooleanVariable("questFailed"), myQuestFlowchart.GetIntegerVariable("QuestCounter"));
     }
 
     public void LoadFlowcharts(SaveStartChart start, SaveQuestChart quests)
@@ -76,11 +76,11 @@ public class NPCManager : MonoBehaviour
         myFlowchart.SetBooleanVariable("questReadyToReport", start.questReadyToReport);
         myFlowchart.SetBooleanVariable("questComplete", start.questComplete);
 
-        myQuestFlowchart.SetBooleanVariable("Quest1Accepted", quests.quest1Accepted);
-        myQuestFlowchart.SetBooleanVariable("Quest1ReadyToReport", quests.quest1ReadyToReport);
-        myQuestFlowchart.SetBooleanVariable("Quest1Complete", quests.quest1Complete);
-        myQuestFlowchart.SetBooleanVariable("Quest1Failed", quests.quest1Complete);
-        myQuestFlowchart.SetIntegerVariable("QuestCounter", quests.questCounter);
+        myQuestFlowchart.SetBooleanVariable("questAccepted", quests.questAccepted);
+        myQuestFlowchart.SetBooleanVariable("questReadyToReport", quests.questReadyToReport);
+        myQuestFlowchart.SetBooleanVariable("questComplete", quests.questComplete);
+        myQuestFlowchart.SetBooleanVariable("questFailed", quests.questComplete);
+        myQuestFlowchart.SetIntegerVariable("questCounter", quests.questCounter);
     }
 }
 
@@ -112,18 +112,18 @@ public class SaveStartChart
 [System.Serializable]
 public class SaveQuestChart
 {
-    public bool quest1Accepted;
-    public bool quest1ReadyToReport;
-    public bool quest1Complete;
-    public bool quest1Failed;
+    public bool questAccepted;
+    public bool questReadyToReport;
+    public bool questComplete;
+    public bool questFailed;
     public int questCounter;
 
-    public SaveQuestChart(bool quest1Accepted, bool quest1ReadyToReport, bool quest1complete, bool quest1Failed, int questCounter)
+    public SaveQuestChart(bool questAccepted, bool questReadyToReport, bool questcomplete, bool questFailed, int questCounter)
     {
-        this.quest1Accepted = quest1Accepted;
-        this.quest1ReadyToReport = quest1ReadyToReport;
-        this.quest1Complete = quest1complete;
-        this.quest1Failed = quest1Failed;
+        this.questAccepted = questAccepted;
+        this.questReadyToReport = questReadyToReport;
+        this.questComplete = questcomplete;
+        this.questFailed = questFailed;
         this.questCounter = questCounter;
     }
 }

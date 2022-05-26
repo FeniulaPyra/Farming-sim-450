@@ -409,7 +409,7 @@ public class TimeManager : MonoBehaviour
                     else
                     {
                         npc.gameObject.GetComponent<Quests>().SetQuestFailed(true);
-                        npc.gameObject.GetComponent<Quests>().MyFlowchart.SetBooleanVariable("Quest1Failed", npc.gameObject.GetComponent<Quests>().GetQuestFailed());
+                        npc.gameObject.GetComponent<Quests>().MyFlowchart.SetBooleanVariable("questFailed", npc.gameObject.GetComponent<Quests>().GetQuestFailed());
 
                         Debug.Log($"Days remaining: {npc.gameObject.GetComponent<Quests>().GetDaysToFail()}; Failed Quest?: {npc.gameObject.GetComponent<Quests>().GetQuestFailed()}");
                     }
