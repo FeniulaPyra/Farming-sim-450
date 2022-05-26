@@ -81,6 +81,31 @@ public class GameSaveManager : MonoBehaviour
         }
     }
 
+    public void SaveGame()
+    {
+        string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
+
+        path += name;
+
+        Debug.Log($"Saved game to {path}");
+
+        if (File.Exists(path) == true)
+        {
+            Debug.Log("Save does exist");
+            flowchart.SetStringVariable("SaveName", name);
+            flowchart.ExecuteBlock("Start");
+            //SaveGame(flowchart.GetStringVariable("SaveName"));
+        }
+        else
+        {
+            Debug.Log("Save does not exist");
+            //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
+            SaveGame(name);
+        }
+
+        path = originalPath;
+    }
+
     public void SaveGame(string saveName)
     {
         // Here is where saving happens...

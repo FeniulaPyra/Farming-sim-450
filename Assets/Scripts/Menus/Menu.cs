@@ -94,6 +94,11 @@ public class Menu : MonoBehaviour
     [SerializeField]
 	MenuState state = MenuState.NO_MENU;
 
+    public void SetState(MenuState value)
+    {
+        state = value;
+    }
+
 	// Start is called before the first frame update
 	void Start()
     {

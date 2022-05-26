@@ -51029,6 +51029,18 @@ PrefabInstance:
       propertyPath: mushroomList.Array.data[9]
       value: 
       objectReference: {fileID: 8325710169533739494, guid: 3a25d3eeb2d65f64d94a6d399f2db2b8, type: 3}
+    - target: {fileID: 4334256083025556753, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 4096102102035863122}
+    - target: {fileID: 4962485898863847401, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 4096102102035863122}
+    - target: {fileID: 6531709355262897048, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 4096102102035863122}
     - target: {fileID: 7071936972382967996, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
@@ -51045,6 +51057,22 @@ PrefabInstance:
       propertyPath: selectedCommands.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7804082816238168532, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: nodeRect.x
+      value: 498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804082816238168532, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: nodeRect.y
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804082816238168534, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 1216943103}
+    - target: {fileID: 7804082816238168535, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 1216943103}
     - target: {fileID: 7804082817095242863, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: farmField
       value: 
@@ -51093,6 +51121,10 @@ PrefabInstance:
       propertyPath: staminaTracker
       value: 
       objectReference: {fileID: 1281256936}
+    - target: {fileID: 9095751719129470834, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 4096102102035863122}
     m_RemovedComponents:
     - {fileID: 7804082817095242865, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
@@ -51289,6 +51321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
+--- !u!1 &4096102102035863122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4096102100642418984, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
+  m_PrefabInstance: {fileID: 4096102102035863121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5144697927306309874
 PrefabInstance:
   m_ObjectHideFlags: 0
