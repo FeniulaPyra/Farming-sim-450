@@ -71,6 +71,8 @@ public class FarmingTutorial : MonoBehaviour
 
         currentTutorial = myFlowchart.FindBlock("Start");
 
+        objective.gameObject.SetActive(true);
+
         tutorialBools = new List<bool>();
         tutorialBools.Add(tutorialStarted);
         tutorialBools.Add(tilledBefore);

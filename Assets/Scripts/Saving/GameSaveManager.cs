@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Fungus;
 
 using System.IO;
@@ -93,6 +94,7 @@ public class GameSaveManager : MonoBehaviour
         Debug.Log("Saving game to " + path);
 
         var save = new GameSave();
+        save.sceneName = SceneManager.GetActiveScene().name;
         save.position = player.transform.position;
         save.isNight = timeManager.isNight;
         save.date = new Vector4(
@@ -103,9 +105,20 @@ public class GameSaveManager : MonoBehaviour
             );
         save.stamina = playerInteraction.PlayerStamina;
         save.gold = playerInteraction.playerGold;
+
         tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
-        save.farmTiles = farmland;
-        save.mushrooms = mushrooms;
+
+        if (tileManager.farmManager.farmField != null && tileManager.farmManager.tillableGround != null)
+        {
+            save.farmTiles = farmland;
+            save.mushrooms = mushrooms;
+        }
+        else
+        {
+            save.farmTiles = ScenePersistence.Instance.farmTiles;
+            save.mushrooms = ScenePersistence.Instance.mushrooms;
+        }
+
         save.inventory = farmManager.playerInventory.GetSaveableInventory();
 
         if (farmingTutorial != null)
@@ -182,6 +195,8 @@ public class GameSaveManager : MonoBehaviour
         sw.WriteLine(json);
         sw.Close();
 
+        flowchart.ExecuteBlock("SaveConfirm");
+
         saves = FindAllSaves();
     }
 
@@ -196,6 +211,7 @@ public class GameSaveManager : MonoBehaviour
         var json = sr.ReadLine();
         var save = JsonUtility.FromJson<GameSave>(json);
 
+        SceneManager.LoadScene(save.sceneName);
         player.transform.position = save.position;
         timeManager.isNight = save.isNight;
         timeManager.SetDate(
@@ -343,6 +359,7 @@ public class GameSaveManager : MonoBehaviour
     [System.Serializable]
     private class GameSave
     {
+        public string sceneName;
         public Vector3 position;
         public bool isNight;
         public Vector4 date;
