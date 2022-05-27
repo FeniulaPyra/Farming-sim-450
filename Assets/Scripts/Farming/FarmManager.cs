@@ -74,7 +74,10 @@ public class FarmManager : MonoBehaviour
                 Vector3Int cropPos = new Vector3Int(i, j, 0);
                 Tile testTile = Instantiate(tilePrefab, cropPos, Quaternion.identity, transform);
 
-                mushroomsAndTiles.Add(cropPos, testTile);
+                if (mushroomsAndTiles.ContainsKey(cropPos) == false)
+                {
+                    mushroomsAndTiles.Add(cropPos, testTile);
+                }
 				Debug.Log("START TILE + " + cropPos);
 				visitedTiles.Add(cropPos, false);
                 //farmField.SetTile(cropPos, testTile.tileSprite);

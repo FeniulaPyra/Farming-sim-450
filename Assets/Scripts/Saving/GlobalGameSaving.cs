@@ -45,7 +45,7 @@ public class GlobalGameSaving : MonoBehaviour
     public List<SaveTile> farmTiles;
     public List<MushroomSaveTile> mushrooms;
     public List<int> inventory;
-    public List<bool> tutorialBools = new List<bool>();
+    public List<bool> tutorialBools;// = new List<bool>();
     public string tutorialObjective;
     //public List<NPCManager> NPCs = new List<NPCManager>();
     public int farmNetWorth;
@@ -78,6 +78,8 @@ public class GlobalGameSaving : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        tutorialBools = new List<bool>();
     }
 
     // Start is called before the first frame update

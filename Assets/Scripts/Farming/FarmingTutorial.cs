@@ -74,26 +74,66 @@ public class FarmingTutorial : MonoBehaviour
         objective.gameObject.SetActive(true);
 
         tutorialBools = new List<bool>();
-        tutorialBools.Add(tutorialStarted);
-        tutorialBools.Add(tilledBefore);
-        tutorialBools.Add(tilledAfter);
-        tutorialBools.Add(plantedBefore);
-        tutorialBools.Add(plantedAfter);
-        tutorialBools.Add(wateredBefore);
-        tutorialBools.Add(wateredAfter);
-        tutorialBools.Add(sleptBefore);
-        tutorialBools.Add(sleptAfter);
-        tutorialBools.Add(harvestedBefore);
-        tutorialBools.Add(harvestedAfter);
-        tutorialBools.Add(eatingBefore);
-        tutorialBools.Add(eatingAfter);
-        tutorialBools.Add(shippedBefore);
-        tutorialBools.Add(shippedAfter);
-        tutorialBools.Add(spreadBefore);
-        tutorialBools.Add(spreadAfter);
-        tutorialBools.Add(hybridBefore);
-        tutorialBools.Add(hybridAfter);
-        tutorialBools.Add(tutorialComplete);
+
+        if (GlobalGameSaving.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == true)
+            {
+                foreach (bool b in GlobalGameSaving.Instance.tutorialBools)
+                {
+                    tutorialBools.Add(b);
+                }
+
+                /*tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[0]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[1]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[2]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[3]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[4]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[5]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[6]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[7]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[8]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[9]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[10]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[11]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[12]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[13]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[14]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[15]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[16]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[17]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[18]);
+                tutorialBools.Add(GlobalGameSaving.Instance.tutorialBools[19]);*/
+            }
+            else
+            {
+                tutorialBools.Add(tutorialStarted);
+                tutorialBools.Add(tilledBefore);
+                tutorialBools.Add(tilledAfter);
+                tutorialBools.Add(plantedBefore);
+                tutorialBools.Add(plantedAfter);
+                tutorialBools.Add(wateredBefore);
+                tutorialBools.Add(wateredAfter);
+                tutorialBools.Add(sleptBefore);
+                tutorialBools.Add(sleptAfter);
+                tutorialBools.Add(harvestedBefore);
+                tutorialBools.Add(harvestedAfter);
+                tutorialBools.Add(eatingBefore);
+                tutorialBools.Add(eatingAfter);
+                tutorialBools.Add(shippedBefore);
+                tutorialBools.Add(shippedAfter);
+                tutorialBools.Add(spreadBefore);
+                tutorialBools.Add(spreadAfter);
+                tutorialBools.Add(hybridBefore);
+                tutorialBools.Add(hybridAfter);
+                tutorialBools.Add(tutorialComplete);
+
+                GlobalGameSaving.Instance.tutorialBools = tutorialBools;
+            }
+        }
+
+        
+        
 
         //check if there's a save to load. If yes, set here
     }
