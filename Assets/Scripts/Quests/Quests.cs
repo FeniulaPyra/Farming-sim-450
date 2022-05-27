@@ -284,7 +284,10 @@ public class Quests : MonoBehaviour
     {
         netWorth = QuestToLoad.netWorth;
 
-        inventory.SetSaveableInventory(QuestToLoad.inventory);
+        /*if (inventory != null)
+        {
+            inventory.SetSaveableInventory(QuestToLoad.inventory);
+        }*/
 
         interaction = QuestToLoad.interaction;
         farmManager = QuestToLoad.farmManager;

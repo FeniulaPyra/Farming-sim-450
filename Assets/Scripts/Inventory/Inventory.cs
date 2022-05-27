@@ -499,11 +499,13 @@ public class Inventory
 	public void SetSaveableInventory(List<int> sinv)
 	{
 		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
-		List<Item> itemsDict = menu.GetGameItemList();
+		List<GameObject> itemsDict = menu.gameItemPrefabs;
 
 		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
-			if (sinv[i] < 0) continue;
+            Debug.Log($"sinv[{i}]: {sinv[i]}");
+
+            if (sinv[i] < 0) continue;
 
 			int r = (int)Math.Floor((double)(j / COLUMNS));
 			int c = j % COLUMNS;
@@ -512,7 +514,7 @@ public class Inventory
 			Debug.Log(sinv[i]);
 			Debug.Log(itemsDict[sinv[i]]);
 
-			ItemStack iStack = new ItemStack(itemsDict[sinv[i]], sinv[i + 1]);
+			ItemStack iStack = new ItemStack(itemsDict[sinv[i]].GetComponent<Item>(), sinv[i + 1]);
 
 			items[r, c] = iStack;
 		}

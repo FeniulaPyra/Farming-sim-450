@@ -23,7 +23,10 @@ public class TileManager : MonoBehaviour
                 }
                 else if (ScenePersistence.Instance != null)
                 {
-                    LoadFieldObjects(ScenePersistence.Instance.farmTiles, ScenePersistence.Instance.mushrooms);
+                    if (ScenePersistence.Instance.farmTiles.Count > 0 && ScenePersistence.Instance.mushrooms.Count > 0)
+                    {
+                        LoadFieldObjects(ScenePersistence.Instance.farmTiles, ScenePersistence.Instance.mushrooms);
+                    }
                 }
             }
         }

@@ -100,7 +100,7 @@ public class FarmManager : MonoBehaviour
 
 		farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
-        if (true)
+        if (GlobalGameSaving.Instance != null)
         {
             if (GlobalGameSaving.Instance.loadingSave == true)
             {
@@ -108,7 +108,10 @@ public class FarmManager : MonoBehaviour
             }
             else if (ScenePersistence.Instance != null)
             {
-                playerInventory.SetSaveableInventory(ScenePersistence.Instance.inventory);
+                if (ScenePersistence.Instance.inventory.Count > 0)
+                {
+                    playerInventory.SetSaveableInventory(ScenePersistence.Instance.inventory);
+                }
             }
         }
     }
