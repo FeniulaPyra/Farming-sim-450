@@ -30,7 +30,7 @@ public class SceneTransitionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        /*if (Input.GetKeyDown(KeyCode.G))
         {
             //LoadScene("FungusTestScene");
             LoadScene("GroundScene 1");
@@ -38,7 +38,7 @@ public class SceneTransitionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             LoadScene("GroundScene");
-        }
+        }*/
     }
 
     public void LoadScene(string sceneToLoad)
