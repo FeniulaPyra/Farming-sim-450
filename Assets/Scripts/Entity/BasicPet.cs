@@ -34,17 +34,17 @@ public class BasicPet : BasicEntity
         base.FixedUpdate();
     }
 
-    private void OnMouseEnter()
+    protected void OnMouseEnter()//private void OnMouseEnter()
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = pettingImage;
     }
 
-    private void OnMouseExit()
+    protected void OnMouseExit()//private void OnMouseExit()
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = normalImage;
     }
 
-    private void OnMouseOver()
+    protected void OnMouseOver()//private void OnMouseOver()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {

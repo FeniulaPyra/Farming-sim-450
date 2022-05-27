@@ -5,11 +5,14 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     public List<Tile> fieldObjects = new List<Tile>();
+    //public FarmManager farmManager;
     public FarmManager farmManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        farmManager = FindObjectOfType<FarmManager>();
+
         if (farmManager.farmField != null && farmManager.tillableGround != null)
         {
             LoadFieldObjects(ScenePersistence.Instance.farmTiles, ScenePersistence.Instance.mushrooms);
@@ -127,7 +130,10 @@ public class TileManager : MonoBehaviour
 
             Debug.Log($"Setting mushroom sprite Index {mushrooms[i].spriteIndex}");
             farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite = farmManager.mushroomsAndTiles[mushrooms[i].position].sprites[mushrooms[i].spriteIndex];
-            farmManager.farmField.SetTile(mushrooms[i].position, farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite);
+            if (farmManager.farmField != null)
+            {
+                farmManager.farmField.SetTile(mushrooms[i].position, farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite);
+            }
 
             farmManager.mushroomsAndTiles[mushrooms[i].position].hasPlant = mushrooms[i].hasPlant;
             farmManager.mushroomsAndTiles[mushrooms[i].position].isTilled = mushrooms[i].isTilled;
@@ -163,18 +169,24 @@ public class TileManager : MonoBehaviour
             {
                 farmManager.mushroomsAndTiles.Add(tilesToLoad[i].position, farmManager.tilePrefab);//farmManager.mushroomsAndTiles.Add(keys[i], farmManager.tilePrefab);
             }
-            
+
             /*farmManager.farmField.SetTile(keys[i], null);
             farmManager.tillableGround.SetTile(keys[i], farmManager.tilePrefab.tileSprite);
             
             farmManager.mushroomsAndTiles[keys[i]].isTilled = tilesToLoad[i].isTilled;
             farmManager.mushroomsAndTiles[keys[i]].isMoist = tilesToLoad[i].isMoist;*/
-            
-            farmManager.farmField.SetTile(tilesToLoad[i].position, null);
+
+            if (farmManager.farmField != null)
+            {
+                farmManager.farmField.SetTile(tilesToLoad[i].position, null);
+            }
 
             Debug.Log($"Setting Tile sprite Index {tilesToLoad[i].spriteIndex}");
             farmManager.mushroomsAndTiles[tilesToLoad[i].position].tileSprite = farmManager.mushroomsAndTiles[tilesToLoad[i].position].sprites[tilesToLoad[i].spriteIndex];
-            farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.mushroomsAndTiles[tilesToLoad[i].position].tileSprite);
+            if (farmManager.tillableGround != null)
+            {
+                farmManager.tillableGround.SetTile(tilesToLoad[i].position, farmManager.mushroomsAndTiles[tilesToLoad[i].position].tileSprite);
+            }
 
             farmManager.mushroomsAndTiles[tilesToLoad[i].position].isTilled = tilesToLoad[i].isTilled;
             farmManager.mushroomsAndTiles[tilesToLoad[i].position].isMoist = tilesToLoad[i].isMoist;
@@ -196,20 +208,23 @@ public class TileManager : MonoBehaviour
             }
             //Debug.Log($"T has plant?: {farmManager.mushroomsAndTiles[t.Value.position].hasPlant}");
 
-            if (farmManager.mushroomsAndTiles[t.Value.position].isTilled == true && farmManager.mushroomsAndTiles[t.Value.position].isMoist == false)
+            if (farmManager.tillableGround != null)
             {
-                Debug.Log("Tilled");
-                farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[1]);
-            }
-            else if (farmManager.mushroomsAndTiles[t.Value.position].isMoist == true)
-            {
-                Debug.Log("Watered");
-                farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[2]);
-            }
-            else
-            {
-                Debug.Log("Plain");
-                farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[0]);
+                if (farmManager.mushroomsAndTiles[t.Value.position].isTilled == true && farmManager.mushroomsAndTiles[t.Value.position].isMoist == false)
+                {
+                    Debug.Log("Tilled");
+                    farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[1]);
+                }
+                else if (farmManager.mushroomsAndTiles[t.Value.position].isMoist == true)
+                {
+                    Debug.Log("Watered");
+                    farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[2]);
+                }
+                else
+                {
+                    Debug.Log("Plain");
+                    farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[0]);
+                }
             }
         }
 

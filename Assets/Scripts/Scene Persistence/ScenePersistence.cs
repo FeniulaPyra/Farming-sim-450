@@ -40,6 +40,8 @@ public class ScenePersistence : MonoBehaviour
     public List<string> petNames = new List<string>(); //The name of the pet so its prefab can be easily spawned
     public List<SaveEntity> entities = new List<SaveEntity>(); //Any pets on the field when the player transitions scenes
     public List<string> entityNames = new List<string>(); //The name of the pet so its prefab can be easily spawned
+    public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
+    public List<string> livestockPetNames = new List<string>();
 
     private void Awake()
     {

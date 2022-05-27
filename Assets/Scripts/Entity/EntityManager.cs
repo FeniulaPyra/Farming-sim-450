@@ -20,6 +20,17 @@ public class EntityManager : MonoBehaviour
             }
         }
 
+        if (ScenePersistence.Instance.livestockPets.Count > 0)
+        {
+            for (int i = 0; i < ScenePersistence.Instance.pets.Count; i++)
+            {
+                //Close to the player's position, so the pet spawns near them
+                Vector3 playerPos = GameObject.Find("Player").transform.position;
+                Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
+                Instantiate(Resources.Load($"Prefabs/Pets/{ScenePersistence.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
+            }
+        }
+
         if (ScenePersistence.Instance.entities.Count > 0)
         {
             for (int i = 0; i < ScenePersistence.Instance.entities.Count; i++)
@@ -56,7 +67,31 @@ public class EntityManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    public void SaveLivestockPets()
+    {
+        //Get rid of any pets already in the list, so it doesn't spawn two dogs when the player goes through two scenes with their singular dog
+        ScenePersistence.Instance.livestockPets.Clear();
+        ScenePersistence.Instance.livestockPetNames.Clear();
+
+        List<LivestockPet> pets = FindObjectsOfType<LivestockPet>().ToList();
+
+        foreach (LivestockPet p in pets)
+        {
+            p.SaveLivestockPet(out var pet);
+            ScenePersistence.Instance.livestockPets.Add(pet);
+            if (ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Contains('('))
+            {
+                string[] name = ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Split('(');
+                ScenePersistence.Instance.livestockPetNames.Add(name[0]);
+            }
+            else
+            {
+                ScenePersistence.Instance.livestockPetNames.Add(ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.pets.Count - 1].self.name);
+            }
+        }
     }
 
     public void SavePets()
@@ -64,21 +99,41 @@ public class EntityManager : MonoBehaviour
         //Get rid of any pets already in the list, so it doesn't spawn two dogs when the player goes through two scenes with their singular dog
         ScenePersistence.Instance.pets.Clear();
         ScenePersistence.Instance.petNames.Clear();
+        ScenePersistence.Instance.livestockPets.Clear();
+        ScenePersistence.Instance.livestockPetNames.Clear();
 
         List<BasicPet> pets = FindObjectsOfType<BasicPet>().ToList();
 
         foreach (BasicPet p in pets)
         {
-            p.SavePet(out var pet);
-            ScenePersistence.Instance.pets.Add(pet);
-            if (ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Contains('('))
+            if (p is LivestockPet)
             {
-                string[] name = ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Split('(');
-                ScenePersistence.Instance.petNames.Add(name[0]);
+                LivestockPet l = (LivestockPet)p;
+                l.SaveLivestockPet(out var pet);
+                ScenePersistence.Instance.livestockPets.Add(pet);
+                if (ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Contains('('))
+                {
+                    string[] name = ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Split('(');
+                    ScenePersistence.Instance.livestockPetNames.Add(name[0]);
+                }
+                else
+                {
+                    ScenePersistence.Instance.livestockPetNames.Add(ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name);
+                }
             }
             else
             {
-                ScenePersistence.Instance.petNames.Add(ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name);
+                p.SavePet(out var pet);
+                ScenePersistence.Instance.pets.Add(pet);
+                if (ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Contains('('))
+                {
+                    string[] name = ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Split('(');
+                    ScenePersistence.Instance.petNames.Add(name[0]);
+                }
+                else
+                {
+                    ScenePersistence.Instance.petNames.Add(ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name);
+                }
             }
         }
     }
@@ -95,7 +150,37 @@ public class EntityManager : MonoBehaviour
         {
             if (e is BasicPet)
             {
-                continue;
+                BasicPet p = (BasicPet)e;
+
+                if (p is LivestockPet)
+                {
+                    LivestockPet l = (LivestockPet)p;
+                    l.SaveLivestockPet(out var pet);
+                    ScenePersistence.Instance.livestockPets.Add(pet);
+                    if (ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Contains('('))
+                    {
+                        string[] name = ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Split('(');
+                        ScenePersistence.Instance.livestockPetNames.Add(name[0]);
+                    }
+                    else
+                    {
+                        ScenePersistence.Instance.livestockPetNames.Add(ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name);
+                    }
+                }
+                else
+                {
+                    p.SavePet(out var pet);
+                    ScenePersistence.Instance.pets.Add(pet);
+                    if (ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Contains('('))
+                    {
+                        string[] name = ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Split('(');
+                        ScenePersistence.Instance.petNames.Add(name[0]);
+                    }
+                    else
+                    {
+                        ScenePersistence.Instance.petNames.Add(ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name);
+                    }
+                }
             }
             else
             {

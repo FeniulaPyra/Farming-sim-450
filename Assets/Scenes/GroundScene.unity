@@ -194,6 +194,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &96385653
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5333896
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.595928
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190265, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189669987783190268, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
+      propertyPath: m_Name
+      value: PetDog 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
 --- !u!1001 &257024929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50812,7 +50869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.74
+      value: 4.87
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_LocalPosition.z
@@ -51341,6 +51398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7804082817095242868, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: farmManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7804082817095242870, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: dayDisplay
       value: 
@@ -51639,6 +51700,10 @@ PrefabInstance:
       propertyPath: _targetGameObject.gameObjectVal
       value: 
       objectReference: {fileID: 1216943103}
+    - target: {fileID: 1269876833564966397, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1408070564210664408, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: m_RootOrder
       value: 0

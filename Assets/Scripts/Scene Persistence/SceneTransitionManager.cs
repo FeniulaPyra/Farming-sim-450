@@ -45,8 +45,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         timeManager.SaveDate();
         timeManager.SaveNPCs();
-
-        entityManager.SavePets();
+        
         entityManager.SaveEntities();
 
         farmManager.SaveInventory();

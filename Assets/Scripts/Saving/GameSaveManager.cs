@@ -180,19 +180,40 @@ public class GameSaveManager : MonoBehaviour
             if (e is BasicPet)
             {
                 BasicPet b = (BasicPet)e;
-                b.SavePet(out SavePet pet);
-                save.pets.Add(pet);
-                if (save.pets[save.pets.Count - 1].self.name.Contains('('))
+
+                if (b is LivestockPet)
                 {
-                    string[] name = save.pets[save.pets.Count - 1].self.name.Split('(');
-                    save.petNames.Add(name[0]);
+                    LivestockPet l = (LivestockPet)b;
+                    l.SaveLivestockPet(out SaveLivestockPet livestockPet);
+                    save.livestockPets.Add(livestockPet);
+                    if (save.livestockPets[save.livestockPets.Count - 1].self.name.Contains('('))
+                    {
+                        string[] name = save.livestockPets[save.livestockPets.Count - 1].self.name.Split('(');
+                        save.livestockPetNames.Add(name[0]);
+                    }
+                    else
+                    {
+                        save.livestockPetNames.Add(save.livestockPets[save.livestockPets.Count - 1].self.name);
+                    }
+
+                    Debug.Log($"Livestock Pet name at [{save.livestockPetNames.Count - 1}] is {save.livestockPetNames[save.livestockPetNames.Count - 1]}");
                 }
                 else
                 {
-                    save.petNames.Add(save.pets[save.pets.Count - 1].self.name);
-                }
+                    b.SavePet(out SavePet pet);
+                    save.pets.Add(pet);
+                    if (save.pets[save.pets.Count - 1].self.name.Contains('('))
+                    {
+                        string[] name = save.pets[save.pets.Count - 1].self.name.Split('(');
+                        save.petNames.Add(name[0]);
+                    }
+                    else
+                    {
+                        save.petNames.Add(save.pets[save.pets.Count - 1].self.name);
+                    }
 
-                Debug.Log($"Pet name at [{save.petNames.Count - 1}] is {save.petNames[save.petNames.Count - 1]}");
+                    Debug.Log($"Pet name at [{save.petNames.Count - 1}] is {save.petNames[save.petNames.Count - 1]}");
+                }
             }
             else
             {
@@ -248,7 +269,17 @@ public class GameSaveManager : MonoBehaviour
         playerInteraction.SetStamina((int)save.stamina);
         playerInteraction.playerGold = save.gold;
         GameObject.Find("GoldDisplay").GetComponent<TMP_Text>().text = $"{playerInteraction.playerGold} G";
+
+        if (tileManager.farmManager.farmField == null)
+        {
+            Debug.Log("Farmfield empty");
+        }
+        else
+        {
+            Debug.Log("Farmfield not empty");
+        }
         tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
+
         farmManager.playerInventory.SetSaveableInventory(save.inventory);
         if (farmingTutorial != null)
         {
@@ -290,6 +321,11 @@ public class GameSaveManager : MonoBehaviour
         for (int i = 0; i < save.pets.Count; i++)
         {
             Instantiate(Resources.Load($"Prefabs/Pets/{save.petNames[i]}"), save.pets[i].pos, Quaternion.identity);
+        }
+
+        for (int i = 0; i < save.livestockPets.Count; i++)
+        {
+            Instantiate(Resources.Load($"Prefabs/Pets/{save.livestockPetNames[i]}"), save.livestockPets[i].pos, Quaternion.identity);
         }
 
         for (int i = 0; i < entities.Count; i++)
@@ -405,5 +441,7 @@ public class GameSaveManager : MonoBehaviour
         public List<string> entityNames = new List<string>();
         public List<SavePet> pets = new List<SavePet>(); //all pets that are in the list of all entities
         public List<string> petNames = new List<string>();
+        public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
+        public List<string> livestockPetNames = new List<string>();
     }
 }
