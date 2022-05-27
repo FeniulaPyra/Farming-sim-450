@@ -43,16 +43,19 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void LoadScene(string sceneToLoad)
     {
-        timeManager.SaveDate();
-        timeManager.SaveNPCs();
+        //Disables this boolean so the scene to load doesn't load the save data
+        GlobalGameSaving.Instance.loadingSave = false;
+
+        timeManager.SaveDate("persist");
+        timeManager.SaveNPCs("persist");
         
-        entityManager.SaveEntities();
+        entityManager.SaveEntities("persist");
 
-        farmManager.SaveInventory();
+        farmManager.SaveInventory("persist");
 
-        playerInteraction.SavePlayer();
+        playerInteraction.SavePlayer("persist");
 
-        tileManager.SaveFarm();
+        tileManager.SaveFarm("persist");
 
         SceneManager.LoadScene(sceneToLoad);
     }

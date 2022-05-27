@@ -134,17 +134,36 @@ public class PlayerInteraction : MonoBehaviour
             StartPlayer();
         }
 
-        if (ScenePersistence.Instance != null)
+        if (GlobalGameSaving.Instance != null)
         {
-            playerGold = ScenePersistence.Instance.gold;
-            SetStamina(ScenePersistence.Instance.stamina);
+            if (GlobalGameSaving.Instance.loadingSave == true)
+            {
+                playerGold = GlobalGameSaving.Instance.gold;
+                SetStamina(GlobalGameSaving.Instance.stamina);
+            }
+            else
+            {
+                if (ScenePersistence.Instance != null)
+                {
+                    playerGold = ScenePersistence.Instance.gold;
+                    SetStamina(ScenePersistence.Instance.stamina);
+                }
+            }
         }
     }
 
-    public void SavePlayer()
+    public void SavePlayer(string what)
     {
-        ScenePersistence.Instance.stamina = playerStamina;
-        ScenePersistence.Instance.gold = playerGold;
+        if (what == "persist")
+        {
+            ScenePersistence.Instance.stamina = playerStamina;
+            ScenePersistence.Instance.gold = playerGold;
+        }
+        else if (what == "save")
+        {
+            GlobalGameSaving.Instance.stamina = playerStamina;
+            GlobalGameSaving.Instance.gold = playerGold;
+        }
     }
 
     private void Update()
@@ -188,6 +207,7 @@ public class PlayerInteraction : MonoBehaviour
                     if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
                     {
                         farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[12] = farmingTutorial.tutorialBools[12];
                     }
                 }
             }

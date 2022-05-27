@@ -94,6 +94,8 @@ public class FarmingTutorial : MonoBehaviour
         tutorialBools.Add(hybridBefore);
         tutorialBools.Add(hybridAfter);
         tutorialBools.Add(tutorialComplete);
+
+        //check if there's a save to load. If yes, set here
     }
 
     // Update is called once per frame
@@ -128,6 +130,9 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Till the field using the hoe";
 
+            GlobalGameSaving.Instance.tutorialBools[0] = tutorialBools[0];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
             myFlowchart.ExecuteBlock("Start");
 
             //StartCoroutine(self.PlayDialogue(self.convoID));
@@ -143,6 +148,9 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Plant a Mushroom";
 
+            GlobalGameSaving.Instance.tutorialBools[1] = tutorialBools[1];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
             //StartCoroutine(self.PlayDialogue(self.convoID));
             myFlowchart.ExecuteBlock("After Tilling");
             currentTutorial = myFlowchart.FindBlock("After Tilling");
@@ -156,7 +164,10 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[3] = true;//plantedBefore = true;
             //self.convoID = self.conversationIDs[2];
 
-            objective.text = $"Current Objective: Water the mushroom";
+            objective.text = $"Current Objective: Water the- mushroom";
+
+            GlobalGameSaving.Instance.tutorialBools[3] = tutorialBools[3];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             //StartCoroutine(self.PlayDialogue(self.convoID));
             myFlowchart.ExecuteBlock("After Planting");
@@ -172,6 +183,9 @@ public class FarmingTutorial : MonoBehaviour
             //self.convoID = self.conversationIDs[3];
 
             objective.text = $"Current Objective: Sleep so mushroom grows";
+
+            GlobalGameSaving.Instance.tutorialBools[5] = tutorialBools[5];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             //Unnecessary at the moment:  It's completely up to you when you wake up.
 
@@ -191,6 +205,9 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Harvest grown mushroom";
 
+            GlobalGameSaving.Instance.tutorialBools[7] = tutorialBools[7];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
             //StartCoroutine(self.PlayDialogue(self.convoID));
 
             myFlowchart.ExecuteBlock("After Sleeping");
@@ -207,6 +224,9 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Eat Mushroom to recover stamina";
 
+            GlobalGameSaving.Instance.tutorialBools[9] = tutorialBools[9];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
             //StartCoroutine(self.PlayDialogue(self.convoID));
             myFlowchart.ExecuteBlock("After Harvesting");
             currentTutorial = myFlowchart.FindBlock("After Harvesting");
@@ -221,6 +241,9 @@ public class FarmingTutorial : MonoBehaviour
             //self.convoID = self.conversationIDs[6];
 
             objective.text = $"Current Objective: Ship mushroom and go to sleep";
+
+            GlobalGameSaving.Instance.tutorialBools[11] = tutorialBools[11];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             shippingBin.enabled = true;
 
@@ -240,6 +263,9 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Plant and water mushroom, then sleep for two days";
 
+            GlobalGameSaving.Instance.tutorialBools[13] = tutorialBools[13];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
             //StartCoroutine(self.PlayDialogue(self.convoID));
 
             myFlowchart.ExecuteBlock("After Shipping");
@@ -258,6 +284,9 @@ public class FarmingTutorial : MonoBehaviour
             //self.convoID = self.conversationIDs[8];
 
             objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread";
+
+            GlobalGameSaving.Instance.tutorialBools[15] = tutorialBools[15];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             //StartCoroutine(self.PlayDialogue(self.convoID));
 
@@ -279,6 +308,10 @@ public class FarmingTutorial : MonoBehaviour
 
             myFlowchart.ExecuteBlock("After Hybridization");
             currentTutorial = myFlowchart.FindBlock("After Hybridization");
+
+            GlobalGameSaving.Instance.tutorialBools[17] = tutorialBools[17];
+            GlobalGameSaving.Instance.tutorialBools[19] = tutorialBools[19];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             //19
             tutorialBools[19] = true;//tutorialComplete = true;

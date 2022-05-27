@@ -1,25 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Fungus;
-
 using System.IO;
-using System.Linq;
-using TMPro;
+using UnityEngine.SceneManagement;
 
-public class GameSaveManager : MonoBehaviour
+public class GlobalGameSaving : MonoBehaviour
 {
+    public static GlobalGameSaving Instance;
+
+    #region All variables from the top of the original game save manager
     [Header("Save Info")]
-    public string saveName;
+    public string saveName; //used for saving file
 
     [Header("Data to Save")]
-    public GameObject player;
-    public TimeManager timeManager;
-    public PlayerInteraction playerInteraction;
-    public TileManager tileManager;
-    public FarmManager farmManager;
-    public FarmingTutorial farmingTutorial;
+    public GameObject player;//Will manually save movement speed (buffs) and positions (placement after loading)
+    public TimeManager timeManager;//Timemanager already has save functions
+    public PlayerInteraction playerInteraction;//Playerinteraction already has save functions
+    public TileManager tileManager;//Tilemanager already has save functions
+    public FarmManager farmManager;//FarmManager already has save functions
+    public EntityManager entityManager;
+    //public FarmingTutorial farmingTutorial;//Will be manually done in farming tutorial
 
     private string constantPath;
 
@@ -32,52 +33,85 @@ public class GameSaveManager : MonoBehaviour
 
     [SerializeField]
     Flowchart flowchart;
+    #endregion
+
+    #region All variables from the original save manager's GameSave class
+    public string sceneName;
+    public Vector3 position;
+    public bool isNight;
+    public Vector4 date;
+    public int stamina;
+    public int gold;
+    public List<SaveTile> farmTiles;
+    public List<MushroomSaveTile> mushrooms;
+    public List<int> inventory;
+    public List<bool> tutorialBools = new List<bool>();
+    public string tutorialObjective;
+    //public List<NPCManager> NPCs = new List<NPCManager>();
+    public int farmNetWorth;
+    public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();//Fungus Flowcharts
+    public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();//Fungus Quest Flowcharts
+    public List<SaveQuest> NPCQuests = new List<SaveQuest>();//Quest Scripts
+    public List<string> NPCNames = new List<string>();//The names of all NPCs that this has
+
+    public List<SaveEntity> allEntities = new List<SaveEntity>(); //all entities in scene
+    public List<SaveEntity> entities = new List<SaveEntity>(); //all non pet entities that are in the list of all entities
+    public List<string> entityNames = new List<string>();
+    public List<SavePet> pets = new List<SavePet>(); //all pets that are in the list of all entities
+    public List<string> petNames = new List<string>();
+    public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
+    public List<string> livestockPetNames = new List<string>();
+    #endregion
+
+    //boolean to let other scripts know to load a save
+    public bool loadingSave;
+
+    private void Awake()
+    {
+        //Makes sure this is the only instance in existence by destroying any others that aren't it
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         constantPath = Application.persistentDataPath;
 
-        flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
+        flowchart = GameObject.Find("SaveFlowchart").GetComponent<Flowchart>();
 
         originalPath = constantPath + "/saves/";
         path = originalPath;
+
+        player = GameObject.Find("Player");
+        timeManager = FindObjectOfType<TimeManager>();
+        tileManager = FindObjectOfType<TileManager>();
+        farmManager = FindObjectOfType<FarmManager>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        entityManager = FindObjectOfType<EntityManager>();
+
+        if (loadingSave == true)
+        {
+            player.transform.position = position;
+            timeManager.isNight = isNight;
+            //timeManager.netWorth.FarmNetWorth = farmNetWorth;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInteraction.CanInteract == true)
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
-
-                path += name;
-
-                Debug.Log($"Saved game to {path}");
-
-                if (File.Exists(path) == true)
-                {
-                    Debug.Log("Save does exist");
-                    flowchart.SetStringVariable("SaveName", name);
-                    flowchart.ExecuteBlock("Start");
-                }
-                else
-                {
-                    Debug.Log("Save does not exist");
-                    //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
-                    SaveGame(name);
-                }
-
-                path = originalPath;
-            }
-
-            /*if (Input.GetKeyDown(KeyCode.P))
-            {
-                displayLoadMenu = true;
-                saves = FindAllSaves();
-            }*/
+            displayLoadMenu = true;
+            saves = FindAllSaves();
         }
     }
 
@@ -118,20 +152,50 @@ public class GameSaveManager : MonoBehaviour
         var path = originalPath + saveName;
         Debug.Log("Saving game to " + path);
 
-        var save = new GameSave();
-        save.sceneName = SceneManager.GetActiveScene().name;
-        save.position = player.transform.position;
-        save.isNight = timeManager.isNight;
-        save.date = new Vector4(
+        //Everything after this comment will be different
+        //Manually save scene name
+        //Manually save is night from timemanager
+        //Manually save player speed from the gameobject's movement component
+        //save tutorial bools and objective inside of the tutorial script
+        //manually save net worth from timemanager's networth's saveworth method
+        //use timemanager's save NPCs for the NPC lists
+        //use entity manager's save entities for all three types
+
+        //Must be saved manually
+        //sceneName
+        //Posiion
+        //Isnight
+        //networth
+        sceneName = SceneManager.GetActiveScene().name;
+        position = player.transform.position;//
+        isNight = timeManager.isNight;//
+        farmNetWorth = timeManager.netWorth.FarmNetWorth;//
+
+        timeManager.SaveDate("save");//
+        timeManager.SaveNPCs("save");//
+        
+        playerInteraction.SavePlayer("save");//
+
+        tileManager.SaveFarm("save");//
+
+        farmManager.SaveInventory("save");//
+
+        entityManager.SaveEntities("save");//
+
+        //var save = new GameSave();
+        //save.sceneName = SceneManager.GetActiveScene().name;
+        //save.position = player.transform.position;
+        //save.isNight = timeManager.isNight;
+        /*save.date = new Vector4(
             timeManager.DayNumber,
             timeManager.DateNumber,
             timeManager.YearNumber,
             timeManager.SeasonNumber
-            );
-        save.stamina = playerInteraction.PlayerStamina;
-        save.gold = playerInteraction.playerGold;
+            );*/
+        //save.stamina = playerInteraction.PlayerStamina;
+        //save.gold = playerInteraction.playerGold;
 
-        tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
+        /*tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
 
         if (tileManager.farmManager.farmField != null && tileManager.farmManager.tillableGround != null)
         {
@@ -142,24 +206,24 @@ public class GameSaveManager : MonoBehaviour
         {
             save.farmTiles = ScenePersistence.Instance.farmTiles;
             save.mushrooms = ScenePersistence.Instance.mushrooms;
-        }
+        }*/
 
-        save.inventory = farmManager.playerInventory.GetSaveableInventory();
+        //save.inventory = farmManager.playerInventory.GetSaveableInventory();
 
-        if (farmingTutorial != null)
+        /*if (farmingTutorial != null)
         {
             foreach (bool b in farmingTutorial.tutorialBools)
             {
                 save.tutorialBools.Add(b);
             }
             save.tutorialObjective = farmingTutorial.objective.text;
-        }
+        }*/
 
-        timeManager.netWorth.SaveWorth(out var savedWorth);
-        save.farmNetWorth = savedWorth;
+        //timeManager.netWorth.SaveWorth(out var savedWorth);
+        //save.farmNetWorth = savedWorth;
 
 
-        for (int i = 0; i < timeManager.NPCList.Count; i++)
+        /*for (int i = 0; i < timeManager.NPCList.Count; i++)
         {
             timeManager.NPCList[i].SaveFlowcharts(out var startChart, out var questChart);
             save.NPCStartflowcharts.Add(startChart);
@@ -170,10 +234,10 @@ public class GameSaveManager : MonoBehaviour
             saveQuest.inventory = save.inventory;
             save.NPCQuests.Add(saveQuest);
             Debug.Log($"Date?: {save.NPCStartflowcharts[0].dateNum}");
-        }
+        }*/
 
         //saving all entities and pets
-        List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
+        /*List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
 
         foreach (BasicEntity e in entities)
         {
@@ -232,13 +296,16 @@ public class GameSaveManager : MonoBehaviour
 
                 Debug.Log($"Entity name at [{save.entityNames.Count - 1}] is {save.entityNames[save.entityNames.Count - 1]}");
             }
-        }
+        }*/
+
+        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames);
 
 
         var json = JsonUtility.ToJson(save);
 
         StreamWriter sw = new StreamWriter(path);
         sw.WriteLine(json);
+        loadingSave = false;
         sw.Close();
 
         flowchart.ExecuteBlock("SaveConfirm");
@@ -255,9 +322,41 @@ public class GameSaveManager : MonoBehaviour
         StreamReader sr = new StreamReader(path);
 
         var json = sr.ReadLine();
-        var save = JsonUtility.FromJson<GameSave>(json);
+        //Instance = JsonUtility.FromJson<GlobalGameSaving>(json);
+        GameSave save = JsonUtility.FromJson<GameSave>(json);
 
-        SceneManager.LoadScene(save.sceneName);
+
+        sceneName = save.sceneName;
+        position = save.position;
+        isNight = save.isNight;
+        date = save.date;
+        stamina = save.stamina;
+        gold = save.gold;
+        farmTiles = save.farmTiles;
+        mushrooms = save.mushrooms;
+        inventory = save.inventory;
+        tutorialBools = save.tutorialBools;
+        tutorialObjective = save.tutorialObjective;
+        farmNetWorth = save.farmNetWorth;
+        NPCStartflowcharts = save.NPCStartflowcharts;
+        NPCQuestflowcharts = save.NPCQuestflowcharts;
+        NPCQuests = save.NPCQuests;
+        NPCNames = save.NPCNames;
+        entities = save.entities;
+        entityNames = save.entityNames;
+        pets = save.pets;
+        petNames = save.petNames;
+        livestockPets = save.livestockPets;
+        livestockPetNames = save.livestockPetNames;
+
+        sr.Close();
+
+        //Tells scripts loading that they are loading whatever is in the save
+        loadingSave = true;
+
+        SceneManager.LoadScene(sceneName);
+
+        /*SceneManager.LoadScene(save.sceneName);
         player.transform.position = save.position;
         timeManager.isNight = save.isNight;
         timeManager.SetDate(
@@ -337,7 +436,7 @@ public class GameSaveManager : MonoBehaviour
         }
 
 
-        sr.Close();
+        sr.Close();*/
     }
 
     void DeleteSave(string saveName)
@@ -362,7 +461,7 @@ public class GameSaveManager : MonoBehaviour
             return null;
 
         var saves = Directory.GetFiles(folderPath);
-        for(int i = 0; i < saves.Length; i++)
+        for (int i = 0; i < saves.Length; i++)
         {
             var splitString = saves[i].Split('/');
             saves[i] = splitString[splitString.Length - 1];
@@ -371,7 +470,7 @@ public class GameSaveManager : MonoBehaviour
         return saves;
     }
 
-    /*private void OnGUI()
+    private void OnGUI()
     {
         GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height));
         GUILayout.BeginHorizontal();
@@ -383,7 +482,8 @@ public class GameSaveManager : MonoBehaviour
         if (!displayLoadMenu)
         {
             GUILayout.Box("Press P to load saves...");
-        } else
+        }
+        else
         {
             if (saves.Length > 0)
             {
@@ -391,7 +491,7 @@ public class GameSaveManager : MonoBehaviour
                 {
                     GUILayout.BeginHorizontal();
                     if (GUILayout.Button(save))
-                    { 
+                    {
                         LoadGame(save);
                         displayLoadMenu = false;
                     }
@@ -402,7 +502,8 @@ public class GameSaveManager : MonoBehaviour
                     }
                     GUILayout.EndHorizontal();
                 }
-            } else
+            }
+            else
             {
                 GUILayout.Box("No saves to load!");
             }
@@ -415,33 +516,60 @@ public class GameSaveManager : MonoBehaviour
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
-    }*/
+    }
+}
 
-    [System.Serializable]
-    private class GameSave
+public class GameSave
+{
+    public string sceneName;
+    public Vector3 position;
+    public bool isNight;
+    public Vector4 date;
+    public int stamina;
+    public int gold;
+    public List<SaveTile> farmTiles;
+    public List<MushroomSaveTile> mushrooms;
+    public List<int> inventory;
+    public List<bool> tutorialBools = new List<bool>();
+    public string tutorialObjective;
+    //public List<NPCManager> NPCs = new List<NPCManager>();
+    public int farmNetWorth;
+    public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();//Fungus Flowcharts
+    public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();//Fungus Quest Flowcharts
+    public List<SaveQuest> NPCQuests = new List<SaveQuest>();//Quest Scripts
+    public List<string> NPCNames = new List<string>();//The names of all NPCs that this has
+
+    //public List<SaveEntity> allEntities = new List<SaveEntity>(); //all entities in scene
+    public List<SaveEntity> entities = new List<SaveEntity>(); //all non pet entities that are in the list of all entities
+    public List<string> entityNames = new List<string>();
+    public List<SavePet> pets = new List<SavePet>(); //all pets that are in the list of all entities
+    public List<string> petNames = new List<string>();
+    public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
+    public List<string> livestockPetNames = new List<string>();
+
+    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames)
     {
-        public string sceneName;
-        public Vector3 position;
-        public bool isNight;
-        public Vector4 date;
-        public int stamina;
-        public int gold;
-        public List<SaveTile> farmTiles;
-        public List<MushroomSaveTile> mushrooms;
-        public List<int> inventory;
-        public List<bool> tutorialBools = new List<bool>();
-        public string tutorialObjective;
-        //public List<NPCManager> NPCs = new List<NPCManager>();
-        public int farmNetWorth;
-        public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();//Fungus Flowcharts
-        public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();//Fungus Quest Flowcharts
-        public List<SaveQuest> NPCQuests = new List<SaveQuest>();//Quest Scripts
-        public List<SaveEntity> allEntities = new List<SaveEntity>(); //all entities in scene
-        public List<SaveEntity> entities = new List<SaveEntity>(); //all non pet entities that are in the list of all entities
-        public List<string> entityNames = new List<string>();
-        public List<SavePet> pets = new List<SavePet>(); //all pets that are in the list of all entities
-        public List<string> petNames = new List<string>();
-        public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
-        public List<string> livestockPetNames = new List<string>();
+        sceneName = s;
+        position = p;
+        isNight = n;
+        date = d;
+        stamina = st;
+        gold = g;
+        farmTiles = fT;
+        mushrooms = m;
+        inventory = i;
+        tutorialBools = tB;
+        tutorialObjective = t;
+        farmNetWorth = f;
+        NPCStartflowcharts = sC;
+        NPCQuestflowcharts = qC;
+        NPCQuests = q;
+        NPCNames = names;
+        entities = ents;
+        entityNames = entNames;
+        this.pets = pets;
+        this.petNames = petNames;
+        livestockPets = live;
+        livestockPetNames = liveNames;
     }
 }

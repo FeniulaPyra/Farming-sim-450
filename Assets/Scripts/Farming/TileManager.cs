@@ -15,7 +15,17 @@ public class TileManager : MonoBehaviour
 
         if (farmManager.farmField != null && farmManager.tillableGround != null)
         {
-            LoadFieldObjects(ScenePersistence.Instance.farmTiles, ScenePersistence.Instance.mushrooms);
+            if (GlobalGameSaving.Instance != null)
+            {
+                if (GlobalGameSaving.Instance.loadingSave == true)
+                {
+                    LoadFieldObjects(GlobalGameSaving.Instance.farmTiles, GlobalGameSaving.Instance.mushrooms);
+                }
+                else if (ScenePersistence.Instance != null)
+                {
+                    LoadFieldObjects(ScenePersistence.Instance.farmTiles, ScenePersistence.Instance.mushrooms);
+                }
+            }
         }
     }
 
@@ -25,13 +35,22 @@ public class TileManager : MonoBehaviour
         
     }
 
-    public void SaveFarm()
+    public void SaveFarm(string what)
     {
         if (farmManager.farmField != null && farmManager.tillableGround != null)
         {
             SaveFieldObjects(out var farmland, out var mushrooms);
-            ScenePersistence.Instance.farmTiles = farmland;
-            ScenePersistence.Instance.mushrooms = mushrooms;
+
+            if (what == "persist")
+            {
+                ScenePersistence.Instance.farmTiles = farmland;
+                ScenePersistence.Instance.mushrooms = mushrooms;
+            }
+            else if (what == "save")
+            {
+                GlobalGameSaving.Instance.farmTiles = farmland;
+                GlobalGameSaving.Instance.mushrooms = mushrooms;
+            }
         }
     }
 

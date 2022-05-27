@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6609241337006782715}
   - component: {fileID: 6609241337006782714}
+  - component: {fileID: 5345044750734557938}
   m_Layer: 0
   m_Name: GlobalGameManager
   m_TagString: Untagged
@@ -47,3 +48,60 @@ MonoBehaviour:
   stamina: 100
   gold: 0
   inventory: 
+  farmNetWorth: 0
+  farmTiles: []
+  mushrooms: []
+  NPCStartflowcharts: []
+  NPCQuestflowcharts: []
+  NPCQuests: []
+  NPCNames: []
+  pets: []
+  petNames: []
+  entities: []
+  entityNames: []
+  livestockPets: []
+  livestockPetNames: []
+--- !u!114 &5345044750734557938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6609241337006782712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b02a7dcb3055c43b74ee805dff3ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveName: Manual-Save
+  player: {fileID: 0}
+  timeManager: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  tileManager: {fileID: 0}
+  farmManager: {fileID: 0}
+  entityManager: {fileID: 0}
+  flowchart: {fileID: 0}
+  sceneName: 
+  position: {x: 0, y: 0, z: 0}
+  isNight: 0
+  date: {x: 0, y: 0, z: 0, w: 0}
+  stamina: 0
+  gold: 0
+  farmTiles: []
+  mushrooms: []
+  inventory: 
+  tutorialBools: 
+  tutorialObjective: 
+  farmNetWorth: 0
+  NPCStartflowcharts: []
+  NPCQuestflowcharts: []
+  NPCQuests: []
+  NPCNames: []
+  allEntities: []
+  entities: []
+  entityNames: []
+  pets: []
+  petNames: []
+  livestockPets: []
+  livestockPetNames: []
+  loadingSave: 0

@@ -118,6 +118,7 @@ public class ShippingBin : MonoBehaviour
             if (player.playerGold > oldGold && farmingTutorial.tutorialBools[12] == true)//(player.playerGold > oldGold && farmingTutorial.eatingAfter == true)
             {
                 farmingTutorial.tutorialBools[14] = true;//farmingTutorial.shippedAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[14] = farmingTutorial.tutorialBools[14];
             }
         }
 

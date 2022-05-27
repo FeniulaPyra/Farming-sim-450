@@ -97,15 +97,29 @@ public class FarmManager : MonoBehaviour
 
 		farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
-        if (ScenePersistence.Instance != null)
+        if (true)
         {
-            playerInventory.SetSaveableInventory(ScenePersistence.Instance.inventory);
+            if (GlobalGameSaving.Instance.loadingSave == true)
+            {
+                playerInventory.SetSaveableInventory(GlobalGameSaving.Instance.inventory);
+            }
+            else if (ScenePersistence.Instance != null)
+            {
+                playerInventory.SetSaveableInventory(ScenePersistence.Instance.inventory);
+            }
         }
     }
 
-    public void SaveInventory()
+    public void SaveInventory(string what)
     {
-        ScenePersistence.Instance.inventory = playerInventory.GetSaveableInventory();
+        if (what == "persist")
+        {
+            ScenePersistence.Instance.inventory = playerInventory.GetSaveableInventory();
+        }
+        else if (what == "save")
+        {
+            GlobalGameSaving.Instance.inventory = playerInventory.GetSaveableInventory();
+        }
     }
 
 	private void ResetVisited()
@@ -186,6 +200,7 @@ public class FarmManager : MonoBehaviour
                 if (farmingTutorial.tutorialBools[0] == true)//(farmingTutorial.tutorialStarted == true)
                 {
                     farmingTutorial.tutorialBools[2] = true;//farmingTutorial.tilledAfter = true;
+                    GlobalGameSaving.Instance.tutorialBools[2] = farmingTutorial.tutorialBools[2];
                 }
             }
         }
@@ -236,6 +251,7 @@ public class FarmManager : MonoBehaviour
                     if (farmingTutorial.tutorialBools[2] == true)//(farmingTutorial.tilledAfter == true)
                     {
                         farmingTutorial.tutorialBools[4] = true;//farmingTutorial.plantedAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[4] = farmingTutorial.tutorialBools[4];
                     }
                 }
             }
@@ -262,6 +278,7 @@ public class FarmManager : MonoBehaviour
                     if (farmingTutorial.tutorialBools[4] == true)//(farmingTutorial.plantedAfter == true)
                     {
                         farmingTutorial.tutorialBools[6] = true;//farmingTutorial.wateredAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[6] = farmingTutorial.tutorialBools[6];
                     }
                 }
             }
@@ -335,6 +352,7 @@ public class FarmManager : MonoBehaviour
                 if (farmingTutorial.tutorialBools[8] == true)//(farmingTutorial.sleptAfter == true)
                 {
                     farmingTutorial.tutorialBools[10] = true;//farmingTutorial.harvestedAfter = true;
+                    GlobalGameSaving.Instance.tutorialBools[10] = farmingTutorial.tutorialBools[10];
                 }
             }
         }
@@ -759,6 +777,7 @@ public class FarmManager : MonoBehaviour
             if (farmingTutorial.tutorialBools[16] == true)//(farmingTutorial.spreadAfter == true)
             {
                 farmingTutorial.tutorialBools[18] = true;//farmingTutorial.hybridAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[18] = farmingTutorial.tutorialBools[18];
             }
         }
 	}
@@ -782,6 +801,7 @@ public class FarmManager : MonoBehaviour
             if (farmingTutorial.tutorialBools[14] == true)//(farmingTutorial.shippedAfter == true)
             {
                 farmingTutorial.tutorialBools[16] = true;//farmingTutorial.spreadAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
             }
         }
 	}
