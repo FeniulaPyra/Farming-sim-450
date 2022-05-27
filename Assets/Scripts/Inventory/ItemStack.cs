@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[System.Serializable]
+
 public class ItemStack
 {
 	private Item item;
-	public Item Item{
-		get{return item;}
+	public Item Item {
+		get { return item; }
 	}
 	private int amount;
 	public int Amount
@@ -20,6 +22,12 @@ public class ItemStack
 	{
 		this.item = item;
 		this.amount = count;
+	}
+
+	public ItemStack(ItemStack copy)
+	{
+		this.item = copy.item;
+		this.amount = copy.amount;
 	}
 
 	/// <summary>
@@ -61,7 +69,7 @@ public class ItemStack
 	/// left in this stack (the amount of items removed are less than the number of items in this stack).</returns>
 	public int RemoveItems(int amount)
 	{
-		if(amount < this.amount)
+		if(amount <= this.amount)
 		{
 			this.amount -= amount;
 			return this.amount;

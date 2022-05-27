@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2536459904192622106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2536459904192622104}
+  - component: {fileID: 2536459904192622105}
+  m_Layer: 0
+  m_Name: RedShroom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2536459904192622104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536459904192622106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2728817, y: -0.6854146, z: -6.960806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2536459904192622105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536459904192622106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c376132fd3605f47984f2433a561f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTilled: 0
+  isMoist: 0
+  hasPlant: 0
+  tileSprite: {fileID: 11400000, guid: 3e190fae922bdb0469138c94d2f0c6e8, type: 2}
+  sprites:
+  - {fileID: 11400000, guid: 3e190fae922bdb0469138c94d2f0c6e8, type: 2}
+  - {fileID: 11400000, guid: c6acad2767fe3164d8a8caf1c1cb9f93, type: 2}
+  position: {x: 0, y: 0, z: 0}
+  maxGrowthStage: 2
+  maxDaysWithoutWater: 3
+  growthStage: 1
+  daysWithoutWater: 0
+  daysSinceFullyGrown: 0
+  readyToDie: 0
+  ID: Red Shroom
+  baseValue: 50
+  mushroomItem: {fileID: 7298331894037015942, guid: 0e8f2ca8781ee2e4fab61507cb98d2bc, type: 3}
+  spr: {fileID: 0}
+  mushroomsToHybridize:
+  - Glowy Shroom
+  - Yellow Shroom
+  - White Shroom
+  mushroomHybrids:
+  - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
+  - {fileID: 182084621642607171, guid: a29b400ca69678147ab5e843473ebbf4, type: 3}
+  - {fileID: 5359719316037611136, guid: b334dfe8fa3fc884fa5ceccd662579a6, type: 3}
+  popupBubbles:
+  - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
+  - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
+  - {fileID: 6188888031017698190, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
+  - {fileID: 1833146093655424077, guid: 8226c46bbc65cfb4dafdc6ac73a25465, type: 3}
+  ShowPopupBubblesToggle: {fileID: 0}

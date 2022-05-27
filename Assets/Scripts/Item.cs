@@ -9,9 +9,22 @@ public class Item : MonoBehaviour
 	public GameObject itemObj;
 	public FarmManager manager;
 
+    public bool isSellable;
+
+    public int sellValue;
+
 	public GameObject player;
 
 	public static int DISTANCE_TO_PICKUP = 1;
+
+    public int staminaUsed;
+
+    public bool isEdible;
+    public int staminaToRestore;
+    public bool rare;
+
+    public string type;
+
 
 	public void Start()
 	{

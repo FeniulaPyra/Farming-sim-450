@@ -8,7 +8,7 @@ public class ItemManager : MonoBehaviour
 
 	private List<Item> itemList;
 
-	private Dictionary<string, Item> itemDict;
+	public Dictionary<string, Item> itemDict;
 
 	private void Start()
 	{

@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
 
     //The .sprite property of this is set to the npcdialaogue sprite
     public Image characterSprite;
+    public Image tutorialImage;
 
     //list of strings that will act as keys for the dictionary
     public List<string> conversationIDs = new List<string>();
@@ -34,6 +35,18 @@ public class DialogueManager : MonoBehaviour
     //Dictionary of conversation IDs and a list of NPC dialogue
     public Dictionary<string, List<NPCDialogue>> conversations = new Dictionary<string, List<NPCDialogue>>();
 
+    //For quests
+    [SerializeField]
+    public Quests myQuests;
+
+    public List<string> questIDs = new List<string>();
+    [SerializeField]
+    public List<NPCDialogueList> questLists = new List<NPCDialogueList>();
+    public Dictionary<string, List<NPCDialogue>> quests = new Dictionary<string, List<NPCDialogue>>();
+    [SerializeField] int questNumber;
+
+    public string oldConvoID;
+
     //Testing
     string greaterConvoID;
 
@@ -42,15 +55,18 @@ public class DialogueManager : MonoBehaviour
     TimeManager timeManager;
     PlayerInteraction playerInteraction;
 
+    //for disabling the hotbar during dialogue
+    Menu menu;
+
     //ints to track seasonal dialogue
-    int springConvoStart = 0;
-    int springConvoEnd = 1;
-    int summerConvoStart = 2;
-    int summerConvoEnd = 3;
-    int fallConvoStart;
-    int fallConvoEnd;
-    int winterConvoStart;
-    int winterConvoEnd;
+    public int springConvoStart = 0;
+    public int springConvoEnd = 1;
+    public int summerConvoStart = 2;
+    public int summerConvoEnd = 3;
+    public int fallConvoStart;
+    public int fallConvoEnd;
+    public int winterConvoStart;
+    public int winterConvoEnd;
     #endregion
 
     public int GetSpringStart()
@@ -97,6 +113,7 @@ public class DialogueManager : MonoBehaviour
         
         //The character's sprite
         public Sprite characterSprite;
+        public Sprite tutorialImage;
 
         //What the character says
         public string dialogue;
@@ -120,6 +137,7 @@ public class DialogueManager : MonoBehaviour
 
         //SetConversations(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         SetConversations();
+        LoadQuests();
 
         //playerScript = FindObjectOfType<PlayerMove>();
 
@@ -132,12 +150,24 @@ public class DialogueManager : MonoBehaviour
         //textBoxImage.GetComponent<Image>().color = new Color(textBoxImage.GetComponent<Image>().color.r, textBoxImage.GetComponent<Image>().color.g, textBoxImage.GetComponent<Image>().color.b, 0.0f);
 
         characterSprite.gameObject.SetActive(false);
+
+        myQuests = gameObject.GetComponent<Quests>();
+
+        menu = FindObjectOfType<Menu>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Checking if the player can do a quest
+    }
+
+    public void LoadQuests()
+    {
+        for (int i = 0; i < questIDs.Count; i++)
+        {
+            quests[questIDs[i]] = questLists[i].convoDialogue;
+        }
     }
 
     public void SetConversations()
@@ -190,24 +220,42 @@ public class DialogueManager : MonoBehaviour
     }
 
     //As long as the key passed in is not being pressed, nothing happens. When it is, it tells the Play Dialogue Coroutine to wait a little bit before moving on
-    IEnumerator WaitForInput(KeyCode key)
+    IEnumerator WaitForInput(KeyCode key, KeyCode secondKey)
     {
-        while (Input.GetKeyDown(key) == false)
+        Debug.Log("Waiting");
+
+        while (Input.GetKeyDown(key) == false && Input.GetKeyDown(secondKey) == false)
         {
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
     }
 
     //method to play out a conversation, using it's ID to find it
     //Is a coroutine so the for loop for dialogue doesn't immediately blaze through the conversation list
-    public IEnumerator PlayDialogue(string convoID)
+    /*public IEnumerator PlayDialogue(string convoID)
     {
+        menu.OpenDialog();
+
         playerInteraction.isTalking = true;
+        playerInteraction.CanInteract = false;
+
+        List<NPCDialogue> convoToPlay = conversations[conversationIDs[0]];
 
         //Get a dictionary to play
-        List<NPCDialogue> convoToPlay = conversations[convoID];
+        if (conversations.ContainsKey(convoID))
+        {
+            convoToPlay = conversations[convoID];
+        }
+        else if (quests.ContainsKey(convoID))
+        {
+            convoToPlay = quests[convoID];
+        }
+        else
+        {
+            yield return null;
+        }
 
         greaterConvoID = convoID;
 
@@ -217,20 +265,38 @@ public class DialogueManager : MonoBehaviour
 
         textBoxImage.gameObject.SetActive(true);
 
-        characterSprite.gameObject.SetActive(true);
+        menu.HotbarGameobject.SetActive(false);
 
         for (int i = 0; i < convoToPlay.Count; i++)
         {
             //Just using Debug.Log for now
-            Debug.Log($"The character's name is {convoToPlay[i].characterName}, and they have to say {convoToPlay[i].dialogue}");
+            Debug.Log($"Iteration {i}");
 
             nameText.text = convoToPlay[i].characterName;
-            Debug.Log($"I am nameText: {nameText.text}");
             dialogueText.text = convoToPlay[i].dialogue;
             characterSprite.sprite = convoToPlay[i].characterSprite;
-            Debug.Log($"This is the sprite: {convoToPlay[i].characterSprite}");
+            tutorialImage.sprite = convoToPlay[i].tutorialImage;
 
-            yield return StartCoroutine(WaitForInput(KeyCode.Space));
+            if (convoToPlay[i].characterSprite == null)
+            {
+                characterSprite.gameObject.SetActive(false);
+            }
+            else
+            {
+                characterSprite.gameObject.SetActive(true);
+            }
+
+            if (convoToPlay[i].tutorialImage == null)
+            {
+                tutorialImage.gameObject.SetActive(false);
+            }
+            else
+            {
+                tutorialImage.gameObject.SetActive(true);
+            }
+
+            //yield return StartCoroutine(WaitForInput(KeyCode.Space));
+            yield return StartCoroutine(WaitForInput(KeyCode.Space, KeyCode.Mouse0));
             //timer = timerDefault;
         }
 
@@ -242,12 +308,38 @@ public class DialogueManager : MonoBehaviour
 
         characterSprite.gameObject.SetActive(false);
 
+        tutorialImage.gameObject.SetActive(false);
+
         Debug.Log($"For conversation ID {convoID}");
 
         playerInteraction.isTalking = false;
-    }
+        playerInteraction.CanInteract = true;
 
-    private void OnTriggerStay2D(Collider2D collision)
+        menu.HotbarGameobject.SetActive(true);
+
+        if (quests.ContainsKey(convoID))
+        {
+
+            if (myQuests.activeQuest.questActive != true)
+            {
+                myQuests.activeQuest.questActive = true;
+            }
+
+            if (myQuests.activeQuest.questComplete == false && myQuests.activeQuest.readyToReport == true)
+            {
+                myQuests.activeQuest.questComplete = true;
+            }
+
+            Debug.Log("Quest now active");
+            Debug.Log($"Quest oldConvoID is {oldConvoID}");
+            this.convoID = oldConvoID;
+            //Debug.Log("Quest id replaced");
+        }
+
+        menu.CloseDialog();
+    }*/
+
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         //Tested with Debug.Log. The player's collider is named "PlayerCollider", so this should just work
         if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && playerInteraction.isTalking == false)
@@ -256,5 +348,5 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(PlayDialogue(convoID));
             //Debug.Log($"Inside the trigger; other is {collision.name}");
         }
-    }
+    }*/
 }

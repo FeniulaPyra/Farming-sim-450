@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
 {
-	// Start is called before the first frame update
+	private int slotIndex;
+	private Inventory inventory;
+
+	public void SetIndex(int slotIndex, Inventory inventory) 
+	{ 
+		this.slotIndex = slotIndex;
+		this.inventory = inventory;
+	}
+
 	public void ShowLabel()
 	{
 		gameObject.transform.GetChild(2).gameObject.SetActive(true);
@@ -12,5 +20,10 @@ public class InventorySlot : MonoBehaviour
 	public void HideLabel()
 	{
 		gameObject.transform.GetChild(2).gameObject.SetActive(false);
+	}
+
+	public void SelectSlot()
+    {
+		inventory.HoldItem(slotIndex);
 	}
 }

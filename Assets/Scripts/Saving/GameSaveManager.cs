@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Fungus;
 
 using System.IO;
+using System.Linq;
+using TMPro;
 
 public class GameSaveManager : MonoBehaviour
 {
@@ -13,34 +17,96 @@ public class GameSaveManager : MonoBehaviour
     public GameObject player;
     public TimeManager timeManager;
     public PlayerInteraction playerInteraction;
+    public TileManager tileManager;
+    public FarmManager farmManager;
+    public FarmingTutorial farmingTutorial;
 
     private string constantPath;
 
     private bool displayLoadMenu;
     private string[] saves;
 
+    //var path;
+    string path;
+    string originalPath;
+
+    [SerializeField]
+    Flowchart flowchart;
+
     // Start is called before the first frame update
     void Start()
     {
         constantPath = Application.persistentDataPath;
+
+        flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
+
+        originalPath = constantPath + "/saves/";
+        path = originalPath;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if (playerInteraction.CanInteract == true)
         {
-            SaveGame(saveName + "-at-" + timeManager.DayNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
-        }
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
 
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            displayLoadMenu = true;
-            saves = FindAllSaves();
+                path += name;
+
+                Debug.Log($"Saved game to {path}");
+
+                if (File.Exists(path) == true)
+                {
+                    Debug.Log("Save does exist");
+                    flowchart.SetStringVariable("SaveName", name);
+                    flowchart.ExecuteBlock("Start");
+                }
+                else
+                {
+                    Debug.Log("Save does not exist");
+                    //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
+                    SaveGame(name);
+                }
+
+                path = originalPath;
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                displayLoadMenu = true;
+                saves = FindAllSaves();
+            }
         }
     }
 
-    void SaveGame(string saveName)
+    public void SaveGame()
+    {
+        string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
+
+        path += name;
+
+        Debug.Log($"Saved game to {path}");
+
+        if (File.Exists(path) == true)
+        {
+            Debug.Log("Save does exist");
+            flowchart.SetStringVariable("SaveName", name);
+            flowchart.ExecuteBlock("Start");
+            //SaveGame(flowchart.GetStringVariable("SaveName"));
+        }
+        else
+        {
+            Debug.Log("Save does not exist");
+            //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
+            SaveGame(name);
+        }
+
+        path = originalPath;
+    }
+
+    public void SaveGame(string saveName)
     {
         // Here is where saving happens...
         var folderPath = constantPath + "/saves/";
@@ -48,20 +114,134 @@ public class GameSaveManager : MonoBehaviour
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
 
-        var path = constantPath + "/saves/" + saveName;
+        //var path = constantPath + "/saves/" + saveName;
+        var path = originalPath + saveName;
         Debug.Log("Saving game to " + path);
 
+        var save = new GameSave();
+        save.sceneName = SceneManager.GetActiveScene().name;
+        save.position = player.transform.position;
+        save.isNight = timeManager.isNight;
+        save.date = new Vector4(
+            timeManager.DayNumber,
+            timeManager.DateNumber,
+            timeManager.YearNumber,
+            timeManager.SeasonNumber
+            );
+        save.stamina = playerInteraction.PlayerStamina;
+        save.gold = playerInteraction.playerGold;
+
+        tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
+
+        if (tileManager.farmManager.farmField != null && tileManager.farmManager.tillableGround != null)
+        {
+            save.farmTiles = farmland;
+            save.mushrooms = mushrooms;
+        }
+        else
+        {
+            save.farmTiles = ScenePersistence.Instance.farmTiles;
+            save.mushrooms = ScenePersistence.Instance.mushrooms;
+        }
+
+        save.inventory = farmManager.playerInventory.GetSaveableInventory();
+
+        if (farmingTutorial != null)
+        {
+            foreach (bool b in farmingTutorial.tutorialBools)
+            {
+                save.tutorialBools.Add(b);
+            }
+            save.tutorialObjective = farmingTutorial.objective.text;
+        }
+
+        timeManager.netWorth.SaveWorth(out var savedWorth);
+        save.farmNetWorth = savedWorth;
+
+
+        for (int i = 0; i < timeManager.NPCList.Count; i++)
+        {
+            timeManager.NPCList[i].SaveFlowcharts(out var startChart, out var questChart);
+            save.NPCStartflowcharts.Add(startChart);
+            save.NPCQuestflowcharts.Add(questChart);
+            //Going back up to access quests and then save them
+            Debug.Log($"Inventory before saving: {timeManager.NPCList[i].gameObject.GetComponent<Quests>().inventory.isShown}");
+            timeManager.NPCList[i].gameObject.GetComponent<Quests>().SaveQuest(out var saveQuest);
+            saveQuest.inventory = save.inventory;
+            save.NPCQuests.Add(saveQuest);
+            Debug.Log($"Date?: {save.NPCStartflowcharts[0].dateNum}");
+        }
+
+        //saving all entities and pets
+        List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
+
+        foreach (BasicEntity e in entities)
+        {
+            if (e is BasicPet)
+            {
+                BasicPet b = (BasicPet)e;
+
+                if (b is LivestockPet)
+                {
+                    LivestockPet l = (LivestockPet)b;
+                    l.SaveLivestockPet(out SaveLivestockPet livestockPet);
+                    save.livestockPets.Add(livestockPet);
+                    if (save.livestockPets[save.livestockPets.Count - 1].self.name.Contains('('))
+                    {
+                        string[] name = save.livestockPets[save.livestockPets.Count - 1].self.name.Split('(');
+                        save.livestockPetNames.Add(name[0]);
+                    }
+                    else
+                    {
+                        save.livestockPetNames.Add(save.livestockPets[save.livestockPets.Count - 1].self.name);
+                    }
+
+                    Debug.Log($"Livestock Pet name at [{save.livestockPetNames.Count - 1}] is {save.livestockPetNames[save.livestockPetNames.Count - 1]}");
+                }
+                else
+                {
+                    b.SavePet(out SavePet pet);
+                    save.pets.Add(pet);
+                    if (save.pets[save.pets.Count - 1].self.name.Contains('('))
+                    {
+                        string[] name = save.pets[save.pets.Count - 1].self.name.Split('(');
+                        save.petNames.Add(name[0]);
+                    }
+                    else
+                    {
+                        save.petNames.Add(save.pets[save.pets.Count - 1].self.name);
+                    }
+
+                    Debug.Log($"Pet name at [{save.petNames.Count - 1}] is {save.petNames[save.petNames.Count - 1]}");
+                }
+            }
+            else
+            {
+                e.SaveEntity(out SaveEntity entity);
+                entity.type = entity.gameObject.GetComponent<Item>().type;
+                save.entities.Add(entity);
+                if (save.entities[save.entities.Count - 1].self.name.Contains('('))
+                {
+                    string[] name = save.entities[save.entities.Count - 1].self.name.Split('(');
+                    save.entityNames.Add(name[0]);
+                }
+                else
+                {
+                    save.entityNames.Add(save.entities[save.entities.Count - 1].self.name);
+                }
+
+                Debug.Log($"Entity name at [{save.entityNames.Count - 1}] is {save.entityNames[save.entityNames.Count - 1]}");
+            }
+        }
+
+
+        var json = JsonUtility.ToJson(save);
+
         StreamWriter sw = new StreamWriter(path);
-
-        var pTransform = player.transform;
-        var pPosition = pTransform.position;
-        var pRotation = pTransform.rotation.eulerAngles;
-        sw.WriteLine($"{pPosition.x},{pPosition.y},{pPosition.z}");
-        sw.WriteLine($"{pRotation.x},{pRotation.y},{pRotation.z}");
-        sw.WriteLine($"{timeManager.DayNumber},{timeManager.DateNumber},{timeManager.YearNumber},{timeManager.SeasonNumber}");
-        sw.WriteLine($"{playerInteraction.PlayerStamina}");
-
+        sw.WriteLine(json);
         sw.Close();
+
+        flowchart.ExecuteBlock("SaveConfirm");
 
         saves = FindAllSaves();
     }
@@ -74,33 +254,90 @@ public class GameSaveManager : MonoBehaviour
 
         StreamReader sr = new StreamReader(path);
 
-        var readPos = sr.ReadLine().Split(',');
-        var pos = new Vector3(
-            float.Parse(readPos[0]),
-            float.Parse(readPos[1]),
-            float.Parse(readPos[2])
-            );
+        var json = sr.ReadLine();
+        var save = JsonUtility.FromJson<GameSave>(json);
 
-        var readRot = sr.ReadLine().Split(',');
-        var rot = Quaternion.Euler(
-            float.Parse(readRot[0]),
-            float.Parse(readRot[1]),
-            float.Parse(readRot[2])
-            );
-
-        player.transform.position = pos;
-        player.transform.rotation = rot;
-
-        var readDate = sr.ReadLine().Split(',');
+        SceneManager.LoadScene(save.sceneName);
+        player.transform.position = save.position;
+        timeManager.isNight = save.isNight;
         timeManager.SetDate(
-            int.Parse(readDate[0]),
-            int.Parse(readDate[1]),
-            int.Parse(readDate[2]),
-            int.Parse(readDate[3])
-            ); 
+            (int)save.date.x,
+            (int)save.date.y,
+            (int)save.date.z,
+            (int)save.date.w
+            );
+        playerInteraction.SetStamina((int)save.stamina);
+        playerInteraction.playerGold = save.gold;
+        GameObject.Find("GoldDisplay").GetComponent<TMP_Text>().text = $"{playerInteraction.playerGold} G";
 
-        var readStamina = sr.ReadLine();
-        playerInteraction.SetStamina(int.Parse(readStamina));
+        if (tileManager.farmManager.farmField == null)
+        {
+            Debug.Log("Farmfield empty");
+        }
+        else
+        {
+            Debug.Log("Farmfield not empty");
+        }
+        tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
+
+        farmManager.playerInventory.SetSaveableInventory(save.inventory);
+        if (farmingTutorial != null)
+        {
+            for (int i = 0; i < save.tutorialBools.Count; i++)
+            {
+                farmingTutorial.tutorialBools[i] = save.tutorialBools[i];
+            }
+            farmingTutorial.objective.text = save.tutorialObjective;
+        }
+
+        timeManager.netWorth.FarmNetWorth = save.farmNetWorth;
+
+        for (int i = 0; i < timeManager.NPCList.Count; i++)
+        {
+            timeManager.NPCList[i].LoadFlowcharts(save.NPCStartflowcharts[i], save.NPCQuestflowcharts[i]);
+            timeManager.NPCList[i].gameObject.GetComponent<Quests>().LoadQuest(save.NPCQuests[i]);
+            Debug.Log($"Inventory after Loading: {timeManager.NPCList[i].gameObject.GetComponent<Quests>().inventory.isShown}");
+            Debug.Log($"Date?: {timeManager.NPCList[0].transform.Find("Start").GetComponent<Flowchart>().GetIntegerVariable("dateNum")}");
+        }
+
+        //Destroying entities then replacing them with their saved counterparts
+        List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
+
+        for (int i = 0; i < save.entities.Count; i++)
+        {
+            switch (save.entities[i].type)
+            {
+                case "tool":
+                    Instantiate(Resources.Load($"Prefabs/Tools/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
+                    break;
+                case "mushroom":
+                    Instantiate(Resources.Load($"Prefabs/MushroomPrefabs/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        for (int i = 0; i < save.pets.Count; i++)
+        {
+            Instantiate(Resources.Load($"Prefabs/Pets/{save.petNames[i]}"), save.pets[i].pos, Quaternion.identity);
+        }
+
+        for (int i = 0; i < save.livestockPets.Count; i++)
+        {
+            Instantiate(Resources.Load($"Prefabs/Pets/{save.livestockPetNames[i]}"), save.livestockPets[i].pos, Quaternion.identity);
+        }
+
+        for (int i = 0; i < entities.Count; i++)
+        {
+            if (entities[i] != null)
+            {
+                Destroy(entities[i].gameObject);
+            }
+        }
+
+
+        sr.Close();
     }
 
     void DeleteSave(string saveName)
@@ -178,5 +415,33 @@ public class GameSaveManager : MonoBehaviour
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
         GUILayout.EndArea();
+    }
+
+    [System.Serializable]
+    private class GameSave
+    {
+        public string sceneName;
+        public Vector3 position;
+        public bool isNight;
+        public Vector4 date;
+        public int stamina;
+        public int gold;
+        public List<SaveTile> farmTiles;
+        public List<MushroomSaveTile> mushrooms;
+        public List<int> inventory;
+        public List<bool> tutorialBools = new List<bool>();
+        public string tutorialObjective;
+        //public List<NPCManager> NPCs = new List<NPCManager>();
+        public int farmNetWorth;
+        public List<SaveStartChart> NPCStartflowcharts = new List<SaveStartChart>();//Fungus Flowcharts
+        public List<SaveQuestChart> NPCQuestflowcharts = new List<SaveQuestChart>();//Fungus Quest Flowcharts
+        public List<SaveQuest> NPCQuests = new List<SaveQuest>();//Quest Scripts
+        public List<SaveEntity> allEntities = new List<SaveEntity>(); //all entities in scene
+        public List<SaveEntity> entities = new List<SaveEntity>(); //all non pet entities that are in the list of all entities
+        public List<string> entityNames = new List<string>();
+        public List<SavePet> pets = new List<SavePet>(); //all pets that are in the list of all entities
+        public List<string> petNames = new List<string>();
+        public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
+        public List<string> livestockPetNames = new List<string>();
     }
 }

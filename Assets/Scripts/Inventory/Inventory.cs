@@ -6,8 +6,8 @@ using UnityEngine;
 public class Inventory
 {
 	public /*static*/ int STACK_SIZE = 99;
-	public static int ROWS = 4;
-	public static int COLUMNS = 9;
+	public int ROWS; //4
+	public int COLUMNS; //9
 
 	public int hotbarRowNumber;
 	public int slotHeld;
@@ -24,6 +24,8 @@ public class Inventory
 	{
 		get{return selectedStack;}
 	}
+
+	private Dictionary<string, Item> itemDict;
 
 	/// <summary>
 	/// The itemstacks in the currently selected hotbar row
@@ -52,8 +54,10 @@ public class Inventory
 		}
 	}
 
-	public Inventory()
+	public Inventory(int rows, int columns)
 	{
+		ROWS = rows;
+		COLUMNS = columns;
 		items = new ItemStack[ROWS,COLUMNS];
 		selectedStack = null;
 		selectHotbar(0);
@@ -140,6 +144,34 @@ public class Inventory
 	/// <param name="item">an ItemStack of the items to be added</param>
 	public void AddItems(ItemStack item)
 	{
+		Vector2Int openSlot = new Vector2Int(-1, -1);
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				ItemStack i = items[r, c];
+				if(i != null && i.Item.name == item.Item.name && i.Amount < STACK_SIZE)
+				{
+					//if they are the same item and they add up to a smaller amount than the stack size
+					ItemStack leftovers = i.CombineStacks(item, STACK_SIZE);
+
+					if (leftovers != null && leftovers.Amount > 0)
+					{
+						AddItems(leftovers);
+					}
+					return;
+				}
+				//if there is an empty slot, set it as a backup slot
+				else if (i == null && openSlot.x < 0)
+				{
+					openSlot = new Vector2Int(r, c);
+				}
+			}
+		}
+		//if there wasn't already a slot with this type of item, add it to the empty slot
+		items[openSlot.x, openSlot.y] = item;
+
+		/*
 		for(int r = 0; r < 4; r++)
 		{
 			for(int c = 0; c < 9; c++)
@@ -163,7 +195,7 @@ public class Inventory
 					return;
 				}
 			}
-		}
+		}*/
 	}
 
 	/// <summary>
@@ -313,8 +345,8 @@ public class Inventory
 	public void SetItem(int slotX, int slotY, ItemStack newItems)
 	{
 		//exit if OOB
-		if (slotX >= COLUMNS || slotX < 0 || slotY >= ROWS || slotY < 0) return;
-
+		if (slotX >= ROWS || slotX < 0 || slotY >= COLUMNS || slotY < 0) return;
+		Debug.Log("setting items");
 		items[slotX, slotY] = newItems;
 	}
 
@@ -337,7 +369,7 @@ public class Inventory
 		{
 			for(int c = 0; c < COLUMNS; c++)
 			{
-				if(items[r, c].Item.name == item.name)
+				if(items[r, c] != null && items[r, c].Item.name == item.name)
 				{
 					int[] slot = { r, c };
 					slotsWithItems.Add(slot);
@@ -368,5 +400,169 @@ public class Inventory
 			}
 		}
 	}
+	
+	public void RemoveHeldItems(int amount)
+	{
+		if(HeldItem == null)
+		{
+			return;
+		}
+		else
+		{
+			HeldItem.RemoveItems(1);
+			if(HeldItem.Amount < 1)
+			{
+				DeleteHeldItemStack();
+			}
+		}
+	}
 
+	/// <summary>
+	/// Returns the inventory as a 2d array of 
+	/// arrays containging item ids and ammounts.
+	/// </summary>
+	/// <returns>An array with ids and amounts formatted as [itemid, amount]</returns>
+	public List<int> GetSaveableInventory()
+	{
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
+		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
+
+		List<int> sinv = new List<int>(); //len should be row * col * 2;
+
+
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				ItemStack i = items[r, c];
+				if(i == null)
+				{
+					sinv.Add(-1);
+					sinv.Add(0);
+				}
+				else
+				{
+					sinv.Add(FindItemID(i.Item));
+					sinv.Add(i.Amount);
+				}
+			}
+		}
+
+		return sinv;
+		///BAD stuff >:( (goes in the timeout corner)
+		/*
+		int[,][] sinv = new int[ROWS, COLUMNS][];
+		for (int r = 0; r < ROWS; r++)
+		{
+			for(int c = 0; c<COLUMNS; c++) {
+				sinv[r, c] = new int[2];
+				ItemStack invSlot = items[r, c];
+				if (invSlot != null)
+				{
+					sinv[r, c][0] = FindItemID(invSlot.Item);
+					sinv[r, c][1] = invSlot.Amount;
+				}
+				else
+				{
+					sinv[r, c][0] = -1;
+					sinv[r, c][1] = 0;
+				}
+			}
+		}
+		return sinv;
+		*/
+	}
+
+	/// <summary>
+	/// gets the id of a given item
+	/// </summary>
+	/// <param name="i">the item whose id is to be found</param>
+	/// <returns>the id of the given item</returns>
+	public int FindItemID(Item i)
+	{
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
+		List<Item> itemsDict = menu.GetGameItemList();
+		for(int j = 0; j < itemsDict.Count; j++)
+		{
+			if (itemsDict[j].name == i.name)
+				return j;
+		}
+		return -1;
+		
+	}
+
+	/// <summary>
+	/// takes the same thing the other function returns and turns it into
+	/// an actual invengtory
+	/// </summary>
+	/// <param name="sinv">the saved inventoyr</param>
+	public void SetSaveableInventory(List<int> sinv)
+	{
+		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
+		List<Item> itemsDict = menu.GetGameItemList();
+
+		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
+		{
+			if (sinv[i] < 0) continue;
+
+			int r = (int)Math.Floor((double)(j / COLUMNS));
+			int c = j % COLUMNS;
+
+			Debug.Log("r" + r + "c" + c);
+			Debug.Log(sinv[i]);
+			Debug.Log(itemsDict[sinv[i]]);
+
+			ItemStack iStack = new ItemStack(itemsDict[sinv[i]], sinv[i + 1]);
+
+			items[r, c] = iStack;
+		}
+
+
+		//MOORREE BAD STUFF >>>:(
+		/*
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				if (sinv[r, c][0] == -1) continue;
+				else
+				{
+					ItemStack iStack = new ItemStack(itemsDict[sinv[r, c][0]], sinv[r, c][1]);
+					items[r, c] = iStack;
+				}
+			}
+		}
+		*/
+	}
+
+	/// <summary>
+	/// Counts the number of a given item and returns its amount
+	/// </summary>
+	/// <param name="i">item to count</param>
+	/// <returns>amount of item in inventory</returns>
+	public int CountItem(Item i)
+	{
+		return CountItem(i.name);
+	}
+
+	/// <summary>
+	/// Counts the number of a given item and returns its amount
+	/// </summary>
+	/// <param name="name">name of item to count</param>
+	/// <returns>amount of item in inventory</returns>
+	public int CountItem(String name)
+	{
+		int amt = 0;
+		for (int r = 0; r < ROWS; r++)
+		{
+			for (int c = 0; c < COLUMNS; c++)
+			{
+				
+				ItemStack slot = this.items[r, c];
+				if (slot != null && slot.Item.name == name)
+					amt += slot.Amount;
+			}
+		}
+		return amt;
+	}
 }

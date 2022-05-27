@@ -19,19 +19,37 @@ public class Tile : MonoBehaviour
     //List of tiles to easily handle multiple mushroom growth stages
     public List<TileBase> sprites = new List<TileBase>();
 
-    //ground tile sprites for tilled ground
-    public TileBase tilledGround;
-    public TileBase wateredGround;
+    public Vector3Int position;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        tileSprite = sprites[0];
     }
 
-    // Update is called once per frame
-    void Update()
+    public SaveTile AsSaveTile()
     {
-        
+        return new SaveTile(isTilled, isMoist, hasPlant, position, sprites.IndexOf(tileSprite));
+    }
+}
+
+[System.Serializable]
+public class SaveTile
+{
+    public bool isTilled;
+    public bool isMoist;
+    public bool hasPlant;
+    public Vector3Int position;
+    public int spriteIndex;
+
+
+    public SaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position, int spriteIndex)
+    {
+        this.isTilled = isTilled;
+        this.isMoist = isMoist;
+        this.hasPlant = hasPlant;
+        this.position = position;
+        this.spriteIndex = spriteIndex;
+
+        Debug.Log($"Sprite index is {this.spriteIndex}");
     }
 }
