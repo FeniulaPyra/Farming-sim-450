@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using TMPro;
 
-public class SceneTransitioner : MonoBehaviour
+public class SceneTransitionManager : MonoBehaviour
 {
     public GameObject player;//The player themselves
     public TimeManager timeManager;//The date displayed in the top right
