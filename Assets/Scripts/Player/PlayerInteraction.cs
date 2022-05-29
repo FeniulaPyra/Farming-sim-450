@@ -401,7 +401,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (objects[i].name == "Shop")
                     Debug.Log("SHOPDIST: " + distance);
                 //1 seems like a fine number
-                if (distance <= 1.0f && objects[i].enabled == true)
+                if (distance <= 0.5f && objects[i].enabled == true)
                 {
                     Debug.Log("CLOSE ENOUGH TO INTERACT WITH: " + objects[i].name);
                     //switch on name to see what it is
