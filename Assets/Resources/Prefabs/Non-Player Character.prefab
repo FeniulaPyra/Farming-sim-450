@@ -256,6 +256,9 @@ GameObject:
   - component: {fileID: 1786996162278422262}
   - component: {fileID: 653931144209764581}
   - component: {fileID: 5475630949394658841}
+  - component: {fileID: 6151078736018262889}
+  - component: {fileID: 2379827198942094105}
+  - component: {fileID: 1735183578520915520}
   m_Layer: 0
   m_Name: Spring
   m_TagString: Untagged
@@ -302,7 +305,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 3833270928220334841}
+  - {fileID: 4314523898703727920}
   selectedCommands: []
   variables: []
   description: 
@@ -2317,8 +2320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -1416.7522
-    y: -131.7546
+    x: -1412.906
+    y: -127.908424
     width: 85.38461
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -3167,7 +3170,7 @@ MonoBehaviour:
   itemId: 32
   indentLevel: 1
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 3778547459145493391}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -3188,7 +3191,7 @@ MonoBehaviour:
   itemId: 33
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 3778547459145493391}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -3209,7 +3212,7 @@ MonoBehaviour:
   itemId: 34
   indentLevel: 1
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 3778547459145493391}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -9707,6 +9710,80 @@ MonoBehaviour:
     stringVal: 
   startIndex: 0
   callMode: 0
+--- !u!114 &6151078736018262889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974672818722466806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -1256.6676
+    y: 77.534225
+    width: 154.61539
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 103
+  blockName: HotbarReference
+  description: 'Rather than dragging the hotbar everywhere, just put these at the
+    start and end of dialogue, and make sure the NPC''s hotbar variable is set to
+    the hotbar
+
+'
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 2379827198942094105}
+  - {fileID: 1735183578520915520}
+  suppressAllAutoSelections: 0
+--- !u!114 &2379827198942094105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974672818722466806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 104
+  indentLevel: 0
+  _targetGameObject:
+    gameObjectRef: {fileID: 3778547459145493391}
+    gameObjectVal: {fileID: 0}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  targetGameObjectOLD: {fileID: 0}
+--- !u!114 &1735183578520915520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974672818722466806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 105
+  indentLevel: 0
+  _targetGameObject:
+    gameObjectRef: {fileID: 3778547459145493391}
+    gameObjectVal: {fileID: 0}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  targetGameObjectOLD: {fileID: 0}
 --- !u!1 &6135154176647457122
 GameObject:
   m_ObjectHideFlags: 0
@@ -9830,6 +9907,7 @@ GameObject:
   - component: {fileID: 868795156605940850}
   - component: {fileID: 8351664976119035850}
   - component: {fileID: 33757642369165885}
+  - component: {fileID: 3778547459145493391}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -9865,7 +9943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   scrollPos: {x: -3, y: 5}
-  variablesScrollPos: {x: 0, y: 0}
+  variablesScrollPos: {x: 0, y: 32}
   variablesExpanded: 1
   blockViewHeight: 400
   zoom: 1
@@ -9887,6 +9965,7 @@ MonoBehaviour:
   - {fileID: 4627342184997431973}
   - {fileID: 390354003859649925}
   - {fileID: 326057595429930768}
+  - {fileID: 3778547459145493391}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -10878,6 +10957,21 @@ MonoBehaviour:
   scope: 1
   key: playerNetWorth
   value: 0
+--- !u!114 &3778547459145493391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604723382601593175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1941e052c0ed4280b25507cd2e6ad8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 1
+  key: Hotbar
+  value: {fileID: 0}
 --- !u!1 &7006332138037814990
 GameObject:
   m_ObjectHideFlags: 0
