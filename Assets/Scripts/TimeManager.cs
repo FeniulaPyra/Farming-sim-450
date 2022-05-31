@@ -34,6 +34,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField]
     int yearNum = 1;
     public TMP_Text yearDisplay;
+    public TMP_Text holidayDisplay;
 
     //For night
     public bool isNight;
@@ -72,6 +73,8 @@ public class TimeManager : MonoBehaviour
         dateDisplay.text = "1";
         seasonDisplay.text = "Spring";
         yearDisplay.text = "Year 1";
+
+        holidayDisplay = GameObject.Find("HolidayDisplay").GetComponent<TMP_Text>();
 
         //Gets all NPCs and saves them so their dialogue can later be updated
         //NPCs = FindObjectsOfType<DialogueManager>();
@@ -794,6 +797,53 @@ public class TimeManager : MonoBehaviour
                 break;
             default:
                 dayDisplay.text = "";
+                break;
+        }
+
+        switch (seasonNum)
+        {
+            case 1:
+                switch (dateNum)
+                {
+                    case 1:
+                        holidayDisplay.text = "New Year's Day";
+                        break;
+                    default:
+                        holidayDisplay.text = "";
+                        break;
+                }
+                break;
+            case 2:
+                switch (dateNum)
+                {
+                    case 1:
+                        break;
+                    default:
+                        holidayDisplay.text = "";
+                        break;
+                }
+                break;
+            case 3:
+                switch (dateNum)
+                {
+                    case 1:
+                        break;
+                    default:
+                        holidayDisplay.text = "";
+                        break;
+                }
+                break;
+            case 4:
+                switch (dateNum)
+                {
+                    case 1:
+                        break;
+                    default:
+                        holidayDisplay.text = "";
+                        break;
+                }
+                break;
+            default:
                 break;
         }
     }
