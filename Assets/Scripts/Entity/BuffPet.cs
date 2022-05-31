@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class BuffPet : BasicPet
@@ -10,16 +11,16 @@ public class BuffPet : BasicPet
 
     //Timer on which the item spawns
     [SerializeField]
-    float timer;
+    public float timer;
     public float baseTimer;
     //chance of item spawning
     public int activateChance;
 
     public bool increaseSpeed;
     [SerializeField]
-    bool buffApplied;
+    public bool buffApplied;
     [SerializeField]
-    float buffTimer;
+    public float buffTimer;
     public float baseBuffTimer;
 
     [SerializeField]
@@ -30,8 +31,14 @@ public class BuffPet : BasicPet
     void Start()
     {
         base.Start();
-        timer = baseTimer;
-        buffTimer = baseBuffTimer;
+        if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == false && ScenePersistence.Instance.changingScene == false)
+            {
+                timer = baseTimer;
+                buffTimer = baseBuffTimer;
+            }
+        }
 
         movement = FindObjectOfType<PlayerMovement>();
         buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
@@ -42,6 +49,21 @@ public class BuffPet : BasicPet
     void Update()
     {
         base.Update();
+
+        if (GlobalGameSaving.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == true)
+            {
+                if (buffApplied == true)
+                {
+                    ApplyBuff();
+                }
+                else
+                {
+                    CancelBuff();
+                }
+            }
+        }
 
         if (buffApplied == false)
         {
@@ -110,5 +132,36 @@ public class BuffPet : BasicPet
     private void OnMouseOver()//private void OnMouseOver()
     {
         base.OnMouseOver();
+    }
+
+    public void SaveBuffPet(out SaveBuffPet buffPet)
+    {
+        buffPet = new SaveBuffPet(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, normalImage, pettingImage, petItem, manager, gameObject, timer, baseTimer, activateChance, increaseSpeed, buffApplied, buffTimer, baseBuffTimer);
+    }
+}
+
+[System.Serializable]
+public class SaveBuffPet : SavePet
+{
+    //Timer on which the item spawns
+    public float timer;
+    public float baseTimer;
+    //chance of buff activating
+    public int activateChance;
+
+    public bool increaseSpeed;
+    public bool buffApplied;
+    public float buffTimer;
+    public float baseBuffTimer;
+
+    public SaveBuffPet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager, GameObject gameObject, float t, float bT, int chance, bool iS, bool bA, float buffT, float bBuffT ) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos, n, petting, pet, manager, gameObject)
+    {
+        timer = t;
+        baseTimer = bT;
+        activateChance = chance;
+        increaseSpeed = iS;
+        buffApplied = bA;
+        buffTimer = buffT;
+        baseBuffTimer = bBuffT;
     }
 }

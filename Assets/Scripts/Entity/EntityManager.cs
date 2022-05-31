@@ -26,12 +26,29 @@ public class EntityManager : MonoBehaviour
 
                 if (GlobalGameSaving.Instance.livestockPets.Count > 0)
                 {
-                    for (int i = 0; i < GlobalGameSaving.Instance.pets.Count; i++)
+                    for (int i = 0; i < GlobalGameSaving.Instance.livestockPets.Count; i++)
                     {
                         //Close to the player's position, so the pet spawns near them
                         Vector3 playerPos = GameObject.Find("Player").transform.position;
                         Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
-                        Instantiate(Resources.Load($"Prefabs/Pets/{GlobalGameSaving.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
+                        GameObject g = (GameObject)Instantiate(Resources.Load($"Prefabs/Pets/{GlobalGameSaving.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
+                        LivestockPet l = g.GetComponent<LivestockPet>();
+                        l.timer = GlobalGameSaving.Instance.livestockPets[i].timer;
+                    }
+                }
+
+                if (GlobalGameSaving.Instance.buffPets.Count > 0)
+                {
+                    for (int i = 0; i < GlobalGameSaving.Instance.buffPets.Count; i++)
+                    {
+                        //Close to the player's position, so the pet spawns near them
+                        Vector3 playerPos = GameObject.Find("Player").transform.position;
+                        Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
+                        GameObject g = (GameObject)Instantiate(Resources.Load($"Prefabs/Pets/{GlobalGameSaving.Instance.buffPetNames[i]}"), pos, Quaternion.identity);
+                        BuffPet b = g.GetComponent<BuffPet>();
+                        b.timer = GlobalGameSaving.Instance.buffPets[i].timer;
+                        b.buffTimer = GlobalGameSaving.Instance.buffPets[i].buffTimer;
+                        b.buffApplied = GlobalGameSaving.Instance.buffPets[i].buffApplied;
                     }
                 }
 
@@ -82,12 +99,29 @@ public class EntityManager : MonoBehaviour
 
                 if (ScenePersistence.Instance.livestockPets.Count > 0)
                 {
-                    for (int i = 0; i < ScenePersistence.Instance.pets.Count; i++)
+                    for (int i = 0; i < ScenePersistence.Instance.livestockPets.Count; i++)
                     {
                         //Close to the player's position, so the pet spawns near them
                         Vector3 playerPos = GameObject.Find("Player").transform.position;
                         Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
-                        Instantiate(Resources.Load($"Prefabs/Pets/{ScenePersistence.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
+                        GameObject g = (GameObject)Instantiate(Resources.Load($"Prefabs/Pets/{ScenePersistence.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
+                        LivestockPet l = g.GetComponent<LivestockPet>();
+                        l.timer = ScenePersistence.Instance.livestockPets[i].timer;
+                    }
+                }
+
+                if (ScenePersistence.Instance.buffPets.Count > 0)
+                {
+                    for (int i = 0; i < ScenePersistence.Instance.buffPets.Count; i++)
+                    {
+                        //Close to the player's position, so the pet spawns near them
+                        Vector3 playerPos = GameObject.Find("Player").transform.position;
+                        Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
+                        GameObject g = (GameObject)Instantiate(Resources.Load($"Prefabs/Pets/{ScenePersistence.Instance.buffPetNames[i]}"), pos, Quaternion.identity);
+                        BuffPet b = g.GetComponent<BuffPet>();
+                        b.timer = ScenePersistence.Instance.buffPets[i].timer;
+                        b.buffTimer = ScenePersistence.Instance.buffPets[i].buffTimer;
+                        b.buffApplied = ScenePersistence.Instance.buffPets[i].buffApplied;
                     }
                 }
 
@@ -247,6 +281,39 @@ public class EntityManager : MonoBehaviour
                         }
                     }
                     
+                }
+                else if (p is BuffPet)
+                {
+                    if (what == "persist")
+                    {
+                        BuffPet b = (BuffPet)p;
+                        b.SaveBuffPet(out var pet);
+                        ScenePersistence.Instance.buffPets.Add(pet);
+                        if (ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name.Contains('('))
+                        {
+                            string[] name = ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name.Split('(');
+                            ScenePersistence.Instance.buffPetNames.Add(name[0]);
+                        }
+                        else
+                        {
+                            ScenePersistence.Instance.buffPetNames.Add(ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name);
+                        }
+                    }
+                    else if (what == "save")
+                    {
+                        BuffPet b = (BuffPet)p;
+                        b.SaveBuffPet(out var pet);
+                        GlobalGameSaving.Instance.buffPets.Add(pet);
+                        if (GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name.Contains('('))
+                        {
+                            string[] name = GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name.Split('(');
+                            GlobalGameSaving.Instance.buffPetNames.Add(name[0]);
+                        }
+                        else
+                        {
+                            GlobalGameSaving.Instance.buffPetNames.Add(GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name);
+                        }
+                    }
                 }
                 else
                 {

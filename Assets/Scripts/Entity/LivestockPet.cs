@@ -17,7 +17,13 @@ public class LivestockPet : BasicPet
     void Start()
     {
         base.Start();
-        timer = baseTimer;
+        if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == false && ScenePersistence.Instance.changingScene == false)
+            {
+                timer = baseTimer;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -78,9 +84,9 @@ public class SaveLivestockPet : SavePet
 
     public SaveLivestockPet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager, GameObject gameObject, GameObject i, float t, float bT, int chance) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos, n, petting, pet, manager, gameObject)
     {
-        normal = n;
-        this.petting = petting;
-        this.pet = pet;
-        this.manager = manager;
+        item = i;
+        timer = t;
+        baseTimer = bT;
+        spawnChance = chance;
     }
 }

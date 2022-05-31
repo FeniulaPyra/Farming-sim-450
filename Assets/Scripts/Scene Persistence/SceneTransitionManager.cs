@@ -30,7 +30,7 @@ public class SceneTransitionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             //LoadScene("FungusTestScene");
             LoadScene("GroundScene 1");
@@ -38,13 +38,15 @@ public class SceneTransitionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             LoadScene("GroundScene");
-        }*/
+        }
     }
 
     public void LoadScene(string sceneToLoad)
     {
         //Disables this boolean so the scene to load doesn't load the save data
         GlobalGameSaving.Instance.loadingSave = false;
+        //False by default, so upon loading save, should be fine. Otherwise, always true?
+        ScenePersistence.Instance.changingScene = true;
 
         timeManager.SaveDate("persist");
         timeManager.SaveNPCs("persist");

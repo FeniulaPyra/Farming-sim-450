@@ -61,6 +61,8 @@ public class GlobalGameSaving : MonoBehaviour
     public List<string> petNames = new List<string>();
     public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
     public List<string> livestockPetNames = new List<string>();
+    public List<SaveBuffPet> buffPets = new List<SaveBuffPet>();
+    public List<string> buffPetNames = new List<string>();
     #endregion
 
     //boolean to let other scripts know to load a save

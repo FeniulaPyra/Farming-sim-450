@@ -151,11 +151,12 @@ MonoBehaviour:
   pettingImage: {fileID: -7434330180999361826, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   petItem: {fileID: 8681727996585695852, guid: 6111bb653294fae4bb160b9484cf51c8, type: 3}
   manager: {fileID: 0}
+  owner: {fileID: 0}
   timer: 0
-  baseTimer: 0
-  activateChance: 0
+  baseTimer: 10
+  activateChance: 100
   increaseSpeed: 1
   buffApplied: 0
   buffTimer: 0
-  baseBuffTimer: 0
+  baseBuffTimer: 30
   buffNotification: {fileID: 0}
