@@ -50,13 +50,15 @@ public class BuffPet : BasicPet
     {
         base.Update();
 
-        if (GlobalGameSaving.Instance != null)
+        if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
         {
-            if (GlobalGameSaving.Instance.loadingSave == true)
+            if (GlobalGameSaving.Instance.loadingSave == true || ScenePersistence.Instance.changingScene == true)
             {
                 if (buffApplied == true)
                 {
                     ApplyBuff();
+                    ScenePersistence.Instance.changingScene = false;
+                    GlobalGameSaving.Instance.loadingSave = false;
                 }
                 else
                 {
