@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &5967451 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6075272586840731087, guid: 803c03dda4eb1a44ab50f3f015e29e69, type: 3}
-  m_PrefabInstance: {fileID: 257024929}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &19740204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8363235534574056490, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
@@ -51750,7 +51739,7 @@ PrefabInstance:
     - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: goldDisplay
       value: 
-      objectReference: {fileID: 5967451}
+      objectReference: {fileID: 0}
     - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: playerCollider
       value: 

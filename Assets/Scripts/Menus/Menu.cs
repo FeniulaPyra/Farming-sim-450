@@ -68,6 +68,8 @@ public class Menu : MonoBehaviour
     //Player's bed
     Bed bed;
 
+    public GameObject save;
+
 	public enum MenuControls
 	{
 		OPEN_INVENTORY = KeyCode.E,
@@ -102,7 +104,12 @@ public class Menu : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		gameItems = new List<Item>();
+        PauseMenu = gameObject.transform.Find("Pause Menu").gameObject;
+        
+        //Sets the save function of the onclick in code, so it works just by being dragged into a scene
+        PauseMenu.transform.Find("Save").gameObject.GetComponent<Button>().onClick.AddListener(GlobalGameSaving.Instance.SaveGame);
+
+        gameItems = new List<Item>();
 		//TODO have this be grabbed from the player once that is be do be done-ificated
 		inv = FarmManager.GetComponent<FarmManager>().playerInventory; //new Inventory();
 		shippingInventory = ShippingBin.GetComponent<ShippingBin>().inventory;
@@ -322,8 +329,8 @@ public class Menu : MonoBehaviour
 			slot.transform.SetParent(ShippingMenu.transform, false);
 		}
 
-		//debugging stuff
-		inv.AddItems(new ItemStack(gameItems[0], 1));
+        #region debugging stuff/Setting starting inventory
+        inv.AddItems(new ItemStack(gameItems[0], 1));
 		//shippingInventory.AddItems(new ItemStack(gameItems[0], 1));
 		inv.AddItems(new ItemStack(gameItems[1], 1));
 		inv.AddItems(new ItemStack(gameItems[2], 1));
@@ -332,6 +339,9 @@ public class Menu : MonoBehaviour
         inv.AddItems(new ItemStack(gameItems[5], 1));
         inv.AddItems(new ItemStack(gameItems[6], 1));
         inv.AddItems(new ItemStack(gameItems[7], 1));
+        inv.AddItems(new ItemStack(gameItems[13], 1));
+        #endregion
+
         UpdateInventory();
 
         bed = FindObjectOfType<Bed>().GetComponent<Bed>();

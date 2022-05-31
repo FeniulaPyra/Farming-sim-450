@@ -14,12 +14,16 @@ public class BasicPet : BasicEntity
     [SerializeField] public Item petItem;
     [SerializeField] public FarmManager manager;
 
+    //Being set in start. Should be fine to not be saved
+    public PlayerInteraction owner;
+
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         manager = GameObject.Find("ManagerObject").GetComponent<FarmManager>();
+        owner = FindObjectOfType<PlayerInteraction>();
     }
 
     // Update is called once per frame
@@ -46,13 +50,18 @@ public class BasicPet : BasicEntity
 
     protected void OnMouseOver()//private void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
         {
             ItemStack items = new ItemStack(petItem, 1);
             if (!manager.playerInventory.IsTooFull(items))
             {
                 manager.playerInventory.AddItems(items);
                 Object.Destroy(this.gameObject);
+
+                owner.petCount -= 1;
+                owner.ableToPlacePet = false;
+                
             }
         }
     }

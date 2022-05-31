@@ -20,10 +20,12 @@ public class ShippingBin : MonoBehaviour
 
     public CalculateFarmNetWorth netWorth;
 
+    [SerializeField]
+    TMP_Text totalDisplay;
+
 	private void Awake()
 	{
 		inventory = new Inventory(1, 9);
-		
 	}
 
 	// Start is called before the first frame update
@@ -35,6 +37,11 @@ public class ShippingBin : MonoBehaviour
 
         player = FindObjectOfType<PlayerInteraction>();
 
+        goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+
+        //totalDisplay = GameObject.Find("TotalDisplay").GetComponent<TMP_Text>();
+        totalDisplay = GameObject.Find("Menus").transform.Find("Shipping Menu").transform.Find("TotalDisplay").GetComponent<TMP_Text>();
+
         goldDisplay.text = $"{player.playerGold} G";
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
@@ -43,7 +50,30 @@ public class ShippingBin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTotal();
+    }
 
+    void UpdateTotal()
+    {
+        int toDisplay = 0;
+
+        for (int i = 0; i < inventory.ROWS; i++)
+        {
+            for (int j = 0; j < inventory.COLUMNS; j++)
+            {
+                ItemStack item = inventory.GetSlot(i, j);
+
+                if (item != null && item.Item.isSellable)
+                {
+                    toDisplay += item.Item.sellValue * item.Amount;
+                }
+            }
+        }
+
+        if (totalDisplay != null && totalDisplay.isActiveAndEnabled == true)
+        {
+            totalDisplay.text = $"{toDisplay} G";
+        }
     }
 
     /*private void OnTriggerStay2D(Collider2D collision)

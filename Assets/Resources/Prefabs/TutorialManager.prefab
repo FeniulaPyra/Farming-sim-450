@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 1682849331807283402}
   - component: {fileID: 4881797939935899801}
   - component: {fileID: 5327769016373976701}
-  - component: {fileID: 7838057930698181904}
   - component: {fileID: 5280172762806493189}
   - component: {fileID: 2908993290639692714}
   - component: {fileID: 4657806816177228934}
@@ -243,9 +242,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 3342160423059015809}
-  selectedCommands:
-  - {fileID: 0}
+  - {fileID: 4258592687627005438}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -929,7 +927,6 @@ MonoBehaviour:
   - {fileID: 9020535350786496989}
   - {fileID: 5256385505636590096}
   - {fileID: 5280172762806493189}
-  - {fileID: 7838057930698181904}
   - {fileID: 1682849331807283402}
   - {fileID: 4881797939935899801}
   - {fileID: 6781741230225843527}
@@ -1050,33 +1047,6 @@ MonoBehaviour:
   itemId: 35
   indentLevel: 0
   storyText: Now that you've watered them, there's nothing more you can do today.
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &7838057930698181904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5355612449723218527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 36
-  indentLevel: 0
-  storyText: If you accidentally interact with the bed, just click no.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}

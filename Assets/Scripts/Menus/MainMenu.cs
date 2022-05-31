@@ -24,8 +24,14 @@ public class MainMenu : MonoBehaviour
 
 	public void GoToGameScene()
 	{
-		SceneManager.LoadScene("TutorialScene", LoadSceneMode.Single);
+		SceneManager.LoadScene("GroundScene", LoadSceneMode.Single);
 	}
+
+    public void GoToTutorial()
+    {
+        SceneManager.LoadScene("TutorialScene", LoadSceneMode.Single);
+    }
+
 	public void ToggleHelpOverlay()
 	{
 		titleScreen.SetActive(!titleScreen.activeSelf);

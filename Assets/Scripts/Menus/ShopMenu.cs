@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopMenu : MonoBehaviour
 {
@@ -14,13 +15,17 @@ public class ShopMenu : MonoBehaviour
 	Inventory inv;
 	PlayerInteraction player;
 
+    public TMP_Text goldDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
 		inv = FarmManager.GetComponent<FarmManager>().playerInventory;
 		items = menuObj.GetComponent<Menu>().gameItems;
 		player = playerObj.GetComponent<PlayerInteraction>();
-	}
+
+        goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -90,6 +95,8 @@ public class ShopMenu : MonoBehaviour
 
 		inv.AddItems(new ItemStack(shroom, 1));
 		player.playerGold -= (int)Mathf.Floor(cost);
+
+        goldDisplay.text = $"{player.playerGold} G";
 
         //reduce farm's net worth by half of item worth
         netWorth.CalculateNetWorth(-((int)Mathf.Floor(cost / 2)));

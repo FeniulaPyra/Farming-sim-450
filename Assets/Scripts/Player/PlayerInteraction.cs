@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -38,6 +39,12 @@ public class PlayerInteraction : MonoBehaviour
     private bool interactInRange;
     [SerializeField]
     private bool canInteract;
+
+
+    public bool ableToPlacePet;
+    public int oldPetCount;
+    public int petCount; //The number of pets the player currently has on the screen.
+    public const int PET_LIMIT = 3;
 
     public bool DisplayIndicator { 
         get => displayIndicator; 
@@ -251,6 +258,18 @@ public class PlayerInteraction : MonoBehaviour
 
         staminaDisplay.text = $"{playerStamina}";
 
+        petCount = FindObjectsOfType<BasicPet>().ToList().Count;
+
+        if (petCount <= PET_LIMIT - 1)
+        {
+            ableToPlacePet = true;
+            //petCount = oldPetCount;
+        }
+        else
+        {
+            ableToPlacePet = false;
+        }
+
         //StartCoroutine(InteractionChecker());
         InteractionChecker();
     }
@@ -299,7 +318,7 @@ public class PlayerInteraction : MonoBehaviour
         }*/
 
         // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0) && itemName != "" && isTalking == false)//if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
         {
             Item heldItem = playerInventory.HeldItem.Item;
 
@@ -350,13 +369,16 @@ public class PlayerInteraction : MonoBehaviour
                 ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
             }
 
-            if (itemName.Contains("Pet") && !itemName.Contains("Petrified"))
+            if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && ableToPlacePet == true)
             {
                 Vector3 position = this.gameObject.transform.position;
                 position.x -= 1.5f;
                 heldItem.itemObj.transform.localPosition = position;
-                Instantiate(heldItem.itemObj);
+                Vector3 pos = new Vector3(focusTilePosition.x, focusTilePosition.y, focusTilePosition.z);
+                Instantiate(heldItem.itemObj, pos, Quaternion.identity);
                 playerInventory.RemoveHeldItems(1);
+
+                petCount++;
             }
 
 
