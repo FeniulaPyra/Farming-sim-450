@@ -780,10 +780,10 @@ public class FarmManager : MonoBehaviour
 
         if (farmingTutorial != null)
         {
-            if (farmingTutorial.tutorialBools[16] == true)//(farmingTutorial.spreadAfter == true)
+            if (farmingTutorial.tutorialBools[18] == true)//(farmingTutorial.spreadAfter == true)
             {
-                farmingTutorial.tutorialBools[18] = true;//farmingTutorial.hybridAfter = true;
-                GlobalGameSaving.Instance.tutorialBools[18] = farmingTutorial.tutorialBools[18];
+                farmingTutorial.tutorialBools[20] = true;//farmingTutorial.hybridAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[20] = farmingTutorial.tutorialBools[20];
             }
         }
 	}
@@ -806,8 +806,8 @@ public class FarmManager : MonoBehaviour
         {
             if (farmingTutorial.tutorialBools[14] == true)//(farmingTutorial.shippedAfter == true)
             {
-                farmingTutorial.tutorialBools[16] = true;//farmingTutorial.spreadAfter = true;
-                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+                farmingTutorial.tutorialBools[18] = true;//farmingTutorial.spreadAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[18] = farmingTutorial.tutorialBools[18];
             }
         }
 	}

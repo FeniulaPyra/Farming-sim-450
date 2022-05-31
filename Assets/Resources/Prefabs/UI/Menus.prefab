@@ -6667,6 +6667,7 @@ MonoBehaviour:
   MouseScrollDeadzone: 0.1
   currentMouseScroll: 0
   cam: {fileID: 0}
+  save: {fileID: 0}
   state: 0
 --- !u!1 &4096102102031785842
 GameObject:

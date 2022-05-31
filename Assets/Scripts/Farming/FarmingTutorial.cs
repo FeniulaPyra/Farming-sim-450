@@ -41,6 +41,9 @@ public class FarmingTutorial : MonoBehaviour
     public bool shippedBefore;
     public bool shippedAfter;
 
+    public bool shoppedBefore;
+    public bool shoppedAfter;
+
     public bool spreadBefore;
     public bool spreadAfter;
 
@@ -122,6 +125,10 @@ public class FarmingTutorial : MonoBehaviour
                 tutorialBools.Add(eatingAfter);
                 tutorialBools.Add(shippedBefore);
                 tutorialBools.Add(shippedAfter);
+
+                tutorialBools.Add(shoppedBefore);
+                tutorialBools.Add(shoppedAfter);
+
                 tutorialBools.Add(spreadBefore);
                 tutorialBools.Add(spreadAfter);
                 tutorialBools.Add(hybridBefore);
@@ -293,8 +300,7 @@ public class FarmingTutorial : MonoBehaviour
             currentTutorial = myFlowchart.FindBlock("After Eating");
         }
 
-        //Shipping done
-        //Sleep again and then prepare to spread
+        //Sleep again and get paid
         //After Shipping Block 13, 14
         if (tutorialBools[13] == false && tutorialBools[14] == true)//(shippedBefore == false && shippedAfter == true)
         {
@@ -312,10 +318,29 @@ public class FarmingTutorial : MonoBehaviour
             currentTutorial = myFlowchart.FindBlock("After Shipping");
         }
 
+        //Shipping done
+        //New shop tutorial; buy mushroom and then prepare to spread
+        //After Shopping Block 15, 16
+        if (tutorialBools[15] == false && tutorialBools[16] == true && GameObject.Find("Menus").transform.Find("Shop").gameObject.activeInHierarchy == false)
+        {
+            tutorialBools[15] = true;//shippedBefore = true;
+            //self.convoID = self.conversationIDs[7];
+
+            objective.text = $"Current Objective: Buy a mushroom; Plant and water it with adjacent square tilled, then sleep for two days\nCurrent Progress: 7/9";
+
+            GlobalGameSaving.Instance.tutorialBools[15] = tutorialBools[15];
+            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+            //StartCoroutine(self.PlayDialogue(self.convoID));
+
+            myFlowchart.ExecuteBlock("After Shopping");
+            currentTutorial = myFlowchart.FindBlock("After Shopping");
+        }
+
         //Spread
         //Now hybridize
-        //After Spreading Block 15, 16
-        if (tutorialBools[15] == false && tutorialBools[16] == true)//(spreadBefore == false && spreadAfter == true)
+        //After Spreading Block 17, 18
+        if (tutorialBools[17] == false && tutorialBools[18] == true)//(spreadBefore == false && spreadAfter == true)
         {
             Instantiate(redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
             Instantiate(glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
@@ -325,7 +350,7 @@ public class FarmingTutorial : MonoBehaviour
 
             objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread\nCurrent Progress: 8/9";
 
-            GlobalGameSaving.Instance.tutorialBools[15] = tutorialBools[15];
+            GlobalGameSaving.Instance.tutorialBools[17] = tutorialBools[17];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             //StartCoroutine(self.PlayDialogue(self.convoID));
@@ -336,10 +361,10 @@ public class FarmingTutorial : MonoBehaviour
 
         //Hybridization
         //Saving and tutorial done
-        //After Hybridization Block 17, 18
-        if (tutorialBools[17] == false && tutorialBools[18] == true)//(hybridBefore == false && hybridAfter == true)
+        //After Hybridization Block 19, 20, 21
+        if (tutorialBools[19] == false && tutorialBools[20] == true)//(hybridBefore == false && hybridAfter == true)
         {
-            tutorialBools[17] = true;//hybridBefore = true;
+            tutorialBools[19] = true;//hybridBefore = true;
             //self.convoID = self.conversationIDs[9];
 
             objective.gameObject.SetActive(false);
@@ -349,12 +374,12 @@ public class FarmingTutorial : MonoBehaviour
             myFlowchart.ExecuteBlock("After Hybridization");
             currentTutorial = myFlowchart.FindBlock("After Hybridization");
 
-            GlobalGameSaving.Instance.tutorialBools[17] = tutorialBools[17];
             GlobalGameSaving.Instance.tutorialBools[19] = tutorialBools[19];
+            GlobalGameSaving.Instance.tutorialBools[21] = tutorialBools[21];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
             //19
-            tutorialBools[19] = true;//tutorialComplete = true;
+            tutorialBools[21] = true;//tutorialComplete = true;
         }
     }
 }

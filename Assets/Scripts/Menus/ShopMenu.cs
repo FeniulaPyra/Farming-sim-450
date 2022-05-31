@@ -17,6 +17,8 @@ public class ShopMenu : MonoBehaviour
 
     public TMP_Text goldDisplay;
 
+    public FarmingTutorial farmingTutorial;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,23 +38,68 @@ public class ShopMenu : MonoBehaviour
 	public void BuyRedShroom()
 	{
 		BuyItem(3);
-	}
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyYellowShroom()
 	{
 		BuyItem(4);
-	}
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyBlueShroom()
 	{
 		BuyItem(5);
-	}
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyWhiteShroom()
 	{
 		BuyItem(6);
-	}
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyBlackShroom()
 	{
 		BuyItem(7);
-	}
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyDog()
 	{
 		BuyItem(13);
