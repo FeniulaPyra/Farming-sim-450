@@ -175,7 +175,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[0] = true;//tutorialStarted = true;
             //self.convoID = self.conversationIDs[0];
 
-            objective.text = $"Current Objective: Till the field using the hoe\nCurrent Progress: 0/9";
+            objective.text = $"Current Objective: Till the field using the hoe\n\nCurrent Progress: 0/10";
 
             GlobalGameSaving.Instance.tutorialBools[0] = tutorialBools[0];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -193,7 +193,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[1] = true;//tilledBefore = true;
             //self.convoID = self.conversationIDs[1];
 
-            objective.text = $"Current Objective: Plant a Mushroom\nCurrent Progress: 1/9";
+            objective.text = $"Current Objective: Plant a Mushroom\n\nCurrent Progress: 1/10";
 
             GlobalGameSaving.Instance.tutorialBools[1] = tutorialBools[1];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -211,7 +211,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[3] = true;//plantedBefore = true;
             //self.convoID = self.conversationIDs[2];
 
-            objective.text = $"Current Objective: Water the- mushroom\nCurrent Progress: 2/9";
+            objective.text = $"Current Objective: Water the- mushroom\n\nCurrent Progress: 2/10";
 
             GlobalGameSaving.Instance.tutorialBools[3] = tutorialBools[3];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -229,7 +229,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[5] = true;//wateredBefore = true;
             //self.convoID = self.conversationIDs[3];
 
-            objective.text = $"Current Objective: Sleep so mushroom grows\nCurrent Progress: 3/9";
+            objective.text = $"Current Objective: Sleep so mushroom grows\n\nCurrent Progress: 3/10";
 
             GlobalGameSaving.Instance.tutorialBools[5] = tutorialBools[5];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -250,7 +250,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[7] = true;//sleptBefore = true;
             //self.convoID = self.conversationIDs[4];
 
-            objective.text = $"Current Objective: Harvest grown mushroom\nCurrent Progress: 4/9";
+            objective.text = $"Current Objective: Harvest grown mushroom\n\nCurrent Progress: 4/10";
 
             GlobalGameSaving.Instance.tutorialBools[7] = tutorialBools[7];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -269,7 +269,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[9] = true;//harvestedBefore = true;
             //self.convoID = self.conversationIDs[5];
 
-            objective.text = $"Current Objective: Eat Mushroom to recover stamina\nCurrent Progress: 5/9";
+            objective.text = $"Current Objective: Eat Mushroom to recover stamina\n\nCurrent Progress: 5/10";
 
             GlobalGameSaving.Instance.tutorialBools[9] = tutorialBools[9];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -287,7 +287,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[11] = true;//eatingBefore = true;
             //self.convoID = self.conversationIDs[6];
 
-            objective.text = $"Current Objective: Ship mushroom and go to sleep\nCurrent Progress: 6/9";
+            objective.text = $"Current Objective: Ship mushroom and go to sleep\n\nCurrent Progress: 6/10";
 
             GlobalGameSaving.Instance.tutorialBools[11] = tutorialBools[11];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -307,7 +307,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[13] = true;//shippedBefore = true;
             //self.convoID = self.conversationIDs[7];
 
-            objective.text = $"Current Objective: Plant and water mushroom, then sleep for two days\nCurrent Progress: 7/9";
+            objective.text = $"Current Objective: Buy a mushroom at the shop\n\nCurrent Progress: 7/10";
 
             GlobalGameSaving.Instance.tutorialBools[13] = tutorialBools[13];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -326,7 +326,7 @@ public class FarmingTutorial : MonoBehaviour
             tutorialBools[15] = true;//shippedBefore = true;
             //self.convoID = self.conversationIDs[7];
 
-            objective.text = $"Current Objective: Buy a mushroom; Plant and water it with adjacent square tilled, then sleep for two days\nCurrent Progress: 7/9";
+            objective.text = $"Current Objective: Buy a mushroom; Plant and water it with adjacent square tilled, then sleep for two days\n\nCurrent Progress: 8/10";
 
             GlobalGameSaving.Instance.tutorialBools[15] = tutorialBools[15];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;
@@ -345,10 +345,10 @@ public class FarmingTutorial : MonoBehaviour
             Instantiate(redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
             Instantiate(glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
 
-            tutorialBools[15] = true;//spreadBefore = true;
+            tutorialBools[17] = true;//spreadBefore = true;
             //self.convoID = self.conversationIDs[8];
 
-            objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread\nCurrent Progress: 8/9";
+            objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread\n\nCurrent Progress: 9/10";
 
             GlobalGameSaving.Instance.tutorialBools[17] = tutorialBools[17];
             GlobalGameSaving.Instance.tutorialObjective = objective.text;

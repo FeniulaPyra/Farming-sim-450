@@ -152,8 +152,6 @@ GameObject:
   - component: {fileID: 1384697966646649631}
   - component: {fileID: 8396299405600550731}
   - component: {fileID: 4773923043532425210}
-  - component: {fileID: 2539966712068750303}
-  - component: {fileID: 3395760838605425396}
   - component: {fileID: 7066911696382270304}
   - component: {fileID: 5167519805524037642}
   - component: {fileID: 2152365151806788723}
@@ -206,6 +204,7 @@ GameObject:
   - component: {fileID: 1351521008183474218}
   - component: {fileID: 1997596231077126178}
   - component: {fileID: 6706318778053180280}
+  - component: {fileID: 2884775184757455376}
   m_Layer: 0
   m_Name: TutorialFlowchart
   m_TagString: Untagged
@@ -252,9 +251,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1384697966646649631}
+  - {fileID: 2205781319932468017}
   selectedCommands:
-  - {fileID: 6706318778053180280}
+  - {fileID: 2884775184757455376}
   variables:
   - {fileID: 4887779580238392248}
   description: 
@@ -1923,8 +1922,8 @@ MonoBehaviour:
   - {fileID: 4373248347215493118}
   - {fileID: 8396299405600550731}
   - {fileID: 4773923043532425210}
-  - {fileID: 2539966712068750303}
-  - {fileID: 3395760838605425396}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 7066911696382270304}
   - {fileID: 6706318778053180280}
   - {fileID: 5167519805524037642}
@@ -1979,44 +1978,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &2539966712068750303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5355612449723218527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e4c082f762243f6943909a4272096d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 78
-  indentLevel: 0
-  images:
-  - {fileID: 0}
-  sprite: {fileID: 21300000, guid: d132a0333d1a020469e3810fa389121a, type: 3}
---- !u!114 &3395760838605425396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5355612449723218527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 79
-  indentLevel: 0
-  _targetGameObject:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 0}
-  activeState:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  targetGameObjectOLD: {fileID: 0}
 --- !u!114 &7066911696382270304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2367,6 +2328,7 @@ MonoBehaviour:
   - {fileID: 4817972530637008849}
   - {fileID: 2191424699688621328}
   - {fileID: 5718090751669231137}
+  - {fileID: 2884775184757455376}
   - {fileID: 87305498238641447}
   - {fileID: 3957396703721451154}
   - {fileID: 7531028183149446772}
@@ -3368,6 +3330,33 @@ MonoBehaviour:
   itemId: 143
   indentLevel: 0
   storyText: Press Escape to leave the shop when you're done.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &2884775184757455376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5355612449723218527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 144
+  indentLevel: 0
+  storyText: You can also save from the pause menu.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}

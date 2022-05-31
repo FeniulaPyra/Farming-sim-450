@@ -27,6 +27,8 @@ public class ShopMenu : MonoBehaviour
 		player = playerObj.GetComponent<PlayerInteraction>();
 
         goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+
+        netWorth = FindObjectOfType<CalculateFarmNetWorth>();
     }
 
     // Update is called once per frame
