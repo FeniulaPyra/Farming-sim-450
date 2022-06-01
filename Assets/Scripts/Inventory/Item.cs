@@ -21,6 +21,8 @@ public class Item : MonoBehaviour
 
 	public bool rare;
 
+	public string type;
+
 	public void Use(Tile i)
 	{
 

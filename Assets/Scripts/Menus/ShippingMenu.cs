@@ -24,8 +24,6 @@ public class ShippingMenu : TogglableMenu
 		ShippingBinSlots = new GameObject[inv.COLUMNS];
 		grabbedItem = ItemGrabber.GetComponent<InventoryItemGrabber>();
 
-		inv.AddItems(GameObject.Find("ItemManager").GetComponent<ItemManager>().GetItemByName("Shroom Shady"), 3);
-
 		for (int c = 0; c < inv.COLUMNS; c++)
 		{
 			GameObject slot = ShippingBinSlots[c] = Instantiate(InventorySlotPrefab);

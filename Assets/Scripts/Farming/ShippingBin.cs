@@ -22,10 +22,12 @@ public class ShippingBin : MonoBehaviour
 
     public CalculateFarmNetWorth netWorth;
 
+    [SerializeField]
+    TMP_Text totalDisplay;
+
 	private void Awake()
 	{
 		inventory = new Inventory(1, 9);
-		
 	}
 
 	// Start is called before the first frame update
@@ -36,6 +38,11 @@ public class ShippingBin : MonoBehaviour
 
         player = playerObject.GetComponent<PlayerInteraction>();
 
+        goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+
+        //totalDisplay = GameObject.Find("TotalDisplay").GetComponent<TMP_Text>();
+        totalDisplay = GameObject.Find("Menus").transform.Find("Shipping Menu").transform.Find("TotalDisplay").GetComponent<TMP_Text>();
+
         goldDisplay.text = $"{player.playerGold} G";
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
@@ -44,7 +51,31 @@ public class ShippingBin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTotal();
+    }
 
+    void UpdateTotal()
+    {
+        int toDisplay = 0;
+
+        for (int i = 0; i < inventory.ROWS; i++)
+        {
+            for (int j = 0; j < inventory.COLUMNS; j++)
+            {
+                Item item = inventory.GetSlotItem(i, j);
+				int amount = inventory.GetSlotAmount(i, j);
+
+                if (item != null && item.isSellable)
+                {
+                    toDisplay += item.sellValue * amount;
+                }
+            }
+        }
+
+        if (totalDisplay != null && totalDisplay.isActiveAndEnabled == true)
+        {
+            totalDisplay.text = $"{toDisplay} G";
+        }
     }
 
     public void PutItemInBin()
@@ -111,9 +142,13 @@ public class ShippingBin : MonoBehaviour
 
         goldDisplay.text = $"{player.playerGold} G";
 
-        if (player.playerGold > oldGold && farmingTutorial.eatingAfter == true)
+        if (farmingTutorial != null)
         {
-            farmingTutorial.shippedAfter = true;
+            if (player.playerGold > oldGold && farmingTutorial.tutorialBools[12] == true)//(player.playerGold > oldGold && farmingTutorial.eatingAfter == true)
+            {
+                farmingTutorial.tutorialBools[14] = true;//farmingTutorial.shippedAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[14] = farmingTutorial.tutorialBools[14];
+            }
         }
 
         if (true)

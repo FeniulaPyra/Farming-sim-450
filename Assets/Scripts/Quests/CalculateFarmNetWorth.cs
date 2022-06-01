@@ -13,6 +13,10 @@ public class CalculateFarmNetWorth : MonoBehaviour
         {
             return farmNetWorth;
         }
+        set
+        {
+            farmNetWorth = value;
+        }
     }
 
     // Start is called before the first frame update
@@ -30,5 +34,26 @@ public class CalculateFarmNetWorth : MonoBehaviour
     public void CalculateNetWorth(int value)
     {
         farmNetWorth += value;
+    }
+
+    public void SaveWorth(out int savedWorth)
+    {
+        savedWorth = farmNetWorth;
+    }
+
+    public void LoadWorth(int savedWorth)
+    {
+        farmNetWorth = savedWorth;
+    }
+}
+
+[System.Serializable]
+public class SaveWorth
+{
+    public int netWorth;
+
+    public SaveWorth(int worth)
+    {
+        netWorth = worth;
     }
 }

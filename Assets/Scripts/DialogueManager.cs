@@ -234,7 +234,7 @@ public class DialogueManager : MonoBehaviour
 
     //method to play out a conversation, using it's ID to find it
     //Is a coroutine so the for loop for dialogue doesn't immediately blaze through the conversation list
-    public IEnumerator PlayDialogue(string convoID)
+    /*public IEnumerator PlayDialogue(string convoID)
     {
         menu.OpenDialog();
 
@@ -337,7 +337,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         menu.CloseDialog();
-    }
+    }*/
 
     /*private void OnTriggerStay2D(Collider2D collision)
     {

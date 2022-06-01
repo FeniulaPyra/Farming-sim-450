@@ -24,6 +24,7 @@ public class Inventory
 	/// <param name="stackSize">The maximum number of an item each slot can store.</param>
 	public Inventory(int rows, int columns, int stackSize = 99)
 	{
+		playerInvManager = GameObject.Find("Player").GetComponent<PlayerInventoryManager>(); 
 		ROWS = rows;
 		COLUMNS = columns;
 		items = new ItemSlot[ROWS,COLUMNS];
@@ -249,7 +250,7 @@ public class Inventory
 	{
 		ItemSlot i = items[row, column];
 		if (amount < 0) amount *= -1;
-		if (i.item != null && i.amt <= amount)
+		if (i.item != null && i.amt >= amount)
 		{
 			items[row, column].amt -= amount;
 			if(i.amt <= 0)
@@ -258,7 +259,7 @@ public class Inventory
 			}
 			return true;
 		}
-		else if (i.amt > amount)
+		else if (i.amt < amount)
 		{
 			throw new Exception("Not enough items in that slot.");
 		}
@@ -337,13 +338,13 @@ public class Inventory
 
 		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
-			if (sinv[i] < 0) continue;
+            Debug.Log($"sinv[{i}]: {sinv[i]}");
+
+            if (sinv[i] < 0) continue;
 
 			int r = (int)Math.Floor((double)(j / COLUMNS));
 			int c = j % COLUMNS;
-
 			ItemSlot slot = new ItemSlot(playerInvManager.GetItemManager().gameItems[sinv[i]], sinv[i + 1]);
-
 			items[r, c] = slot;
 		}
 

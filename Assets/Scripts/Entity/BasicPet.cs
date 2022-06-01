@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicPet : BasicEntity  
 {
@@ -14,6 +15,9 @@ public class BasicPet : BasicEntity
     [SerializeField] public FarmManager manager;
 
 	private PlayerInventoryManager pim;
+    //Being set in start. Should be fine to not be saved
+    public PlayerInteraction owner;
+
 
     // Start is called before the first frame update
     protected override void Start()
@@ -21,6 +25,7 @@ public class BasicPet : BasicEntity
         base.Start();
 		pim = player.gameObject.GetComponent<PlayerInventoryManager>();
         manager = GameObject.Find("ManagerObject").GetComponent<FarmManager>();
+        owner = FindObjectOfType<PlayerInteraction>();
     }
 
     // Update is called once per frame
@@ -35,25 +40,53 @@ public class BasicPet : BasicEntity
         base.FixedUpdate();
     }
 
-    private void OnMouseEnter()
+    protected void OnMouseEnter()//private void OnMouseEnter()
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = pettingImage;
     }
 
-    private void OnMouseExit()
+    protected void OnMouseExit()//private void OnMouseExit()
     {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = normalImage;
     }
 
-    private void OnMouseOver()
+    protected void OnMouseOver()//private void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (!pim.inv.IsTooFull(petItem, 1))
             {
                 pim.inv.AddItems(petItem, 1);
                 Object.Destroy(this.gameObject);
+
+                owner.petCount -= 1;
+                owner.ableToPlacePet = false;
+                
             }
         }
+    }
+
+    public void SavePet(out SavePet pet)
+    {
+        pet = new SavePet(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, normalImage, pettingImage, petItem, manager, gameObject);
+    }
+}
+
+[System.Serializable]
+public class SavePet : SaveEntity
+{
+
+    public Sprite normal;
+    public Sprite petting;
+    public Item pet;
+    public FarmManager manager;
+
+    public SavePet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager, GameObject gameObject) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos, gameObject)
+    {
+        normal = n;
+        this.petting = petting;
+        this.pet = pet;
+        this.manager = manager;
     }
 }

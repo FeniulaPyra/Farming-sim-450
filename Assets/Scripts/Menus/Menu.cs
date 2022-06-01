@@ -59,6 +59,8 @@ public class Menu : MonoBehaviour
     //Player's bed
     Bed bed;
 
+    public GameObject save;
+
 	public enum MenuControls
 	{
 		OPEN_INVENTORY = KeyCode.E,
@@ -85,9 +87,20 @@ public class Menu : MonoBehaviour
     [SerializeField]
 	MenuState state = MenuState.NO_MENU;
 
+    public void SetState(MenuState value)
+    {
+        state = value;
+    }
+
 	// Start is called before the first frame update
 	void Start()
     {
+
+        PauseMenu = gameObject.transform.Find("Pause Menu").gameObject;
+        
+        //Sets the save function of the onclick in code, so it works just by being dragged into a scene
+        PauseMenu.transform.Find("Save").gameObject.GetComponent<Button>().onClick.AddListener(GlobalGameSaving.Instance.SaveGame);
+
 		//TODO have this be grabbed from the player once that is be do be done-ificated
 		pi = player.GetComponent<PlayerInteraction>();
 		inventoryMenu = InventoryMenuObject.GetComponent<InventoryMenu>();
@@ -100,8 +113,10 @@ public class Menu : MonoBehaviour
 
 		inventoryMenu.SetInventoryToDisplay(pim.inv);
 
+
 		//hides inventory menu at start.
 		InventoryMenuObject.SetActive(false);
+
 
         bed = FindObjectOfType<Bed>().GetComponent<Bed>();
     }
@@ -350,10 +365,6 @@ public class Menu : MonoBehaviour
 		if(state == MenuState.BED)
         {
 			state = MenuState.NO_MENU;
-            if (bed.MyFlowchart.isActiveAndEnabled == true)
-            {
-                bed.SetTextObjectsActive(false);
-            }
             pi.CanInteract = true;
         }
     }

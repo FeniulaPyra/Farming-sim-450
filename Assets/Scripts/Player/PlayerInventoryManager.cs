@@ -85,6 +85,22 @@ public class PlayerInventoryManager : MonoBehaviour
 				PreviousItem();
 			}
 		}
+
+		if (GlobalGameSaving.Instance != null)
+		{
+			if (GlobalGameSaving.Instance.loadingSave == true)
+			{
+				inv.SetSaveableInventory(GlobalGameSaving.Instance.inventory);
+			}
+			else if (ScenePersistence.Instance != null)
+			{
+				if (ScenePersistence.Instance.inventory.Count > 0)
+				{
+					inv.SetSaveableInventory(ScenePersistence.Instance.inventory);
+				}
+			}
+		}
+
 		UpdateHeldItem();
 	}
 	void NextHotbar()
@@ -113,6 +129,19 @@ public class PlayerInventoryManager : MonoBehaviour
 	{
 		heldItem = inv.GetSlotItem(Hotbar, HeldSlot);
 		heldAmount = inv.GetSlotAmount(Hotbar, HeldSlot);
+	}
+
+
+	public void SaveInventory(string what)
+	{
+		if (what == "persist")
+		{
+			ScenePersistence.Instance.inventory = inv.GetSaveableInventory();
+		}
+		else if (what == "save")
+		{
+			GlobalGameSaving.Instance.inventory = inv.GetSaveableInventory();
+		}
 	}
 
 	/// <summary>

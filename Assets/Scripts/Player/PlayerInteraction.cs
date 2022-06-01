@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -40,6 +41,10 @@ public class PlayerInteraction : MonoBehaviour
     private bool canInteract;
 
 	public bool isShown;
+    public bool ableToPlacePet;
+    public int oldPetCount;
+    public int petCount; //The number of pets the player currently has on the screen.
+    public const int PET_LIMIT = 3;
 
     public bool DisplayIndicator { 
         get => displayIndicator; 
@@ -55,6 +60,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             canInteract = value;
         }
+    }
+
+    public bool GetCanInteract()
+    {
+        return canInteract;
     }
 
     //Stamina, which serves the same purpose as time
@@ -131,6 +141,42 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
+
+        if (farmingTutorial == null)
+        {
+            StartPlayer();
+        }
+
+        if (GlobalGameSaving.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == true)
+            {
+                playerGold = GlobalGameSaving.Instance.gold;
+                SetStamina(GlobalGameSaving.Instance.stamina);
+            }
+            else
+            {
+                if (ScenePersistence.Instance != null)
+                {
+                    playerGold = ScenePersistence.Instance.gold;
+                    SetStamina(ScenePersistence.Instance.stamina);
+                }
+            }
+        }
+    }
+
+    public void SavePlayer(string what)
+    {
+        if (what == "persist")
+        {
+            ScenePersistence.Instance.stamina = playerStamina;
+            ScenePersistence.Instance.gold = playerGold;
+        }
+        else if (what == "save")
+        {
+            GlobalGameSaving.Instance.stamina = playerStamina;
+            GlobalGameSaving.Instance.gold = playerGold;
+        }
     }
 
     private void Update()
@@ -171,9 +217,13 @@ public class PlayerInteraction : MonoBehaviour
                 SetStamina(playerStamina + heldItem.staminaToRestore);
                 playerInventoryManager.RemoveHeldItems(1);
 
-                if (farmingTutorial.harvestedAfter == true)
+                if (farmingTutorial != null)
                 {
-                    farmingTutorial.eatingAfter = true;
+                    if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
+                    {
+                        farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[12] = farmingTutorial.tutorialBools[12];
+                    }
                 }
             }
 
@@ -182,7 +232,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //Stop all player movement when in dialogue
-        if (isTalking == true)
+        /*if (isTalking == true)
         {
             CanInteract = false;
             playerMovement.Frozen = true;
@@ -193,7 +243,7 @@ public class PlayerInteraction : MonoBehaviour
             CanInteract = true;
             playerMovement.Frozen = false;
             canInteract = true;
-        }
+        }*/
 
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
         if (playerStamina > 100 && playerStamina <= 200)
@@ -216,6 +266,18 @@ public class PlayerInteraction : MonoBehaviour
 
         staminaDisplay.text = $"{playerStamina}";
 
+        petCount = FindObjectsOfType<BasicPet>().ToList().Count;
+
+        if (petCount <= PET_LIMIT - 1)
+        {
+            ableToPlacePet = true;
+            //petCount = oldPetCount;
+        }
+        else
+        {
+            ableToPlacePet = false;
+        }
+
         //StartCoroutine(InteractionChecker());
         InteractionChecker();
     }
@@ -227,12 +289,16 @@ public class PlayerInteraction : MonoBehaviour
     {
         isTalking = true;
         CanInteract = false;
+        playerMovement.Frozen = true;
+        canInteract = false;
     }
 
     public void StartPlayer()
     {
         isTalking = false;
         CanInteract = true;
+        playerMovement.Frozen = false;
+        canInteract = true;
     }
 
     private void CheckInteraction()
@@ -260,7 +326,7 @@ public class PlayerInteraction : MonoBehaviour
         }*/
 
         // Get Whatever input
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0) && itemName != "" && isTalking == false)//if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
         {
             heldItem = playerInventoryManager.GetHeldItem();
             heldItemAmount = playerInventoryManager.GetHeldItemAmount();
@@ -313,20 +379,24 @@ public class PlayerInteraction : MonoBehaviour
                 ReduceStamina(heldItem.staminaUsed);
             }
 
-            if (itemName.Contains("Pet") && !itemName.Contains("Petrified"))
+            if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && ableToPlacePet == true)
             {
                 Vector3 position = this.gameObject.transform.position;
                 position.x -= 1.5f;
                 heldItem.itemObj.transform.localPosition = position;
-                Instantiate(heldItem.itemObj);
+
+                Vector3 pos = new Vector3(focusTilePosition.x, focusTilePosition.y, focusTilePosition.z);
+                Instantiate(heldItem.itemObj, pos, Quaternion.identity);
                 playerInventoryManager.RemoveHeldItems(1);
-            }
+
+                petCount++;
+			}
 
 
-            //staminaDisplay.text = $"Stamina: {playerStamina}";
-            //timeRadial.fillAmount = (float)playerStamina/100;
+			//staminaDisplay.text = $"Stamina: {playerStamina}";
+			//timeRadial.fillAmount = (float)playerStamina/100;
 
-            farmManager.TileInteract(focusTilePosition, itemName);
+			farmManager.TileInteract(focusTilePosition, itemName);
         }
 
     }
@@ -364,7 +434,11 @@ public class PlayerInteraction : MonoBehaviour
 
 
                 //1 seems like a fine number
+/*<<<<<<< HEAD
                 if (distance <= 1.0f)// && objects[i].enabled == true)
+=======*/
+                if (distance <= 0.5f && objects[i].enabled == true)
+//>>>>>>> main
                 {
                     //switch on name to see what it is
                     switch (objects[i].name)

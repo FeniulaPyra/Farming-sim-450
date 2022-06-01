@@ -57,10 +57,14 @@ public class FarmManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Can be used to figure out where the (0, 0) of the tilemap is, which could be useful
-        Debug.Log($"The origin is: {farmField.origin}");
-        //The bottom left point of a tile is its actual coordinates
-        Debug.Log($"I am the tile: {farmField.GetTile(new Vector3Int(-11, 3, 0))}");
+
+        if (farmField != null)
+        {
+            //Can be used to figure out where the (0, 0) of the tilemap is, which could be useful
+            Debug.Log($"The origin is: {farmField.origin}");
+            //The bottom left point of a tile is its actual coordinates
+            Debug.Log($"I am the tile: {farmField.GetTile(new Vector3Int(-11, 3, 0))}");
+        }
 
         //Making a random set of tiles
         for (int i = -5; i <= 5; i++)
@@ -70,24 +74,35 @@ public class FarmManager : MonoBehaviour
                 Vector3Int cropPos = new Vector3Int(i, j, 0);
                 Tile testTile = Instantiate(tilePrefab, cropPos, Quaternion.identity, transform);
 
-                mushroomsAndTiles.Add(cropPos, testTile);
+                if (mushroomsAndTiles.ContainsKey(cropPos) == false)
+                {
+                    mushroomsAndTiles.Add(cropPos, testTile);
+                }
 				Debug.Log("START TILE + " + cropPos);
 				visitedTiles.Add(cropPos, false);
                 //farmField.SetTile(cropPos, testTile.tileSprite);
                 testTile.tileSprite = testTile.sprites[0];
-                tillableGround.SetTile(cropPos, testTile.tileSprite);
+                if (tillableGround != null)
+                {
+                    tillableGround.SetTile(cropPos, testTile.tileSprite);
+                }
             }
         }
 
-		leftBound = farmField.cellBounds.x;
-		bottomBound = farmField.cellBounds.y;
+        if (farmField != null)
+        {
+            leftBound = farmField.cellBounds.x;
+            bottomBound = farmField.cellBounds.y;
 
-		rightBound = leftBound + farmField.cellBounds.size.x;
-		topBound = farmField.cellBounds.size.y;
+            rightBound = leftBound + farmField.cellBounds.size.x;
+            topBound = farmField.cellBounds.size.y;
+        }
 
 		farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
+        
     }
+
 
 	private void ResetVisited()
 	{
@@ -110,7 +125,7 @@ public class FarmManager : MonoBehaviour
 		List<Vector3Int> deadPlants = new List<Vector3Int>();
 		foreach (KeyValuePair<Vector3Int, Tile> shroom in mushroomsAndTiles)
 		{
-			if (shroom.Value == null)
+			if (shroom.Value == null && farmField != null)
             {
 				farmField.SetTile(shroom.Key, null);
             }
@@ -157,11 +172,18 @@ public class FarmManager : MonoBehaviour
             mushroomsAndTiles[tile].tileSprite = mushroomsAndTiles[tile].sprites[1];
             Debug.Log($"Hoe'd Ground; index is now {tilePrefab.sprites.IndexOf(tilePrefab.tileSprite)}");
             //tillableGround.SetTile(tile, tilePrefab.tileSprite);
-            tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
-            //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
-            if (farmingTutorial.tutorialStarted == true)
+            if (tillableGround != null)
             {
-                farmingTutorial.tilledAfter = true;
+                tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
+            }
+            //Debug.Log($"Is the tile at {tile} tilled? : {mushroomsAndTiles[tile].isTilled}");
+            if (farmingTutorial != null)
+            {
+                if (farmingTutorial.tutorialBools[0] == true)//(farmingTutorial.tutorialStarted == true)
+                {
+                    farmingTutorial.tutorialBools[2] = true;//farmingTutorial.tilledAfter = true;
+                    GlobalGameSaving.Instance.tutorialBools[2] = farmingTutorial.tutorialBools[2];
+                }
             }
         }
         //planting
@@ -194,7 +216,10 @@ public class FarmManager : MonoBehaviour
                 GameObject newMushroom = Instantiate(mushroomPrefab, tile, Quaternion.identity, transform);
                 mushroomsAndTiles.Add(tile, newMushroom.GetComponent<Tile>());
 
-                farmField.SetTile(tile, newMushroom.GetComponent<Tile>().tileSprite);
+                if (farmField != null)
+                {
+                    farmField.SetTile(tile, newMushroom.GetComponent<Tile>().tileSprite);
+                }
 
                 //Returned nothing. Issue with tile
                 Debug.Log($"Planting Debug 3: {newMushroom.GetComponent<Mushrooms>().ID}");
@@ -203,9 +228,13 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isMoist = tempMoist;
                 Debug.Log($"You just planted a {mushroomPrefab.GetComponent<Mushrooms>().ID}");
 
-                if (farmingTutorial.tilledAfter == true)
+                if (farmingTutorial != null)
                 {
-                    farmingTutorial.plantedAfter = true;
+                    if (farmingTutorial.tutorialBools[2] == true)//(farmingTutorial.tilledAfter == true)
+                    {
+                        farmingTutorial.tutorialBools[4] = true;//farmingTutorial.plantedAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[4] = farmingTutorial.tutorialBools[4];
+                    }
                 }
             }
             else
@@ -221,11 +250,18 @@ public class FarmManager : MonoBehaviour
                 //Doesn't care if the plant has already been watered; just cares that there's a plant
                 mushroomsAndTiles[tile].isMoist = true;
                 Debug.Log($"Is the tile at {tile} watered? : {mushroomsAndTiles[tile].isMoist}");
-                tillableGround.SetTile(tile, tilePrefab.sprites[2]);
-
-                if (farmingTutorial.plantedAfter == true)
+                if (tillableGround != null)
                 {
-                    farmingTutorial.wateredAfter = true;
+                    tillableGround.SetTile(tile, tilePrefab.sprites[2]);
+                }
+
+                if (farmingTutorial != null)
+                {
+                    if (farmingTutorial.tutorialBools[4] == true)//(farmingTutorial.plantedAfter == true)
+                    {
+                        farmingTutorial.tutorialBools[6] = true;//farmingTutorial.wateredAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[6] = farmingTutorial.tutorialBools[6];
+                    }
                 }
             }
             else
@@ -236,7 +272,10 @@ public class FarmManager : MonoBehaviour
                 //tilePrefab.tileSprite = tilePrefab.sprites[2];
                 mushroomsAndTiles[tile].tileSprite = mushroomsAndTiles[tile].sprites[2];
                 //tillableGround.SetTile(tile, tilePrefab.tileSprite);
-                tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
+                if (tillableGround != null)
+                {
+                    tillableGround.SetTile(tile, mushroomsAndTiles[tile].tileSprite);
+                }
             }
         }
         //Harvesting
@@ -252,8 +291,14 @@ public class FarmManager : MonoBehaviour
 			//mushroomsAndTiles.Remove(tile);
 			//resets the tile;
 			mushroomsAndTiles[tile] = Instantiate(tilePrefab, tile, Quaternion.identity, transform);
-			farmField.SetTile(tile, null);
-            tillableGround.SetTile(tile, tilePrefab.sprites[0]);
+            if (farmField != null)
+            {
+                farmField.SetTile(tile, null);
+            }
+            if (tillableGround != null)
+            {
+                tillableGround.SetTile(tile, tilePrefab.sprites[0]);
+            }
 
 
             if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
@@ -284,9 +329,13 @@ public class FarmManager : MonoBehaviour
                 mushroomsAndTiles[tile].isTilled = false;
             }
 
-            if (farmingTutorial.sleptAfter == true)
+            if (farmingTutorial != null)
             {
-                farmingTutorial.harvestedAfter = true;
+                if (farmingTutorial.tutorialBools[8] == true)//(farmingTutorial.sleptAfter == true)
+                {
+                    farmingTutorial.tutorialBools[10] = true;//farmingTutorial.harvestedAfter = true;
+                    GlobalGameSaving.Instance.tutorialBools[10] = farmingTutorial.tutorialBools[10];
+                }
             }
         }
     }
@@ -413,15 +462,22 @@ public class FarmManager : MonoBehaviour
 		Destroy(mushroomsAndTiles[spreadTo].gameObject);
 		//creates new mushroom tile
 		mushroomsAndTiles[spreadTo] = Instantiate(mushroomPrefab, spreadTo, Quaternion.identity).GetComponent<Tile>();
-		farmField.SetTile(spreadTo, mushroomsAndTiles[spreadTo].tileSprite);
+        if (farmField != null)
+        {
+            farmField.SetTile(spreadTo, mushroomsAndTiles[spreadTo].tileSprite);
+        }
 		mushroomsAndTiles[spreadTo].transform.parent = this.transform;
 		mushroomsAndTiles[spreadTo].hasPlant = true;
 		mushroomsAndTiles[spreadTo].isTilled = true;
 
-		if (farmingTutorial.spreadAfter == true)
-		{
-			farmingTutorial.hybridAfter = true;
-		}
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[18] == true)//(farmingTutorial.spreadAfter == true)
+            {
+                farmingTutorial.tutorialBools[20] = true;//farmingTutorial.hybridAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[20] = farmingTutorial.tutorialBools[20];
+            }
+        }
 	}
 	private void Spread(Mushrooms thisShroom, Vector3Int spreadTo)
 	{
@@ -430,14 +486,21 @@ public class FarmManager : MonoBehaviour
 
 		Destroy(mushroomsAndTiles[spreadTo].gameObject);
 		mushroomsAndTiles[spreadTo] = Instantiate(mushroomPrefab, spreadTo, Quaternion.identity).GetComponent<Tile>();
-		farmField.SetTile(spreadTo, mushroomsAndTiles[spreadTo].tileSprite);
+        if (farmField != null)
+        {
+            farmField.SetTile(spreadTo, mushroomsAndTiles[spreadTo].tileSprite);
+        }
 		mushroomsAndTiles[spreadTo].transform.parent = this.transform;
 		mushroomsAndTiles[spreadTo].hasPlant = true;
 		mushroomsAndTiles[spreadTo].isTilled = true;
 
-		if (farmingTutorial.shippedAfter == true)
-		{
-			farmingTutorial.spreadAfter = true;
-		}
+        if (farmingTutorial)
+        {
+            if (farmingTutorial.tutorialBools[14] == true)//(farmingTutorial.shippedAfter == true)
+            {
+                farmingTutorial.tutorialBools[18] = true;//farmingTutorial.spreadAfter = true;
+                GlobalGameSaving.Instance.tutorialBools[18] = farmingTutorial.tutorialBools[18];
+            }
+        }
 	}
 }

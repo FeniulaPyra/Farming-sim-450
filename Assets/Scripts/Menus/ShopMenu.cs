@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShopMenu : MonoBehaviour
 {
@@ -9,18 +10,30 @@ public class ShopMenu : MonoBehaviour
 	public GameObject menuObj;
 	public GameObject playerObj;
     public CalculateFarmNetWorth netWorth;
+	public GameObject ItemManagerObj;
+	public ItemManager itemManager;
 
-	List<Item> items;
+	//List<Item> items;
 	Inventory inv;
 	PlayerInteraction player;
+
+    public TMP_Text goldDisplay;
+
+    public FarmingTutorial farmingTutorial;
 
     // Start is called before the first frame update
     void Start()
     {
-		inv = player.gameObject.GetComponent<PlayerInventoryManager>().inv;//FarmManager.GetComponent<FarmManager>().playerInventory;
-		items = playerObj.GetComponent<PlayerInventoryManager>().GetItemManager().gameItems;//menuObj.GetComponent<Menu>().gameItems;
+
+		inv = playerObj.GetComponent<PlayerInventoryManager>().inv;//FarmManager.GetComponent<FarmManager>().playerInventory;
+		//items = playerObj.GetComponent<PlayerInventoryManager>().GetItemManager().gameItems;//menuObj.GetComponent<Menu>().gameItems;
 		player = playerObj.GetComponent<PlayerInteraction>();
-	}
+		itemManager = ItemManagerObj.GetComponent<ItemManager>();
+
+        goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+
+        netWorth = FindObjectOfType<CalculateFarmNetWorth>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,66 +43,115 @@ public class ShopMenu : MonoBehaviour
 
 	public void BuyRedShroom()
 	{
-		BuyItem(3);
-	}
+		BuyItem("Red Shroom");
+
+
+    }
 	public void BuyYellowShroom()
 	{
-		BuyItem(4);
-	}
+		BuyItem("Yellow Shroom");
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyBlueShroom()
 	{
-		BuyItem(5);
-	}
+		BuyItem("Glowy Shroom");
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyWhiteShroom()
 	{
-		BuyItem(6);
-	}
+		BuyItem("White shroom");
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyBlackShroom()
 	{
-		BuyItem(7);
-	}
+		BuyItem("shroom shady");
+
+        if (farmingTutorial != null)
+        {
+            if (farmingTutorial.tutorialBools[16] == false)
+            {
+                farmingTutorial.tutorialBools[16] = true;
+                GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+            }
+        }
+    }
 	public void BuyDog()
 	{
-		BuyItem(13);
+		BuyItem("pet dog");
 	}
 	public void BuyCat()
 	{
-		BuyItem(14);
+		BuyItem("pet cat");
 	}
 	public void BuyFrog()
 	{
-		BuyItem(15);
+		BuyItem("pet frog");
 	}
 	public void BuyDuck()
 	{
-		BuyItem(16);
+		BuyItem("pet duck");
 	}
 	public void BuyCow()
 	{
-		BuyItem(17);
+		BuyItem("pet cow");
 	}
 	public void BuyChicken()
 	{
-		BuyItem(18);
+		BuyItem("pet chicken");
 	}
 	public void BuyPig()
 	{
-		BuyItem(19);
+		BuyItem("pet pig");
 	}
 	public void BuySheep()
 	{
-		BuyItem(20);
+		BuyItem("pet sheep");
 	}
 
-	private void BuyItem(int itemID)
+	private void BuyItem(string itemName)//int itemID)
 	{
-		Item shroom = items[itemID];
+		Item shroom = itemManager.GetItemByName(itemName);//items[itemID];
 		float cost = shroom.sellValue * 1.5f;
 
 		if (player.playerGold < cost) return;
 
+		if (farmingTutorial != null)
+		{
+			if (farmingTutorial.tutorialBools[16] == false && itemName.ToLower().Contains("shroom"))
+			{
+				farmingTutorial.tutorialBools[16] = true;
+				GlobalGameSaving.Instance.tutorialBools[16] = farmingTutorial.tutorialBools[16];
+			}
+		}
+
 		inv.AddItems(shroom, 1);
 		player.playerGold -= (int)Mathf.Floor(cost);
+
+        goldDisplay.text = $"{player.playerGold} G";
 
         //reduce farm's net worth by half of item worth
         netWorth.CalculateNetWorth(-((int)Mathf.Floor(cost / 2)));
