@@ -47,10 +47,9 @@ public class BasicPet : BasicEntity
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ItemStack items = new ItemStack(petItem, 1);
-            if (!manager.playerInventory.IsTooFull(items))
+            if (!manager.playerInventory.IsTooFull(petItem, 1))
             {
-                manager.playerInventory.AddItems(items);
+                manager.playerInventory.AddItems(petItem, 1);
                 Object.Destroy(this.gameObject);
             }
         }

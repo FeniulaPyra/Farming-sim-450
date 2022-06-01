@@ -18,7 +18,7 @@ public class ShopMenu : MonoBehaviour
     void Start()
     {
 		inv = FarmManager.GetComponent<FarmManager>().playerInventory;
-		items = menuObj.GetComponent<Menu>().gameItems;
+		items = playerObj.GetComponent<PlayerInventoryManager>().GetItemManager().gameItems;//menuObj.GetComponent<Menu>().gameItems;
 		player = playerObj.GetComponent<PlayerInteraction>();
 	}
 
@@ -88,7 +88,7 @@ public class ShopMenu : MonoBehaviour
 
 		if (player.playerGold < cost) return;
 
-		inv.AddItems(new ItemStack(shroom, 1));
+		inv.AddItems(shroom, 1);
 		player.playerGold -= (int)Mathf.Floor(cost);
 
         //reduce farm's net worth by half of item worth

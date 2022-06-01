@@ -39,6 +39,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private bool canInteract;
 
+	public bool isShown;
+
     public bool DisplayIndicator { 
         get => displayIndicator; 
         set {
@@ -74,6 +76,9 @@ public class PlayerInteraction : MonoBehaviour
 
     public int playerGold;
 
+	public GameObject player;
+	public PlayerInventoryManager playerInventoryManager;
+
     Inventory playerInventory;
 
     //List of interactable objects
@@ -102,6 +107,9 @@ public class PlayerInteraction : MonoBehaviour
 
         timeRadial2.fillAmount = 0;
         timeRadial3.fillAmount = 0;
+
+		playerInventoryManager = player.GetComponent<PlayerInventoryManager>();
+		playerInventory = playerInventoryManager.inv;
 
         playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
@@ -152,14 +160,16 @@ public class PlayerInteraction : MonoBehaviour
             interactInRange = false;
         }
 
-        if (canInteract && playerInventory.isShown == false && playerInventory.HeldItem != null)// && isTalking == false)
+		Item heldItem = playerInventoryManager.GetHeldItem();
+		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
+        if (canInteract && playerInventory.isShown == false && heldItem != null)// && isTalking == false)
         {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
-            if (playerInventory.HeldItem.Item.isEdible == true && Input.GetKeyDown(KeyCode.F))
+            if (heldItem.isEdible == true && Input.GetKeyDown(KeyCode.F))
             {
 
-                SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-                playerInventory.RemoveHeldItems(1);
+                SetStamina(playerStamina + heldItem.staminaToRestore);
+                playerInventoryManager.RemoveHeldItems(1);
 
                 if (farmingTutorial.harvestedAfter == true)
                 {
@@ -231,13 +241,15 @@ public class PlayerInteraction : MonoBehaviour
         
         Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
 
+		Item heldItem = playerInventoryManager.GetHeldItem();
+		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
         //if (playerInventory.HeldItem != null)
-		itemName = playerInventory.HeldItem.Item.name;
+		itemName = heldItem.name;
 
         //gets rid of the item if the stack is empty
-        if (playerInventory.HeldItem.Amount <= 0)
+        if (heldItemAmount <= 0)
         {
-            playerInventory.DeleteHeldItemStack();
+			playerInventoryManager.RemoveHeldItems(heldItemAmount);//DeleteHeldItemStack();
         }
         /*if (playerInventory.HeldItem.Item != null)
         {
@@ -250,16 +262,17 @@ public class PlayerInteraction : MonoBehaviour
         // Get Whatever input
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
         {
-            Item heldItem = playerInventory.HeldItem.Item;
+            heldItem = playerInventoryManager.GetHeldItem();
+            heldItemAmount = playerInventoryManager.GetHeldItemAmount();
 
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
-                if (playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+                if (heldItemAmount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                 {
                     Debug.Log("Plant One");
 					//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
 					//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-					playerInventory.RemoveHeldItems(1);
+					playerInventoryManager.RemoveHeldItems(1);
                 }
                 /*else if (playerInventory.HeldItem.Item.isEdible == true)
                 {
@@ -296,7 +309,7 @@ public class PlayerInteraction : MonoBehaviour
             }*/
             else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
             {
-                ReduceStamina(playerInventory.HeldItem.Item.staminaUsed);
+                ReduceStamina(heldItem.staminaUsed);
             }
 
             if (itemName.Contains("Pet") && !itemName.Contains("Petrified"))
@@ -305,7 +318,7 @@ public class PlayerInteraction : MonoBehaviour
                 position.x -= 1.5f;
                 heldItem.itemObj.transform.localPosition = position;
                 Instantiate(heldItem.itemObj);
-                playerInventory.RemoveHeldItems(1);
+                playerInventoryManager.RemoveHeldItems(1);
             }
 
 
@@ -347,11 +360,13 @@ public class PlayerInteraction : MonoBehaviour
                 Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
                 //Sees how close the player is to them
                 float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
+				Debug.Log("LEP2738 NAME" + objects[i].name + distance);
                 if (objects[i].name == "Shop")
                     Debug.Log("SHOPDIST: " + distance);
                 //1 seems like a fine number
-                if (distance <= 1.0f && objects[i].enabled == true)
+                if (distance <= 1.0f)// && objects[i].enabled == true)
                 {
+							Debug.Log("LEP2738 close");
                     Debug.Log("CLOSE ENOUGH TO INTERACT WITH: " + objects[i].name);
                     //switch on name to see what it is
                     switch (objects[i].name)
@@ -363,6 +378,7 @@ public class PlayerInteraction : MonoBehaviour
                             objects[i].gameObject.GetComponent<NPCManager>().MyFlowchart.ExecuteBlock("Start");
                             break;
                         case "shipping bin":
+							Debug.Log("LEP2738 SHIPPING BIN TIME");
                             menu.OpenShippingBin();
                             //objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
                             break;

@@ -7,7 +7,9 @@ using TMPro;
 public class ShippingBin : MonoBehaviour
 {
     public Collider2D playerCollider;
-    FarmManager farmManager;
+	public GameObject playerObject;
+	//FarmManager farmManager;
+	PlayerInventoryManager playerInvManager;
     Inventory playerInventory;
 	public Inventory inventory;
     PlayerInteraction player;
@@ -29,11 +31,10 @@ public class ShippingBin : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		playerInvManager = playerObject.GetComponent<PlayerInventoryManager>();
+		playerInventory = playerInvManager.inv;
 
-        farmManager = FindObjectOfType<FarmManager>();
-        playerInventory = farmManager.playerInventory;
-
-        player = FindObjectOfType<PlayerInteraction>();
+        player = playerObject.GetComponent<PlayerInteraction>();
 
         goldDisplay.text = $"{player.playerGold} G";
 
@@ -46,25 +47,21 @@ public class ShippingBin : MonoBehaviour
 
     }
 
-    /*private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision == playerCollider && Input.GetKeyDown(KeyCode.Space) && player.isTalking == false)
-        {
-            PutItemInBin();
-        }
-    }*/
-
     public void PutItemInBin()
     {
-        //Removes currently held item from inventory and adds it to list
-        if (playerInventory.HeldItem != null)
-        {
-            if (playerInventory.HeldItem.Item.isSellable == true)
-            {
-                itemsToSell.Add(playerInventory.HeldItem.Item);
+		Item heldItem = playerInvManager.GetHeldItem();
+		int heldAmount = playerInvManager.GetHeldItemAmount();
 
-                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+		//Removes currently held item from inventory and adds it to list
+		if (heldItem != null && heldAmount > 0)
+        {
+            if (heldItem.isSellable == true)
+            {
+                itemsToSell.Add(heldItem);
+
+				//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+				//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+				playerInventory.RemoveItems(heldItem, 1);
             }
         }
     }
@@ -77,19 +74,20 @@ public class ShippingBin : MonoBehaviour
         {
             for (int j = 0; j < inventory.COLUMNS; j++)
             {
-                ItemStack itemToSell = inventory.GetSlot(i, j);
+				Item itemToSell = inventory.GetSlotItem(i, j);
+				int amountToSell = inventory.GetSlotAmount(i, j);
 
-                if (itemToSell != null && itemToSell.Item.isSellable)
+                if (itemToSell != null && itemToSell.isSellable)
                 {
-                    player.playerGold += itemToSell.Item.sellValue * itemToSell.Amount;
+                    player.playerGold += itemToSell.sellValue * amountToSell;
 
-                    if (itemToSell.Item.rare == true)
+                    if (itemToSell.rare == true)
                     {
-                        netWorth.CalculateNetWorth(50 * itemToSell.Amount);
+                        netWorth.CalculateNetWorth(50 * amountToSell);
                     }
                     else
                     {
-                        netWorth.CalculateNetWorth(25 * itemToSell.Amount);
+                        netWorth.CalculateNetWorth(25 * amountToSell);
                     }
 
                     inventory.DeleteSlot(i, j);

@@ -265,7 +265,7 @@ public class DialogueManager : MonoBehaviour
 
         textBoxImage.gameObject.SetActive(true);
 
-        menu.HotbarGameobject.SetActive(false);
+        menu.HotbarUIObject.SetActive(false);
 
         for (int i = 0; i < convoToPlay.Count; i++)
         {
@@ -315,7 +315,7 @@ public class DialogueManager : MonoBehaviour
         playerInteraction.isTalking = false;
         playerInteraction.CanInteract = true;
 
-        menu.HotbarGameobject.SetActive(true);
+        menu.HotbarUIObject.SetActive(true);
 
         if (quests.ContainsKey(convoID))
         {

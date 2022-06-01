@@ -5,91 +5,36 @@ using UnityEngine;
 
 public class Inventory
 {
-	public /*static*/ int STACK_SIZE = 99;
+	public int STACK_SIZE = 99;
 	public int ROWS; //4
 	public int COLUMNS; //9
 
-	public int hotbarRowNumber;
-	public int slotHeld;
-
 	public GameObject player;
+	public PlayerInventoryManager playerInvManager;
+
+	private ItemSlot[,] items;
 
 	public bool isShown;
 
-	private ItemStack[,] items;
-
-	public ItemStack selectedStack;
-
-	public ItemStack SelectedStack
-	{
-		get{return selectedStack;}
-	}
-
-	private Dictionary<string, Item> itemDict;
-
 	/// <summary>
-	/// The itemstacks in the currently selected hotbar row
+	/// Creates a new inventory object, with a given number of rows and columns.
 	/// </summary>
-	public ItemStack[] SelectedHotbar
-	{
-		get
-		{
-			ItemStack[] row = new ItemStack[COLUMNS];
-			for (int i = 0; i < COLUMNS; i++)
-			{
-				row[i] = items[hotbarRowNumber, i];
-			}
-
-			return row;
-		}
-	}
-	/// <summary>
-	/// The Currently held item
-	/// </summary>
-	public ItemStack HeldItem
-	{
-		get
-		{
-			return SelectedHotbar[slotHeld];
-		}
-	}
-
-	public Inventory(int rows, int columns)
+	/// <param name="rows">The number of rows in the inventory</param>
+	/// <param name="columns">The number of columns in the inventory</param>
+	/// <param name="stackSize">The maximum number of an item each slot can store.</param>
+	public Inventory(int rows, int columns, int stackSize = 99)
 	{
 		ROWS = rows;
 		COLUMNS = columns;
-		items = new ItemStack[ROWS,COLUMNS];
-		selectedStack = null;
-		selectHotbar(0);
-		HoldItem(0);
-	}
-
-	/// <summary>
-	/// Picks up and selects the given Itemstack. To be used with SelectSlot.
-	/// </summary>
-	/// <param name="stack">The stack to select</param>
-	public void SelectStack(ItemStack stack)
-	{
-		selectedStack = stack;
-	}
-
-	/// <summary>
-	/// Selects the slot at the given row/column coordinates
-	/// </summary>
-	/// <param name="row">the row of the selected slot</param>
-	/// <param name="column">the column of the selected slot</param>
-	public void SelectSlot(int row, int column)
-	{
-		if (selectedStack != null)
+		items = new ItemSlot[ROWS,COLUMNS];
+		for(int r = 0; r < ROWS; r++) 
 		{
-			SlotSelected(row, column);
+			for(int c = 0; c < COLUMNS; c++)
+			{
+				items[r,c] = new ItemSlot(null, 0);
+			}
 		}
-		else
-		{
-			selectedStack = items[row, column];
-			items[row, column] = null;
-
-		}
+		STACK_SIZE = stackSize;
 	}
 
 	/// <summary>
@@ -98,43 +43,13 @@ public class Inventory
 	/// <param name="row">the row of the slot</param>
 	/// <param name="column">the column of the slot</param>
 	/// <returns>The ItemStack in the given slot</returns>
-	public ItemStack GetSlot(int row, int column)
+	public Item GetSlotItem(int row, int column)
 	{
-		return items[row, column];
+		return items[row, column].item;
 	}
-
-	/// <summary>
-	/// Adds the selected itemstack to the specified inventory slot.
-	/// </summary>
-	/// <param name="row">The row position of the selected slot.</param>
-	/// <param name="column">The column position of the selected slot.</param>
-	public void SlotSelected(int row, int column)
+	public int GetSlotAmount(int row, int column)
 	{
-		//ignores if user has not selected a stack yet.
-		if (selectedStack == null) return;
-
-		//if the slot is empty, 
-		if(items[row, column] == null)
-		{
-			items[row, column] = selectedStack;
-			selectedStack = null;
-		}
-		else
-		{
-			//tries to combine the stacks
-			try
-			{
-				selectedStack = items[row, column].CombineStacks(selectedStack, STACK_SIZE);
-			}
-			//if they are not the same item type, swap the selected stack with the one in the slot.
-			catch(System.ArgumentException ae)
-			{
-				Debug.Log(ae);
-				ItemStack temp = selectedStack;
-				selectedStack = items[row, column];
-				items[row, column] = temp;
-			}
-		}
+		return items[row, column].amt;
 	}
 
 	/// <summary>
@@ -142,60 +57,55 @@ public class Inventory
 	/// be dropped on the ground if the inventory is closed or selected if the inventory is open.
 	/// </summary>
 	/// <param name="item">an ItemStack of the items to be added</param>
-	public void AddItems(ItemStack item)
+	private void AddItems(ItemSlot item)
 	{
 		Vector2Int openSlot = new Vector2Int(-1, -1);
 		for (int r = 0; r < ROWS; r++)
 		{
 			for (int c = 0; c < COLUMNS; c++)
 			{
-				ItemStack i = items[r, c];
-				if(i != null && i.Item.name == item.Item.name && i.Amount < STACK_SIZE)
+				ItemSlot i = items[r, c];
+
+				if(i.item != null && item.item != null && i.amt > 0 && i.item.name == item.item.name && i.amt < STACK_SIZE)
 				{
 					//if they are the same item and they add up to a smaller amount than the stack size
-					ItemStack leftovers = i.CombineStacks(item, STACK_SIZE);
+					//ItemSlot leftovers = i.CombineStacks(item, STACK_SIZE);
 
-					if (leftovers != null && leftovers.Amount > 0)
+					int stackLeftovers = i.amt + item.amt - STACK_SIZE;
+					//ex combining a 50 stack with a 68 stack:
+					//stackleftovers  = 50 + 68 - 99 = 118 - 99 = 19
+					//therefore, there should be an extra stack left if stack leftovers are positive.
+
+					if (stackLeftovers > 0) //if there are leftovers
 					{
-						AddItems(leftovers);
+						i.amt = 99;
+						AddItems(i.item, stackLeftovers);
+					}
+					else
+					{
+						i.amt = i.amt + item.amt;
 					}
 					return;
 				}
 				//if there is an empty slot, set it as a backup slot
-				else if (i == null && openSlot.x < 0)
+				else if (i.amt == 0 && openSlot.x < 0)
 				{
 					openSlot = new Vector2Int(r, c);
 				}
 			}
 		}
-		//if there wasn't already a slot with this type of item, add it to the empty slot
-		items[openSlot.x, openSlot.y] = item;
 
-		/*
-		for(int r = 0; r < 4; r++)
+		//if there is no more room, drop item on the ground.
+		if (openSlot.x < 0 || openSlot.y < 0)
 		{
-			for(int c = 0; c < 9; c++)
-			{
-				ItemStack i = items[r, c];
+			playerInvManager.DropItems(item.item, item.amt);
+		}
+		else
+		{
+			//if there wasn't already a slot with this type of item, add it to the empty slot
+			items[openSlot.x, openSlot.y] = item;
+		}
 
-				if (i == null)
-				{
-					items[r, c] = item;
-					return;
-				}
-				else if(i.Item.name == item.Item.name && i.Amount < STACK_SIZE)
-				{
-					//if they are the same item and they add up to a smaller amount than the stack size
-					ItemStack leftovers = i.CombineStacks(item, STACK_SIZE);
-
-					if (leftovers != null && leftovers.Amount > 0)
-					{
-						AddItems(leftovers);
-					}
-					return;
-				}
-			}
-		}*/
 	}
 
 	/// <summary>
@@ -205,7 +115,7 @@ public class Inventory
 	/// <param name="amount">the amount of the item to be added</param>
 	public void AddItems(Item item, int amount)
 	{
-		this.AddItems(new ItemStack(item, amount));
+		this.AddItems(new ItemSlot(item, amount));
 	}
 
 	/// <summary>
@@ -213,7 +123,7 @@ public class Inventory
 	/// </summary>
 	/// <param name="items">the items the user wants to put in the inventory</param>
 	/// <returns>true if the inventory is too full, false if there is space.</returns>
-	public bool IsTooFull(ItemStack items)
+	public bool IsTooFull(Item i, int amt)
 	{
 		//check if inventory is too full to fit new item
 
@@ -221,15 +131,14 @@ public class Inventory
 		{
 			for(int c = 0; c < COLUMNS; c++)
 			{
-				ItemStack slot = this.items[r, c];
+				ItemSlot slot = items[r, c];
 				//is there an open space in the inventory?
-				if(slot == null)
+				if(slot.amt < 1)
 				{
-					Debug.Log("isnull");
 					return false;
 				}
 				//is there a stack that has space to add items?
-				if(slot.Item.name == items.Item.name && slot.Amount + items.Amount <= STACK_SIZE)
+				if(slot.item.name == i.name && slot.amt + amt <= STACK_SIZE)
 				{
 					return false;
 				}
@@ -239,102 +148,21 @@ public class Inventory
 	}
 
 	/// <summary>
-	/// This row is selected as the hotbar.
-	/// selecting the row does not change its order in the inventory array.
-	/// </summary>
-	public void selectHotbar(int rowNumber)
-	{
-		this.hotbarRowNumber = rowNumber;
-
-	}
-
-	/// <summary>
-	/// Selects the next row in the inventory. Loops around - if the user 
-	/// has the last row selected and tries to select the next row, the first
-	/// row in the inventory will be selected instead.
-	/// </summary>
-	public void selectNextHotbar()
-	{
-		hotbarRowNumber = (hotbarRowNumber + 1) % ROWS;
-	}
-
-	/// <summary>
-	/// Selects the previous row in the inventory. Loops around - if the user 
-	/// has the first row selected aand tries to select the previous row, the 
-	/// last row in the inventory will be selected instead
-	/// </summary>
-	public void selectPreviousHotbar()
-	{
-		hotbarRowNumber = (hotbarRowNumber - 1);
-		if (hotbarRowNumber < 0)
-			hotbarRowNumber = ROWS - 1;
-	}
-
-	/// <summary>
 	/// Returns the items in the row currently selected as the hotbar
 	/// </summary>
 	/// <returns>an array of ItemStacks representing the current hotbar items</returns>
-	public ItemStack[] GetHotbarItems()
+	public Dictionary<Item, int> GetRowItems(int rowNumber)
 	{
-		ItemStack[] row = new ItemStack[COLUMNS];
+		Dictionary<Item, int> row = new Dictionary<Item, int>();
 		for (int i = 0; i < COLUMNS; i++)
 		{
-			row[i] = items[hotbarRowNumber, COLUMNS];
+			ItemSlot slot = items[rowNumber, COLUMNS];
+			row.Add(slot.item, slot.amt);
 		}
 
 		return row;
 	}
 
-	/// <summary>
-	/// Selects the given slot of the hotbar for the player to hold or equip
-	/// </summary>
-	/// <param name="hotbarSlot">The column in the hotbar row of the item for the player to hold</param>
-	public void HoldItem(int hotbarSlot)
-	{
-		if (hotbarSlot < 0) hotbarSlot = 0;
-		if (hotbarSlot > COLUMNS) hotbarSlot = COLUMNS - 1;
-		slotHeld = hotbarSlot; 
-	}
-
-	/// <summary>
-	/// Rotates to the next item in the hotbar. Loops around - if the user
-	/// is holding the last item in the hotbar and attempts to select the
-	/// next item, the first item in the hotbar will be selected
-	/// </summary>
-	public void HoldNextItem()
-	{
-		slotHeld = (slotHeld + 1) % COLUMNS;
-	}
-
-	/// <summary>
-	/// Rotates to the previous item in the hotbar. Loops around - if the user
-	/// is holding the first item in the hotbar and attempts to select the
-	/// next item, the last item in the hotbar will be selected
-	/// </summary>
-	public void HoldPreviousItem()
-	{
-		slotHeld = (slotHeld - 1);
-		if (slotHeld < 0)
-			slotHeld = COLUMNS - 1;
-	}
-	
-	/// <summary>
-	/// Removes the item stack currently held by the player
-	/// </summary>
-	public void DeleteHeldItemStack()
-	{
-		items[hotbarRowNumber, slotHeld] = null;
-		HoldItem(slotHeld);
-	}
-
-	/// <summary>
-	/// Deletes the selected item stack.
-	/// </summary>
-	public void DeleteSelectedItemStack()
-	{
-		selectedStack = null;
-	}
-	
 	/// <summary>
 	/// Sets a slot of the inventory to a given set of items. Will skip if 
 	/// the slot x and y are out of bounds.
@@ -342,12 +170,12 @@ public class Inventory
 	/// <param name="slotX"> The column of the slot to be set</param>
 	/// <param name="slotY"> The row of the slot to be set</param>
 	/// <param name="newItems">The items the slot will be set to</param>
-	public void SetItem(int slotX, int slotY, ItemStack newItems)
+	public void SetItem(int slotX, int slotY, Item newItem, int amount)
 	{
 		//exit if OOB
 		if (slotX >= ROWS || slotX < 0 || slotY >= COLUMNS || slotY < 0) return;
-		Debug.Log("setting items");
-		items[slotX, slotY] = newItems;
+		items[slotX, slotY].item = newItem;
+		items[slotX, slotY].amt = amount;
 	}
 
 	/// <summary>
@@ -357,7 +185,7 @@ public class Inventory
 	/// <param name="slotY">the row of the slot to be cleared</param>
 	public void DeleteSlot(int slotX, int slotY)
 	{
-		items[slotX, slotY] = null;
+		items[slotX, slotY].Clear();
 	}
 
 	public void RemoveItems(Item item, int amount)
@@ -369,11 +197,11 @@ public class Inventory
 		{
 			for(int c = 0; c < COLUMNS; c++)
 			{
-				if(items[r, c].Item.name == item.name)
+				if(items[r,c].item != null && items[r, c].item.name == item.name)
 				{
 					int[] slot = { r, c };
 					slotsWithItems.Add(slot);
-					totalItems += items[r, c].Amount;
+					totalItems += items[r, c].amt;
 				}
 			}
 		}
@@ -384,13 +212,16 @@ public class Inventory
 			throw new ArgumentException("Not enough items");
 		}
 
+		//removes the items
 		int leftovers = amount;
 		foreach(int[] s in slotsWithItems)
 		{
-			ItemStack i = items[s[0], s[1]];
-			if (i.Item.name == item.name)
+			ItemSlot i = items[s[0], s[1]];
+			if (i.item.name == item.name)
 			{
-				leftovers = i.RemoveItems(leftovers);
+				i.amt -= leftovers;
+				leftovers -= i.amt;
+
 				if(leftovers == 0)
 				{
 					DeleteSlot(s[0], s[1]);
@@ -401,22 +232,63 @@ public class Inventory
 		}
 	}
 	
-	public void RemoveHeldItems(int amount)
+	/// <summary>
+	/// Removes a given amount of items from a given slot. If there are less items in
+	/// the slot than are trying to be removed, does not remove the items and returns false.
+	/// </summary>
+	/// <param name="amount">the amount of items to remove</param>
+	/// <param name="row">the row of the item slot to remove from</param>
+	/// <param name="column">the column of the item slot to remove from</param>
+	/// <returns>true if the items were successfully removed. false if they were not - i.e. if there were not enough items in the slot</returns>
+	public bool RemoveFromSlot(int amount, int row, int column)
 	{
-		if(HeldItem == null)
+		ItemSlot i = items[row, column];
+		if (amount < 0) amount *= -1;
+		if (i.item != null && i.amt <= amount)
 		{
-			return;
-		}
-		else
-		{
-			HeldItem.RemoveItems(1);
-			if(HeldItem.Amount < 1)
+			i.amt -= amount;
+			if(i.amt <= 0)
 			{
-				DeleteHeldItemStack();
+				i.item = null;
 			}
+			return true;
 		}
+		else if (i.amt > amount)
+		{
+			throw new Exception("Not enough items in that slot.");
+		}
+		return false;
 	}
-
+	
+	/// <summary>
+	/// Adds a given amount of items to the slot at the given position. if the amount
+	/// exceeds the stack size, returns a positive number. IF THE NUMBER IS POSITIVE, 
+	/// PLEASE DO SOMETHING WITH THE EXCESS ITEMS YOU TRIED TO ADD (drop them on the ground,
+	/// add them to the rest of the inventory using AddItems, etc)
+	/// </summary>
+	/// <param name="amount">amount of items to add</param>
+	/// <param name="row">the row of the slot to add items to</param>
+	/// <param name="column">the column of the slot to add items to</param>
+	/// <returns></returns>
+	public int AddToSlot(int amount, int row, int column)
+	{
+		ItemSlot i = items[row, column];
+		if (amount < 0) amount *= -1;
+		if (i.item != null && amount > 0)
+		{
+			if (i.amt + amount <= STACK_SIZE)
+			{
+				items[row, column].amt += amount;
+			}
+			else
+			{
+				items[row, column].amt = 99;
+			}
+			return 99 - i.amt - amount;
+		}
+		return amount;
+	}
+	
 	/// <summary>
 	/// Returns the inventory as a 2d array of 
 	/// arrays containging item ids and ammounts.
@@ -424,9 +296,6 @@ public class Inventory
 	/// <returns>An array with ids and amounts formatted as [itemid, amount]</returns>
 	public List<int> GetSaveableInventory()
 	{
-		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
-		List<Item> itemsDict = menu.GetGameItemList(); //yeah i  know this is lazy its temporary
-
 		List<int> sinv = new List<int>(); //len should be row * col * 2;
 
 
@@ -434,61 +303,21 @@ public class Inventory
 		{
 			for (int c = 0; c < COLUMNS; c++)
 			{
-				ItemStack i = items[r, c];
-				if(i == null)
+				ItemSlot i = items[r, c];
+				if(i.item == null)
 				{
 					sinv.Add(-1);
 					sinv.Add(0);
 				}
 				else
 				{
-					sinv.Add(FindItemID(i.Item));
-					sinv.Add(i.Amount);
+					sinv.Add(playerInvManager.GetItemManager().GetItemID(i.item));
+					sinv.Add(i.amt);
 				}
 			}
 		}
 
 		return sinv;
-		///BAD stuff >:( (goes in the timeout corner)
-		/*
-		int[,][] sinv = new int[ROWS, COLUMNS][];
-		for (int r = 0; r < ROWS; r++)
-		{
-			for(int c = 0; c<COLUMNS; c++) {
-				sinv[r, c] = new int[2];
-				ItemStack invSlot = items[r, c];
-				if (invSlot != null)
-				{
-					sinv[r, c][0] = FindItemID(invSlot.Item);
-					sinv[r, c][1] = invSlot.Amount;
-				}
-				else
-				{
-					sinv[r, c][0] = -1;
-					sinv[r, c][1] = 0;
-				}
-			}
-		}
-		return sinv;
-		*/
-	}
-
-	/// <summary>
-	/// gets the id of a given item
-	/// </summary>
-	/// <param name="i">the item whose id is to be found</param>
-	/// <returns>the id of the given item</returns>
-	public int FindItemID(Item i)
-	{
-		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
-		List<Item> itemsDict = menu.GetGameItemList();
-		for(int j = 0; j < itemsDict.Count; j++)
-		{
-			if (itemsDict[j].name == i.name)
-				return j;
-		}
-		return -1;
-		
 	}
 
 	/// <summary>
@@ -498,8 +327,8 @@ public class Inventory
 	/// <param name="sinv">the saved inventoyr</param>
 	public void SetSaveableInventory(List<int> sinv)
 	{
-		Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
-		List<Item> itemsDict = menu.GetGameItemList();
+		//Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
+		//List<Item> itemsDict = menu.GetGameItemList();
 
 		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
@@ -508,31 +337,11 @@ public class Inventory
 			int r = (int)Math.Floor((double)(j / COLUMNS));
 			int c = j % COLUMNS;
 
-			Debug.Log("r" + r + "c" + c);
-			Debug.Log(sinv[i]);
-			Debug.Log(itemsDict[sinv[i]]);
+			ItemSlot slot = new ItemSlot(playerInvManager.GetItemManager().gameItems[sinv[i]], sinv[i + 1]);
 
-			ItemStack iStack = new ItemStack(itemsDict[sinv[i]], sinv[i + 1]);
-
-			items[r, c] = iStack;
+			items[r, c] = slot;
 		}
 
-
-		//MOORREE BAD STUFF >>>:(
-		/*
-		for (int r = 0; r < ROWS; r++)
-		{
-			for (int c = 0; c < COLUMNS; c++)
-			{
-				if (sinv[r, c][0] == -1) continue;
-				else
-				{
-					ItemStack iStack = new ItemStack(itemsDict[sinv[r, c][0]], sinv[r, c][1]);
-					items[r, c] = iStack;
-				}
-			}
-		}
-		*/
 	}
 
 	/// <summary>
@@ -558,11 +367,32 @@ public class Inventory
 			for (int c = 0; c < COLUMNS; c++)
 			{
 				
-				ItemStack slot = this.items[r, c];
-				if (slot != null && slot.Item.name == name)
-					amt += slot.Amount;
+				ItemSlot slot = this.items[r, c];
+				if (slot.item != null && slot.item.name == name)
+					amt += slot.amt;
 			}
 		}
 		return amt;
+	}
+}
+
+struct ItemSlot
+{
+	public Item item;
+	public int amt;
+
+	public ItemSlot(Item i, int amt)
+	{
+		item = i;
+		this.amt = amt;
+	}
+
+	public bool Equals(ItemSlot i) {
+		return item.name == i.item.name;
+	}
+	public void Clear()
+	{
+		item = null;
+		amt = 0;
 	}
 }
