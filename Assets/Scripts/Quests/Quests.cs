@@ -92,7 +92,7 @@ public class Quests : MonoBehaviour
 
         farmManager = FindObjectOfType<FarmManager>();
 
-        inventory = farmManager.GetComponent<FarmManager>().playerInventory;
+		inventory = GameObject.Find("Player").GetComponent<PlayerInventoryManager>().inv;//farmManager.GetComponent<FarmManager>().playerInventory;
 
         //populating list with something at start
         foreach (miniQuest m in miniQuests)

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7394779852675941676}
   - component: {fileID: -149578292037430163}
   - component: {fileID: -1892569473559649216}
+  - component: {fileID: -774550328220087001}
   m_Layer: 0
   m_Name: OrangePotatoShroomItem
   m_TagString: Untagged
@@ -52,12 +53,12 @@ MonoBehaviour:
   spr: {fileID: -7912074811094433961, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
+  player: {fileID: 0}
   isSellable: 1
   sellValue: 150
-  player: {fileID: 0}
-  staminaUsed: 2
   isEdible: 1
   staminaToRestore: 15
+  staminaUsed: 2
   rare: 1
 --- !u!212 &7892458227089748408
 SpriteRenderer:
@@ -4946,3 +4947,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-774550328220087001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803227097497796006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31882177f5189de4ebacefcedf134993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

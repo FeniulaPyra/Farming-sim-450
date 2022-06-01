@@ -68,6 +68,7 @@ public class Inventory
 
 				if(i.item != null && item.item != null && i.amt > 0 && i.item.name == item.item.name && i.amt < STACK_SIZE)
 				{
+					Debug.Log("LEP2738 CAN ADD ITEM");
 					//if they are the same item and they add up to a smaller amount than the stack size
 					//ItemSlot leftovers = i.CombineStacks(item, STACK_SIZE);
 
@@ -78,12 +79,14 @@ public class Inventory
 
 					if (stackLeftovers > 0) //if there are leftovers
 					{
-						i.amt = 99;
+						items[r, c].amt = 99;
 						AddItems(i.item, stackLeftovers);
+						Debug.Log("LEP2738 LEFTOVERS; AMOUNT AFTER ADD" + items[r, c].amt);
 					}
 					else
 					{
-						i.amt = i.amt + item.amt;
+						items[r, c].amt = i.amt + item.amt;
+						Debug.Log("LEP2738 AMOUNT AFTER ADD" + items[r, c].amt);
 					}
 					return;
 				}
@@ -102,8 +105,10 @@ public class Inventory
 		}
 		else
 		{
+			Debug.Log("LEP2738 PUT IN EMPTY"+ item.item.name);
 			//if there wasn't already a slot with this type of item, add it to the empty slot
-			items[openSlot.x, openSlot.y] = item;
+			items[openSlot.x, openSlot.y].item = item.item;
+			items[openSlot.x, openSlot.y].amt = item.amt;
 		}
 
 	}
@@ -219,8 +224,8 @@ public class Inventory
 			ItemSlot i = items[s[0], s[1]];
 			if (i.item.name == item.name)
 			{
-				i.amt -= leftovers;
-				leftovers -= i.amt;
+				items[s[0], s[1]].amt -= leftovers;
+				leftovers -= items[s[0], s[1]].amt;
 
 				if(leftovers == 0)
 				{
@@ -246,10 +251,10 @@ public class Inventory
 		if (amount < 0) amount *= -1;
 		if (i.item != null && i.amt <= amount)
 		{
-			i.amt -= amount;
+			items[row, column].amt -= amount;
 			if(i.amt <= 0)
 			{
-				i.item = null;
+				items[row, column].item = null;
 			}
 			return true;
 		}

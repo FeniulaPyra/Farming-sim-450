@@ -7,7 +7,7 @@ public class PlayerInventoryManager : MonoBehaviour
 	public Inventory inv;
 
 	public GameObject ItemManagerObj;
-	private ItemManager im;
+	public ItemManager im;
 
 	public int HeldSlot;
 	public int Hotbar;
@@ -85,6 +85,7 @@ public class PlayerInventoryManager : MonoBehaviour
 				PreviousItem();
 			}
 		}
+		UpdateHeldItem();
 	}
 	void NextHotbar()
 	{
@@ -120,6 +121,7 @@ public class PlayerInventoryManager : MonoBehaviour
 	/// <returns>the item object the player is holding</returns>
 	public Item GetHeldItem()
 	{
+		heldItem = inv.GetSlotItem(Hotbar, HeldSlot);
 		return heldItem;
 	}
 	/// <summary>
@@ -128,6 +130,7 @@ public class PlayerInventoryManager : MonoBehaviour
 	/// <returns>the number of items</returns>
 	public int GetHeldItemAmount()
 	{
+		heldAmount = inv.GetSlotAmount(Hotbar, HeldSlot);
 		return heldAmount;
 	}
 
@@ -153,6 +156,7 @@ public class PlayerInventoryManager : MonoBehaviour
 	/// </summary>
 	public void DropHeldItem()
 	{
+		if (inv.GetSlotAmount(Hotbar, HeldSlot) <= 0) return;
 		DropItem(heldItem);
 		inv.RemoveFromSlot(1, Hotbar, HeldSlot);
 	}
@@ -165,6 +169,7 @@ public class PlayerInventoryManager : MonoBehaviour
 	/// <param name="inv">the inventory to dropt the items from.</param>
 	public void DropItems(int row, int column, Inventory inv)
 	{
+		if (inv.GetSlotAmount(row, column) <= 0) return;
 		DropItems(inv.GetSlotItem(row, column), inv.GetSlotAmount(row, column));
 		inv.DeleteSlot(row, column);
 	}
@@ -189,7 +194,7 @@ public class PlayerInventoryManager : MonoBehaviour
 	public void DropItem(Item i) {
 		if (i == null) return;
 
-		ItemManager itemLibrary = GameObject.Find("Item Manager").GetComponent<ItemManager>();
+		ItemManager itemLibrary = im;//GameObject.Find("ItemManager").GetComponent<ItemManager>();
 		Camera cam = Camera.main;
 		Vector3 mouse = Input.mousePosition;
 		mouse.z = 10;

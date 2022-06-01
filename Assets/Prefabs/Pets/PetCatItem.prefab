@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7967188291346577557}
   - component: {fileID: -812292093700411661}
   - component: {fileID: 6910879338876052196}
+  - component: {fileID: -574903748307368018}
   m_Layer: 0
   m_Name: PetCatItem
   m_TagString: Untagged
@@ -51,12 +52,12 @@ MonoBehaviour:
   spr: {fileID: -7360319468729918617, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   itemObj: {fileID: 3909654424582265540, guid: 75f0040838c6b6e49b8d6ba39ffd84aa, type: 3}
   manager: {fileID: 0}
+  player: {fileID: 0}
   isSellable: 1
   sellValue: 1000
-  player: {fileID: 0}
-  staminaUsed: 0
   isEdible: 0
   staminaToRestore: 0
+  staminaUsed: 0
   rare: 0
 --- !u!212 &3071794517269715117
 SpriteRenderer:
@@ -4902,3 +4903,16 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &-574903748307368018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2432827424294426552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31882177f5189de4ebacefcedf134993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

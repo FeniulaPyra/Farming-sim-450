@@ -17,7 +17,7 @@ public class ShopMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		inv = FarmManager.GetComponent<FarmManager>().playerInventory;
+		inv = player.gameObject.GetComponent<PlayerInventoryManager>().inv;//FarmManager.GetComponent<FarmManager>().playerInventory;
 		items = playerObj.GetComponent<PlayerInventoryManager>().GetItemManager().gameItems;//menuObj.GetComponent<Menu>().gameItems;
 		player = playerObj.GetComponent<PlayerInteraction>();
 	}

@@ -52,7 +52,7 @@ public class InventorySlot : MonoBehaviour
 	public void UpdateDisplay()
 	{
 		if (amountLabel == null || itemLabel == null || icon == null) return;
-		if (item != null)
+		if (item != null && amount > 0)
 		{
 			amountLabel.text = "" + amount;
 			itemLabel.text = "" + item.name;

@@ -111,7 +111,7 @@ public class PlayerInteraction : MonoBehaviour
 		playerInventoryManager = player.GetComponent<PlayerInventoryManager>();
 		playerInventory = playerInventoryManager.inv;
 
-        playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
+        //playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
 
         //Gets all interactable objectss and saves them
@@ -265,6 +265,7 @@ public class PlayerInteraction : MonoBehaviour
             heldItem = playerInventoryManager.GetHeldItem();
             heldItemAmount = playerInventoryManager.GetHeldItemAmount();
 
+			Debug.Log("LEP2738 HELD: " + heldItem.name);
             if (mushroomsAndTiles.ContainsKey(focusTilePosition))
             {
                 if (heldItemAmount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
@@ -360,14 +361,11 @@ public class PlayerInteraction : MonoBehaviour
                 Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
                 //Sees how close the player is to them
                 float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
-				Debug.Log("LEP2738 NAME" + objects[i].name + distance);
-                if (objects[i].name == "Shop")
-                    Debug.Log("SHOPDIST: " + distance);
+
+
                 //1 seems like a fine number
                 if (distance <= 1.0f)// && objects[i].enabled == true)
                 {
-							Debug.Log("LEP2738 close");
-                    Debug.Log("CLOSE ENOUGH TO INTERACT WITH: " + objects[i].name);
                     //switch on name to see what it is
                     switch (objects[i].name)
                     {
@@ -378,7 +376,6 @@ public class PlayerInteraction : MonoBehaviour
                             objects[i].gameObject.GetComponent<NPCManager>().MyFlowchart.ExecuteBlock("Start");
                             break;
                         case "shipping bin":
-							Debug.Log("LEP2738 SHIPPING BIN TIME");
                             menu.OpenShippingBin();
                             //objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
                             break;
@@ -387,7 +384,6 @@ public class PlayerInteraction : MonoBehaviour
                             menu.OpenBed();
                             break;
                         case "Shop":
-                            Debug.Log("SHOP INTERACTED");
                             menu.OpenShop();
                             break;
                         default:

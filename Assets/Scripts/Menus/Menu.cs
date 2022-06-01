@@ -111,17 +111,10 @@ public class Menu : MonoBehaviour
 	{
 
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
-		if (InventoryMenuObject.activeSelf)
-		{
-		}
-		Debug.Log("menustate: " + state);
-
-        Debug.Log("Before switch");
 		switch(state)
 		{
 			case MenuState.INVENTORY:
                 #region MenuState.INVENTORY
-                Debug.Log("Inventory swtichcase");
 				inventoryMenu.UpdateDisplay();
 
 				//close inventory
@@ -143,7 +136,7 @@ public class Menu : MonoBehaviour
 			#endregion
 			case MenuState.PAUSE:
                 #region MenuState.PAUSE
-                Debug.Log("Pause swtichcase");
+
                 if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					PauseMenu.SetActive(false);
@@ -153,9 +146,9 @@ public class Menu : MonoBehaviour
 				break;
 			#endregion
 			case MenuState.SETTINGS:
-                #region MenuState.SETTINGS
-                Debug.Log("Settings swtichcase");
-                if (Input.GetKeyDown(KeyCode.Escape))
+				#region MenuState.SETTINGS
+
+				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					SettingsMenu.SetActive(false);
 					PauseMenu.SetActive(true);
@@ -165,9 +158,9 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.HELP:
-                #region MenuState.HELP
-                Debug.Log("Help swtichcase");
-                if (Input.GetKeyDown(KeyCode.Escape))
+				#region MenuState.HELP
+
+				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					HelpMenu.SetActive(false);
 					PauseMenu.SetActive(true);
@@ -177,9 +170,9 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.SHOP:
-                #region MenuState.SHOP
-                Debug.Log("Shop swtichcase");
-                if (Input.GetKeyDown(KeyCode.Escape))
+				#region MenuState.SHOP
+
+				if (Input.GetKeyDown(KeyCode.Escape))
 				{
 					ShopMenu.SetActive(false);
 					//PauseMenu.SetActive(true);
@@ -189,8 +182,8 @@ public class Menu : MonoBehaviour
 				break;
 				#endregion
 			case MenuState.SHIPPING_BIN:
-                #region MenuState.SHIPPING_BIN
-                Debug.Log("Bin swtichcase");
+				#region MenuState.SHIPPING_BIN
+
 				shippingMenu.UpdateDisplay();
 				//close shipping bin
 				if (Input.GetKeyDown(KeyCode.Escape))
@@ -211,7 +204,6 @@ public class Menu : MonoBehaviour
 				#endregion
 			case MenuState.NO_MENU:
                 #region MenuState.NO_MENU
-                Debug.Log("Bin swtichcase");
 
 				//open/close inventory
 				if (Input.GetKeyDown(KeyCode.E))
@@ -225,7 +217,7 @@ public class Menu : MonoBehaviour
 				//drop held item
 				if(Input.GetKeyDown(KeyCode.Q))
 				{
-					pim.DropHeldItem();
+					//pim.DropHeldItem();
 					hotbarMenu.UpdateDisplay();
 					if(Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
 					{
@@ -247,13 +239,10 @@ public class Menu : MonoBehaviour
 				break;
             #endregion
             case MenuState.DIALOG:
-                Debug.Log("Dialog default");
                 break;
 			default:
-                Debug.Log("default switch");
                 break;
 		}
-        Debug.Log("After switch");
 		inventoryMenu.UpdateDisplay();
 		hotbarMenu.UpdateDisplay();
 		player.GetComponent<PlayerInventoryManager>().inv.isShown = InventoryMenuObject.activeSelf;
@@ -351,7 +340,6 @@ public class Menu : MonoBehaviour
             if (bed.MyFlowchart.isActiveAndEnabled == true)
             {
                 bed.MyFlowchart.ExecuteBlock("Start");
-                Debug.Log("fungus");
             }
 			pi.CanInteract = false;
         }

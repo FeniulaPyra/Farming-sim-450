@@ -85,7 +85,7 @@ public class TimeManager : MonoBehaviour
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
-        inventory = FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
+		inventory = staminaTracker.gameObject.GetComponent<PlayerInventoryManager>().inv;//FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
 
         mushroomManager = FindObjectOfType<MushroomManager>();
     }

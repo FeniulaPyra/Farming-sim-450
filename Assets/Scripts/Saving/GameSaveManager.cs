@@ -66,7 +66,7 @@ public class GameSaveManager : MonoBehaviour
         tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
         save.farmTiles = farmland;
         save.mushrooms = mushrooms;
-        save.inventory = farmManager.playerInventory.GetSaveableInventory();
+		save.inventory = player.GetComponent<PlayerInventoryManager>().inv.GetSaveableInventory();//farmManager.playerInventory.GetSaveableInventory();
 
         var json = JsonUtility.ToJson(save);
 
@@ -98,7 +98,7 @@ public class GameSaveManager : MonoBehaviour
             );
         playerInteraction.SetStamina((int)save.stamina);
         tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
-        farmManager.playerInventory.SetSaveableInventory(save.inventory);
+		player.GetComponent<PlayerInventoryManager>().inv.SetSaveableInventory(save.inventory);
 
         sr.Close();
     }

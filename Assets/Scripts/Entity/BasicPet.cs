@@ -13,11 +13,13 @@ public class BasicPet : BasicEntity
     [SerializeField] public Item petItem;
     [SerializeField] public FarmManager manager;
 
+	private PlayerInventoryManager pim;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+		pim = player.gameObject.GetComponent<PlayerInventoryManager>();
         manager = GameObject.Find("ManagerObject").GetComponent<FarmManager>();
     }
 
@@ -47,9 +49,9 @@ public class BasicPet : BasicEntity
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!manager.playerInventory.IsTooFull(petItem, 1))
+            if (!pim.inv.IsTooFull(petItem, 1))
             {
-                manager.playerInventory.AddItems(petItem, 1);
+                pim.inv.AddItems(petItem, 1);
                 Object.Destroy(this.gameObject);
             }
         }

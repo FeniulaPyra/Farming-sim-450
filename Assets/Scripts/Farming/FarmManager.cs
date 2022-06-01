@@ -52,12 +52,11 @@ public class FarmManager : MonoBehaviour
 	public Tile tilePrefab;
 
     //Creating an inventory; will probably need to be a reference later
-    public Inventory playerInventory = new Inventory(4, 9);
+    //public Inventory playerInventory = new Inventory(4, 9);
 
     // Start is called before the first frame update
     void Start()
     {
-
         //Can be used to figure out where the (0, 0) of the tilemap is, which could be useful
         Debug.Log($"The origin is: {farmField.origin}");
         //The bottom left point of a tile is its actual coordinates

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ItemEntity : MonoBehaviour
 {
+	public GameObject player;
+	PlayerInventoryManager pim;
+	Inventory inv;
 	GameObject itemObj;
-	GameObject player;
-	FarmManager manager;
+	//FarmManager manager;
 	Item i;
 
 	public static int DISTANCE_TO_PICKUP = 1;
@@ -16,9 +18,10 @@ public class ItemEntity : MonoBehaviour
 	{
 		itemObj = gameObject;
 		player = GameObject.Find("Player");
-		GameObject manObj = GameObject.Find("ManagerObject");
-		manager = manObj.GetComponent<FarmManager>();
-		i = itemObj.GetComponent<Item>();
+		pim = player.GetComponent<PlayerInventoryManager>();
+		inv = pim.inv;
+		//note must have separate item object because the object gets destroyed
+		i = pim.im.GetItemByName(itemObj.GetComponent<Item>().name);
 
 
 	}
@@ -28,9 +31,10 @@ public class ItemEntity : MonoBehaviour
     {
 		if (Vector2.Distance(itemObj.transform.position, player.transform.position) < .5)
 		{
-			if (!manager.playerInventory.IsTooFull(i, 1))
+			if (!(inv.IsTooFull(i, 1)))
 			{
-				manager.playerInventory.AddItems(i, 1);
+				Debug.Log("LEP2738 AAAAAA" + i.name);
+				inv.AddItems(i, 1);
 				Object.Destroy(this.gameObject);
 			}
 		}
