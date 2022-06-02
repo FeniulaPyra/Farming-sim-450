@@ -25,6 +25,20 @@ public class InventoryMenu : TogglableMenu
 		grabbedItem = ItemGrabber.GetComponent<InventoryItemGrabber>();
 	}
 
+	public void ClearMenu()
+	{
+		if (InventorySlots == null || inv == null) return;
+		for (int r = 0; r < inv.ROWS; r++)
+		{
+			for (int c = 0; c < inv.COLUMNS; c++)
+			{
+				GameObject slot = InventorySlots[r, c];
+				if (slot == null) return;
+				Destroy(slot);
+			}
+		}
+	}
+
 	public void SetInventoryToDisplay(Inventory inventory)
 	{
 		inv = inventory;

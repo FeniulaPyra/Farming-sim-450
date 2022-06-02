@@ -51,6 +51,9 @@ public class Menu : MonoBehaviour
 	private PlayerInteraction pi;
 	private PlayerInventoryManager pim;
 
+	public GameObject ExternalInventory;
+	public InventoryMenu externalInventoryMenu;
+
 	public double MouseScrollDeadzone;
 	public double currentMouseScroll;
 
@@ -81,7 +84,8 @@ public class Menu : MonoBehaviour
 		SHOP,
 		SHIPPING_BIN,
 		BED,
-		DIALOG
+		DIALOG,
+		EXTERNAL_INVENTORY
 	}
 
     [SerializeField]
@@ -108,6 +112,7 @@ public class Menu : MonoBehaviour
 		hotbarMenu = HotbarUIObject.GetComponent<HotbarMenu>();
 		pi = player.GetComponent<PlayerInteraction>();
 		pim = player.GetComponent<PlayerInventoryManager>();
+		externalInventoryMenu = ExternalInventory.GetComponent<InventoryMenu>();
 
 		ItemGrabber = ItemGrabberObject.GetComponent<InventoryItemGrabber>();
 
@@ -149,6 +154,26 @@ public class Menu : MonoBehaviour
 				}
 				break;
 			#endregion
+			case MenuState.EXTERNAL_INVENTORY:
+
+				externalInventoryMenu.UpdateDisplay();
+				
+				//close external inv
+				if (Input.GetKeyDown(KeyCode.Escape))
+				{
+					if (ItemGrabber.item != null && ItemGrabber.amount > 0)
+					{
+						inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
+						ItemGrabber.item = null;
+						ItemGrabber.amount = 0;
+					}
+					externalInventoryMenu.Hide();
+					inventoryMenu.Hide();
+					ItemGrabber.Hide();
+					state = MenuState.NO_MENU;
+					pi.CanInteract = true;
+				}
+				break;
 			case MenuState.PAUSE:
                 #region MenuState.PAUSE
 
@@ -381,6 +406,20 @@ public class Menu : MonoBehaviour
 		{
 			state = MenuState.NO_MENU;
 			pi.CanInteract = true;
+		}
+	}
+
+	public void OpenExternalInventory(GameObject ExternalInventoryObject)
+	{
+		if(state == MenuState.NO_MENU)
+		{
+			inventoryMenu.Show();
+			externalInventoryMenu.ClearMenu();
+			externalInventoryMenu.SetInventoryToDisplay(ExternalInventoryObject.GetComponent<InventoryEntity>().inv);
+			externalInventoryMenu.Show();
+			ItemGrabber.Show();
+			state = MenuState.EXTERNAL_INVENTORY;
+			pi.CanInteract = false;
 		}
 	}
 

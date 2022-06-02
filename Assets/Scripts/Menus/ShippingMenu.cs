@@ -15,10 +15,15 @@ public class ShippingMenu : TogglableMenu
 	public GameObject ItemGrabber;
 	InventoryItemGrabber grabbedItem;
 
+	public GameObject slotsBackgroundObject;
+
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
+		RectTransform location = slotsBackgroundObject.GetComponent<RectTransform>();
+		TOP = -170;
+		LEFT = -180;
 
 		inv = ShippingBin.GetComponent<ShippingBin>().inventory;
 		ShippingBinSlots = new GameObject[inv.COLUMNS];
@@ -27,7 +32,7 @@ public class ShippingMenu : TogglableMenu
 		for (int c = 0; c < inv.COLUMNS; c++)
 		{
 			GameObject slot = ShippingBinSlots[c] = Instantiate(InventorySlotPrefab);
-			slot.transform.position = new Vector2(LEFT + (c + 1) * 74 - 10, TOP - 22);
+			slot.transform.position = new Vector2(LEFT + (c + 1) * SLOT_SIZE - SLOT_GAP, TOP);
 			//the item in the corresponding slot in the inventory object
 			Item currentSlotItem = inv.GetSlotItem(0, c);
 			int currentSlotAmount = inv.GetSlotAmount(0, c);

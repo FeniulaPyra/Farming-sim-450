@@ -72,7 +72,7 @@ public class BasicEntity : MonoBehaviour
             Seek(player);
         else
         {
-            if (rb.velocity.magnitude > 0)
+            if (rb!= null && rb.velocity != null && rb.velocity.magnitude > 0)
                 rb.velocity += -rb.velocity * 0.25f;
         }
     }

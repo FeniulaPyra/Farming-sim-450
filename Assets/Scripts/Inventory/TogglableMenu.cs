@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class TogglableMenu : MonoBehaviour
 {
-	public static int TOP = -59;
-	public static int LEFT = -180;
-	public static int SLOT_GAP = 5;
-	public static int SLOT_SIZE = 37;
+	public int TOP = 10;
+	public int LEFT = -180;
+	public int SLOT_GAP = 5;
+	public int SLOT_SIZE = 37;
 
 	public void Hide()
 	{

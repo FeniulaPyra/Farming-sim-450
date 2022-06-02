@@ -8,6 +8,7 @@ public class InventoryEntity : BasicEntity
     // Start is called before the first frame update
     void Start()
     {
+		inv = new Inventory(4, 9);
 		movementSpeed = 0;
     }
 

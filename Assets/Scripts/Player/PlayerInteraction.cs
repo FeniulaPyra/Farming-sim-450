@@ -460,6 +460,9 @@ public class PlayerInteraction : MonoBehaviour
                         case "Shop":
                             menu.OpenShop();
                             break;
+						case "chest":
+							menu.OpenExternalInventory(objects[i].gameObject);
+							break;
                         default:
                             break;
                     }
