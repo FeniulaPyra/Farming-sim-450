@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 0}
+  selectedFlowchart: {fileID: 444348904}
 --- !u!4 &20066898
 Transform:
   m_ObjectHideFlags: 1
@@ -187,6 +187,11 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4096102100635789833, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
   m_PrefabInstance: {fileID: 4096102102035863121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &156446252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6609241337006782712, guid: 186f8d426c588a445890d0c33332242e, type: 3}
+  m_PrefabInstance: {fileID: 1797268894}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &257024929
 PrefabInstance:
@@ -47351,7 +47356,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &444348885
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -47372,7 +47377,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &444348886
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -47385,11 +47390,11 @@ MonoBehaviour:
   itemId: 33
   indentLevel: 0
   description: 
-  targetObject: {fileID: 2068960238}
-  targetComponentAssemblyName: GameSaveManager, Assembly-CSharp, Version=0.0.0.0,
+  targetObject: {fileID: 156446252}
+  targetComponentAssemblyName: GlobalGameSaving, Assembly-CSharp, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
   targetComponentFullname: UnityEngine.Component[]
-  targetComponentText: GameSaveManager
+  targetComponentText: GlobalGameSaving
   targetMethod: SaveGame
   targetMethodText: 'SaveGame (String): Void'
   methodParameters:
@@ -47459,7 +47464,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &444348889
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -47480,7 +47485,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &444348890
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -47523,7 +47528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &444348893
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -47623,6 +47628,17 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &444348904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7804082816238168524, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+  m_PrefabInstance: {fileID: 7804082815605196672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444348884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &489419022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4096102101377268356, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
@@ -49963,7 +49979,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5345044750734557938, guid: 186f8d426c588a445890d0c33332242e, type: 3}
   m_PrefabInstance: {fileID: 1797268894}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 156446252}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97b02a7dcb3055c43b74ee805dff3ee1, type: 3}
@@ -51541,7 +51557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7804082816238168527, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: nodeRect.x
-      value: 609
+      value: 610
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804082816238168527, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: nodeRect.y
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7804082816238168527, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: commandList.Array.size
