@@ -35,7 +35,7 @@ public class InventoryMenu : TogglableMenu
 			{
 				//the inventory slot button
 				GameObject slot = InventorySlots[r, c] = Instantiate(InventorySlotPrefab);
-				slot.transform.position = new Vector2(LEFT + (c + 1) * 74 - 10, TOP + (r + 1) * 74 - 10);
+				slot.transform.position = new Vector2(LEFT + (c + 1) * SLOT_SIZE - SLOT_GAP, TOP + (r + 1) * SLOT_SIZE - SLOT_GAP);
 
 				//the item in the corresponding slot in the inventory object
 				Item currentSlotItem = inv.GetSlotItem(r, c);

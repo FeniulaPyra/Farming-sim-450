@@ -33,7 +33,7 @@ public class HotbarMenu : TogglableMenu
 		{
 			//the inventory slot button
 			GameObject slot = HotbarSlots[c] = Instantiate(InventorySlotPrefab);
-			slot.transform.position = new Vector2(LEFT + (c + 1) * 74 - 10, TOP);
+			slot.transform.position = new Vector2(LEFT + (c + 1) * SLOT_SIZE - SLOT_GAP, -148);
 
 			InventorySlot slotScript = slot.GetComponent<InventorySlot>();
 			slotScript.SetIndex(player, c);
