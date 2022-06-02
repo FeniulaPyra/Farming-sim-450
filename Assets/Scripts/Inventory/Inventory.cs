@@ -82,12 +82,10 @@ public class Inventory
 					{
 						items[r, c].amt = 99;
 						AddItems(i.item, stackLeftovers);
-						Debug.Log("LEP2738 LEFTOVERS; AMOUNT AFTER ADD" + items[r, c].amt);
 					}
 					else
 					{
 						items[r, c].amt = i.amt + item.amt;
-						Debug.Log("LEP2738 AMOUNT AFTER ADD" + items[r, c].amt);
 					}
 					return;
 				}
@@ -106,7 +104,6 @@ public class Inventory
 		}
 		else
 		{
-			Debug.Log("LEP2738 PUT IN EMPTY"+ item.item.name);
 			//if there wasn't already a slot with this type of item, add it to the empty slot
 			items[openSlot.x, openSlot.y].item = item.item;
 			items[openSlot.x, openSlot.y].amt = item.amt;
@@ -339,13 +336,21 @@ public class Inventory
 		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
             Debug.Log($"sinv[{i}]: {sinv[i]}");
-
-            if (sinv[i] < 0) continue;
-
+			//sinv[i] = item, sinv[i+1] = amount
 			int r = (int)Math.Floor((double)(j / COLUMNS));
 			int c = j % COLUMNS;
-			ItemSlot slot = new ItemSlot(playerInvManager.GetItemManager().gameItems[sinv[i]], sinv[i + 1]);
-			items[r, c] = slot;
+
+			//if slot is empty
+			if (sinv[i] < 0 || sinv[i + 1] <= 0)
+			{
+				items[r, c] = new ItemSlot(null, 0);
+			}
+			else
+			{
+				ItemSlot slot = new ItemSlot(playerInvManager.GetItemManager().gameItems[sinv[i]], sinv[i + 1]);
+				items[r, c] = slot;
+			}
+
 		}
 
 	}

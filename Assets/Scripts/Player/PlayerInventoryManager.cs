@@ -33,8 +33,25 @@ public class PlayerInventoryManager : MonoBehaviour
 		inv.AddItems(im.GetItemByName("yellow shroom"), 1);
 		inv.AddItems(im.GetItemByName("shroom shady"), 1);
 		inv.AddItems(im.GetItemByName("white shroom"), 1);
+		inv.AddItems(im.GetItemByName("pet dog"), 1);
 	}
-
+	private void Start()
+	{
+		if (GlobalGameSaving.Instance != null)
+		{
+			if (GlobalGameSaving.Instance.loadingSave == true)
+			{
+				inv.SetSaveableInventory(GlobalGameSaving.Instance.inventory);
+			}
+			else if (ScenePersistence.Instance != null)
+			{
+				if (ScenePersistence.Instance.inventory.Count > 0)
+				{
+					inv.SetSaveableInventory(ScenePersistence.Instance.inventory);
+				}
+			}
+		}
+	}
 	// Update is called once per frame
 	void Update()
 	{
@@ -86,20 +103,7 @@ public class PlayerInventoryManager : MonoBehaviour
 			}
 		}
 
-		if (GlobalGameSaving.Instance != null)
-		{
-			if (GlobalGameSaving.Instance.loadingSave == true)
-			{
-				inv.SetSaveableInventory(GlobalGameSaving.Instance.inventory);
-			}
-			else if (ScenePersistence.Instance != null)
-			{
-				if (ScenePersistence.Instance.inventory.Count > 0)
-				{
-					inv.SetSaveableInventory(ScenePersistence.Instance.inventory);
-				}
-			}
-		}
+		
 
 		UpdateHeldItem();
 	}

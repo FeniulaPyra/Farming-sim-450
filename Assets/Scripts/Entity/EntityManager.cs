@@ -51,17 +51,20 @@ public class EntityManager : MonoBehaviour
                         b.buffApplied = GlobalGameSaving.Instance.buffPets[i].buffApplied;
                     }
                 }
+				Debug.Log($"LEP2738 LOADING THING: {GlobalGameSaving.Instance.entities.Count}");
 
-                if (GlobalGameSaving.Instance.entities.Count > 0)
+				if (GlobalGameSaving.Instance.entities.Count > 0)
                 {
                     for (int i = 0; i < GlobalGameSaving.Instance.entities.Count; i++)
                     {
+						Debug.Log($"LEP2738 LOADING THING: {GlobalGameSaving.Instance.entityNames[i]}");
                         //Close to the player's position, so the pet spawns near them
                         /*Vector3 playerPos = GameObject.Find("Player").transform.position;
                         Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);*/
                         if (SceneManager.GetActiveScene().name == GlobalGameSaving.Instance.entities[i].sceneName)
                         {
-                            switch (GlobalGameSaving.Instance.entities[i].type)
+							
+							switch (GlobalGameSaving.Instance.entities[i].type)
                             {
                                 case "tool":
                                     Instantiate(Resources.Load($"Prefabs/Tools/{GlobalGameSaving.Instance.entityNames[i]}"), GlobalGameSaving.Instance.entities[i].pos, Quaternion.identity);
@@ -244,6 +247,7 @@ public class EntityManager : MonoBehaviour
 
         foreach (BasicEntity e in entities)
         {
+			Debug.Log("LEP2738 SAVING ENTITY: " + e.name);
             if (e is BasicPet)
             {
                 BasicPet p = (BasicPet)e;

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemEntity : MonoBehaviour
+public class ItemEntity : BasicEntity
 {
-	public GameObject player;
+	public GameObject playerObj;
 	PlayerInventoryManager pim;
 	Inventory inv;
 	GameObject itemObj;
@@ -16,9 +16,11 @@ public class ItemEntity : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		base.Start();
 		itemObj = gameObject;
-		player = GameObject.Find("Player");
-		pim = player.GetComponent<PlayerInventoryManager>();
+		playerObj = GameObject.Find("Player");
+		player = playerObj.transform;
+		pim = playerObj.GetComponent<PlayerInventoryManager>();
 		inv = pim.inv;
 		//note must have separate item object because the object gets destroyed
 		i = pim.im.GetItemByName(itemObj.GetComponent<Item>().name);
@@ -29,7 +31,7 @@ public class ItemEntity : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		if (Vector2.Distance(itemObj.transform.position, player.transform.position) < .5)
+		if (Vector2.Distance(itemObj.transform.position, playerObj.transform.position) < .5)
 		{
 			if (!(inv.IsTooFull(i, 1)))
 			{

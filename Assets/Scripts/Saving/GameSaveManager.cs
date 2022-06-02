@@ -36,52 +36,52 @@ public class GameSaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        constantPath = Application.persistentDataPath;
+        //constantPath = Application.persistentDataPath;
 
-        flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
+        //flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
 
-        originalPath = constantPath + "/saves/";
-        path = originalPath;
+        //originalPath = constantPath + "/saves/";
+        //path = originalPath;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInteraction.CanInteract == true)
-        {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
+        //if (playerInteraction.CanInteract == true)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.O))
+        //    {
+        //        string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
 
-                path += name;
+        //        path += name;
 
-                Debug.Log($"Saved game to {path}");
+        //        Debug.Log($"Saved game to {path}");
 
-                if (File.Exists(path) == true)
-                {
-                    Debug.Log("Save does exist");
-                    flowchart.SetStringVariable("SaveName", name);
-                    flowchart.ExecuteBlock("Start");
-                }
-                else
-                {
-                    Debug.Log("Save does not exist");
-                    //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
-                    SaveGame(name);
-                }
+        //        if (File.Exists(path) == true)
+        //        {
+        //            Debug.Log("Save does exist");
+        //            flowchart.SetStringVariable("SaveName", name);
+        //            flowchart.ExecuteBlock("Start");
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Save does not exist");
+        //            //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
+        //            SaveGame(name);
+        //        }
 
-                path = originalPath;
-            }
+        //        path = originalPath;
+        //    }
 
-            /*if (Input.GetKeyDown(KeyCode.P))
-            {
-                displayLoadMenu = true;
-                saves = FindAllSaves();
-            }*/
-        }
+        //    /*if (Input.GetKeyDown(KeyCode.P))
+        //    {
+        //        displayLoadMenu = true;
+        //        saves = FindAllSaves();
+        //    }*/
+        //}
     }
 
-    public void SaveGame()
+    private void SaveGame()
     {
         string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
 
@@ -106,7 +106,7 @@ public class GameSaveManager : MonoBehaviour
         path = originalPath;
     }
 
-    public void SaveGame(string saveName)
+    private void SaveGame(string saveName)
     {
         // Here is where saving happens...
         var folderPath = constantPath + "/saves/";
@@ -231,7 +231,7 @@ public class GameSaveManager : MonoBehaviour
                     save.entityNames.Add(save.entities[save.entities.Count - 1].self.name);
                 }
 
-                Debug.Log($"Entity name at [{save.entityNames.Count - 1}] is {save.entityNames[save.entityNames.Count - 1]}");
+                Debug.Log($"Entity name at [{save.entityNames.Count - 1}] is {save.entityNames[save.entityNames.Count - 1]} type {save.entities[save.entityNames.Count - 1].type}");
             }
         }
 
@@ -303,8 +303,14 @@ public class GameSaveManager : MonoBehaviour
 
         //Destroying entities then replacing them with their saved counterparts
         List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
-
-        for (int i = 0; i < save.entities.Count; i++)
+		for (int i = 0; i < entities.Count; i++)
+		{
+			if (entities[i] != null)
+			{
+				Destroy(entities[i].gameObject);
+			}
+		}
+		for (int i = 0; i < save.entities.Count; i++)
         {
             switch (save.entities[i].type)
             {
@@ -329,13 +335,7 @@ public class GameSaveManager : MonoBehaviour
             Instantiate(Resources.Load($"Prefabs/Pets/{save.livestockPetNames[i]}"), save.livestockPets[i].pos, Quaternion.identity);
         }
 
-        for (int i = 0; i < entities.Count; i++)
-        {
-            if (entities[i] != null)
-            {
-                Destroy(entities[i].gameObject);
-            }
-        }
+        
 
 
         sr.Close();
