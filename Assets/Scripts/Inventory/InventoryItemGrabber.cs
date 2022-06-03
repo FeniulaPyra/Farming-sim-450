@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class InventoryItemGrabber : TogglableMenu
 {
@@ -42,11 +43,16 @@ public class InventoryItemGrabber : TogglableMenu
 
 		//https://stackoverflow.com/questions/43802207/position-ui-to-mouse-position-make-tooltip-panel-follow-cursor
 		Vector2 pos;
-		RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        /*RectTransformUtility.ScreenPointToLocalPointInRectangle(
 			menu.transform as RectTransform, 
 			Input.mousePosition,
 			menu.GetComponent<Canvas>().worldCamera,
-			out pos);
-		gameObject.transform.position = menu.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+			out pos);*/
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        menu.transform as RectTransform,
+        Mouse.current.position.ReadValue(),
+        menu.GetComponent<Canvas>().worldCamera,
+        out pos);
+        gameObject.transform.position = menu.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 	}
 }

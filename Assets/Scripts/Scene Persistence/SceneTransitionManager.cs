@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using System.IO;
 using TMPro;
 
@@ -32,12 +33,12 @@ public class SceneTransitionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Keyboard.current.gKey.wasPressedThisFrame == true)//if (Input.GetKeyDown(KeyCode.G))
         {
             //LoadScene("FungusTestScene");
             LoadScene("GroundScene 1");
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Keyboard.current.hKey.wasPressedThisFrame == true)//if (Input.GetKeyDown(KeyCode.H))
         {
             LoadScene("GroundScene");
         }

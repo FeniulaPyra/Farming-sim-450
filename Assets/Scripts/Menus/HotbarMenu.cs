@@ -13,7 +13,8 @@ public class HotbarMenu : TogglableMenu
 
 	public GameObject playerObj;
 	PlayerInventoryManager player;
-	Inventory inv;
+	//Inventory inv;
+    Inventory inv;
 
 	public GameObject HotbarItemLabel;
 	Text itemLabel;
@@ -21,6 +22,7 @@ public class HotbarMenu : TogglableMenu
 	// Start is called before the first frame update
 	void Start()
 	{
+        playerObj = GameObject.Find("Player");
 		player = playerObj.GetComponent<PlayerInventoryManager>();
 		inv = player.inv;
 

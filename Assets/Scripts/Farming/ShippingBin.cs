@@ -33,7 +33,8 @@ public class ShippingBin : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		playerInvManager = playerObject.GetComponent<PlayerInventoryManager>();
+        playerObject = GameObject.Find("Player");
+        playerInvManager = playerObject.GetComponent<PlayerInventoryManager>();
 		playerInventory = playerInvManager.inv;
 
         player = playerObject.GetComponent<PlayerInteraction>();

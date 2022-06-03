@@ -4,6 +4,7 @@ using UnityEngine;
 using Fungus;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GlobalGameSaving : MonoBehaviour
 {
@@ -111,40 +112,50 @@ public class GlobalGameSaving : MonoBehaviour
         }
     }
 
+    void OnManualSave()
+    {
+        if (playerInteraction.CanInteract == true)
+        {
+            string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
+
+            path += name;
+
+            Debug.Log($"Saved game to {path}");
+
+            if (File.Exists(path) == true)
+            {
+                Debug.Log("Save does exist");
+                flowchart.SetStringVariable("SaveName", name);
+                flowchart.ExecuteBlock("Start");
+            }
+            else
+            {
+                Debug.Log("Save does not exist");
+                //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
+                SaveGame(name);
+            }
+
+            path = originalPath;
+        }
+    }
+
+    void OnManualLoad()
+    {
+        if (playerInteraction.CanInteract == true)
+        {
+            displayLoadMenu = true;
+            saves = FindAllSaves();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (playerInteraction.CanInteract == true)
         {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                string name = $"{saveName} -on- {timeManager.SeasonNumber}.{timeManager.DateNumber}.{timeManager.YearNumber} -with- {playerInteraction.PlayerStamina} stamina";
+            
 
-                path += name;
-
-                Debug.Log($"Saved game to {path}");
-
-                if (File.Exists(path) == true)
-                {
-                    Debug.Log("Save does exist");
-                    flowchart.SetStringVariable("SaveName", name);
-                    flowchart.ExecuteBlock("Start");
-                }
-                else
-                {
-                    Debug.Log("Save does not exist");
-                    //SaveGame(saveName + "-at-" + timeManager.SeasonNumber + "." + timeManager.DateNumber + "." + timeManager.YearNumber);
-                    SaveGame(name);
-                }
-
-                path = originalPath;
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                displayLoadMenu = true;
-                saves = FindAllSaves();
-            }
+            
         }
     }
 

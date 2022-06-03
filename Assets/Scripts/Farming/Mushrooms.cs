@@ -83,35 +83,6 @@ public class Mushrooms : Tile
     // Update is called once per frame
     void Update()
     {
-        //Temp code; just making sure Unity can call the method and make it work if the mushroom is moist
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Debug.Log("Mushroom now moist");
-            isMoist = true;
-            //GrowMushroom();
-        }
-
-        //Just for testing things related to mushroom growth
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Debug.Log("Mushroom has grown");
-            growthStage++;
-            //GrowMushroom();
-        }
-
-        //Temp code; just making sure Unity can call the method and make it work if the mushroom is dry
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log("Mushroom now dry");
-            isMoist = false;
-            GrowMushroom();
-        }
-
-        //Temp code; just making sure Unity can access the misc variables
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Debug.Log($"Mushroom is named {ID} and is worth {baseValue} G.");
-        }
 
 		//show bubble
 		if(daysWithoutWater >= maxDaysWithoutWater - 1 && !isMoist)

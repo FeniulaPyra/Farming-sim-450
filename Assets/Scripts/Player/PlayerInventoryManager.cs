@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInventoryManager : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class PlayerInventoryManager : MonoBehaviour
 	public double MouseScrollDeadzone;
 	public double currentMouseScroll;
 
+    bool hotBarModifier;
+
 	// Start is called before the first frame update
 	void Awake()
 	{
-		im = ItemManagerObj.GetComponent<ItemManager>();
+        //im = ItemManagerObj.GetComponent<ItemManager>();
+        im = GameObject.Find("ItemManager").GetComponent<ItemManager>();
 
 		inv = new Inventory(4, 9);
 		Debug.Log(im.GetItemByName("hoe").name);
@@ -52,35 +56,73 @@ public class PlayerInventoryManager : MonoBehaviour
 			}
 		}
 	}
+
 	// Update is called once per frame
 	void Update()
 	{
 		//rotate hotbar
-		if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR))
+		/*if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR))
 			NextHotbar();
 		if (Input.GetKeyDown((KeyCode)Menu.MenuControls.PREV_HOTBAR))
-			PreviousHotbar();
+			PreviousHotbar();*/
 
 		//rotate held item
-		if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR_SLOT))
+		/*if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR_SLOT))
 			NextItem();
 		if (Input.GetKeyDown((KeyCode)Menu.MenuControls.PREV_HOTBAR_SLOT))
-			PreviousItem();
+			PreviousItem();*/
 
-		for (int numKey = 1; numKey <= 9; numKey++)
+		/*for (int numKey = 1; numKey <= 9; numKey++)
 		{
 			if (Input.GetKeyDown("" + numKey))
 			{
 				HeldSlot = numKey - 1;
 				HeldSlot = HeldSlot % (inv.COLUMNS + 1);
 			}
-		}
+		}*/
 
-		float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Keyboard.current.digit1Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 0 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit2Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 1 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit3Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 2 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit4Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 3 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit5Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 4 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit6Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 5 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit7Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 6 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit8Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 7 % (inv.COLUMNS + 1);
+        }
+        else if (Keyboard.current.digit9Key.wasPressedThisFrame == true)
+        {
+            HeldSlot = 8 % (inv.COLUMNS + 1);
+        }
+
+        //float scroll = Input.GetAxis("Mouse ScrollWheel");
 
 		//scroll controls - putting in seperate if because i am lazy and i
 		//dont like when the lines get too long
-		if (Input.GetKey(KeyCode.LeftControl))
+		/*if (Input.GetKey(KeyCode.LeftControl))
 		{
 			if (scroll < -MouseScrollDeadzone)
 			{
@@ -101,13 +143,47 @@ public class PlayerInventoryManager : MonoBehaviour
 			{
 				PreviousItem();
 			}
-		}
+		}*/
 
 		
 
 		UpdateHeldItem();
 	}
-	void NextHotbar()
+
+    void OnSwitchHotbarModifier(InputValue value)
+    {
+        hotBarModifier = value.isPressed;
+    }
+
+    void OnHotbarScrolling(InputValue value)
+    {
+        float scroll = value.Get<Vector2>().y;
+
+        if (hotBarModifier == true)
+        {
+            if (scroll < -MouseScrollDeadzone)
+            {
+                NextHotbar();
+            }
+            if (scroll > MouseScrollDeadzone)
+            {
+                PreviousHotbar();
+            }
+        }
+        else
+        {
+            if (scroll < -MouseScrollDeadzone)
+            {
+                NextItem();
+            }
+            if (scroll > MouseScrollDeadzone)
+            {
+                PreviousItem();
+            }
+        }
+    }
+
+    void NextHotbar()
 	{
 		Hotbar++;
 		Hotbar = Hotbar % (inv.ROWS);
@@ -229,11 +305,14 @@ public class PlayerInventoryManager : MonoBehaviour
 
 		ItemManager itemLibrary = im;//GameObject.Find("ItemManager").GetComponent<ItemManager>();
 		Camera cam = Camera.main;
-		Vector3 mouse = Input.mousePosition;
-		mouse.z = 10;
-		Vector2 worldMouse = cam.ScreenToWorldPoint(Input.mousePosition);
+        //Vector3 mouse = Input.mousePosition;
+        //Vector3 mouse = Input.mousePosition;
+        Vector3 mouse = Mouse.current.position.ReadValue();
+        mouse.z = 10;
+       //Vector2 worldMouse = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 worldMouse = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-		Vector2 vec = worldMouse - (Vector2)transform.position;
+        Vector2 vec = worldMouse - (Vector2)transform.position;
 		float theta = Mathf.Atan2(vec.y, vec.x);
 
 		Instantiate(itemLibrary.GetPrefabByName(i.name), transform.position + new Vector3(Mathf.Cos(theta) * 1.5f, Mathf.Sin(theta) * 1.5f, 0), Quaternion.identity);

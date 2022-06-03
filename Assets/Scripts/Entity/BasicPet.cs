@@ -50,10 +50,24 @@ public class BasicPet : BasicEntity
         this.gameObject.GetComponent<SpriteRenderer>().sprite = normalImage;
     }
 
+    void OnInteraction()
+    {
+        if (!pim.inv.IsTooFull(petItem, 1))
+        {
+            pim.inv.AddItems(petItem, 1);
+            Object.Destroy(this.gameObject);
+
+            owner.petCount -= 1;
+            owner.ableToPlacePet = false;
+
+        }
+    }
+
     protected void OnMouseOver()//private void OnMouseOver()
     {
+        OnInteraction();
 
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
+        /*(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (!pim.inv.IsTooFull(petItem, 1))
             {
@@ -64,7 +78,7 @@ public class BasicPet : BasicEntity
                 owner.ableToPlacePet = false;
                 
             }
-        }
+        }*/
     }
 
     public void SavePet(out SavePet pet)

@@ -224,10 +224,10 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Waiting");
 
-        while (Input.GetKeyDown(key) == false && Input.GetKeyDown(secondKey) == false)
+        /*while (Input.GetKeyDown(key) == false && Input.GetKeyDown(secondKey) == false)
         {
             yield return null;
-        }
+        }*/
 
         yield return new WaitForSeconds(0.25f);
     }

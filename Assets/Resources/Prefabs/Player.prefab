@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7752269456424297126}
   - component: {fileID: 7752269456424297127}
   - component: {fileID: 1281256936}
+  - component: {fileID: 5275481385977868881}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -95,6 +96,10 @@ MonoBehaviour:
   activeColor: {r: 1, g: 1, b: 1, a: 1}
   inactiveColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 0.39215687}
   canInteract: 0
+  isShown: 0
+  ableToPlacePet: 0
+  oldPetCount: 0
+  petCount: 0
   staminaDisplay: {fileID: 0}
   playerStamina: 0
   timeRadial: {fileID: 0}
@@ -102,10 +107,32 @@ MonoBehaviour:
   timeRadial3: {fileID: 0}
   isTalking: 0
   playerGold: 0
+  player: {fileID: 0}
+  playerInventoryManager: {fileID: 0}
   objects: []
   farmingTutorial: {fileID: 0}
   bed: {fileID: 0}
   menu: {fileID: 0}
+--- !u!114 &5275481385977868881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752269456424297128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7397fe20a798b84fa1b6bda85fe4f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemManagerObj: {fileID: 0}
+  im: {fileID: 0}
+  HeldSlot: 0
+  Hotbar: 0
+  heldItem: {fileID: 0}
+  heldAmount: 0
+  MouseScrollDeadzone: 0
+  currentMouseScroll: 0
 --- !u!1 &7752269456871954607
 GameObject:
   m_ObjectHideFlags: 0

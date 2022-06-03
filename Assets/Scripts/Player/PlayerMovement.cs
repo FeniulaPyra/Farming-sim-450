@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -51,9 +52,19 @@ public class PlayerMovement : MonoBehaviour
         facing = new Vector2(1, 0);
     }
 
+    void OnMovement(InputValue value)
+    {
+        direction = new Vector2(value.Get<Vector2>().x, value.Get<Vector2>().y);
+
+        if (value.Get<Vector2>().y == 1) sr.sprite = up;
+        else if (value.Get<Vector2>().x == -1) sr.sprite = left;
+        else if (value.Get<Vector2>().x == -1) sr.sprite = down;
+        else if (value.Get<Vector2>().x == 1) sr.sprite = right;
+    }
+
     void Update()
     {
-        direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (direction.magnitude > 1)
             direction = direction.normalized;
@@ -74,10 +85,10 @@ public class PlayerMovement : MonoBehaviour
 		//matches sprite to movement
 		Debug.Log("dir x " + direction.x);
 		Debug.Log("dir Y " + direction.y);
-		if (Input.GetKeyDown(KeyCode.W)) sr.sprite = up;
+		/*if (Input.GetKeyDown(KeyCode.W)) sr.sprite = up;
 		else if (Input.GetKeyDown(KeyCode.A)) sr.sprite = left;
 		else if (Input.GetKeyDown(KeyCode.S)) sr.sprite = down;
-		else if (Input.GetKeyDown(KeyCode.D)) sr.sprite = right;
+		else if (Input.GetKeyDown(KeyCode.D)) sr.sprite = right;*/
 
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Fungus;
+using UnityEngine.InputSystem;
 
 public class FarmingTutorial : MonoBehaviour
 {
@@ -145,6 +146,11 @@ public class FarmingTutorial : MonoBehaviour
         //check if there's a save to load. If yes, set here
     }
 
+    void OnReplayTutorial()
+    {
+        myFlowchart.ExecuteBlock(currentTutorial);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -161,11 +167,11 @@ public class FarmingTutorial : MonoBehaviour
 		}
 		
         //Rwplay Text
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             //StartCoroutine(self.PlayDialogue(self.convoID));
             myFlowchart.ExecuteBlock(currentTutorial);
-        }
+        }*/
 
         //First step
         //Hoe

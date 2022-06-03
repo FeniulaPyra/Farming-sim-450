@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -115,11 +116,16 @@ public class PlayerInteraction : MonoBehaviour
         //playerStamina = maxPlayerStamina;
         playerStamina = 100;
 
+        timeRadial = GameObject.Find("TimeRadial").GetComponent<Image>();
+        timeRadial2 = GameObject.Find("TimeRadial2").GetComponent<Image>();
+        timeRadial3 = GameObject.Find("TimeRadial3").GetComponent<Image>();
+
         timeRadial2.fillAmount = 0;
         timeRadial3.fillAmount = 0;
 
-		playerInventoryManager = player.GetComponent<PlayerInventoryManager>();
-		playerInventory = playerInventoryManager.inv;
+        //playerInventoryManager = player.GetComponent<PlayerInventoryManager>();
+        playerInventoryManager = gameObject.GetComponent<PlayerInventoryManager>();
+        playerInventory = playerInventoryManager.inv;
 
         //playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
@@ -179,10 +185,34 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    void OnEatFood()
+    {
+        Item heldItem = playerInventoryManager.GetHeldItem();
+
+        if (canInteract && playerInventory.isShown == false && heldItem != null)
+        {
+            if (heldItem.isEdible == true)
+            {
+                SetStamina(playerStamina + heldItem.staminaToRestore);
+                playerInventoryManager.RemoveHeldItems(1);
+
+                if (farmingTutorial != null)
+                {
+                    if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
+                    {
+                        farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
+                        GlobalGameSaving.Instance.tutorialBools[12] = farmingTutorial.tutorialBools[12];
+                    }
+                }
+            }
+        }
+    }
+
     private void Update()
     {
         playerPosition = transform.position;
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
 
         var indicatorPos = focusTilePosition;
@@ -211,7 +241,7 @@ public class PlayerInteraction : MonoBehaviour
         if (canInteract && playerInventory.isShown == false && heldItem != null)// && isTalking == false)
         {
             //If you change item and it isn't edible, or if you stop holding down the key, reset eating
-            if (heldItem.isEdible == true && Input.GetKeyDown(KeyCode.F))
+            /*if (heldItem.isEdible == true && Input.GetKeyDown(KeyCode.F))
             {
 
                 SetStamina(playerStamina + heldItem.staminaToRestore);
@@ -225,10 +255,10 @@ public class PlayerInteraction : MonoBehaviour
                         GlobalGameSaving.Instance.tutorialBools[12] = farmingTutorial.tutorialBools[12];
                     }
                 }
-            }
+            }*/
 
-            if (interactInRange)
-                CheckInteraction();
+            //if (interactInRange)
+                //CheckInteraction();
         }
 
         //Stop all player movement when in dialogue
@@ -279,7 +309,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //StartCoroutine(InteractionChecker());
-        InteractionChecker();
+        //InteractionChecker();
     }
 
     /// <summary>
@@ -301,102 +331,150 @@ public class PlayerInteraction : MonoBehaviour
         canInteract = true;
     }
 
-    private void CheckInteraction()
+    void OnInteraction()//private void CheckInteraction()
     {
-        string itemName = "";
-        
-        Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
-
-		Item heldItem = playerInventoryManager.GetHeldItem();
-		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-        //if (playerInventory.HeldItem != null)
-		itemName = heldItem.name;
-
-        //gets rid of the item if the stack is empty
-        if (heldItemAmount <= 0)
+        //goes through all interactable objects
+        for (int i = 0; i < objects.Count; i++)
         {
-			playerInventoryManager.RemoveHeldItems(heldItemAmount);//DeleteHeldItemStack();
-        }
-        /*if (playerInventory.HeldItem.Item != null)
-        {
-            if (playerInventory.HeldItem.Amount <= 0)
+            Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
+            Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
+            //Sees how close the player is to them
+            float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
+
+
+            //1 seems like a fine number
+            /*<<<<<<< HEAD
+                            if (distance <= 1.0f)// && objects[i].enabled == true)
+            =======*/
+            if (distance <= 0.5f && objects[i].enabled == true)
+            //>>>>>>> main
             {
-                playerInventory.DeleteHeldItemStack();
-            }
-        }*/
-
-        // Get Whatever input
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0) && itemName != "" && isTalking == false)//if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
-        {
-            heldItem = playerInventoryManager.GetHeldItem();
-            heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-
-			Debug.Log("LEP2738 HELD: " + heldItem.name);
-            if (mushroomsAndTiles.ContainsKey(focusTilePosition))
-            {
-                if (heldItemAmount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+                //switch on name to see what it is
+                switch (objects[i].name)
                 {
-                    Debug.Log("Plant One");
-					//ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-					//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-					playerInventoryManager.RemoveHeldItems(1);
+                    case "npc":
+                        Debug.Log("Interact update");
+                        //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                        //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
+                        objects[i].gameObject.GetComponent<NPCManager>().MyFlowchart.ExecuteBlock("Start");
+                        break;
+                    case "shipping bin":
+                        menu.OpenShippingBin();
+                        //objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
+                        break;
+                    case "bed":
+                        //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
+                        menu.OpenBed();
+                        break;
+                    case "Shop":
+                        menu.OpenShop();
+                        break;
+                    case "chest":
+                        menu.OpenExternalInventory(objects[i].gameObject);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        if (interactInRange == true)
+        {
+            string itemName = "";
+
+            Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
+
+            Item heldItem = playerInventoryManager.GetHeldItem();
+            int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
+            //if (playerInventory.HeldItem != null)
+            itemName = heldItem.name;
+
+            //gets rid of the item if the stack is empty
+            if (heldItemAmount <= 0)
+            {
+                playerInventoryManager.RemoveHeldItems(heldItemAmount);//DeleteHeldItemStack();
+            }
+            /*if (playerInventory.HeldItem.Item != null)
+            {
+                if (playerInventory.HeldItem.Amount <= 0)
+                {
+                    playerInventory.DeleteHeldItemStack();
+                }
+            }*/
+
+            // Get Whatever input
+            if (itemName != "" && isTalking == false)//if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0) && itemName != "" && isTalking == false)//if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
+            {
+                heldItem = playerInventoryManager.GetHeldItem();
+                heldItemAmount = playerInventoryManager.GetHeldItemAmount();
+
+                //Debug.Log("LEP2738 HELD: " + heldItem.name);
+                if (mushroomsAndTiles.ContainsKey(focusTilePosition))
+                {
+                    if (heldItemAmount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+                    {
+                        Debug.Log("Plant One");
+                        //ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                        //playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                        playerInventoryManager.RemoveHeldItems(1);
+                    }
+                    /*else if (playerInventory.HeldItem.Item.isEdible == true)
+                    {
+                        Debug.Log("Restore One");
+                        ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
+                        playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
+                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
+                    }*/
+
+                    //before actually doing interaction, deduct player stamina accordingly
+                    //switch on the four main item types, then some default value for everything else
+                    if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                    {
+                        ReduceStamina(heldItem.staminaUsed);
+                    }
+                    else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
+                    {
+                        ReduceStamina(heldItem.staminaUsed);
+                    }
+                    else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
+                    {
+                        ReduceStamina(heldItem.staminaUsed);
+                    }
+                    else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
+                    {
+                        ReduceStamina(heldItem.staminaUsed);
+                    }
                 }
                 /*else if (playerInventory.HeldItem.Item.isEdible == true)
                 {
-                    Debug.Log("Restore One");
                     ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
                     playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
                     SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
                 }*/
+                else if (itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
+                {
+                    ReduceStamina(heldItem.staminaUsed);
+                }
 
-                //before actually doing interaction, deduct player stamina accordingly
-                //switch on the four main item types, then some default value for everything else
-                if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && ableToPlacePet == true)
                 {
-                    ReduceStamina(heldItem.staminaUsed);
+                    Vector3 position = this.gameObject.transform.position;
+                    position.x -= 1.5f;
+                    heldItem.itemObj.transform.localPosition = position;
+
+                    Vector3 pos = new Vector3(focusTilePosition.x, focusTilePosition.y, focusTilePosition.z);
+                    Instantiate(heldItem.itemObj, pos, Quaternion.identity);
+                    playerInventoryManager.RemoveHeldItems(1);
+
+                    petCount++;
                 }
-                else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
-                {
-                    ReduceStamina(heldItem.staminaUsed);
-                }
-                else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
-                {
-                    ReduceStamina(heldItem.staminaUsed);
-                }
-                else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
-                {
-                    ReduceStamina(heldItem.staminaUsed);
-                }
+
+
+                //staminaDisplay.text = $"Stamina: {playerStamina}";
+                //timeRadial.fillAmount = (float)playerStamina/100;
+
+                farmManager.TileInteract(focusTilePosition, itemName);
             }
-            /*else if (playerInventory.HeldItem.Item.isEdible == true)
-            {
-                ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-            }*/
-            else if(itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
-            {
-                ReduceStamina(heldItem.staminaUsed);
-            }
-
-            if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && ableToPlacePet == true)
-            {
-                Vector3 position = this.gameObject.transform.position;
-                position.x -= 1.5f;
-                heldItem.itemObj.transform.localPosition = position;
-
-                Vector3 pos = new Vector3(focusTilePosition.x, focusTilePosition.y, focusTilePosition.z);
-                Instantiate(heldItem.itemObj, pos, Quaternion.identity);
-                playerInventoryManager.RemoveHeldItems(1);
-
-                petCount++;
-			}
-
-
-			//staminaDisplay.text = $"Stamina: {playerStamina}";
-			//timeRadial.fillAmount = (float)playerStamina/100;
-
-			farmManager.TileInteract(focusTilePosition, itemName);
         }
 
     }
@@ -408,13 +486,13 @@ public class PlayerInteraction : MonoBehaviour
     /// This pauses for a very brief amount of time so that first spacebar press doesn't register for the WaitForInput
     /// </summary>
     /// <returns></returns>
-    public void InteractionChecker()
+    /*public void InteractionChecker()
     {
         //checks if the player hits the key for interaction
         //Debug.Log($"Interact talking: {playerInteraction.isTalking}");
         if (Input.GetKeyDown(KeyCode.Space) && isTalking == false || Input.GetKeyDown(KeyCode.Mouse0) && isTalking == false)
         {
-            KeyCode dialoguePress = KeyCode.Space;
+            /*KeyCode dialoguePress = KeyCode.Space;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 dialoguePress = KeyCode.Space;
@@ -422,10 +500,10 @@ public class PlayerInteraction : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 dialoguePress = KeyCode.Mouse0;
-            }
+            }*/
 
             //goes through all interactable objects
-            for (int i = 0; i < objects.Count; i++)
+            /*for (int i = 0; i < objects.Count; i++)
             {
                 Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
                 Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
@@ -437,7 +515,7 @@ public class PlayerInteraction : MonoBehaviour
 /*<<<<<<< HEAD
                 if (distance <= 1.0f)// && objects[i].enabled == true)
 =======*/
-                if (distance <= 0.5f && objects[i].enabled == true)
+                /*if (distance <= 0.5f && objects[i].enabled == true)
 //>>>>>>> main
                 {
                     //switch on name to see what it is
@@ -469,7 +547,7 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     /*public IEnumerator InteractionChecker()
     {
