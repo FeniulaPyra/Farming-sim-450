@@ -58,8 +58,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (value.Get<Vector2>().y == 1) sr.sprite = up;
         else if (value.Get<Vector2>().x == -1) sr.sprite = left;
-        else if (value.Get<Vector2>().x == -1) sr.sprite = down;
+        else if (value.Get<Vector2>().y == -1) sr.sprite = down;
         else if (value.Get<Vector2>().x == 1) sr.sprite = right;
+
+        if (frozen) return;
+
+        var desiredVelocity = direction * movementSpeed;
+        var move = desiredVelocity - rb.velocity;
+        /*
+        if (rb.velocity.magnitude > 0.1)
+            sr.flipX = rb.velocity.x < 0;*/
+
+        rb.velocity += move;
     }
 
     void Update()
@@ -94,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (frozen) return;
+        /*if (frozen) return;
 
         var desiredVelocity = direction * movementSpeed;
         var move = desiredVelocity - rb.velocity;
@@ -102,6 +112,6 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.magnitude > 0.1)
             sr.flipX = rb.velocity.x < 0;*/
 
-        rb.velocity += move;
+        //rb.velocity += move;
     }
 }

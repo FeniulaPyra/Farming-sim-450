@@ -156,6 +156,28 @@ public class PlayerInventoryManager : MonoBehaviour
 
     void OnHotbarScrolling(InputValue value)
     {
+        var gamepad = Gamepad.current;
+
+        if (gamepad != null)
+        {
+            if (value.Get<Vector2>().x == -1)
+            {
+                PreviousItem();
+            }
+            else if (value.Get<Vector2>().x == 1)
+            {
+                NextItem();
+            }
+            else if (value.Get<Vector2>().y == -1)
+            {
+                PreviousHotbar();
+            }
+            else if (value.Get<Vector2>().y == 1)
+            {
+                NextHotbar();
+            }
+        }
+
         float scroll = value.Get<Vector2>().y;
 
         if (hotBarModifier == true)

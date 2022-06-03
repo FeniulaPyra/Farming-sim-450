@@ -208,9 +208,52 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void Update()
+    void OnIndicatorMovement(InputValue value)
     {
         playerPosition = transform.position;
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 pos = new Vector2();
+        var gamepad = Gamepad.current;
+
+        if (gamepad != null)
+        {
+            pos = Camera.main.ScreenToWorldPoint(new Vector3(playerPosition.x + value.Get<Vector2>().x, playerPosition.y + value.Get<Vector2>().y, 0));
+        }
+        else
+        {
+            pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//var mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+
+
+        //focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
+        focusTilePosition = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), 0);
+
+        var indicatorPos = focusTilePosition;
+        if (displayIndicator && canInteract)
+            indicatorPos.z = 0;
+        else
+            indicatorPos.z = 11;
+
+        //indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        indicator.position = indicatorPos;
+
+        Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
+
+        if (Vector2.Distance(playerPosition + interactionOffset, (Vector2Int)focusTilePosition) < maxInteractionDistance)
+        {
+            indicatorImage.color = activeColor;
+            interactInRange = true;
+        }
+        else
+        {
+            indicatorImage.color = inactiveColor;
+            interactInRange = false;
+        }
+    }
+
+    private void Update()
+    {
+        /*playerPosition = transform.position;
         //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
@@ -234,7 +277,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             indicatorImage.color = inactiveColor;
             interactInRange = false;
-        }
+        }*/
 
 		Item heldItem = playerInventoryManager.GetHeldItem();
 		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
