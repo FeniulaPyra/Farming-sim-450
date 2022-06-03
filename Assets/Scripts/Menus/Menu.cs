@@ -291,7 +291,9 @@ public class Menu : MonoBehaviour
 		}*/
 		inventoryMenu.UpdateDisplay();
 		hotbarMenu.UpdateDisplay();
-		player.GetComponent<PlayerInventoryManager>().inv.isShown = InventoryMenuObject.activeSelf;
+        shippingMenu.UpdateDisplay();
+        externalInventoryMenu.UpdateDisplay();
+        player.GetComponent<PlayerInventoryManager>().inv.isShown = InventoryMenuObject.activeSelf;
 	}
 	
 	//hides the pause menu - for button use
@@ -305,7 +307,7 @@ public class Menu : MonoBehaviour
     void OnDropItem()
     {
         //pim.DropHeldItem();
-        hotbarMenu.UpdateDisplay();
+        
         if (Keyboard.current.shiftKey.wasPressedThisFrame == true)// || Input.GetKeyDown(KeyCode.LeftShift))//if (Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             pim.DropHeldItems();
