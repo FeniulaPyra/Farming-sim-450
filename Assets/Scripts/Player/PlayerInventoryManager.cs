@@ -149,6 +149,39 @@ public class PlayerInventoryManager : MonoBehaviour
 		UpdateHeldItem();
 	}
 
+    void OnMenuMovement(InputValue value)
+    {
+        Vector2 v = value.Get<Vector2>();
+
+        inv.selectedRow += (int)v.y;
+        inv.selectedColumn += (int)v.x;
+
+        if (inv.selectedRow < 0)
+        {
+            inv.selectedRow = inv.ROWS - 1;
+        }
+        else if (inv.selectedRow > inv.ROWS)
+        {
+            inv.selectedRow = 0;
+        }
+
+        if (inv.selectedColumn < 0)
+        {
+            inv.selectedColumn = inv.COLUMNS - 1;
+        }
+        else if (inv.selectedColumn > inv.COLUMNS)
+        {
+            inv.selectedColumn = 0;
+        }
+
+        Debug.Log($"Selected Slot is {inv.selectedRow},{inv.selectedColumn}");
+    }
+
+    void OnMenuInteract()
+    {
+        Debug.Log($"The selected item is {inv.GetSlotItem(inv.selectedRow, inv.selectedColumn).name}");
+    }
+
     void OnSwitchHotbarModifier(InputValue value)
     {
         hotBarModifier = value.isPressed;
