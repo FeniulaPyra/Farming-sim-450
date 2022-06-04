@@ -106,8 +106,10 @@ public class PlayerInteraction : MonoBehaviour
 
 	public Menu menu;
 
+    Vector2 pos = new Vector2();
+    Vector2 savePos;
 
-	private void Start()
+    private void Start()
     {
 		menu = GameObject.Find("Menus").GetComponent<Menu>();
 
@@ -152,6 +154,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             StartPlayer();
         }
+
+        pos = transform.position;
+
+        savePos = pos;
 
         if (GlobalGameSaving.Instance != null)
         {
@@ -208,16 +214,57 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    void OnMovement(InputValue value)
+    {
+        playerPosition = transform.position;
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 v = value.Get<Vector2>();
+        pos = new Vector2(playerPosition.x + v.x, playerPosition.y + v.y);
+
+        //focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
+        focusTilePosition = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), 0);
+
+        var indicatorPos = focusTilePosition;
+        if (displayIndicator && canInteract)
+            indicatorPos.z = 0;
+        else
+            indicatorPos.z = 11;
+
+        //indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        indicator.position = indicatorPos;
+
+        Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
+
+        if (Vector2.Distance(playerPosition + interactionOffset, (Vector2Int)focusTilePosition) < maxInteractionDistance)
+        {
+            indicatorImage.color = activeColor;
+            interactInRange = true;
+        }
+        else
+        {
+            indicatorImage.color = inactiveColor;
+            interactInRange = false;
+        }
+    }
+
     void OnIndicatorMovement(InputValue value)
     {
         playerPosition = transform.position;
         //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 pos = new Vector2();
         var gamepad = Gamepad.current;
 
         if (gamepad != null)
         {
-            pos = Camera.main.ScreenToWorldPoint(new Vector3(playerPosition.x + value.Get<Vector2>().x, playerPosition.y + value.Get<Vector2>().y, 0));
+            if (value.Get<Vector2>().magnitude > 0.25f)//if (value.Get<Vector2>() != Vector2.zero)
+            {
+                savePos = pos;
+                //pos = Camera.main.ScreenToWorldPoint(new Vector3(playerPosition.x + value.Get<Vector2>().x, playerPosition.y + value.Get<Vector2>().y, 0));
+                pos = new Vector2(playerPosition.x + value.Get<Vector2>().x, playerPosition.y + value.Get<Vector2>().y);
+            }
+            else
+            {
+                pos = savePos;
+            }
         }
         else
         {
