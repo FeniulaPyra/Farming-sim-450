@@ -321,6 +321,8 @@ public class Menu : MonoBehaviour
 
     void OnOpenCloseInventory()
     {
+        var gamepad = Gamepad.current;
+
         //closes inventory
         if (state == MenuState.INVENTORY)
         {
@@ -336,7 +338,10 @@ public class Menu : MonoBehaviour
             state = MenuState.NO_MENU;
             pi.CanInteract = true;
 
-            playerInput.SwitchCurrentActionMap("Gameplay");
+            if (gamepad != null)
+            {
+                playerInput.SwitchCurrentActionMap("Gameplay");
+            }
         }
         //opens inventory
         else if (state == MenuState.NO_MENU)
@@ -346,7 +351,10 @@ public class Menu : MonoBehaviour
             state = MenuState.INVENTORY;
             pi.CanInteract = false;
 
-            playerInput.SwitchCurrentActionMap("Menu");
+            if (gamepad != null)
+            {
+                playerInput.SwitchCurrentActionMap("Menu");
+            }
         }
     }
 
