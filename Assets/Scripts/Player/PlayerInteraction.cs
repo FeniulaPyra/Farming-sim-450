@@ -477,7 +477,11 @@ public class PlayerInteraction : MonoBehaviour
             Item heldItem = playerInventoryManager.GetHeldItem();
             int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
             //if (playerInventory.HeldItem != null)
-            itemName = heldItem.name;
+            if (heldItem != null)
+            {
+                itemName = heldItem.name;
+                Debug.Log($"I am called: {itemName}");
+            }
 
             //gets rid of the item if the stack is empty
             if (heldItemAmount <= 0)
@@ -535,18 +539,12 @@ public class PlayerInteraction : MonoBehaviour
                         ReduceStamina(heldItem.staminaUsed);
                     }
                 }
-                /*else if (playerInventory.HeldItem.Item.isEdible == true)
-                {
-                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-                }*/
-                else if (itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
+                else if (itemName.Contains("Shroom") == false && itemName.Contains("Pet") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
 
-                if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && ableToPlacePet == true)
+                if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && heldItem != null && ableToPlacePet == true)
                 {
                     Vector3 position = this.gameObject.transform.position;
                     position.x -= 1.5f;
