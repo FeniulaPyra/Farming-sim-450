@@ -106,8 +106,10 @@ public class PlayerInteraction : MonoBehaviour
 
 	public Menu menu;
 
+    Vector2 pos = new Vector2();
+    Vector2 savePos;
 
-	private void Start()
+    private void Start()
     {
 		menu = GameObject.Find("Menus").GetComponent<Menu>();
 
@@ -152,6 +154,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             StartPlayer();
         }
+
+        pos = transform.position;
+
+        savePos = pos;
 
         if (GlobalGameSaving.Instance != null)
         {
@@ -208,9 +214,93 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void Update()
+    void OnMovement(InputValue value)
     {
         playerPosition = transform.position;
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 v = value.Get<Vector2>();
+        pos = new Vector2(playerPosition.x + v.x, playerPosition.y + v.y);
+
+        //focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
+        focusTilePosition = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), 0);
+
+        var indicatorPos = focusTilePosition;
+        if (displayIndicator && canInteract)
+            indicatorPos.z = 0;
+        else
+            indicatorPos.z = 11;
+
+        //indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        indicator.position = indicatorPos;
+
+        Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
+
+        if (Vector2.Distance(playerPosition + interactionOffset, (Vector2Int)focusTilePosition) < maxInteractionDistance)
+        {
+            indicatorImage.color = activeColor;
+            interactInRange = true;
+        }
+        else
+        {
+            indicatorImage.color = inactiveColor;
+            interactInRange = false;
+        }
+    }
+
+    void OnIndicatorMovement(InputValue value)
+    {
+        playerPosition = transform.position;
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var gamepad = Gamepad.current;
+
+        if (gamepad != null)
+        {
+            if (value.Get<Vector2>().magnitude > 0.25f)//if (value.Get<Vector2>() != Vector2.zero)
+            {
+                savePos = pos;
+                //pos = Camera.main.ScreenToWorldPoint(new Vector3(playerPosition.x + value.Get<Vector2>().x, playerPosition.y + value.Get<Vector2>().y, 0));
+                pos = new Vector2(playerPosition.x + value.Get<Vector2>().x, playerPosition.y + value.Get<Vector2>().y);
+            }
+            else
+            {
+                pos = savePos;
+            }
+        }
+        else
+        {
+            pos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());//var mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+
+
+        //focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
+        focusTilePosition = new Vector3Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), 0);
+
+        var indicatorPos = focusTilePosition;
+        if (displayIndicator && canInteract)
+            indicatorPos.z = 0;
+        else
+            indicatorPos.z = 11;
+
+        //indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
+        indicator.position = indicatorPos;
+
+        Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
+
+        if (Vector2.Distance(playerPosition + interactionOffset, (Vector2Int)focusTilePosition) < maxInteractionDistance)
+        {
+            indicatorImage.color = activeColor;
+            interactInRange = true;
+        }
+        else
+        {
+            indicatorImage.color = inactiveColor;
+            interactInRange = false;
+        }
+    }
+
+    private void Update()
+    {
+        /*playerPosition = transform.position;
         //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
@@ -234,7 +324,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             indicatorImage.color = inactiveColor;
             interactInRange = false;
-        }
+        }*/
 
 		Item heldItem = playerInventoryManager.GetHeldItem();
 		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
@@ -353,8 +443,13 @@ public class PlayerInteraction : MonoBehaviour
 
             Item heldItem = playerInventoryManager.GetHeldItem();
             int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-			//if (playerInventory.HeldItem != null)
-			itemName = heldItem == null ? "" : heldItem.name;
+
+            //if (playerInventory.HeldItem != null)
+            if (heldItem != null)
+            {
+                itemName = heldItem.name;
+                Debug.Log($"I am called: {itemName}");
+            }
 
             //gets rid of the item if the stack is empty
             if (heldItemAmount <= 0)
@@ -397,12 +492,13 @@ public class PlayerInteraction : MonoBehaviour
                         ReduceStamina(heldItem.staminaUsed);
                     }
                 }
+
                 else if (heldItem != null && itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
 
-                if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && ableToPlacePet == true)
+                if (itemName.Contains("Pet") && !itemName.Contains("Petrified") && heldItem != null && ableToPlacePet == true)
                 {
                     Vector3 position = this.gameObject.transform.position;
                     position.x -= 1.5f;

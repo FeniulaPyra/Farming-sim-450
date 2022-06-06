@@ -585,7 +585,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard + Mouse
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: 3c098f5c-efcf-499b-acf8-97200bcefb29
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &43990442
@@ -54845,6 +54845,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 43990442}
     m_Modifications:
+    - target: {fileID: 7673969546450039493, guid: 239da8492eb199e43927b39f1f25bb9d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1025754823}
     - target: {fileID: 7673969546450039498, guid: 239da8492eb199e43927b39f1f25bb9d, type: 3}
       propertyPath: m_RootOrder
       value: 18

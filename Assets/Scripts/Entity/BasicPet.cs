@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class BasicPet : BasicEntity  
 {
@@ -52,7 +53,7 @@ public class BasicPet : BasicEntity
 
     void OnInteraction()
     {
-        if (!pim.inv.IsTooFull(petItem, 1))
+        /*if (!pim.inv.IsTooFull(petItem, 1))
         {
             pim.inv.AddItems(petItem, 1);
             Object.Destroy(this.gameObject);
@@ -60,25 +61,28 @@ public class BasicPet : BasicEntity
             owner.petCount -= 1;
             owner.ableToPlacePet = false;
 
-        }
+        }*/
     }
 
     protected void OnMouseOver()//private void OnMouseOver()
     {
-        OnInteraction();
+        //OnInteraction();
 
-        /*(Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0))
+        if (Keyboard.current.spaceKey.wasPressedThisFrame == true || Mouse.current.leftButton.wasPressedThisFrame == true)
         {
-            if (!pim.inv.IsTooFull(petItem, 1))
+            if (pim != null)
             {
-                pim.inv.AddItems(petItem, 1);
-                Object.Destroy(this.gameObject);
+                if (!pim.inv.IsTooFull(petItem, 1))
+                {
+                    pim.inv.AddItems(petItem, 1);
+                    Object.Destroy(this.gameObject);
 
-                owner.petCount -= 1;
-                owner.ableToPlacePet = false;
-                
+                    owner.petCount -= 1;
+                    owner.ableToPlacePet = false;
+
+                }
             }
-        }*/
+        }
     }
 
     public void SavePet(out SavePet pet)

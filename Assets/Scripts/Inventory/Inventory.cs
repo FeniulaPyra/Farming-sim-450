@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[System.Serializable]
 public class Inventory
 {
 	public int STACK_SIZE = 99;
@@ -15,6 +17,9 @@ public class Inventory
 	private ItemSlot[,] items;
 
 	public bool isShown;
+
+    public int selectedRow = 0;
+    public int selectedColumn = 0;
 
 	/// <summary>
 	/// Creates a new inventory object, with a given number of rows and columns.

@@ -117,7 +117,8 @@ public class Menu : MonoBehaviour
 		hotbarMenu = HotbarUIObject.GetComponent<HotbarMenu>();
 		pi = player.GetComponent<PlayerInteraction>();
 		pim = player.GetComponent<PlayerInventoryManager>();
-        playerInput = player.GetComponent<PlayerInput>();
+        //playerInput = player.GetComponent<PlayerInput>();
+        playerInput = FindObjectOfType<PlayerInput>();
 		externalInventoryMenu = ExternalInventory.GetComponent<InventoryMenu>();
 
 		ItemGrabber = ItemGrabberObject.GetComponent<InventoryItemGrabber>();
@@ -320,6 +321,8 @@ public class Menu : MonoBehaviour
 
     void OnOpenCloseInventory()
     {
+        var gamepad = Gamepad.current;
+
         //closes inventory
         if (state == MenuState.INVENTORY)
         {
@@ -334,6 +337,11 @@ public class Menu : MonoBehaviour
             ItemGrabber.Hide();
             state = MenuState.NO_MENU;
             pi.CanInteract = true;
+
+            if (gamepad != null)
+            {
+                playerInput.SwitchCurrentActionMap("Gameplay");
+            }
         }
         //opens inventory
         else if (state == MenuState.NO_MENU)
@@ -342,6 +350,11 @@ public class Menu : MonoBehaviour
             ItemGrabber.Show();
             state = MenuState.INVENTORY;
             pi.CanInteract = false;
+
+            if (gamepad != null)
+            {
+                playerInput.SwitchCurrentActionMap("Menu");
+            }
         }
     }
 
