@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7673969546450039502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -7.6906376, y: 4.4525156, z: 1.5170188}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,7 +124,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -172,5 +172,14 @@ MonoBehaviour:
   minSeekDistance: 1
   sr: {fileID: 0}
   player: {fileID: 0}
+  inv:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
   inventoryItemEntity: {fileID: 430829454750170966, guid: e880de2ed05ff4a4da346c82ee5ef4d8, type: 3}
   ITEM_DROP_RADIUS: 1
