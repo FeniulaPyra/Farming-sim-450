@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1233376420}
+  selectedFlowchart: {fileID: 0}
 --- !u!4 &20066898
 Transform:
   m_ObjectHideFlags: 1
@@ -421,6 +421,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf0df37ad0a95e48b19924cc2b94090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inv:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
+  shippingInventory:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
   ShippingBinSlots: []
   PauseMenu: {fileID: 1930545017}
   SettingsMenu: {fileID: 385037769}
@@ -56480,11 +56498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1964978879928001041, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.590637
+      value: -5.53
       objectReference: {fileID: 0}
     - target: {fileID: 1964978879928001041, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8825152
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1964978879928001041, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56883,11 +56901,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299776906}
   m_CullTransparentMesh: 1
---- !u!58 &1318270118 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7752269457178815590, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-  m_PrefabInstance: {fileID: 7752269456879133806}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1377426781 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8847410810613810876, guid: 4f784039ed28f064493b64e01cdc6880, type: 3}
@@ -62142,6 +62155,15 @@ MonoBehaviour:
   InventorySlotPrefab: {fileID: 2982890735467331394, guid: 9e6b3e24f56bc8b46b8cbc1065bc7da2, type: 3}
   playerObj: {fileID: 1281256933}
   player: {fileID: 0}
+  inv:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
   HotbarItemLabel: {fileID: 1941224536}
 --- !u!114 &4096102101095161831
 MonoBehaviour:
@@ -62281,6 +62303,15 @@ MonoBehaviour:
   LEFT: -180
   SLOT_GAP: 5
   SLOT_SIZE: 37
+  inv:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
   InventoryMenuObject: {fileID: 4096102101625855120}
   InventorySlotPrefab: {fileID: 2982890735467331394, guid: 9e6b3e24f56bc8b46b8cbc1065bc7da2, type: 3}
   ItemManagerObject: {fileID: 326312339}
@@ -62320,6 +62351,15 @@ MonoBehaviour:
   LEFT: -180
   SLOT_GAP: 5
   SLOT_SIZE: 37
+  inv:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
   InventoryMenuObject: {fileID: 1606855893}
   InventorySlotPrefab: {fileID: 2982890735467331394, guid: 9e6b3e24f56bc8b46b8cbc1065bc7da2, type: 3}
   ItemManagerObject: {fileID: 326312339}
@@ -62935,7 +62975,7 @@ PrefabInstance:
     - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: playerCollider
       value: 
-      objectReference: {fileID: 1318270118}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
 --- !u!1001 &8847410811452234721

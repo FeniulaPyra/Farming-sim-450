@@ -21,6 +21,7 @@ public class InteractableObjects : MonoBehaviour
 		bubbleSR.sprite = interactBubble;
 		bubble.transform.position = (Vector2)bubble.transform.position + new Vector2(0, .5f);
 		bubble.SetActive(false);
+		bubbleSR.sortingLayerName = "Popup Bubbles";
     }
 
     // Update is called once per frame

@@ -44,3 +44,6 @@ TagManager:
   - name: Player
     uniqueID: 3104221455
     locked: 0
+  - name: Popup Bubbles
+    uniqueID: 3316172593
+    locked: 0

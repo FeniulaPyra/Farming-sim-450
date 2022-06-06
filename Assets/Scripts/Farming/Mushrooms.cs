@@ -70,7 +70,6 @@ public class Mushrooms : Tile
 
 		bubble = this.gameObject.AddComponent<SpriteRenderer>();
 		bubble.transform.position = new Vector3(bubble.transform.position.x, bubble.transform.position.y + .5f, -10);
-
 		ShowPopupBubblesToggle = GameObject.Find("Menus").GetComponent<Menu>().BubbleToggle.GetComponent<Toggle>();
 
 		//populating hybrid dictionary
