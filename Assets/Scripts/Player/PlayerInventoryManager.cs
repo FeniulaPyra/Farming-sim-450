@@ -250,6 +250,8 @@ public class PlayerInventoryManager : MonoBehaviour
 	{
 		if (heldItem != null)
 			inv.RemoveFromSlot(amount, Hotbar, HeldSlot);
+		GetHeldItemAmount();
+		GetHeldItem();
 	}
 	/// <summary>
 	/// drops the item the player is currently holding and removes it from the inventory.

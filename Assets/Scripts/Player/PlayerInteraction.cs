@@ -238,42 +238,6 @@ public class PlayerInteraction : MonoBehaviour
 
 		Item heldItem = playerInventoryManager.GetHeldItem();
 		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-        if (canInteract && playerInventory.isShown == false && heldItem != null)// && isTalking == false)
-        {
-            //If you change item and it isn't edible, or if you stop holding down the key, reset eating
-            /*if (heldItem.isEdible == true && Input.GetKeyDown(KeyCode.F))
-            {
-
-                SetStamina(playerStamina + heldItem.staminaToRestore);
-                playerInventoryManager.RemoveHeldItems(1);
-
-                if (farmingTutorial != null)
-                {
-                    if (farmingTutorial.tutorialBools[10] == true)//(farmingTutorial.harvestedAfter == true)
-                    {
-                        farmingTutorial.tutorialBools[12] = true;//farmingTutorial.eatingAfter = true;
-                        GlobalGameSaving.Instance.tutorialBools[12] = farmingTutorial.tutorialBools[12];
-                    }
-                }
-            }*/
-
-            //if (interactInRange)
-                //CheckInteraction();
-        }
-
-        //Stop all player movement when in dialogue
-        /*if (isTalking == true)
-        {
-            CanInteract = false;
-            playerMovement.Frozen = true;
-            canInteract = false;
-        }
-        else
-        {
-            CanInteract = true;
-            playerMovement.Frozen = false;
-            canInteract = true;
-        }*/
 
         timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
         if (playerStamina > 100 && playerStamina <= 200)
@@ -343,34 +307,37 @@ public class PlayerInteraction : MonoBehaviour
 
 
             //1 seems like a fine number
-            /*<<<<<<< HEAD
-                            if (distance <= 1.0f)// && objects[i].enabled == true)
-            =======*/
             if (distance <= 0.5f && objects[i].enabled == true)
-            //>>>>>>> main
             {
                 //switch on name to see what it is
                 switch (objects[i].name)
                 {
                     case "npc":
                         Debug.Log("Interact update");
-                        //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                        //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
                         objects[i].gameObject.GetComponent<NPCManager>().MyFlowchart.ExecuteBlock("Start");
                         break;
                     case "shipping bin":
                         menu.OpenShippingBin();
-                        //objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
                         break;
                     case "bed":
-                        //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
                         menu.OpenBed();
                         break;
                     case "Shop":
                         menu.OpenShop();
                         break;
                     case "chest":
-                        menu.OpenExternalInventory(objects[i].gameObject);
+						//if the player is holding a hoe
+						if(playerInventoryManager.heldItem != null && playerInventoryManager.heldItem.name.ToLower().Contains("sickle"))
+						{
+							//Destroy the chest.
+							objects[i].gameObject.GetComponent<InventoryEntity>().DestroyMe();
+							objects.Remove(objects[i]);
+							i--;
+						}
+						else
+						{
+							menu.OpenExternalInventory(objects[i].gameObject);
+						}
                         break;
                     default:
                         break;
@@ -386,21 +353,14 @@ public class PlayerInteraction : MonoBehaviour
 
             Item heldItem = playerInventoryManager.GetHeldItem();
             int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-            //if (playerInventory.HeldItem != null)
-            itemName = heldItem.name;
+			//if (playerInventory.HeldItem != null)
+			itemName = heldItem == null ? "" : heldItem.name;
 
             //gets rid of the item if the stack is empty
             if (heldItemAmount <= 0)
             {
                 playerInventoryManager.RemoveHeldItems(heldItemAmount);//DeleteHeldItemStack();
             }
-            /*if (playerInventory.HeldItem.Item != null)
-            {
-                if (playerInventory.HeldItem.Amount <= 0)
-                {
-                    playerInventory.DeleteHeldItemStack();
-                }
-            }*/
 
             // Get Whatever input
             if (itemName != "" && isTalking == false)//if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.Mouse0) && itemName != "" && isTalking == false)//if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && itemName != "" && isTalking == false)
@@ -414,17 +374,9 @@ public class PlayerInteraction : MonoBehaviour
                     if (heldItemAmount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                     {
                         Debug.Log("Plant One");
-                        //ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                        //playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
                         playerInventoryManager.RemoveHeldItems(1);
                     }
-                    /*else if (playerInventory.HeldItem.Item.isEdible == true)
-                    {
-                        Debug.Log("Restore One");
-                        ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                        playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                        SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-                    }*/
+
 
                     //before actually doing interaction, deduct player stamina accordingly
                     //switch on the four main item types, then some default value for everything else
@@ -445,13 +397,7 @@ public class PlayerInteraction : MonoBehaviour
                         ReduceStamina(heldItem.staminaUsed);
                     }
                 }
-                /*else if (playerInventory.HeldItem.Item.isEdible == true)
-                {
-                    ItemStack minusOne = new ItemStack(playerInventory.HeldItem.Item, -1);
-                    playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
-                    SetStamina(playerStamina + playerInventory.HeldItem.Item.staminaToRestore);
-                }*/
-                else if (itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
+                else if (heldItem != null && itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }
@@ -468,154 +414,22 @@ public class PlayerInteraction : MonoBehaviour
 
                     petCount++;
                 }
-
-
-                //staminaDisplay.text = $"Stamina: {playerStamina}";
-                //timeRadial.fillAmount = (float)playerStamina/100;
+				else if(heldItem != null && itemName.ToLower().Contains("chest"))
+				{
+					Vector3 position = focusTilePosition;
+					Debug.Log(heldItem == null);
+					Debug.Log(position == null);
+					GameObject newChest = Instantiate(heldItem.itemObj, position, Quaternion.identity);
+					objects.Add(newChest.GetComponent<InteractableObjects>());
+					playerInventoryManager.RemoveHeldItems(1);
+				}
+				
 
                 farmManager.TileInteract(focusTilePosition, itemName);
             }
         }
 
     }
-
-    /// <summary>
-    /// IEnumerator appears to be necessary
-    /// The spacebar needed to check for interaction in the first place, if the player is interacting with an NPC, also triggers to WaitForInput in Dialogue Manager
-    /// That means it waits half a second before moving onto the next piece of dialogue without warning
-    /// This pauses for a very brief amount of time so that first spacebar press doesn't register for the WaitForInput
-    /// </summary>
-    /// <returns></returns>
-    /*public void InteractionChecker()
-    {
-        //checks if the player hits the key for interaction
-        //Debug.Log($"Interact talking: {playerInteraction.isTalking}");
-        if (Input.GetKeyDown(KeyCode.Space) && isTalking == false || Input.GetKeyDown(KeyCode.Mouse0) && isTalking == false)
-        {
-            /*KeyCode dialoguePress = KeyCode.Space;
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                dialoguePress = KeyCode.Space;
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                dialoguePress = KeyCode.Mouse0;
-            }*/
-
-            //goes through all interactable objects
-            /*for (int i = 0; i < objects.Count; i++)
-            {
-                Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
-                Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
-                //Sees how close the player is to them
-                float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
-
-
-                //1 seems like a fine number
-/*<<<<<<< HEAD
-                if (distance <= 1.0f)// && objects[i].enabled == true)
-=======*/
-                /*if (distance <= 0.5f && objects[i].enabled == true)
-//>>>>>>> main
-                {
-                    //switch on name to see what it is
-                    switch (objects[i].name)
-                    {
-                        case "npc":
-                            Debug.Log("Interact update");
-                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                            objects[i].gameObject.GetComponent<NPCManager>().MyFlowchart.ExecuteBlock("Start");
-                            break;
-                        case "shipping bin":
-                            menu.OpenShippingBin();
-                            //objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
-                            break;
-                        case "bed":
-                            //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
-                            menu.OpenBed();
-                            break;
-                        case "Shop":
-                            menu.OpenShop();
-                            break;
-						case "chest":
-							menu.OpenExternalInventory(objects[i].gameObject);
-							break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-    }*/
-
-    /*public IEnumerator InteractionChecker()
-    {
-        //checks if the player hits the key for interaction
-        //Debug.Log($"Interact talking: {playerInteraction.isTalking}");
-        if (Input.GetKeyDown(KeyCode.Space) && isTalking == false || Input.GetKeyDown(KeyCode.Mouse0) && isTalking == false)
-        {
-            KeyCode dialoguePress = KeyCode.Space;
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                dialoguePress = KeyCode.Space;
-            }
-            else if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                dialoguePress = KeyCode.Mouse0;
-            }
-
-            //goes through all interactable objects
-            for (int i = 0; i < objects.Count; i++)
-            {
-				Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
-				Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
-				//Sees how close the player is to them
-				float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
-				if (objects[i].name == "Shop")
-					Debug.Log("SHOPDIST: " + distance);
-                //1 seems like a fine number
-                if (distance <= 1.0f && objects[i].enabled == true)
-                {
-					Debug.Log("CLOSE ENOUGH TO INTERACT WITH: " + objects[i].name);
-                    //switch on name to see what it is
-                    switch (objects[i].name)
-                    {
-                        case "npc":
-                            Debug.Log("Interact update");
-                            yield return new WaitForSeconds(0.025f);
-                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                            //StartCoroutine(objects[i].gameObject.GetComponent<DialogueManager>().PlayDialogue(objects[i].gameObject.GetComponent<DialogueManager>().convoID));
-                            break;
-                        case "shipping bin":
-							menu.OpenShippingBin();
-							//objects[i].gameObject.GetComponent<ShippingBin>().PutItemInBin();
-                            break;
-                        case "bed":
-                            //objects[i].gameObject.GetComponent<Bed>().SetTextObjectsActive(true);
-                            menu.OpenBed();
-                            break;
-						case "Shop":
-							Debug.Log("SHOP INTERACTED");
-							menu.OpenShop();
-							break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-
-        //Escape is mapped to the pause menu
-        //Allows the player to back out of the bed menu, if they accidentally interacted with it
-        if (Input.GetKeyDown(KeyCode.Escape) && isTalking == false)
-        {
-            bed.SetTextObjectsActive(false);
-            menu.CloseBed();
-        }
-
-        //Debug.Log($"Distance to player and {objects[0].gameObject.name} is {Vector2.Distance(gameObject.transform.position, objects[0].gameObject.transform.position)}");
-    }*/
 
     public int PlayerStamina => playerStamina;
 
@@ -628,13 +442,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(focusTilePosition, Vector3.one);
-
-        /*
-        var inTile = new Vector3Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(inTile, Vector3.one);
-        */
-
+		
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(playerPosition, Vector3.one);
         Gizmos.DrawWireSphere(playerPosition, 0.5f);

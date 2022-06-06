@@ -252,7 +252,7 @@ public class Inventory
 			items[row, column].amt -= amount;
 			if(i.amt <= 0)
 			{
-				items[row, column].item = null;
+				items[row, column].Clear();
 			}
 			return true;
 		}

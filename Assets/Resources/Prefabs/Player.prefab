@@ -224,7 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7752269457178815593}
-  - component: {fileID: 7752269457178815590}
+  - component: {fileID: 1947364160880895040}
   m_Layer: 0
   m_Name: PlayerCollider
   m_TagString: Untagged
@@ -246,8 +246,8 @@ Transform:
   m_Father: {fileID: 7752269456424297129}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7752269457178815590
-CircleCollider2D:
+--- !u!70 &1947364160880895040
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -259,6 +259,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: -0.25}
+  m_Size: {x: 0.75, y: 0.5}
+  m_Direction: 1

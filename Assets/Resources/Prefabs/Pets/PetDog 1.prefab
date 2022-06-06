@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8189669987783190268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1414876, y: 3.9056816, z: -1}
+  m_LocalPosition: {x: -2.9221835, y: 0.82218385, z: -1}
   m_LocalScale: {x: 0.8117153, y: 0.8117153, z: 0.8117153}
   m_Children: []
   m_Father: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
   petItem: {fileID: 8681727996585695852, guid: 6111bb653294fae4bb160b9484cf51c8, type: 3}
   manager: {fileID: 0}
   owner: {fileID: 0}
-  item: {fileID: 7684716615028879525, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
+  item: {fileID: 7683615097352399189, guid: 6111bb653294fae4bb160b9484cf51c8, type: 3}
   timer: 0
   baseTimer: 10
   spawnChance: 50
