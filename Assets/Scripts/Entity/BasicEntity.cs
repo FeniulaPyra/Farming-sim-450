@@ -96,42 +96,52 @@ public class BasicEntity : MonoBehaviour
 [System.Serializable]
 public class SaveEntity
 {
-    public float speed;
-    public GameObject menu;
-    public Slider size;
-    public AnimationCurve curve;
-    float maxDistance;
-    float minDistance;
-    public SpriteRenderer renderer;
-    public Transform player;
-    public Rigidbody2D body;
-    Vector2 facing;
+	public float speed;
+	public GameObject menu;
+	public Slider size;
+	public AnimationCurve curve;
+	float maxDistance;
+	float minDistance;
+	public SpriteRenderer renderer;
+	public Transform player;
+	public Rigidbody2D body;
+	Vector2 facing;
 
-    //Getting the gameobject the script is on and its position to later instantiate it
-    public GameObject self;
-    public Vector3 pos;
+	//Getting the gameobject the script is on and its position to later instantiate it
+	public GameObject self;
+	public Vector3 pos;
 
-    //For tracking the scene it's in; used for persistence and making sure it only spawns in inside of the scene it was left
-    public string sceneName;
+	//For tracking the scene it's in; used for persistence and making sure it only spawns in inside of the scene it was left
+	public string sceneName;
 
-    public string type;
-    public GameObject gameObject;//Gameobject this entity was on. Used for getting its type
+	public string type;
+	public GameObject gameObject;//Gameobject this entity was on. Used for getting its type
 
-    public SaveEntity(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, GameObject gameObject)
-    {
-        speed = mS;
-        menu = m;
-        size = s;
-        curve = sC;
-        maxDistance = maxD;
-        minDistance = minD;
-        renderer = sR;
-        player = p;
-        body = rB;
-        facing = f;
-        this.self = self;
-        this.pos = pos;
-        this.gameObject = gameObject;
-    }
+	public SaveEntity(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, GameObject gameObject)
+	{
+		speed = mS;
+		menu = m;
+		size = s;
+		curve = sC;
+		maxDistance = maxD;
+		minDistance = minD;
+		renderer = sR;
+		player = p;
+		body = rB;
+		facing = f;
+		this.self = self;
+		this.pos = pos;
+		this.gameObject = gameObject;
+	}
+}
 
+[System.Serializable]
+public class SaveInventoryEntity : SaveEntity
+{
+	public List<int> inventory;
+	public SaveInventoryEntity(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, GameObject gameObject, Inventory inv) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos, gameObject)
+	{
+		inventory = inv.GetSaveableInventory();
+		Debug.Log(inventory);
+	}
 }

@@ -305,7 +305,9 @@ public class Inventory
 	public List<int> GetSaveableInventory()
 	{
 		List<int> sinv = new List<int>(); //len should be row * col * 2;
-
+		//first two ints are row and column
+		sinv.Add(ROWS);
+		sinv.Add(COLUMNS);
 
 		for (int r = 0; r < ROWS; r++)
 		{
@@ -337,9 +339,12 @@ public class Inventory
 	{
 		//Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		//List<Item> itemsDict = menu.GetGameItemList();
-
-		for(int i = 0, j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
+		ROWS = sinv[0];
+		COLUMNS = sinv[1];
+		items = new ItemSlot[ROWS, COLUMNS];
+		for(int i = 2 , j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
+			
             Debug.Log($"sinv[{i}]: {sinv[i]}");
 			//sinv[i] = item, sinv[i+1] = amount
 			int r = (int)Math.Floor((double)(j / COLUMNS));

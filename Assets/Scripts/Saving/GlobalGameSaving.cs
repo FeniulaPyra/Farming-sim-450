@@ -65,6 +65,8 @@ public class GlobalGameSaving : MonoBehaviour
     public List<string> livestockPetNames = new List<string>();
     public List<SaveBuffPet> buffPets = new List<SaveBuffPet>();
     public List<string> buffPetNames = new List<string>();
+	public List<SaveInventoryEntity> inventoryEntities = new List<SaveInventoryEntity>();
+	public List<string> inventoryEntityNames = new List<string>();
     #endregion
 
     //boolean to let other scripts know to load a save
@@ -141,11 +143,11 @@ public class GlobalGameSaving : MonoBehaviour
 
     void OnManualLoad()
     {
-        if (playerInteraction.CanInteract == true)
+        /*if (playerInteraction.CanInteract == true)
         {
             displayLoadMenu = true;
             saves = FindAllSaves();
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -153,9 +155,15 @@ public class GlobalGameSaving : MonoBehaviour
     {
         if (playerInteraction.CanInteract == true)
         {
-            
-
-            
+			if(Keyboard.current.pKey.wasPressedThisFrame)
+			{
+				displayLoadMenu = true;
+				saves = FindAllSaves();
+			}
+			if(Keyboard.current.oKey.wasPressedThisFrame)
+			{
+				OnManualSave();
+			}
         }
     }
 
@@ -342,7 +350,7 @@ public class GlobalGameSaving : MonoBehaviour
             }
         }*/
 
-        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames);
+        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames);
 
 
         var json = JsonUtility.ToJson(save);
@@ -590,8 +598,10 @@ public class GameSave
     public List<string> petNames = new List<string>();
     public List<SaveLivestockPet> livestockPets = new List<SaveLivestockPet>();
     public List<string> livestockPetNames = new List<string>();
+	public List<SaveInventoryEntity> inventoryEntities = new List<SaveInventoryEntity>();
+	public List<string> inventoryEntityNames = new List<string>();
 
-    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames)
+    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames)
     {
         sceneName = s;
         position = p;
@@ -615,5 +625,7 @@ public class GameSave
         this.petNames = petNames;
         livestockPets = live;
         livestockPetNames = liveNames;
+		inventoryEntities = chests;
+		inventoryEntityNames = chestNames;
     }
 }

@@ -136,6 +136,12 @@ public class Menu : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		pi.CanInteract = state == MenuState.NO_MENU;
+
+		if (state == MenuState.NO_MENU)
+			hotbarMenu.Show();
+		else
+			hotbarMenu.Hide();
 
 		//float scroll = Input.GetAxis("Mouse ScrollWheel");
 		/*switch(state)

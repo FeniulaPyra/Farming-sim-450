@@ -44,5 +44,13 @@ public class InventoryEntity : BasicEntity
 
 		Instantiate(inventoryItemEntity, gameObject.transform.position, Quaternion.identity);
 		Destroy(gameObject);
+		
+	}
+
+
+	public void SaveEntity(out SaveInventoryEntity entity)
+	{
+		entity = new SaveInventoryEntity(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, gameObject, inv);
+
 	}
 }

@@ -86,7 +86,26 @@ public class EntityManager : MonoBehaviour
                     //ScenePersistence.Instance.entities.Clear();
                     //ScenePersistence.Instance.entityNames.Clear();
                 }
-            }
+				
+				if(GlobalGameSaving.Instance.inventoryEntities.Count > 0)
+				{
+					for (int i = 0; i < GlobalGameSaving.Instance.inventoryEntities.Count; i++)
+					{
+						Debug.Log($"LEP2738 LOADING THING: {GlobalGameSaving.Instance.inventoryEntityNames[i]}");
+						//Close to the player's position, so the pet spawns near them
+						/*Vector3 playerPos = GameObject.Find("Player").transform.position;
+                        Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);*/
+						if (SceneManager.GetActiveScene().name == GlobalGameSaving.Instance.inventoryEntities[i].sceneName)
+						{
+							GameObject inv = (GameObject)Instantiate(Resources.Load($"Prefabs/Interactable Objects/Chest"), GlobalGameSaving.Instance.inventoryEntities[i].pos, Quaternion.identity);
+							inv.GetComponent<InventoryEntity>().inv.SetSaveableInventory(GlobalGameSaving.Instance.inventoryEntities[i].inventory);
+
+							GlobalGameSaving.Instance.inventoryEntities.RemoveAt(GlobalGameSaving.Instance.inventoryEntities.IndexOf(GlobalGameSaving.Instance.inventoryEntities[i]));
+							GlobalGameSaving.Instance.inventoryEntityNames.RemoveAt(GlobalGameSaving.Instance.inventoryEntityNames.IndexOf(GlobalGameSaving.Instance.inventoryEntityNames[i]));
+						}
+					}
+				}
+			}
             else if (ScenePersistence.Instance != null)
             {
                 if (ScenePersistence.Instance.pets.Count > 0)
@@ -245,113 +264,134 @@ public class EntityManager : MonoBehaviour
 
         List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
 
-        foreach (BasicEntity e in entities)
-        {
+		foreach (BasicEntity e in entities)
+		{
 			Debug.Log("LEP2738 SAVING ENTITY: " + e.name);
-            if (e is BasicPet)
-            {
-                BasicPet p = (BasicPet)e;
+			if (e is BasicPet)
+			{
+				BasicPet p = (BasicPet)e;
 
-                if (p is LivestockPet)
-                {
-                    if (what == "persist")
-                    {
-                        LivestockPet l = (LivestockPet)p;
-                        l.SaveLivestockPet(out var pet);
-                        ScenePersistence.Instance.livestockPets.Add(pet);
-                        if (ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Contains('('))
-                        {
-                            string[] name = ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Split('(');
-                            ScenePersistence.Instance.livestockPetNames.Add(name[0]);
-                        }
-                        else
-                        {
-                            ScenePersistence.Instance.livestockPetNames.Add(ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name);
-                        }
-                    }
-                    else if (what == "save")
-                    {
-                        LivestockPet l = (LivestockPet)p;
-                        l.SaveLivestockPet(out var pet);
-                        GlobalGameSaving.Instance.livestockPets.Add(pet);
-                        if (GlobalGameSaving.Instance.livestockPets[GlobalGameSaving.Instance.livestockPets.Count - 1].self.name.Contains('('))
-                        {
-                            string[] name = GlobalGameSaving.Instance.livestockPets[GlobalGameSaving.Instance.livestockPets.Count - 1].self.name.Split('(');
-                            GlobalGameSaving.Instance.livestockPetNames.Add(name[0]);
-                        }
-                        else
-                        {
-                            GlobalGameSaving.Instance.livestockPetNames.Add(GlobalGameSaving.Instance.livestockPets[GlobalGameSaving.Instance.livestockPets.Count - 1].self.name);
-                        }
-                    }
-                    
-                }
-                else if (p is BuffPet)
-                {
-                    if (what == "persist")
-                    {
-                        BuffPet b = (BuffPet)p;
-                        b.SaveBuffPet(out var pet);
-                        ScenePersistence.Instance.buffPets.Add(pet);
-                        if (ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name.Contains('('))
-                        {
-                            string[] name = ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name.Split('(');
-                            ScenePersistence.Instance.buffPetNames.Add(name[0]);
-                        }
-                        else
-                        {
-                            ScenePersistence.Instance.buffPetNames.Add(ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name);
-                        }
-                    }
-                    else if (what == "save")
-                    {
-                        BuffPet b = (BuffPet)p;
-                        b.SaveBuffPet(out var pet);
-                        GlobalGameSaving.Instance.buffPets.Add(pet);
-                        if (GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name.Contains('('))
-                        {
-                            string[] name = GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name.Split('(');
-                            GlobalGameSaving.Instance.buffPetNames.Add(name[0]);
-                        }
-                        else
-                        {
-                            GlobalGameSaving.Instance.buffPetNames.Add(GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name);
-                        }
-                    }
-                }
-                else
-                {
-                    if (what == "persist")
-                    {
-                        p.SavePet(out var pet);
-                        ScenePersistence.Instance.pets.Add(pet);
-                        if (ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Contains('('))
-                        {
-                            string[] name = ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Split('(');
-                            ScenePersistence.Instance.petNames.Add(name[0]);
-                        }
-                        else
-                        {
-                            ScenePersistence.Instance.petNames.Add(ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name);
-                        }
-                    }
-                    else if (what == "save")
-                    {
-                        p.SavePet(out var pet);
-                        GlobalGameSaving.Instance.pets.Add(pet);
-                        if (GlobalGameSaving.Instance.pets[GlobalGameSaving.Instance.pets.Count - 1].self.name.Contains('('))
-                        {
-                            string[] name = GlobalGameSaving.Instance.pets[GlobalGameSaving.Instance.pets.Count - 1].self.name.Split('(');
-                            GlobalGameSaving.Instance.petNames.Add(name[0]);
-                        }
-                        else
-                        {
-                            GlobalGameSaving.Instance.petNames.Add(GlobalGameSaving.Instance.pets[GlobalGameSaving.Instance.pets.Count - 1].self.name);
-                        }
-                    }
-                    
-                }
-            }
+				if (p is LivestockPet)
+				{
+					if (what == "persist")
+					{
+						LivestockPet l = (LivestockPet)p;
+						l.SaveLivestockPet(out var pet);
+						ScenePersistence.Instance.livestockPets.Add(pet);
+						if (ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Contains('('))
+						{
+							string[] name = ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name.Split('(');
+							ScenePersistence.Instance.livestockPetNames.Add(name[0]);
+						}
+						else
+						{
+							ScenePersistence.Instance.livestockPetNames.Add(ScenePersistence.Instance.livestockPets[ScenePersistence.Instance.livestockPets.Count - 1].self.name);
+						}
+					}
+					else if (what == "save")
+					{
+						LivestockPet l = (LivestockPet)p;
+						l.SaveLivestockPet(out var pet);
+						GlobalGameSaving.Instance.livestockPets.Add(pet);
+						if (GlobalGameSaving.Instance.livestockPets[GlobalGameSaving.Instance.livestockPets.Count - 1].self.name.Contains('('))
+						{
+							string[] name = GlobalGameSaving.Instance.livestockPets[GlobalGameSaving.Instance.livestockPets.Count - 1].self.name.Split('(');
+							GlobalGameSaving.Instance.livestockPetNames.Add(name[0]);
+						}
+						else
+						{
+							GlobalGameSaving.Instance.livestockPetNames.Add(GlobalGameSaving.Instance.livestockPets[GlobalGameSaving.Instance.livestockPets.Count - 1].self.name);
+						}
+					}
+
+				}
+				else if (p is BuffPet)
+				{
+					if (what == "persist")
+					{
+						BuffPet b = (BuffPet)p;
+						b.SaveBuffPet(out var pet);
+						ScenePersistence.Instance.buffPets.Add(pet);
+						if (ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name.Contains('('))
+						{
+							string[] name = ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name.Split('(');
+							ScenePersistence.Instance.buffPetNames.Add(name[0]);
+						}
+						else
+						{
+							ScenePersistence.Instance.buffPetNames.Add(ScenePersistence.Instance.buffPets[ScenePersistence.Instance.buffPets.Count - 1].self.name);
+						}
+					}
+					else if (what == "save")
+					{
+						BuffPet b = (BuffPet)p;
+						b.SaveBuffPet(out var pet);
+						GlobalGameSaving.Instance.buffPets.Add(pet);
+						if (GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name.Contains('('))
+						{
+							string[] name = GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name.Split('(');
+							GlobalGameSaving.Instance.buffPetNames.Add(name[0]);
+						}
+						else
+						{
+							GlobalGameSaving.Instance.buffPetNames.Add(GlobalGameSaving.Instance.buffPets[GlobalGameSaving.Instance.buffPets.Count - 1].self.name);
+						}
+					}
+				}
+				else
+				{
+					if (what == "persist")
+					{
+						p.SavePet(out var pet);
+						ScenePersistence.Instance.pets.Add(pet);
+						if (ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Contains('('))
+						{
+							string[] name = ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name.Split('(');
+							ScenePersistence.Instance.petNames.Add(name[0]);
+						}
+						else
+						{
+							ScenePersistence.Instance.petNames.Add(ScenePersistence.Instance.pets[ScenePersistence.Instance.pets.Count - 1].self.name);
+						}
+					}
+					else if (what == "save")
+					{
+						p.SavePet(out var pet);
+						GlobalGameSaving.Instance.pets.Add(pet);
+						if (GlobalGameSaving.Instance.pets[GlobalGameSaving.Instance.pets.Count - 1].self.name.Contains('('))
+						{
+							string[] name = GlobalGameSaving.Instance.pets[GlobalGameSaving.Instance.pets.Count - 1].self.name.Split('(');
+							GlobalGameSaving.Instance.petNames.Add(name[0]);
+						}
+						else
+						{
+							GlobalGameSaving.Instance.petNames.Add(GlobalGameSaving.Instance.pets[GlobalGameSaving.Instance.pets.Count - 1].self.name);
+						}
+					}
+
+				}
+			}
+			else if (e is InventoryEntity)
+			{
+
+				if (what == "persist"){}
+				else if(what == "save")
+				{
+					((InventoryEntity)e).SaveEntity(out SaveInventoryEntity entity);
+					entity.type = "inventory";
+					entity.sceneName = SceneManager.GetActiveScene().name;
+					GlobalGameSaving.Instance.inventoryEntities.Add(entity);
+					if (GlobalGameSaving.Instance.inventoryEntities[GlobalGameSaving.Instance.inventoryEntities.Count - 1].self.name.Contains('('))
+					{
+						string[] name = GlobalGameSaving.Instance.inventoryEntities[GlobalGameSaving.Instance.inventoryEntities.Count - 1].self.name.Split('(');
+						GlobalGameSaving.Instance.inventoryEntityNames.Add(name[0]);
+					}
+					else
+					{
+						GlobalGameSaving.Instance.inventoryEntityNames.Add(GlobalGameSaving.Instance.inventoryEntities[GlobalGameSaving.Instance.inventoryEntities.Count - 1].self.name);
+					}
+				}
+			}
             else
             {
                 if (what == "persist")
