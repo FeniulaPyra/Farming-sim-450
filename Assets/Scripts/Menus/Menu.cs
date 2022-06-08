@@ -137,11 +137,11 @@ public class Menu : MonoBehaviour
 	void Update()
 	{
 		pi.CanInteract = state == MenuState.NO_MENU;
-
+		/*
 		if (state == MenuState.NO_MENU)
 			hotbarMenu.Show();
 		else
-			hotbarMenu.Hide();
+			hotbarMenu.Hide();*/
 
 		//float scroll = Input.GetAxis("Mouse ScrollWheel");
 		/*switch(state)
