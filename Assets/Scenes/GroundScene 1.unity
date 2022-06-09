@@ -49610,11 +49610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369a69b5bf91aa04a82551d1aba3cb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1318270118 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7752269457178815590, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
-  m_PrefabInstance: {fileID: 7752269456879133806}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1353232377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51356,6 +51351,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6295550923248906417, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
+      propertyPath: gameItemPrefabs.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295550923248906417, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
+      propertyPath: gameItemPrefabs.Array.data[22]
+      value: 
+      objectReference: {fileID: 430829454750170966, guid: e880de2ed05ff4a4da346c82ee5ef4d8, type: 3}
     - target: {fileID: 6295550923248906422, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
       propertyPath: m_Name
       value: ItemManager
@@ -51836,7 +51839,7 @@ PrefabInstance:
     - target: {fileID: 8363235534574056503, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
       propertyPath: playerCollider
       value: 
-      objectReference: {fileID: 1318270118}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941ba81e39eb174c829a5b63ed1df1f, type: 3}
 --- !u!1001 &8847410811452234721

@@ -119,7 +119,15 @@ public class EntityManager : MonoBehaviour
 			}
             else if (ScenePersistence.Instance != null)
             {
-                if (ScenePersistence.Instance.pets.Count > 0)
+				List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
+				foreach (BasicEntity e in entities)
+				{
+					if (e is InventoryEntity || e is BasicPet)
+					{
+						Destroy(e.gameObject);
+					}
+				}
+				if (ScenePersistence.Instance.pets.Count > 0)
                 {
                     for (int i = 0; i < ScenePersistence.Instance.pets.Count; i++)
                     {
@@ -157,6 +165,25 @@ public class EntityManager : MonoBehaviour
                         b.buffApplied = ScenePersistence.Instance.buffPets[i].buffApplied;
                     }
                 }
+
+				if(ScenePersistence.Instance.inventoryEntities.Count > 0)
+				{
+					for (int i = 0; i < ScenePersistence.Instance.inventoryEntities.Count; i++)
+					{
+						Debug.Log($"LEP2738 LOADING THING: {ScenePersistence.Instance.inventoryEntityNames[i]}");
+						//Close to the player's position, so the pet spawns near them
+						/*Vector3 playerPos = GameObject.Find("Player").transform.position;
+                        Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);*/
+						if (SceneManager.GetActiveScene().name == ScenePersistence.Instance.inventoryEntities[i].sceneName)
+						{
+							GameObject inv = (GameObject)Instantiate(Resources.Load($"Prefabs/Interactable Objects/Chest"), ScenePersistence.Instance.inventoryEntities[i].pos, Quaternion.identity);
+							inv.GetComponent<InventoryEntity>().inv.SetSaveableInventory(ScenePersistence.Instance.inventoryEntities[i].inventory);
+							inv.transform.parent = GameObject.Find("PlayerInputManager").transform;
+							ScenePersistence.Instance.inventoryEntities.RemoveAt(ScenePersistence.Instance.inventoryEntities.IndexOf(ScenePersistence.Instance.inventoryEntities[i]));
+							ScenePersistence.Instance.inventoryEntityNames.RemoveAt(ScenePersistence.Instance.inventoryEntityNames.IndexOf(ScenePersistence.Instance.inventoryEntityNames[i]));
+						}
+					}
+				}
 
                 if (ScenePersistence.Instance.entities.Count > 0)
                 {
@@ -385,8 +412,23 @@ public class EntityManager : MonoBehaviour
 			else if (e is InventoryEntity)
 			{
 
-				if (what == "persist"){}
-				else if(what == "save")
+				if (what == "persist")
+				{
+					((InventoryEntity)e).SaveEntity(out SaveInventoryEntity entity);
+					entity.type = "inventory";
+					entity.sceneName = SceneManager.GetActiveScene().name;
+					ScenePersistence.Instance.inventoryEntities.Add(entity);
+					if (ScenePersistence.Instance.inventoryEntities[ScenePersistence.Instance.inventoryEntities.Count - 1].self.name.Contains('('))
+					{
+						string[] name = ScenePersistence.Instance.inventoryEntities[ScenePersistence.Instance.inventoryEntities.Count - 1].self.name.Split('(');
+						ScenePersistence.Instance.inventoryEntityNames.Add(name[0]);
+					}
+					else
+					{
+						ScenePersistence.Instance.inventoryEntityNames.Add(ScenePersistence.Instance.inventoryEntities[ScenePersistence.Instance.inventoryEntities.Count - 1].self.name);
+					}
+				}
+				else if (what == "save")
 				{
 					((InventoryEntity)e).SaveEntity(out SaveInventoryEntity entity);
 					entity.type = "inventory";

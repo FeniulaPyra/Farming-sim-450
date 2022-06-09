@@ -36,6 +36,7 @@ public class PlayerInventoryManager : MonoBehaviour
 		inv.AddItems(im.GetItemByName("yellow shroom"), 1);
 		inv.AddItems(im.GetItemByName("shroom shady"), 1);
 		inv.AddItems(im.GetItemByName("white shroom"), 1);
+		inv.AddItems(im.GetItemByName("chest"), 1);
 		inv.AddItems(im.GetItemByName("pet dog"), 1);
 	}
 	private void Start()

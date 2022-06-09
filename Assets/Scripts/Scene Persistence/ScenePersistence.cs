@@ -45,6 +45,9 @@ public class ScenePersistence : MonoBehaviour
     public List<SaveBuffPet> buffPets = new List<SaveBuffPet>();
     public List<string> buffPetNames = new List<string>();
 
+	public List<SaveInventoryEntity> inventoryEntities = new List<SaveInventoryEntity>();
+	public List<string> inventoryEntityNames = new List<string>();
+
     //boolean to let other scripts know to load a save
     public bool changingScene = false;
 
