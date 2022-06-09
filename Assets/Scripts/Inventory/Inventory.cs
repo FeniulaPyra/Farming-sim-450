@@ -357,7 +357,7 @@ public class Inventory
 			}
 			else
 			{
-				ItemSlot slot = new ItemSlot(playerInvManager.GetItemManager().gameItems[sinv[i]], sinv[i + 1]);
+				ItemSlot slot = new ItemSlot(/*playerInvManager.GetItemManager()*/GameObject.Find("ItemManager").GetComponent<ItemManager>().gameItems[sinv[i]], sinv[i + 1]);
 				items[r, c] = slot;
 			}
 

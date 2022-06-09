@@ -13,7 +13,18 @@ public class EntityManager : MonoBehaviour
         {
             if (GlobalGameSaving.Instance.loadingSave == true)
             {
-                if (GlobalGameSaving.Instance.pets.Count > 0)
+				//deletes any existing entities
+				List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
+				foreach(BasicEntity e in entities)
+				{
+					if(e is InventoryEntity || e is BasicPet)
+					{
+						Destroy(e.gameObject);
+					}
+				}
+
+				//instantiates all the entities from the save.
+				if (GlobalGameSaving.Instance.pets.Count > 0)
                 {
                     for (int i = 0; i < GlobalGameSaving.Instance.pets.Count; i++)
                     {
@@ -99,7 +110,7 @@ public class EntityManager : MonoBehaviour
 						{
 							GameObject inv = (GameObject)Instantiate(Resources.Load($"Prefabs/Interactable Objects/Chest"), GlobalGameSaving.Instance.inventoryEntities[i].pos, Quaternion.identity);
 							inv.GetComponent<InventoryEntity>().inv.SetSaveableInventory(GlobalGameSaving.Instance.inventoryEntities[i].inventory);
-
+							inv.transform.parent = GameObject.Find("PlayerInputManager").transform;
 							GlobalGameSaving.Instance.inventoryEntities.RemoveAt(GlobalGameSaving.Instance.inventoryEntities.IndexOf(GlobalGameSaving.Instance.inventoryEntities[i]));
 							GlobalGameSaving.Instance.inventoryEntityNames.RemoveAt(GlobalGameSaving.Instance.inventoryEntityNames.IndexOf(GlobalGameSaving.Instance.inventoryEntityNames[i]));
 						}

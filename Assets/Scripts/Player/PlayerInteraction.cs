@@ -362,6 +362,10 @@ public class PlayerInteraction : MonoBehaviour
             ableToPlacePet = false;
         }
 
+		if(Keyboard.current.spaceKey.wasPressedThisFrame)
+		{
+			OnInteraction();
+		}
         //StartCoroutine(InteractionChecker());
         //InteractionChecker();
     }
@@ -387,8 +391,24 @@ public class PlayerInteraction : MonoBehaviour
 
     void OnInteraction()//private void CheckInteraction()
     {
-        //goes through all interactable objects
-        for (int i = 0; i < objects.Count; i++)
+		objects = new List<InteractableObjects>();
+		objectsArray = FindObjectsOfType<InteractableObjects>();
+
+		for (int i = 0; i < objectsArray.Length; i++)
+		{
+			if (objectsArray[i] != null)
+			{
+				objects.Add(objectsArray[i]);
+
+				if (objects[objects.Count - 1].GetComponent<Bed>() != null)
+				{
+					bed = objects[objects.Count - 1].GetComponent<Bed>();
+				}
+			}
+		}
+
+		//goes through all interactable objects
+		for (int i = 0; i < objects.Count; i++)
         {
             Collider2D col = objects[i].gameObject.GetComponent<Collider2D>();
             Vector2 closestColliderPoint = col.ClosestPoint(gameObject.transform.position);
@@ -400,7 +420,7 @@ public class PlayerInteraction : MonoBehaviour
             if (distance <= 0.5f && objects[i].enabled == true)
             {
                 //switch on name to see what it is
-                switch (objects[i].name)
+                switch (objects[i].name.ToLower().Split('(')[0])
                 {
                     case "npc":
                         Debug.Log("Interact update");

@@ -13,7 +13,8 @@ public class InventoryEntity : BasicEntity
     void Start()
     {
 		base.Start();
-		inv = new Inventory(4, 9);
+		if(inv == null)
+			inv = new Inventory(4, 9);
 		movementSpeed = 0;
     }
 

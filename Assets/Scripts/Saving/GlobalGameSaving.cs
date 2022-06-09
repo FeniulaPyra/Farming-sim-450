@@ -400,6 +400,8 @@ public class GlobalGameSaving : MonoBehaviour
         petNames = save.petNames;
         livestockPets = save.livestockPets;
         livestockPetNames = save.livestockPetNames;
+		inventoryEntities = save.inventoryEntities;
+		inventoryEntityNames = save.inventoryEntityNames;
 
         sr.Close();
 

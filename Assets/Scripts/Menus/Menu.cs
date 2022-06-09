@@ -369,7 +369,7 @@ public class Menu : MonoBehaviour
         switch (state)
         {
             case MenuState.NO_MENU:
-                pi.CanInteract = false;
+                pi.CanInteract = true;
                 PauseMenu.SetActive(true);
                 state = MenuState.PAUSE;
                 break;
