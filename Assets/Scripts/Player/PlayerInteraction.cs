@@ -45,7 +45,7 @@ public class PlayerInteraction : MonoBehaviour
     public bool ableToPlacePet;
     public int oldPetCount;
     public int petCount; //The number of pets the player currently has on the screen.
-    public const int PET_LIMIT = 3;
+    public const int PET_LIMIT = 8;
 
     public bool DisplayIndicator { 
         get => displayIndicator; 

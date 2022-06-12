@@ -60,6 +60,13 @@ public class PlayerInventoryManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if(Keyboard.current.semicolonKey.wasPressedThisFrame)
+		{
+			foreach(Item i in im.gameItems)
+			{
+				inv.AddItems(im.GetItemByName(i.name), 1);
+			}
+		}
 		//rotate hotbar
 		/*if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR))
 			NextHotbar();

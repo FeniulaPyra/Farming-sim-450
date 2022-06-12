@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2424710289741108297}
   - component: {fileID: 2424710289741108298}
   - component: {fileID: -7896935473279703979}
+  - component: {fileID: -747279406963318570}
   m_Layer: 0
   m_Name: PetChicken
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2424710289741108301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.70041, y: -0.48788917, z: -1}
+  m_LocalPosition: {x: -4.1209135, y: 3.6627684, z: -1}
   m_LocalScale: {x: 0.8117153, y: 0.8117153, z: 0.8117153}
   m_Children: []
   m_Father: {fileID: 0}
@@ -119,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
+  menu: {fileID: 0}
   size: {fileID: 0}
   speedCurve:
     serializedVersion: 2
@@ -152,6 +154,7 @@ MonoBehaviour:
   pettingImage: {fileID: -7681591177383418551, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   petItem: {fileID: 7458408587676825229, guid: b6a7ae794889a934f9223526cd085dc8, type: 3}
   manager: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!58 &-7896935473279703979
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -168,3 +171,55 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.03454364}
   serializedVersion: 2
   m_Radius: 0.4654563
+--- !u!114 &-747279406963318570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2424710289741108301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f6c9a99c749c746862e94a162f23a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 1
+  menu: {fileID: 0}
+  size: {fileID: 0}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSeekDistance: 3
+  minSeekDistance: 1.25
+  sr: {fileID: 2424710289741108299}
+  player: {fileID: 0}
+  normalImage: {fileID: 4667934967023731836, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
+  pettingImage: {fileID: -7681591177383418551, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
+  petItem: {fileID: 7458408587676825229, guid: b6a7ae794889a934f9223526cd085dc8, type: 3}
+  manager: {fileID: 0}
+  owner: {fileID: 0}
+  item: {fileID: 8797974430225231480, guid: 06555b43c02be664186a88a4da9f88da, type: 3}
+  timer: 0
+  baseTimer: 10
+  spawnChance: 50
