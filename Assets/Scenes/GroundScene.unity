@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1880965345}
+  selectedFlowchart: {fileID: 1233376420}
 --- !u!4 &20066898
 Transform:
   m_ObjectHideFlags: 1
@@ -62417,14 +62417,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6295550923248906417, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
-      propertyPath: gameItemPrefabs.Array.size
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 6295550923248906417, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
-      propertyPath: gameItemPrefabs.Array.data[22]
-      value: 
-      objectReference: {fileID: 430829454750170966, guid: e880de2ed05ff4a4da346c82ee5ef4d8, type: 3}
     - target: {fileID: 6295550923248906422, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
       propertyPath: m_Name
       value: ItemManager
@@ -67334,3 +67326,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230f4dbf29232cf4aa2384b8fe67d182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 1
+  menu: {fileID: 0}
+  size: {fileID: 0}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSeekDistance: 1
+  minSeekDistance: 1
+  sr: {fileID: 0}
+  player: {fileID: 0}

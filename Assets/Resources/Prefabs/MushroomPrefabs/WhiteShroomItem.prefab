@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: White Shroom
-  spr: {fileID: -3404990257834579142, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
+  spr: {fileID: -6397785476696137532, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
   itemObj: {fileID: 0}
   manager: {fileID: 0}
   player: {fileID: 0}
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3404990257834579142, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
+  m_Sprite: {fileID: -6397785476696137532, guid: a7d5ec5a12ba1ea4f8a77b48002890e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

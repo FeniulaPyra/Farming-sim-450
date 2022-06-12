@@ -61,8 +61,10 @@ MonoBehaviour:
   baseValue: 150
   mushroomItem: {fileID: 5954010232996325769, guid: 0f9d05d3986fe0b4a9e33a161579aa01, type: 3}
   spr: {fileID: 0}
-  mushroomsToHybridize: []
-  mushroomHybrids: []
+  mushroomsToHybridize:
+  - White Shroom
+  mushroomHybrids:
+  - {fileID: 1066809207530065102, guid: 21e0349404a157742b86f3a9d1029ec0, type: 3}
   popupBubbles:
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}

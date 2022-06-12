@@ -63,8 +63,10 @@ MonoBehaviour:
   spr: {fileID: 0}
   mushroomsToHybridize:
   - White Shroom
+  - Orange Potato Shroom
   mushroomHybrids:
   - {fileID: 8008231197605254317, guid: 81e4bb96032702843868bf4b98a015b9, type: 3}
+  - {fileID: 6479207157270970160, guid: 669905c8791b6064b9ef02036b550aaf, type: 3}
   popupBubbles:
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}

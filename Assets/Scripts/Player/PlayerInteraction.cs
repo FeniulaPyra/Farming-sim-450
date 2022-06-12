@@ -486,7 +486,7 @@ public class PlayerInteraction : MonoBehaviour
                 //Debug.Log("LEP2738 HELD: " + heldItem.name);
                 if (mushroomsAndTiles.ContainsKey(focusTilePosition))
                 {
-                    if (heldItemAmount > 0 && itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+                    if (heldItemAmount > 0 && heldItem.type=="mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                     {
                         Debug.Log("Plant One");
                         playerInventoryManager.RemoveHeldItems(1);
@@ -495,7 +495,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     //before actually doing interaction, deduct player stamina accordingly
                     //switch on the four main item types, then some default value for everything else
-                    if (itemName.Contains("Shroom") && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                    if (heldItem.type == "mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
                     {
                         ReduceStamina(heldItem.staminaUsed);
                     }
@@ -513,7 +513,7 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
 
-                else if (heldItem != null && itemName.Contains("Shroom") == false && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
+                else if (heldItem != null && heldItem.type != "mushroom" && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")
                 {
                     ReduceStamina(heldItem.staminaUsed);
                 }

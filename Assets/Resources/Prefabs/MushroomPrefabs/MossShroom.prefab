@@ -61,8 +61,10 @@ MonoBehaviour:
   baseValue: 150
   mushroomItem: {fileID: 2179316091092785578, guid: f74dfbb31b90b884abfcd7b4c4dc2aeb, type: 3}
   spr: {fileID: 0}
-  mushroomsToHybridize: []
-  mushroomHybrids: []
+  mushroomsToHybridize:
+  - Glowy Shroom
+  mushroomHybrids:
+  - {fileID: 4820246464214614136, guid: 936aa96873c884849b10244dc4edeffa, type: 3}
   popupBubbles:
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}

@@ -186,11 +186,12 @@ public class FarmManager : MonoBehaviour
                 }
             }
         }
-        //planting
-        //If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
-        //Might have to account for naming being similar, but not the same, which would throw things off.
-        //Dictionary Keys are the IDs of the Mushrooms, which are all formatted like "Descriptor Shroom", so the item names must be the same
-        if (tool.Contains("Shroom") && mushroomsAndTiles[tile].isTilled == true && mushroomsAndTiles[tile].hasPlant == false)
+		//planting
+		//If the item in question has mushroom in the name, you know you're planting. If the mushroom dictionary contains that mushroom, everything should wor
+		//Might have to account for naming being similar, but not the same, which would throw things off.
+		//Dictionary Keys are the IDs of the Mushrooms, which are all formatted like "Descriptor Shroom", so the item names must be the same
+		//TODO change to check item.type instead of just the name
+		if (tool.ToLower().Contains("shroom") && mushroomsAndTiles[tile].isTilled == true && mushroomsAndTiles[tile].hasPlant == false)
         //if (tool == "seed" && mushroomsAndTiles[tile].isTilled == true)
         {
             //see if the tile was already moist

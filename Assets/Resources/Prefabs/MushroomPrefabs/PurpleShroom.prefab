@@ -61,8 +61,10 @@ MonoBehaviour:
   baseValue: 150
   mushroomItem: {fileID: 7242777236307338255, guid: 86b1e4091a61234408a3a89037e4e487, type: 3}
   spr: {fileID: 0}
-  mushroomsToHybridize: []
-  mushroomHybrids: []
+  mushroomsToHybridize:
+  - Orange Potato Shroom
+  mushroomHybrids:
+  - {fileID: 5143331755116963799, guid: 97989c9afb207fb498692534e2863da8, type: 3}
   popupBubbles:
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}
   - {fileID: -3074452819300151108, guid: f9ef4929da335a24d8368c7ba60fd655, type: 3}

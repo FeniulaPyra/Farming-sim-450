@@ -600,6 +600,7 @@ MonoBehaviour:
   seasonDisplay: {fileID: 0}
   yearNum: 1
   yearDisplay: {fileID: 0}
+  holidayDisplay: {fileID: 0}
   isNight: 0
   nightImage: {fileID: 0}
   NPCList: []
@@ -647,6 +648,17 @@ MonoBehaviour:
   - {fileID: 9004802341860874568, guid: 2ac530f6447a0ef44aa2a2285995a6ad, type: 3}
   - {fileID: 5645724758440649290, guid: 8de05fc976a993242912baecf63bb449, type: 3}
   - {fileID: 8325710169533739494, guid: 3a25d3eeb2d65f64d94a6d399f2db2b8, type: 3}
+  - {fileID: 3248207582659372423, guid: 19928cc9a4c1d7d4e811cf25d0253bae, type: 3}
+  - {fileID: 5806667945581227001, guid: ac8a6c5579360944dafe60850f68eba5, type: 3}
+  - {fileID: 6957639456924034933, guid: 7631958f15aa2494d8799367e51e3b69, type: 3}
+  - {fileID: 1066809207530065102, guid: 21e0349404a157742b86f3a9d1029ec0, type: 3}
+  - {fileID: 8995779565214014415, guid: fdbbe3d40ff6eb849955d86a7fa1f6cd, type: 3}
+  - {fileID: 4820246464214614136, guid: 936aa96873c884849b10244dc4edeffa, type: 3}
+  - {fileID: 2470139218109638474, guid: 63035c786ff551c4187c462670ff6624, type: 3}
+  - {fileID: 5143331755116963799, guid: 97989c9afb207fb498692534e2863da8, type: 3}
+  - {fileID: 6479207157270970160, guid: 669905c8791b6064b9ef02036b550aaf, type: 3}
+  - {fileID: 5604597263413781860, guid: 966dc51705c797341b8be195639d3350, type: 3}
+  - {fileID: 507552227838455231, guid: 3b986d825215a0c4ba413584ffdcc98f, type: 3}
 --- !u!114 &7547765681838909839
 MonoBehaviour:
   m_ObjectHideFlags: 0
