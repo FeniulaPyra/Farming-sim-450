@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3909654424582265540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8640139, y: 1.513119, z: -1}
+  m_LocalPosition: {x: -6.7360353, y: 3.6415353, z: -1}
   m_LocalScale: {x: 0.8117153, y: 0.8117153, z: 0.8117153}
   m_Children: []
   m_Father: {fileID: 0}
@@ -153,6 +153,7 @@ MonoBehaviour:
   pettingImage: {fileID: 5648294834964708242, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   petItem: {fileID: 3682041252731987073, guid: 3005db3a971d8004cbb35647af121604, type: 3}
   manager: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!58 &-5448537718604745964
 CircleCollider2D:
   m_ObjectHideFlags: 0

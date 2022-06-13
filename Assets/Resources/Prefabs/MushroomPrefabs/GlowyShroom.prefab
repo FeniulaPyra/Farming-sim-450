@@ -64,7 +64,7 @@ MonoBehaviour:
   mushroomsToHybridize:
   - Red Shroom
   - Yellow Shroom
-  - Mossy Shroom
+  - Moss Shroom
   mushroomHybrids:
   - {fileID: 4560149887036069531, guid: 4e1118627ed056140b12060e0c39215d, type: 3}
   - {fileID: 6316829673517393620, guid: 1e95a83935891cb4189683c365d71677, type: 3}
