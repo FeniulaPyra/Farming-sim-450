@@ -69,9 +69,11 @@ public class Mushrooms : Tile
         mushroomItem.spr = spr;*/
 
 		bubble = this.gameObject.AddComponent<SpriteRenderer>();
-		bubble.transform.position = new Vector3(bubble.transform.position.x, bubble.transform.position.y + .5f, -10);
+		bubble.transform.position = new Vector3(bubble.transform.position.x, bubble.transform.position.y + .5f, 10);
+		bubble.transform.localScale = new Vector3(.5f, .5f, 1);
 		ShowPopupBubblesToggle = GameObject.Find("Menus").GetComponent<Menu>().BubbleToggle.GetComponent<Toggle>();
-
+		bubble.sortingLayerName = "Popup Bubbles";
+		bubble.color = new Color(bubble.color.r, bubble.color.g, bubble.color.b, .75f);
 		//populating hybrid dictionary
 		for (int i = 0; i < mushroomsToHybridize.Count; i++)
         {

@@ -415,7 +415,7 @@ public class PlayerInteraction : MonoBehaviour
             //Sees how close the player is to them
             float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);//objects[i].gameObject.transform.position);
 
-
+			//Debug.Log("try Interact with: " + objects[i].name + " " + distance + " far away.");
             //1 seems like a fine number
             if (distance <= 0.5f && objects[i].enabled == true)
             {
@@ -432,7 +432,7 @@ public class PlayerInteraction : MonoBehaviour
                     case "bed":
                         menu.OpenBed();
                         break;
-                    case "Shop":
+                    case "shop":
                         menu.OpenShop();
                         break;
                     case "chest":

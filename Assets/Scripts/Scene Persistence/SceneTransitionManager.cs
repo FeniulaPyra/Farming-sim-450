@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.IO;
 using TMPro;
+using System;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -44,13 +45,18 @@ public class SceneTransitionManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(string sceneToLoad)
+	public void LoadScene(string sceneToLoad)
+	{
+		LoadScene(sceneToLoad, new Vector2(Int32.MaxValue, Int32.MaxValue));
+	}
+
+    public void LoadScene(string sceneToLoad, Vector2 playerPosition)
     {
         //Disables this boolean so the scene to load doesn't load the save data
         GlobalGameSaving.Instance.loadingSave = false;
         //False by default, so upon loading save, should be fine. Otherwise, always true?
         ScenePersistence.Instance.changingScene = true;
-
+		ScenePersistence.Instance.playerDropPoint = playerPosition;
         timeManager.SaveDate("persist");
         timeManager.SaveNPCs("persist");
         

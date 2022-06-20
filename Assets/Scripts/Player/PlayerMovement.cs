@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         facing = new Vector2(1, 0);
+
+		if(ScenePersistence.Instance.playerDropPoint.x < Int32.MaxValue)
+		{
+			//+ new vector because for some reason it is moving the player down by this amoutnt every time the scene loads :(
+			transform.position = ScenePersistence.Instance.playerDropPoint + new Vector2(1, 3);
+			Debug.Log("LEP2738" + ScenePersistence.Instance.playerDropPoint.x);
+			Debug.Log("LEP2738" + ScenePersistence.Instance.playerDropPoint.y);
+		}
     }
 
     void OnMovement(InputValue value)

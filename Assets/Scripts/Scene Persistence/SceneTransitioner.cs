@@ -16,6 +16,8 @@ public class SceneTransitioner : MonoBehaviour
     //The level it loads
     public string levelToLoad;
 
+	public Vector2 playerPositionInScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class SceneTransitioner : MonoBehaviour
         Debug.Log($"Distance beween object and player is: {distance}");
         if (distance <= 1)
         {
-            manager.LoadScene(levelToLoad);
+            manager.LoadScene(levelToLoad, playerPositionInScene);
         }
     }
 }

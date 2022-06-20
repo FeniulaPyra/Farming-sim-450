@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System;
 
 //using UnityEngine.UIElements;
 
@@ -129,8 +130,10 @@ public class Menu : MonoBehaviour
 		//hides inventory menu at start.
 		InventoryMenuObject.SetActive(false);
 
-
-        bed = FindObjectOfType<Bed>().GetComponent<Bed>();
+		Bed bedObj = FindObjectOfType<Bed>();
+		bed = null;
+		if (bedObj)
+			bed = bedObj.GetComponent<Bed>();
     }
 
 	// Update is called once per frame

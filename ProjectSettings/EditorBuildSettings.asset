@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/TownScene.unity
+    guid: cf0ac31b5d1e8d246875ff230a7c1543
   m_configObjects: {}

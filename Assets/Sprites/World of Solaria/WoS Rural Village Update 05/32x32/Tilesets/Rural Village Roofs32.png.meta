@@ -1,0 +1,2088 @@
+fileFormatVersion: 2
+guid: c31dceaa6c7e3684280e13889ce2eefb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5540169516240597661
+    second: Rural Village Roofs32_0
+  - first:
+      213: 2906650044309892570
+    second: Rural Village Roofs32_1
+  - first:
+      213: 3881076241144693743
+    second: Rural Village Roofs32_2
+  - first:
+      213: -5207312588798445700
+    second: Rural Village Roofs32_3
+  - first:
+      213: -6764549686031169551
+    second: Rural Village Roofs32_4
+  - first:
+      213: 691656141481704262
+    second: Rural Village Roofs32_5
+  - first:
+      213: 7185987640753476239
+    second: Rural Village Roofs32_6
+  - first:
+      213: -3917416112530883204
+    second: Rural Village Roofs32_7
+  - first:
+      213: 5302998351115223433
+    second: Rural Village Roofs32_8
+  - first:
+      213: 4010194435272314486
+    second: Rural Village Roofs32_9
+  - first:
+      213: -3537445072010401359
+    second: Rural Village Roofs32_10
+  - first:
+      213: 839852764692700563
+    second: Rural Village Roofs32_11
+  - first:
+      213: 6937523614729199763
+    second: Rural Village Roofs32_12
+  - first:
+      213: -673084265392930058
+    second: Rural Village Roofs32_13
+  - first:
+      213: 9029890603364873328
+    second: Rural Village Roofs32_14
+  - first:
+      213: -5759902891101449902
+    second: Rural Village Roofs32_15
+  - first:
+      213: 5093130615609805921
+    second: Rural Village Roofs32_16
+  - first:
+      213: 8018867183616873514
+    second: Rural Village Roofs32_17
+  - first:
+      213: -342363974609419210
+    second: Rural Village Roofs32_18
+  - first:
+      213: -3674001310707049713
+    second: Rural Village Roofs32_19
+  - first:
+      213: -5099529343711758423
+    second: Rural Village Roofs32_20
+  - first:
+      213: 4908062867567350828
+    second: Rural Village Roofs32_21
+  - first:
+      213: -7679247118513653891
+    second: Rural Village Roofs32_22
+  - first:
+      213: -5254532595904195800
+    second: Rural Village Roofs32_23
+  - first:
+      213: -3316320269849548794
+    second: Rural Village Roofs32_24
+  - first:
+      213: -5642676031804669747
+    second: Rural Village Roofs32_25
+  - first:
+      213: 6477716133204423024
+    second: Rural Village Roofs32_26
+  - first:
+      213: -6142963495490714255
+    second: Rural Village Roofs32_27
+  - first:
+      213: 8410219422959764601
+    second: Rural Village Roofs32_28
+  - first:
+      213: 5543953257819424973
+    second: Rural Village Roofs32_29
+  - first:
+      213: -648265434167799613
+    second: Rural Village Roofs32_30
+  - first:
+      213: 1910254142753864017
+    second: Rural Village Roofs32_31
+  - first:
+      213: 2347769331116426094
+    second: Rural Village Roofs32_32
+  - first:
+      213: 117921588667505145
+    second: Rural Village Roofs32_33
+  - first:
+      213: 8210902290070995716
+    second: Rural Village Roofs32_34
+  - first:
+      213: -8904158049979388101
+    second: Rural Village Roofs32_35
+  - first:
+      213: -8420241795293512326
+    second: Rural Village Roofs32_36
+  - first:
+      213: 851607570509674091
+    second: Rural Village Roofs32_37
+  - first:
+      213: -2845698465447111447
+    second: Rural Village Roofs32_38
+  - first:
+      213: -2369983299193080337
+    second: Rural Village Roofs32_39
+  - first:
+      213: -857604701670178615
+    second: Rural Village Roofs32_40
+  - first:
+      213: 2361425372977094070
+    second: Rural Village Roofs32_41
+  - first:
+      213: -3438864872872337118
+    second: Rural Village Roofs32_42
+  - first:
+      213: -4770870529693068682
+    second: Rural Village Roofs32_43
+  - first:
+      213: -5197138906971651246
+    second: Rural Village Roofs32_44
+  - first:
+      213: 2907100732738719999
+    second: Rural Village Roofs32_45
+  - first:
+      213: 487010326071681636
+    second: Rural Village Roofs32_46
+  - first:
+      213: 4084243665039195425
+    second: Rural Village Roofs32_47
+  - first:
+      213: -4791763123522561368
+    second: Rural Village Roofs32_48
+  - first:
+      213: -4965858888994882179
+    second: Rural Village Roofs32_49
+  - first:
+      213: 2797804882515167522
+    second: Rural Village Roofs32_50
+  - first:
+      213: 1636387917322013856
+    second: Rural Village Roofs32_51
+  - first:
+      213: -6618743234867656451
+    second: Rural Village Roofs32_52
+  - first:
+      213: -2249494593116281831
+    second: Rural Village Roofs32_53
+  - first:
+      213: -3820966167077421128
+    second: Rural Village Roofs32_54
+  - first:
+      213: -1998276613427898742
+    second: Rural Village Roofs32_55
+  - first:
+      213: 3317939450150282447
+    second: Rural Village Roofs32_56
+  - first:
+      213: -231539386944544522
+    second: Rural Village Roofs32_57
+  - first:
+      213: 3506033225247126581
+    second: Rural Village Roofs32_58
+  - first:
+      213: -1966606999693918120
+    second: Rural Village Roofs32_59
+  - first:
+      213: -6432852604924475312
+    second: Rural Village Roofs32_60
+  - first:
+      213: -6888998336288397725
+    second: Rural Village Roofs32_61
+  - first:
+      213: 8756867231206477300
+    second: Rural Village Roofs32_62
+  - first:
+      213: 4393960216008239223
+    second: Rural Village Roofs32_63
+  - first:
+      213: 3274052865578186836
+    second: Rural Village Roofs32_64
+  - first:
+      213: -1935668251443821667
+    second: Rural Village Roofs32_65
+  - first:
+      213: -8821358004335094863
+    second: Rural Village Roofs32_66
+  - first:
+      213: -1830857574496007180
+    second: Rural Village Roofs32_67
+  - first:
+      213: -5189329220378980537
+    second: Rural Village Roofs32_68
+  - first:
+      213: -4872093509323966532
+    second: Rural Village Roofs32_69
+  - first:
+      213: 268349016199918626
+    second: Rural Village Roofs32_70
+  - first:
+      213: 2427620474855489181
+    second: Rural Village Roofs32_71
+  - first:
+      213: -3438899779298436288
+    second: Rural Village Roofs32_72
+  - first:
+      213: 9085678325514550811
+    second: Rural Village Roofs32_73
+  - first:
+      213: -5533659599045874999
+    second: Rural Village Roofs32_74
+  - first:
+      213: -4605465813074716163
+    second: Rural Village Roofs32_75
+  - first:
+      213: 8672274258392575171
+    second: Rural Village Roofs32_76
+  - first:
+      213: -2105344368650692955
+    second: Rural Village Roofs32_77
+  - first:
+      213: -15783981153602111
+    second: Rural Village Roofs32_78
+  - first:
+      213: -5786567662335783871
+    second: Rural Village Roofs32_79
+  - first:
+      213: -673624840033731604
+    second: Rural Village Roofs32_80
+  - first:
+      213: -2701582747117131556
+    second: Rural Village Roofs32_81
+  - first:
+      213: 3436333446119025544
+    second: Rural Village Roofs32_82
+  - first:
+      213: -4867618046335087309
+    second: Rural Village Roofs32_83
+  - first:
+      213: -5446680054961557050
+    second: Rural Village Roofs32_84
+  - first:
+      213: -5538010682719768761
+    second: Rural Village Roofs32_85
+  - first:
+      213: 4933095014592315632
+    second: Rural Village Roofs32_86
+  - first:
+      213: -8401262220830757512
+    second: Rural Village Roofs32_87
+  - first:
+      213: -446622537447599584
+    second: Rural Village Roofs32_88
+  - first:
+      213: 831910277256858183
+    second: Rural Village Roofs32_89
+  - first:
+      213: -4145822242568335274
+    second: Rural Village Roofs32_90
+  - first:
+      213: -8830788657987819482
+    second: Rural Village Roofs32_91
+  - first:
+      213: 6820354863416521317
+    second: Rural Village Roofs32_92
+  - first:
+      213: 5291463295866660577
+    second: Rural Village Roofs32_93
+  - first:
+      213: -6980358808838840005
+    second: Rural Village Roofs32_94
+  - first:
+      213: -8131179841465387559
+    second: Rural Village Roofs32_95
+  - first:
+      213: 8475253033309567618
+    second: Rural Village Roofs32_96
+  - first:
+      213: -4802412415632047302
+    second: Rural Village Roofs32_97
+  - first:
+      213: -3934369365611266059
+    second: Rural Village Roofs32_98
+  - first:
+      213: 6825155513929349161
+    second: Rural Village Roofs32_99
+  - first:
+      213: 6275338803566108082
+    second: Rural Village Roofs32_100
+  - first:
+      213: -3106878743176836930
+    second: Rural Village Roofs32_101
+  - first:
+      213: -2026868387934741675
+    second: Rural Village Roofs32_102
+  - first:
+      213: 6070539484928275220
+    second: Rural Village Roofs32_103
+  - first:
+      213: -7411130685457768675
+    second: Rural Village Roofs32_104
+  - first:
+      213: 1518731942053121768
+    second: Rural Village Roofs32_105
+  - first:
+      213: 4661807065921708364
+    second: Rural Village Roofs32_106
+  - first:
+      213: -5182428645475779638
+    second: Rural Village Roofs32_107
+  - first:
+      213: -4650105166423406711
+    second: Rural Village Roofs32_108
+  - first:
+      213: 4281202572808933762
+    second: Rural Village Roofs32_109
+  - first:
+      213: 2083004698443903796
+    second: Rural Village Roofs32_110
+  - first:
+      213: 299534751337053155
+    second: Rural Village Roofs32_111
+  - first:
+      213: 1622725116088650478
+    second: Rural Village Roofs32_112
+  - first:
+      213: -933733409085573914
+    second: Rural Village Roofs32_113
+  - first:
+      213: -7556960762743839516
+    second: Rural Village Roofs32_114
+  - first:
+      213: -5505377689193919614
+    second: Rural Village Roofs32_115
+  - first:
+      213: 2046857196067814861
+    second: Rural Village Roofs32_116
+  - first:
+      213: 7560099983192249469
+    second: Rural Village Roofs32_117
+  - first:
+      213: -4110809806978830262
+    second: Rural Village Roofs32_118
+  - first:
+      213: -8486357757383383223
+    second: Rural Village Roofs32_119
+  - first:
+      213: -2701416622218049290
+    second: Rural Village Roofs32_120
+  - first:
+      213: 2480121102331665369
+    second: Rural Village Roofs32_121
+  - first:
+      213: -8120666838124481449
+    second: Rural Village Roofs32_122
+  - first:
+      213: 2378548521988053532
+    second: Rural Village Roofs32_123
+  - first:
+      213: 7176628816836028643
+    second: Rural Village Roofs32_124
+  - first:
+      213: -6855476968177249666
+    second: Rural Village Roofs32_125
+  - first:
+      213: 8556396866477152983
+    second: Rural Village Roofs32_126
+  - first:
+      213: -5433005868258955325
+    second: Rural Village Roofs32_127
+  - first:
+      213: -6472569866483497330
+    second: Rural Village Roofs32_128
+  - first:
+      213: 5129285527806690723
+    second: Rural Village Roofs32_129
+  - first:
+      213: -2790289048582191113
+    second: Rural Village Roofs32_130
+  - first:
+      213: 2566338412494726645
+    second: Rural Village Roofs32_131
+  - first:
+      213: 1309145073821560181
+    second: Rural Village Roofs32_132
+  - first:
+      213: 423109219822105251
+    second: Rural Village Roofs32_133
+  - first:
+      213: -4436109670802626485
+    second: Rural Village Roofs32_134
+  - first:
+      213: -3388596593595696134
+    second: Rural Village Roofs32_135
+  - first:
+      213: 7641988447068344557
+    second: Rural Village Roofs32_136
+  - first:
+      213: 2861696492172596201
+    second: Rural Village Roofs32_137
+  - first:
+      213: -177477475232737741
+    second: Rural Village Roofs32_138
+  - first:
+      213: -702810908927279645
+    second: Rural Village Roofs32_139
+  - first:
+      213: -3771538411117474096
+    second: Rural Village Roofs32_140
+  - first:
+      213: 2843882605292669982
+    second: Rural Village Roofs32_141
+  - first:
+      213: 6819171804824145963
+    second: Rural Village Roofs32_142
+  - first:
+      213: -4071300443840760955
+    second: Rural Village Roofs32_143
+  - first:
+      213: 2683712568059730255
+    second: Rural Village Roofs32_144
+  - first:
+      213: 3431808126042790529
+    second: Rural Village Roofs32_145
+  - first:
+      213: 2692668872308401094
+    second: Rural Village Roofs32_146
+  - first:
+      213: -7806140130190152038
+    second: Rural Village Roofs32_147
+  - first:
+      213: 1038424916596535317
+    second: Rural Village Roofs32_148
+  - first:
+      213: -5507214420775626669
+    second: Rural Village Roofs32_149
+  - first:
+      213: -2459275608423464893
+    second: Rural Village Roofs32_150
+  - first:
+      213: 2378173829460035253
+    second: Rural Village Roofs32_151
+  - first:
+      213: -729847555873883551
+    second: Rural Village Roofs32_152
+  - first:
+      213: 9101953797667835964
+    second: Rural Village Roofs32_153
+  - first:
+      213: 277526963435810470
+    second: Rural Village Roofs32_154
+  - first:
+      213: -2080353153296701650
+    second: Rural Village Roofs32_155
+  - first:
+      213: -841947284390719156
+    second: Rural Village Roofs32_156
+  - first:
+      213: 6309535179712320080
+    second: Rural Village Roofs32_157
+  - first:
+      213: -2085894142261879631
+    second: Rural Village Roofs32_158
+  - first:
+      213: -1249127153055520766
+    second: Rural Village Roofs32_159
+  - first:
+      213: -4695001868142528633
+    second: Rural Village Roofs32_160
+  - first:
+      213: -3824630119321474252
+    second: Rural Village Roofs32_161
+  - first:
+      213: 4884930825403445942
+    second: Rural Village Roofs32_162
+  - first:
+      213: -1187483627820032353
+    second: Rural Village Roofs32_163
+  - first:
+      213: -8580203829801960722
+    second: Rural Village Roofs32_164
+  - first:
+      213: -8552500940710646355
+    second: Rural Village Roofs32_165
+  - first:
+      213: 4901935392687691018
+    second: Rural Village Roofs32_166
+  - first:
+      213: -132622232940488357
+    second: Rural Village Roofs32_167
+  - first:
+      213: -2554094202463989796
+    second: Rural Village Roofs32_168
+  - first:
+      213: -2707446546731637400
+    second: Rural Village Roofs32_169
+  - first:
+      213: 8674874427546104136
+    second: Rural Village Roofs32_170
+  - first:
+      213: 3161705385060186915
+    second: Rural Village Roofs32_171
+  - first:
+      213: -2560211702883972069
+    second: Rural Village Roofs32_172
+  - first:
+      213: -4932298809177193947
+    second: Rural Village Roofs32_173
+  - first:
+      213: -3986838859933048864
+    second: Rural Village Roofs32_174
+  - first:
+      213: -7160644990538690313
+    second: Rural Village Roofs32_175
+  - first:
+      213: -1148371665572405807
+    second: Rural Village Roofs32_176
+  - first:
+      213: -1581391367435153226
+    second: Rural Village Roofs32_177
+  - first:
+      213: -9202620416355172218
+    second: Rural Village Roofs32_178
+  - first:
+      213: 4791498842055708845
+    second: Rural Village Roofs32_179
+  - first:
+      213: 1529778662756795439
+    second: Rural Village Roofs32_180
+  - first:
+      213: 533037850671323205
+    second: Rural Village Roofs32_181
+  - first:
+      213: -2827803762000850562
+    second: Rural Village Roofs32_182
+  - first:
+      213: 859939966857135396
+    second: Rural Village Roofs32_183
+  - first:
+      213: 2435243718292062379
+    second: Rural Village Roofs32_184
+  - first:
+      213: -844882010099071421
+    second: Rural Village Roofs32_185
+  - first:
+      213: 7774601522542484150
+    second: Rural Village Roofs32_186
+  - first:
+      213: -3190389059836497549
+    second: Rural Village Roofs32_187
+  - first:
+      213: 2903575913947309875
+    second: Rural Village Roofs32_188
+  - first:
+      213: 2078164479678687060
+    second: Rural Village Roofs32_189
+  - first:
+      213: -4581313088919400860
+    second: Rural Village Roofs32_190
+  - first:
+      213: -8876985463283225988
+    second: Rural Village Roofs32_191
+  - first:
+      213: 8686103045678352454
+    second: Rural Village Roofs32_192
+  - first:
+      213: 2969173287766055489
+    second: Rural Village Roofs32_193
+  - first:
+      213: -8418797288401793337
+    second: Rural Village Roofs32_194
+  - first:
+      213: 1869180251617597150
+    second: Rural Village Roofs32_195
+  - first:
+      213: 8118470409450656186
+    second: Rural Village Roofs32_196
+  - first:
+      213: -6678444624763791164
+    second: Rural Village Roofs32_197
+  - first:
+      213: -7265694100773830713
+    second: Rural Village Roofs32_198
+  - first:
+      213: 4992511780273287502
+    second: Rural Village Roofs32_199
+  - first:
+      213: -6131544311795854820
+    second: Rural Village Roofs32_200
+  - first:
+      213: -3699298484600410083
+    second: Rural Village Roofs32_201
+  - first:
+      213: 5052005599588537536
+    second: Rural Village Roofs32_202
+  - first:
+      213: -2934520328300272629
+    second: Rural Village Roofs32_203
+  - first:
+      213: -427038870993428691
+    second: Rural Village Roofs32_204
+  - first:
+      213: 8662217968045375918
+    second: Rural Village Roofs32_205
+  - first:
+      213: -2448467885194736972
+    second: Rural Village Roofs32_206
+  - first:
+      213: 6448774840472688893
+    second: Rural Village Roofs32_207
+  - first:
+      213: -6136115913882045676
+    second: Rural Village Roofs32_208
+  - first:
+      213: 5824925358020851929
+    second: Rural Village Roofs32_209
+  - first:
+      213: -3286921272972376242
+    second: Rural Village Roofs32_210
+  - first:
+      213: 3546781656994371566
+    second: Rural Village Roofs32_211
+  - first:
+      213: 3715140576284052398
+    second: Rural Village Roofs32_212
+  - first:
+      213: -946063252657410525
+    second: Rural Village Roofs32_213
+  - first:
+      213: -6089797070515248524
+    second: Rural Village Roofs32_214
+  - first:
+      213: 2556976998508634785
+    second: Rural Village Roofs32_215
+  - first:
+      213: 5501858541219699093
+    second: Rural Village Roofs32_216
+  - first:
+      213: 4140981168666284141
+    second: Rural Village Roofs32_217
+  - first:
+      213: 5957182313801325643
+    second: Rural Village Roofs32_218
+  - first:
+      213: -787889360614926717
+    second: Rural Village Roofs32_219
+  - first:
+      213: -4378773790305768812
+    second: Rural Village Roofs32_220
+  - first:
+      213: 3075895007320985359
+    second: Rural Village Roofs32_221
+  - first:
+      213: -265772040936376393
+    second: Rural Village Roofs32_222
+  - first:
+      213: 5399872900400130989
+    second: Rural Village Roofs32_223
+  - first:
+      213: 874987726096557183
+    second: Rural Village Roofs32_224
+  - first:
+      213: -3356778175443900433
+    second: Rural Village Roofs32_225
+  - first:
+      213: 4539422243454531643
+    second: Rural Village Roofs32_226
+  - first:
+      213: 6742372597203774907
+    second: Rural Village Roofs32_227
+  - first:
+      213: -2812594241712681233
+    second: Rural Village Roofs32_228
+  - first:
+      213: -6463109222464526190
+    second: Rural Village Roofs32_229
+  - first:
+      213: 8784394339484460655
+    second: Rural Village Roofs32_230
+  - first:
+      213: 3108617406234296909
+    second: Rural Village Roofs32_231
+  - first:
+      213: -6399041027767882230
+    second: Rural Village Roofs32_232
+  - first:
+      213: 5804305886431419440
+    second: Rural Village Roofs32_233
+  - first:
+      213: 2371353053362785831
+    second: Rural Village Roofs32_234
+  - first:
+      213: 6356966941532968512
+    second: Rural Village Roofs32_235
+  - first:
+      213: 3939034656782336462
+    second: Rural Village Roofs32_236
+  - first:
+      213: -4975802194660932682
+    second: Rural Village Roofs32_237
+  - first:
+      213: -1974146099261211720
+    second: Rural Village Roofs32_238
+  - first:
+      213: -7267568623557244493
+    second: Rural Village Roofs32_239
+  - first:
+      213: -7616640535290969874
+    second: Rural Village Roofs32_240
+  - first:
+      213: 8050600644431233227
+    second: Rural Village Roofs32_241
+  - first:
+      213: -2309392374075390788
+    second: Rural Village Roofs32_242
+  - first:
+      213: 5926443021589298915
+    second: Rural Village Roofs32_243
+  - first:
+      213: -4353364461604812566
+    second: Rural Village Roofs32_244
+  - first:
+      213: -5815925817085445489
+    second: Rural Village Roofs32_245
+  - first:
+      213: 8737662492238783677
+    second: Rural Village Roofs32_246
+  - first:
+      213: 2030285312401898911
+    second: Rural Village Roofs32_247
+  - first:
+      213: -3027546672112741139
+    second: Rural Village Roofs32_248
+  - first:
+      213: 7504892440410490904
+    second: Rural Village Roofs32_249
+  - first:
+      213: 4797711641971924221
+    second: Rural Village Roofs32_250
+  - first:
+      213: -1864356921745858683
+    second: Rural Village Roofs32_251
+  - first:
+      213: 5212143647189231677
+    second: Rural Village Roofs32_252
+  - first:
+      213: 1201630094125118262
+    second: Rural Village Roofs32_253
+  - first:
+      213: 8256300965147544004
+    second: Rural Village Roofs32_254
+  - first:
+      213: 5045504361579431299
+    second: Rural Village Roofs32_255
+  - first:
+      213: -1877303045814142122
+    second: Rural Village Roofs32_256
+  - first:
+      213: -6089409592257269862
+    second: Rural Village Roofs32_257
+  - first:
+      213: 8648432321691363764
+    second: Rural Village Roofs32_258
+  - first:
+      213: 7066668066592351521
+    second: Rural Village Roofs32_259
+  - first:
+      213: -1995156715075408347
+    second: Rural Village Roofs32_260
+  - first:
+      213: -1103979767223271197
+    second: Rural Village Roofs32_261
+  - first:
+      213: 39721590727925583
+    second: Rural Village Roofs32_262
+  - first:
+      213: 2015239027033514315
+    second: Rural Village Roofs32_263
+  - first:
+      213: 262416882136101357
+    second: Rural Village Roofs32_264
+  - first:
+      213: -6331514896929887435
+    second: Rural Village Roofs32_265
+  - first:
+      213: -4128838361214225705
+    second: Rural Village Roofs32_266
+  - first:
+      213: 5809228722778711272
+    second: Rural Village Roofs32_267
+  - first:
+      213: 1229945233532670524
+    second: Rural Village Roofs32_268
+  - first:
+      213: -1963485492005664137
+    second: Rural Village Roofs32_269
+  - first:
+      213: -4393269656047357901
+    second: Rural Village Roofs32_270
+  - first:
+      213: 4251287070223073092
+    second: Rural Village Roofs32_271
+  - first:
+      213: 8487251037421830698
+    second: Rural Village Roofs32_272
+  - first:
+      213: -3734594827224756253
+    second: Rural Village Roofs32_273
+  - first:
+      213: 5361568413662524988
+    second: Rural Village Roofs32_274
+  - first:
+      213: 9068698073177221411
+    second: Rural Village Roofs32_275
+  - first:
+      213: -3784994807248704064
+    second: Rural Village Roofs32_276
+  - first:
+      213: -4384589686819877399
+    second: Rural Village Roofs32_277
+  - first:
+      213: -8449509148102476223
+    second: Rural Village Roofs32_278
+  - first:
+      213: 1616764725107508305
+    second: Rural Village Roofs32_279
+  - first:
+      213: -5214811417841465104
+    second: Rural Village Roofs32_280
+  - first:
+      213: -6413788149162887903
+    second: Rural Village Roofs32_281
+  - first:
+      213: -8296843357683246946
+    second: Rural Village Roofs32_282
+  - first:
+      213: 1706504367416584643
+    second: Rural Village Roofs32_283
+  - first:
+      213: -5173800485028344608
+    second: Rural Village Roofs32_284
+  - first:
+      213: -989332450723516101
+    second: Rural Village Roofs32_285
+  - first:
+      213: -3554997812402859565
+    second: Rural Village Roofs32_286
+  - first:
+      213: 4766136208996460201
+    second: Rural Village Roofs32_287
+  - first:
+      213: 8569751815432105823
+    second: Rural Village Roofs32_288
+  - first:
+      213: 2370638871290852667
+    second: Rural Village Roofs32_289
+  - first:
+      213: -3870665498775499488
+    second: Rural Village Roofs32_290
+  - first:
+      213: 9215154341767032872
+    second: Rural Village Roofs32_291
+  - first:
+      213: 8948840661674560081
+    second: Rural Village Roofs32_292
+  - first:
+      213: -3871651026093745593
+    second: Rural Village Roofs32_293
+  - first:
+      213: -8124855136240179702
+    second: Rural Village Roofs32_294
+  - first:
+      213: -5121905491723931135
+    second: Rural Village Roofs32_295
+  - first:
+      213: 6322504831906522373
+    second: Rural Village Roofs32_296
+  - first:
+      213: -4095509366845765262
+    second: Rural Village Roofs32_297
+  - first:
+      213: 3124081179367898099
+    second: Rural Village Roofs32_298
+  - first:
+      213: 3064932963679888591
+    second: Rural Village Roofs32_299
+  - first:
+      213: 8482515389146130599
+    second: Rural Village Roofs32_300
+  - first:
+      213: 79017672059046800
+    second: Rural Village Roofs32_301
+  - first:
+      213: -6125350751182835105
+    second: Rural Village Roofs32_302
+  - first:
+      213: -2032591599743739273
+    second: Rural Village Roofs32_303
+  - first:
+      213: 8058019476898557826
+    second: Rural Village Roofs32_304
+  - first:
+      213: 3030658316042094895
+    second: Rural Village Roofs32_305
+  - first:
+      213: -6849859936372709153
+    second: Rural Village Roofs32_306
+  - first:
+      213: 3989834965389610930
+    second: Rural Village Roofs32_307
+  - first:
+      213: 4760175365994364169
+    second: Rural Village Roofs32_308
+  - first:
+      213: 2659567271839014654
+    second: Rural Village Roofs32_309
+  - first:
+      213: -6304339288647757353
+    second: Rural Village Roofs32_310
+  - first:
+      213: -1238542027387783645
+    second: Rural Village Roofs32_311
+  - first:
+      213: -7033829787021833933
+    second: Rural Village Roofs32_312
+  - first:
+      213: 8675754548602911821
+    second: Rural Village Roofs32_313
+  - first:
+      213: -3187238490359772378
+    second: Rural Village Roofs32_314
+  - first:
+      213: -8561726568762274295
+    second: Rural Village Roofs32_315
+  - first:
+      213: 6465580640454795281
+    second: Rural Village Roofs32_316
+  - first:
+      213: 9132543294381318636
+    second: Rural Village Roofs32_317
+  - first:
+      213: 2856294345889200571
+    second: Rural Village Roofs32_318
+  - first:
+      213: -4217523476914771281
+    second: Rural Village Roofs32_319
+  - first:
+      213: -128534579328777619
+    second: Rural Village Roofs32_320
+  - first:
+      213: -6685117091653408175
+    second: Rural Village Roofs32_321
+  - first:
+      213: -6201240828187754552
+    second: Rural Village Roofs32_322
+  - first:
+      213: -6195552065056418647
+    second: Rural Village Roofs32_323
+  - first:
+      213: 4818887194394811354
+    second: Rural Village Roofs32_324
+  - first:
+      213: 6653015892045932974
+    second: Rural Village Roofs32_325
+  - first:
+      213: -4177697771710895602
+    second: Rural Village Roofs32_326
+  - first:
+      213: -6956596263299046145
+    second: Rural Village Roofs32_327
+  - first:
+      213: 47302290287044215
+    second: Rural Village Roofs32_328
+  - first:
+      213: 346563456984239183
+    second: Rural Village Roofs32_329
+  - first:
+      213: 7935678036531900914
+    second: Rural Village Roofs32_330
+  - first:
+      213: 4879383095711775844
+    second: Rural Village Roofs32_331
+  - first:
+      213: 4148551347263001369
+    second: Rural Village Roofs32_332
+  - first:
+      213: 1634400212531189789
+    second: Rural Village Roofs32_333
+  - first:
+      213: -9047924424801405850
+    second: Rural Village Roofs32_334
+  - first:
+      213: 4282480117750277573
+    second: Rural Village Roofs32_335
+  - first:
+      213: -3621179138932884520
+    second: Rural Village Roofs32_336
+  - first:
+      213: -744209832020970382
+    second: Rural Village Roofs32_337
+  - first:
+      213: -2555763602094305937
+    second: Rural Village Roofs32_338
+  - first:
+      213: -2088249373206031429
+    second: Rural Village Roofs32_339
+  - first:
+      213: 7602229608381742976
+    second: Rural Village Roofs32_340
+  - first:
+      213: -8394374107594515960
+    second: Rural Village Roofs32_341
+  - first:
+      213: -3220656597424341844
+    second: Rural Village Roofs32_342
+  - first:
+      213: 2136874799591354786
+    second: Rural Village Roofs32_343
+  - first:
+      213: -8993307739738085264
+    second: Rural Village Roofs32_344
+  - first:
+      213: -5300789316901325182
+    second: Rural Village Roofs32_345
+  - first:
+      213: -2520700377187020415
+    second: Rural Village Roofs32_346
+  - first:
+      213: 8240378022644210418
+    second: Rural Village Roofs32_347
+  - first:
+      213: -1203391875041447940
+    second: Rural Village Roofs32_348
+  - first:
+      213: 8664255462735008247
+    second: Rural Village Roofs32_349
+  - first:
+      213: -5285910765992988787
+    second: Rural Village Roofs32_350
+  - first:
+      213: 2761733512182498844
+    second: Rural Village Roofs32_351
+  - first:
+      213: 4740651839835633167
+    second: Rural Village Roofs32_352
+  - first:
+      213: -8085006982211446646
+    second: Rural Village Roofs32_353
+  - first:
+      213: -4777451754778215773
+    second: Rural Village Roofs32_354
+  - first:
+      213: 8823001681147463434
+    second: Rural Village Roofs32_355
+  - first:
+      213: -3336127059398675224
+    second: Rural Village Roofs32_356
+  - first:
+      213: 2616484709686636515
+    second: Rural Village Roofs32_357
+  - first:
+      213: -5091812700314956308
+    second: Rural Village Roofs32_358
+  - first:
+      213: 1608484389017776546
+    second: Rural Village Roofs32_359
+  - first:
+      213: -7913790906103386810
+    second: Rural Village Roofs32_360
+  - first:
+      213: -7499701116961790559
+    second: Rural Village Roofs32_361
+  - first:
+      213: -772096633564614270
+    second: Rural Village Roofs32_362
+  - first:
+      213: 779539973889367507
+    second: Rural Village Roofs32_363
+  - first:
+      213: 4474282882982357026
+    second: Rural Village Roofs32_364
+  - first:
+      213: 6625780998779547606
+    second: Rural Village Roofs32_365
+  - first:
+      213: -2295447443954228661
+    second: Rural Village Roofs32_366
+  - first:
+      213: 115626446314855301
+    second: Rural Village Roofs32_367
+  - first:
+      213: 2583326323236351501
+    second: Rural Village Roofs32_368
+  - first:
+      213: 7272484269108623893
+    second: Rural Village Roofs32_369
+  - first:
+      213: -2338591460038813503
+    second: Rural Village Roofs32_370
+  - first:
+      213: -4975608787139006593
+    second: Rural Village Roofs32_371
+  - first:
+      213: -607198423035024516
+    second: Rural Village Roofs32_372
+  - first:
+      213: -9103439581804905161
+    second: Rural Village Roofs32_373
+  - first:
+      213: -4173864804385400462
+    second: Rural Village Roofs32_374
+  - first:
+      213: -2625133762507575144
+    second: Rural Village Roofs32_375
+  - first:
+      213: -258125837883349537
+    second: Rural Village Roofs32_376
+  - first:
+      213: 4476190275192188377
+    second: Rural Village Roofs32_377
+  - first:
+      213: 506174424803798172
+    second: Rural Village Roofs32_378
+  - first:
+      213: -3658718428813837507
+    second: Rural Village Roofs32_379
+  - first:
+      213: 4268441828991446465
+    second: Rural Village Roofs32_380
+  - first:
+      213: 5494402347673888815
+    second: Rural Village Roofs32_381
+  - first:
+      213: 7552461511961375576
+    second: Rural Village Roofs32_382
+  - first:
+      213: 3172165656029620081
+    second: Rural Village Roofs32_383
+  - first:
+      213: 8217838982328328427
+    second: Rural Village Roofs32_384
+  - first:
+      213: -1962807449320136821
+    second: Rural Village Roofs32_385
+  - first:
+      213: -1537696558882358095
+    second: Rural Village Roofs32_386
+  - first:
+      213: 687098864875098288
+    second: Rural Village Roofs32_387
+  - first:
+      213: -6468970385155270178
+    second: Rural Village Roofs32_388
+  - first:
+      213: -859106057855006123
+    second: Rural Village Roofs32_389
+  - first:
+      213: -5809719476803661053
+    second: Rural Village Roofs32_390
+  - first:
+      213: -2457757132438633379
+    second: Rural Village Roofs32_391
+  - first:
+      213: 7246827231698188814
+    second: Rural Village Roofs32_392
+  - first:
+      213: -4186655443710175422
+    second: Rural Village Roofs32_393
+  - first:
+      213: -6712799302231602462
+    second: Rural Village Roofs32_394
+  - first:
+      213: 181123894530606618
+    second: Rural Village Roofs32_395
+  - first:
+      213: 1060156608637324538
+    second: Rural Village Roofs32_396
+  - first:
+      213: 8421136669130759057
+    second: Rural Village Roofs32_397
+  - first:
+      213: -7062330673493002957
+    second: Rural Village Roofs32_398
+  - first:
+      213: 33772923620621527
+    second: Rural Village Roofs32_399
+  - first:
+      213: -5561161294668393782
+    second: Rural Village Roofs32_400
+  - first:
+      213: 4694567780738943018
+    second: Rural Village Roofs32_401
+  - first:
+      213: 6527628051747373435
+    second: Rural Village Roofs32_402
+  - first:
+      213: -2712192382960472857
+    second: Rural Village Roofs32_403
+  - first:
+      213: -3500143925124383758
+    second: Rural Village Roofs32_404
+  - first:
+      213: 3609964193714414433
+    second: Rural Village Roofs32_405
+  - first:
+      213: -3912081004263350032
+    second: Rural Village Roofs32_406
+  - first:
+      213: 7172296281554350648
+    second: Rural Village Roofs32_407
+  - first:
+      213: -8679560908581075661
+    second: Rural Village Roofs32_408
+  - first:
+      213: -2635110327342796749
+    second: Rural Village Roofs32_409
+  - first:
+      213: -947563648148384615
+    second: Rural Village Roofs32_410
+  - first:
+      213: -3928761655287949152
+    second: Rural Village Roofs32_411
+  - first:
+      213: 3321247153578204526
+    second: Rural Village Roofs32_412
+  - first:
+      213: -5943175868063101771
+    second: Rural Village Roofs32_413
+  - first:
+      213: -7803228792441317543
+    second: Rural Village Roofs32_414
+  - first:
+      213: 2746185578977812144
+    second: Rural Village Roofs32_415
+  - first:
+      213: 7047298094310655773
+    second: Rural Village Roofs32_416
+  - first:
+      213: -8608800202392566952
+    second: Rural Village Roofs32_417
+  - first:
+      213: -3372340805678472903
+    second: Rural Village Roofs32_418
+  - first:
+      213: -4383258158057083619
+    second: Rural Village Roofs32_419
+  - first:
+      213: -3187144705908709272
+    second: Rural Village Roofs32_420
+  - first:
+      213: -9202600191770226429
+    second: Rural Village Roofs32_421
+  - first:
+      213: 2237022571365543515
+    second: Rural Village Roofs32_422
+  - first:
+      213: 8311527301709441600
+    second: Rural Village Roofs32_423
+  - first:
+      213: -8982266226689697375
+    second: Rural Village Roofs32_424
+  - first:
+      213: 787292946033269585
+    second: Rural Village Roofs32_425
+  - first:
+      213: -3345738093717715838
+    second: Rural Village Roofs32_426
+  - first:
+      213: -1885183228589643036
+    second: Rural Village Roofs32_427
+  - first:
+      213: -376037994017809547
+    second: Rural Village Roofs32_428
+  - first:
+      213: -8659225448622495974
+    second: Rural Village Roofs32_429
+  - first:
+      213: -1804457284791677816
+    second: Rural Village Roofs32_430
+  - first:
+      213: 1880851840547702502
+    second: Rural Village Roofs32_431
+  - first:
+      213: 2617927018162317821
+    second: Rural Village Roofs32_432
+  - first:
+      213: 5835647161664445591
+    second: Rural Village Roofs32_433
+  - first:
+      213: -2650401378522488636
+    second: Rural Village Roofs32_434
+  - first:
+      213: 2056795148650173090
+    second: Rural Village Roofs32_435
+  - first:
+      213: 8945564594139009367
+    second: Rural Village Roofs32_436
+  - first:
+      213: 2580930984734304566
+    second: Rural Village Roofs32_437
+  - first:
+      213: -8621747044473909413
+    second: Rural Village Roofs32_438
+  - first:
+      213: 8306238240317085473
+    second: Rural Village Roofs32_439
+  - first:
+      213: 7953990933833286578
+    second: Rural Village Roofs32_440
+  - first:
+      213: -8551231445390405328
+    second: Rural Village Roofs32_441
+  - first:
+      213: -6959491840701666438
+    second: Rural Village Roofs32_442
+  - first:
+      213: 5855644110305950175
+    second: Rural Village Roofs32_443
+  - first:
+      213: 9102211959170484307
+    second: Rural Village Roofs32_444
+  - first:
+      213: 1152973521363741044
+    second: Rural Village Roofs32_445
+  - first:
+      213: -4666761787638887233
+    second: Rural Village Roofs32_446
+  - first:
+      213: -6046418528036529775
+    second: Rural Village Roofs32_447
+  - first:
+      213: -3571711561103929629
+    second: Rural Village Roofs32_448
+  - first:
+      213: -301459494539432006
+    second: Rural Village Roofs32_449
+  - first:
+      213: 6586676331166910852
+    second: Rural Village Roofs32_450
+  - first:
+      213: -5831979409566149815
+    second: Rural Village Roofs32_451
+  - first:
+      213: 7444361796316355948
+    second: Rural Village Roofs32_452
+  - first:
+      213: 3248772253479358836
+    second: Rural Village Roofs32_453
+  - first:
+      213: -2395281769000744004
+    second: Rural Village Roofs32_454
+  - first:
+      213: -4044208635550380374
+    second: Rural Village Roofs32_455
+  - first:
+      213: 4368991857372310163
+    second: Rural Village Roofs32_456
+  - first:
+      213: -4245477234354372516
+    second: Rural Village Roofs32_457
+  - first:
+      213: 8455578648062264380
+    second: Rural Village Roofs32_458
+  - first:
+      213: -4295708508782853329
+    second: Rural Village Roofs32_459
+  - first:
+      213: 8075446270170907484
+    second: Rural Village Roofs32_460
+  - first:
+      213: -5243588272431570363
+    second: Rural Village Roofs32_461
+  - first:
+      213: 1050477557435956266
+    second: Rural Village Roofs32_462
+  - first:
+      213: 3302795811421824437
+    second: Rural Village Roofs32_463
+  - first:
+      213: 8540149158681766398
+    second: Rural Village Roofs32_464
+  - first:
+      213: 3556179689366658881
+    second: Rural Village Roofs32_465
+  - first:
+      213: 5208233041582020784
+    second: Rural Village Roofs32_466
+  - first:
+      213: 5939624661847532685
+    second: Rural Village Roofs32_467
+  - first:
+      213: 7095652699962973069
+    second: Rural Village Roofs32_468
+  - first:
+      213: -7483298699839569920
+    second: Rural Village Roofs32_469
+  - first:
+      213: 3317725144790773323
+    second: Rural Village Roofs32_470
+  - first:
+      213: -8828818910816314491
+    second: Rural Village Roofs32_471
+  - first:
+      213: 1877569490964672545
+    second: Rural Village Roofs32_472
+  - first:
+      213: 1281485590304314239
+    second: Rural Village Roofs32_473
+  - first:
+      213: 8478383950403301693
+    second: Rural Village Roofs32_474
+  - first:
+      213: 4059003167162825857
+    second: Rural Village Roofs32_475
+  - first:
+      213: -3197799394992454190
+    second: Rural Village Roofs32_476
+  - first:
+      213: -1806193055513156361
+    second: Rural Village Roofs32_477
+  - first:
+      213: 7733998365111325126
+    second: Rural Village Roofs32_478
+  - first:
+      213: -7611768717926667741
+    second: Rural Village Roofs32_479
+  - first:
+      213: 6053381573665676587
+    second: Rural Village Roofs32_480
+  - first:
+      213: 632178066163959257
+    second: Rural Village Roofs32_481
+  - first:
+      213: 3809602018008211600
+    second: Rural Village Roofs32_482
+  - first:
+      213: 4161322283012882138
+    second: Rural Village Roofs32_483
+  - first:
+      213: -1176384185680610765
+    second: Rural Village Roofs32_484
+  - first:
+      213: 8355568240132679827
+    second: Rural Village Roofs32_485
+  - first:
+      213: -2656460392333855940
+    second: Rural Village Roofs32_486
+  - first:
+      213: 4572518393020483738
+    second: Rural Village Roofs32_487
+  - first:
+      213: -2167677430856511495
+    second: Rural Village Roofs32_488
+  - first:
+      213: -9135359351557123163
+    second: Rural Village Roofs32_489
+  - first:
+      213: -6060709854952097901
+    second: Rural Village Roofs32_490
+  - first:
+      213: -8385637976111507353
+    second: Rural Village Roofs32_491
+  - first:
+      213: 6201887892537120454
+    second: Rural Village Roofs32_492
+  - first:
+      213: -6058073766544698345
+    second: Rural Village Roofs32_493
+  - first:
+      213: 1876576631181143924
+    second: Rural Village Roofs32_494
+  - first:
+      213: -470156145441860298
+    second: Rural Village Roofs32_495
+  - first:
+      213: 7049727120533073265
+    second: Rural Village Roofs32_496
+  - first:
+      213: -7825410814396754348
+    second: Rural Village Roofs32_497
+  - first:
+      213: 7128280887971938752
+    second: Rural Village Roofs32_498
+  - first:
+      213: -4922592689871618097
+    second: Rural Village Roofs32_499
+  - first:
+      213: 6232058984456035390
+    second: Rural Village Roofs32_500
+  - first:
+      213: -1882864316974849658
+    second: Rural Village Roofs32_501
+  - first:
+      213: -1526136129921303517
+    second: Rural Village Roofs32_502
+  - first:
+      213: 3207485700838138482
+    second: Rural Village Roofs32_503
+  - first:
+      213: 4717780758885939517
+    second: Rural Village Roofs32_504
+  - first:
+      213: -6192905356865416273
+    second: Rural Village Roofs32_505
+  - first:
+      213: 8131769474631752872
+    second: Rural Village Roofs32_506
+  - first:
+      213: 1947140849509870913
+    second: Rural Village Roofs32_507
+  - first:
+      213: -5444215984962207068
+    second: Rural Village Roofs32_508
+  - first:
+      213: -3102941044783400174
+    second: Rural Village Roofs32_509
+  - first:
+      213: 2465397362849083332
+    second: Rural Village Roofs32_510
+  - first:
+      213: -104831509824729666
+    second: Rural Village Roofs32_511
+  - first:
+      213: 7202031048844838747
+    second: Rural Village Roofs32_512
+  - first:
+      213: -604093600547446404
+    second: Rural Village Roofs32_513
+  - first:
+      213: -580503783737692765
+    second: Rural Village Roofs32_514
+  - first:
+      213: 1364120615530674047
+    second: Rural Village Roofs32_515
+  - first:
+      213: 5609832986689898330
+    second: Rural Village Roofs32_516
+  - first:
+      213: 9009412306215961003
+    second: Rural Village Roofs32_517
+  - first:
+      213: 3548458053976467927
+    second: Rural Village Roofs32_518
+  - first:
+      213: -3349891350894856482
+    second: Rural Village Roofs32_519
+  - first:
+      213: 8179558387772826810
+    second: Rural Village Roofs32_520
+  - first:
+      213: -9009014999349491712
+    second: Rural Village Roofs32_521
+  - first:
+      213: -1520673400145652149
+    second: Rural Village Roofs32_522
+  - first:
+      213: 6375026558617550474
+    second: Rural Village Roofs32_523
+  - first:
+      213: -3344616660904212044
+    second: Rural Village Roofs32_524
+  - first:
+      213: -8647819182889493846
+    second: Rural Village Roofs32_525
+  - first:
+      213: -3835022165079729755
+    second: Rural Village Roofs32_526
+  - first:
+      213: 2659990650720090204
+    second: Rural Village Roofs32_527
+  - first:
+      213: -8373203161394750102
+    second: Rural Village Roofs32_528
+  - first:
+      213: 3105423682031780523
+    second: Rural Village Roofs32_529
+  - first:
+      213: -2553748429700484686
+    second: Rural Village Roofs32_530
+  - first:
+      213: 4572793386499042191
+    second: Rural Village Roofs32_531
+  - first:
+      213: -1503459380186451527
+    second: Rural Village Roofs32_532
+  - first:
+      213: 2614158715571243686
+    second: Rural Village Roofs32_533
+  - first:
+      213: 1943275199023929110
+    second: Rural Village Roofs32_534
+  - first:
+      213: 922837336166174256
+    second: Rural Village Roofs32_535
+  - first:
+      213: -5145363518677513641
+    second: Rural Village Roofs32_536
+  - first:
+      213: 3761874720476352367
+    second: Rural Village Roofs32_537
+  - first:
+      213: 3885319507919543561
+    second: Rural Village Roofs32_538
+  - first:
+      213: 4115215637942096047
+    second: Rural Village Roofs32_539
+  - first:
+      213: 2226667811646040394
+    second: Rural Village Roofs32_540
+  - first:
+      213: -3544157741610478395
+    second: Rural Village Roofs32_541
+  - first:
+      213: 2679713834332535762
+    second: Rural Village Roofs32_542
+  - first:
+      213: -1661461068937156797
+    second: Rural Village Roofs32_543
+  - first:
+      213: -2990818577707490023
+    second: Rural Village Roofs32_544
+  - first:
+      213: -7148965762692854522
+    second: Rural Village Roofs32_545
+  - first:
+      213: -4585497619722168914
+    second: Rural Village Roofs32_546
+  - first:
+      213: 747440605959486771
+    second: Rural Village Roofs32_547
+  - first:
+      213: 1242255439520079471
+    second: Rural Village Roofs32_548
+  - first:
+      213: -4391260058465589362
+    second: Rural Village Roofs32_549
+  - first:
+      213: 4515268414872199584
+    second: Rural Village Roofs32_550
+  - first:
+      213: -771244241620337753
+    second: Rural Village Roofs32_551
+  - first:
+      213: 3379659386705318531
+    second: Rural Village Roofs32_552
+  - first:
+      213: -4592942614879432902
+    second: Rural Village Roofs32_553
+  - first:
+      213: -2119287557743353397
+    second: Rural Village Roofs32_554
+  - first:
+      213: -803017607054447984
+    second: Rural Village Roofs32_555
+  - first:
+      213: 4108984584973267272
+    second: Rural Village Roofs32_556
+  - first:
+      213: 2684258073493771908
+    second: Rural Village Roofs32_557
+  - first:
+      213: -7852420384711589747
+    second: Rural Village Roofs32_558
+  - first:
+      213: 596563155558381632
+    second: Rural Village Roofs32_559
+  - first:
+      213: -2426946845567625150
+    second: Rural Village Roofs32_560
+  - first:
+      213: -1873629134148359056
+    second: Rural Village Roofs32_561
+  - first:
+      213: 960906592332752964
+    second: Rural Village Roofs32_562
+  - first:
+      213: -4696752946765629493
+    second: Rural Village Roofs32_563
+  - first:
+      213: 5933243536283948261
+    second: Rural Village Roofs32_564
+  - first:
+      213: 5619016146207626976
+    second: Rural Village Roofs32_565
+  - first:
+      213: 4597998545382030646
+    second: Rural Village Roofs32_566
+  - first:
+      213: -4050564389371016006
+    second: Rural Village Roofs32_567
+  - first:
+      213: -8152401874957918582
+    second: Rural Village Roofs32_568
+  - first:
+      213: -6441315730534993709
+    second: Rural Village Roofs32_569
+  - first:
+      213: -5685431023664893759
+    second: Rural Village Roofs32_570
+  - first:
+      213: 6966832949986320907
+    second: Rural Village Roofs32_571
+  - first:
+      213: -5684902810061861445
+    second: Rural Village Roofs32_572
+  - first:
+      213: 8990011698581337289
+    second: Rural Village Roofs32_573
+  - first:
+      213: -3900629936015522707
+    second: Rural Village Roofs32_574
+  - first:
+      213: -7164806833024595354
+    second: Rural Village Roofs32_575
+  - first:
+      213: -645279177517736690
+    second: Rural Village Roofs32_576
+  - first:
+      213: -4473072231584143964
+    second: Rural Village Roofs32_577
+  - first:
+      213: 5978055677876776010
+    second: Rural Village Roofs32_578
+  - first:
+      213: -3524812956678203041
+    second: Rural Village Roofs32_579
+  - first:
+      213: -6131495084739715680
+    second: Rural Village Roofs32_580
+  - first:
+      213: -721040342424858981
+    second: Rural Village Roofs32_581
+  - first:
+      213: -133082540047626864
+    second: Rural Village Roofs32_582
+  - first:
+      213: 57704241370624260
+    second: Rural Village Roofs32_583
+  - first:
+      213: -2919626857157690997
+    second: Rural Village Roofs32_584
+  - first:
+      213: 3776181853852615348
+    second: Rural Village Roofs32_585
+  - first:
+      213: -5404843862228955202
+    second: Rural Village Roofs32_586
+  - first:
+      213: -4874115333268447525
+    second: Rural Village Roofs32_587
+  - first:
+      213: -2975903373083728196
+    second: Rural Village Roofs32_588
+  - first:
+      213: 3929838597487550764
+    second: Rural Village Roofs32_589
+  - first:
+      213: -8521437472514344153
+    second: Rural Village Roofs32_590
+  - first:
+      213: -7681405798444717370
+    second: Rural Village Roofs32_591
+  - first:
+      213: -5796090868277321934
+    second: Rural Village Roofs32_592
+  - first:
+      213: -3933541171348370262
+    second: Rural Village Roofs32_593
+  - first:
+      213: 188970290000363477
+    second: Rural Village Roofs32_594
+  - first:
+      213: 3978526854571998480
+    second: Rural Village Roofs32_595
+  - first:
+      213: 7444289871424886765
+    second: Rural Village Roofs32_596
+  - first:
+      213: -1496484810738407367
+    second: Rural Village Roofs32_597
+  - first:
+      213: -7870583347040244892
+    second: Rural Village Roofs32_598
+  - first:
+      213: 5938437260368675252
+    second: Rural Village Roofs32_599
+  - first:
+      213: -5531161203894050765
+    second: Rural Village Roofs32_600
+  - first:
+      213: 1276858106550988626
+    second: Rural Village Roofs32_601
+  - first:
+      213: -5528844641357622608
+    second: Rural Village Roofs32_602
+  - first:
+      213: 9138960132215612576
+    second: Rural Village Roofs32_603
+  - first:
+      213: -5056954575150275650
+    second: Rural Village Roofs32_604
+  - first:
+      213: -8557825705107041392
+    second: Rural Village Roofs32_605
+  - first:
+      213: -7745894122179466483
+    second: Rural Village Roofs32_606
+  - first:
+      213: 6288655042312773411
+    second: Rural Village Roofs32_607
+  - first:
+      213: -8798931320690881691
+    second: Rural Village Roofs32_608
+  - first:
+      213: 5360147804028040637
+    second: Rural Village Roofs32_609
+  - first:
+      213: -7092396013096394502
+    second: Rural Village Roofs32_610
+  - first:
+      213: 8147443105923712066
+    second: Rural Village Roofs32_611
+  - first:
+      213: 3659434837334122365
+    second: Rural Village Roofs32_612
+  - first:
+      213: 3958472603159475042
+    second: Rural Village Roofs32_613
+  - first:
+      213: 5356814277691952750
+    second: Rural Village Roofs32_614
+  - first:
+      213: -6548155239193795901
+    second: Rural Village Roofs32_615
+  - first:
+      213: -1618324659667282033
+    second: Rural Village Roofs32_616
+  - first:
+      213: -1528382910599331045
+    second: Rural Village Roofs32_617
+  - first:
+      213: 2932735327103523134
+    second: Rural Village Roofs32_618
+  - first:
+      213: 1612249944056767557
+    second: Rural Village Roofs32_619
+  - first:
+      213: 4527299034731837666
+    second: Rural Village Roofs32_620
+  - first:
+      213: 6772469937672536866
+    second: Rural Village Roofs32_621
+  - first:
+      213: 2814290630920993328
+    second: Rural Village Roofs32_622
+  - first:
+      213: -5225788458385039247
+    second: Rural Village Roofs32_623
+  - first:
+      213: -1025106069721793417
+    second: Rural Village Roofs32_624
+  - first:
+      213: 6200590795880351017
+    second: Rural Village Roofs32_625
+  - first:
+      213: 2104903023666155960
+    second: Rural Village Roofs32_626
+  - first:
+      213: 3270685533347128948
+    second: Rural Village Roofs32_627
+  - first:
+      213: 6229802100255835755
+    second: Rural Village Roofs32_628
+  - first:
+      213: -6812759711209004384
+    second: Rural Village Roofs32_629
+  - first:
+      213: 4905091532509687240
+    second: Rural Village Roofs32_630
+  - first:
+      213: 7119195912235902155
+    second: Rural Village Roofs32_631
+  - first:
+      213: -3734489555356993507
+    second: Rural Village Roofs32_632
+  - first:
+      213: 628687657068379705
+    second: Rural Village Roofs32_633
+  - first:
+      213: 1042122992104041263
+    second: Rural Village Roofs32_634
+  - first:
+      213: 8342196829052130283
+    second: Rural Village Roofs32_635
+  - first:
+      213: 6054775885149868264
+    second: Rural Village Roofs32_636
+  - first:
+      213: 9220844359241203531
+    second: Rural Village Roofs32_637
+  - first:
+      213: 1948364176827401353
+    second: Rural Village Roofs32_638
+  - first:
+      213: -6975155656913898255
+    second: Rural Village Roofs32_639
+  - first:
+      213: -2673632663258435431
+    second: Rural Village Roofs32_640
+  - first:
+      213: -2253665595140600676
+    second: Rural Village Roofs32_641
+  - first:
+      213: -3869748015117648982
+    second: Rural Village Roofs32_642
+  - first:
+      213: -2987078609817298721
+    second: Rural Village Roofs32_643
+  - first:
+      213: 690908775545137931
+    second: Rural Village Roofs32_644
+  - first:
+      213: 2537491072751831725
+    second: Rural Village Roofs32_645
+  - first:
+      213: 9040367458604536312
+    second: Rural Village Roofs32_646
+  - first:
+      213: 2296048161892250447
+    second: Rural Village Roofs32_647
+  - first:
+      213: 7923029370657733193
+    second: Rural Village Roofs32_648
+  - first:
+      213: -1694370584497002731
+    second: Rural Village Roofs32_649
+  - first:
+      213: 5430226676914679957
+    second: Rural Village Roofs32_650
+  - first:
+      213: -8885681283264533761
+    second: Rural Village Roofs32_651
+  - first:
+      213: -8188129889601264088
+    second: Rural Village Roofs32_652
+  - first:
+      213: 1068587197184962703
+    second: Rural Village Roofs32_653
+  - first:
+      213: -3071759082817476949
+    second: Rural Village Roofs32_654
+  - first:
+      213: -1485659589915739144
+    second: Rural Village Roofs32_655
+  - first:
+      213: 2057610821494685940
+    second: Rural Village Roofs32_656
+  - first:
+      213: -6541568653157602708
+    second: Rural Village Roofs32_657
+  - first:
+      213: -5300586022009357900
+    second: Rural Village Roofs32_658
+  - first:
+      213: -5238926672344247285
+    second: Rural Village Roofs32_659
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

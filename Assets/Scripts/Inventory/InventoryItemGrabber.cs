@@ -52,7 +52,7 @@ public class InventoryItemGrabber : TogglableMenu
         menu.transform as RectTransform,
         Mouse.current.position.ReadValue(),
         menu.GetComponent<Canvas>().worldCamera,
-        out pos);
+			out pos);
         gameObject.transform.position = menu.transform.TransformPoint(new Vector3(pos.x, pos.y + 33, -1));//new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 	}
 }

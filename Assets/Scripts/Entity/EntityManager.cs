@@ -445,7 +445,7 @@ public class EntityManager : MonoBehaviour
 					}
 				}
 			}
-            else
+            else if(!(e is NPCEntity))
             {
                 if (what == "persist")
                 {
