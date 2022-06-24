@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -47,17 +48,38 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        facing = new Vector2(1, 0);
+	public List<string> visited;
 
-		if(ScenePersistence.Instance.playerDropPoint.x < Int32.MaxValue)
+	void Start()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		facing = new Vector2(1, 0);
+		//visited = new List<string>();
+
+		if (ScenePersistence.Instance.playerDropPoint.x < Int32.MaxValue)
 		{
 			//+ new vector because for some reason it is moving the player down by this amoutnt every time the scene loads :(
-			transform.position = ScenePersistence.Instance.playerDropPoint + new Vector2(1, 3);
-			Debug.Log("LEP2738" + ScenePersistence.Instance.playerDropPoint.x);
-			Debug.Log("LEP2738" + ScenePersistence.Instance.playerDropPoint.y);
+			transform.position = ScenePersistence.Instance.playerDropPoint + new Vector2(2, 3);
+		}
+		if (ScenePersistence.Instance.changingScene)
+		{
+			visited = ScenePersistence.Instance.mapsVisited;
+		}
+
+		Scene currentScene = SceneManager.GetActiveScene();
+		if (!visited.Contains("" + currentScene.name))
+		{
+			visited.Add(SceneManager.GetActiveScene().name);
+			//do thing like advance day and create foragables
+			switch(currentScene.name)
+			{
+				case "GroundScene":
+					GameObject.FindObjectOfType<TimeManager>().UpdateField();
+					break;
+				default:
+					//foragables, reset npcs, etc
+					break;
+			}
 		}
     }
 

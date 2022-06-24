@@ -57,6 +57,7 @@ public class SceneTransitionManager : MonoBehaviour
         //False by default, so upon loading save, should be fine. Otherwise, always true?
         ScenePersistence.Instance.changingScene = true;
 		ScenePersistence.Instance.playerDropPoint = playerPosition;
+		ScenePersistence.Instance.mapsVisited = player.GetComponent<PlayerMovement>().visited;
         timeManager.SaveDate("persist");
         timeManager.SaveNPCs("persist");
         

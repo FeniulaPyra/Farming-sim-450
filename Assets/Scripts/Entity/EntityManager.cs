@@ -213,8 +213,10 @@ public class EntityManager : MonoBehaviour
                     }
 
                     //Clears after spawning them, so you can't go back and forth for infinite entities
-                    //ScenePersistence.Instance.entities.Clear();
-                    //ScenePersistence.Instance.entityNames.Clear();
+                    ScenePersistence.Instance.pets.Clear();
+                    ScenePersistence.Instance.petNames.Clear();
+                    ScenePersistence.Instance.livestockPets.Clear();
+                    ScenePersistence.Instance.livestockPetNames.Clear();
                 }
             }
         }

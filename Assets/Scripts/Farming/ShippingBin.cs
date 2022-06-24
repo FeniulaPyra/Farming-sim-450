@@ -28,11 +28,11 @@ public class ShippingBin : MonoBehaviour
 	private void Awake()
 	{
 		inventory = new Inventory(1, 9);
-	}
+	/*}
 
 	// Start is called before the first frame update
 	void Start()
-    {
+    {*/
         playerObject = GameObject.Find("Player");
         playerInvManager = playerObject.GetComponent<PlayerInventoryManager>();
 		playerInventory = playerInvManager.inv;

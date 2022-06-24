@@ -57,7 +57,7 @@ public class FarmManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+		//ResetVisited();
         if (farmField != null)
         {
             //Can be used to figure out where the (0, 0) of the tilemap is, which could be useful
@@ -79,7 +79,10 @@ public class FarmManager : MonoBehaviour
                     mushroomsAndTiles.Add(cropPos, testTile);
                 }
 				Debug.Log("START TILE + " + cropPos);
-				visitedTiles.Add(cropPos, false);
+				if (!visitedTiles.ContainsKey(cropPos))
+					visitedTiles.Add(cropPos, false);
+				else
+					visitedTiles[cropPos] = false;
                 //farmField.SetTile(cropPos, testTile.tileSprite);
                 testTile.tileSprite = testTile.sprites[0];
                 if (tillableGround != null)
@@ -106,6 +109,7 @@ public class FarmManager : MonoBehaviour
 
 	private void ResetVisited()
 	{
+		if (visitedTiles == null) return;
 		for (int i = -5; i <= 5; i++)
 		{
 			for (int j = -9; j <= 1; j++)
@@ -205,11 +209,6 @@ public class FarmManager : MonoBehaviour
             {
                 mushroomPrefab = mushroomManager.mushroomVariants[tool];
             }
-            //setting mushroomPrefab based on the type of mushroom plants
-            /*if(mushID != "null" && mushroomManager.mushroomVariants.ContainsKey(mushID))
-            {
-                mushroomPrefab = mushroomManager.mushroomVariants[tool];
-            }*/
 
             //Since mushroom is determined by a non null string, if the string is nonsense
             if (mushroomPrefab != null)
@@ -304,9 +303,6 @@ public class FarmManager : MonoBehaviour
 
             if (harvestShroom.GetComponent<Mushrooms>().growthStage >= harvestShroom.GetComponent<Mushrooms>().GetMaxGrowthStage())
             {
-                /*ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
-                Debug.Log("Added Item");
-                playerInventory.AddItems(itemToAdd);*/
 
                 //Instatiates the Prefab on the ground so that the player picks it up by walking over it
                 for (int i = 0; i < 3; i++)
@@ -319,9 +315,6 @@ public class FarmManager : MonoBehaviour
             }
             else
             {
-                /*ItemStack itemToAdd = new ItemStack(harvestShroomItem, 1);
-                Debug.Log("Added Item");
-                playerInventory.AddItems(itemToAdd);*/
 
                 //Instatiates the Prefab on the ground so that the player picks it up by walking over it
                 GameObject TempItem = Instantiate(harvestShroomItem, tile, Quaternion.identity);// + new Vector3Int(0, -2, 0), Quaternion.identity);
@@ -345,8 +338,18 @@ public class FarmManager : MonoBehaviour
     {
 		Debug.Log("Beginning of SpreadMushroom");
 		ResetVisited();
-        //looping through the x bound and y bounds of farmfield
-        for (int x = leftBound + 1; x < rightBound - 1; x++)
+
+		if (farmField != null)
+		{
+			leftBound = farmField.cellBounds.x;
+			bottomBound = farmField.cellBounds.y;
+
+			rightBound = leftBound + farmField.cellBounds.size.x;
+			topBound = farmField.cellBounds.size.y;
+		}
+
+		//looping through the x bound and y bounds of farmfield
+		for (int x = leftBound + 1; x < rightBound - 1; x++)
         {
             for (int y = bottomBound + 1; y < topBound - 1; y++)
             {
@@ -386,7 +389,7 @@ public class FarmManager : MonoBehaviour
 			&& thisShroom.daysSinceFullyGrown >= 2)
 		{
 			//Valid spreadable directions
-			List < Vector3Int> adjacents = new List<Vector3Int>();
+			List <Vector3Int> adjacents = new List<Vector3Int>();
 
 			//checks adjacent tiles for if they are spreadable (i.e. tilled and plantless)
 			for (int i = 0; i < 4; i++)

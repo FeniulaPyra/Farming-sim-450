@@ -61,7 +61,7 @@ public class Mushrooms : Tile
 	public Toggle ShowPopupBubblesToggle;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 		//Setting item's values
 		/*mushroomItem = new Item();
@@ -177,7 +177,8 @@ public class Mushrooms : Tile
             maxDaysWithoutWater,
             readyToDie,
             ID,
-            baseValue
+            baseValue,
+			daysSinceFullyGrown
             );
     }
 }
@@ -188,16 +189,18 @@ public class MushroomSaveTile : SaveTile
     public float growthStage;
     public int maxGrowthStage;
     public int daysWithoutWater;
+	public int daysSinceFullyGrown;
     public int maxDaysWithoutWater;
     public bool readyToDie;
     public string ID;
     public int baseValue;
 
-    public MushroomSaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position, int spriteIndex, float growthStage, int maxGrowthStage, int daysWithoutWater, int maxDaysWithoutWater, bool readyToDie, string iD, int baseValue) : base(isTilled, isMoist, hasPlant, position, spriteIndex)
+    public MushroomSaveTile(bool isTilled, bool isMoist, bool hasPlant, Vector3Int position, int spriteIndex, float growthStage, int maxGrowthStage, int daysWithoutWater, int maxDaysWithoutWater, bool readyToDie, string iD, int baseValue, int daysSinceFullyGrown) : base(isTilled, isMoist, hasPlant, position, spriteIndex)
     {
         this.growthStage = growthStage;
         this.maxGrowthStage = maxGrowthStage;
         this.daysWithoutWater = daysWithoutWater;
+        this.daysSinceFullyGrown = daysSinceFullyGrown;
         this.maxDaysWithoutWater = maxDaysWithoutWater;
         this.readyToDie = readyToDie;
         ID = iD;

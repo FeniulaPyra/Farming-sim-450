@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd24587c8bbe3bc4e8c2d0f4098a3028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Pet Dog
+  name: Pet Dog 1
   spr: {fileID: 6744946388815338076, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   itemObj: {fileID: 8189669987783190268, guid: 921d30efb7e0c9442b017f88ba66ab60, type: 3}
   manager: {fileID: 0}

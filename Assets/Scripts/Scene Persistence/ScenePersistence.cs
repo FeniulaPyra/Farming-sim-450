@@ -49,6 +49,7 @@ public class ScenePersistence : MonoBehaviour
 	public List<string> inventoryEntityNames = new List<string>();
 
 	public Vector2 playerDropPoint;
+	public List<string> mapsVisited = new List<string>();
 
     //boolean to let other scripts know to load a save
     public bool changingScene = false;

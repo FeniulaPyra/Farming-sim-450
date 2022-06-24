@@ -142454,7 +142454,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7804082815605196672}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068960238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a420b12ecaffc164cbf3c74e16b065c6, type: 3}
   m_Name: 
@@ -144026,6 +144026,10 @@ PrefabInstance:
     - target: {fileID: 7804082817095242863, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: farmField
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804082817095242863, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7804082817095242863, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: needsTill

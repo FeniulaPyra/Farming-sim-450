@@ -337,6 +337,7 @@ public class Inventory
 	/// <param name="sinv">the saved inventoyr</param>
 	public void SetSaveableInventory(List<int> sinv)
 	{
+		playerInvManager = GameObject.Find("Player").GetComponent<PlayerInventoryManager>();
 		//Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
 		//List<Item> itemsDict = menu.GetGameItemList();
 		ROWS = sinv[0];

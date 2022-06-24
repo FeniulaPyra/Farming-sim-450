@@ -388,105 +388,15 @@ public class TimeManager : MonoBehaviour
     /// <summary>
     /// Method to change the day and call grow Mushroom
     /// </summary>
-    void AdvanceDay()
+    public void AdvanceDay()
     {
         Debug.Log("Advancing with Day");
-
-        List<Vector3Int> keysToReplace = new List<Vector3Int>();
-
-        //Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day
-        foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
-        {
-            if(shroom.Value == null)
-            {
-                Debug.Log($"null at {shroom.Key}");
-
-				continue;
-				//management.mushroomsAndTiles.Remove(shroom.Key);
-				//shroom.Value.isTilled = false;
-
-
-			}
-			else
-            {
-				if (shroom.Value.GetComponent<Mushrooms>() != null)
-				{
-					Mushrooms newShroom = (Mushrooms)shroom.Value;
-
-					Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
-
-					newShroom.GrowMushroom();
-
-					newShroom.isMoist = false;
-
-					//Set the tile again, in case the mushroom has grown
-					management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
-                    //shroom.Value.tileSprite = shroom.Value.sprites[1];
-                    management.tillableGround.SetTile(shroom.Key, management.tilePrefab.sprites[1]);
-
-                    if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
-                    {
-                        Debug.Log("The mushroom is ready to die");
-
-                        keysToReplace.Add(shroom.Key);
-                    }
-                    //management.tillableGround.SetTile(shroom.Key, shroom.Value.tileSprite);
-
-                    /*if (newShroom.daysWithoutWater > newShroom.maxDaysWithoutWater)
-                    {
-                        //convert tile to mushroom
-                        //Mushrooms deadShroom = (Mushrooms)shroom.Value;
-                        Tile deadShroom = shroom.Value;
-
-                        //Destroy mushroom and add to inventory
-                        Destroy(shroom.Value);
-                        //mushroomsAndTiles.Remove(tile);
-                        //resets the tile;
-                        deadShroom = Instantiate(management.tilePrefab, shroom.Key, Quaternion.identity, transform);
-                        management.farmField.SetTile(shroom.Key, null);
-                        management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tileSprite);
-
-                        shroom.Value.GetComponent<Tile>().isTilled = false;
-                    }*/
-                }
-				else
-				{
-					if (shroom.Value.isTilled)
-					{
-                        //management.tilePrefab.tileSprite = management.tilePrefab.sprites[1];
-                        shroom.Value.tileSprite = shroom.Value.sprites[1];
-
-                        //management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tileSprite);
-                        management.tillableGround.SetTile(shroom.Key, shroom.Value.tileSprite);
-                        shroom.Value.isMoist = false;
-					}
-				}
-            }
-        }
-
-        //After looping through the dictionary, do things to the specific mushrooms you need to destroy
-        for (int i = 0; i < keysToReplace.Count; i++)
-        {
-            Destroy(management.mushroomsAndTiles[keysToReplace[i]].gameObject);
-            management.mushroomsAndTiles[keysToReplace[i]] = Instantiate(management.tilePrefab, keysToReplace[i], Quaternion.identity, transform);
-            management.farmField.SetTile(keysToReplace[i], null);
-            management.tillableGround.SetTile(keysToReplace[i], management.tilePrefab.sprites[0]);
-        }
-
-
-
-        //Once all of the mushrooms grow, call spread once.
-        management.SpreadMushroom();
-
+        
         //change year
         if (seasonNum == 4 && dateNum == 30)
         {
             yearNum++;
 
-            /*for (int i = 0; i < NPCList.Count; i++)
-            {
-                NPCList[i].SetConversations();
-            }*/
         }
 
         //change season; reset NPC dialogue at end of season, otherwise, just move on to the next day's piece of dialogue
@@ -500,69 +410,7 @@ public class TimeManager : MonoBehaviour
             {
                 seasonNum++;
             }
-
-            /*for (int i = 0; i < NPCList.Count; i++)
-            {
-                NPCList[i].SetConversations();
-            }*/
         }
-        /*else
-        {
-            //Change NPC Dialogue
-            for (int i = 0; i < NPCList.Count; i++)
-            {
-                if (NPCList[i].oldConvoID != "")
-                {
-                    NPCList[i].convoID = NPCList[i].oldConvoID;
-                } 
-
-                switch (seasonNum)
-                {
-                    case 1:
-                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetSpringEnd()])
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetSpringStart()];
-                        }
-                        else
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
-                        }
-                        break;
-                    case 2:
-                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetSummerEnd()])
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetSummerStart()];
-                        }
-                        else
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
-                        }
-                        break;
-                    case 3:
-                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetFallEnd()])
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetFallStart()];
-                        }
-                        else
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
-                        }
-                        break;
-                    case 4:
-                        if (NPCList[i].convoID == NPCList[i].conversationIDs[NPCList[i].GetWinterEnd()])
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].GetWinterStart()];
-                        }
-                        else
-                        {
-                            NPCList[i].convoID = NPCList[i].conversationIDs[NPCList[i].conversationIDs.IndexOf(NPCList[i].convoID) + 1];
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }*/
 
         //change the date
         if (dateNum == 30)
@@ -586,7 +434,6 @@ public class TimeManager : MonoBehaviour
 
         netWorth.CalculateNetWorth(5);
 
-        shippingBin.PayPlayer();
 
         //Final thing in a day that determines net worth. If it goes over a threshold, activate a quest
         foreach (NPCManager npc in NPCList)
@@ -619,78 +466,127 @@ public class TimeManager : MonoBehaviour
             }
 
         }
-        /*foreach (DialogueManager npc in NPCList)
-        {
-            if (netWorth.FarmNetWorth >= npc.myQuests.activeQuest.requiredNetWorth && npc.myQuests.activeQuest.questActive == false)
-            {
-                npc.oldConvoID = npc.convoID;
-                npc.convoID = npc.myQuests.activeQuest.beginID;
-                Debug.Log("Quest id is now active");
-            }
-
-            /*if (npc.myQuests.activeQuest.questActive == true && npc.myQuests.activeQuest.readyToReport == true)
-            {
-                npc.oldConvoID = npc.convoID;
-                npc.convoID = npc.myQuests.activeQuest.endID;
-            }
-
-            if (npc.myQuests.activeQuest.questType == Quests.QuestType.TimedCollection || npc.myQuests.activeQuest.questType == Quests.QuestType.TimedFundraising)
-            {
-                if (npc.myQuests.activeQuest.daysToQuestFail > 0)
-                {
-                    npc.myQuests.activeQuest.daysToQuestFail--;
-                }
-            }
-        }*/
-
-        //Tutorial Softlock Prevention
-        //Check all mushroom names. If none of them are there, instantiate one.
-        if (farmingTutorial != null)
-        {
-            if (farmingTutorial.tutorialBools[16] == false)//(farmingTutorial.spreadAfter == false)
-            {
-                for (int i = 0; i < mushroomManager.mushroomList.Count; i++)
-                {
-                    if (inventory.CountItem(mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID) <= 0)
-                    {
-                        Debug.Log($"MushroomList[{i}] is a {mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID}");
-
-                        if (i == mushroomManager.mushroomList.Count - 1)
-                        {
-                            Debug.Log($"No softlock; i is {i}");
-                            Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
-                        }
-
-                        continue;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-            else if (farmingTutorial.tutorialBools[16] == true && farmingTutorial.tutorialBools[18] == false)//(farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
-            {
-                if (inventory.CountItem("Red Shroom") <= 0)
-                {
-                    Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-                }
-                if (inventory.CountItem("Glowy Shroom") <= 0)
-                {
-                    Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-                }
-            }
-        }
 
         DisplayDate();
     }
 
-    /// <summary>
-    /// Method for sleeping.
-    /// Sole parameter is how long you want to sleep for
-    /// </summary>
-    /// <param name="duration"></param>
-    public void Sleep(float duration)
+	public void UpdateField()
+	{
+		List<Vector3Int> keysToReplace = new List<Vector3Int>();
+
+		//Uses the Farm Managers dictionary of mushrooms to grow each mushroom and then dry them out for the next day
+		foreach (KeyValuePair<Vector3Int, Tile> shroom in management.mushroomsAndTiles)
+		{
+			if (shroom.Value == null)
+			{
+				Debug.Log($"null at {shroom.Key}");
+
+				continue;
+				//management.mushroomsAndTiles.Remove(shroom.Key);
+				//shroom.Value.isTilled = false;
+
+
+			}
+			else
+			{
+				if (shroom.Value.GetComponent<Mushrooms>() != null)
+				{
+					Mushrooms newShroom = (Mushrooms)shroom.Value;
+
+					Debug.Log($"{newShroom} is worth {newShroom.baseValue}");
+
+					newShroom.GrowMushroom();
+
+					newShroom.isMoist = false;
+
+					//Set the tile again, in case the mushroom has grown
+					management.farmField.SetTile(shroom.Key, newShroom.tileSprite);
+					//shroom.Value.tileSprite = shroom.Value.sprites[1];
+					management.tillableGround.SetTile(shroom.Key, management.tilePrefab.sprites[1]);
+
+					if (shroom.Value.GetComponent<Mushrooms>().readyToDie == true)
+					{
+						Debug.Log("The mushroom is ready to die");
+
+						keysToReplace.Add(shroom.Key);
+					}
+
+				}
+				else
+				{
+					if (shroom.Value.isTilled)
+					{
+						//management.tilePrefab.tileSprite = management.tilePrefab.sprites[1];
+						shroom.Value.tileSprite = shroom.Value.sprites[1];
+
+						//management.tillableGround.SetTile(shroom.Key, management.tilePrefab.tileSprite);
+						management.tillableGround.SetTile(shroom.Key, shroom.Value.tileSprite);
+						shroom.Value.isMoist = false;
+					}
+				}
+			}
+		}
+
+		//After looping through the dictionary, do things to the specific mushrooms you need to destroy
+		for (int i = 0; i < keysToReplace.Count; i++)
+		{
+			Destroy(management.mushroomsAndTiles[keysToReplace[i]].gameObject);
+			management.mushroomsAndTiles[keysToReplace[i]] = Instantiate(management.tilePrefab, keysToReplace[i], Quaternion.identity, transform);
+			management.farmField.SetTile(keysToReplace[i], null);
+			management.tillableGround.SetTile(keysToReplace[i], management.tilePrefab.sprites[0]);
+		}
+
+		//Once all of the mushrooms grow, call spread once.
+		management.SpreadMushroom();
+
+		//Tutorial Softlock Prevention
+		//Check all mushroom names. If none of them are there, instantiate one.
+		if (farmingTutorial != null)
+		{
+			if (farmingTutorial.tutorialBools[16] == false)//(farmingTutorial.spreadAfter == false)
+			{
+				for (int i = 0; i < mushroomManager.mushroomList.Count; i++)
+				{
+					if (inventory.CountItem(mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID) <= 0)
+					{
+						Debug.Log($"MushroomList[{i}] is a {mushroomManager.mushroomList[i].GetComponent<Mushrooms>().ID}");
+
+						if (i == mushroomManager.mushroomList.Count - 1)
+						{
+							Debug.Log($"No softlock; i is {i}");
+							Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+						}
+
+						continue;
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			else if (farmingTutorial.tutorialBools[16] == true && farmingTutorial.tutorialBools[18] == false)//(farmingTutorial.spreadAfter == true && farmingTutorial.hybridAfter == false)
+			{
+				if (inventory.CountItem("Red Shroom") <= 0)
+				{
+					Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+				}
+				if (inventory.CountItem("Glowy Shroom") <= 0)
+				{
+					Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+				}
+			}
+		}
+
+		shippingBin.PayPlayer();
+	}
+
+	/// <summary>
+	/// Method for sleeping.
+	/// Sole parameter is how long you want to sleep for
+	/// </summary>
+	/// <param name="duration"></param>
+	public void Sleep(float duration)
     {
         //max stamina multiplied by duration/8. This is so that a full 8 hours of sleep would get you all stamina back
         //Might need to be tweaked, since a measly four hours still restores half stamina
@@ -727,18 +623,11 @@ public class TimeManager : MonoBehaviour
                 {
                     staminaTracker.playerStamina = 100;
                 }
-                /*if (staminaTracker.playerStamina > staminaTracker.GetMaxPlayerStamina())
-                {
-                    staminaTracker.playerStamina = staminaTracker.GetMaxPlayerStamina();
-                }*/
-
-                //staminaTracker.staminaDisplay.text = $"Stamina: {staminaTracker.playerStamina}";
 
             
-
                 AdvanceDay();
 	    }
-
+		GameObject.Find("Player").GetComponent<PlayerMovement>().visited = new List<string>();
         
     }
 
@@ -809,7 +698,9 @@ public class TimeManager : MonoBehaviour
                         holidayDisplay.text = "New Year's Day";
                         break;
                     default:
-                        holidayDisplay.text = "";
+						if(holidayDisplay == null)
+							holidayDisplay = GameObject.Find("HolidayDisplay").GetComponent<TMP_Text>();
+						holidayDisplay.text = "";
                         break;
                 }
                 break;
