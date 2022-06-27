@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4386557129239245356}
   - component: {fileID: 3114001181866298012}
-  - component: {fileID: 4532766460182726838}
+  - component: {fileID: 2073759779293327714}
+  - component: {fileID: -6290528856993958317}
   m_Layer: 0
   m_Name: DummyEnemy2
   m_TagString: Untagged
@@ -83,7 +84,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4532766460182726838
+--- !u!50 &2073759779293327714
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302464457625486871}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-6290528856993958317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,6 +114,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5302464457625486871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150a4a7837bbc3645b598378d0eac891, type: 3}
+  m_Script: {fileID: 11500000, guid: c5e044ffce8219044aa7f12ab3cafd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 1
+  menu: {fileID: 0}
+  size: {fileID: 0}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSeekDistance: 7
+  minSeekDistance: 3
+  sr: {fileID: 3114001181866298012}
+  player: {fileID: 0}
+  distance: 0
+  attacked: 0
+  fleeTimer: 0
+  baseFleeTimer: 2
+  pellet: {fileID: 1318869111477587452, guid: 64b87d1044992014d933615e8543f91d, type: 3}
+  attackTimer: 0
+  baseAttackTimer: 2

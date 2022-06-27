@@ -33,6 +33,8 @@ public class BasicEntity : MonoBehaviour
 
     public Vector2 Facing => facing;
 
+    public float distance;
+
     public void SaveEntity(out SaveEntity entity)
     {
         entity = new SaveEntity(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, gameObject);
@@ -67,7 +69,7 @@ public class BasicEntity : MonoBehaviour
     }
     protected virtual void FixedUpdate()
     {
-        float distance = Vector2.Distance(transform.position, player.position);
+        /*float*/ distance = Vector2.Distance(transform.position, player.position);
         if (distance < maxSeekDistance && distance > minSeekDistance)
             Seek(player);
         else
@@ -77,7 +79,7 @@ public class BasicEntity : MonoBehaviour
         }
     }
 
-    private void Seek(Transform target)
+    protected virtual void Seek(Transform target)
     {
         var dist = Vector2.Distance(target.position, transform.position);
 
