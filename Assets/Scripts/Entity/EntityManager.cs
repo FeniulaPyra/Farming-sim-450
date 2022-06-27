@@ -22,7 +22,7 @@ public class EntityManager : MonoBehaviour
 						Destroy(e.gameObject);
 					}
 				}
-
+    
 				//instantiates all the entities from the save.
 				if (GlobalGameSaving.Instance.pets.Count > 0)
                 {
@@ -34,7 +34,7 @@ public class EntityManager : MonoBehaviour
                         Instantiate(Resources.Load($"Prefabs/Pets/{GlobalGameSaving.Instance.petNames[i]}"), pos, Quaternion.identity);
                     }
                 }
-
+    
                 if (GlobalGameSaving.Instance.livestockPets.Count > 0)
                 {
                     for (int i = 0; i < GlobalGameSaving.Instance.livestockPets.Count; i++)
@@ -47,7 +47,7 @@ public class EntityManager : MonoBehaviour
                         l.timer = GlobalGameSaving.Instance.livestockPets[i].timer;
                     }
                 }
-
+    
                 if (GlobalGameSaving.Instance.buffPets.Count > 0)
                 {
                     for (int i = 0; i < GlobalGameSaving.Instance.buffPets.Count; i++)
@@ -63,7 +63,7 @@ public class EntityManager : MonoBehaviour
                     }
                 }
 				Debug.Log($"LEP2738 LOADING THING: {GlobalGameSaving.Instance.entities.Count}");
-
+    
 				if (GlobalGameSaving.Instance.entities.Count > 0)
                 {
                     for (int i = 0; i < GlobalGameSaving.Instance.entities.Count; i++)
@@ -86,13 +86,13 @@ public class EntityManager : MonoBehaviour
                                 default:
                                     break;
                             }
-
+    
                             GlobalGameSaving.Instance.entities.RemoveAt(GlobalGameSaving.Instance.entities.IndexOf(GlobalGameSaving.Instance.entities[i]));
                             GlobalGameSaving.Instance.entityNames.RemoveAt(GlobalGameSaving.Instance.entityNames.IndexOf(GlobalGameSaving.Instance.entityNames[i]));
-
+    
                         }
                     }
-
+    
                     //Clears after spawning them, so you can't go back and forth for infinite entities
                     //ScenePersistence.Instance.entities.Clear();
                     //ScenePersistence.Instance.entityNames.Clear();
@@ -137,7 +137,7 @@ public class EntityManager : MonoBehaviour
                         Instantiate(Resources.Load($"Prefabs/Pets/{ScenePersistence.Instance.petNames[i]}"), pos, Quaternion.identity);
                     }
                 }
-
+    
                 if (ScenePersistence.Instance.livestockPets.Count > 0)
                 {
                     for (int i = 0; i < ScenePersistence.Instance.livestockPets.Count; i++)
@@ -150,7 +150,7 @@ public class EntityManager : MonoBehaviour
                         l.timer = ScenePersistence.Instance.livestockPets[i].timer;
                     }
                 }
-
+    
                 if (ScenePersistence.Instance.buffPets.Count > 0)
                 {
                     for (int i = 0; i < ScenePersistence.Instance.buffPets.Count; i++)
@@ -165,7 +165,7 @@ public class EntityManager : MonoBehaviour
                         b.buffApplied = ScenePersistence.Instance.buffPets[i].buffApplied;
                     }
                 }
-
+    
 				if(ScenePersistence.Instance.inventoryEntities.Count > 0)
 				{
 					for (int i = 0; i < ScenePersistence.Instance.inventoryEntities.Count; i++)
@@ -184,7 +184,7 @@ public class EntityManager : MonoBehaviour
 						}
 					}
 				}
-
+    
                 if (ScenePersistence.Instance.entities.Count > 0)
                 {
                     for (int i = 0; i < ScenePersistence.Instance.entities.Count; i++)
@@ -205,13 +205,13 @@ public class EntityManager : MonoBehaviour
                                 default:
                                     break;
                             }
-
+    
                             ScenePersistence.Instance.entities.RemoveAt(ScenePersistence.Instance.entities.IndexOf(ScenePersistence.Instance.entities[i]));
                             ScenePersistence.Instance.entityNames.RemoveAt(ScenePersistence.Instance.entityNames.IndexOf(ScenePersistence.Instance.entityNames[i]));
-
+    
                         }
                     }
-
+    
                     //Clears after spawning them, so you can't go back and forth for infinite entities
                     ScenePersistence.Instance.pets.Clear();
                     ScenePersistence.Instance.petNames.Clear();

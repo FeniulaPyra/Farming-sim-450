@@ -17,6 +17,13 @@ public class BuffPet : BasicPet
     public int activateChance;
 
     public bool increaseSpeed;
+
+    public bool regenHealth;
+    public int healIterations = 0; // How many times you heal before the buff wears off
+    public int healFactor; //How much you are healed.
+    float healTimer = 5.0f;
+    public int testHealth;
+
     [SerializeField]
     public bool buffApplied;
     [SerializeField]
@@ -69,6 +76,7 @@ public class BuffPet : BasicPet
 
         if (buffApplied == false)
         {
+
             timer -= Time.deltaTime;
 
             if (timer <= 0.0f)
@@ -83,6 +91,22 @@ public class BuffPet : BasicPet
         }
         else
         {
+            if (regenHealth == true && healIterations < 5)
+            {
+                healTimer -= Time.deltaTime;
+                if (healTimer <= 0.0f)
+                {
+                    testHealth += healFactor;
+                    healIterations++;
+                    healTimer = 5.0f;
+                }
+            }
+            else
+            {
+                healIterations = 0;
+                CancelBuff();
+            }
+
             buffTimer -= Time.deltaTime;
 
             if (buffTimer <= 0.0f)
@@ -99,6 +123,12 @@ public class BuffPet : BasicPet
             movement.MovementSpeed *= 2;
             movementSpeed *= 2;
             buffNotification.text += "\nSpeed Increased";
+        }
+
+        if (regenHealth == true)
+        {
+            healTimer = 5.0f;
+            buffNotification.text += "\nRegenerating Health";
         }
 
         buffApplied = true;
