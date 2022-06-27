@@ -177,6 +177,14 @@ public class TimeManager : MonoBehaviour
                             int index = ScenePersistence.Instance.NPCNames.IndexOf(NPCList[i].MyName);
 
                             NPCList[i].LoadFlowcharts(ScenePersistence.Instance.NPCStartflowcharts[index], ScenePersistence.Instance.NPCQuestflowcharts[index]);
+                            if (NPCList[i].MyFlowchart.GetIntegerVariable("dateNum") != dateNum)
+                            {
+                                NPCList[i].MyFlowchart.SetIntegerVariable("dateNum", dateNum);
+                            }
+                            if (NPCList[i].MyFlowchart.GetIntegerVariable("seasonNum") != seasonNum)
+                            {
+                                NPCList[i].MyFlowchart.SetIntegerVariable("seasonNum", seasonNum);
+                            }
                             NPCList[i].gameObject.GetComponent<Quests>().LoadQuest(ScenePersistence.Instance.NPCQuests[index]);
 
                         }
