@@ -11,15 +11,66 @@ public class CombatantStats
 	public int Health { get; }
 
 	private int strength;
-	public int Strength { get; }
+	public int Strength { get; set; }
+	public int BaseStrength
+	{
+		get
+		{
+			return (int)Mathf.Round(Mathf.Pow(level, 6 / 5)) + 10;
+		}
+	}
 
 	private int defense;
-	public int Defense { get; }
+	public int Defense { get; set; }
+	public int BaseDefense
+	{
+		get
+		{
+			return (int)Mathf.Floor(level / 2) + 5;
+		}
+	}
 
 	private int exp;
 	public int Experience
 	{
 		get { return exp; }
+	}
+
+	private int level;
+	public int Level {
+		get
+		{
+			return level;
+		}
+		set
+		{
+			level = value;
+			maxHealth = 5 * (int)Mathf.Floor(level) + 25;
+			defense = BaseDefense;
+			strength = BaseStrength;
+		}
+	}
+
+	public CombatantStats(int level)
+	{
+		Level = level;
+		health = maxHealth;
+	}
+	public CombatantStats(int level, int exp, int maxhealth, int health)
+	{
+		Level = level;
+		this.exp = exp;
+		this.maxHealth = maxhealth;
+		this.health = health;
+	}
+
+	public void ResetStrength()
+	{
+		strength = BaseStrength;
+	}
+	public void ResetDefense()
+	{
+		defense = BaseDefense;
 	}
 
 	public void IncreaseExp(int amt, bool ignoreLevelCheck)
@@ -33,25 +84,9 @@ public class CombatantStats
 		exp = amt;
 	}
 
-	private int level;
-	public int Level {
-		get
-		{
-			return level;
-		}
-		set
-		{
-			level = value;
-			maxHealth = 5 * (int)Mathf.Floor(level) + 25;
-			defense = (int)Mathf.Floor(level / 2) + 5;
-			strength = (int)Mathf.Round(Mathf.Pow(level, 6 / 5)) + 10;
-		}
-	}
-
-
 	public void TakeDamage(int amt, bool ignoreDefense)
 	{
-		strength -= (amt - (ignoreDefense ? 0 : defense));
+		health -= (amt - (ignoreDefense ? 0 : defense));
 	}
 
 	public void Heal(int amt, bool ignoreMax)
