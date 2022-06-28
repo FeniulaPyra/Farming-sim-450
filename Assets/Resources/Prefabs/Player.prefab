@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7752269456424297127}
   - component: {fileID: 1281256936}
   - component: {fileID: 5275481385977868881}
+  - component: {fileID: 5881527148712566067}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -75,6 +76,7 @@ MonoBehaviour:
   right: {fileID: -5690383699158048128, guid: 1854c545065914d488d44645a94d951a, type: 3}
   up: {fileID: 4950577986329706749, guid: 1854c545065914d488d44645a94d951a, type: 3}
   down: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
+  visited: []
 --- !u!114 &1281256936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +127,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7397fe20a798b84fa1b6bda85fe4f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inv:
+    STACK_SIZE: 0
+    ROWS: 0
+    COLUMNS: 0
+    player: {fileID: 0}
+    playerInvManager: {fileID: 0}
+    isShown: 0
+    selectedRow: 0
+    selectedColumn: 0
   ItemManagerObj: {fileID: 0}
   im: {fileID: 0}
   HeldSlot: 0
@@ -133,6 +144,18 @@ MonoBehaviour:
   heldAmount: 0
   MouseScrollDeadzone: 0
   currentMouseScroll: 0
+--- !u!114 &5881527148712566067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752269456424297128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81824e0c68e90904bb95f44cb57ac5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7752269456871954607
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +225,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1190745841
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -6125094485344998401, guid: 1854c545065914d488d44645a94d951a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

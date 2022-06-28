@@ -53681,11 +53681,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: increaseSpeed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: healIterations
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
+      propertyPath: increaseDefense
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
+      propertyPath: increaseStrength
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189669987783190265, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: m_RootOrder
@@ -62573,11 +62581,11 @@ PrefabInstance:
       objectReference: {fileID: 1377426781}
     - target: {fileID: 1947364160880895040, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1947364160880895040, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: -0.125
       objectReference: {fileID: 0}
     - target: {fileID: 5275481385977868881, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: ItemManagerObj

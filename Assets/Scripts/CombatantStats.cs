@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatantStats
+public class CombatantStats : MonoBehaviour
 {
+    [SerializeField]
 	private int maxHealth;
 	public int MaxHealth { get; }
 
-	private int health;
+    [SerializeField]
+    private int health;
 	public int Health { get; }
 
-	private int strength;
-	public int Strength { get; set; }
+    [SerializeField]
+    private int strength;
+    public int Strength { get { return strength; } set { strength = value; } }
 	public int BaseStrength
 	{
 		get
@@ -20,8 +23,9 @@ public class CombatantStats
 		}
 	}
 
-	private int defense;
-	public int Defense { get; set; }
+    [SerializeField]
+    private int defense;
+	public int Defense { get { return defense; } set { defense = value; } }
 	public int BaseDefense
 	{
 		get
@@ -30,13 +34,15 @@ public class CombatantStats
 		}
 	}
 
-	private int exp;
+    [SerializeField]
+    private int exp;
 	public int Experience
 	{
 		get { return exp; }
 	}
 
-	private int level;
+    [SerializeField]
+    private int level;
 	public int Level {
 		get
 		{
@@ -44,8 +50,19 @@ public class CombatantStats
 		}
 		set
 		{
-			int strBuff = strength - BaseStrength;
-			int defBuff = defense - BaseDefense;
+            int strBuff = 0;
+            int defBuff = 0;
+
+            if (strength > 0)
+            {
+                strBuff = strength - BaseStrength;
+            }
+
+            if (defense > 0)
+            {
+                defBuff = defense - BaseDefense;
+            }
+
 			level = value;
 			maxHealth = 5 * (int)Mathf.Floor(level) + 25;
 			defense = BaseDefense + defBuff;
@@ -66,7 +83,13 @@ public class CombatantStats
 		this.health = health;
 	}
 
-	public void ResetStrength()
+    private void Start()
+    {
+        //Will need to have conditionals for things like "Are you loading a save?"
+        Level = 1;
+    }
+
+    public void ResetStrength()
 	{
 		strength = BaseStrength;
 	}
@@ -83,7 +106,7 @@ public class CombatantStats
 			IncreaseExp(amt - ExpToLevel(Level + 1), false); //recursive
 			Level++;
 		}
-		exp = amt;
+		exp += amt;
 	}
 
 	public void TakeDamage(int amt, bool ignoreDefense)

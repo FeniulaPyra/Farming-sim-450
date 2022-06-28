@@ -7,7 +7,11 @@ using TMPro;
 public class EnemyDebuffs : MonoBehaviour
 {
     //Reference to player movement to alter their speed
+    [SerializeField]
     PlayerMovement movement;
+    //The player's stats
+    [SerializeField]
+    CombatantStats stats;
 
     //chance of debuff activating
     public int activateChance;
@@ -43,6 +47,7 @@ public class EnemyDebuffs : MonoBehaviour
         }
 
         movement = FindObjectOfType<PlayerMovement>();
+        stats = movement.gameObject.GetComponent<CombatantStats>();
         debuffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
         //debuffNotification.text = "";
     }

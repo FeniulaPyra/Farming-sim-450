@@ -9,6 +9,9 @@ public class BuffPet : BasicPet
     //Reference to player movement to alter their speed
     [SerializeField]
     PlayerMovement movement;
+    //The player's stats
+    [SerializeField]
+    CombatantStats stats;
 
     //Timer on which the item spawns
     [SerializeField]
@@ -18,6 +21,10 @@ public class BuffPet : BasicPet
     public int activateChance;
 
     public bool increaseSpeed;
+
+    public bool increaseDefense;
+
+    public bool increaseStrength;
 
     public bool regenHealth;
     public int healIterations;
@@ -48,6 +55,7 @@ public class BuffPet : BasicPet
         }
 
         movement = FindObjectOfType<PlayerMovement>();
+        stats = movement.gameObject.GetComponent<CombatantStats>();
         buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
         buffNotification.text = "";
     }
@@ -126,6 +134,26 @@ public class BuffPet : BasicPet
             buffNotification.text += "\nSpeed Increased";
         }
 
+        if (increaseStrength == true)
+        {
+            stats.Strength += 10;
+            buffNotification.text += "\nStrength Increased";
+            Debug.Log($"Strength Mod: {stats.Strength}");
+        }
+
+        if (increaseDefense == true)
+        {
+            stats.Defense += 10;
+            buffNotification.text += "\nDefense Increased";
+            Debug.Log($"Defense Mod: {stats.Defense}");
+        }
+
+        if (regenHealth == true)
+        {
+            healTimer = 5.0f;
+            buffNotification.text += "\nRegenerating Health";
+        }
+
         buffApplied = true;
         timer = baseTimer;
     }
@@ -137,6 +165,18 @@ public class BuffPet : BasicPet
             buffNotification.text = buffNotification.text.Replace("\nSpeed Increased", "");
             movement.MovementSpeed /= 2;
             movementSpeed /= 2;
+        }
+
+        if (increaseDefense == true)
+        {
+            buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
+            stats.ResetDefense();
+        }
+
+        if (increaseStrength == true)
+        {
+            buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
+            stats.ResetStrength();
         }
 
         if (regenHealth == true)
