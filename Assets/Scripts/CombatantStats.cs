@@ -44,10 +44,12 @@ public class CombatantStats
 		}
 		set
 		{
+			int strBuff = strength - BaseStrength;
+			int defBuff = defense - BaseDefense;
 			level = value;
 			maxHealth = 5 * (int)Mathf.Floor(level) + 25;
-			defense = BaseDefense;
-			strength = BaseStrength;
+			defense = BaseDefense + defBuff;
+			strength = BaseStrength + strBuff;
 		}
 	}
 
