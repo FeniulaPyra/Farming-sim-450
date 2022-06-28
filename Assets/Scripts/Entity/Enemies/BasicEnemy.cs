@@ -19,10 +19,15 @@ public class BasicEnemy : BasicEntity
     [SerializeField]
     protected float baseFleeTimer = 2.00f;
 
+    [SerializeField]
+    protected EnemyDebuffs debuff;
+
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
+
+        //debuff = gameObject.GetComponent<EnemyDebuffs>();
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RangedEnemy : BasicEnemy
 {
-    public Projectile pellet;
+    public GameObject pellet;
 
     [SerializeField]
     float attackTimer;
@@ -16,8 +16,12 @@ public class RangedEnemy : BasicEnemy
     {
         //setting damage
         //pellet.damage = stat.strength
+        //pellet.debuff = debuff;
+        pellet.GetComponent<Projectile>().debuff = debuff;
+        //Debug.Log($"Transfer?: {pellet.debuff.poison}");
 
-        Instantiate(pellet.gameObject, transform.position, transform.rotation);
+        //Instantiate(pellet.gameObject, transform.position, transform.rotation);
+        Instantiate(pellet, transform.position, transform.rotation);
 
         attackTimer = baseAttackTimer;
     }

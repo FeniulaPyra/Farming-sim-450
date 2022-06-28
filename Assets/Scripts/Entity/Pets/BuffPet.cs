@@ -7,6 +7,7 @@ using TMPro;
 public class BuffPet : BasicPet
 {
     //Reference to player movement to alter their speed
+    [SerializeField]
     PlayerMovement movement;
 
     //Timer on which the item spawns
@@ -83,6 +84,29 @@ public class BuffPet : BasicPet
         }
         else
         {
+<<<<<<< Updated upstream
+=======
+            if (regenHealth == true)
+            {
+                if (healIterations < 5)
+                {
+                    healTimer -= Time.deltaTime;
+                    if (healTimer <= 0.0f)
+                    {
+                        testHealth += healFactor;
+                        healIterations++;
+                        healTimer = 5.0f;
+                    }
+                }
+                else
+                {
+                    healIterations = 0;
+                    CancelBuff();
+                }
+            }
+            
+
+>>>>>>> Stashed changes
             buffTimer -= Time.deltaTime;
 
             if (buffTimer <= 0.0f)
@@ -107,10 +131,19 @@ public class BuffPet : BasicPet
 
     void CancelBuff()
     {
-        movement.MovementSpeed /= 2;
-        movementSpeed /= 2;
+        if (increaseSpeed == true)
+        {
+            buffNotification.text = buffNotification.text.Replace("\nSpeed Increased", "");
+            movement.MovementSpeed /= 2;
+            movementSpeed /= 2;
+        }
 
-        buffNotification.text = "";
+        if (regenHealth == true)
+        {
+            buffNotification.text = buffNotification.text.Replace("\nRegenerating Health","");
+        }
+
+        //buffNotification.text = "";
 
         buffApplied = false;
         buffTimer = baseBuffTimer;

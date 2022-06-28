@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2535422916916135977}
   - component: {fileID: 1318869111477587452}
   - component: {fileID: -3418779998114480774}
+  - component: {fileID: 4758093854535478086}
   m_Layer: 0
   m_Name: Pellet
   m_TagString: Untagged
@@ -122,6 +123,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   lifespan: 5
   force: {x: 0, y: 0}
+  debuff: {fileID: 0}
 --- !u!61 &-3418779998114480774
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +150,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4758093854535478086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463793939459626526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb927b6e5451f24ca2323c20049ea4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateChance: 0
+  decreaseSpeed: 0
+  poison: 0
+  poisonIterations: 0
+  poisonFactor: 0
+  testHealth: 100
+  debuffApplied: 0
+  debuffTimer: 0
+  baseDebuffTimer: 0
+  debuffNotification: {fileID: 0}
