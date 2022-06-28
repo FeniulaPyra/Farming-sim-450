@@ -7,6 +7,7 @@ using TMPro;
 public class BuffPet : BasicPet
 {
     //Reference to player movement to alter their speed
+    [SerializeField]
     PlayerMovement movement;
 
     //Timer on which the item spawns
@@ -17,13 +18,6 @@ public class BuffPet : BasicPet
     public int activateChance;
 
     public bool increaseSpeed;
-
-    public bool regenHealth;
-    public int healIterations = 0; // How many times you heal before the buff wears off
-    public int healFactor; //How much you are healed.
-    float healTimer = 5.0f;
-    public int testHealth;
-
     [SerializeField]
     public bool buffApplied;
     [SerializeField]
@@ -76,7 +70,6 @@ public class BuffPet : BasicPet
 
         if (buffApplied == false)
         {
-
             timer -= Time.deltaTime;
 
             if (timer <= 0.0f)
@@ -91,22 +84,29 @@ public class BuffPet : BasicPet
         }
         else
         {
-            if (regenHealth == true && healIterations < 5)
+<<<<<<< Updated upstream
+=======
+            if (regenHealth == true)
             {
-                healTimer -= Time.deltaTime;
-                if (healTimer <= 0.0f)
+                if (healIterations < 5)
                 {
-                    testHealth += healFactor;
-                    healIterations++;
-                    healTimer = 5.0f;
+                    healTimer -= Time.deltaTime;
+                    if (healTimer <= 0.0f)
+                    {
+                        testHealth += healFactor;
+                        healIterations++;
+                        healTimer = 5.0f;
+                    }
+                }
+                else
+                {
+                    healIterations = 0;
+                    CancelBuff();
                 }
             }
-            else
-            {
-                healIterations = 0;
-                CancelBuff();
-            }
+            
 
+>>>>>>> Stashed changes
             buffTimer -= Time.deltaTime;
 
             if (buffTimer <= 0.0f)
@@ -125,22 +125,25 @@ public class BuffPet : BasicPet
             buffNotification.text += "\nSpeed Increased";
         }
 
-        if (regenHealth == true)
-        {
-            healTimer = 5.0f;
-            buffNotification.text += "\nRegenerating Health";
-        }
-
         buffApplied = true;
         timer = baseTimer;
     }
 
     void CancelBuff()
     {
-        movement.MovementSpeed /= 2;
-        movementSpeed /= 2;
+        if (increaseSpeed == true)
+        {
+            buffNotification.text = buffNotification.text.Replace("\nSpeed Increased", "");
+            movement.MovementSpeed /= 2;
+            movementSpeed /= 2;
+        }
 
-        buffNotification.text = "";
+        if (regenHealth == true)
+        {
+            buffNotification.text = buffNotification.text.Replace("\nRegenerating Health","");
+        }
+
+        //buffNotification.text = "";
 
         buffApplied = false;
         buffTimer = baseBuffTimer;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6290528856993958317}
   - component: {fileID: 7085785950156121008}
   m_Layer: 0
-  m_Name: DummyEnemy2
+  m_Name: DummyEnemy2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateChance: 100
-  decreaseSpeed: 1
-  poison: 0
+  decreaseSpeed: 0
+  poison: 1
   poisonIterations: 0
   poisonFactor: 5
   testHealth: 100
