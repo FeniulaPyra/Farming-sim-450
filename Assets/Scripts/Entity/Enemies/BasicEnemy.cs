@@ -20,14 +20,20 @@ public class BasicEnemy : BasicEntity
     protected float baseFleeTimer = 2.00f;
 
     [SerializeField]
-    protected EnemyDebuffs debuff;
+    protected EnemyDebuffs debuff; //It's on this prefab; just drag it in
+
+    [SerializeField]
+    protected CombatantStats stats; //It's on this prefab; just drag it in
+    [SerializeField]
+    protected CombatantStats target; //The player
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        base.Start();
-
         //debuff = gameObject.GetComponent<EnemyDebuffs>();
+        target = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<CombatantStats>();
+
+        base.Start();
     }
 
     // Update is called once per frame

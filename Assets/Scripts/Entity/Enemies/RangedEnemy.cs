@@ -18,6 +18,8 @@ public class RangedEnemy : BasicEnemy
         //pellet.damage = stat.strength
         //pellet.debuff = debuff;
         pellet.GetComponent<Projectile>().debuff = debuff;
+        pellet.GetComponent<Projectile>().damage = stats.Strength;
+        pellet.GetComponent<Projectile>().player = target;
         //Debug.Log($"Transfer?: {pellet.debuff.poison}");
 
         //Instantiate(pellet.gameObject, transform.position, transform.rotation);

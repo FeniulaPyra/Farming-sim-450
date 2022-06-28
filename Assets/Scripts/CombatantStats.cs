@@ -10,7 +10,7 @@ public class CombatantStats : MonoBehaviour
 
     [SerializeField]
     private int health;
-	public int Health { get; }
+	public int Health { get { return health; } set { health = value; if (health < 0) { health = 0; } } }
 
     [SerializeField]
     private int strength;
@@ -25,7 +25,7 @@ public class CombatantStats : MonoBehaviour
 
     [SerializeField]
     private int defense;
-	public int Defense { get { return defense; } set { defense = value; } }
+	public int Defense { get { return defense; } set { defense = value; if (defense < 0) { defense = 0; } } }
 	public int BaseDefense
 	{
 		get
@@ -65,6 +65,7 @@ public class CombatantStats : MonoBehaviour
 
 			level = value;
 			maxHealth = 5 * (int)Mathf.Floor(level) + 25;
+            Health = maxHealth;
 			defense = BaseDefense + defBuff;
 			strength = BaseStrength + strBuff;
 		}
@@ -86,7 +87,7 @@ public class CombatantStats : MonoBehaviour
     private void Start()
     {
         //Will need to have conditionals for things like "Are you loading a save?"
-        Level = 1;
+        Level = level;
     }
 
     public void ResetStrength()
@@ -111,15 +112,19 @@ public class CombatantStats : MonoBehaviour
 
 	public void TakeDamage(int amt, bool ignoreDefense)
 	{
-		health -= (amt - (ignoreDefense ? 0 : defense));
-	}
+        //health -= (amt - (ignoreDefense ? 0 : defense));
+        Health -= (amt - (ignoreDefense ? 0 : defense));
+    }
 
 	public void Heal(int amt, bool ignoreMax)
 	{
-		health += amt;
-		if (health > maxHealth && !ignoreMax)
-			health = maxHealth;
-	}
+        //health += amt;
+        Health += amt;
+        /*if (health > maxHealth && !ignoreMax)
+			health = maxHealth;*/
+        if (Health > maxHealth && !ignoreMax)
+            Health = maxHealth;
+    }
 
 	//gets the amount of exp to get from the given level to the next level.
 	public int ExpToLevel(int level)

@@ -18,6 +18,10 @@ public class EnemyDebuffs : MonoBehaviour
 
     public bool decreaseSpeed;
 
+    public bool decreaseDefense;
+
+    public bool decreaseStrength;
+
     public bool poison;
     public int poisonIterations = 0; // How many times you take poison damage before the buff wears off
     public int poisonFactor; //How much you are hurt by poison.
@@ -81,7 +85,7 @@ public class EnemyDebuffs : MonoBehaviour
                     poisonTimer -= Time.deltaTime;
                     if (poisonTimer <= 0.0f)
                     {
-                        testHealth -= poisonFactor;
+                        stats.TakeDamage(poisonFactor, true);
                         poisonIterations++;
                         poisonTimer = 5.0f;
                     }
@@ -111,6 +115,20 @@ public class EnemyDebuffs : MonoBehaviour
             debuffNotification.text += "\nSpeed Decreased";
         }
 
+        if (decreaseStrength == true && debuffApplied == false)
+        {
+            stats.Strength -= 7;
+            debuffNotification.text += "\nStrength Decreased";
+            Debug.Log($"Strength Mod: {stats.Strength}");
+        }
+
+        if (decreaseDefense == true && debuffApplied == false)
+        {
+            stats.Defense -= 7;
+            debuffNotification.text += "\nDefense Decreased";
+            Debug.Log($"Defense Mod: {stats.Defense}");
+        }
+
         if (poison == true && debuffApplied == false)
         {
             poisonTimer = 5.0f;
@@ -127,6 +145,18 @@ public class EnemyDebuffs : MonoBehaviour
         {
             movement.MovementSpeed *= 2;
             debuffNotification.text = debuffNotification.text.Replace("\nSpeed Decreased", "");
+        }
+
+        if (decreaseDefense == true)
+        {
+            debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
+            stats.ResetDefense();
+        }
+
+        if (decreaseStrength == true)
+        {
+            debuffNotification.text = debuffNotification.text.Replace("\nStrength Decreased", "");
+            stats.ResetStrength();
         }
 
         if (poison == true)

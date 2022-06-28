@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     //speed to travel at
     public float speed;
     //damage to deal (will be passed in using ranged enemy's stat for strength)
-    int damage;
+    public int damage;
     //For moving the pellet
     [SerializeField]
     Rigidbody2D rb;
@@ -24,6 +24,8 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     public EnemyDebuffs debuff; //inherited from enemy that fires it.
+
+    public CombatantStats player; //For changing their HP on hit
 
     private void Awake()
     {
@@ -74,6 +76,8 @@ public class Projectile : MonoBehaviour
                     debuff.ApplyDebuff();
                 }
             }
+
+            player.TakeDamage(damage, false);
 
             Destroy(gameObject);
 

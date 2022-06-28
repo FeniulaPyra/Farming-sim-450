@@ -105,7 +105,7 @@ public class BuffPet : BasicPet
                     healTimer -= Time.deltaTime;
                     if (healTimer <= 0.0f)
                     {
-                        testHealth += healFactor;
+                        stats.Heal(healFactor, false);
                         healIterations++;
                         healTimer = 5.0f;
                     }

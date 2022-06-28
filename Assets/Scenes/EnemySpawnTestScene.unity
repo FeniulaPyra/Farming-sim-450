@@ -53689,11 +53689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: increaseDefense
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: increaseStrength
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8189669987783190265, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: m_RootOrder
@@ -60495,7 +60495,7 @@ PrefabInstance:
     - target: {fileID: 7357428554904784003, guid: 88086a3e7ad52c14c9540ade9e31c9fd, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0]
       value: 
-      objectReference: {fileID: -6290528856993958317, guid: 2f7c7a70be2c21e4eb68bfff356f79a3, type: 3}
+      objectReference: {fileID: 3934105572009645383, guid: 8cef7ec096045fa46a5e51e4275534c0, type: 3}
     - target: {fileID: 7357428554904784003, guid: 88086a3e7ad52c14c9540ade9e31c9fd, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[1]
       value: 
@@ -62581,11 +62581,11 @@ PrefabInstance:
       objectReference: {fileID: 1377426781}
     - target: {fileID: 1947364160880895040, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Size.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1947364160880895040, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: m_Offset.y
-      value: -0.125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5275481385977868881, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: ItemManagerObj
