@@ -21,6 +21,10 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     Vector2 force;
+
+    [SerializeField]
+    public EnemyDebuffs debuff; //inherited from enemy that fires it.
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,7 +33,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log($"Am I Poison?: {debuff.poison}");
     }
 
     // Update is called once per frame
@@ -53,11 +57,23 @@ public class Projectile : MonoBehaviour
 
     //If entering the player
     //Some method for collision with player
+    //Would be where damage actually happens
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name.Contains("Player"))
         {
             //Before destroying self, inflict damage to player
+
+            //Potentially Applying Debuff
+            if (debuff != null)
+            {
+                int random = Random.Range(0, 101);
+
+                if (random <= debuff.activateChance)
+                {
+                    debuff.ApplyDebuff();
+                }
+            }
 
             Destroy(gameObject);
 
