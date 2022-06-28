@@ -18,6 +18,13 @@ public class BuffPet : BasicPet
     public int activateChance;
 
     public bool increaseSpeed;
+
+    public bool regenHealth;
+    public int healIterations;
+    public float healTimer;
+    public int testHealth;
+    public int healFactor;
+
     [SerializeField]
     public bool buffApplied;
     [SerializeField]
@@ -26,7 +33,6 @@ public class BuffPet : BasicPet
 
     [SerializeField]
     TMP_Text buffNotification;
-
 
     // Start is called before the first frame update
     void Start()
@@ -84,8 +90,6 @@ public class BuffPet : BasicPet
         }
         else
         {
-<<<<<<< Updated upstream
-=======
             if (regenHealth == true)
             {
                 if (healIterations < 5)
@@ -104,9 +108,6 @@ public class BuffPet : BasicPet
                     CancelBuff();
                 }
             }
-            
-
->>>>>>> Stashed changes
             buffTimer -= Time.deltaTime;
 
             if (buffTimer <= 0.0f)
