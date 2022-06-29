@@ -28,6 +28,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
 		inv = new Inventory(4, 9);
 		//Debug.Log(im.GetItemByName("hoe").name);
+		inv.AddItems(im.GetItemByName("basic sword"), 1);
 		inv.AddItems(im.GetItemByName("hoe"), 1);
 		inv.AddItems(im.GetItemByName("watering can"), 1);
 		inv.AddItems(im.GetItemByName("sickle"), 1);
@@ -67,26 +68,7 @@ public class PlayerInventoryManager : MonoBehaviour
 				inv.AddItems(im.GetItemByName(i.name), 1);
 			}
 		}
-		//rotate hotbar
-		/*if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR))
-			NextHotbar();
-		if (Input.GetKeyDown((KeyCode)Menu.MenuControls.PREV_HOTBAR))
-			PreviousHotbar();*/
 
-		//rotate held item
-		/*if (Input.GetKeyDown((KeyCode)Menu.MenuControls.NEXT_HOTBAR_SLOT))
-			NextItem();
-		if (Input.GetKeyDown((KeyCode)Menu.MenuControls.PREV_HOTBAR_SLOT))
-			PreviousItem();*/
-
-		/*for (int numKey = 1; numKey <= 9; numKey++)
-		{
-			if (Input.GetKeyDown("" + numKey))
-			{
-				HeldSlot = numKey - 1;
-				HeldSlot = HeldSlot % (inv.COLUMNS + 1);
-			}
-		}*/
 
         if (Keyboard.current.digit1Key.wasPressedThisFrame == true)
         {
@@ -123,36 +105,7 @@ public class PlayerInventoryManager : MonoBehaviour
         else if (Keyboard.current.digit9Key.wasPressedThisFrame == true)
         {
             HeldSlot = 8 % (inv.COLUMNS + 1);
-        }
-
-        //float scroll = Input.GetAxis("Mouse ScrollWheel");
-
-		//scroll controls - putting in seperate if because i am lazy and i
-		//dont like when the lines get too long
-		/*if (Input.GetKey(KeyCode.LeftControl))
-		{
-			if (scroll < -MouseScrollDeadzone)
-			{
-				NextHotbar();
-			}
-			if (scroll > MouseScrollDeadzone)
-			{
-				PreviousHotbar();
-			}
-		}
-		else
-		{
-			if (scroll < -MouseScrollDeadzone)
-			{
-				NextItem();
-			}
-			if (scroll > MouseScrollDeadzone)
-			{
-				PreviousItem();
-			}
-		}*/
-
-		
+        }		
 
 		UpdateHeldItem();
 	}
@@ -367,13 +320,10 @@ public class PlayerInventoryManager : MonoBehaviour
 	public void DropItem(Item i) {
 		if (i == null) return;
 
-		ItemManager itemLibrary = im;//GameObject.Find("ItemManager").GetComponent<ItemManager>();
+		ItemManager itemLibrary = im;
 		Camera cam = Camera.main;
-        //Vector3 mouse = Input.mousePosition;
-        //Vector3 mouse = Input.mousePosition;
         Vector3 mouse = Mouse.current.position.ReadValue();
         mouse.z = 10;
-       //Vector2 worldMouse = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 worldMouse = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         Vector2 vec = worldMouse - (Vector2)transform.position;

@@ -58,6 +58,8 @@ public class InventorySlot : MonoBehaviour
 			itemLabel.text = "" + item.name;
 			icon.sprite = item.spr;
 			icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 100);
+			icon.SetNativeSize();
+			icon.rectTransform.localScale = new Vector2(.25f, .25f);
 
 		}
 		else

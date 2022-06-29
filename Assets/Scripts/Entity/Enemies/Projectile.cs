@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
     //direction to go in
-    Vector2 dir;
+    public Vector2 dir;
     //speed to travel at
     public float speed;
     //damage to deal (will be passed in using ranged enemy's stat for strength)

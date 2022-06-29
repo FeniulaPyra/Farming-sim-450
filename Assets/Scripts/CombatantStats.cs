@@ -86,7 +86,7 @@ public class CombatantStats
 		exp = amt;
 	}
 
-	public void TakeDamage(int amt, bool ignoreDefense)
+	public void TakeDamage(int amt, bool ignoreDefense = false)
 	{
 		health -= (amt - (ignoreDefense ? 0 : defense));
 	}
