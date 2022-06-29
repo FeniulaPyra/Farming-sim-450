@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1281256936}
   - component: {fileID: 5275481385977868881}
   - component: {fileID: 5881527148712566067}
+  - component: {fileID: 5739973837602842379}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerInventoryManager: {fileID: 0}
   objects: []
+  enemies: []
   farmingTutorial: {fileID: 0}
   bed: {fileID: 0}
   menu: {fileID: 0}
@@ -156,6 +158,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81824e0c68e90904bb95f44cb57ac5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  health: 0
+  strength: 0
+  defense: 0
+  exp: 0
+  level: 0
+--- !u!60 &5739973837602842379
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752269456424297128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.07418099, y: 0.5317326}
+      - {x: -0.40860814, y: 0.42492476}
+      - {x: -0.5029397, y: 0.094851255}
+      - {x: -0.27715236, y: -0.11357033}
+      - {x: -0.3970254, y: -0.32214576}
+      - {x: -0.2771748, y: -0.5087359}
+      - {x: 0.29021785, y: -0.5185771}
+      - {x: 0.42723888, y: -0.3653376}
+      - {x: 0.30497038, y: -0.15066075}
+      - {x: 0.5291522, y: 0.19774564}
 --- !u!1 &7752269456871954607
 GameObject:
   m_ObjectHideFlags: 0

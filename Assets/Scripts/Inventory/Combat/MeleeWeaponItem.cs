@@ -16,7 +16,7 @@ public class MeleeWeaponItem : WeaponItem
 	public int Reach { get { return reach; } }
 
 	//for instance, if the weapon has a hit angle of 15 degrees, 
-	//it would look like this:              NOT! this:
+	//it would look like this:              NOT this:
 	//         \ <15deg								
 	//       ---)                            ___\ <7.5deg
 	//         / <15deg                         / <7.5deg
@@ -34,6 +34,6 @@ public class MeleeWeaponItem : WeaponItem
 
 		//if reachable, damage the enemy.
 		if (distance < reach && Mathf.Abs(angle) < this.angle)
-			target.GetComponent<CombatantStats>().TakeDamage(this.strength + target.GetComponent<CombatantStats>().Strength);
+			target.GetComponent<CombatantStats>().TakeDamage(this.Strength + target.GetComponent<CombatantStats>().Strength);
 	}
 }

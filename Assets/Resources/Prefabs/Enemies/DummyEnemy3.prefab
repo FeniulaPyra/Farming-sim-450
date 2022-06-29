@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 0.13627622, g: 0.8301887, b: 0.369829, a: 1}
+  m_Sprite: {fileID: 1035853460335100963, guid: 786f21aa8fc29cb4ba0c3572763656e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -113,6 +113,9 @@ MonoBehaviour:
   attacked: 0
   fleeTimer: 0
   baseFleeTimer: 2
+  debuff: {fileID: 0}
+  stats: {fileID: 0}
+  target: {fileID: 0}
 --- !u!50 &4379336353407884094
 Rigidbody2D:
   serializedVersion: 4

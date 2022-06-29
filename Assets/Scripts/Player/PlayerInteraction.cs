@@ -529,15 +529,22 @@ public class PlayerInteraction : MonoBehaviour
 		if(playerInventoryManager.heldItem is WeaponItem)
 		{
 			WeaponItem weapon = (WeaponItem)playerInventoryManager.heldItem;
-
-			enemies = new List<BasicEnemy>();
-			enemiesArray = FindObjectsOfType<BasicEnemy>();
-
-			foreach (BasicEnemy enemy in enemiesArray)
+			if (playerInventoryManager.heldItem is RangedWeaponItem)
 			{
-				weapon.Attack(gameObject, enemy.gameObject);
-
+				weapon.Attack(gameObject, null);
 			}
+			else
+			{
+				enemies = new List<BasicEnemy>();
+				enemiesArray = FindObjectsOfType<BasicEnemy>();
+
+				foreach (BasicEnemy enemy in enemiesArray)
+				{
+					weapon.Attack(gameObject, enemy.gameObject);
+
+				}
+			}
+
 		}
 
     }

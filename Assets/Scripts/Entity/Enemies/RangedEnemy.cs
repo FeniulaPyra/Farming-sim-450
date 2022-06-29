@@ -14,16 +14,19 @@ public class RangedEnemy : BasicEnemy
 
     void Attack()
     {
-        //setting damage
-        //pellet.damage = stat.strength
-        //pellet.debuff = debuff;
-        pellet.GetComponent<Projectile>().debuff = debuff;
-        pellet.GetComponent<Projectile>().damage = stats.Strength;
-        pellet.GetComponent<Projectile>().player = target;
-        //Debug.Log($"Transfer?: {pellet.debuff.poison}");
+		//setting damage
+		//pellet.damage = stat.strength
+		//pellet.debuff = debuff;
+		Projectile projectileScript = pellet.GetComponent<Projectile>();
+		projectileScript.debuff = debuff;
+		projectileScript.damage = stats.Strength;
+		projectileScript.dir = new Vector2(Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad));//gameObject.transform.eulerAngles;
+		projectileScript.origin = gameObject;
+		//pellet.GetComponent<Projectile>().player = target;
+		//Debug.Log($"Transfer?: {pellet.debuff.poison}");
 
-        //Instantiate(pellet.gameObject, transform.position, transform.rotation);
-        Instantiate(pellet, transform.position, transform.rotation);
+		//Instantiate(pellet.gameObject, transform.position, transform.rotation);
+		Instantiate(pellet, transform.position, Quaternion.identity/*transform.rotation*/);
 
         attackTimer = baseAttackTimer;
     }
@@ -42,8 +45,11 @@ public class RangedEnemy : BasicEnemy
 
     private void FixedUpdate()
     {
-        //Look towards player?
-        transform.rotation = Quaternion.LookRotation(player.position - transform.position, Vector3.up);
+		//Look towards player?
+		Vector2 vec = (Vector2)player.position - (Vector2)transform.position;
+		float theta = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+		//https://forum.unity.com/threads/rotating-a-2d-object.483830/
+		transform.eulerAngles = Vector3.forward * theta;//Quaternion.LookRotation(player.position - transform.position, new Vector3(0, 1, 0));//Vector3.up);
         //transform.rotation = new Quaternion(0, 0, transform.rotation.z, transform.rotation.w);
 
         //counts down to attack

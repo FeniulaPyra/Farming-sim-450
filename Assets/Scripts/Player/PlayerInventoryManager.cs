@@ -29,6 +29,7 @@ public class PlayerInventoryManager : MonoBehaviour
 		inv = new Inventory(4, 9);
 		//Debug.Log(im.GetItemByName("hoe").name);
 		inv.AddItems(im.GetItemByName("basic sword"), 1);
+		inv.AddItems(im.GetItemByName("basic bow"), 1);
 		inv.AddItems(im.GetItemByName("hoe"), 1);
 		inv.AddItems(im.GetItemByName("watering can"), 1);
 		inv.AddItems(im.GetItemByName("sickle"), 1);

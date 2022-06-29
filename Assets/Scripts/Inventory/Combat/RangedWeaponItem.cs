@@ -9,8 +9,6 @@ public class RangedWeaponItem : WeaponItem
 
 	override public void Attack(GameObject origin, GameObject target)
 	{
-		GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-		Projectile projectileScript = projectile.GetComponent<Projectile>();
 
 		//get dir of projectile
 		Camera cam = Camera.main;
@@ -20,7 +18,10 @@ public class RangedWeaponItem : WeaponItem
 
 		Vector2 vec = worldMouse - (Vector2)origin.transform.position;
 
+		GameObject projectile = Instantiate(projectilePrefab, origin.transform.position, Quaternion.identity);
+		Projectile projectileScript = projectile.GetComponent<Projectile>();
 		//TODO TEST
 		projectileScript.dir = vec;
+		projectileScript.origin = origin;
 	}
 }
