@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.754717, g: 0.031327844, b: 0.031327844, a: 1}
+  m_Sprite: {fileID: -4637326251194669954, guid: 786f21aa8fc29cb4ba0c3572763656e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   fleeTimer: 0
   baseFleeTimer: 2
   debuff: {fileID: 7085785950156121008}
+  stats: {fileID: 0}
+  target: {fileID: 0}
   pellet: {fileID: 3463793939459626526, guid: 64b87d1044992014d933615e8543f91d, type: 3}
   attackTimer: 0
   baseAttackTimer: 2
@@ -151,8 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb927b6e5451f24ca2323c20049ea4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 0}
+  stats: {fileID: 0}
   activateChance: 100
   decreaseSpeed: 0
+  decreaseDefense: 0
+  decreaseStrength: 0
   poison: 1
   poisonIterations: 0
   poisonFactor: 5

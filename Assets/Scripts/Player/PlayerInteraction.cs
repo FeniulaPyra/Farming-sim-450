@@ -99,6 +99,11 @@ public class PlayerInteraction : MonoBehaviour
     //Random array of DialogueManagers to handle NPC Dialogue
     InteractableObjects[] objectsArray = new InteractableObjects[100];
 
+	[SerializeField]
+	List<BasicEnemy> enemies = new List<BasicEnemy>();
+
+	BasicEnemy[] enemiesArray;
+
     public FarmingTutorial farmingTutorial;
 
     [SerializeField]
@@ -300,31 +305,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        /*playerPosition = transform.position;
-        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        focusTilePosition = new Vector3Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y), 0);
-
-        var indicatorPos = focusTilePosition;
-        if (displayIndicator && canInteract)
-            indicatorPos.z = 0;
-        else
-            indicatorPos.z = 11;
-
-        //indicator.position = Vector3.Slerp(indicator.position, indicatorPos, Time.deltaTime * 25);
-        indicator.position = indicatorPos;
-
-        Debug.DrawLine(playerPosition + interactionOffset, focusTilePosition);
-
-        if(Vector2.Distance(playerPosition + interactionOffset, (Vector2Int)focusTilePosition) < maxInteractionDistance)
-        {
-            indicatorImage.color = activeColor;
-            interactInRange = true;
-        } else
-        {
-            indicatorImage.color = inactiveColor;
-            interactInRange = false;
-        }*/
 
 		Item heldItem = playerInventoryManager.GetHeldItem();
 		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
@@ -544,6 +524,28 @@ public class PlayerInteraction : MonoBehaviour
                 farmManager.TileInteract(focusTilePosition, itemName);
             }
         }
+
+
+		if(playerInventoryManager.heldItem is WeaponItem)
+		{
+			WeaponItem weapon = (WeaponItem)playerInventoryManager.heldItem;
+			if (playerInventoryManager.heldItem is RangedWeaponItem)
+			{
+				weapon.Attack(gameObject, null);
+			}
+			else
+			{
+				enemies = new List<BasicEnemy>();
+				enemiesArray = FindObjectsOfType<BasicEnemy>();
+
+				foreach (BasicEnemy enemy in enemiesArray)
+				{
+					weapon.Attack(gameObject, enemy.gameObject);
+
+				}
+			}
+
+		}
 
     }
 

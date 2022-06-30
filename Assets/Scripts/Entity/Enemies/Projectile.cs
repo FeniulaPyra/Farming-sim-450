@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
     //direction to go in
-    Vector2 dir;
+    public Vector2 dir;
     //speed to travel at
     public float speed;
     //damage to deal (will be passed in using ranged enemy's stat for strength)
@@ -25,7 +25,9 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     public EnemyDebuffs debuff; //inherited from enemy that fires it.
 
-    public CombatantStats player; //For changing their HP on hit
+	public GameObject origin;
+
+    //public CombatantStats player; //For changing their HP on hit
 
     private void Awake()
     {
@@ -35,7 +37,8 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log($"Am I Poison?: {debuff.poison}");
+        Debug.Log($"Am I Poison?: {debuff != null && debuff.poison}");
+		transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.x, -dir.y));
     }
 
     // Update is called once per frame
@@ -49,7 +52,7 @@ public class Projectile : MonoBehaviour
         //Vector2 desiredVelocity = dir * speed;
 
         //rb.velocity += desiredVelocity;
-        force = transform.forward * speed;
+        force = /*transform.forward*/ dir.normalized * speed;
 
 
         rb.AddForce(force, ForceMode2D.Impulse);
@@ -62,7 +65,8 @@ public class Projectile : MonoBehaviour
     //Would be where damage actually happens
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Contains("Player"))
+		CombatantStats target = collision.gameObject.GetComponent<CombatantStats>();
+		if (target != null && collision.gameObject != origin)
         {
             //Before destroying self, inflict damage to player
 
@@ -77,7 +81,7 @@ public class Projectile : MonoBehaviour
                 }
             }
 
-            player.TakeDamage(damage, false);
+            target.TakeDamage(damage, false);
 
             Destroy(gameObject);
 

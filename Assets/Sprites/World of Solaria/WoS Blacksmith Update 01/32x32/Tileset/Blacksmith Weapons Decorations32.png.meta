@@ -1,7 +1,256 @@
 fileFormatVersion: 2
 guid: 2cab468bda4aea845b833ac9d00c4466
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1091314037014481330
+    second: Blacksmith Weapons Decorations32_0
+  - first:
+      213: -4943050002350227841
+    second: Blacksmith Weapons Decorations32_1
+  - first:
+      213: 1361627647685402226
+    second: Blacksmith Weapons Decorations32_2
+  - first:
+      213: 7611304213945247791
+    second: Blacksmith Weapons Decorations32_3
+  - first:
+      213: -2277801866135751780
+    second: Blacksmith Weapons Decorations32_4
+  - first:
+      213: -8133960265608750143
+    second: Blacksmith Weapons Decorations32_5
+  - first:
+      213: -3102807449775257963
+    second: Blacksmith Weapons Decorations32_6
+  - first:
+      213: -1746492691566426428
+    second: Blacksmith Weapons Decorations32_7
+  - first:
+      213: -5294736403526895496
+    second: Blacksmith Weapons Decorations32_8
+  - first:
+      213: -5658011565907191519
+    second: Blacksmith Weapons Decorations32_9
+  - first:
+      213: 86685889612543739
+    second: Blacksmith Weapons Decorations32_10
+  - first:
+      213: 3944289265599772670
+    second: Blacksmith Weapons Decorations32_11
+  - first:
+      213: -1919499252594785510
+    second: Blacksmith Weapons Decorations32_12
+  - first:
+      213: -4975941816025490226
+    second: Blacksmith Weapons Decorations32_13
+  - first:
+      213: 3727166981298486600
+    second: Blacksmith Weapons Decorations32_14
+  - first:
+      213: -7665191610427765471
+    second: Blacksmith Weapons Decorations32_15
+  - first:
+      213: -5366985472327518109
+    second: Blacksmith Weapons Decorations32_16
+  - first:
+      213: 6296281605878293862
+    second: Blacksmith Weapons Decorations32_17
+  - first:
+      213: 960433080042975910
+    second: Blacksmith Weapons Decorations32_18
+  - first:
+      213: -3577207259678552665
+    second: Blacksmith Weapons Decorations32_19
+  - first:
+      213: 5638647619152918841
+    second: Blacksmith Weapons Decorations32_20
+  - first:
+      213: -807468199387578961
+    second: Blacksmith Weapons Decorations32_21
+  - first:
+      213: 2483970435683668383
+    second: Blacksmith Weapons Decorations32_22
+  - first:
+      213: -5499142397129405425
+    second: Blacksmith Weapons Decorations32_23
+  - first:
+      213: 1857725708572588164
+    second: Blacksmith Weapons Decorations32_24
+  - first:
+      213: -8124604148813338906
+    second: Blacksmith Weapons Decorations32_25
+  - first:
+      213: -4894459920877195685
+    second: Blacksmith Weapons Decorations32_26
+  - first:
+      213: -6906267242552591775
+    second: Blacksmith Weapons Decorations32_27
+  - first:
+      213: -8292851497613853929
+    second: Blacksmith Weapons Decorations32_28
+  - first:
+      213: -7903507321338883532
+    second: Blacksmith Weapons Decorations32_29
+  - first:
+      213: -902818244511324170
+    second: Blacksmith Weapons Decorations32_30
+  - first:
+      213: -8841191119168593517
+    second: Blacksmith Weapons Decorations32_31
+  - first:
+      213: 1437042521237344144
+    second: Blacksmith Weapons Decorations32_32
+  - first:
+      213: 5296446228564783949
+    second: Blacksmith Weapons Decorations32_33
+  - first:
+      213: 3267301263146258785
+    second: Blacksmith Weapons Decorations32_34
+  - first:
+      213: 4400559680702795919
+    second: Blacksmith Weapons Decorations32_35
+  - first:
+      213: -8695067156452095760
+    second: Blacksmith Weapons Decorations32_36
+  - first:
+      213: -6233340501641641594
+    second: Blacksmith Weapons Decorations32_37
+  - first:
+      213: 3896045090836588157
+    second: Blacksmith Weapons Decorations32_38
+  - first:
+      213: -3236900462610201499
+    second: Blacksmith Weapons Decorations32_39
+  - first:
+      213: 5768799166125388601
+    second: Blacksmith Weapons Decorations32_40
+  - first:
+      213: -5813746378536334562
+    second: Blacksmith Weapons Decorations32_41
+  - first:
+      213: 7212537815961566630
+    second: Blacksmith Weapons Decorations32_42
+  - first:
+      213: -1500082026378722478
+    second: Blacksmith Weapons Decorations32_43
+  - first:
+      213: -4775328423448252573
+    second: Blacksmith Weapons Decorations32_44
+  - first:
+      213: 5425942452785259243
+    second: Blacksmith Weapons Decorations32_45
+  - first:
+      213: 2774787847577939424
+    second: Blacksmith Weapons Decorations32_46
+  - first:
+      213: -5462601929270058638
+    second: Blacksmith Weapons Decorations32_47
+  - first:
+      213: -8246228285276076515
+    second: Blacksmith Weapons Decorations32_48
+  - first:
+      213: 4024389919342774531
+    second: Blacksmith Weapons Decorations32_49
+  - first:
+      213: -5199568341456724016
+    second: Blacksmith Weapons Decorations32_50
+  - first:
+      213: 5533404012087575802
+    second: Blacksmith Weapons Decorations32_51
+  - first:
+      213: 6857280008581746019
+    second: Blacksmith Weapons Decorations32_52
+  - first:
+      213: 3164629527769548607
+    second: Blacksmith Weapons Decorations32_53
+  - first:
+      213: -8522199043767871753
+    second: Blacksmith Weapons Decorations32_54
+  - first:
+      213: -8826580084551827491
+    second: Blacksmith Weapons Decorations32_55
+  - first:
+      213: -6547782119072058137
+    second: Blacksmith Weapons Decorations32_56
+  - first:
+      213: 3132379199548006926
+    second: Blacksmith Weapons Decorations32_57
+  - first:
+      213: -3334367438142277364
+    second: Blacksmith Weapons Decorations32_58
+  - first:
+      213: 2652383006434180863
+    second: Blacksmith Weapons Decorations32_59
+  - first:
+      213: -5146941957029433361
+    second: Blacksmith Weapons Decorations32_60
+  - first:
+      213: 4002846268452557602
+    second: Blacksmith Weapons Decorations32_61
+  - first:
+      213: 2302016105226084699
+    second: Blacksmith Weapons Decorations32_62
+  - first:
+      213: 7792498329983213280
+    second: Blacksmith Weapons Decorations32_63
+  - first:
+      213: 4684316907955765134
+    second: Blacksmith Weapons Decorations32_64
+  - first:
+      213: 7169723965321107226
+    second: Blacksmith Weapons Decorations32_65
+  - first:
+      213: -1881685754558888831
+    second: Blacksmith Weapons Decorations32_66
+  - first:
+      213: -2350117253903259244
+    second: Blacksmith Weapons Decorations32_67
+  - first:
+      213: -6246545738044663339
+    second: Blacksmith Weapons Decorations32_68
+  - first:
+      213: 7704373705171500716
+    second: Blacksmith Weapons Decorations32_69
+  - first:
+      213: -585922733898998705
+    second: Blacksmith Weapons Decorations32_70
+  - first:
+      213: -4798125449034539378
+    second: Blacksmith Weapons Decorations32_71
+  - first:
+      213: 8942927346699832268
+    second: Blacksmith Weapons Decorations32_72
+  - first:
+      213: -8624101162752594831
+    second: Blacksmith Weapons Decorations32_73
+  - first:
+      213: 3111192274267954775
+    second: Blacksmith Weapons Decorations32_74
+  - first:
+      213: 5481395687476588119
+    second: Blacksmith Weapons Decorations32_75
+  - first:
+      213: -3177764943035950480
+    second: Blacksmith Weapons Decorations32_76
+  - first:
+      213: -4824374788509945883
+    second: Blacksmith Weapons Decorations32_77
+  - first:
+      213: -2076043294310706141
+    second: Blacksmith Weapons Decorations32_78
+  - first:
+      213: -1899212572705636620
+    second: Blacksmith Weapons Decorations32_79
+  - first:
+      213: -4695874334244483690
+    second: Blacksmith Weapons Decorations32_80
+  - first:
+      213: 1669917297475551448
+    second: Blacksmith Weapons Decorations32_81
+  - first:
+      213: -360233329075457181
+    second: Blacksmith Weapons Decorations32_82
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +281,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -41,12 +290,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -67,7 +316,19 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -77,7 +338,1750 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 496
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b945aaa550252f00800000000000000
+      internalID: 1091314037014481330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 496
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7ebbe65632c66bb0800000000000000
+      internalID: -4943050002350227841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 496
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e93a0a12975e210800000000000000
+      internalID: 1361627647685402226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 490
+        width: 28
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f28e3ad2bd8c0a960800000000000000
+      internalID: 7611304213945247791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 496
+        width: 18
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93b144654f9360e0800000000000000
+      internalID: -2277801866135751780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 512
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cb9f37eb3e5e1f80800000000000000
+      internalID: -8133960265608750143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 514
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 596c5b5501d90f4d0800000000000000
+      internalID: -3102807449775257963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_7
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 514
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c60e5c762633c7e0800000000000000
+      internalID: -1746492691566426428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_8
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 514
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87833703b415586b0800000000000000
+      internalID: -5294736403526895496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_9
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 514
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 129dc0f4574ba71b0800000000000000
+      internalID: -5658011565907191519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 430
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf6f4697b58f33100800000000000000
+      internalID: 86685889612543739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 430
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7f577703eecb630800000000000000
+      internalID: 3944289265599772670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_12
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 430
+        width: 26
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a13c57689919c55e0800000000000000
+      internalID: -1919499252594785510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_13
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 430
+        width: 24
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eccd9c03847e1fab0800000000000000
+      internalID: -4975941816025490226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_14
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 456
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d7cd24f9e89b330800000000000000
+      internalID: 3727166981298486600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_15
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 456
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d062d97d4cf9590800000000000000
+      internalID: -7665191610427765471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_16
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 454
+        width: 12
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3687c3ff523a485b0800000000000000
+      internalID: -5366985472327518109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_17
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 454
+        width: 14
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665a33ce2c2e06750800000000000000
+      internalID: 6296281605878293862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_18
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 456
+        width: 10
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a2fe763cc4245d00800000000000000
+      internalID: 960433080042975910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_19
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 364
+        width: 22
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad49ee33f43b5ec0800000000000000
+      internalID: -3577207259678552665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_20
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 362
+        width: 18
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93936318220804e40800000000000000
+      internalID: 5638647619152918841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_21
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 360
+        width: 16
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad341863fb4bc4f0800000000000000
+      internalID: -807468199387578961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_22
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 362
+        width: 18
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f915f7b53f5d87220800000000000000
+      internalID: 2483970435683668383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_23
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 360
+        width: 22
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0ccfc1202f1fa3b0800000000000000
+      internalID: -5499142397129405425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_24
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 392
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 488749570b7f7c910800000000000000
+      internalID: 1857725708572588164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_25
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 392
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e6e059929b9f3f80800000000000000
+      internalID: -8124604148813338906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_26
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 390
+        width: 12
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e6ab842a2631cb0800000000000000
+      internalID: -4894459920877195685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_27
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 392
+        width: 24
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a7cbba8820820a0800000000000000
+      internalID: -6906267242552591775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_28
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 392
+        width: 16
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71bf8a5108fd9ec80800000000000000
+      internalID: -8292851497613853929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_29
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 330
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43295ef37f9115290800000000000000
+      internalID: -7903507321338883532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_30
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 330
+        width: 96
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f72927079b8873f0800000000000000
+      internalID: -902818244511324170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_31
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 326
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3912e9e0587cd4580800000000000000
+      internalID: -8841191119168593517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_32
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 328
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09fcb7d2f8661f310800000000000000
+      internalID: 1437042521237344144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_33
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 328
+        width: 8
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d43bf8978c1c08940800000000000000
+      internalID: 5296446228564783949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_34
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 328
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161940c1039c75d20800000000000000
+      internalID: 3267301263146258785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_35
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 328
+        width: 20
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f805235e6bde11d30800000000000000
+      internalID: 4400559680702795919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_36
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 326
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f8c1895d7ae45780800000000000000
+      internalID: -8695067156452095760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 266
+        width: 32
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6814893e6d9be79a0800000000000000
+      internalID: -6233340501641641594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_38
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 264
+        width: 24
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7628343e58811630800000000000000
+      internalID: 3896045090836588157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_39
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 264
+        width: 28
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56442d8dd283413d0800000000000000
+      internalID: -3236900462610201499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_40
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 288
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9333975f644ee0050800000000000000
+      internalID: 5768799166125388601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_41
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 288
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bc025a87c615fa0800000000000000
+      internalID: -5813746378536334562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_42
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 260
+        width: 10
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6adf5711ee4181460800000000000000
+      internalID: 7212537815961566630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_43
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 260
+        width: 10
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2538fb34853ae2be0800000000000000
+      internalID: -1500082026378722478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_44
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 260
+        width: 22
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f6a828910aabdb0800000000000000
+      internalID: -4775328423448252573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_45
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 260
+        width: 12
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be22af5b9e1dc4b40800000000000000
+      internalID: 5425942452785259243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_46
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 260
+        width: 18
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ed24fd88d6028620800000000000000
+      internalID: 2774787847577939424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_47
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 266
+        width: 32
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 271ae78cc70f034b0800000000000000
+      internalID: -5462601929270058638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_48
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 256
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d16475f90138f8d80800000000000000
+      internalID: -8246228285276076515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_49
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 192
+        width: 28
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 309c61c3f4189d730800000000000000
+      internalID: 4024389919342774531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_50
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 224
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfda16542c67d7b0800000000000000
+      internalID: -5199568341456724016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_51
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 224
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4833bb1a99acc40800000000000000
+      internalID: 5533404012087575802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_52
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 224
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36d07ec16d3f92f50800000000000000
+      internalID: 6857280008581746019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_53
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 198
+        width: 22
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f378a60e9c50beb20800000000000000
+      internalID: 3164629527769548607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_54
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 200
+        width: 18
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f6da0b4f111bb980800000000000000
+      internalID: -8522199043767871753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_55
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 198
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf30c6ad20b18580800000000000000
+      internalID: -8826580084551827491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_56
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 176
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e43e06bada9125a0800000000000000
+      internalID: -6547782119072058137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_57
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 176
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e02a1e23942787b20800000000000000
+      internalID: 3132379199548006926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_58
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 176
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0976e23b72f9b1d0800000000000000
+      internalID: -3334367438142277364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_59
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 162
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffebaca9a482fc420800000000000000
+      internalID: 2652383006434180863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_60
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 162
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fefe4bb4f836298b0800000000000000
+      internalID: -5146941957029433361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_61
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 128
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223dc912977fc8730800000000000000
+      internalID: 4002846268452557602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_62
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b51aa3b737762ff10800000000000000
+      internalID: 2302016105226084699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_63
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee5977d1f3842c60800000000000000
+      internalID: 7792498329983213280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_64
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f3f02c869020140800000000000000
+      internalID: 4684316907955765134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_65
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a17d19aa5f9ff7360800000000000000
+      internalID: 7169723965321107226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_66
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 130
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 184ca9c96c8e2e5e0800000000000000
+      internalID: -1881685754558888831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_67
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 64
+        width: 20
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 499649c1fc4b26fd0800000000000000
+      internalID: -2350117253903259244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_68
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 64
+        width: 20
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d91e923fbfcf49a0800000000000000
+      internalID: -6246545738044663339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_69
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 96
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae7b99b01f6bea60800000000000000
+      internalID: 7704373705171500716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_70
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 96
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4cdf1cb0626ed7f0800000000000000
+      internalID: -585922733898998705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_71
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 96
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8ed88e5352a96db0800000000000000
+      internalID: -4798125449034539378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_72
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 64
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb8b284a09ab1c70800000000000000
+      internalID: 8942927346699832268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_73
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 64
+        width: 38
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17c29175fa9015880800000000000000
+      internalID: -8624101162752594831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_74
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 64
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e5eafb3ec2d2b20800000000000000
+      internalID: 3111192274267954775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_75
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 64
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e66690654d11c40800000000000000
+      internalID: 5481395687476588119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_76
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 64
+        width: 14
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07a17aeee9f46e3d0800000000000000
+      internalID: -3177764943035950480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_77
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 36
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efa383c0b06c0db0800000000000000
+      internalID: -4824374788509945883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_78
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 36
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32457488f996033e0800000000000000
+      internalID: -2076043294310706141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_79
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 36
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4febce24a34a4a5e0800000000000000
+      internalID: -1899212572705636620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_80
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 34
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69dcb7d3c27e4deb0800000000000000
+      internalID: -4695874334244483690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_81
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 2
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d08f483fecbc2710800000000000000
+      internalID: 1669917297475551448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blacksmith Weapons Decorations32_82
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 2
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 363733022b1300bf0800000000000000
+      internalID: -360233329075457181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
