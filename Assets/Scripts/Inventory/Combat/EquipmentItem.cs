@@ -4,6 +4,21 @@ using UnityEngine;
 
 public abstract class EquipmentItem : Item
 {
-	public int defense { get; }
-	public int health { get; }
+	private int defense;
+	public int Defense { get { return defense; } }
+
+	private int health;
+	public int Health { get { return health; } }
+
+	private EquipmentItemType equipmentType;
+	public EquipmentItemType EquipmentType { get { return equipmentType; } }
+
+	public enum EquipmentItemType
+	{
+		HEAD,
+		CHEST,
+		HANDS,
+		LEGS,
+		FEET
+	}
 }

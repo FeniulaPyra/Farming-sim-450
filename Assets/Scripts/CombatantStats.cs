@@ -6,7 +6,7 @@ public class CombatantStats : MonoBehaviour
 {
     [SerializeField]
 	private int maxHealth;
-	public int MaxHealth { get; }
+	public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
 
     [SerializeField]
     private int health;
