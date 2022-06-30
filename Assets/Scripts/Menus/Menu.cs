@@ -26,8 +26,10 @@ public class Menu : MonoBehaviour
 	public GameObject SaveMenu;
 	public GameObject LoadMenu;
 	public GameObject ShopMenu;
+	public GameObject StatsPanelMenu;
 	public GameObject gameInfo;
 	public GameObject controls;
+
 
 	public GameObject ShippingMenuObject;
 	public ShippingMenu shippingMenu;
@@ -140,165 +142,7 @@ public class Menu : MonoBehaviour
 	void Update()
 	{
 		pi.CanInteract = state == MenuState.NO_MENU;
-		/*
-		if (state == MenuState.NO_MENU)
-			hotbarMenu.Show();
-		else
-			hotbarMenu.Hide();*/
-
-		//float scroll = Input.GetAxis("Mouse ScrollWheel");
-		/*switch(state)
-		{
-			case MenuState.INVENTORY:
-                #region MenuState.INVENTORY
-				inventoryMenu.UpdateDisplay();
-
-				//close inventory
-				if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
-				{
-					//resets grabbed item
-					if (ItemGrabber.item != null && ItemGrabber.amount > 0)
-					{
-						inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
-						ItemGrabber.item = null;
-						ItemGrabber.amount = 0;
-					}
-					InventoryMenuObject.SetActive(false);
-					ItemGrabber.Hide();
-					state = MenuState.NO_MENU;
-					pi.CanInteract = true;
-				}
-				break;
-			#endregion
-			case MenuState.EXTERNAL_INVENTORY:
-
-				externalInventoryMenu.UpdateDisplay();
-				
-				//close external inv
-				if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					if (ItemGrabber.item != null && ItemGrabber.amount > 0)
-					{
-						inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
-						ItemGrabber.item = null;
-						ItemGrabber.amount = 0;
-					}
-					externalInventoryMenu.Hide();
-					inventoryMenu.Hide();
-					ItemGrabber.Hide();
-					state = MenuState.NO_MENU;
-					pi.CanInteract = true;
-				}
-				break;
-			case MenuState.PAUSE:
-                #region MenuState.PAUSE
-
-                if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					PauseMenu.SetActive(false);
-					state = MenuState.NO_MENU;
-					pi.CanInteract = true;
-				}
-				break;
-			#endregion
-			case MenuState.SETTINGS:
-				#region MenuState.SETTINGS
-
-				if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					SettingsMenu.SetActive(false);
-					PauseMenu.SetActive(true);
-					state = MenuState.PAUSE;
-					pi.CanInteract = true;
-				}
-				break;
-				#endregion
-			case MenuState.HELP:
-				#region MenuState.HELP
-
-				if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					HelpMenu.SetActive(false);
-					PauseMenu.SetActive(true);
-					state = MenuState.PAUSE;
-					pi.CanInteract = true;
-				}
-				break;
-				#endregion
-			case MenuState.SHOP:
-				#region MenuState.SHOP
-
-				if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					ShopMenu.SetActive(false);
-					//PauseMenu.SetActive(true);
-					state = MenuState.NO_MENU;//PAUSE;
-					pi.CanInteract = true;
-				}
-				break;
-				#endregion
-			case MenuState.SHIPPING_BIN:
-				#region MenuState.SHIPPING_BIN
-
-				shippingMenu.UpdateDisplay();
-				//close shipping bin
-				if (Input.GetKeyDown(KeyCode.Escape))
-				{
-					if (ItemGrabber.item != null && ItemGrabber.amount > 0)
-					{
-						inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
-						ItemGrabber.item = null;
-						ItemGrabber.amount = 0;
-					}
-					shippingMenu.Hide();
-					inventoryMenu.Hide();
-					ItemGrabber.Hide();
-					state = MenuState.NO_MENU;
-					pi.CanInteract = true;
-				}
-				break;
-				#endregion
-			case MenuState.NO_MENU:
-                #region MenuState.NO_MENU
-
-				//open/close inventory
-				if (Input.GetKeyDown(KeyCode.E))
-				{
-					InventoryMenuObject.SetActive(true);//!InventoryMenu.activeSelf);
-					ItemGrabber.Show();
-					state = MenuState.INVENTORY;
-					pi.CanInteract = false;
-				}
-
-				//drop held item
-				if(Input.GetKeyDown(KeyCode.Q))
-				{
-					//pim.DropHeldItem();
-					hotbarMenu.UpdateDisplay();
-					if(Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.LeftShift))
-					{
-						pim.DropHeldItems();
-					}
-					else
-					{
-						pim.DropHeldItem();
-					}
-				}
-				
-				if(Input.GetKeyDown(KeyCode.Escape))
-				{
-					pi.CanInteract = false;
-					PauseMenu.SetActive(true);
-					state = MenuState.PAUSE;
-				}
-
-				break;
-            #endregion
-            case MenuState.DIALOG:
-                break;
-			default:
-                break;
-		}*/
+		
 		inventoryMenu.UpdateDisplay();
 		hotbarMenu.UpdateDisplay();
         shippingMenu.UpdateDisplay();
@@ -356,6 +200,8 @@ public class Menu : MonoBehaviour
         else if (state == MenuState.NO_MENU)
         {
             InventoryMenuObject.SetActive(true);//!InventoryMenu.activeSelf);
+			StatsPanelMenu.GetComponent<StatsPanel>().SetCombatantToDisplay(player);
+            StatsPanelMenu.SetActive(true);//!InventoryMenu.activeSelf);
             ItemGrabber.Show();
             state = MenuState.INVENTORY;
             pi.CanInteract = false;
@@ -385,6 +231,7 @@ public class Menu : MonoBehaviour
                     ItemGrabber.amount = 0;
                 }
                 InventoryMenuObject.SetActive(false);
+                StatsPanelMenu.SetActive(false);
                 ItemGrabber.Hide();
                 state = MenuState.NO_MENU;
                 pi.CanInteract = true;

@@ -40,6 +40,11 @@ public class PlayerInventoryManager : MonoBehaviour
 		inv.AddItems(im.GetItemByName("white shroom"), 1);
 		inv.AddItems(im.GetItemByName("chest"), 1);
 		inv.AddItems(im.GetItemByName("pet cat"), 1);
+		inv.AddItems(im.GetItemByName("basic helmet"), 10);
+		inv.AddItems(im.GetItemByName("basic chestplate"), 10);
+		inv.AddItems(im.GetItemByName("basic gloves"), 10);
+		inv.AddItems(im.GetItemByName("basic leggings"), 10);
+		inv.AddItems(im.GetItemByName("basic boots"), 10);
 	}
 	private void Start()
 	{

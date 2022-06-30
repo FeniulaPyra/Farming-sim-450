@@ -6,12 +6,21 @@ public class CombatantEquipment : MonoBehaviour
 {
 
 	CombatantStats stats;
+
 	private Dictionary<EquipmentItem.EquipmentItemType, EquipmentItem> equipment;
 	public EquipmentItem Head { get { return equipment[EquipmentItem.EquipmentItemType.HEAD]; } }
 	public EquipmentItem Chest { get { return equipment[EquipmentItem.EquipmentItemType.CHEST]; } }
 	public EquipmentItem Hands { get { return equipment[EquipmentItem.EquipmentItemType.HANDS]; } }
 	public EquipmentItem Legs { get { return equipment[EquipmentItem.EquipmentItemType.LEGS]; } }
 	public EquipmentItem Feet { get { return equipment[EquipmentItem.EquipmentItemType.FEET]; } }
+
+	public EquipmentItem this[EquipmentItem.EquipmentItemType type]
+	{
+		get
+		{
+			return equipment[type];
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start()
