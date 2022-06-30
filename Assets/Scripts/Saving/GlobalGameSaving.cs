@@ -67,6 +67,8 @@ public class GlobalGameSaving : MonoBehaviour
     public List<string> buffPetNames = new List<string>();
 	public List<SaveInventoryEntity> inventoryEntities = new List<SaveInventoryEntity>();
 	public List<string> inventoryEntityNames = new List<string>();
+
+	public List<string> playerEquipment = new List<string>();
     #endregion
 
     //boolean to let other scripts know to load a save

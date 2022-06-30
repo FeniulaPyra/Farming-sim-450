@@ -23,7 +23,7 @@ public class CombatantEquipment : MonoBehaviour
 	}
 
 	// Start is called before the first frame update
-	void Start()
+	void Awake()
     {
 		stats = gameObject.GetComponent<CombatantStats>();
 		equipment = new Dictionary<EquipmentItem.EquipmentItemType, EquipmentItem>();
@@ -56,6 +56,26 @@ public class CombatantEquipment : MonoBehaviour
 			stats.Defense -= equipment[type].Defense;
 
 			equipment[type] = null;
+		}
+	}
+
+	public List<string> GetSaveableEquipment()
+	{
+		List<string> saveableEquipment = new List<string>();
+		foreach(KeyValuePair<EquipmentItem.EquipmentItemType, EquipmentItem> item in equipment)
+		{
+			EquipmentItem equipmentItem = item.Value;
+			if(equipmentItem != null)
+				saveableEquipment.Add(item.Value.name);
+		}
+		return saveableEquipment;
+	}
+	public void SetSaveableEquipment(List<string> savedEquipment, ItemManager im)
+	{
+		foreach(string equipmentName in savedEquipment)
+		{
+			EquipmentItem item = (EquipmentItem)im.GetItemByName(equipmentName);
+			Equip(item);
 		}
 	}
 

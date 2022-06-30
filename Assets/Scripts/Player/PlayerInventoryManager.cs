@@ -53,12 +53,14 @@ public class PlayerInventoryManager : MonoBehaviour
 			if (GlobalGameSaving.Instance.loadingSave == true)
 			{
 				inv.SetSaveableInventory(GlobalGameSaving.Instance.inventory);
+				gameObject.GetComponent<CombatantEquipment>().SetSaveableEquipment(GlobalGameSaving.Instance.playerEquipment, im);
 			}
 			else if (ScenePersistence.Instance != null)
 			{
 				if (ScenePersistence.Instance.inventory.Count > 0)
 				{
 					inv.SetSaveableInventory(ScenePersistence.Instance.inventory);
+					gameObject.GetComponent<CombatantEquipment>().SetSaveableEquipment(ScenePersistence.Instance.playerEquipment, im);
 				}
 			}
 		}
@@ -238,10 +240,12 @@ public class PlayerInventoryManager : MonoBehaviour
 		if (what == "persist")
 		{
 			ScenePersistence.Instance.inventory = inv.GetSaveableInventory();
+			ScenePersistence.Instance.playerEquipment = gameObject.GetComponent<CombatantEquipment>().GetSaveableEquipment();
 		}
 		else if (what == "save")
 		{
 			GlobalGameSaving.Instance.inventory = inv.GetSaveableInventory();
+			GlobalGameSaving.Instance.playerEquipment = gameObject.GetComponent<CombatantEquipment>().GetSaveableEquipment();
 		}
 	}
 
