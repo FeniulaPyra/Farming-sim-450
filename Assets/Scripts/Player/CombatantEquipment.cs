@@ -25,6 +25,8 @@ public class CombatantEquipment : MonoBehaviour
 	// Start is called before the first frame update
 	void Awake()
     {
+		//When loading a game/changing scenes, loading of equipment should be done on the object 
+		// that the equipment is attached to, the same way inventories are. 
 		stats = gameObject.GetComponent<CombatantStats>();
 		equipment = new Dictionary<EquipmentItem.EquipmentItemType, EquipmentItem>();
 		equipment[EquipmentItem.EquipmentItemType.HEAD] = null;
@@ -72,7 +74,12 @@ public class CombatantEquipment : MonoBehaviour
 	}
 	public void SetSaveableEquipment(List<string> savedEquipment, ItemManager im)
 	{
-		foreach(string equipmentName in savedEquipment)
+		equipment[EquipmentItem.EquipmentItemType.HEAD] = null;
+		equipment[EquipmentItem.EquipmentItemType.CHEST] = null;
+		equipment[EquipmentItem.EquipmentItemType.HANDS] = null;
+		equipment[EquipmentItem.EquipmentItemType.LEGS] = null;
+		equipment[EquipmentItem.EquipmentItemType.FEET] = null;
+		foreach (string equipmentName in savedEquipment)
 		{
 			EquipmentItem item = (EquipmentItem)im.GetItemByName(equipmentName);
 			Equip(item);

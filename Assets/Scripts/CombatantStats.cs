@@ -5,16 +5,24 @@ using UnityEngine;
 public class CombatantStats : MonoBehaviour
 {
     [SerializeField]
-	private int maxHealth;
-	public int MaxHealth { get { return maxHealth; } set { maxHealth = value; } }
+	private int maxHealthAdjustments;
+	public int MaxHealth { get { return maxHealthAdjustments + BaseMaxHealth; } set { maxHealthAdjustments = value - BaseMaxHealth; } }
+	public int BaseMaxHealth
+	{
+		get
+		{
+			return 5 * (int)Mathf.Floor(level) + 25;
+		}
+	}
+
 
     [SerializeField]
     private int health;
 	public int Health { get { return health; } set { health = value; if (health < 0) { health = 0; } } }
 
     [SerializeField]
-    private int strength;
-    public int Strength { get { return strength; } set { strength = value; } }
+    private int strengthAdjustments;
+    public int Strength { get { return strengthAdjustments + BaseStrength; } set { strengthAdjustments = value - BaseStrength; } }
 	public int BaseStrength
 	{
 		get
@@ -24,8 +32,8 @@ public class CombatantStats : MonoBehaviour
 	}
 
     [SerializeField]
-    private int defense;
-	public int Defense { get { return defense; } set { defense = value; if (defense < 0) { defense = 0; } } }
+    private int defenseAdjustments;
+	public int Defense { get { return defenseAdjustments + BaseDefense; } set { defenseAdjustments = value - BaseDefense; if (defenseAdjustments < 0) { defenseAdjustments = 0; } } }
 	public int BaseDefense
 	{
 		get
@@ -50,37 +58,21 @@ public class CombatantStats : MonoBehaviour
 		}
 		set
 		{
-            int strBuff = 0;
-            int defBuff = 0;
-
-            if (strength > 0)
-            {
-                strBuff = strength - BaseStrength;
-            }
-
-            if (defense > 0)
-            {
-                defBuff = defense - BaseDefense;
-            }
-
 			level = value;
-			maxHealth = 5 * (int)Mathf.Floor(level) + 25;
-            Health = maxHealth;
-			defense = BaseDefense + defBuff;
-			strength = BaseStrength + strBuff;
+			Health = MaxHealth;
 		}
 	}
 
 	public CombatantStats(int level)
 	{
 		Level = level;
-		health = maxHealth;
+		health = maxHealthAdjustments;
 	}
 	public CombatantStats(int level, int exp, int maxhealth, int health)
 	{
 		Level = level;
 		this.exp = exp;
-		this.maxHealth = maxhealth;
+		this.maxHealthAdjustments = maxhealth;
 		this.health = health;
 	}
 
@@ -92,11 +84,11 @@ public class CombatantStats : MonoBehaviour
 
     public void ResetStrength()
 	{
-		strength = BaseStrength;
+		strengthAdjustments = BaseStrength;
 	}
 	public void ResetDefense()
 	{
-		defense = BaseDefense;
+		defenseAdjustments = BaseDefense;
 	}
 
 	public void IncreaseExp(int amt, bool ignoreLevelCheck)
@@ -113,7 +105,7 @@ public class CombatantStats : MonoBehaviour
 	public void TakeDamage(int amt, bool ignoreDefense = false)
 	{
         //health -= (amt - (ignoreDefense ? 0 : defense));
-        Health -= (amt - (ignoreDefense ? 0 : defense));
+        Health -= (amt - (ignoreDefense ? 0 : defenseAdjustments));
     }
 
 	public void Heal(int amt, bool ignoreMax)
@@ -122,8 +114,8 @@ public class CombatantStats : MonoBehaviour
         Health += amt;
         /*if (health > maxHealth && !ignoreMax)
 			health = maxHealth;*/
-        if (Health > maxHealth && !ignoreMax)
-            Health = maxHealth;
+        if (Health > maxHealthAdjustments && !ignoreMax)
+            Health = maxHealthAdjustments;
     }
 
 	//gets the amount of exp to get from the given level to the next level.

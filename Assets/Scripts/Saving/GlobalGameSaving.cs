@@ -236,123 +236,7 @@ public class GlobalGameSaving : MonoBehaviour
 
         entityManager.SaveEntities("save");//
 
-        //var save = new GameSave();
-        //save.sceneName = SceneManager.GetActiveScene().name;
-        //save.position = player.transform.position;
-        //save.isNight = timeManager.isNight;
-        /*save.date = new Vector4(
-            timeManager.DayNumber,
-            timeManager.DateNumber,
-            timeManager.YearNumber,
-            timeManager.SeasonNumber
-            );*/
-        //save.stamina = playerInteraction.PlayerStamina;
-        //save.gold = playerInteraction.playerGold;
-
-        /*tileManager.SaveFieldObjects(out var farmland, out var mushrooms);
-
-        if (tileManager.farmManager.farmField != null && tileManager.farmManager.tillableGround != null)
-        {
-            save.farmTiles = farmland;
-            save.mushrooms = mushrooms;
-        }
-        else
-        {
-            save.farmTiles = ScenePersistence.Instance.farmTiles;
-            save.mushrooms = ScenePersistence.Instance.mushrooms;
-        }*/
-
-        //save.inventory = farmManager.playerInventory.GetSaveableInventory();
-
-        /*if (farmingTutorial != null)
-        {
-            foreach (bool b in farmingTutorial.tutorialBools)
-            {
-                save.tutorialBools.Add(b);
-            }
-            save.tutorialObjective = farmingTutorial.objective.text;
-        }*/
-
-        //timeManager.netWorth.SaveWorth(out var savedWorth);
-        //save.farmNetWorth = savedWorth;
-
-
-        /*for (int i = 0; i < timeManager.NPCList.Count; i++)
-        {
-            timeManager.NPCList[i].SaveFlowcharts(out var startChart, out var questChart);
-            save.NPCStartflowcharts.Add(startChart);
-            save.NPCQuestflowcharts.Add(questChart);
-            //Going back up to access quests and then save them
-            Debug.Log($"Inventory before saving: {timeManager.NPCList[i].gameObject.GetComponent<Quests>().inventory.isShown}");
-            timeManager.NPCList[i].gameObject.GetComponent<Quests>().SaveQuest(out var saveQuest);
-            saveQuest.inventory = save.inventory;
-            save.NPCQuests.Add(saveQuest);
-            Debug.Log($"Date?: {save.NPCStartflowcharts[0].dateNum}");
-        }*/
-
-        //saving all entities and pets
-        /*List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
-
-        foreach (BasicEntity e in entities)
-        {
-            if (e is BasicPet)
-            {
-                BasicPet b = (BasicPet)e;
-
-                if (b is LivestockPet)
-                {
-                    LivestockPet l = (LivestockPet)b;
-                    l.SaveLivestockPet(out SaveLivestockPet livestockPet);
-                    save.livestockPets.Add(livestockPet);
-                    if (save.livestockPets[save.livestockPets.Count - 1].self.name.Contains('('))
-                    {
-                        string[] name = save.livestockPets[save.livestockPets.Count - 1].self.name.Split('(');
-                        save.livestockPetNames.Add(name[0]);
-                    }
-                    else
-                    {
-                        save.livestockPetNames.Add(save.livestockPets[save.livestockPets.Count - 1].self.name);
-                    }
-
-                    Debug.Log($"Livestock Pet name at [{save.livestockPetNames.Count - 1}] is {save.livestockPetNames[save.livestockPetNames.Count - 1]}");
-                }
-                else
-                {
-                    b.SavePet(out SavePet pet);
-                    save.pets.Add(pet);
-                    if (save.pets[save.pets.Count - 1].self.name.Contains('('))
-                    {
-                        string[] name = save.pets[save.pets.Count - 1].self.name.Split('(');
-                        save.petNames.Add(name[0]);
-                    }
-                    else
-                    {
-                        save.petNames.Add(save.pets[save.pets.Count - 1].self.name);
-                    }
-
-                    Debug.Log($"Pet name at [{save.petNames.Count - 1}] is {save.petNames[save.petNames.Count - 1]}");
-                }
-            }
-            else
-            {
-                e.SaveEntity(out SaveEntity entity);
-                entity.type = entity.gameObject.GetComponent<Item>().type;
-                save.entities.Add(entity);
-                if (save.entities[save.entities.Count - 1].self.name.Contains('('))
-                {
-                    string[] name = save.entities[save.entities.Count - 1].self.name.Split('(');
-                    save.entityNames.Add(name[0]);
-                }
-                else
-                {
-                    save.entityNames.Add(save.entities[save.entities.Count - 1].self.name);
-                }
-
-                Debug.Log($"Entity name at [{save.entityNames.Count - 1}] is {save.entityNames[save.entityNames.Count - 1]}");
-            }
-        }*/
-
-        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames);
+        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames, playerEquipment);
 
 
         var json = JsonUtility.ToJson(save);
@@ -404,6 +288,7 @@ public class GlobalGameSaving : MonoBehaviour
         livestockPetNames = save.livestockPetNames;
 		inventoryEntities = save.inventoryEntities;
 		inventoryEntityNames = save.inventoryEntityNames;
+		playerEquipment = save.Equipment;
 
         sr.Close();
 
@@ -412,87 +297,7 @@ public class GlobalGameSaving : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
 
-        /*SceneManager.LoadScene(save.sceneName);
-        player.transform.position = save.position;
-        timeManager.isNight = save.isNight;
-        timeManager.SetDate(
-            (int)save.date.x,
-            (int)save.date.y,
-            (int)save.date.z,
-            (int)save.date.w
-            );
-        playerInteraction.SetStamina((int)save.stamina);
-        playerInteraction.playerGold = save.gold;
-        GameObject.Find("GoldDisplay").GetComponent<TMP_Text>().text = $"{playerInteraction.playerGold} G";
-
-        if (tileManager.farmManager.farmField == null)
-        {
-            Debug.Log("Farmfield empty");
-        }
-        else
-        {
-            Debug.Log("Farmfield not empty");
-        }
-        tileManager.LoadFieldObjects(save.farmTiles, save.mushrooms);
-
-        farmManager.playerInventory.SetSaveableInventory(save.inventory);
-        if (farmingTutorial != null)
-        {
-            for (int i = 0; i < save.tutorialBools.Count; i++)
-            {
-                farmingTutorial.tutorialBools[i] = save.tutorialBools[i];
-            }
-            farmingTutorial.objective.text = save.tutorialObjective;
-        }
-
-        timeManager.netWorth.FarmNetWorth = save.farmNetWorth;
-
-        for (int i = 0; i < timeManager.NPCList.Count; i++)
-        {
-            timeManager.NPCList[i].LoadFlowcharts(save.NPCStartflowcharts[i], save.NPCQuestflowcharts[i]);
-            timeManager.NPCList[i].gameObject.GetComponent<Quests>().LoadQuest(save.NPCQuests[i]);
-            Debug.Log($"Inventory after Loading: {timeManager.NPCList[i].gameObject.GetComponent<Quests>().inventory.isShown}");
-            Debug.Log($"Date?: {timeManager.NPCList[0].transform.Find("Start").GetComponent<Flowchart>().GetIntegerVariable("dateNum")}");
-        }
-
-        //Destroying entities then replacing them with their saved counterparts
-        List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
-
-        for (int i = 0; i < save.entities.Count; i++)
-        {
-            switch (save.entities[i].type)
-            {
-                case "tool":
-                    Instantiate(Resources.Load($"Prefabs/Tools/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
-                    break;
-                case "mushroom":
-                    Instantiate(Resources.Load($"Prefabs/MushroomPrefabs/{save.entityNames[i]}"), save.entities[i].pos, Quaternion.identity);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        for (int i = 0; i < save.pets.Count; i++)
-        {
-            Instantiate(Resources.Load($"Prefabs/Pets/{save.petNames[i]}"), save.pets[i].pos, Quaternion.identity);
-        }
-
-        for (int i = 0; i < save.livestockPets.Count; i++)
-        {
-            Instantiate(Resources.Load($"Prefabs/Pets/{save.livestockPetNames[i]}"), save.livestockPets[i].pos, Quaternion.identity);
-        }
-
-        for (int i = 0; i < entities.Count; i++)
-        {
-            if (entities[i] != null)
-            {
-                Destroy(entities[i].gameObject);
-            }
-        }
-
-
-        sr.Close();*/
+       
     }
 
     void DeleteSave(string saveName)
@@ -604,8 +409,9 @@ public class GameSave
     public List<string> livestockPetNames = new List<string>();
 	public List<SaveInventoryEntity> inventoryEntities = new List<SaveInventoryEntity>();
 	public List<string> inventoryEntityNames = new List<string>();
+	public List<string> Equipment = new List<string>();
 
-    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames)
+    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames, List<string> equipment)
     {
         sceneName = s;
         position = p;
@@ -631,5 +437,6 @@ public class GameSave
         livestockPetNames = liveNames;
 		inventoryEntities = chests;
 		inventoryEntityNames = chestNames;
+		Equipment = equipment;
     }
 }
