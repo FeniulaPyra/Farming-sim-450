@@ -14,6 +14,7 @@ public class RangedEnemy : BasicEnemy
 
     void Attack()
     {
+		if (friendlyMode.isOn) return;
 		//setting damage
 		//pellet.damage = stat.strength
 		//pellet.debuff = debuff;

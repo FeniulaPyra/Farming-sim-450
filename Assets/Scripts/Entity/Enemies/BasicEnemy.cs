@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicEnemy : BasicEntity
 {
@@ -26,6 +27,9 @@ public class BasicEnemy : BasicEntity
     protected CombatantStats stats; //It's on this prefab; just drag it in
     [SerializeField]
     protected CombatantStats target; //The player
+
+	[SerializeField]
+	protected Toggle friendlyMode;
 
     // Start is called before the first frame update
     protected override void Start()
