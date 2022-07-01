@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1688180209356727741}
   - component: {fileID: 2598045385133598892}
   - component: {fileID: 4379336353407884094}
+  - component: {fileID: 3318866498262763701}
   m_Layer: 0
   m_Name: DummyEnemy3
   m_TagString: Untagged
@@ -116,6 +117,9 @@ MonoBehaviour:
   debuff: {fileID: 0}
   stats: {fileID: 0}
   target: {fileID: 0}
+  friendlyMode: {fileID: 0}
+  preferredSeasons: 01000000
+  offSeasonSpawnChance: 0
 --- !u!50 &4379336353407884094
 Rigidbody2D:
   serializedVersion: 4
@@ -137,3 +141,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &3318866498262763701
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787131283549198613}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

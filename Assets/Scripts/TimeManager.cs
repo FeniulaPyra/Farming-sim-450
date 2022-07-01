@@ -28,6 +28,13 @@ public class TimeManager : MonoBehaviour
     int dateNum = 1;
     public TMP_Text dateDisplay;
     //1 - 4 for Spr - Win
+	public enum Season
+	{
+		SPRING = 1,
+		SUMMER = 2 ,
+		FALL = 3,
+		WINTER = 4
+	}
     [SerializeField]
     int seasonNum = 1;
     public TMP_Text seasonDisplay;

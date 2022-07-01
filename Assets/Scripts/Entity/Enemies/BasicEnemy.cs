@@ -31,6 +31,10 @@ public class BasicEnemy : BasicEntity
 	[SerializeField]
 	protected Toggle friendlyMode;
 
+	[SerializeField]
+	public List<TimeManager.Season> preferredSeasons;
+	public float offSeasonSpawnChance;
+
     // Start is called before the first frame update
     protected override void Start()
     {

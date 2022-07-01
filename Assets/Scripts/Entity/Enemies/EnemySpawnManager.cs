@@ -38,6 +38,8 @@ public class EnemySpawnManager : MonoBehaviour
 
     GameObject spawner;
 
+	public TimeManager timeManager;
+
     [System.Serializable]
     public class Wave
     {
@@ -149,7 +151,7 @@ public class EnemySpawnManager : MonoBehaviour
                 {
                     int weightCheck = Random.Range(0, highestWeight);
 
-                    Debug.Log($"Spawn weight is {weightCheck}; j is {j}");
+					Debug.Log($"Spawn weight is {weightCheck}; j is {j}");
 
                     if (weightCheck <= currentWave.enemyWeights[j])
                     {
@@ -177,17 +179,27 @@ public class EnemySpawnManager : MonoBehaviour
             }
 
             GameObject enemyObject;
+			//if it is the incorrect season for the enemy dont spawn it unless random chance says so
+			if (enemyToSpawn != null && (enemyToSpawn.preferredSeasons.Contains((TimeManager.Season)timeManager.SeasonNumber) //is enemy in the right season?
+				|| Random.value < enemyToSpawn.offSeasonSpawnChance)) //or if it isnt do a random check to see if the  monster will spawn anyway (this way the monster will spawn but just less 
+			{
+				//instantiate enemy
+				enemyObject = Instantiate(enemyToSpawn.gameObject, spawner.transform.position, Quaternion.identity);
 
-            //instantiate enemy
-            enemyObject = Instantiate(enemyToSpawn.gameObject, spawner.transform.position, Quaternion.identity);
+				//enemyObject.GetComponent<Enemy>().myController = GetComponent<EnemyController>();
 
-            //enemyObject.GetComponent<Enemy>().myController = GetComponent<EnemyController>();
+				waveEnemies.Add(enemyObject.GetComponent<BasicEnemy>());
 
-            waveEnemies.Add(enemyObject.GetComponent<BasicEnemy>());
+				waveEnemyCounter++;
+				yield return new WaitForSeconds(enemySpawnDelay);
 
-            waveEnemyCounter++;
+			}
+			else
+			{
+				yield return new WaitForSeconds(0);
+				i--;
+			}
 
-            yield return new WaitForSeconds(enemySpawnDelay);
         }
 
         if (waveCounter < waves.Count - 1)
