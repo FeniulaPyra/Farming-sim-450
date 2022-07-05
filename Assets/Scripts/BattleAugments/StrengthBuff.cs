@@ -4,42 +4,50 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StrengthBuff
+public class StrengthBuff : Buff
 {
-    //Reference to player or enemy to alter their strength
-    public CombatantStats stats;
-
-    //Buff text so it can be edited from within the methods
-    public TMP_Text buff;
-
-    //For Player
-    public StrengthBuff(CombatantStats s, TMP_Text b)
+    //Constructor; actually sets the buff to augment the stat
+    public StrengthBuff(TMP_Text b, int m, bool d, BuffType t)
     {
-        stats = s;
         buff = b;
-    }
-    //For enemy
-    public StrengthBuff(CombatantStats s)
-    {
-        stats = s;
-    }
+        mod = m;
+        isDebuff = d;
+        type = t;
 
-    public void IncreaseStrength()
-    {
-        stats.Strength += 10;
-        if (buff != null)
+        if (isDebuff == false)
         {
             buff.text += "\nStrength Increased";
         }
-        Debug.Log($"Strength Mod: {stats.Strength}");
+        else
+        {
+            buff.text += "\nStrength Decreased";
+        }
+
+        //If a debuff somehow gets a positive number, or if a buff somehow gets a negative number
+        if (isDebuff == true && mod > 0)
+        {
+            mod *= -1;
+        }
+        else if (isDebuff == false && mod < 0)
+        {
+            mod *= -1;
+        }
     }
 
-    public void DecreaseStrength()
+    public StrengthBuff(int m, bool d, BuffType t)
     {
-        if (buff != null)
+        mod = m;
+        isDebuff = d;
+        type = t;
+
+        //If a debuff somehow gets a positive number, or if a buff somehow gets a negative number
+        if (isDebuff == true && mod > 0)
         {
-            buff.text = buff.text.Replace("\nDefense Increased", "");
+            mod *= -1;
         }
-        stats.ResetDefense();
+        else if (isDebuff == false && mod < 0)
+        {
+            mod *= -1;
+        }
     }
 }

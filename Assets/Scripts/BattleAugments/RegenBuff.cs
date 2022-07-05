@@ -9,18 +9,18 @@ public class RegenBuff
     //Reference to player or enemy to alter their health
     public CombatantStats stats;
 
-    public int healIterations;
-    public float healTimer;
-    public float baseHealTimer;
+    public int iterations;
+    public float timer;
+    public float baseTimer;
     //public int testHealth;
-    public int healFactor;
+    public int factor;
 
     public RegenBuff(CombatantStats s, int i, float t, float b, int f)
     {
         stats = s;
-        healIterations = i;
-        baseHealTimer = b;
-        healTimer = t;
-        healFactor = f;
+        iterations = i;
+        baseTimer = b;
+        timer = t;
+        factor = f;
     }
 }

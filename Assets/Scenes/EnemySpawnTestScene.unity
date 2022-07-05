@@ -53915,8 +53915,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
+      propertyPath: defMod
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
+      propertyPath: strMod
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
+      propertyPath: baseTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: healFactor
@@ -53925,6 +53937,10 @@ PrefabInstance:
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: regenHealth
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
+      propertyPath: baseBuffTimer
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: increaseSpeed
@@ -53936,11 +53952,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: increaseDefense
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6917903536277602098, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: increaseStrength
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189669987783190265, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
       propertyPath: m_RootOrder
@@ -59461,17 +59477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bea9046d9560374b941001753455fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1755389744 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6075272586247614177, guid: 803c03dda4eb1a44ab50f3f015e29e69, type: 3}
-  m_PrefabInstance: {fileID: 257024929}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1790619697
 GameObject:
   m_ObjectHideFlags: 0
@@ -60576,60 +60581,6 @@ MonoBehaviour:
   scope: 0
   key: TestInt
   value: 2
---- !u!1 &1899577129 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8189669987783190268, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
-  m_PrefabInstance: {fileID: 1087864066}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1899577130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899577129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdc511c9bbfebe4fb8d7724527f13d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 1
-  menu: {fileID: 0}
-  size: {fileID: 0}
-  speedCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  maxSeekDistance: 3
-  minSeekDistance: 1.25
-  sr: {fileID: 1899577134}
-  player: {fileID: 1025754823}
-  distance: 0
-  normalImage: {fileID: 0}
-  pettingImage: {fileID: 0}
-  petItem: {fileID: 0}
-  manager: {fileID: 0}
-  owner: {fileID: 0}
-  movement: {fileID: 0}
-  stats: {fileID: 0}
-  timer: 0
-  baseTimer: 10
-  activateChance: 100
-  increaseSpeed: 1
-  increaseDefense: 1
-  increaseStrength: 1
-  regenHealth: 1
-  buffApplied: 0
-  buffTimer: 0
-  baseBuffTimer: 15
-  buffNotification: {fileID: 1755389744}
---- !u!212 &1899577134 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 8189669987783190266, guid: 36104e97afb5e97488106f3925a41dbf, type: 3}
-  m_PrefabInstance: {fileID: 1087864066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1899797491
 GameObject:
   m_ObjectHideFlags: 0

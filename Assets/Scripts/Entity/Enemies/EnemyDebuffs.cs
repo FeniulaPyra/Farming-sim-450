@@ -23,10 +23,10 @@ public class EnemyDebuffs : MonoBehaviour
     public bool decreaseStrength;
 
     public bool poison;
-    public int poisonIterations = 0; // How many times you take poison damage before the buff wears off
+    /*public int poisonIterations = 0; // How many times you take poison damage before the buff wears off
     public int poisonFactor; //How much you are hurt by poison.
     float poisonTimer = 5.0f;
-    public int testHealth = 100;
+    public int testHealth = 100;*/
 
     [SerializeField]
     public bool debuffApplied;
@@ -36,6 +36,13 @@ public class EnemyDebuffs : MonoBehaviour
 
     [SerializeField]
     TMP_Text debuffNotification;
+
+    SpeedBuff speed;
+    public int strMod;//To be filled out in inspector for buffs to differ pet by pet //StrengthBuff strength;
+    public int defMod;//To be filled out in inspector for buffs to differ pet by pet //DefenseBuff defense;
+    RegenBuff poisonDebuff;
+    StrengthBuff str; //exists solely so that buffs can be removed with remove(str/def)
+    DefenseBuff def;
 
 
     // Start is called before the first frame update
@@ -78,21 +85,21 @@ public class EnemyDebuffs : MonoBehaviour
 
         if (debuffApplied == true)
         {
-            if (poison == true && poisonIterations < 5)
+            if (poison == true && poisonDebuff.iterations < 5)
             {
-                if (poisonIterations < 5)
+                if (poisonDebuff.iterations < 5)
                 {
-                    poisonTimer -= Time.deltaTime;
-                    if (poisonTimer <= 0.0f)
+                    poisonDebuff.timer -= Time.deltaTime;
+                    if (poisonDebuff.timer <= 0.0f)
                     {
-                        stats.TakeDamage(poisonFactor, true);
-                        poisonIterations++;
-                        poisonTimer = 5.0f;
+                        stats.TakeDamage(poisonDebuff.factor, true);
+                        poisonDebuff.iterations++;
+                        poisonDebuff.timer = poisonDebuff.baseTimer;
                     }
                 }
                 else
                 {
-                    poisonIterations = 0;
+                    poisonDebuff.iterations = 0;
                     CancelDebuff();
                 }
             }
@@ -117,21 +124,25 @@ public class EnemyDebuffs : MonoBehaviour
 
         if (decreaseStrength == true && debuffApplied == false)
         {
-            stats.Strength -= 7;
-            debuffNotification.text += "\nStrength Decreased";
-            Debug.Log($"Strength Mod: {stats.Strength}");
+            /*stats.Strength -= 7;
+            debuffNotification.text += "\nStrength Decreased";*/
+            str = new StrengthBuff(debuffNotification, strMod, true, Buff.BuffType.offense);
+            stats.buffs.Add(str);
+            Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
         }
 
         if (decreaseDefense == true && debuffApplied == false)
         {
-            stats.Defense -= 7;
-            debuffNotification.text += "\nDefense Decreased";
-            Debug.Log($"Defense Mod: {stats.Defense}");
+            /*stats.Defense -= 7;
+            debuffNotification.text += "\nDefense Decreased";*/
+            def = new DefenseBuff(debuffNotification, defMod, true, Buff.BuffType.defense);
+            stats.buffs.Add(def);
+            Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
         if (poison == true && debuffApplied == false)
         {
-            poisonTimer = 5.0f;
+            poisonDebuff.timer = poisonDebuff.baseTimer;
             debuffNotification.text += "\nPoisoned";
         }
 
@@ -149,14 +160,20 @@ public class EnemyDebuffs : MonoBehaviour
 
         if (decreaseDefense == true)
         {
+            /*debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
+            stats.ResetDefense();*/
             debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
-            stats.ResetDefense();
+            stats.buffs.Remove(def);
+            Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
         if (decreaseStrength == true)
         {
+            /*debuffNotification.text = debuffNotification.text.Replace("\nStrength Decreased", "");
+            stats.ResetStrength();*/
             debuffNotification.text = debuffNotification.text.Replace("\nStrength Decreased", "");
-            stats.ResetStrength();
+            stats.buffs.Remove(str);
+            Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
         }
 
         if (poison == true)

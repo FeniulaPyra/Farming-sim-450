@@ -39,9 +39,11 @@ public class BuffEnemy : MonoBehaviour
 
     //The four buff types, but instances of them.
     SpeedBuff speed;
-    StrengthBuff strength;
-    DefenseBuff defense;
+    public int strMod;//To be filled out in inspector for buffs to differ pet by pet //StrengthBuff strength;
+    public int defMod;//To be filled out in inspector for buffs to differ pet by pet //DefenseBuff defense;
     RegenBuff regen;
+    StrengthBuff str; //exists solely so that buffs can be removed with remove(str/def)
+    DefenseBuff def;
 
     // Start is called before the first frame update
     void Start()
@@ -63,8 +65,6 @@ public class BuffEnemy : MonoBehaviour
         //buffNotification.text = "";
 
         speed = new SpeedBuff(gameObject.GetComponent<BasicEnemy>());
-        strength = new StrengthBuff(stats);
-        defense = new DefenseBuff(stats);
         regen = new RegenBuff(stats, 5, 5.0f, 5.0f, 10);
     }
 
@@ -124,19 +124,19 @@ public class BuffEnemy : MonoBehaviour
                     CancelBuff();
                 }*/
 
-                if (regen.healIterations < 5)
+                if (regen.iterations < 5)
                 {
-                    regen.healTimer -= Time.deltaTime;
-                    if (regen.healTimer <= 0.0f)
+                    regen.timer -= Time.deltaTime;
+                    if (regen.timer <= 0.0f)
                     {
-                        stats.Heal(regen.healFactor, false);
-                        regen.healIterations++;
-                        regen.healTimer = regen.baseHealTimer;
+                        stats.Heal(regen.factor, false);
+                        regen.iterations++;
+                        regen.timer = regen.baseTimer;
                     }
                 }
                 else
                 {
-                    regen.healIterations = 0;
+                    regen.iterations = 0;
                     CancelBuff();
                 }
             }
@@ -164,7 +164,9 @@ public class BuffEnemy : MonoBehaviour
             /*stats.Strength += 10;
             buffNotification.text += "\nStrength Increased";
             Debug.Log($"Strength Mod: {stats.Strength}");*/
-            strength.IncreaseStrength();
+            str = new StrengthBuff(strMod, false, Buff.BuffType.offense);
+            stats.buffs.Add(str);
+            Debug.Log($"Strength Mod: {stats.Strength}");
         }
 
         if (increaseDefense == true)
@@ -172,13 +174,16 @@ public class BuffEnemy : MonoBehaviour
             /*stats.Defense += 10;
             buffNotification.text += "\nDefense Increased";
             Debug.Log($"Defense Mod: {stats.Defense}");*/
-            defense.IncreaseDefense();
+            //defense.IncreaseDefense();
+            def = new DefenseBuff(defMod, false, Buff.BuffType.defense);
+            stats.buffs.Add(def);
+            Debug.Log($"Defense Mod: {stats.Defense}");
         }
 
         if (regenHealth == true)
         {
             //healTimer = 5.0f;
-            regen.healTimer = regen.baseHealTimer;
+            regen.timer = regen.baseTimer;
             //buffNotification.text += "\nRegenerating Health";
         }
 
@@ -200,14 +205,16 @@ public class BuffEnemy : MonoBehaviour
         {
             /*buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
             stats.ResetDefense();*/
-            strength.DecreaseStrength();
+            //strength.DecreaseStrength();
+            stats.buffs.Remove(str);
         }
 
         if (increaseStrength == true)
         {
             /*buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
             stats.ResetStrength();*/
-            defense.DecreaseDefense();
+            //defense.DecreaseDefense();
+            stats.buffs.Remove(def);
         }
 
         /*if (regenHealth == true)
