@@ -41,6 +41,12 @@ public class BasicEnemy : BasicEntity
         //debuff = gameObject.GetComponent<EnemyDebuffs>();
         target = FindObjectOfType<PlayerMovement>().gameObject.GetComponent<CombatantStats>();
 
+        //Go to the PlayerInputManager, which should have everything for controller support. Then just go down the list until Friendly Mode
+        //friendlyMode = GameObject.Find("PlayerInputManager").transform.Find("Menus").transform.Find("Settings").transform.Find("Friendly Mode").GetComponent<Toggle>();
+
+        //Menus is active, so something should be returned. Then just go down the list until Friendly Mode
+        friendlyMode = GameObject.Find("Menus").transform.Find("Settings").transform.Find("Friendly Mode").GetComponent<Toggle>();
+
         base.Start();
     }
 

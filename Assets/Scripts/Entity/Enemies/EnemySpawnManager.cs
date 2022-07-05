@@ -63,6 +63,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         player = playerInteraction.gameObject;
+        timeManager = FindObjectOfType<TimeManager>();
     }
 
     // Update is called once per frame

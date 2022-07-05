@@ -7,6 +7,17 @@ public class BasicEntity : MonoBehaviour
 {
     [SerializeField]
     protected float movementSpeed = 1;
+    public float MovementSpeed
+    {
+        get
+        {
+            return movementSpeed;
+        }
+        set
+        {
+            movementSpeed = value;
+        }
+    }
 
 	public GameObject menu;
 	public Slider size;
