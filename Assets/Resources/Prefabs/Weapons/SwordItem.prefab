@@ -4978,4 +4978,4 @@ MonoBehaviour:
   type: weapon
   strength: 10
   angle: 180
-  reach: 1
+  reach: 2

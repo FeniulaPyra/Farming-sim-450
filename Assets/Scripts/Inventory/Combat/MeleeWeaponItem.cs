@@ -28,7 +28,7 @@ public class MeleeWeaponItem : WeaponItem
 		//Collider2D col = target.gameObject.GetComponent<Collider2D>();
 		Vector2 closestColliderPoint = target.transform.position;//col.ClosestPoint(origin.transform.position);
 		//Sees how close the player is to them
-		float distance = Vector2.Distance(gameObject.transform.position, closestColliderPoint);
+		float distance = Vector2.Distance(origin.transform.position, closestColliderPoint);
 		//NOTE! getcomponent<playermovement> should be changed to include enemies as well if we want enemies to have weapons.
 		float angle = Vector2.Angle(origin.GetComponent<PlayerMovement>().Facing, origin.transform.position - (Vector3)closestColliderPoint);
 
