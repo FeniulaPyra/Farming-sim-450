@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CombatantStats : MonoBehaviour
 {
+    //List of buffs
+    public List<Buff> buffs = new List<Buff>();
+
     [SerializeField]
 	private int maxHealthAdjustments;
 	public int MaxHealth { get { return maxHealthAdjustments + BaseMaxHealth; } set { maxHealthAdjustments = value - BaseMaxHealth; } }
@@ -22,8 +25,27 @@ public class CombatantStats : MonoBehaviour
 
     [SerializeField]
     private int strengthAdjustments;
-    public int Strength { get { return strengthAdjustments + BaseStrength; } set { strengthAdjustments = value - BaseStrength; } }
-	public int BaseStrength
+    public int StrengthAdjustments
+    {
+        get
+        {
+            int strMod = 0;
+
+            foreach (Buff b in buffs)
+            {
+                if (b.type == Buff.BuffType.offense)
+                {
+                    strMod += b.Mod;
+                }
+            }
+
+            strengthAdjustments = strMod;
+            return strengthAdjustments;
+        }
+    }
+    //public int Strength { get { return strengthAdjustments + BaseStrength; } set { strengthAdjustments = value - BaseStrength; } }
+    public int Strength { get { if (Mathf.Abs(StrengthAdjustments) > BaseStrength && StrengthAdjustments < 0) { strengthAdjustments = -BaseStrength; return strengthAdjustments + BaseStrength; } return StrengthAdjustments + BaseStrength; }}
+    public int BaseStrength
 	{
 		get
 		{
@@ -33,8 +55,27 @@ public class CombatantStats : MonoBehaviour
 
     [SerializeField]
     private int defenseAdjustments;
-	public int Defense { get { return defenseAdjustments + BaseDefense; } set { defenseAdjustments = value - BaseDefense; if (defenseAdjustments < 0) { defenseAdjustments = 0; } } }
-	public int BaseDefense
+    public int DefenseAdjustments
+    {
+        get
+        {
+            int defMod = 0;
+
+            foreach (Buff b in buffs)
+            {
+                if (b.type == Buff.BuffType.defense)
+                {
+                    defMod += b.Mod;
+                }
+            }
+
+            defenseAdjustments = defMod;
+            return defenseAdjustments;
+        }
+    }
+    //public int Defense { get { return defenseAdjustments + BaseDefense; } set { defenseAdjustments = value - BaseDefense; if (defenseAdjustments < 0) { defenseAdjustments = 0; } } }
+    public int Defense { get { if (Mathf.Abs(DefenseAdjustments) > BaseDefense && DefenseAdjustments < 0) { defenseAdjustments = -BaseDefense; return defenseAdjustments + BaseDefense; } return DefenseAdjustments + BaseDefense; } set { Defense += value; } }
+    public int BaseDefense
 	{
 		get
 		{
@@ -104,8 +145,15 @@ public class CombatantStats : MonoBehaviour
 
 	public void TakeDamage(int amt, bool ignoreDefense = false)
 	{
+        //Always make sure you're taking damage
+        amt = amt - (ignoreDefense ? 0 : defenseAdjustments);
+        //subtracting negative damage would heal, so always do at least 1
+        if (amt < 0)
+        {
+            amt = 1;
+        }
         //health -= (amt - (ignoreDefense ? 0 : defense));
-        Health -= (amt - (ignoreDefense ? 0 : defenseAdjustments));
+        Health -= amt;
     }
 
 	public void Heal(int amt, bool ignoreMax)

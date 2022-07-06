@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7085785950156121008}
   - component: {fileID: -4169388183879288874}
   - component: {fileID: -4801471249100170959}
+  - component: {fileID: 9115784455911518629}
   m_Layer: 0
   m_Name: DummyEnemy2
   m_TagString: Untagged
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e044ffce8219044aa7f12ab3cafd4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 0.5
   menu: {fileID: 0}
   size: {fileID: 0}
   speedCurve:
@@ -129,8 +130,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxSeekDistance: 7
-  minSeekDistance: 3
+  maxSeekDistance: 4
+  minSeekDistance: 2.5
   sr: {fileID: 3114001181866298012}
   player: {fileID: 0}
   distance: 0
@@ -141,8 +142,8 @@ MonoBehaviour:
   stats: {fileID: -4169388183879288874}
   target: {fileID: 0}
   friendlyMode: {fileID: 0}
-  preferredSeasons: 
-  offSeasonSpawnChance: 0
+  preferredSeasons: 01000000
+  offSeasonSpawnChance: 0.5
   pellet: {fileID: 3463793939459626526, guid: 64b87d1044992014d933615e8543f91d, type: 3}
   attackTimer: 0
   baseAttackTimer: 2
@@ -165,13 +166,12 @@ MonoBehaviour:
   decreaseDefense: 1
   decreaseStrength: 1
   poison: 0
-  poisonIterations: 0
-  poisonFactor: 5
-  testHealth: 100
   debuffApplied: 0
   debuffTimer: 0
   baseDebuffTimer: 30
   debuffNotification: {fileID: 0}
+  strMod: -3
+  defMod: 3
 --- !u!114 &-4169388183879288874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81824e0c68e90904bb95f44cb57ac5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffs: []
   maxHealthAdjustments: 0
   health: 0
   strengthAdjustments: 0
@@ -206,3 +207,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &9115784455911518629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302464457625486871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5962e293f495fcf47ba073f94ec335aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 0}
+  timer: 0
+  baseTimer: 5
+  activateChance: 100
+  increaseSpeed: 0
+  increaseDefense: 0
+  increaseStrength: 0
+  regenHealth: 0
+  buffApplied: 0
+  buffTimer: 0
+  baseBuffTimer: 15
+  strMod: 0
+  defMod: 0

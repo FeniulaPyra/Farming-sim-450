@@ -1,15 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using UnityEngine.InputSystem;
 
-public class BuffPet : BasicPet
+public class BuffEnemy : MonoBehaviour
 {
-    //Reference to player movement to alter their speed
-    [SerializeField]
-    PlayerMovement movement;
     //The player's stats
     [SerializeField]
     CombatantStats stats;
@@ -41,7 +35,7 @@ public class BuffPet : BasicPet
     public float baseBuffTimer;
 
     [SerializeField]
-    TMP_Text buffNotification;
+    //TMP_Text buffNotification;
 
     //The four buff types, but instances of them.
     SpeedBuff speed;
@@ -54,7 +48,7 @@ public class BuffPet : BasicPet
     // Start is called before the first frame update
     void Start()
     {
-        base.Start();
+        //base.Start();
 
         if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
         {
@@ -65,19 +59,19 @@ public class BuffPet : BasicPet
             }
         }
 
-        movement = FindObjectOfType<PlayerMovement>();
-        stats = movement.gameObject.GetComponent<CombatantStats>();
-        buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
-        buffNotification.text = "";
+        //movement = FindObjectOfType<PlayerMovement>();
+        stats = gameObject.GetComponent<CombatantStats>();
+        //buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
+        //buffNotification.text = "";
 
-        speed = new SpeedBuff(movement, buffNotification, this);
+        speed = new SpeedBuff(gameObject.GetComponent<BasicEnemy>());
         regen = new RegenBuff(stats, 5, 5.0f, 5.0f, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        base.Update();
+        //base.Update();
 
         if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
         {
@@ -170,9 +164,9 @@ public class BuffPet : BasicPet
             /*stats.Strength += 10;
             buffNotification.text += "\nStrength Increased";
             Debug.Log($"Strength Mod: {stats.Strength}");*/
-            str = new StrengthBuff(buffNotification, strMod, false, Buff.BuffType.offense);
+            str = new StrengthBuff(strMod, false, Buff.BuffType.offense);
             stats.buffs.Add(str);
-            Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
+            Debug.Log($"Strength Mod: {stats.Strength}");
         }
 
         if (increaseDefense == true)
@@ -181,16 +175,16 @@ public class BuffPet : BasicPet
             buffNotification.text += "\nDefense Increased";
             Debug.Log($"Defense Mod: {stats.Defense}");*/
             //defense.IncreaseDefense();
-            def = new DefenseBuff(buffNotification, defMod, false, Buff.BuffType.defense);
+            def = new DefenseBuff(defMod, false, Buff.BuffType.defense);
             stats.buffs.Add(def);
-            Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
+            Debug.Log($"Defense Mod: {stats.Defense}");
         }
 
         if (regenHealth == true)
         {
             //healTimer = 5.0f;
             regen.timer = regen.baseTimer;
-            buffNotification.text += "\nRegenerating Health";
+            //buffNotification.text += "\nRegenerating Health";
         }
 
         buffApplied = true;
@@ -212,9 +206,7 @@ public class BuffPet : BasicPet
             /*buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
             stats.ResetDefense();*/
             //strength.DecreaseStrength();
-            buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
-            stats.buffs.Remove(def);
-            Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
+            stats.buffs.Remove(str);
         }
 
         if (increaseStrength == true)
@@ -222,70 +214,17 @@ public class BuffPet : BasicPet
             /*buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
             stats.ResetStrength();*/
             //defense.DecreaseDefense();
-            buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
-            stats.buffs.Remove(str);
-            Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
+            stats.buffs.Remove(def);
         }
 
-        if (regenHealth == true)
+        /*if (regenHealth == true)
         {
             buffNotification.text = buffNotification.text.Replace("\nRegenerating Health", "");
-        }
+        }*/
 
         //buffNotification.text = "";
 
         buffApplied = false;
         buffTimer = baseBuffTimer;
-    }
-
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
-    private void OnMouseEnter()//private void OnMouseEnter()
-    {
-        base.OnMouseEnter();
-    }
-
-    private void OnMouseExit()//private void OnMouseExit()
-    {
-        base.OnMouseExit();
-    }
-
-    private void OnMouseOver()//private void OnMouseOver()
-    {
-        base.OnMouseOver();
-    }
-
-    public void SaveBuffPet(out SaveBuffPet buffPet)
-    {
-        buffPet = new SaveBuffPet(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, normalImage, pettingImage, petItem, manager, gameObject, timer, baseTimer, activateChance, increaseSpeed, buffApplied, buffTimer, baseBuffTimer);
-    }
-}
-
-[System.Serializable]
-public class SaveBuffPet : SavePet
-{
-    //Timer on which the item spawns
-    public float timer;
-    public float baseTimer;
-    //chance of buff activating
-    public int activateChance;
-
-    public bool increaseSpeed;
-    public bool buffApplied;
-    public float buffTimer;
-    public float baseBuffTimer;
-
-    public SaveBuffPet(float mS, GameObject m, Slider s, AnimationCurve sC, float maxD, float minD, SpriteRenderer sR, Transform p, Rigidbody2D rB, Vector2 f, GameObject self, Vector3 pos, Sprite n, Sprite petting, Item pet, FarmManager manager, GameObject gameObject, float t, float bT, int chance, bool iS, bool bA, float buffT, float bBuffT ) : base(mS, m, s, sC, maxD, minD, sR, p, rB, f, self, pos, n, petting, pet, manager, gameObject)
-    {
-        timer = t;
-        baseTimer = bT;
-        activateChance = chance;
-        increaseSpeed = iS;
-        buffApplied = bA;
-        buffTimer = buffT;
-        baseBuffTimer = bBuffT;
     }
 }
