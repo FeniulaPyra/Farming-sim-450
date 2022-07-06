@@ -213,7 +213,9 @@ public class BuffPet : BasicPet
             stats.ResetDefense();*/
             //strength.DecreaseStrength();
             buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
+            stats.Defense -= stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
             stats.buffs.Remove(def);
+            //stats.Defense = stats.Defense;
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 

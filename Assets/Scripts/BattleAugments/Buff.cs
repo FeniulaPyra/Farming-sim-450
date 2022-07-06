@@ -14,6 +14,9 @@ public class Buff
     [SerializeField]
     protected bool isDebuff;
 
+    //Checks to see if it's already be added to strength or defense
+    public bool added;
+
     //the actual stat modifier
     [SerializeField]
     protected int mod;

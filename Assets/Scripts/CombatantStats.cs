@@ -44,7 +44,18 @@ public class CombatantStats : MonoBehaviour
         }
     }
     //public int Strength { get { return strengthAdjustments + BaseStrength; } set { strengthAdjustments = value - BaseStrength; } }
-    public int Strength { get { if (Mathf.Abs(StrengthAdjustments) > BaseStrength && StrengthAdjustments < 0) { strengthAdjustments = -BaseStrength; return strengthAdjustments + BaseStrength; } return StrengthAdjustments + BaseStrength; }}
+    public int Strength
+    {
+        get
+        {
+            if (Mathf.Abs(StrengthAdjustments) > BaseStrength && StrengthAdjustments < 0)
+            {
+                strengthAdjustments = -BaseStrength;
+                return strengthAdjustments + BaseStrength;
+            }
+            return StrengthAdjustments + BaseStrength;
+        }
+    }
     public int BaseStrength
 	{
 		get
@@ -59,22 +70,44 @@ public class CombatantStats : MonoBehaviour
     {
         get
         {
-            int defMod = 0;
+            int buffMod = 0;
+            int equipMod = defenseAdjustments;
 
             foreach (Buff b in buffs)
             {
-                if (b.type == Buff.BuffType.defense)
+                if (b.type == Buff.BuffType.defense)// && b.added == false)
                 {
-                    defMod += b.Mod;
+                    buffMod += b.Mod;
+                    if (b.added == true) { equipMod -= b.Mod; } //
+                    b.added = true;
                 }
             }
 
-            defenseAdjustments = defMod;
+            defenseAdjustments = buffMod + equipMod;
             return defenseAdjustments;
+        }
+        set
+        {
+            defenseAdjustments = value;
         }
     }
     //public int Defense { get { return defenseAdjustments + BaseDefense; } set { defenseAdjustments = value - BaseDefense; if (defenseAdjustments < 0) { defenseAdjustments = 0; } } }
-    public int Defense { get { if (Mathf.Abs(DefenseAdjustments) > BaseDefense && DefenseAdjustments < 0) { defenseAdjustments = -BaseDefense; return defenseAdjustments + BaseDefense; } return DefenseAdjustments + BaseDefense; } set { Defense += value; } }
+    public int Defense
+    {
+        get
+        {
+            if (Mathf.Abs(DefenseAdjustments) > BaseDefense && DefenseAdjustments < 0)
+            {
+                defenseAdjustments = -BaseDefense;
+                return defenseAdjustments + BaseDefense;
+            }
+            return defenseAdjustments + BaseDefense;
+        }
+        set
+        {
+            DefenseAdjustments = value - BaseDefense;
+        }
+    }
     public int BaseDefense
 	{
 		get

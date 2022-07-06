@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class StatsPanel : MonoBehaviour
 {
@@ -72,7 +73,12 @@ public class StatsPanel : MonoBehaviour
 		HPValueText.text = "" + stats.Health;
 		MaxHPValueText.text = "" + stats.MaxHealth;
 		StrengthValueText.text = "" + stats.Strength;
-		DefenseValueText.text = "" + stats.Defense;
+        DefenseValueText.text = "" + stats.Defense;
+
+        /*if (Keyboard.current.mKey.wasPressedThisFrame == true)
+        {
+            DefenseValueText.text = "" + stats.Defense;
+        }*/
     }
 
 	public void EquipItem(EquipmentItem.EquipmentItemType equipmentType)

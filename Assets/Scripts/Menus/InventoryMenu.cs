@@ -21,6 +21,7 @@ public class InventoryMenu : TogglableMenu
 	// Start is called before the first frame update
 	void Start()
 	{
+        ItemManagerObject = GameObject.Find("ItemManager");
 		i = ItemManagerObject.GetComponent<ItemManager>();
 		grabbedItem = ItemGrabber.GetComponent<InventoryItemGrabber>();
 	}

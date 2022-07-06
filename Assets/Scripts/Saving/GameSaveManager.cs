@@ -37,7 +37,7 @@ public class GameSaveManager : MonoBehaviour
     {
         //constantPath = Application.persistentDataPath;
 
-        //flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
+        flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
 
         //originalPath = constantPath + "/saves/";
         //path = originalPath;

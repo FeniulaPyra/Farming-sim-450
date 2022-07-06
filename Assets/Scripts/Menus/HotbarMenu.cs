@@ -22,6 +22,7 @@ public class HotbarMenu : TogglableMenu
 	// Start is called before the first frame update
 	void Start()
 	{
+        playerObj = GameObject.Find("Player");
 		player = playerObj.GetComponent<PlayerInventoryManager>();
 		inv = player.inv;
 

@@ -206,7 +206,8 @@ public class BuffEnemy : MonoBehaviour
             /*buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
             stats.ResetDefense();*/
             //strength.DecreaseStrength();
-            stats.buffs.Remove(str);
+            stats.Defense -= stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
+            stats.buffs.Remove(def);
         }
 
         if (increaseStrength == true)
@@ -214,7 +215,7 @@ public class BuffEnemy : MonoBehaviour
             /*buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
             stats.ResetStrength();*/
             //defense.DecreaseDefense();
-            stats.buffs.Remove(def);
+            stats.buffs.Remove(str);
         }
 
         /*if (regenHealth == true)

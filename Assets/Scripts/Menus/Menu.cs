@@ -188,6 +188,7 @@ public class Menu : MonoBehaviour
             }
             InventoryMenuObject.SetActive(false);
             ItemGrabber.Hide();
+            StatsPanelMenu.SetActive(false);
             state = MenuState.NO_MENU;
             pi.CanInteract = true;
 
