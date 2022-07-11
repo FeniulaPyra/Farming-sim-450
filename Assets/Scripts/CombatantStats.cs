@@ -7,6 +7,9 @@ public class CombatantStats : MonoBehaviour
     //List of buffs
     public List<Buff> buffs = new List<Buff>();
 
+    //Specifically for augmenting stats to make bosses more difficult then enemies of their same level
+    public bool isBoss;
+
     [SerializeField]
 	private int maxHealthAdjustments;
 	public int MaxHealth { get { return maxHealthAdjustments + BaseMaxHealth; } set { maxHealthAdjustments = value - BaseMaxHealth; } }
@@ -120,7 +123,16 @@ public class CombatantStats : MonoBehaviour
     private int exp;
 	public int Experience
 	{
-		get { return exp; }
+		get
+        {
+            exp = level * 5;
+
+            if (isBoss == true)
+            {
+                exp *= 5;
+            }
+            return exp;
+        }
 	}
 
     [SerializeField]
@@ -165,16 +177,29 @@ public class CombatantStats : MonoBehaviour
 		defenseAdjustments = BaseDefense;
 	}
 
-	public void IncreaseExp(int amt, bool ignoreLevelCheck)
+	public void IncreaseExp(int amt, bool ignoreLevelCheck = false)
 	{
-		if (amt > ExpToLevel(Level + 1) && !ignoreLevelCheck)
+        //Will need to be tested
+        //If it only checks to see if the amount you just got is in surplus of what you need
+        //then getting 10 at level 1 won't get you a level
+        //but might add onto an existing 10 - 19, which would put you over the 20 you need to go from level 1 to 2
+        /*if (amt > ExpToLevel(Level + 1) && !ignoreLevelCheck)
 		{
 			exp = 0;
 			IncreaseExp(amt - ExpToLevel(Level + 1), false); //recursive
 			Level++;
 		}
-		exp += amt;
-	}
+		exp += amt;*/
+
+        exp += amt;
+        if (exp >= ExpToLevel(Level + 1))
+        {
+            int surplus = exp - ExpToLevel(Level + 1);
+            exp = 0;
+            IncreaseExp(surplus); //recursive
+            Level++;
+        }
+    }
 
 	public void TakeDamage(int amt, bool ignoreDefense = false)
 	{

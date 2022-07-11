@@ -51081,11 +51081,11 @@ PrefabInstance:
     - target: {fileID: 7357428554904784003, guid: 88086a3e7ad52c14c9540ade9e31c9fd, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0]
       value: 
-      objectReference: {fileID: -6290528856993958317, guid: 2f7c7a70be2c21e4eb68bfff356f79a3, type: 3}
+      objectReference: {fileID: 3143942832653384597, guid: 8939e19a4d56297439d1f531d9eb606d, type: 3}
     - target: {fileID: 7357428554904784003, guid: 88086a3e7ad52c14c9540ade9e31c9fd, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3143942832653384597, guid: 8939e19a4d56297439d1f531d9eb606d, type: 3}
     - target: {fileID: 7357428554904784003, guid: 88086a3e7ad52c14c9540ade9e31c9fd, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[2]
       value: 
@@ -51331,7 +51331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 309404114518478525, guid: 2bf2f903c580ad640a4fa53728b95569, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 309404114518478525, guid: 2bf2f903c580ad640a4fa53728b95569, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51384,7 +51384,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6295550923248906416, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 6295550923248906416, guid: 0391e7e5b2715e74ead9cf573031e938, type: 3}
       propertyPath: m_LocalPosition.x

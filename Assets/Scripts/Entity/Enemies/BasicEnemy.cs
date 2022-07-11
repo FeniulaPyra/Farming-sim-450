@@ -28,6 +28,9 @@ public class BasicEnemy : BasicEntity
     [SerializeField]
     protected CombatantStats target; //The player
 
+    [SerializeField]
+    protected List<Item> drops = new List<Item>();
+
 	[SerializeField]
 	protected Toggle friendlyMode;
 
@@ -51,8 +54,14 @@ public class BasicEnemy : BasicEntity
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        //Ready for death
+        if (stats.Health <= 0)
+        {
+            KillEnemy();
+        }
+
         base.Update();
     }
 
@@ -86,6 +95,32 @@ public class BasicEnemy : BasicEntity
                 attacked = false;
             }
         }*/
+    }
+
+    protected void KillEnemy()
+    {
+        //experience
+        target.IncreaseExp(stats.Experience);
+        //drops
+        if (drops.Count > 0)
+        {
+            DropItems();
+        }
+        //death
+        Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// Randomly chooses something from the enemy's item list to instantiate where they die
+    /// </summary>
+    protected virtual void DropItems()
+    {
+        //randomly select an item to spawn
+        int index;
+        index = Random.Range(0, drops.Count);
+        Item drop = drops[index];
+        //spawn that item's gameobject at the enemy's position
+        Instantiate(drop.gameObject, transform.position, Quaternion.identity);
     }
 
     protected virtual void Flee(Transform target)
