@@ -125,7 +125,7 @@ public class CombatantStats : MonoBehaviour
 	{
 		get
         {
-            exp = level * 5;
+            exp = level * 50;
 
             if (isBoss == true)
             {
@@ -196,8 +196,8 @@ public class CombatantStats : MonoBehaviour
         {
             int surplus = exp - ExpToLevel(Level + 1);
             exp = 0;
-            IncreaseExp(surplus); //recursive
             Level++;
+            IncreaseExp(surplus); //recursive
         }
     }
 
