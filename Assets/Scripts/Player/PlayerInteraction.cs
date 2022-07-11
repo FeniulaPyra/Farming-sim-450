@@ -114,6 +114,10 @@ public class PlayerInteraction : MonoBehaviour
     Vector2 pos = new Vector2();
     Vector2 savePos;
 
+    //This exists SOLELY so quests can be added when accepted and removed when completed
+    //Enemies will refernce this when updating a quest's kill list
+    public List<Quests> playerQuests = new List<Quests>();
+
     private void Start()
     {
 		menu = GameObject.Find("Menus").GetComponent<Menu>();

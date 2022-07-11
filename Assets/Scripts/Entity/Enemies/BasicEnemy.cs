@@ -106,8 +106,27 @@ public class BasicEnemy : BasicEntity
         {
             DropItems();
         }
+        //Quests
+        UpdateQuest();
         //death
         Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// Upon death, update the player's search and destroy quest, if necessary
+    /// </summary>
+    protected virtual void UpdateQuest()
+    {
+        foreach (Quests q in target.gameObject.GetComponent<PlayerInteraction>().playerQuests)
+        {
+            if (q.questType == Quests.QuestType.SearchAndDestroy || q.questType == Quests.QuestType.TimedSearchAndDestroy)
+            {
+                if (this.GetType() == q.TargetEnemy.GetType())
+                {
+                    q.AmountKilled++;
+                }
+            }
+        }
     }
 
     /// <summary>

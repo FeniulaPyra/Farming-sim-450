@@ -37,8 +37,10 @@ public class Quests : MonoBehaviour
     {
         Collection,
         Fundraising,
+        SearchAndDestroy,
         TimedCollection,
-        TimedFundraising
+        TimedFundraising,
+        TimedSearchAndDestroy
     }
 
     //Will determine what parts of update run each frame
@@ -119,6 +121,31 @@ public class Quests : MonoBehaviour
         daysToQuestFail = value;
     }
 
+    //Enemy to hunt
+    [SerializeField]
+    BasicEnemy targetEnemy;
+    public BasicEnemy TargetEnemy
+    {
+        get
+        {
+            return targetEnemy;
+        }
+    }
+    [SerializeField]
+    int amountToKill;
+    [SerializeField]
+    int amountKilled;
+    public int AmountKilled
+    {
+        get
+        {
+            return amountKilled;
+        }
+        set
+        {
+            amountKilled = value;
+        }
+    }
 
 
     //Tied to dialogue manager
@@ -154,7 +181,7 @@ public class Quests : MonoBehaviour
     /// <param name="Item3Count">How many of the third item the player needs</param>
     /// <param name="goldRequired">How much gold the player needs for the quest</param>
     /// <param name="daysToFail">How many days the player has until they fail the quest</param>
-    public void SetQuestParams(QuestType type, Item item1, Item item2, Item item3, int numItems, int item1Count, int item2Count, int item3Count, int goldRequired, int daysToFail)
+    public void SetQuestParams(QuestType type, Item item1, Item item2, Item item3, int numItems, int item1Count, int item2Count, int item3Count, int goldRequired, int daysToFail, BasicEnemy target, int targetAmount)
     {
         questType = type;
 
@@ -181,12 +208,12 @@ public class Quests : MonoBehaviour
                     requiredItemsAmountList.Add(item3Count);
                     break;
                 default:
-                    requiredItemList.Add(item1);
+                    /*requiredItemList.Add(item1);
                     requiredItemList.Add(item2);
                     requiredItemList.Add(item3);
                     requiredItemsAmountList.Add(item1Count);
                     requiredItemsAmountList.Add(item2Count);
-                    requiredItemsAmountList.Add(item3Count);
+                    requiredItemsAmountList.Add(item3Count);*/
                     break;
             }
 
@@ -202,10 +229,17 @@ public class Quests : MonoBehaviour
 
             moneyEarnedSinceQuestStart = interaction.playerGold;
         }
+        else if (questType == QuestType.SearchAndDestroy || questType == QuestType.TimedSearchAndDestroy)
+        {
+            targetEnemy = target;
+            amountToKill = targetAmount;
+        }
         if (questType == QuestType.TimedCollection || questType == QuestType.TimedFundraising)
         {
             daysToQuestFail = daysToFail;
         }
+
+        interaction.playerQuests.Add(this);
     }
 
     /// <summary>
@@ -248,6 +282,16 @@ public class Quests : MonoBehaviour
         {
             inventory.AddItems(reward, amount);
         }
+        else if (type == QuestType.SearchAndDestroy || type == QuestType.TimedSearchAndDestroy)
+        {
+            inventory.AddItems(reward, amount);
+
+            interaction.playerGold += payout;
+
+            GameObject.Find("GoldDisplay").GetComponent<TMP_Text>().text = $"{interaction.playerGold} G";
+        }
+
+        interaction.playerQuests.Remove(this);
     }
 
     /// <summary>
@@ -259,6 +303,9 @@ public class Quests : MonoBehaviour
         readyToReport = false;
         questComplete = false;
         questFailed = false;
+        targetEnemy = null;
+        amountToKill = 0;
+        amountKilled = 0;
         requiredItemList.Clear();
         requiredItemsAmountList.Clear();
         requiredItemsCountList.Clear();
@@ -277,7 +324,7 @@ public class Quests : MonoBehaviour
 
     public void SaveQuest(out SaveQuest saved)
     {
-        saved = new SaveQuest(netWorth, interaction, farmManager, myNPC, myFlowchart, questType, questAccepted, readyToReport, questComplete, questFailed, moneyRequired, moneyEarnedSinceQuestStart, daysToQuestFail, requiredNetWorth, requiredItemList, requiredItemsCountList, requiredItemsAmountList, questIndex, finalQuestIndex);
+        saved = new SaveQuest(netWorth, interaction, farmManager, myNPC, myFlowchart, questType, questAccepted, readyToReport, questComplete, questFailed, moneyRequired, moneyEarnedSinceQuestStart, daysToQuestFail, requiredNetWorth, requiredItemList, requiredItemsCountList, requiredItemsAmountList, questIndex, finalQuestIndex, targetEnemy, amountToKill, amountKilled);
     }
 
     public void LoadQuest(SaveQuest QuestToLoad)
@@ -301,6 +348,9 @@ public class Quests : MonoBehaviour
         moneyRequired = QuestToLoad.moneyRequired;
         moneyEarnedSinceQuestStart = QuestToLoad.moneyEarnedSinceQuestStart;
         daysToQuestFail = QuestToLoad.daysToQuestFail;
+        targetEnemy = QuestToLoad.targetEnemy;
+        amountToKill = QuestToLoad.amountToKill;
+        amountKilled = QuestToLoad.amountKilled;
         requiredItemList = QuestToLoad.requiredItemList;
         requiredItemsCountList = QuestToLoad.requiredItemsCountList;
         requiredItemsAmountList = QuestToLoad.requiredItemsAmountList;
@@ -319,7 +369,13 @@ public class Quests : MonoBehaviour
 		inventory = GameObject.Find("Player").GetComponent<PlayerInventoryManager>().inv;//farmManager.GetComponent<FarmManager>().playerInventory;
         interaction = FindObjectOfType<PlayerInteraction>();
 
-        questIndex = 1;
+        if (GlobalGameSaving.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == false)
+            {
+                questIndex = 1;
+            }
+        }
 
         //populating list with something at start
         /*foreach (miniQuest m in miniQuests)
@@ -384,7 +440,16 @@ public class Quests : MonoBehaviour
             }
             else if (questType == QuestType.Fundraising || questType == QuestType.TimedFundraising)
             {
-                if (moneyEarnedSinceQuestStart > moneyRequired)
+                if (moneyEarnedSinceQuestStart >= moneyRequired)
+                {
+                    //quest complete
+                    readyToReport = true;
+                    myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
+                }
+            }
+            else if (questType == QuestType.SearchAndDestroy || questType == QuestType.TimedSearchAndDestroy)
+            {
+                if (amountKilled >= amountToKill)
                 {
                     //quest complete
                     readyToReport = true;
@@ -515,6 +580,10 @@ public class SaveQuest
 
     public int requiredNetWorth;
 
+    public BasicEnemy targetEnemy;
+    public int amountToKill;
+    public int amountKilled;
+
     public List<Item> requiredItemList = new List<Item>();
     public List<int> requiredItemsCountList = new List<int>();
     public List<int> requiredItemsAmountList = new List<int>();
@@ -523,7 +592,7 @@ public class SaveQuest
     public int finalQuestIndex;
 
     //public SaveQuest(CalculateFarmNetWorth nW, Inventory i, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL)
-    public SaveQuest(CalculateFarmNetWorth nW, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL, int qI, int fQI)
+    public SaveQuest(CalculateFarmNetWorth nW, PlayerInteraction pI, FarmManager fM, NPCManager npc, Flowchart mF, Quests.QuestType qT, bool qA, bool rTR, bool qC, bool qF, int mR, int mE, int dTQF, int rNW, List<Item> rIL, List<int> rICL, List<int> rIAL, int qI, int fQI, BasicEnemy tE, int aTK, int aK)
     {
         netWorth = nW;
         interaction = pI;
@@ -543,6 +612,10 @@ public class SaveQuest
         daysToQuestFail = dTQF;
 
         requiredNetWorth = rNW;
+
+        targetEnemy = tE;
+        amountToKill = aTK;
+        amountKilled = aK;
 
         requiredItemList = rIL;
         requiredItemsCountList = rICL;
