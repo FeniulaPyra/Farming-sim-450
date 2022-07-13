@@ -31,6 +31,12 @@ public class BasicEnemy : BasicEntity
     [SerializeField]
     protected List<Item> drops = new List<Item>();
 
+    //Enemy spawning chest testing
+    [SerializeField]
+    protected InventoryEntity chest;
+    //I don't know what's happening
+    bool dead;
+
 	[SerializeField]
 	protected Toggle friendlyMode;
 
@@ -57,7 +63,7 @@ public class BasicEnemy : BasicEntity
     protected override void Update()
     {
         //Ready for death
-        if (stats.Health <= 0)
+        if (stats.Health <= 0 && dead == false)
         {
             KillEnemy();
         }
@@ -99,6 +105,7 @@ public class BasicEnemy : BasicEntity
 
     protected void KillEnemy()
     {
+        dead = true;
         //experience
         target.IncreaseExp(stats.Experience);
         //drops
@@ -136,10 +143,28 @@ public class BasicEnemy : BasicEntity
     {
         //randomly select an item to spawn
         int index;
-        index = Random.Range(0, drops.Count);
-        Item drop = drops[index];
-        //spawn that item's gameobject at the enemy's position
-        Instantiate(drop.gameObject, transform.position, Quaternion.identity);
+        index = Random.Range(0, drops.Count + 1);
+        if (index == drops.Count)
+        {
+            //Spawn no individual item; spawn whole chest
+            //GameObject chestObject = Instantiate(chest.gameObject, transform.position, Quaternion.identity);
+            //chest = chestObject.GetComponent<InventoryEntity>();
+            //chestObject.GetComponent<InventoryEntity>().items.Add();
+            chest.items.Clear();
+            chest.itemAmounts.Clear();
+            chest.Manager = FindObjectOfType<ItemManager>();
+            chest.items.Add(chest.Manager.gameItems[0]);
+            chest.items.Add(chest.Manager.gameItems[1]);
+            chest.items.Add(chest.Manager.gameItems[2]);
+            chest.PopulateMe();
+            GameObject chestObject = Instantiate(chest.gameObject, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Item drop = drops[index];
+            //spawn that item's gameobject at the enemy's position
+            Instantiate(drop.gameObject, transform.position, Quaternion.identity);
+        }
     }
 
     protected virtual void Flee(Transform target)

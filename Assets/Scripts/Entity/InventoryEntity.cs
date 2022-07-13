@@ -16,6 +16,22 @@ public class InventoryEntity : BasicEntity
     //Item Manager to make the population possible
     [SerializeField]
     ItemManager manager;
+    public ItemManager Manager
+    {
+        get
+        {
+            return manager;
+        }
+        set
+        {
+            manager = value;
+        }
+    }
+
+    private void Awake()
+    {
+        manager = FindObjectOfType<ItemManager>();
+    }
 
 
     // Start is called before the first frame update
@@ -26,7 +42,7 @@ public class InventoryEntity : BasicEntity
 			inv = new Inventory(4, 9);
 		movementSpeed = 0;
 
-        manager = FindObjectOfType<ItemManager>();
+        //manager = FindObjectOfType<ItemManager>();
 
         PopulateMe();
     }
