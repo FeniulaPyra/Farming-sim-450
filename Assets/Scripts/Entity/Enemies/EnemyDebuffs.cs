@@ -163,7 +163,7 @@ public class EnemyDebuffs : MonoBehaviour
             /*debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
             stats.ResetDefense();*/
             debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
-            stats.Defense += stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
+            stats.Defense += -stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
             stats.buffs.Remove(def);
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
