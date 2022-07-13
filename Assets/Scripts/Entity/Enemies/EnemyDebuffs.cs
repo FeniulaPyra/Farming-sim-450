@@ -149,7 +149,7 @@ public class EnemyDebuffs : MonoBehaviour
         debuffApplied = true;
     }
 
-    void CancelDebuff()
+    public void CancelDebuff()
     {
         //debuffNotification.text = "";
         if (decreaseSpeed == true)

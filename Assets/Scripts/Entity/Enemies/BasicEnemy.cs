@@ -113,6 +113,11 @@ public class BasicEnemy : BasicEntity
         {
             DropItems();
         }
+        //cancel debuff
+        if (debuff != null)
+        {
+            debuff.CancelDebuff();
+        }
         //Quests
         UpdateQuest();
         //death
