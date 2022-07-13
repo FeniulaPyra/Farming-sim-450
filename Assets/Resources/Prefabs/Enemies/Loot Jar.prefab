@@ -180,6 +180,7 @@ MonoBehaviour:
   - {fileID: 7592385926700703815, guid: 4aefa02f992b94547a7a4e3d0572f476, type: 3}
   - {fileID: 723856000670347896, guid: 5c321ccd351685f4abfda25d97d64a9c, type: 3}
   - {fileID: 3635136830200398981, guid: d9e5a9c6128f5ec4f980530741ba5966, type: 3}
+  chest: {fileID: 7673969546450039493, guid: 239da8492eb199e43927b39f1f25bb9d, type: 3}
   friendlyMode: {fileID: 0}
   preferredSeasons: 01000000020000000300000004000000
   offSeasonSpawnChance: 0

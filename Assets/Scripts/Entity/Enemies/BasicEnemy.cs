@@ -143,7 +143,7 @@ public class BasicEnemy : BasicEntity
     {
         //randomly select an item to spawn
         int index;
-        index = Random.Range(0, drops.Count + 1);
+        index = Random.Range(0, drops.Count);
         if (index == drops.Count)
         {
             //Spawn no individual item; spawn whole chest

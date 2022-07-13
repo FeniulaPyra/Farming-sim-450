@@ -54,6 +54,11 @@ public class FarmManager : MonoBehaviour
     //Creating an inventory; will probably need to be a reference later
     //public Inventory playerInventory = new Inventory(4, 9);
 
+    private void Awake()
+    {
+        needsTill = GameObject.Find("Menus").transform.Find("Settings").transform.Find("Enable Tilling Requirement").GetComponent<Toggle>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,8 +107,6 @@ public class FarmManager : MonoBehaviour
         }
 
 		farmingTutorial = FindObjectOfType<FarmingTutorial>();
-
-        
     }
 
 
@@ -398,9 +401,12 @@ public class FarmManager : MonoBehaviour
 					continue;
 				Tile adj = mushroomsAndTiles[tilePos + adjacentVectors[i]];
 				//if adjacent tile is empty and tilled, add it to spreadable areas
-				if (adj != null && (adj.isTilled || !needsTill.isOn)&& !adj.hasPlant)
+				if (adj != null)// && )
 				{
-					adjacents.Add(adjacentVectors[i]);
+                    if ((adj.isTilled || !needsTill.isOn) && !adj.hasPlant)
+                    {
+                        adjacents.Add(adjacentVectors[i]);
+                    }
 				}
 			}
 
