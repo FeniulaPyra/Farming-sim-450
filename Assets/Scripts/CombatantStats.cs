@@ -7,6 +7,9 @@ public class CombatantStats : MonoBehaviour
     //List of buffs
     public List<Buff> buffs = new List<Buff>();
 
+    //player healthBar
+    public HealthBar healthBar;
+
     //Specifically for augmenting stats to make bosses more difficult then enemies of their same level
     public bool isBoss;
 
@@ -125,7 +128,7 @@ public class CombatantStats : MonoBehaviour
 	{
 		get
         {
-            exp = level * 50;
+            exp = level * 5;
 
             if (isBoss == true)
             {
@@ -146,6 +149,10 @@ public class CombatantStats : MonoBehaviour
 		{
 			level = value;
 			Health = MaxHealth;
+            if (healthBar != null)
+            {
+                healthBar.SetMaxHealth(Health);
+            }
 		}
 	}
 
@@ -166,6 +173,16 @@ public class CombatantStats : MonoBehaviour
     {
         //Will need to have conditionals for things like "Are you loading a save?"
         Level = level;
+
+        //Only the player will ever have this, so this should be safe
+        if (gameObject.GetComponent<PlayerInteraction>() != null)
+        {
+            healthBar = GameObject.Find("Health Bar").GetComponent<HealthBar>();
+            if (healthBar != null)
+            {
+                healthBar.SetMaxHealth(Health);
+            }
+        }
     }
 
     public void ResetStrength()
@@ -212,6 +229,11 @@ public class CombatantStats : MonoBehaviour
         }
         //health -= (amt - (ignoreDefense ? 0 : defense));
         Health -= amt;
+
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(Health);
+        }
     }
 
 	public void Heal(int amt, bool ignoreMax)
@@ -220,8 +242,15 @@ public class CombatantStats : MonoBehaviour
         Health += amt;
         /*if (health > maxHealth && !ignoreMax)
 			health = maxHealth;*/
-        if (Health > maxHealthAdjustments && !ignoreMax)
-            Health = maxHealthAdjustments;
+        /*if (Health > maxHealthAdjustments && !ignoreMax)
+            Health = maxHealthAdjustments;*/
+        if (Health > MaxHealth && !ignoreMax)
+            Health = MaxHealth;
+
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(Health);
+        }
     }
 
 	//gets the amount of exp to get from the given level to the next level.
