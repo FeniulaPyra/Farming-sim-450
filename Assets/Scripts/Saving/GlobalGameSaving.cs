@@ -69,6 +69,10 @@ public class GlobalGameSaving : MonoBehaviour
 	public List<string> inventoryEntityNames = new List<string>();
 
 	public List<string> playerEquipment = new List<string>();
+
+    //public Inventory shippingInv;
+    public List<int> shippingInv;
+    public ShippingBin bin;
     #endregion
 
     //boolean to let other scripts know to load a save
@@ -107,6 +111,8 @@ public class GlobalGameSaving : MonoBehaviour
         farmManager = FindObjectOfType<FarmManager>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         entityManager = FindObjectOfType<EntityManager>();
+
+        bin = FindObjectOfType<ShippingBin>();
 
         if (loadingSave == true)
         {
@@ -236,6 +242,11 @@ public class GlobalGameSaving : MonoBehaviour
         tileManager.SaveFarm("save");//
 
         invManager.SaveInventory("save");//
+
+        if (bin != null)
+        {
+            bin.SaveInventory("save");
+        }
 
         entityManager.SaveEntities("save");//
 
