@@ -90,10 +90,10 @@ public class FarmManager : MonoBehaviour
 					visitedTiles[cropPos] = false;
                 //farmField.SetTile(cropPos, testTile.tileSprite);
                 testTile.tileSprite = testTile.sprites[0];
-                if (tillableGround != null)
+                /*if (tillableGround != null)
                 {
                     tillableGround.SetTile(cropPos, testTile.tileSprite);
-                }
+                }*/
             }
         }
 
