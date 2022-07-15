@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1281176488}
+  selectedFlowchart: {fileID: 418931203}
 --- !u!4 &20066898
 Transform:
   m_ObjectHideFlags: 1
@@ -48179,6 +48179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &819305146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4096102101088535982, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
+  m_PrefabInstance: {fileID: 387334635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &856647704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1964978879928001041, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
@@ -48279,7 +48284,7 @@ GameObject:
   - component: {fileID: 1145300584}
   - component: {fileID: 1145300586}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: To Combat Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48344,7 +48349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145300583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0306375, y: 2.5925152, z: 1.5170188}
+  m_LocalPosition: {x: 6.53, y: 4.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43990442}
@@ -49756,17 +49761,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1281176488 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4729874620462661120, guid: 9b2a8643d71c51d43a6e22183c7d8dc2, type: 3}
-  m_PrefabInstance: {fileID: 1281176482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281176483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1281176489
@@ -53583,6 +53577,11 @@ PrefabInstance:
       propertyPath: indentLevel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3248880876096321052, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: storyText
+      value: If you want to go and test out combat, head to that circle right next
+        to the shop.
+      objectReference: {fileID: 0}
     - target: {fileID: 3253776723232947299, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: indentLevel
       value: 1
@@ -54775,10 +54774,14 @@ PrefabInstance:
       propertyPath: indentLevel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5872231024141903166, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5872231025190503489, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: value
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 819305146}
     - target: {fileID: 5872231025190503507, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: commandList.Array.size
       value: 10
@@ -55835,6 +55838,10 @@ PrefabInstance:
     - target: {fileID: 8255487171545502530, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: nodeRect.x
       value: 660.52734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8255487171545502530, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
+      propertyPath: nodeRect.y
+      value: 139.62895
       objectReference: {fileID: 0}
     - target: {fileID: 8264325256476476498, guid: 8dda7d97cca1529449f6519e43a3bf57, type: 3}
       propertyPath: indentLevel
