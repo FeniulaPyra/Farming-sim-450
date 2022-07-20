@@ -105,6 +105,14 @@ public class TimeManager : MonoBehaviour
         //Getting Time Manager
         //management = FindObjectOfType<FarmManager>();
 
+        dayDisplay = GameObject.Find("DayDisplay").GetComponent<TMP_Text>();
+        dateDisplay = GameObject.Find("DateDisplay").GetComponent<TMP_Text>();
+        seasonDisplay = GameObject.Find("SeasonDisplay").GetComponent<TMP_Text>();
+        yearDisplay = GameObject.Find("YearDisplay").GetComponent<TMP_Text>();
+        holidayDisplay = GameObject.Find("HolidayDisplay").GetComponent<TMP_Text>();
+        nightImage = GameObject.Find("NightImage").GetComponent<Image>();
+
+
         dayDisplay.text = "Mon";
         dateDisplay.text = "1";
         seasonDisplay.text = "Spring";
@@ -127,6 +135,8 @@ public class TimeManager : MonoBehaviour
         //DisplayTime();
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
+
+        staminaTracker = FindObjectOfType<PlayerInteraction>();
 
 		inventory = staminaTracker.gameObject.GetComponent<PlayerInventoryManager>().inv;//FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
 		pSkills = staminaTracker.gameObject.GetComponent<PlayerSkills>();//FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;

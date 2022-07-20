@@ -134,6 +134,10 @@ public class PlayerInteraction : MonoBehaviour
         timeRadial2 = GameObject.Find("TimeRadial2").GetComponent<Image>();
         timeRadial3 = GameObject.Find("TimeRadial3").GetComponent<Image>();
 
+        staminaDisplay = GameObject.Find("StaminaDisplay").GetComponent<TMP_Text>();
+        indicatorImage = GameObject.Find("InteractionIndicator").GetComponent<SpriteRenderer>();
+        indicator = GameObject.Find("InteractionIndicator").transform;
+
         timeRadial2.fillAmount = 0;
         timeRadial3.fillAmount = 0;
 
