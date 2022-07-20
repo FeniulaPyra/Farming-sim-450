@@ -105,7 +105,10 @@ public class Inventory
 		//if there is no more room, drop item on the ground.
 		if (openSlot.x < 0 || openSlot.y < 0)
 		{
-			playerInvManager.DropItems(item.item, item.amt);
+            if (playerInvManager != null)
+            {
+                playerInvManager.DropItems(item.item, item.amt);
+            }
 		}
 		else
 		{
@@ -140,9 +143,9 @@ public class Inventory
 			for(int c = 0; c < COLUMNS; c++)
 			{
 				ItemSlot slot = items[r, c];
-				//is there an open space in the inventory?
-				if(slot.amt < 1)
-				{
+                //is there an open space in the inventory?
+                if (slot.item == null)//if(slot.amt < 1)
+                {
 					return false;
 				}
 				//is there a stack that has space to add items?

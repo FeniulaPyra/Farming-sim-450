@@ -117,6 +117,10 @@ public class PlayerInteraction : MonoBehaviour
 
 	PlayerSkills playerSkills;
 
+    //This exists SOLELY so quests can be added when accepted and removed when completed
+    //Enemies will refernce this when updating a quest's kill list
+    public List<Quests> playerQuests = new List<Quests>();
+
     private void Start()
     {
 		menu = GameObject.Find("Menus").GetComponent<Menu>();
@@ -470,9 +474,10 @@ public class PlayerInteraction : MonoBehaviour
                 heldItem = playerInventoryManager.GetHeldItem();
                 heldItemAmount = playerInventoryManager.GetHeldItemAmount();
 
-                //Debug.Log("LEP2738 HELD: " + heldItem.name);
-                if (mushroomsAndTiles.ContainsKey(focusTilePosition))
+
+				if (farmManager.farmField != null && farmManager.tillableGround != null)
                 {
+//<<<<<<< HEAD
                     if (heldItemAmount > 0 && heldItem.type=="mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
                     {
                         Debug.Log("Plant One");
@@ -495,9 +500,39 @@ public class PlayerInteraction : MonoBehaviour
                         ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
                     }
                     else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
+					{
+                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
+					}
+/*=======
+                    if (mushroomsAndTiles.ContainsKey(focusTilePosition))
+>>>>>>> main
                     {
-                        ReduceStamina(heldItem.staminaUsed);
-                    }
+                        if (heldItemAmount > 0 && heldItem.type == "mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))
+                        {
+                            Debug.Log("Plant One");
+                            playerInventoryManager.RemoveHeldItems(1);
+                        }
+
+
+                        //before actually doing interaction, deduct player stamina accordingly
+                        //switch on the four main item types, then some default value for everything else
+                        if (heldItem.type == "mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                        {
+                            ReduceStamina(heldItem.staminaUsed);
+                        }
+                        else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
+                        {
+                            ReduceStamina(heldItem.staminaUsed);
+                        }
+                        else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
+                        {
+                            ReduceStamina(heldItem.staminaUsed);
+                        }
+                        else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
+                        {
+                            ReduceStamina(heldItem.staminaUsed);
+                        }
+                    }*/
                 }
 
                 else if (heldItem != null && heldItem.type != "mushroom" && itemName != "Hoe" && itemName != "Watering Can" && itemName != "Sickle")

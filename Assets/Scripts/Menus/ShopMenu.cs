@@ -6,11 +6,11 @@ using TMPro;
 public class ShopMenu : MonoBehaviour
 {
 
-	public GameObject FarmManager;
+	//public GameObject FarmManager;
 	public GameObject menuObj;
 	public GameObject playerObj;
     public CalculateFarmNetWorth netWorth;
-	public GameObject ItemManagerObj;
+	//public GameObject ItemManagerObj;
 	public ItemManager itemManager;
 
 	//List<Item> items;
@@ -25,14 +25,21 @@ public class ShopMenu : MonoBehaviour
     void Start()
     {
 
-		inv = playerObj.GetComponent<PlayerInventoryManager>().inv;//FarmManager.GetComponent<FarmManager>().playerInventory;
+        //FarmManager = this;
+        menuObj = GameObject.Find("Menus");
+        playerObj = GameObject.Find("Player");
+        netWorth = FindObjectOfType<CalculateFarmNetWorth>();
+        itemManager = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+
+        inv = playerObj.GetComponent<PlayerInventoryManager>().inv;//FarmManager.GetComponent<FarmManager>().playerInventory;
 		//items = playerObj.GetComponent<PlayerInventoryManager>().GetItemManager().gameItems;//menuObj.GetComponent<Menu>().gameItems;
 		player = playerObj.GetComponent<PlayerInteraction>();
-		itemManager = ItemManagerObj.GetComponent<ItemManager>();
+		
 
         goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+        //goldDisplay = gameObject.gameObject.gameObject.transform.Find("InformationCanvas").transform.Find("GoldDisplay").GetComponent<TMP_Text>();
 
-        netWorth = FindObjectOfType<CalculateFarmNetWorth>();
+        farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
     // Update is called once per frame

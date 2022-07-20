@@ -436,6 +436,8 @@ public class TimeManager : MonoBehaviour
     public void AdvanceDay()
     {
         Debug.Log("Advancing with Day");
+
+        UpdateField();
         
         //change year
         if (seasonNum == 4 && dateNum == 30)
@@ -623,7 +625,10 @@ public class TimeManager : MonoBehaviour
 			}
 		}
 
-		shippingBin.PayPlayer();
+        if (shippingBin != null)
+        {
+            shippingBin.PayPlayer();
+        }
 	}
 
 	/// <summary>

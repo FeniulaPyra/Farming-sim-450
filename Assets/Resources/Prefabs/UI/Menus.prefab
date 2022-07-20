@@ -1324,7 +1324,7 @@ MonoBehaviour:
   m_Content: {fileID: 368073756165073807}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 0
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -7441,11 +7441,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d4561d5712c5441a6dc62b06b534d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FarmManager: {fileID: 0}
   menuObj: {fileID: 4096102102024270766}
   playerObj: {fileID: 0}
   netWorth: {fileID: 0}
-  ItemManagerObj: {fileID: 0}
   itemManager: {fileID: 0}
   goldDisplay: {fileID: 0}
   farmingTutorial: {fileID: 0}
