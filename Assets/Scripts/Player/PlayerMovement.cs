@@ -50,9 +50,14 @@ public class PlayerMovement : MonoBehaviour
 
 	public List<string> visited;
 
-	void Start()
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
 	{
-		rb = GetComponent<Rigidbody2D>();
+		//rb = GetComponent<Rigidbody2D>();
 		facing = new Vector2(1, 0);
 		//visited = new List<string>();
 

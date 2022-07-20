@@ -89,4 +89,5 @@ MonoBehaviour:
   - {fileID: 3051134317163360740, guid: f82780b77da717a45ba4fb4323571533, type: 3}
   - {fileID: 7285780901900494403, guid: e2279688ad03a574a8d9769ab4a685db, type: 3}
   - {fileID: 5651326760289673616, guid: 008d7b8cba411674f9c65a6b121c6299, type: 3}
+  - {fileID: 7683615097352399189, guid: dabc282cbded82d4897f801ae9eb486c, type: 3}
   gameItems: []

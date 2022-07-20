@@ -172,6 +172,7 @@ MonoBehaviour:
   minSeekDistance: 1
   sr: {fileID: 0}
   player: {fileID: 0}
+  distance: 0
   inv:
     STACK_SIZE: 0
     ROWS: 0
@@ -183,3 +184,6 @@ MonoBehaviour:
     selectedColumn: 0
   inventoryItemEntity: {fileID: 430829454750170966, guid: e880de2ed05ff4a4da346c82ee5ef4d8, type: 3}
   ITEM_DROP_RADIUS: 1
+  items: []
+  itemAmounts: 
+  manager: {fileID: 0}

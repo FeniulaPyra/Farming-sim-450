@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8189669987783190268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5333896, y: 4.595928, z: -1}
+  m_LocalPosition: {x: 3.599997, y: 3, z: 0}
   m_LocalScale: {x: 0.8117153, y: 0.8117153, z: 0.8117153}
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,16 +147,24 @@ MonoBehaviour:
   minSeekDistance: 1.25
   sr: {fileID: 8189669987783190266}
   player: {fileID: 0}
+  distance: 0
   normalImage: {fileID: 6744946388815338076, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   pettingImage: {fileID: -7434330180999361826, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   petItem: {fileID: 8681727996585695852, guid: 6111bb653294fae4bb160b9484cf51c8, type: 3}
   manager: {fileID: 0}
   owner: {fileID: 0}
+  movement: {fileID: 0}
+  stats: {fileID: 0}
   timer: 0
   baseTimer: 10
   activateChance: 100
-  increaseSpeed: 1
+  increaseSpeed: 0
+  increaseDefense: 0
+  increaseStrength: 0
+  regenHealth: 1
   buffApplied: 0
   buffTimer: 0
   baseBuffTimer: 30
   buffNotification: {fileID: 0}
+  strMod: 0
+  defMod: 0

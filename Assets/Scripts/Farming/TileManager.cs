@@ -222,20 +222,26 @@ public class TileManager : MonoBehaviour
 
             if (farmManager.tillableGround != null)
             {
-                if (farmManager.mushroomsAndTiles[t.Value.position].isTilled == true && farmManager.mushroomsAndTiles[t.Value.position].isMoist == false)
+
+                //if (farmManager.mushroomsAndTiles[t.Value.position].isTilled == true && farmManager.mushroomsAndTiles[t.Value.position].isMoist == false)
+                if (farmManager.mushroomsAndTiles[t.Key].isTilled == true && farmManager.mushroomsAndTiles[t.Key].isMoist == false)
                 {
                     Debug.Log("Tilled");
-                    farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[1]);
+                    //farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[1]);
+                    farmManager.tillableGround.SetTile(t.Key, farmManager.tilePrefab.sprites[1]);
                 }
-                else if (farmManager.mushroomsAndTiles[t.Value.position].isMoist == true)
+                //else if (farmManager.mushroomsAndTiles[t.Value.position].isMoist == true)
+                else if (farmManager.mushroomsAndTiles[t.Key].isMoist == true)
                 {
                     Debug.Log("Watered");
-                    farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[2]);
+                    //farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[2]);
+                    farmManager.tillableGround.SetTile(t.Key, farmManager.tilePrefab.sprites[2]);
                 }
                 else
                 {
                     Debug.Log("Plain");
-                    farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[0]);
+                    //farmManager.tillableGround.SetTile(t.Value.position, farmManager.tilePrefab.sprites[0]);
+                    farmManager.tillableGround.SetTile(t.Key, farmManager.tilePrefab.sprites[0]);
                 }
             }
         }

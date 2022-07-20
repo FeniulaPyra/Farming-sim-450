@@ -28,6 +28,15 @@ public class BasicEnemy : BasicEntity
     [SerializeField]
     protected CombatantStats target; //The player
 
+    [SerializeField]
+    protected List<Item> drops = new List<Item>();
+
+    //Enemy spawning chest testing
+    [SerializeField]
+    protected InventoryEntity chest;
+    //I don't know what's happening
+    bool dead;
+
 	[SerializeField]
 	protected Toggle friendlyMode;
 
@@ -51,8 +60,14 @@ public class BasicEnemy : BasicEntity
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        //Ready for death
+        if (stats.Health <= 0 && dead == false)
+        {
+            KillEnemy();
+        }
+
         base.Update();
     }
 
@@ -86,6 +101,75 @@ public class BasicEnemy : BasicEntity
                 attacked = false;
             }
         }*/
+    }
+
+    protected void KillEnemy()
+    {
+        dead = true;
+        //experience
+        target.IncreaseExp(stats.Experience);
+        //drops
+        if (drops.Count > 0)
+        {
+            DropItems();
+        }
+        //cancel debuff
+        if (debuff != null)
+        {
+            debuff.CancelDebuff();
+        }
+        //Quests
+        UpdateQuest();
+        //death
+        Destroy(this.gameObject);
+    }
+
+    /// <summary>
+    /// Upon death, update the player's search and destroy quest, if necessary
+    /// </summary>
+    protected virtual void UpdateQuest()
+    {
+        foreach (Quests q in target.gameObject.GetComponent<PlayerInteraction>().playerQuests)
+        {
+            if (q.questType == Quests.QuestType.SearchAndDestroy || q.questType == Quests.QuestType.TimedSearchAndDestroy)
+            {
+                if (this.GetType() == q.TargetEnemy.GetType())
+                {
+                    q.AmountKilled++;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Randomly chooses something from the enemy's item list to instantiate where they die
+    /// </summary>
+    protected virtual void DropItems()
+    {
+        //randomly select an item to spawn
+        int index;
+        index = Random.Range(0, drops.Count);
+        if (index == drops.Count)
+        {
+            //Spawn no individual item; spawn whole chest
+            //GameObject chestObject = Instantiate(chest.gameObject, transform.position, Quaternion.identity);
+            //chest = chestObject.GetComponent<InventoryEntity>();
+            //chestObject.GetComponent<InventoryEntity>().items.Add();
+            chest.items.Clear();
+            chest.itemAmounts.Clear();
+            chest.Manager = FindObjectOfType<ItemManager>();
+            chest.items.Add(chest.Manager.gameItems[0]);
+            chest.items.Add(chest.Manager.gameItems[1]);
+            chest.items.Add(chest.Manager.gameItems[2]);
+            chest.PopulateMe();
+            GameObject chestObject = Instantiate(chest.gameObject, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Item drop = drops[index];
+            //spawn that item's gameobject at the enemy's position
+            Instantiate(drop.gameObject, transform.position, Quaternion.identity);
+        }
     }
 
     protected virtual void Flee(Transform target)

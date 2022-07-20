@@ -54,6 +54,11 @@ public class FarmManager : MonoBehaviour
     //Creating an inventory; will probably need to be a reference later
     //public Inventory playerInventory = new Inventory(4, 9);
 
+    private void Awake()
+    {
+        needsTill = GameObject.Find("Menus").transform.Find("Settings").transform.Find("Enable Tilling Requirement").GetComponent<Toggle>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,10 +90,10 @@ public class FarmManager : MonoBehaviour
 					visitedTiles[cropPos] = false;
                 //farmField.SetTile(cropPos, testTile.tileSprite);
                 testTile.tileSprite = testTile.sprites[0];
-                if (tillableGround != null)
+                /*if (tillableGround != null)
                 {
                     tillableGround.SetTile(cropPos, testTile.tileSprite);
-                }
+                }*/
             }
         }
 
@@ -102,8 +107,6 @@ public class FarmManager : MonoBehaviour
         }
 
 		farmingTutorial = FindObjectOfType<FarmingTutorial>();
-
-        
     }
 
 
@@ -379,83 +382,89 @@ public class FarmManager : MonoBehaviour
 		
 		if (!visitedTiles.ContainsKey(tilePos) || visitedTiles[tilePos]) return;
 
-		//checks that the tile exists
-		Tile tile = mushroomsAndTiles[tilePos];
-		Mushrooms thisShroom = tile.GetComponent<Mushrooms>();
+        //checks that the tile exists
+        if (mushroomsAndTiles.ContainsKey(tilePos))
+        {
+            Tile tile = mushroomsAndTiles[tilePos];
+            Mushrooms thisShroom = tile.GetComponent<Mushrooms>();
 
-		//if this shroom exists and is an adult
-		if (thisShroom != null 
-			&& thisShroom.growthStage >= thisShroom.GetMaxGrowthStage()
-			&& thisShroom.daysSinceFullyGrown >= 2)
-		{
-			//Valid spreadable directions
-			List <Vector3Int> adjacents = new List<Vector3Int>();
+            //if this shroom exists and is an adult
+            if (thisShroom != null
+                && thisShroom.growthStage >= thisShroom.GetMaxGrowthStage()
+                && thisShroom.daysSinceFullyGrown >= 2)
+            {
+                //Valid spreadable directions
+                List<Vector3Int> adjacents = new List<Vector3Int>();
 
-			//checks adjacent tiles for if they are spreadable (i.e. tilled and plantless)
-			for (int i = 0; i < 4; i++)
-			{
-				if (!mushroomsAndTiles.ContainsKey(tilePos + adjacentVectors[i]))
-					continue;
-				Tile adj = mushroomsAndTiles[tilePos + adjacentVectors[i]];
-				//if adjacent tile is empty and tilled, add it to spreadable areas
-				if (adj != null && (adj.isTilled || !needsTill.isOn)&& !adj.hasPlant)
-				{
-					adjacents.Add(adjacentVectors[i]);
-				}
-			}
+                //checks adjacent tiles for if they are spreadable (i.e. tilled and plantless)
+                for (int i = 0; i < 4; i++)
+                {
+                    if (!mushroomsAndTiles.ContainsKey(tilePos + adjacentVectors[i]))
+                        continue;
+                    Tile adj = mushroomsAndTiles[tilePos + adjacentVectors[i]];
+                    //if adjacent tile is empty and tilled, add it to spreadable areas
+                    if (adj != null)// && )
+                    {
+                        if ((adj.isTilled || !needsTill.isOn) && !adj.hasPlant)
+                        {
+                            adjacents.Add(adjacentVectors[i]);
+                        }
+                    }
+                }
 
-			//exit if there are no spreadable tiles
-			if (adjacents.Count < 1) return;
+                //exit if there are no spreadable tiles
+                if (adjacents.Count < 1) return;
 
-			//picks a random direction of tile and sets that as the tile to spread to
-			Vector3Int dirToSpread = adjacents[Random.Range(0, adjacents.Count)];
+                //picks a random direction of tile and sets that as the tile to spread to
+                Vector3Int dirToSpread = adjacents[Random.Range(0, adjacents.Count)];
 
-			//the position and tile of the tile to spread
-			Vector3Int spreadTilePos = dirToSpread + tilePos;
-			Tile spreadTo = mushroomsAndTiles[spreadTilePos];
+                //the position and tile of the tile to spread
+                Vector3Int spreadTilePos = dirToSpread + tilePos;
+                Tile spreadTo = mushroomsAndTiles[spreadTilePos];
 
-			//the position and tile of the next tile over - will be for hybridization
-			Vector3Int parentTilePos = spreadTilePos + dirToSpread;
-			
-			//checks that possible parent tile exists
-			if (mushroomsAndTiles.ContainsKey(parentTilePos))
-			{
-				Tile possibleParent = mushroomsAndTiles[parentTilePos];
+                //the position and tile of the next tile over - will be for hybridization
+                Vector3Int parentTilePos = spreadTilePos + dirToSpread;
 
-				Mushrooms parent = possibleParent.GetComponent<Mushrooms>();
-				
-				/*	checks that parent 
-				 *	- exists
-				 *	- has not been visited
-				 *	- can be hybridized with this one
-				 *	- is an adult mushroom 
-				 */
-				if (parent != null
-					&& !visitedTiles[parentTilePos] 
-					&& ((Mushrooms)tile).hybridDictionary.ContainsKey(parent.ID) 
-					&& parent.growthStage >= parent.GetMaxGrowthStage()
-					&& parent.daysSinceFullyGrown >= 2)
-				{
-					Hybridize(thisShroom, parent, spreadTilePos);
+                //checks that possible parent tile exists
+                if (mushroomsAndTiles.ContainsKey(parentTilePos))
+                {
+                    Tile possibleParent = mushroomsAndTiles[parentTilePos];
 
-					visitedTiles[parentTilePos] = true;
-					visitedTiles[spreadTilePos] = true;
-				}
-				else
-				{
-					Spread(thisShroom, spreadTilePos);
-					//sets these tiles as visited
-					visitedTiles[spreadTilePos] = true;
-				}
-			}
-			else
-			{
-				Spread(thisShroom, spreadTilePos);
-				visitedTiles[spreadTilePos] = true;
+                    Mushrooms parent = possibleParent.GetComponent<Mushrooms>();
 
-			}
+                    /*	checks that parent 
+                     *	- exists
+                     *	- has not been visited
+                     *	- can be hybridized with this one
+                     *	- is an adult mushroom 
+                     */
+                    if (parent != null
+                        && !visitedTiles[parentTilePos]
+                        && ((Mushrooms)tile).hybridDictionary.ContainsKey(parent.ID)
+                        && parent.growthStage >= parent.GetMaxGrowthStage()
+                        && parent.daysSinceFullyGrown >= 2)
+                    {
+                        Hybridize(thisShroom, parent, spreadTilePos);
 
-		}
+                        visitedTiles[parentTilePos] = true;
+                        visitedTiles[spreadTilePos] = true;
+                    }
+                    else
+                    {
+                        Spread(thisShroom, spreadTilePos);
+                        //sets these tiles as visited
+                        visitedTiles[spreadTilePos] = true;
+                    }
+                }
+                else
+                {
+                    Spread(thisShroom, spreadTilePos);
+                    visitedTiles[spreadTilePos] = true;
+
+                }
+
+            }
+        }
 		visitedTiles[tilePos] = true;
 	}
 

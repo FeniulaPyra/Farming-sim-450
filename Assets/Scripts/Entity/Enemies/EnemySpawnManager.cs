@@ -186,6 +186,11 @@ public class EnemySpawnManager : MonoBehaviour
 			{
 				//instantiate enemy
 				enemyObject = Instantiate(enemyToSpawn.gameObject, spawner.transform.position, Quaternion.identity);
+                //7/15/22 Playtesting purposes
+                if (spawner.GetComponent<SpriteRenderer>() != null)
+                {
+                    spawner.GetComponent<SpriteRenderer>().enabled = false;
+                }
 
 				//enemyObject.GetComponent<Enemy>().myController = GetComponent<EnemyController>();
 

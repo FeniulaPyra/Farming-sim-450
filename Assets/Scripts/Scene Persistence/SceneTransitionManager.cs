@@ -17,6 +17,7 @@ public class SceneTransitionManager : MonoBehaviour
     public FarmingTutorial farmingTutorial;//The state of the tutorial. Shouldn't be an issue
     public EntityManager entityManager;
 	public PlayerInventoryManager invManager;
+    public ShippingBin bin;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class SceneTransitionManager : MonoBehaviour
         farmManager = FindObjectOfType<FarmManager>();
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
         entityManager = FindObjectOfType<EntityManager>();
+        bin = FindObjectOfType<ShippingBin>();
     }
 
     // Update is called once per frame
@@ -68,6 +70,11 @@ public class SceneTransitionManager : MonoBehaviour
         playerInteraction.SavePlayer("persist");
 
         tileManager.SaveFarm("persist");
+
+        if (bin != null)
+        {
+            bin.SaveInventory("persist");
+        }
 
         SceneManager.LoadScene(sceneToLoad);
     }

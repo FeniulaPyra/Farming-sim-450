@@ -47,6 +47,21 @@ public class ShippingBin : MonoBehaviour
         goldDisplay.text = $"{player.playerGold} G";
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
+
+        if (GlobalGameSaving.Instance != null)
+        {
+            if (GlobalGameSaving.Instance.loadingSave == true)
+            {
+                inventory.SetSaveableInventory(GlobalGameSaving.Instance.shippingInv);
+            }
+            else if (ScenePersistence.Instance != null)
+            {
+                if (ScenePersistence.Instance.inventory.Count > 0)
+                {
+                    inventory.SetSaveableInventory(ScenePersistence.Instance.shippingInv);
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -95,6 +110,18 @@ public class ShippingBin : MonoBehaviour
 				//playerInventory.HeldItem.CombineStacks(minusOne, playerInventory.STACK_SIZE);
 				playerInventory.RemoveItems(heldItem, 1);
             }
+        }
+    }
+
+    public void SaveInventory(string what)
+    {
+        if (what == "persist")
+        {
+            ScenePersistence.Instance.shippingInv = inventory.GetSaveableInventory();// GetSaveableInventory();
+        }
+        else if (what == "save")
+        {
+            GlobalGameSaving.Instance.shippingInv = inventory.GetSaveableInventory();//inventory = inv.GetSaveableInventory();
         }
     }
 

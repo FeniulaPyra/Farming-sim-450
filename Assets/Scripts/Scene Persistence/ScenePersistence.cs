@@ -56,6 +56,9 @@ public class ScenePersistence : MonoBehaviour
     //boolean to let other scripts know to load a save
     public bool changingScene = false;
 
+    //public Inventory shippingInv;
+    public List<int> shippingInv;
+
     private void Awake()
     {
         //Makes sure this is the only instance in existence by destroying any others that aren't it
