@@ -39,6 +39,10 @@ public class GameSaveManager : MonoBehaviour
 
         flowchart = transform.Find("SaveFlowchart").GetComponent<Flowchart>();
 
+        player = GameObject.Find("Player");
+
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+
         //originalPath = constantPath + "/saves/";
         //path = originalPath;
     }

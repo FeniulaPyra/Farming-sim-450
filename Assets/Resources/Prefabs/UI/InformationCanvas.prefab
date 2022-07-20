@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 6075272586840731080}
   - component: {fileID: 6075272586840731086}
   - component: {fileID: 6075272586840731087}
+  - component: {fileID: 9046350710632888369}
   m_Layer: 5
   m_Name: GoldDisplay
   m_TagString: Untagged
@@ -453,7 +454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -522,6 +523,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9046350710632888369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6075272586840731081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1238e95dfee3514587cf2726fead797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldDisplay: {fileID: 0}
+  interaction: {fileID: 0}
 --- !u!1 &6075272587215917419
 GameObject:
   m_ObjectHideFlags: 0

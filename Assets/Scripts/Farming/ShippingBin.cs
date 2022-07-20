@@ -39,12 +39,12 @@ public class ShippingBin : MonoBehaviour
 
         player = playerObject.GetComponent<PlayerInteraction>();
 
-        goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
+        //goldDisplay = GameObject.Find("GoldDisplay").GetComponent<TMP_Text>();
 
         //totalDisplay = GameObject.Find("TotalDisplay").GetComponent<TMP_Text>();
         totalDisplay = GameObject.Find("Menus").transform.Find("Shipping Menu").transform.Find("TotalDisplay").GetComponent<TMP_Text>();
 
-        goldDisplay.text = $"{player.playerGold} G";
+        //goldDisplay.text = $"{player.playerGold} G";
 
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
@@ -168,7 +168,7 @@ public class ShippingBin : MonoBehaviour
             }
         }*/
 
-        goldDisplay.text = $"{player.playerGold} G";
+        //goldDisplay.text = $"{player.playerGold} G";
 
         if (farmingTutorial != null)
         {
