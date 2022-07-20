@@ -24,9 +24,10 @@ public class PlayerInventoryManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Awake()
 	{
-        im = ItemManagerObj.GetComponent<ItemManager>();
+        //im = ItemManagerObj.GetComponent<ItemManager>();
+        im = FindObjectOfType<ItemManager>();//.GetComponent<ItemManager>();
 
-		inv = new Inventory(4, 9);
+        inv = new Inventory(4, 9);
 		//Debug.Log(im.GetItemByName("hoe").name);
 		inv.AddItems(im.GetItemByName("basic sword"), 1);
 		inv.AddItems(im.GetItemByName("basic bow"), 1);
