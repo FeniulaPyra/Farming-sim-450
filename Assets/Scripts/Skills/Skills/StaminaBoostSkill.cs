@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class StaminaBoostSkill : Skill
 {
-	StaminaLostDecreaseSkill secondarySkill;
+	public StaminaLostDecreaseSkill secondarySkill;
 
 	public StaminaBoostSkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		secondarySkill = new StaminaLostDecreaseSkill(a, b);
 
 		parentShroom = PrimaryMushroom.RED;
-		description = "\"Max\" Stamina is increased and stamina loss from passing out is decreased.";
-		mushroomDescriptions[PrimaryMushroom.RED] =	   "Stamina is increased by 30% and loss is decreased by 5%.";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Stamina is increased by 25% and loss is decreased by 10%.";
-		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Stamina is increased by 20% and loss is decreased by 15%.";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Stamina is increased by 15% and loss is decreased by 20%.";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Stamina is increased by 0% and loss is decreased by 50%.";
+		description = "Stamina is increased by ___ and stamina loss from passing out is decreased by ___.";
+		mushroomDescriptions[PrimaryMushroom.RED] =	   "+30% max stamina and -5% stamina loss when passing out.";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "+25% max stamina and -10% stamina loss when passing out.";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "+20% max stamina and -15% stamina loss when passing out.";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "+15% max stamina and -20% stamina loss when passing out.";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "+0% max stamina and -50% stamina loss when passing out.";
+		comboWord = "AND";
+	}
+
+	public override Skill Copy()
+	{
+		StaminaBoostSkill newMe = new StaminaBoostSkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
 	}
 
 	/// <summary>

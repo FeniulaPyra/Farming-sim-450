@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class StaminaEfficiencySkill : Skill
 {
+	public FoodEfficiencySkill secondarySkill;
+
 	public StaminaEfficiencySkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
+		secondarySkill = new FoodEfficiencySkill(a, b);
+
 		parentShroom = PrimaryMushroom.WHITE;
-		description = "Stamina is reduced for certain tools or stamina gain from certain foods is increased";
+		description = "Stamina is more efficient";
 		mushroomDescriptions[PrimaryMushroom.RED] =    "It costs 2 less stamina to use the sickle";
 		mushroomDescriptions[PrimaryMushroom.YELLOW] = "It costs 2 less stamina to use the hoe";
 		mushroomDescriptions[PrimaryMushroom.BLUE] =   "It costs 2 less stamina to use the watering can";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Increase stamina from eating mushrooms";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Increase stamina from eating cooked meals";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Increase stamina gained from eating mushrooms by 25%";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Increase stamina gained from eating cooked meals by 25%";
+		comboWord = "AND";
+	}
+
+	public override Skill Copy()
+	{
+		StaminaEfficiencySkill newMe = new StaminaEfficiencySkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
 	}
 
 	/// <summary>
@@ -54,20 +69,10 @@ public class StaminaEfficiencySkill : Skill
 	}
 	protected override float White(List<GameObject> parameters)
 	{
-		PlayerInventoryManager pinv = parameters[0].GetComponent<PlayerInventoryManager>();
-		if (pinv == null)
-			throw new System.Exception("No player inventory attached.");
-		if (pinv.heldItem.type.ToLower().Contains("mushroom"))
-			return .25f;
 		return 0;
 	}
 	protected override float Black(List<GameObject> parameters)
 	{
-		PlayerInventoryManager pinv = parameters[0].GetComponent<PlayerInventoryManager>();
-		if (pinv == null)
-			throw new System.Exception("No player inventory attached.");
-		if (pinv.heldItem.type.ToLower().Contains("meal"))
-			return .25f;
 		return 0;
 	}
 }

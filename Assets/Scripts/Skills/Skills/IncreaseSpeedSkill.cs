@@ -8,18 +8,30 @@ public class IncreaseSpeedSkill : Skill
 	public IncreaseSpeedSkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		parentShroom = PrimaryMushroom.BLUE;
-		description = "Increase player speed";
-		mushroomDescriptions[PrimaryMushroom.RED] =    "Base Speed is increased by 30% while in dungeons";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Base Speed is increased by 30% while in the wilderness";
-		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Base Speed is increased by 30% while in the town/farm";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Base Speed is increased by 30% while you have less than 50% health left";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Base Speed is increased by 15%";
+		description = "Increase player speed by...";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "...30% while in dungeons";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "...30% while in the wilderness";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "...30% while in the town/farm";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "...30% while you have less than 50% health left";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "...15% everywhere";
+		comboWord = "AND";
 	}
+
+	public override Skill Copy()
+	{
+		IncreaseSpeedSkill newMe = new IncreaseSpeedSkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
+	}
+
 
 	/// <summary>
 	/// Returns the total boost from this skill.
 	/// </summary>
-	/// <param name="parameters">Should include the player gameobject.</param>
+	/// <param name="parameters">Should include nothing.</param>
 	/// <returns>returns the percent boost to speed</returns>
 	new public float Apply(List<GameObject> putNullHere) { return base.Apply(parameters); }
 
@@ -43,9 +55,6 @@ public class IncreaseSpeedSkill : Skill
 	}
 	protected override float White(List<GameObject> parameters)
 	{
-		CombatantStats stats = parameters[0].GetComponent<CombatantStats>();
-		if (stats == null)
-			throw new System.Exception("No Player stats attached.");
 		if (SceneManager.GetActiveScene().name.Contains("Dungeon"))
 			return .5f;
 		return 0;

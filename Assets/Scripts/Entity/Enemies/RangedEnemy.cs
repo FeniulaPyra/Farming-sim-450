@@ -20,7 +20,7 @@ public class RangedEnemy : BasicEnemy
 		//pellet.debuff = debuff;
 		Projectile projectileScript = pellet.GetComponent<Projectile>();
 		projectileScript.debuff = debuff;
-		projectileScript.damage = stats.Strength;
+		projectileScript.damage = Mathf.CeilToInt(stats.Strength);
 		projectileScript.dir = new Vector2(Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad));//gameObject.transform.eulerAngles;
 		projectileScript.origin = gameObject;
 		//pellet.GetComponent<Projectile>().player = target;

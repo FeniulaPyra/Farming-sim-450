@@ -7,14 +7,22 @@ public class InfusionSkill : Skill
 	public InfusionSkill(PrimaryMushroom a) : base(a)
 	{
 		parentShroom = PrimaryMushroom.NONE;
-		description = "Mushrooms don't need as much water to survive";
-		mushroomDescriptions[PrimaryMushroom.RED] = "Mushrooms don't need water in the Fall";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Mushrooms don't need water in the Summer";
-		mushroomDescriptions[PrimaryMushroom.BLUE] = "Mushrooms don't need water in the Spring";
-		mushroomDescriptions[PrimaryMushroom.WHITE] = "Mushrooms don't need water in the Winter";
-		mushroomDescriptions[PrimaryMushroom.BLACK] = "Mushrooms survive without water 2 extra days year-round.";
+		description = "Enemies react to you like you are a ...";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "...Red mushroom";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "...Yellow mushroom";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "...Blue mushroom";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "...White mushroom";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "...Black mushroom";
 	}
-
+	public override Skill Copy()
+	{
+		InfusionSkill newMe = new InfusionSkill(mushrooms[0]);
+		for(int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
+	}
 	protected override float Black(List<GameObject> parameters)
 	{
 		throw new System.NotImplementedException();

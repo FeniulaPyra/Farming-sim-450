@@ -9,11 +9,11 @@ public abstract class TogglableMenu : MonoBehaviour
 	public int SLOT_GAP = 5;
 	public int SLOT_SIZE = 37;
 
-	public void Hide()
+	public virtual void Hide()
 	{
 		gameObject.SetActive(false);
 	}
-	public void Show()
+	public virtual void Show()
 	{
 		gameObject.SetActive(true);
 	}

@@ -22,14 +22,16 @@ public class Menu : MonoBehaviour
 
 	public GameObject PauseMenu;
 	public GameObject SettingsMenu;
-	public GameObject HelpMenu;
 	public GameObject SaveMenu;
 	public GameObject LoadMenu;
 	public GameObject ShopMenu;
 	public GameObject StatsPanelMenu;
+	public GameObject HelpMenu;
 	public GameObject gameInfo;
 	public GameObject controls;
+	public GameObject SkillsMenu;
 
+	public SkillTreeMenu skillTreeMenu;
 
 	public GameObject ShippingMenuObject;
 	public ShippingMenu shippingMenu;
@@ -91,7 +93,8 @@ public class Menu : MonoBehaviour
 		SHIPPING_BIN,
 		BED,
 		DIALOG,
-		EXTERNAL_INVENTORY
+		EXTERNAL_INVENTORY,
+		SKILLS
 	}
 
     [SerializeField]
@@ -141,6 +144,12 @@ public class Menu : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if(Keyboard.current.kKey.wasPressedThisFrame && state == MenuState.NO_MENU)
+		{
+			state = MenuState.SKILLS;
+			skillTreeMenu.Show();
+		}
+
 		pi.CanInteract = state == MenuState.NO_MENU;
 		
 		inventoryMenu.UpdateDisplay();
@@ -277,6 +286,10 @@ public class Menu : MonoBehaviour
                 break;
             case MenuState.DIALOG:
                 break;
+			case MenuState.SKILLS:
+				skillTreeMenu.Hide();
+				state = MenuState.NO_MENU;
+				break;
             case MenuState.EXTERNAL_INVENTORY:
                 if (ItemGrabber.item != null && ItemGrabber.amount > 0)
                 {

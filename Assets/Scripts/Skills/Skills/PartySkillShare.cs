@@ -8,13 +8,26 @@ public class PartySkillShare : Skill
 	public PartySkillShare(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		parentShroom = PrimaryMushroom.BLACK;
-		description = "Apply some of your skills to party members too.";
-		mushroomDescriptions[PrimaryMushroom.RED] = "Apply Red skills to party members at 75% efficiency";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Apply Yellow skills to party memberes at 75% efficiency";
-		mushroomDescriptions[PrimaryMushroom.BLUE] = " Apply Blue skills to party members at 75% efficiency";
-		mushroomDescriptions[PrimaryMushroom.WHITE] = "Apply White skills to party members at 75% efficiency";
-		mushroomDescriptions[PrimaryMushroom.BLACK] = "Apply Black skills to party members at 75% efficiency";
+		description = "Apply ___ skills to party members at 75% efficiency";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "Red skills";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Yellow skills";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Blue skills";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "White skills";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Black skills";
+		comboWord = "AND";
+
 	}
+
+	public override Skill Copy()
+	{
+		PartySkillShare newMe = new PartySkillShare(mushrooms[0], mushrooms[1]);
+		for(int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
+	}
+
 
 	/// <summary>
 	/// Returns the total boost from this skill.

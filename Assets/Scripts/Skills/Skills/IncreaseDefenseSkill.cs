@@ -7,12 +7,23 @@ public class IncreaseDefenseSkill : Skill
 	public IncreaseDefenseSkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		parentShroom = PrimaryMushroom.WHITE;
-		description = "Player base defense is increased in certain situations.";
-		mushroomDescriptions[PrimaryMushroom.RED] =    "Base Defense is increased against enemies you are facing towards.";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Base Defense is increased while wielding a melee weapon.";
-		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Base Defense is increased against enemies you are facing away from.";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Base Defense is increased while wielding a ranged weapon.";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Base Defense is increased while not holding a weapon.";
+		description = "Player base defense is increased...";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "...10% against enemies you are facing towards.";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "...10% while wielding a melee weapon.";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "...10% against enemies you are facing away from.";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "...10% while wielding a ranged weapon.";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "...10% while not holding a weapon.";
+		comboWord = "AND";
+	}
+
+	public override Skill Copy()
+	{
+		IncreaseDefenseSkill newMe = new IncreaseDefenseSkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
 	}
 
 	/// <summary>
@@ -33,7 +44,10 @@ public class IncreaseDefenseSkill : Skill
 
 		BasicEnemy enemy = parameters[1].GetComponent<BasicEnemy>();
 		if (enemy == null)
-			throw new System.Exception("No Enemy attached.");
+		{
+			//throw new System.Exception("No Enemy attached.");
+			return 0;
+		}
 
 		Vector2 closestColliderPoint = enemy.transform.position;
 
@@ -62,7 +76,10 @@ public class IncreaseDefenseSkill : Skill
 
 		BasicEnemy enemy = parameters[1].GetComponent<BasicEnemy>();
 		if (enemy == null)
-			throw new System.Exception("No Enemy attached.");
+		{
+			//throw new System.Exception("No Enemy attached.");
+			return 0;
+		}
 
 		Vector2 closestColliderPoint = enemy.transform.position;
 

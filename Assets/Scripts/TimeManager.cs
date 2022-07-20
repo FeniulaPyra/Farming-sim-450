@@ -15,6 +15,9 @@ public class TimeManager : MonoBehaviour
     //for keeping track of player stamina, which is time
     public PlayerInteraction staminaTracker;
 
+	//for calculating boosted max stamina/adjusted stamina loss
+	public PlayerSkills pSkills;
+
     //Net worth goes up slightly each day
     public CalculateFarmNetWorth netWorth;
 
@@ -68,6 +71,32 @@ public class TimeManager : MonoBehaviour
 
     MushroomManager mushroomManager;
 
+	public float StaminaLossReduction
+	{
+		get
+		{
+			//also updates stamina loss reduction
+			float reduction = 1 + pSkills.SumSkillsOfType<StaminaLostDecreaseSkill>(null);
+
+			return reduction;
+		}
+	}
+
+	public const int BaseStamina = 100; 
+
+	public int MaxStamina
+	{
+		get
+		{
+			//also updates stamina loss reduction
+			float staminaBoost = 1 + pSkills.SumSkillsOfType<StaminaBoostSkill>(null);
+
+
+			return Mathf.CeilToInt(BaseStamina * staminaBoost);
+		}
+	}
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +129,7 @@ public class TimeManager : MonoBehaviour
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
 
 		inventory = staminaTracker.gameObject.GetComponent<PlayerInventoryManager>().inv;//FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
+		pSkills = staminaTracker.gameObject.GetComponent<PlayerSkills>();//FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
 
         mushroomManager = FindObjectOfType<MushroomManager>();
 
@@ -394,7 +424,7 @@ public class TimeManager : MonoBehaviour
         if (staminaTracker.playerStamina <= 0)
         {
             Sleep(0);
-            Sleep(5);
+            Sleep(5 + (3 * StaminaLossReduction));
             isNight = false;
             staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
         }
@@ -624,23 +654,23 @@ public class TimeManager : MonoBehaviour
         }
 	    else
 	    {
-	        float staminaToAdd = 100 * (duration / 8);
+	        float staminaToAdd = MaxStamina * (duration / 8);
 
-                Debug.Log($"Duration is {duration}");
-                //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
-                Debug.Log($"Multiplying by {duration/8}");
-                Debug.Log($"Adding {staminaToAdd} stamina");
+            Debug.Log($"Duration is {duration}");
+            //Debug.Log($"Max is {staminaTracker.GetMaxPlayerStamina()} stamina");
+            Debug.Log($"Multiplying by {duration/8}");
+            Debug.Log($"Adding {staminaToAdd} stamina");
 
-                staminaTracker.playerStamina += (int)staminaToAdd;
+            staminaTracker.playerStamina += (int)staminaToAdd;
 
-                //cap stamina if it exceeds limit
-                if (staminaTracker.playerStamina > 100)
-                {
-                    staminaTracker.playerStamina = 100;
-                }
+            //cap stamina if it exceeds limit
+            if (staminaTracker.playerStamina > 100)
+            {
+                staminaTracker.playerStamina = 100;
+            }
 
             
-                AdvanceDay();
+            AdvanceDay();
 	    }
 		GameObject.Find("Player").GetComponent<PlayerMovement>().visited = new List<string>();
         

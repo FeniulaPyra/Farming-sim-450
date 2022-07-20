@@ -34,6 +34,6 @@ public class MeleeWeaponItem : WeaponItem
 
 		//if reachable, damage the enemy.
 		if (distance < reach && Mathf.Abs(angle) < this.angle)
-			target.GetComponent<CombatantStats>().TakeDamage(this.Strength + target.GetComponent<CombatantStats>().Strength);
+			target.GetComponent<CombatantStats>().TakeDamage(Mathf.CeilToInt(this.Strength + target.GetComponent<CombatantStats>().Strength));
 	}
 }

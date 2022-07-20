@@ -7,12 +7,23 @@ public class MushroomSpreadSkill : Skill
 	public MushroomSpreadSkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		parentShroom = PrimaryMushroom.YELLOW;
-		description = "Mushrooms have a chance to spread an extra time each day";
-		mushroomDescriptions[PrimaryMushroom.RED] =    "Mushrooms have a 20% chance to spread one extra time per day in the Fall";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Mushrooms have a 20% chance to spread one extra time per day in the Summer";
-		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Mushrooms have a 20% chance to spread one extra time per day in the Spring";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Mushrooms have a 20% chance to spread one extra time per day in the Winter";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Mushrooms have a 5% chance to spread one extra time per day year-round.";
+		description = "Mushrooms have a ____ chance to spread an extra time per day";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "+20% chance to spread an extra time per day in the Fall";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "+20% chance to spread an extra time per day in the Summer";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "+20% chance to spread an extra time per day in the Spring";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "+20% chance to spread an extra time per day in the Winter";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "+5% chance to spread an extra time per day year-round.";
+		comboWord = "AND";
+	}
+
+	public override Skill Copy()
+	{
+		MushroomSpreadSkill newMe = new MushroomSpreadSkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
 	}
 
 	/// <summary>

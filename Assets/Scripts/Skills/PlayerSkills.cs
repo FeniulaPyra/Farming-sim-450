@@ -8,13 +8,26 @@ public class PlayerSkills : MonoBehaviour
 	/// <summary>
 	/// ahahahaa i love that im going to have to serialize it ahahaa
 	/// </summary>
-	int skillPoints;
-	Skill skills;
+	public int skillPoints;
 
+	public int usedPoints;
+
+	public Skill skillTree;
+
+	public TimeManager time;
+
+	public InfusionSkill Root
+	{
+		get
+		{
+			return (InfusionSkill)skillTree;
+		}
+	}
+	
     // Start is called before the first frame update
     void Start()
     {
-		skills = new InfusionSkill(Skill.PrimaryMushroom.NONE);
+		skillTree = new InfusionSkill(Skill.PrimaryMushroom.NONE);
     }
 
     // Update is called once per frame
@@ -59,16 +72,16 @@ public class PlayerSkills : MonoBehaviour
 		List<string> vals = new List<string>(str.Split(','));
 
 		//create root
-		skills = new InfusionSkill(Skill.PrimaryMushroom.NONE);
+		skillTree = new InfusionSkill(Skill.PrimaryMushroom.NONE);
 
 		di = 0; //You were expecting i = 0 to be your indexing variable, but it was me, di=0! (for [D]eserialization [I]ndex)
 
 		//set mushrooms
-		skills.SetMushroom((Skill.PrimaryMushroom)int.Parse(vals[di]), 0);
+		skillTree.SetMushroom((Skill.PrimaryMushroom)int.Parse(vals[di]), 0);
 		di++;
 
-		skills.ChildSkills[0] = DeserializeRecursive(vals, skills.ChildSkills[0]);
-		skills.ChildSkills[1] = DeserializeRecursive(vals, skills.ChildSkills[1]);
+		skillTree.ChildSkills[0] = DeserializeRecursive(vals, skillTree.ChildSkills[0]);
+		skillTree.ChildSkills[1] = DeserializeRecursive(vals, skillTree.ChildSkills[1]);
 
 	}
 
@@ -84,5 +97,92 @@ public class PlayerSkills : MonoBehaviour
 		}
 
 		return cur;
+	}
+
+	public float SumSkillsOfType<T>(List<GameObject> parameters)
+	{
+		Dictionary<Skill.PrimaryMushroom, float> skillBoosters = GetSkillBoost();
+		float boost = 0;
+		SkillIterator iterate = new DepthFirstSkillIterator(skillTree);
+		
+		//since staminalostdecreaseskills are all nested withing staminaboost skills, this is here
+		//to check if the player is summing them, and to instead search for staminaboost skills and 
+		//then call the secondary skill of those skills (i.e. staminalostdecreaseskill) - same goes for foodefficiency skill
+		StaminaLostDecreaseSkill defaultStaminaLoss = new StaminaLostDecreaseSkill(Skill.PrimaryMushroom.NONE, Skill.PrimaryMushroom.NONE);
+		FoodEfficiencySkill defaultFoodEfficiency = new FoodEfficiencySkill(Skill.PrimaryMushroom.NONE, Skill.PrimaryMushroom.NONE);
+
+		while (iterate.HasMore())
+		{
+			Skill k = iterate.GetNext();
+			if(k is T)
+			{
+				float skillBoost = 0;
+				//adds up the skill boost to this skill
+				foreach(Skill.PrimaryMushroom m in k.mushrooms)
+				{
+					if(m != Skill.PrimaryMushroom.NONE)
+						skillBoost += skillBoosters[m];
+				}
+				//applies the skill boost to this skill and adds the effect from this skill to the total effect.
+				boost += k.Apply(parameters) * (1 + skillBoost);
+			}
+			else if (defaultStaminaLoss is T && k is StaminaBoostSkill)
+			{
+				float skillBoost = 0;
+				//adds up the skill boost to this skill
+				foreach (Skill.PrimaryMushroom m in k.mushrooms)
+				{
+					if (m != Skill.PrimaryMushroom.NONE)
+						skillBoost += skillBoosters[m];
+				}
+				//applies the skill boost to this skill and adds the effect from this skill to the total effect.
+				boost += ((StaminaBoostSkill)k).secondarySkill.Apply(parameters) * (1 + skillBoost);
+			}
+			else if (defaultFoodEfficiency is T && k is StaminaEfficiencySkill)
+			{
+				float skillBoost = 0;
+				//adds up the skill boost to this skill
+				foreach (Skill.PrimaryMushroom m in k.mushrooms)
+				{
+					if (m != Skill.PrimaryMushroom.NONE)
+						skillBoost += skillBoosters[m];
+				}
+				//applies the skill boost to this skill and adds the effect from this skill to the total effect.
+				boost += ((StaminaEfficiencySkill)k).secondarySkill.Apply(parameters) * (1 + skillBoost);
+			}
+		}
+
+		return boost;
+
+	}
+
+	public Dictionary<Skill.PrimaryMushroom, float> GetSkillBoost()
+	{
+		Dictionary<Skill.PrimaryMushroom, float> boosts = new Dictionary<Skill.PrimaryMushroom, float>
+		{
+			{Skill.PrimaryMushroom.RED, 0 },
+			{Skill.PrimaryMushroom.YELLOW, 0 },
+			{Skill.PrimaryMushroom.BLUE, 0 },
+			{Skill.PrimaryMushroom.WHITE, 0 },
+			{Skill.PrimaryMushroom.BLACK, 0 }
+		};
+		SkillIterator iterate = new DepthFirstSkillIterator(skillTree);
+		while(iterate.HasMore())
+		{
+			Skill k = iterate.GetNext();
+			if(k is SkillBoostSkill)
+			{
+				if(k.mushrooms[0] != Skill.PrimaryMushroom.NONE)
+					boosts[k.mushrooms[0]] += k.Apply(null);
+				if(k.mushrooms[1] != Skill.PrimaryMushroom.NONE)
+					boosts[k.mushrooms[1]] += k.Apply(null);
+			}
+		}
+		return boosts;
+	}
+
+	public void UpdateSkill(Skill skillInTree, Skill newSkill)
+	{
+
 	}
 }

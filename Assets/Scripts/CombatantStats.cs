@@ -8,8 +8,17 @@ public class CombatantStats : MonoBehaviour
     public List<Buff> buffs = new List<Buff>();
 
     [SerializeField]
-	private int maxHealthAdjustments;
-	public int MaxHealth { get { return maxHealthAdjustments + BaseMaxHealth; } set { maxHealthAdjustments = value - BaseMaxHealth; } }
+	protected int maxHealthAdjustments;
+	public virtual int MaxHealth {
+		get
+		{
+			return maxHealthAdjustments + BaseMaxHealth;
+		}
+		set
+		{
+			maxHealthAdjustments = value - BaseMaxHealth;
+		}
+	}
 	public int BaseMaxHealth
 	{
 		get
@@ -18,13 +27,23 @@ public class CombatantStats : MonoBehaviour
 		}
 	}
 
+    [SerializeField]
+	protected int health;
+	public int Health {
+		get {
+			return health;
+		}
+		set {
+			health = value;
+			if (health < 0)
+			{
+				health = 0;
+			}
+		}
+	}
 
     [SerializeField]
-    private int health;
-	public int Health { get { return health; } set { health = value; if (health < 0) { health = 0; } } }
-
-    [SerializeField]
-    private int strengthAdjustments;
+	protected int strengthAdjustments;
     public int StrengthAdjustments
     {
         get
@@ -44,7 +63,7 @@ public class CombatantStats : MonoBehaviour
         }
     }
     //public int Strength { get { return strengthAdjustments + BaseStrength; } set { strengthAdjustments = value - BaseStrength; } }
-    public int Strength
+    public virtual float Strength
     {
         get
         {
@@ -65,7 +84,7 @@ public class CombatantStats : MonoBehaviour
 	}
 
     [SerializeField]
-    private int defenseAdjustments;
+	protected int defenseAdjustments;
     public int DefenseAdjustments
     {
         get
@@ -92,7 +111,7 @@ public class CombatantStats : MonoBehaviour
         }
     }
     //public int Defense { get { return defenseAdjustments + BaseDefense; } set { defenseAdjustments = value - BaseDefense; if (defenseAdjustments < 0) { defenseAdjustments = 0; } } }
-    public int Defense
+    public virtual float Defense
     {
         get
         {
@@ -105,7 +124,7 @@ public class CombatantStats : MonoBehaviour
         }
         set
         {
-            DefenseAdjustments = value - BaseDefense;
+            DefenseAdjustments = (int)value - BaseDefense;
         }
     }
     public int BaseDefense
@@ -117,14 +136,14 @@ public class CombatantStats : MonoBehaviour
 	}
 
     [SerializeField]
-    private int exp;
+	protected int exp;
 	public int Experience
 	{
 		get { return exp; }
 	}
 
     [SerializeField]
-    private int level;
+	protected int level;
 	public int Level {
 		get
 		{
@@ -137,7 +156,7 @@ public class CombatantStats : MonoBehaviour
 		}
 	}
 
-	public CombatantStats(int level)
+	/*public CombatantStats(int level)
 	{
 		Level = level;
 		health = maxHealthAdjustments;
@@ -148,7 +167,7 @@ public class CombatantStats : MonoBehaviour
 		this.exp = exp;
 		this.maxHealthAdjustments = maxhealth;
 		this.health = health;
-	}
+	}*/
 
     private void Start()
     {

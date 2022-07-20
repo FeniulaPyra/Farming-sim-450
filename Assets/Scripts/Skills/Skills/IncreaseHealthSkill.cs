@@ -7,13 +7,25 @@ public class IncreaseHealthSkill : Skill
 	public IncreaseHealthSkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		parentShroom = PrimaryMushroom.RED;
-		description = "Player maximum health is increased sometimes";
-		mushroomDescriptions[PrimaryMushroom.RED] =    "Max Health is increased by 20% during the Fall";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Max Health is increased by 20% during the Summer";
-		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Max Health is increased by 20% during the Spring";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Max Health is increased by 20% during the Winter";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Max Health is increased by 5% year-round";
+		description = "Player maximum health is increased...";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "...by 20% during the Fall";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "...by 20% during the Summer";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "...by 20% during the Spring";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "...by 20% during the Winter";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "...by 5% year-round";
+		comboWord = "AND";
 	}
+
+	public override Skill Copy()
+	{
+		IncreaseHealthSkill newMe = new IncreaseHealthSkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
+	}
+
 
 	/// <summary>
 	/// Returns the total boost from this skill.

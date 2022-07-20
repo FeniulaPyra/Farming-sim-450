@@ -24,7 +24,7 @@ public class FollowerEnemy : BasicEnemy
 
             if (distance <= minSeekDistance)
             {
-                target.TakeDamage(stats.Strength, false);
+                target.TakeDamage(Mathf.CeilToInt(stats.Strength), false);
 
                 attacked = true;
                 fleeTimer = baseFleeTimer;

@@ -7,13 +7,25 @@ public class IncreaseStrengthSkill : Skill
 	public IncreaseStrengthSkill(PrimaryMushroom a, PrimaryMushroom b) : base(a, b)
 	{
 		parentShroom = PrimaryMushroom.YELLOW;
-		description = "Increase player base strength in certain situations";
-		mushroomDescriptions[PrimaryMushroom.RED] =    "Base Strength is increased when using a melee weapon";
-		mushroomDescriptions[PrimaryMushroom.YELLOW] = "Base Strength is increased against ranged enemies";
-		mushroomDescriptions[PrimaryMushroom.BLUE] =   "Base Strength is increased against melee enemies";
-		mushroomDescriptions[PrimaryMushroom.WHITE] =  "Base Strength is increased when using a ranged weapon";
-		mushroomDescriptions[PrimaryMushroom.BLACK] =  "Base Strength is increased when you have lower than 50% of your health left";
+		description = "Increase player base strength by...";
+		mushroomDescriptions[PrimaryMushroom.RED] =    "...10% when using a melee weapon";
+		mushroomDescriptions[PrimaryMushroom.YELLOW] = "...10% against ranged enemies";
+		mushroomDescriptions[PrimaryMushroom.BLUE] =   "...10% against melee enemies";
+		mushroomDescriptions[PrimaryMushroom.WHITE] =  "...10% when using a ranged weapon";
+		mushroomDescriptions[PrimaryMushroom.BLACK] =  "...10% when you have lower than 50% of your health left";
+		comboWord = "AND";
 	}
+
+	public override Skill Copy()
+	{
+		IncreaseStrengthSkill newMe = new IncreaseStrengthSkill(mushrooms[0], mushrooms[1]);
+		for (int i = 0; i < this.ChildSkills.Count; i++)
+		{
+			newMe.ChildSkills[i] = ChildSkills[i] != null ? ChildSkills[i].Copy() : null;
+		}
+		return newMe;
+	}
+
 
 	/// <summary>
 	/// Returns the total boost from this skill.

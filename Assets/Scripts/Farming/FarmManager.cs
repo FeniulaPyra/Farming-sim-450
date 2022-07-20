@@ -22,11 +22,12 @@ public class FarmManager : MonoBehaviour
 	public Toggle needsTill;
 
     public CalculateFarmNetWorth netWorth;
+	public PlayerSkills pSkills;
 
-    //Testing only; attempt at making a dictionary
-    //The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
-    //public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
-    public Dictionary<Vector3Int, Tile> mushroomsAndTiles = new Dictionary<Vector3Int, Tile>();
+	//Testing only; attempt at making a dictionary
+	//The key is the position of a tile, and the mushroom is that instance of the script it's supposed to kep track of
+	//public Dictionary<Vector3Int, Mushrooms> mushroomsAndTiles = new Dictionary<Vector3Int, Mushrooms>();
+	public Dictionary<Vector3Int, Tile> mushroomsAndTiles = new Dictionary<Vector3Int, Tile>();
 	public Dictionary<Vector3Int, bool> visitedTiles = new Dictionary<Vector3Int, bool>();
 
 	public Tile this[Vector3Int key]
@@ -337,7 +338,10 @@ public class FarmManager : MonoBehaviour
     public void SpreadMushroom()
     {
 		Debug.Log("Beginning of SpreadMushroom");
-		ResetVisited();
+		ResetVisited();		
+
+		float extraSpreadChance = 0;
+		extraSpreadChance = pSkills.SumSkillsOfType<MushroomSpreadSkill>(new List<GameObject> { pSkills.time.gameObject});
 
 		if (farmField != null)
 		{
@@ -354,7 +358,14 @@ public class FarmManager : MonoBehaviour
             for (int y = bottomBound + 1; y < topBound - 1; y++)
             {
                 Vector3Int tileToTest = new Vector3Int(y, x, 0);
-				CheckTile(tileToTest);
+
+				//if the tile hasnt been visited, visit it
+				if (!visitedTiles.ContainsKey(tileToTest) || visitedTiles[tileToTest])
+					CheckTile(tileToTest);
+
+				//chance to spread the tile again regardless of visited status
+				if (Random.Range(0, 1) < extraSpreadChance)
+					CheckTile(tileToTest);
 
 			}
         }
@@ -377,8 +388,6 @@ public class FarmManager : MonoBehaviour
 		#endregion
 		Debug.Log("TILEPOS + " + tilePos);
 		
-		if (!visitedTiles.ContainsKey(tilePos) || visitedTiles[tilePos]) return;
-
 		//checks that the tile exists
 		Tile tile = mushroomsAndTiles[tilePos];
 		Mushrooms thisShroom = tile.GetComponent<Mushrooms>();

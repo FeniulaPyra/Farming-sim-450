@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         get
         {
-            return movementSpeed;
+			return movementSpeed * (1 + gameObject.GetComponent<PlayerSkills>().SumSkillsOfType<IncreaseSpeedSkill>(null));
         }
         set
         {
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (frozen) return;
 
-        var desiredVelocity = direction * movementSpeed;
+        var desiredVelocity = direction * MovementSpeed;
         var move = desiredVelocity - rb.velocity;
         /*
         if (rb.velocity.magnitude > 0.1)

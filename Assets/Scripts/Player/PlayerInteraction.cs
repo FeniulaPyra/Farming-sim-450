@@ -114,6 +114,9 @@ public class PlayerInteraction : MonoBehaviour
     Vector2 pos = new Vector2();
     Vector2 savePos;
 
+
+	PlayerSkills playerSkills;
+
     private void Start()
     {
 		menu = GameObject.Find("Menus").GetComponent<Menu>();
@@ -133,6 +136,8 @@ public class PlayerInteraction : MonoBehaviour
         //playerInventoryManager = player.GetComponent<PlayerInventoryManager>();
         playerInventoryManager = gameObject.GetComponent<PlayerInventoryManager>();
         playerInventory = playerInventoryManager.inv;
+
+		playerSkills = gameObject.GetComponent<PlayerSkills>();
 
         //playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
@@ -204,7 +209,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (heldItem.isEdible == true)
             {
-                SetStamina(playerStamina + heldItem.staminaToRestore);
+				int staminaBonus = (int)Mathf.Round(playerSkills.SumSkillsOfType<FoodEfficiencySkill>(new List<GameObject> { gameObject }));
+
+				SetStamina(playerStamina + heldItem.staminaToRestore * staminaBonus);
                 playerInventoryManager.RemoveHeldItems(1);
 
                 if (farmingTutorial != null)
@@ -477,15 +484,15 @@ public class PlayerInteraction : MonoBehaviour
                     //switch on the four main item types, then some default value for everything else
                     if (heldItem.type == "mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
                     {
-                        ReduceStamina(heldItem.staminaUsed);
+                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
                     }
                     else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
                     {
-                        ReduceStamina(heldItem.staminaUsed);
+                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
                     }
                     else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
                     {
-                        ReduceStamina(heldItem.staminaUsed);
+                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
                     }
                     else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
                     {

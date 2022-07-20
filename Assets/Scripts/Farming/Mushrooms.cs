@@ -18,6 +18,13 @@ public class Mushrooms : Tile
 
     //constant that defines how many days the mushroom can survive being neglected. If the number of days is ever greater than this, the mushroom has died
     public int maxDaysWithoutWater = 2;
+	public int MaxDaysWithoutWater
+	{
+		get
+		{
+			return maxDaysWithoutWater + (int)pSkills.SumSkillsOfType<MushroomThirstSkill>(new List<GameObject> { pSkills.time.gameObject });
+		}
+	}
     //represents the mushroom's current stage of growth
     public float growthStage = 1.00f;
     //number of days without water
@@ -47,6 +54,8 @@ public class Mushrooms : Tile
     //Dictionary that uses the above to keep track of things
     public Dictionary<string, GameObject> hybridDictionary = new Dictionary<string, GameObject>();
 
+	public PlayerSkills pSkills;
+
 	#endregion
 
 	private SpriteRenderer bubble;
@@ -72,6 +81,7 @@ public class Mushrooms : Tile
 		bubble.transform.position = new Vector3(bubble.transform.position.x, bubble.transform.position.y + .5f, 10);
 		bubble.transform.localScale = new Vector3(.5f, .5f, 1);
 		ShowPopupBubblesToggle = GameObject.Find("Menus").GetComponent<Menu>().BubbleToggle.GetComponent<Toggle>();
+		pSkills = GameObject.Find("Player").GetComponent<PlayerSkills>();
 		bubble.sortingLayerName = "Popup Bubbles";
 		bubble.color = new Color(bubble.color.r, bubble.color.g, bubble.color.b, .75f);
 		//populating hybrid dictionary
@@ -86,7 +96,7 @@ public class Mushrooms : Tile
     {
 
 		//show bubble
-		if(daysWithoutWater >= maxDaysWithoutWater - 1 && !isMoist)
+		if (daysWithoutWater >= MaxDaysWithoutWater - 1 && !isMoist)
 		{
 			bubble.sprite = popupBubbles[3];
 		}
@@ -125,7 +135,7 @@ public class Mushrooms : Tile
         {
             daysWithoutWater++;
 
-            if (daysWithoutWater >= maxDaysWithoutWater)
+            if (daysWithoutWater >= MaxDaysWithoutWater)
             {
 				this.isTilled = false;
 				this.isMoist = false;
