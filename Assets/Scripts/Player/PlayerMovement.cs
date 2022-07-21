@@ -71,6 +71,10 @@ public class PlayerMovement : MonoBehaviour
 			visited = ScenePersistence.Instance.mapsVisited;
 		}
 
+		//enables the foraging only after visited maps have been loaded.
+		ForagingManager forageManager = GameObject.FindObjectOfType<ForagingManager>();
+		if(forageManager != null) forageManager.TrySpawn();
+
 		Scene currentScene = SceneManager.GetActiveScene();
 		if (!visited.Contains("" + currentScene.name))
 		{

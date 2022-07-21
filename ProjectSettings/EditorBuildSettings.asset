@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: fc1b82a9c96216947aae55864ca462e2
+  - enabled: 1
+    path: Assets/Scenes/Wilderness.unity
+    guid: a14042a51df63e74ba2ea65cbd49b438
   m_configObjects: {}
