@@ -28,7 +28,23 @@ public class PlayerSkills : MonoBehaviour
     void Start()
     {
 		skillTree = new InfusionSkill(Skill.PrimaryMushroom.NONE);
-    }
+		if (GlobalGameSaving.Instance != null)
+		{
+			if (GlobalGameSaving.Instance.loadingSave == true)
+			{
+				//inv.SetSaveableInventory(GlobalGameSaving.Instance.inventory);
+				Deserialize(GlobalGameSaving.Instance.skills);
+			}
+			else if (ScenePersistence.Instance != null)
+			{
+				if (ScenePersistence.Instance.inventory.Count > 0)
+				{
+					//inv.SetSaveableInventory(ScenePersistence.Instance.inventory);
+					Deserialize(ScenePersistence.Instance.skills);
+				}
+			}
+		}
+	}
 
     // Update is called once per frame
     void Update()
@@ -50,7 +66,7 @@ public class PlayerSkills : MonoBehaviour
 
 				//right skill
 				Skill RightChildSkill = parent.ChildSkills[2 * i + 1];
-				str = Serialize(LeftChildSkill, str);
+				str = Serialize(RightChildSkill, str);
 			}
 
 
@@ -59,7 +75,17 @@ public class PlayerSkills : MonoBehaviour
 		return str;
 	}
 
-
+	public void Save(string what)
+	{
+		if (what == "persist")
+		{
+			ScenePersistence.Instance.skills = Serialize(skillTree, "");//inv.GetSaveableInventory();
+		}
+		else if (what == "save")
+		{
+			GlobalGameSaving.Instance.skills = Serialize(skillTree, "");//inv.GetSaveableInventory();
+		}
+	}
 	private int di;
 	/// <summary>
 	/// modified from
@@ -69,15 +95,16 @@ public class PlayerSkills : MonoBehaviour
 	/// <param name="str">the saved string of the skill</param>
 	public void Deserialize(string str)
 	{
-		List<string> vals = new List<string>(str.Split(','));
-
+		if (str.Length < 1) return;
+		//List<string> vals = new List<string>(str.Split());
+		string vals = str;
 		//create root
 		skillTree = new InfusionSkill(Skill.PrimaryMushroom.NONE);
 
 		di = 0; //You were expecting i = 0 to be your indexing variable, but it was me, di=0! (for [D]eserialization [I]ndex)
 
 		//set mushrooms
-		skillTree.SetMushroom((Skill.PrimaryMushroom)int.Parse(vals[di]), 0);
+		skillTree.SetMushroom((Skill.PrimaryMushroom)int.Parse("" + vals[di]), 0);
 		di++;
 
 		skillTree.ChildSkills[0] = DeserializeRecursive(vals, skillTree.ChildSkills[0]);
@@ -85,12 +112,12 @@ public class PlayerSkills : MonoBehaviour
 
 	}
 
-	public Skill DeserializeRecursive(List<string> str, Skill cur)
+	public Skill DeserializeRecursive(string str, Skill cur)
 	{
 		if (cur == null) return null;
 		for(int i = 0; i < 2; i++)
 		{
-			cur.SetMushroom((Skill.PrimaryMushroom)int.Parse(str[di]), i);
+			cur.SetMushroom((Skill.PrimaryMushroom)int.Parse("" + str[di]), i);
 			di++;
 			cur.ChildSkills[2 * i] = DeserializeRecursive(str, cur.ChildSkills[2 * i]);
 			cur.ChildSkills[2 * i + 1] = DeserializeRecursive(str, cur.ChildSkills[2 * i + 1]);

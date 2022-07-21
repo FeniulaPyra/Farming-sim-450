@@ -492,9 +492,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 heldItem = playerInventoryManager.GetHeldItem();
                 heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-
-
-				if (farmManager.farmField != null && farmManager.tillableGround != null)
+				if (farmManager.farmField != null && farmManager.tillableGround != null && mushroomsAndTiles.ContainsKey(focusTilePosition))
                 {
 //<<<<<<< HEAD
                     if (heldItemAmount > 0 && heldItem.type=="mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)//if(farmManager.GetComponent<FarmManager>().playerInventory.HeldItem.Amount > 0 && itemName.Contains("Shroom"))

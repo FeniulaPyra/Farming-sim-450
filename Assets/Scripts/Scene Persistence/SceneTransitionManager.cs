@@ -12,6 +12,7 @@ public class SceneTransitionManager : MonoBehaviour
     public GameObject player;//The player themselves
     public TimeManager timeManager;//The date displayed in the top right
     public PlayerInteraction playerInteraction;//The player's stamina and how much money they have
+	public PlayerSkills skillManager;
     public TileManager tileManager;//Theplayer's field
     public FarmManager farmManager;//Mushrooms
     public FarmingTutorial farmingTutorial;//The state of the tutorial. Shouldn't be an issue
@@ -25,6 +26,7 @@ public class SceneTransitionManager : MonoBehaviour
         player = GameObject.Find("Player");
         timeManager = FindObjectOfType<TimeManager>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
+		skillManager = player.GetComponent<PlayerSkills>();
 		invManager = player.GetComponent<PlayerInventoryManager>();
         tileManager = FindObjectOfType<TileManager>();
         farmManager = FindObjectOfType<FarmManager>();
@@ -66,6 +68,7 @@ public class SceneTransitionManager : MonoBehaviour
         entityManager.SaveEntities("persist");
 
         invManager.SaveInventory("persist");
+        skillManager.Save("persist");
 
         playerInteraction.SavePlayer("persist");
 

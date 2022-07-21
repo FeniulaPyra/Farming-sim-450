@@ -18,6 +18,7 @@ public class GlobalGameSaving : MonoBehaviour
     public GameObject player;//Will manually save movement speed (buffs) and positions (placement after loading)
     public TimeManager timeManager;//Timemanager already has save functions
     public PlayerInteraction playerInteraction;//Playerinteraction already has save functions
+    public PlayerSkills skillManager;//Playerinteraction already has save functions
     public TileManager tileManager;//Tilemanager already has save functions
     public FarmManager farmManager;//FarmManager already has save functions
     public EntityManager entityManager;
@@ -70,6 +71,8 @@ public class GlobalGameSaving : MonoBehaviour
 
 	public List<string> playerEquipment = new List<string>();
 
+	public string skills;
+
     //public Inventory shippingInv;
     public List<int> shippingInv;
     public ShippingBin bin;
@@ -106,6 +109,7 @@ public class GlobalGameSaving : MonoBehaviour
 
         player = GameObject.Find("Player");
 		invManager = player.GetComponent<PlayerInventoryManager>();
+		skillManager = player.GetComponent<PlayerSkills>();
         timeManager = FindObjectOfType<TimeManager>();
         tileManager = FindObjectOfType<TileManager>();
         farmManager = FindObjectOfType<FarmManager>();
@@ -242,6 +246,7 @@ public class GlobalGameSaving : MonoBehaviour
         tileManager.SaveFarm("save");//
 
         invManager.SaveInventory("save");//
+        skillManager.Save("save");//
 
         if (bin != null)
         {
@@ -250,7 +255,7 @@ public class GlobalGameSaving : MonoBehaviour
 
         entityManager.SaveEntities("save");//
 
-        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames, playerEquipment);
+        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames, playerEquipment, skills);
 
 
         var json = JsonUtility.ToJson(save);
@@ -424,8 +429,9 @@ public class GameSave
 	public List<SaveInventoryEntity> inventoryEntities = new List<SaveInventoryEntity>();
 	public List<string> inventoryEntityNames = new List<string>();
 	public List<string> Equipment = new List<string>();
+	public string skills;
 
-    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames, List<string> equipment)
+    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames, List<string> equipment, string skills)
     {
         sceneName = s;
         position = p;
@@ -452,5 +458,6 @@ public class GameSave
 		inventoryEntities = chests;
 		inventoryEntityNames = chestNames;
 		Equipment = equipment;
+		this.skills = skills;
     }
 }

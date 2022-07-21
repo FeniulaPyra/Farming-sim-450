@@ -53,6 +53,8 @@ public class ScenePersistence : MonoBehaviour
 
 	public List<string> playerEquipment = new List<string>();
 
+	public string skills;
+
     //boolean to let other scripts know to load a save
     public bool changingScene = false;
 

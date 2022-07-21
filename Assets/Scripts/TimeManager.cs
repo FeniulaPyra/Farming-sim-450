@@ -447,7 +447,7 @@ public class TimeManager : MonoBehaviour
     {
         Debug.Log("Advancing with Day");
 
-        UpdateField();
+        //UpdateField();
         
         //change year
         if (seasonNum == 4 && dateNum == 30)
