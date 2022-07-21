@@ -58,6 +58,7 @@ MonoBehaviour:
   sellValue: 150
   isEdible: 1
   staminaToRestore: 15
+  healthToRestore: 15
   staminaUsed: 2
   rare: 0
   type: mushroom
@@ -155,6 +156,7 @@ MonoBehaviour:
   minSeekDistance: 0
   sr: {fileID: 2981423542673849521}
   player: {fileID: 0}
+  distance: 0
 --- !u!50 &7876852601533766793
 Rigidbody2D:
   serializedVersion: 4
@@ -4973,4 +4975,5 @@ MonoBehaviour:
   minSeekDistance: 1
   sr: {fileID: 0}
   player: {fileID: 0}
+  distance: 0
   playerObj: {fileID: 0}

@@ -16,6 +16,15 @@ public class Item : MonoBehaviour
 
     public bool isEdible;
     public int staminaToRestore;
+    [SerializeField]
+    int healthToRestore;
+    public int HealthToRestore
+    {
+        get
+        {
+            return healthToRestore;
+        }
+    }
 
     public int staminaUsed;
 
@@ -23,7 +32,7 @@ public class Item : MonoBehaviour
 
 	public string type;
 
-	public void Use(Tile i)
+    public void Use(Tile i)
 	{
 
 	}
