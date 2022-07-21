@@ -7,6 +7,7 @@ public class EnemySpawnManager : MonoBehaviour
     //All waves; designers should be able to just change this in editor as they see fit
     public List<Wave> waves = new List<Wave>();
 
+    [SerializeField]
     Wave currentWave;
 
     //Enemies in the wave; its Count will determine when things spawn
@@ -30,6 +31,7 @@ public class EnemySpawnManager : MonoBehaviour
     //Player; when they are close enough, starts the spawning
     [SerializeField]
     GameObject player;
+    [SerializeField]
     PlayerInteraction playerInteraction;
 
     //distance between player and spawner; might have to be different on a case to case basis
@@ -54,12 +56,35 @@ public class EnemySpawnManager : MonoBehaviour
 
         //list of enemies this wave could spawn; must be in order from rarest to most common to work with the above
         public List<BasicEnemy> enemies = new List<BasicEnemy>();
+
+        public Wave(BasicEnemy basic, int num = 1, float delay = 1)
+        {
+            numToSpawn = num;
+            enemySpawnDelay = delay;
+            enemyWeights.Add(100);
+            enemies.Add(basic);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        currentWave = waves[0];
+        if (waves.Count > 0)
+        {
+            currentWave = waves[0];
+        }
+        //Just making an empty wave to avoid errors, if one isn't made in inspector, for some reason
+        else
+        {
+            waves.Add(new Wave(defaultEnemy));
+            currentWave = waves[0];
+        }
+
+        //If it's 0, or somehow less than 0, make it a number
+        if (spawnDistance <= 0)
+        {
+            spawnDistance = 2.5f;
+        }
 
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         player = playerInteraction.gameObject;

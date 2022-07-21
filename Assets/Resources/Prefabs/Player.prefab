@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5739973837602842379}
   - component: {fileID: 8052362395260970013}
   - component: {fileID: 8515982003547436222}
+  - component: {fileID: 5881527148712566067}
   - component: {fileID: 9063549738519201401}
   m_Layer: 0
   m_Name: Player
@@ -119,6 +120,7 @@ MonoBehaviour:
   farmingTutorial: {fileID: 0}
   bed: {fileID: 0}
   menu: {fileID: 0}
+  playerQuests: []
 --- !u!114 &5275481385977868881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,26 +150,6 @@ MonoBehaviour:
   heldAmount: 0
   MouseScrollDeadzone: 0
   currentMouseScroll: 0
---- !u!114 &5881527148712566067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7752269456424297128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81824e0c68e90904bb95f44cb57ac5ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buffs: []
-  isBoss: 0
-  maxHealthAdjustments: 0
-  health: 0
-  strengthAdjustments: 0
-  defenseAdjustments: 0
-  exp: 0
-  level: 1
 --- !u!60 &5739973837602842379
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -230,6 +212,27 @@ MonoBehaviour:
   skillPoints: 1000
   usedPoints: 0
   time: {fileID: 0}
+--- !u!114 &5881527148712566067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7752269456424297128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81824e0c68e90904bb95f44cb57ac5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs: []
+  healthBar: {fileID: 0}
+  isBoss: 0
+  maxHealthAdjustments: 0
+  health: 0
+  strengthAdjustments: 0
+  defenseAdjustments: 0
+  exp: 0
+  level: 1
 --- !u!114 &9063549738519201401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +246,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
+  healthBar: {fileID: 0}
+  isBoss: 0
   maxHealthAdjustments: 0
   health: 0
   strengthAdjustments: 0

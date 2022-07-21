@@ -35,6 +35,9 @@ public class PlayerInteraction : MonoBehaviour
 
     private PlayerMovement playerMovement;
 
+    //For healing
+    CombatantStats stats;
+
     private Vector3Int focusTilePosition;
     private Vector3 playerPosition;
     private bool interactInRange;
@@ -145,7 +148,11 @@ public class PlayerInteraction : MonoBehaviour
         playerInventoryManager = gameObject.GetComponent<PlayerInventoryManager>();
         playerInventory = playerInventoryManager.inv;
 
-		playerSkills = gameObject.GetComponent<PlayerSkills>();
+        farmManager = FindObjectOfType<FarmManager>();
+
+        stats = gameObject.GetComponent<CombatantStats>();
+
+        playerSkills = gameObject.GetComponent<PlayerSkills>();
 
         //playerInventory = farmManager.GetComponent<FarmManager>().playerInventory;
         //staminaDisplay.text = $"Stamina: {playerStamina}";
@@ -220,6 +227,7 @@ public class PlayerInteraction : MonoBehaviour
 				int staminaBonus = (int)Mathf.Round(playerSkills.SumSkillsOfType<FoodEfficiencySkill>(new List<GameObject> { gameObject }));
 
 				SetStamina(playerStamina + heldItem.staminaToRestore * staminaBonus);
+                stats.Heal(heldItem.HealthToRestore, false);
                 playerInventoryManager.RemoveHeldItems(1);
 
                 if (farmingTutorial != null)
@@ -455,6 +463,13 @@ public class PlayerInteraction : MonoBehaviour
             string itemName = "";
 
             Dictionary<Vector3Int, Tile> mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
+
+            /*Dictionary<Vector3Int, Tile> mushroomsAndTiles = new Dictionary<Vector3Int, Tile>();
+
+            if (farmManager.GetComponent<FarmManager>().mushroomsAndTiles != null)
+            {
+                mushroomsAndTiles = farmManager.GetComponent<FarmManager>().mushroomsAndTiles;
+            }*/
 
             Item heldItem = playerInventoryManager.GetHeldItem();
             int heldItemAmount = playerInventoryManager.GetHeldItemAmount();

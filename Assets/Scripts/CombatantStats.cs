@@ -8,7 +8,8 @@ public class CombatantStats : MonoBehaviour
     public List<Buff> buffs = new List<Buff>();
 
     //player healthBar
-    public HealthBar healthBar;
+    [SerializeField]
+    protected HealthBar healthBar;
 
     //Specifically for augmenting stats to make bosses more difficult then enemies of their same level
     public bool isBoss;
@@ -188,7 +189,7 @@ public class CombatantStats : MonoBehaviour
 		this.health = health;
 	}*/
 
-    private void Start()
+    /*public virtual*/ void Start()
     {
         //Will need to have conditionals for things like "Are you loading a save?"
         Level = level;
