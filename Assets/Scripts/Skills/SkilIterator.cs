@@ -42,6 +42,7 @@ public class DepthFirstSkillIterator : SkillIterator
 	protected override void GenerateCache(Skill element)
 	{
 		cache.Enqueue(element);
+		if (element == null) return;
 		foreach (Skill child in element.ChildSkills)
 		{
 			if(child != null)

@@ -363,7 +363,7 @@ public class FarmManager : MonoBehaviour
                 Vector3Int tileToTest = new Vector3Int(y, x, 0);
 
 				//if the tile hasnt been visited, visit it
-				if (!visitedTiles.ContainsKey(tileToTest) || visitedTiles[tileToTest])
+				if (!visitedTiles.ContainsKey(tileToTest) || !visitedTiles[tileToTest])
 					CheckTile(tileToTest);
 
 				//chance to spread the tile again regardless of visited status
