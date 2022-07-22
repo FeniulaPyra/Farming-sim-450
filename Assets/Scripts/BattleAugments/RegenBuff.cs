@@ -16,12 +16,13 @@ public class RegenBuff
     //public int testHealth;
     public int factor;
 
-    public RegenBuff(CombatantStats s, int i, float t, float b, int f)
+    public RegenBuff(CombatantStats s, int i, float b, int f)
     {
         stats = s;
         maxIterations = i;
         baseTimer = b;
-        timer = t;
+        //timer = t;
+        timer = baseTimer;
         factor = f;
     }
 }

@@ -65,7 +65,7 @@ public class BuffEnemy : MonoBehaviour
         //buffNotification.text = "";
 
         speed = new SpeedBuff(gameObject.GetComponent<BasicEnemy>());
-        regen = new RegenBuff(stats, 5, 5.0f, 5.0f, 10);
+        regen = new RegenBuff(stats, 5, 5.0f, 10);
     }
 
     // Update is called once per frame

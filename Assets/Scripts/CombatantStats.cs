@@ -263,7 +263,7 @@ public class CombatantStats : MonoBehaviour
 
 	public void TakeDamage(int amt, bool ignoreDefense = false)
 	{
-        if (invincible == false && isPlayer == true)
+        if (invincible == false)
         {
             //Always make sure you're taking damage
             amt = amt - (ignoreDefense ? 0 : defenseAdjustments);
@@ -280,8 +280,11 @@ public class CombatantStats : MonoBehaviour
                 healthBar.SetHealth(Health);
             }
 
-            invincible = true;
-            iTimer = baseITimer;
+            if (isPlayer == true)
+            {
+                invincible = true;
+                iTimer = baseITimer;
+            }
         }
     }
 

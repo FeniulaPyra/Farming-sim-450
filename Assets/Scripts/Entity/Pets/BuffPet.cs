@@ -71,7 +71,7 @@ public class BuffPet : BasicPet
         buffNotification.text = "";
 
         speed = new SpeedBuff(movement, buffNotification, this);
-        regen = new RegenBuff(stats, 5, 5.0f, 5.0f, 5);
+        regen = new RegenBuff(stats, 5, 5.0f, 5);
     }
 
     // Update is called once per frame

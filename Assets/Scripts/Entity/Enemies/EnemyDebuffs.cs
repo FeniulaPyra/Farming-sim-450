@@ -60,6 +60,7 @@ public class EnemyDebuffs : MonoBehaviour
         movement = FindObjectOfType<PlayerMovement>();
         stats = movement.gameObject.GetComponent<CombatantStats>();
         debuffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
+        poisonDebuff = new RegenBuff(stats, 5, 5f, -5);
         //debuffNotification.text = "";
     }
 
