@@ -234,8 +234,8 @@ Transform:
   - {fileID: 1233376421}
   - {fileID: 1025754823}
   - {fileID: 1422970580}
-  - {fileID: 2068960246}
   - {fileID: 2061527905}
+  - {fileID: 2068960246}
   - {fileID: 202781968}
   - {fileID: 2119041258}
   - {fileID: 326312341}
@@ -131913,7 +131913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4096102102024270766, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
       propertyPath: m_Name
-      value: Menus (1)
+      value: Menus
       objectReference: {fileID: 0}
     - target: {fileID: 7752662397494154636, guid: 897ff8ece33ff6441a11d5fa24f37492, type: 3}
       propertyPath: pSkills
@@ -132724,7 +132724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6075272585952933645, guid: 803c03dda4eb1a44ab50f3f015e29e69, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6075272585952933645, guid: 803c03dda4eb1a44ab50f3f015e29e69, type: 3}
       propertyPath: m_AnchorMax.x
