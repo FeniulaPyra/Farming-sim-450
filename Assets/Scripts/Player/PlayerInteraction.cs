@@ -224,7 +224,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (heldItem.isEdible == true)
             {
-				int staminaBonus = (int)Mathf.Round(playerSkills.SumSkillsOfType<FoodEfficiencySkill>(new List<GameObject> { gameObject }));
+                //If this is 0, it nullifies the held item's stamina, and eating does nothing. Adding 1 means it at leasts multiplies stamina gained by 1, and functions normally
+				int staminaBonus = 1 + (int)Mathf.Round(playerSkills.SumSkillsOfType<FoodEfficiencySkill>(new List<GameObject> { gameObject }));
 
 				SetStamina(playerStamina + heldItem.staminaToRestore * staminaBonus);
                 stats.Heal(heldItem.HealthToRestore, false);

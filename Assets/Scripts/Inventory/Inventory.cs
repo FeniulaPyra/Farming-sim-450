@@ -264,10 +264,10 @@ public class Inventory
 			}
 			return true;
 		}
-		else if (i.amt < amount)
+		/*else if (i.amt < amount)
 		{
 			throw new Exception("Not enough items in that slot.");
-		}
+		}*/
 		return false;
 	}
 	
