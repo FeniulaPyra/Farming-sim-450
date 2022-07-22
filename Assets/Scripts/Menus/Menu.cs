@@ -191,7 +191,7 @@ public class Menu : MonoBehaviour
             //resets grabbed item
             if (ItemGrabber.item != null && ItemGrabber.amount > 0)
             {
-                inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
+                pim.inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
                 ItemGrabber.item = null;
                 ItemGrabber.amount = 0;
             }
@@ -236,7 +236,7 @@ public class Menu : MonoBehaviour
                 //resets grabbed item
                 if (ItemGrabber.item != null && ItemGrabber.amount > 0)
                 {
-                    inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
+					pim.inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
                     ItemGrabber.item = null;
                     ItemGrabber.amount = 0;
                 }
@@ -272,7 +272,7 @@ public class Menu : MonoBehaviour
             case MenuState.SHIPPING_BIN:
                 if (ItemGrabber.item != null && ItemGrabber.amount > 0)
                 {
-                    inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
+					pim.inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
                     ItemGrabber.item = null;
                     ItemGrabber.amount = 0;
                 }
@@ -293,7 +293,7 @@ public class Menu : MonoBehaviour
             case MenuState.EXTERNAL_INVENTORY:
                 if (ItemGrabber.item != null && ItemGrabber.amount > 0)
                 {
-                    inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
+					pim.inv.AddItems(ItemGrabber.item, ItemGrabber.amount);
                     ItemGrabber.item = null;
                     ItemGrabber.amount = 0;
                 }
