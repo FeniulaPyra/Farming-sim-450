@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SpeedBuff
+public class SpeedBuff : Buff
 {
     //Reference to player movement to alter their speed
     public PlayerMovement movement;
@@ -21,18 +21,32 @@ public class SpeedBuff
     //Buff text so it can be edited from within the methods
     public TMP_Text buff;
 
-    public SpeedBuff(PlayerMovement m, TMP_Text b, BasicPet p)
+    public SpeedBuff(PlayerMovement m,  BuffType t, TMP_Text b, bool d, float timer, BasicPet p = null)
     {
         movement = m;
         buff = b;
-        pet = p;
         isEnemy = false;
+        isDebuff = d;
+        this.timer = timer;
+        pet = p;
+        type = t;
+
+        if (isDebuff == false)
+        {
+            IncreaseSpeed();
+        }
+        else
+        {
+            DecreaseSpeed();
+        }
     }
 
-    public SpeedBuff(BasicEnemy e)
+    public SpeedBuff(BasicEnemy e, BuffType t, float timer)
     {
         enemy = e;
         isEnemy = true;
+        this.timer = timer;
+        type = t;
     }
 
     public void IncreaseSpeed()
@@ -46,10 +60,18 @@ public class SpeedBuff
         {
             //Increase player and pet speed
             movement.MovementSpeed *= 2;
-            pet.MovementSpeed *= 2;
-            if (buff != null)
+            if (pet != null)
+            {
+                pet.MovementSpeed *= 2;
+            }
+
+            if (isDebuff == false)
             {
                 buff.text += "\nSpeed Increased";
+            }
+            else
+            {
+                buff.text = buff.text.Replace("\nSpeed Decreased", "");
             }
         }
     }
@@ -64,12 +86,21 @@ public class SpeedBuff
         else
         {
             //Increase player and pet speed
-            if (buff != null)
+
+            if (isDebuff == false)
             {
                 buff.text = buff.text.Replace("\nSpeed Increased", "");
             }
+            else
+            {
+                buff.text += "\nSpeed Decreased";
+            }
+
             movement.MovementSpeed /= 2;
-            pet.MovementSpeed /= 2;
+            if (pet != null)
+            {
+                pet.MovementSpeed /= 2;
+            }
         }
     }
 }

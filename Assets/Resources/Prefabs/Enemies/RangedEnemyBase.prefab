@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3114001181866298012}
   - component: {fileID: 2073759779293327714}
   - component: {fileID: -6290528856993958317}
-  - component: {fileID: 7085785950156121008}
   - component: {fileID: -4169388183879288874}
   - component: {fileID: -4801471249100170959}
   - component: {fileID: 9115784455911518629}
@@ -138,7 +137,7 @@ MonoBehaviour:
   attacked: 0
   fleeTimer: 0
   baseFleeTimer: 2
-  debuff: {fileID: 7085785950156121008}
+  debuff: {fileID: 0}
   stats: {fileID: -4169388183879288874}
   target: {fileID: 0}
   drops:
@@ -151,31 +150,6 @@ MonoBehaviour:
   pellet: {fileID: 3463793939459626526, guid: 64b87d1044992014d933615e8543f91d, type: 3}
   attackTimer: 2
   baseAttackTimer: 4
---- !u!114 &7085785950156121008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302464457625486871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eb927b6e5451f24ca2323c20049ea4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {fileID: 0}
-  stats: {fileID: 0}
-  activateChance: 100
-  decreaseSpeed: 0
-  decreaseDefense: 0
-  decreaseStrength: 0
-  poison: 0
-  debuffApplied: 0
-  debuffTimer: 0
-  baseDebuffTimer: 30
-  debuffNotification: {fileID: 0}
-  strMod: -3
-  defMod: 3
 --- !u!114 &-4169388183879288874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
+  iTimer: 0
   healthBar: {fileID: 0}
   isBoss: 0
   maxHealthAdjustments: 0

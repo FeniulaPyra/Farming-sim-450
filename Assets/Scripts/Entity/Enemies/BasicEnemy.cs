@@ -74,33 +74,6 @@ public class BasicEnemy : BasicEntity
     protected  virtual void FixedUpdate()
     {
         base.FixedUpdate();
-
-        //If player is closer than that, flee until at max distance
-
-        /*if (attacked == false)
-        {
-            base.FixedUpdate();
-
-            /*if (distance <= minSeekDistance)
-            {
-                attacked = true;
-                fleeTimer = baseFleeTimer;
-            }
-        }*/
-
-        /*if (attacked == true)
-        {
-            fleeTimer -= Time.deltaTime;
-
-            if (fleeTimer > 0)
-            {
-                Flee(player);
-            }
-            else
-            {
-                attacked = false;
-            }
-        }*/
     }
 
     protected void KillEnemy()
@@ -112,11 +85,6 @@ public class BasicEnemy : BasicEntity
         if (drops.Count > 0)
         {
             DropItems();
-        }
-        //cancel debuff
-        if (debuff != null)
-        {
-            debuff.CancelDebuff();
         }
         //Quests
         UpdateQuest();
@@ -152,9 +120,6 @@ public class BasicEnemy : BasicEntity
         if (index == drops.Count)
         {
             //Spawn no individual item; spawn whole chest
-            //GameObject chestObject = Instantiate(chest.gameObject, transform.position, Quaternion.identity);
-            //chest = chestObject.GetComponent<InventoryEntity>();
-            //chestObject.GetComponent<InventoryEntity>().items.Add();
             chest.items.Clear();
             chest.itemAmounts.Clear();
             chest.Manager = FindObjectOfType<ItemManager>();
@@ -174,12 +139,9 @@ public class BasicEnemy : BasicEntity
 
     protected virtual void Flee(Transform target)
     {
-        /*if (rb != null && rb.velocity != null && rb.velocity.magnitude > 0)
-            rb.velocity += -rb.velocity * 2f;*/
-
         var dist = Vector2.Distance(target.position, transform.position);
 
-        var desiredVelocity = (target.position - transform.position) * movementSpeed * dist;//speedCurve.Evaluate((dist / (maxSeekDistance - minSeekDistance)));
+        var desiredVelocity = (target.position - transform.position) * movementSpeed * dist;
         desiredVelocity.z = 0;
 
         var move = new Vector2(-desiredVelocity.x, -desiredVelocity.y) - rb.velocity;

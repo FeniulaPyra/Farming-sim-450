@@ -18,7 +18,7 @@ public class BuffPet : BasicPet
     [SerializeField]
     public float timer;
     public float baseTimer;
-    //chance of item spawning
+    //chance of item buff activating
     public int activateChance;
 
     public bool increaseSpeed;
@@ -28,11 +28,6 @@ public class BuffPet : BasicPet
     public bool increaseStrength;
 
     public bool regenHealth;
-
-    /*public int healIterations;
-    public float healTimer;
-    public int testHealth;
-    public int healFactor;*/
 
     [SerializeField]
     public bool buffApplied;
@@ -70,8 +65,7 @@ public class BuffPet : BasicPet
         buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
         buffNotification.text = "";
 
-        speed = new SpeedBuff(movement, buffNotification, this);
-        regen = new RegenBuff(stats, 5, 5.0f, 5);
+        regen = new RegenBuff(stats, Buff.BuffType.regen, 5, 5.0f, 5);
     }
 
     // Update is called once per frame
@@ -110,86 +104,33 @@ public class BuffPet : BasicPet
                 }
             }
         }
-        else
-        {
-            if (regenHealth == true)
-            {
-                /*if (healIterations < 5)
-                {
-                    healTimer -= Time.deltaTime;
-                    if (healTimer <= 0.0f)
-                    {
-                        stats.Heal(healFactor, false);
-                        healIterations++;
-                        healTimer = 5.0f;
-                    }
-                }
-                else
-                {
-                    healIterations = 0;
-                    CancelBuff();
-                }*/
-
-                if (regen.iterations < regen.maxIterations)
-                {
-                    regen.timer -= Time.deltaTime;
-                    if (regen.timer <= 0.0f)
-                    {
-                        stats.Heal(regen.factor, false);
-                        regen.iterations++;
-                        regen.timer = regen.baseTimer;
-                    }
-                }
-                else
-                {
-                    regen.iterations = 0;
-                    CancelBuff();
-                }
-            }
-            buffTimer -= Time.deltaTime;
-
-            if (buffTimer <= 0.0f)
-            {
-                CancelBuff();
-            }
-        }
     }
 
     void ApplyBuff()
     {
         if (increaseSpeed == true)
         {
-            /*movement.MovementSpeed *= 2;
-            movementSpeed *= 2;
-            buffNotification.text += "\nSpeed Increased";*/
-            speed.IncreaseSpeed();
+            speed = new SpeedBuff(movement, Buff.BuffType.speed, buffNotification, false, 30.0f, this);
+            stats.buffs.Add(speed);
         }
 
         if (increaseStrength == true)
         {
-            /*stats.Strength += 10;
-            buffNotification.text += "\nStrength Increased";
-            Debug.Log($"Strength Mod: {stats.Strength}");*/
-            str = new StrengthBuff(buffNotification, strMod, false, Buff.BuffType.offense);
+            str = new StrengthBuff(buffNotification, strMod, false, Buff.BuffType.offense, 30.0f);
             stats.buffs.Add(str);
             Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
         }
 
         if (increaseDefense == true)
         {
-            /*stats.Defense += 10;
-            buffNotification.text += "\nDefense Increased";
-            Debug.Log($"Defense Mod: {stats.Defense}");*/
-            //defense.IncreaseDefense();
-            def = new DefenseBuff(buffNotification, defMod, false, Buff.BuffType.defense);
+            def = new DefenseBuff(buffNotification, defMod, false, Buff.BuffType.defense, 30.0f);
             stats.buffs.Add(def);
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
         if (regenHealth == true)
         {
-            //healTimer = 5.0f;
-            regen.timer = regen.baseTimer;
+            stats.buffs.Add(regen);
             buffNotification.text += "\nRegenerating Health";
         }
 
@@ -201,29 +142,19 @@ public class BuffPet : BasicPet
     {
         if (increaseSpeed == true)
         {
-            /*buffNotification.text = buffNotification.text.Replace("\nSpeed Increased", "");
-            movement.MovementSpeed /= 2;
-            movementSpeed /= 2;*/
             speed.DecreaseSpeed();
         }
 
         if (increaseDefense == true)
         {
-            /*buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
-            stats.ResetDefense();*/
-            //strength.DecreaseStrength();
             buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
             stats.Defense -= stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
             stats.buffs.Remove(def);
-            //stats.Defense = stats.Defense;
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
         if (increaseStrength == true)
         {
-            /*buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
-            stats.ResetStrength();*/
-            //defense.DecreaseDefense();
             buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
             stats.buffs.Remove(str);
             Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
@@ -233,8 +164,6 @@ public class BuffPet : BasicPet
         {
             buffNotification.text = buffNotification.text.Replace("\nRegenerating Health", "");
         }
-
-        //buffNotification.text = "";
 
         buffApplied = false;
         buffTimer = baseBuffTimer;

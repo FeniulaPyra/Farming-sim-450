@@ -4,25 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RegenBuff
+public class RegenBuff : Buff
 {
     //Reference to player or enemy to alter their health
     public CombatantStats stats;
 
-    public int iterations = 0;
-    public int maxIterations;
-    public float timer;
     public float baseTimer;
-    //public int testHealth;
     public int factor;
 
-    public RegenBuff(CombatantStats s, int i, float b, int f)
+    public RegenBuff(CombatantStats s, BuffType t, int i, float b, int f)
     {
         stats = s;
         maxIterations = i;
         baseTimer = b;
-        //timer = t;
-        timer = baseTimer;
+        effectTimer = baseTimer;
         factor = f;
+        type = t;
     }
 }

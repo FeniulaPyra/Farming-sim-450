@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CombatantStats : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class CombatantStats : MonoBehaviour
     float iTimer;
     float baseITimer = 2.5f;
     bool invincible;
+
+    //For buffs and debuffs
+    [SerializeField]
+    TMP_Text buffNotification;
 
     //player healthBar
     [SerializeField]
@@ -108,10 +113,10 @@ public class CombatantStats : MonoBehaviour
 
             foreach (Buff b in buffs)
             {
-                if (b.type == Buff.BuffType.defense)// && b.added == false)
+                if (b.type == Buff.BuffType.defense)
                 {
                     buffMod += b.Mod;
-                    if (b.added == true) { equipMod -= b.Mod; } //
+                    if (b.added == true) { equipMod -= b.Mod; }
                     b.added = true;
                 }
             }
@@ -183,19 +188,6 @@ public class CombatantStats : MonoBehaviour
 		}
 	}
 
-	/*public CombatantStats(int level)
-	{
-		Level = level;
-		health = maxHealthAdjustments;
-	}
-	public CombatantStats(int level, int exp, int maxhealth, int health)
-	{
-		Level = level;
-		this.exp = exp;
-		this.maxHealthAdjustments = maxhealth;
-		this.health = health;
-	}*/
-
     /*public virtual*/ void Start()
     {
         //Will need to have conditionals for things like "Are you loading a save?"
@@ -212,6 +204,8 @@ public class CombatantStats : MonoBehaviour
 
             isPlayer = true;
             iTimer = baseITimer;
+
+            buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -225,6 +219,108 @@ public class CombatantStats : MonoBehaviour
         if (iTimer <= 0.0f)
         {
             invincible = false;
+            iTimer = baseITimer;
+        }
+
+        //Looping through all buffs, doing regen/poison
+        //Decrement time.deltatime, if they've run out, remove them and call inverse if necessary.
+        for (int i = 0; i < buffs.Count; i++)
+        {
+            //regen/poison
+            if (buffs[i] is RegenBuff)
+            {
+                //cast buff
+                RegenBuff buff = buffs[i] as RegenBuff;
+
+                //They are identical, up until their actual functions
+                if (buffs[i].iterations < buffs[i].maxIterations)
+                {
+                    buffs[i].effectTimer-= Time.deltaTime;
+                    if (buffs[i].effectTimer <= 0.0f)
+                    {
+                        if (buff.type == Buff.BuffType.regen)
+                        {
+                            Heal(buff.factor, false);
+                        }
+                        else if (buff.type == Buff.BuffType.poison)
+                        {
+                            //This triggers invincibility frames
+                            TakeDamage(buff.factor, true);
+                        }
+
+                        buffs[i].iterations++;
+                        buffs[i].effectTimer = buff.baseTimer;
+                    }
+                }
+                //After final iteration, remove it
+                else
+                {
+                    buffs.RemoveAt(i);
+
+                    if (buff.type == Buff.BuffType.regen)
+                    {
+                        buffNotification.text = buffNotification.text.Replace("\nRegenerating Health", "");
+                    }
+                    else if (buff.type == Buff.BuffType.poison)
+                    {
+                        //This triggers invincibility frames
+                        buffNotification.text = buffNotification.text.Replace("\nPoisoned", "");
+                    }
+
+                    continue;
+                }
+            }
+            else
+            {
+                buffs[i].timer -= Time.deltaTime;
+
+                if (buffs[i].timer <= 0.0f)
+                {
+                    //Remove/invert effects of buffs
+                    if (buffs[i] is StrengthBuff)
+                    {
+                        StrengthBuff buff = buffs[i] as StrengthBuff;
+                        if (buff.IsDebuff == true)
+                        {
+                            buffNotification.text = buffNotification.text.Replace("\nStrength Decreased", "");
+                        }
+                        else
+                        {
+                            buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
+                        }
+                    }
+                    else if (buffs[i] is DefenseBuff)
+                    {
+                        DefenseBuff buff = buffs[i] as DefenseBuff;
+
+                        Defense -= DefenseAdjustments;
+
+                        if (buff.IsDebuff == true)
+                        {
+                            buffNotification.text = buffNotification.text.Replace("\nDefense Decreased", "");
+                        }
+                        else
+                        {
+                            buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
+                        }
+                    }
+                    else if (buffs[i] is SpeedBuff)
+                    {
+                        SpeedBuff buff = buffs[i] as SpeedBuff;
+                        if (buff.IsDebuff == true)
+                        {
+                            buff.IncreaseSpeed();
+                        }
+                        else
+                        {
+                            buff.DecreaseSpeed();
+                        }
+                    }
+                    //Remove buff from list
+                    buffs.RemoveAt(i);
+                    continue;
+                }
+            }
         }
     }
 
@@ -239,23 +335,16 @@ public class CombatantStats : MonoBehaviour
 
 	public void IncreaseExp(int amt, bool ignoreLevelCheck = false)
 	{
-        //Will need to be tested
-        //If it only checks to see if the amount you just got is in surplus of what you need
-        //then getting 10 at level 1 won't get you a level
-        //but might add onto an existing 10 - 19, which would put you over the 20 you need to go from level 1 to 2
-        /*if (amt > ExpToLevel(Level + 1) && !ignoreLevelCheck)
-		{
-			exp = 0;
-			IncreaseExp(amt - ExpToLevel(Level + 1), false); //recursive
-			Level++;
-		}
-		exp += amt;*/
-
+        //Adds on amount to player's existing experience
         exp += amt;
+        //If that sum is greater than what they need to level up, continue
         if (exp >= ExpToLevel(Level + 1))
         {
+            //Find out how much experience is left over
             int surplus = exp - ExpToLevel(Level + 1);
+            //reset experience
             exp = 0;
+            //increase level
             Level++;
             IncreaseExp(surplus); //recursive
         }
@@ -272,7 +361,6 @@ public class CombatantStats : MonoBehaviour
             {
                 amt = 1;
             }
-            //health -= (amt - (ignoreDefense ? 0 : defense));
             Health -= amt;
 
             if (healthBar != null)
@@ -290,12 +378,8 @@ public class CombatantStats : MonoBehaviour
 
 	public void Heal(int amt, bool ignoreMax)
 	{
-        //health += amt;
         Health += amt;
-        /*if (health > maxHealth && !ignoreMax)
-			health = maxHealth;*/
-        /*if (Health > maxHealthAdjustments && !ignoreMax)
-            Health = maxHealthAdjustments;*/
+
         if (Health > MaxHealth && !ignoreMax)
             Health = MaxHealth;
 

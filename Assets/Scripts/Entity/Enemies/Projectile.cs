@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Projectile : MonoBehaviour
 {
@@ -86,6 +87,10 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
 
             Debug.Log("Hit");
+        }
+        else if (collision.gameObject.GetComponent<TilemapCollider2D>() != null)
+        {
+            Destroy(gameObject);
         }
     }
 }

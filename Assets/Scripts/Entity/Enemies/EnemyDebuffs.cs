@@ -23,10 +23,6 @@ public class EnemyDebuffs : MonoBehaviour
     public bool decreaseStrength;
 
     public bool poison;
-    /*public int poisonIterations = 0; // How many times you take poison damage before the buff wears off
-    public int poisonFactor; //How much you are hurt by poison.
-    float poisonTimer = 5.0f;
-    public int testHealth = 100;*/
 
     [SerializeField]
     public bool debuffApplied;
@@ -60,8 +56,7 @@ public class EnemyDebuffs : MonoBehaviour
         movement = FindObjectOfType<PlayerMovement>();
         stats = movement.gameObject.GetComponent<CombatantStats>();
         debuffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
-        poisonDebuff = new RegenBuff(stats, 5, 5f, -5);
-        //debuffNotification.text = "";
+        poisonDebuff = new RegenBuff(stats, Buff.BuffType.poison, 5, 5f, 2);
     }
 
     // Update is called once per frame
@@ -83,108 +78,38 @@ public class EnemyDebuffs : MonoBehaviour
                 }
             }
         }*/
-
-        if (debuffApplied == true)
-        {
-            if (poison == true && poisonDebuff.iterations < 5)
-            {
-                if (poisonDebuff.iterations < 5)
-                {
-                    poisonDebuff.timer -= Time.deltaTime;
-                    if (poisonDebuff.timer <= 0.0f)
-                    {
-                        stats.TakeDamage(poisonDebuff.factor, true);
-                        poisonDebuff.iterations++;
-                        poisonDebuff.timer = poisonDebuff.baseTimer;
-                    }
-                }
-                else
-                {
-                    poisonDebuff.iterations = 0;
-                    CancelDebuff();
-                }
-            }
-            
-
-            debuffTimer -= Time.deltaTime;
-
-            if (debuffTimer <= 0.0f)
-            {
-                CancelDebuff();
-            }
-        }
     }
 
     public void ApplyDebuff()
     {
         if (decreaseSpeed == true && debuffApplied == false)
         {
-            movement.MovementSpeed /= 2;
-            debuffNotification.text += "\nSpeed Decreased";
+            speed = new SpeedBuff(movement, Buff.BuffType.speed, debuffNotification, true, 30.0f);
+            stats.buffs.Add(speed);
+
         }
 
         if (decreaseStrength == true && debuffApplied == false)
         {
-            /*stats.Strength -= 7;
-            debuffNotification.text += "\nStrength Decreased";*/
-            str = new StrengthBuff(debuffNotification, strMod, true, Buff.BuffType.offense);
+            str = new StrengthBuff(debuffNotification, strMod, true, Buff.BuffType.offense, 30.0f);
             stats.buffs.Add(str);
             Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
         }
 
         if (decreaseDefense == true && debuffApplied == false)
         {
-            /*stats.Defense -= 7;
-            debuffNotification.text += "\nDefense Decreased";*/
-            def = new DefenseBuff(debuffNotification, defMod, true, Buff.BuffType.defense);
+            def = new DefenseBuff(debuffNotification, defMod, true, Buff.BuffType.defense, 30.0f);
             stats.buffs.Add(def);
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
         if (poison == true && debuffApplied == false)
         {
-            poisonDebuff.timer = poisonDebuff.baseTimer;
+            stats.buffs.Add(poisonDebuff);
             debuffNotification.text += "\nPoisoned";
         }
 
         debuffApplied = true;
-    }
-
-    public void CancelDebuff()
-    {
-        //debuffNotification.text = "";
-        if (decreaseSpeed == true)
-        {
-            movement.MovementSpeed *= 2;
-            debuffNotification.text = debuffNotification.text.Replace("\nSpeed Decreased", "");
-        }
-
-        if (decreaseDefense == true)
-        {
-            /*debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
-            stats.ResetDefense();*/
-            debuffNotification.text = debuffNotification.text.Replace("\nDefense Decreased", "");
-            stats.Defense += -stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
-            stats.buffs.Remove(def);
-            Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
-        }
-
-        if (decreaseStrength == true)
-        {
-            /*debuffNotification.text = debuffNotification.text.Replace("\nStrength Decreased", "");
-            stats.ResetStrength();*/
-            debuffNotification.text = debuffNotification.text.Replace("\nStrength Decreased", "");
-            stats.buffs.Remove(str);
-            Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
-        }
-
-        if (poison == true)
-        {
-            debuffNotification.text = debuffNotification.text.Replace("\nPoisoned", "");
-        }
-
-        debuffApplied = false;
-        debuffTimer = baseDebuffTimer;
     }
 
     /*public void SaveBuffPet(out SaveBuffPet buffPet)

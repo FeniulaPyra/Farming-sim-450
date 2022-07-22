@@ -13,6 +13,13 @@ public class Buff
     //For debuffs
     [SerializeField]
     protected bool isDebuff;
+    public bool IsDebuff
+    {
+        get
+        {
+            return isDebuff;
+        }
+    }
 
     //Checks to see if it's already be added to strength or defense
     public bool added;
@@ -31,8 +38,20 @@ public class Buff
     public enum BuffType
     {
         offense,
-        defense
+        defense,
+        speed,
+        regen,
+        poison
     }
 
     public BuffType type;
+
+    //How long a buff lasts
+    public float timer;
+
+    //For regen and poison, so that they aren't reset with each cast
+    //How long until the next iteration of poison or regen happens
+    public float effectTimer;
+    public int iterations = 0;
+    public int maxIterations;
 }

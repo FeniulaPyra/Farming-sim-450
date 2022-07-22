@@ -58,14 +58,10 @@ public class BuffEnemy : MonoBehaviour
                 buffTimer = baseBuffTimer;
             }
         }
-
-        //movement = FindObjectOfType<PlayerMovement>();
         stats = gameObject.GetComponent<CombatantStats>();
-        //buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
-        //buffNotification.text = "";
 
-        speed = new SpeedBuff(gameObject.GetComponent<BasicEnemy>());
-        regen = new RegenBuff(stats, 5, 5.0f, 10);
+        speed = new SpeedBuff(gameObject.GetComponent<BasicEnemy>(), Buff.BuffType.speed, 30.0f);
+        regen = new RegenBuff(stats, Buff.BuffType.speed, 5, 5.0f, 10);
     }
 
     // Update is called once per frame
@@ -104,128 +100,36 @@ public class BuffEnemy : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            if (regenHealth == true)
-            {
-                /*if (healIterations < 5)
-                {
-                    healTimer -= Time.deltaTime;
-                    if (healTimer <= 0.0f)
-                    {
-                        stats.Heal(healFactor, false);
-                        healIterations++;
-                        healTimer = 5.0f;
-                    }
-                }
-                else
-                {
-                    healIterations = 0;
-                    CancelBuff();
-                }*/
-
-                if (regen.iterations < 5)
-                {
-                    regen.timer -= Time.deltaTime;
-                    if (regen.timer <= 0.0f)
-                    {
-                        stats.Heal(regen.factor, false);
-                        regen.iterations++;
-                        regen.timer = regen.baseTimer;
-                    }
-                }
-                else
-                {
-                    regen.iterations = 0;
-                    CancelBuff();
-                }
-            }
-            buffTimer -= Time.deltaTime;
-
-            if (buffTimer <= 0.0f)
-            {
-                CancelBuff();
-            }
-        }
     }
 
     void ApplyBuff()
     {
         if (increaseSpeed == true)
         {
-            /*movement.MovementSpeed *= 2;
-            movementSpeed *= 2;
-            buffNotification.text += "\nSpeed Increased";*/
+            stats.buffs.Add(speed);
             speed.IncreaseSpeed();
         }
 
         if (increaseStrength == true)
         {
-            /*stats.Strength += 10;
-            buffNotification.text += "\nStrength Increased";
-            Debug.Log($"Strength Mod: {stats.Strength}");*/
-            str = new StrengthBuff(strMod, false, Buff.BuffType.offense);
+            str = new StrengthBuff(strMod, false, Buff.BuffType.offense, 30.0f);
             stats.buffs.Add(str);
             Debug.Log($"Strength Mod: {stats.Strength}");
         }
 
         if (increaseDefense == true)
         {
-            /*stats.Defense += 10;
-            buffNotification.text += "\nDefense Increased";
-            Debug.Log($"Defense Mod: {stats.Defense}");*/
-            //defense.IncreaseDefense();
-            def = new DefenseBuff(defMod, false, Buff.BuffType.defense);
+            def = new DefenseBuff(defMod, false, Buff.BuffType.defense, 30.0f);
             stats.buffs.Add(def);
             Debug.Log($"Defense Mod: {stats.Defense}");
         }
 
         if (regenHealth == true)
         {
-            //healTimer = 5.0f;
-            regen.timer = regen.baseTimer;
-            //buffNotification.text += "\nRegenerating Health";
+            stats.buffs.Add(regen);
         }
 
         buffApplied = true;
         timer = baseTimer;
-    }
-
-    void CancelBuff()
-    {
-        if (increaseSpeed == true)
-        {
-            /*buffNotification.text = buffNotification.text.Replace("\nSpeed Increased", "");
-            movement.MovementSpeed /= 2;
-            movementSpeed /= 2;*/
-            speed.DecreaseSpeed();
-        }
-
-        if (increaseDefense == true)
-        {
-            /*buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
-            stats.ResetDefense();*/
-            //strength.DecreaseStrength();
-            stats.Defense -= stats.DefenseAdjustments; //After removing the buff from the mod, set Defense using the newly adjusted defense modifier
-            stats.buffs.Remove(def);
-        }
-
-        if (increaseStrength == true)
-        {
-            /*buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
-            stats.ResetStrength();*/
-            //defense.DecreaseDefense();
-            stats.buffs.Remove(str);
-        }
-
-        /*if (regenHealth == true)
-        {
-            buffNotification.text = buffNotification.text.Replace("\nRegenerating Health", "");
-        }*/
-
-        //buffNotification.text = "";
-
-        buffApplied = false;
-        buffTimer = baseBuffTimer;
     }
 }
