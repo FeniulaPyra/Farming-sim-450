@@ -434,9 +434,10 @@ public class TimeManager : MonoBehaviour
         if (staminaTracker.playerStamina <= 0)
         {
             Sleep(0);
-            Sleep(5 + (3 * StaminaLossReduction));
+            Sleep(2 + (3 * StaminaLossReduction)); //Stamina Loss Reduction is always at least 1, so 3 is automatically added on. Changed from 5 to 2 to keep some penalty
             isNight = false;
-            staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
+            //Since the bed is now in their house, something would have to be done about this
+            //staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
         }
     }
 
