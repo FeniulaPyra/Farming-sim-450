@@ -149,8 +149,8 @@ MonoBehaviour:
   preferredSeasons: 01000000
   offSeasonSpawnChance: 0.5
   pellet: {fileID: 3463793939459626526, guid: 64b87d1044992014d933615e8543f91d, type: 3}
-  attackTimer: 0
-  baseAttackTimer: 2
+  attackTimer: 2
+  baseAttackTimer: 4
 --- !u!114 &7085785950156121008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,8 +167,8 @@ MonoBehaviour:
   stats: {fileID: 0}
   activateChance: 100
   decreaseSpeed: 0
-  decreaseDefense: 1
-  decreaseStrength: 1
+  decreaseDefense: 0
+  decreaseStrength: 0
   poison: 0
   debuffApplied: 0
   debuffTimer: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
+  healthBar: {fileID: 0}
   isBoss: 0
   maxHealthAdjustments: 0
   health: 0

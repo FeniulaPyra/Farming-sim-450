@@ -139,12 +139,14 @@ MonoBehaviour:
   debuff: {fileID: 7085785950156121008}
   stats: {fileID: 0}
   target: {fileID: 0}
+  drops: []
+  chest: {fileID: 0}
   friendlyMode: {fileID: 0}
   preferredSeasons: 
   offSeasonSpawnChance: 0
   pellet: {fileID: 3463793939459626526, guid: 64b87d1044992014d933615e8543f91d, type: 3}
-  attackTimer: 0
-  baseAttackTimer: 2
+  attackTimer: 2
+  baseAttackTimer: 4
 --- !u!114 &7085785950156121008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,13 +166,12 @@ MonoBehaviour:
   decreaseDefense: 0
   decreaseStrength: 0
   poison: 1
-  poisonIterations: 0
-  poisonFactor: 5
-  testHealth: 100
   debuffApplied: 0
   debuffTimer: 0
   baseDebuffTimer: 30
   debuffNotification: {fileID: 0}
+  strMod: 0
+  defMod: 0
 --- !u!58 &-3897834589232913207
 CircleCollider2D:
   m_ObjectHideFlags: 0

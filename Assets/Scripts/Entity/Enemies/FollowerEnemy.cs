@@ -22,7 +22,7 @@ public class FollowerEnemy : BasicEnemy
         {
             base.FixedUpdate();
 
-            if (distance <= minSeekDistance * 0.75)
+            if (distance < minSeekDistance * 0.9)
             {
                 target.TakeDamage(Mathf.CeilToInt(stats.Strength), false);
 

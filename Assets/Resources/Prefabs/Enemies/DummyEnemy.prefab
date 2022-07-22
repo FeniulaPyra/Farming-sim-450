@@ -130,7 +130,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxSeekDistance: 6
-  minSeekDistance: 2
+  minSeekDistance: 1.25
   sr: {fileID: 5938744239480975351}
   player: {fileID: 0}
   distance: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
+  healthBar: {fileID: 0}
   isBoss: 0
   maxHealthAdjustments: 0
   health: 0

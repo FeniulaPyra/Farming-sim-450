@@ -6,6 +6,13 @@ public class CombatantStats : MonoBehaviour
 {
     //List of buffs
     public List<Buff> buffs = new List<Buff>();
+    //For the player
+    bool isPlayer;
+    //Invincibility Frames
+    [SerializeField]
+    float iTimer;
+    float baseITimer = 2.5f;
+    bool invincible;
 
     //player healthBar
     [SerializeField]
@@ -202,6 +209,22 @@ public class CombatantStats : MonoBehaviour
             {
                 healthBar.SetMaxHealth(Health);
             }
+
+            isPlayer = true;
+            iTimer = baseITimer;
+        }
+    }
+
+    private void Update()
+    {
+        if (invincible == true)
+        {
+            iTimer -= Time.deltaTime;
+        }
+
+        if (iTimer <= 0.0f)
+        {
+            invincible = false;
         }
     }
 
@@ -240,19 +263,25 @@ public class CombatantStats : MonoBehaviour
 
 	public void TakeDamage(int amt, bool ignoreDefense = false)
 	{
-        //Always make sure you're taking damage
-        amt = amt - (ignoreDefense ? 0 : defenseAdjustments);
-        //subtracting negative damage would heal, so always do at least 1
-        if (amt < 0)
+        if (invincible == false && isPlayer == true)
         {
-            amt = 1;
-        }
-        //health -= (amt - (ignoreDefense ? 0 : defense));
-        Health -= amt;
+            //Always make sure you're taking damage
+            amt = amt - (ignoreDefense ? 0 : defenseAdjustments);
+            //subtracting negative damage would heal, so always do at least 1
+            if (amt < 0)
+            {
+                amt = 1;
+            }
+            //health -= (amt - (ignoreDefense ? 0 : defense));
+            Health -= amt;
 
-        if (healthBar != null)
-        {
-            healthBar.SetHealth(Health);
+            if (healthBar != null)
+            {
+                healthBar.SetHealth(Health);
+            }
+
+            invincible = true;
+            iTimer = baseITimer;
         }
     }
 
