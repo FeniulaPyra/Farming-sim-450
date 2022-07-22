@@ -106,7 +106,7 @@ public class SkillTreeNode : MonoBehaviour
     {
 		if ((ParentNode == null || !ParentNode.childNodes.Contains(this)) &&  !(mySkill is InfusionSkill))
 			Destroy(gameObject);
-    }
+	}
 
 	public void SetPlayerSkillReference(Skill playerSkillReference)
 	{
@@ -275,7 +275,10 @@ public class SkillTreeNode : MonoBehaviour
 			}
 			else
 			{
+				List<Skill.PrimaryMushroom> shrooms = childNodes[2 * side].mySkill.mushrooms;
 				childNodes[2 * side].mySkill = mySkill.ChildSkills[2 * side];
+				childNodes[2 * side].mySkill.mushrooms = shrooms;
+
 
 			}
 			if (childNodes[2 * side + 1] == null)
@@ -287,7 +290,9 @@ public class SkillTreeNode : MonoBehaviour
 			}
 			else
 			{
+				List<Skill.PrimaryMushroom> shrooms = childNodes[2 * side + 1].mySkill.mushrooms;
 				childNodes[2 * side + 1].mySkill = mySkill.ChildSkills[2 * side + 1];
+				childNodes[2 * side + 1].mySkill.mushrooms = shrooms;
 			}
 		}
 	}
