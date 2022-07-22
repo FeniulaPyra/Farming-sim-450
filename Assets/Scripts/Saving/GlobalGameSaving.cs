@@ -18,7 +18,8 @@ public class GlobalGameSaving : MonoBehaviour
     public GameObject player;//Will manually save movement speed (buffs) and positions (placement after loading)
     public TimeManager timeManager;//Timemanager already has save functions
     public PlayerInteraction playerInteraction;//Playerinteraction already has save functions
-    public PlayerSkills skillManager;//Playerinteraction already has save functions
+    public PlayerSkills skillManager;//Playerinteraction already has save functions\
+	public PlayerMovement playerMovement;
     public TileManager tileManager;//Tilemanager already has save functions
     public FarmManager farmManager;//FarmManager already has save functions
     public EntityManager entityManager;
@@ -71,6 +72,8 @@ public class GlobalGameSaving : MonoBehaviour
 
 	public List<string> playerEquipment = new List<string>();
 
+	public List<string> mapsVisited = new List<string>();
+
 	public string skills;
 
     //public Inventory shippingInv;
@@ -110,6 +113,7 @@ public class GlobalGameSaving : MonoBehaviour
         player = GameObject.Find("Player");
 		invManager = player.GetComponent<PlayerInventoryManager>();
 		skillManager = player.GetComponent<PlayerSkills>();
+		playerMovement = player.GetComponent<PlayerMovement>();
         timeManager = FindObjectOfType<TimeManager>();
         tileManager = FindObjectOfType<TileManager>();
         farmManager = FindObjectOfType<FarmManager>();
@@ -242,7 +246,7 @@ public class GlobalGameSaving : MonoBehaviour
         timeManager.SaveNPCs("save");//
         
         playerInteraction.SavePlayer("save");//
-
+		playerMovement.SaveVisited("save");
         tileManager.SaveFarm("save");//
 
         invManager.SaveInventory("save");//

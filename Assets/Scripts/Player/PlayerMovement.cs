@@ -60,6 +60,14 @@ public class PlayerMovement : MonoBehaviour
 		//rb = GetComponent<Rigidbody2D>();
 		facing = new Vector2(1, 0);
 		//visited = new List<string>();
+		if (GlobalGameSaving.Instance != null)
+		{
+			if (GlobalGameSaving.Instance.loadingSave == true)
+			{
+				visited = GlobalGameSaving.Instance.mapsVisited;
+			}
+			
+		}
 
 		if (ScenePersistence.Instance.playerDropPoint.x < Int32.MaxValue)
 		{
@@ -70,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			visited = ScenePersistence.Instance.mapsVisited;
 		}
+
+		
 
 		//enables the foraging only after visited maps have been loaded.
 		ForagingManager forageManager = GameObject.FindObjectOfType<ForagingManager>();
@@ -91,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
     }
+
+	public void SaveVisited()
+	{
+		GlobalGameSaving.Instance.mapsVisited = visited;
+	}
 
     void OnMovement(InputValue value)
     {
