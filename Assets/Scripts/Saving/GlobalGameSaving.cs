@@ -246,7 +246,7 @@ public class GlobalGameSaving : MonoBehaviour
         timeManager.SaveNPCs("save");//
         
         playerInteraction.SavePlayer("save");//
-		playerMovement.SaveVisited("save");
+		playerMovement.SaveVisited();
         tileManager.SaveFarm("save");//
 
         invManager.SaveInventory("save");//
