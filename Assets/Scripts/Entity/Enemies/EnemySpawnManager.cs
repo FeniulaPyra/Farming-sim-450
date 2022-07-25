@@ -7,6 +7,15 @@ public class EnemySpawnManager : MonoBehaviour
     //All waves; designers should be able to just change this in editor as they see fit
     public List<Wave> waves = new List<Wave>();
 
+    //List of spawners, which are just empty gameObjects so their transforms can be used
+    public List<GameObject> spawners = new List<GameObject>();
+
+    //Doors that keep the player from leaving until all enemies have been killed
+    public List<GameObject> Doors = new List<GameObject>();
+
+    //Chest to spawn when all enemies are dead; make sure to use an "if not null" check
+    public GameObject chest;
+
     [SerializeField]
     Wave currentWave;
 
@@ -17,9 +26,6 @@ public class EnemySpawnManager : MonoBehaviour
 
     //Counts the number of enemies currently in the scene
     public int waveEnemyCounter;
-
-    //List of spawners, which are just empty gameObjects so their transforms can be used
-    public List<GameObject> spawners = new List<GameObject>();
 
     //purely for testing
     [SerializeField]
@@ -101,6 +107,13 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 spawner = spawners[i];
                 StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
+                foreach (GameObject d in Doors)
+                {
+                    if (d.activeInHierarchy == false)
+                    {
+                        d.SetActive(true);
+                    }
+                }
             }
         }
 
@@ -115,16 +128,24 @@ public class EnemySpawnManager : MonoBehaviour
         }
 
         //In the event of five, all must be dead if it was <=, then it would still happen at only one left, which would immediately happen
-        /*if (waveEnemyCounter == ((currentWave.numToSpawn / 2) - 1) && waveSpawned == true)
+        if (waveEnemyCounter == 0 && waveSpawned == true)
+        //if (waveEnemyCounter == ((currentWave.numToSpawn / 2) - 1) && waveSpawned == true)
         {
             if (waveCounter < waves.Count - 1)
             {
                 waveSpawned = false;
                 waveCounter++;
                 currentWave = waves[waveCounter];
-                //StartCoroutine(SpawnWave(currentWave.enemySpawnDelay));
+                StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
             }
-        }*/
+            else
+            {
+                foreach (GameObject d in Doors)
+                {
+                    d.SetActive(false);
+                }
+            }
+        }
     }
 
     IEnumerator SpawnWave(float enemySpawnDelay, GameObject spawner)
