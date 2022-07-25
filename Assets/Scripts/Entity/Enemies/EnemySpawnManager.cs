@@ -7,6 +7,15 @@ public class EnemySpawnManager : MonoBehaviour
     //All waves; designers should be able to just change this in editor as they see fit
     public List<Wave> waves = new List<Wave>();
 
+    //List of spawners, which are just empty gameObjects so their transforms can be used
+    public List<GameObject> spawners = new List<GameObject>();
+
+    //Doors that keep the player from leaving until all enemies have been killed
+    public List<GameObject> Doors = new List<GameObject>();
+
+    //Chest to spawn when all enemies are dead; make sure to use an "if not null" check
+    public GameObject chest;
+
     [SerializeField]
     Wave currentWave;
 
@@ -18,12 +27,11 @@ public class EnemySpawnManager : MonoBehaviour
     //Counts the number of enemies currently in the scene
     public int waveEnemyCounter;
 
-    //List of spawners, which are just empty gameObjects so their transforms can be used
-    public List<GameObject> spawners = new List<GameObject>();
-
     //purely for testing
     [SerializeField]
-    bool waveSpawned;
+    bool waveStartedSpawn;
+    [SerializeField]
+    bool waveFinishedSpawn;
 
     //if, for whatever reason, there are 0 enemies in a wave list, it will default to this
     public BasicEnemy defaultEnemy;
@@ -97,10 +105,21 @@ public class EnemySpawnManager : MonoBehaviour
         for (int i = 0; i < spawners.Count; i++)
         {
             distance = Vector2.Distance(player.transform.position, spawners[i].transform.position);
-            if (distance < spawnDistance && waveSpawned == false)//if (Vector2.Distance(player.transform.position, transform.position) < spawnDistance)
+            if (distance < spawnDistance && waveStartedSpawn == false)//if (Vector2.Distance(player.transform.position, transform.position) < spawnDistance)
             {
                 spawner = spawners[i];
                 StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
+            }
+
+            if (distance < spawnDistance / 3)
+            {
+                foreach (GameObject d in Doors)
+                {
+                    if (d.activeInHierarchy == false)
+                    {
+                        d.SetActive(true);
+                    }
+                }
             }
         }
 
@@ -115,26 +134,58 @@ public class EnemySpawnManager : MonoBehaviour
         }
 
         //In the event of five, all must be dead if it was <=, then it would still happen at only one left, which would immediately happen
-        /*if (waveEnemyCounter == ((currentWave.numToSpawn / 2) - 1) && waveSpawned == true)
+        if (waveEnemyCounter == 0 && waveFinishedSpawn == true)
+        //if (waveEnemyCounter == ((currentWave.numToSpawn / 2) - 1) && waveSpawned == true)
         {
             if (waveCounter < waves.Count - 1)
             {
-                waveSpawned = false;
+                waveStartedSpawn = false;
+                waveFinishedSpawn = false;
                 waveCounter++;
                 currentWave = waves[waveCounter];
-                //StartCoroutine(SpawnWave(currentWave.enemySpawnDelay));
+                StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
             }
-        }*/
+            else
+            {
+                foreach (GameObject d in Doors)
+                {
+                    d.SetActive(false);
+                }
+
+                if (chest != null)
+                {
+                    if (chest.activeInHierarchy == false)
+                    {
+                        chest.SetActive(true);
+                    }
+                }
+            }
+        }
     }
 
     IEnumerator SpawnWave(float enemySpawnDelay, GameObject spawner)
     {
-        if (waveSpawned == false)
+        if (waveStartedSpawn == false)
         {
-            waveSpawned = true;
+            waveStartedSpawn = true;
         }
 
         currentWave.enemyWeights.Sort();
+
+        //if things are the same, force them to not be
+        for (int i = 0, j = currentWave.enemyWeights.Count; i < j; i++)
+        {
+            if (i != j - 1)
+            {
+                if (currentWave.enemyWeights[i] == currentWave.enemyWeights[i + 1])
+                {
+                    for (int k = i + 1; k < j; k++)
+                    {
+                        currentWave.enemyWeights[k] += 20;
+                    }
+                }
+            }
+        }
 
         //If final enemy index is 2, but final weight index is 3, it will spawn enemy[2]. There is no way to account for 3 enemies, but only two weights
         //Making up weights, in the event that there are just too few, for whatever reason.
@@ -151,7 +202,8 @@ public class EnemySpawnManager : MonoBehaviour
             }
         }
 
-        int highestWeight = currentWave.enemyWeights[currentWave.enemyWeights.Count - 1];
+        //int highestWeight = currentWave.enemyWeights[currentWave.enemyWeights.Count - 1];
+        int highestWeight = currentWave.enemyWeights[currentWave.enemies.Count - 1]; // If there happen to be mroe weights than enemies, highest weight is tied to last enemy
 
         for (int i = 0; i < currentWave.numToSpawn; i++)
         {
@@ -175,7 +227,7 @@ public class EnemySpawnManager : MonoBehaviour
                 //enemyToSpawn = currentWave.enemies[Random.Range(0, currentWave.enemies.Count - 1)];
                 for (int j = 0; j < currentWave.enemyWeights.Count; j++)
                 {
-                    int weightCheck = Random.Range(0, highestWeight);
+                    int weightCheck = Random.Range(0, highestWeight + 1);
 
 					Debug.Log($"Spawn weight is {weightCheck}; j is {j}");
 
@@ -209,6 +261,21 @@ public class EnemySpawnManager : MonoBehaviour
 			if (enemyToSpawn != null && (enemyToSpawn.preferredSeasons.Contains((TimeManager.Season)timeManager.SeasonNumber) //is enemy in the right season?
 				|| Random.value < enemyToSpawn.offSeasonSpawnChance)) //or if it isnt do a random check to see if the  monster will spawn anyway (this way the monster will spawn but just less 
 			{
+                if (spawners.Count > 1 && i > 0)
+                {
+                    spawner = spawners[Random.Range(0, spawners.Count)];
+                }
+
+                //Have enemies scale with player, but still be slightly weaker than them
+                int newLevel = GameObject.Find("Player").GetComponent<CombatantStats>().Level - 1;
+
+                if (newLevel < 2)
+                {
+                    newLevel = 1;
+                }
+
+                enemyToSpawn.gameObject.GetComponent<CombatantStats>().Level = newLevel;
+
 				//instantiate enemy
 				enemyObject = Instantiate(enemyToSpawn.gameObject, spawner.transform.position, Quaternion.identity);
                 //7/15/22 Playtesting purposes
@@ -233,12 +300,17 @@ public class EnemySpawnManager : MonoBehaviour
 
         }
 
-        if (waveCounter < waves.Count - 1)
+        /*if (waveCounter < waves.Count - 1)
         {
             waveSpawned = false;
             waveCounter++;
             currentWave = waves[waveCounter];
             //StartCoroutine(SpawnWave(currentWave.enemySpawnDelay));
+        }*/
+
+        if (waveFinishedSpawn == false)
+        {
+            waveFinishedSpawn = true;
         }
 
         /*if (waveSpawned == false)

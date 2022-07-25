@@ -24,10 +24,13 @@ public class HealthBar : MonoBehaviour
         slider.value = health;
     }
 
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(int health, bool heal = false)
     {
         slider.maxValue = health;
-        slider.value = health;
+        if (heal == true)
+        {
+            slider.value = health;
+        }
     }
 
     // Update is called once per frame
