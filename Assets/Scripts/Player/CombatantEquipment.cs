@@ -46,6 +46,7 @@ public class CombatantEquipment : MonoBehaviour
 
 		//adjusts stats
 		stats.MaxHealth += newEquipment.Health;
+        stats.healthBar.SetMaxHealth(stats.MaxHealth);
 		stats.Defense += newEquipment.Defense;
 
 	}
@@ -55,7 +56,12 @@ public class CombatantEquipment : MonoBehaviour
 		{
 			//removes all the stats
 			stats.MaxHealth -= equipment[type].Health;
-			stats.Defense -= equipment[type].Defense;
+            if (stats.Health > stats.MaxHealth)
+            {
+                stats.Health = stats.MaxHealth;
+            }
+            stats.healthBar.SetMaxHealth(stats.MaxHealth);
+            stats.Defense -= equipment[type].Defense;
 
 			equipment[type] = null;
 		}

@@ -21,7 +21,7 @@ public class CombatantStats : MonoBehaviour
 
     //player healthBar
     [SerializeField]
-    protected HealthBar healthBar;
+    public HealthBar healthBar;
 
     //Specifically for augmenting stats to make bosses more difficult then enemies of their same level
     public bool isBoss;
@@ -183,7 +183,7 @@ public class CombatantStats : MonoBehaviour
 			Health = MaxHealth;
             if (healthBar != null)
             {
-                healthBar.SetMaxHealth(Health);
+                healthBar.SetMaxHealth(Health, true);
             }
 		}
 	}
@@ -199,7 +199,7 @@ public class CombatantStats : MonoBehaviour
             healthBar = GameObject.Find("Health Bar").GetComponent<HealthBar>();
             if (healthBar != null)
             {
-                healthBar.SetMaxHealth(Health);
+                healthBar.SetMaxHealth(Health, true);
             }
 
             isPlayer = true;
