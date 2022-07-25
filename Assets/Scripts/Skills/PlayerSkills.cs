@@ -37,7 +37,11 @@ public class PlayerSkills : MonoBehaviour
 			}
 			else if (ScenePersistence.Instance != null)
 			{
-				Deserialize(ScenePersistence.Instance.skills);
+				if (ScenePersistence.Instance.inventory.Count > 0)
+				{
+					//inv.SetSaveableInventory(ScenePersistence.Instance.inventory);
+					Deserialize(ScenePersistence.Instance.skills);
+				}
 			}
 		}
 	}
