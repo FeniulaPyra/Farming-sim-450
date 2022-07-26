@@ -160,7 +160,7 @@ public class CombatantStats : MonoBehaviour
 	{
 		get
         {
-            exp = level * 5;
+            exp = level * 3;
 
             if (isBoss == true)
             {

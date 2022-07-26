@@ -109,10 +109,7 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 spawner = spawners[i];
                 StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
-            }
 
-            if (distance < spawnDistance / 3)
-            {
                 foreach (GameObject d in Doors)
                 {
                     if (d.activeInHierarchy == false)
@@ -121,6 +118,17 @@ public class EnemySpawnManager : MonoBehaviour
                     }
                 }
             }
+
+            /*if (distance < spawnDistance)
+            {
+                foreach (GameObject d in Doors)
+                {
+                    if (d.activeInHierarchy == false)
+                    {
+                        d.SetActive(true);
+                    }
+                }
+            }*/
         }
 
         //Loop through the list of enemies, and if an index is null because the enemy is dead, 
