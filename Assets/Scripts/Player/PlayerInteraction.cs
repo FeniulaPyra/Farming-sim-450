@@ -34,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
     private Color inactiveColor;
 
     private PlayerMovement playerMovement;
-
+	public Animator anim;
     //For healing
     CombatantStats stats;
 
@@ -579,7 +579,8 @@ public class PlayerInteraction : MonoBehaviour
 					objects.Add(newChest.GetComponent<InteractableObjects>());
 					playerInventoryManager.RemoveHeldItems(1);
 				}
-				
+
+				anim.SetTrigger("Use");
 
                 farmManager.TileInteract(focusTilePosition, itemName);
             }
@@ -604,10 +605,11 @@ public class PlayerInteraction : MonoBehaviour
 
 				}
 			}
+			anim.SetTrigger("Use");
 
 		}
 
-    }
+	}
 
     public int PlayerStamina => playerStamina;
 

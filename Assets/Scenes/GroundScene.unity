@@ -51352,6 +51352,10 @@ PrefabInstance:
       propertyPath: staminaDisplay
       value: 
       objectReference: {fileID: 1377426781}
+    - target: {fileID: 3216312688633584878, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2b8e1cd416f1a5c4ead228e7ec924359, type: 2}
     - target: {fileID: 5275481385977868881, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
       propertyPath: ItemManagerObj
       value: 
