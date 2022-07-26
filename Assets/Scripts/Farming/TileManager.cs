@@ -151,7 +151,10 @@ public class TileManager : MonoBehaviour
             }
 
             Debug.Log($"Setting mushroom sprite Index {mushrooms[i].spriteIndex}");
-            farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite = farmManager.mushroomsAndTiles[mushrooms[i].position].sprites[mushrooms[i].spriteIndex];
+			if(mushrooms[i].growthStage >= mushrooms[i].maxGrowthStage)
+	            farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite = farmManager.mushroomsAndTiles[mushrooms[i].position].sprites[mushrooms[i].spriteIndex + 1];
+			else
+	            farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite = farmManager.mushroomsAndTiles[mushrooms[i].position].sprites[mushrooms[i].spriteIndex];
             if (farmManager.farmField != null)
             {
                 farmManager.farmField.SetTile(mushrooms[i].position, farmManager.mushroomsAndTiles[mushrooms[i].position].tileSprite);
