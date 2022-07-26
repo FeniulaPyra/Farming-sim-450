@@ -76719,6 +76719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ryza
       objectReference: {fileID: 0}
+    - target: {fileID: 5711009450603687789, guid: dd8181b10f754f04785667d4fcf5ce45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6867335501996111210, guid: dd8181b10f754f04785667d4fcf5ce45, type: 3}
       propertyPath: nodeRect.x
       value: 693.54926
@@ -135840,8 +135844,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1907959831}
   - component: {fileID: 1907959832}
+  - component: {fileID: 1907959833}
   m_Layer: 0
-  m_Name: Liquid 01_20
+  m_Name: Liquid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135912,6 +135917,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1907959833
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907959830}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73074a3b7de4aa94c9a5b0a3f91bf44b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1932043082 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8847410810094827691, guid: 4f784039ed28f064493b64e01cdc6880, type: 3}
