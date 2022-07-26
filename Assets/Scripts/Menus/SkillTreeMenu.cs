@@ -29,6 +29,10 @@ public class SkillTreeMenu : TogglableMenu
 
 	public int totalSkillPointCost;
 
+	public static int NODE_WIDTH = 400;
+	public static int LAYER_HEIGHT = 400;
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -63,8 +67,10 @@ public class SkillTreeMenu : TogglableMenu
 
 		layers = new List<List<SkillTreeNode>>();
 		rootNode = GenerateRecursive(workingRoot, null);
+		rootNode.transform.position = new Vector3(0, 0);
 
-		RearangeNodes();
+		RearrangeNodes();
+		RearrangeEdges();
 	}
 
 	//todofixme
@@ -131,7 +137,7 @@ public class SkillTreeMenu : TogglableMenu
 
 	}
 
-	public void RearangeNodes()
+	public void RearrangeNodes()
 	{
 		/* 
 		 * set my position to: 
@@ -140,8 +146,7 @@ public class SkillTreeMenu : TogglableMenu
 		 * + the padding of my left-er siblings
 		 * 
 		 */
-
-
+		layers = new List<List<SkillTreeNode>>();
 		GenerateLayers(rootNode);
 
 		for (int i = 0; i < layers.Count; i++)
@@ -157,14 +162,14 @@ public class SkillTreeMenu : TogglableMenu
 				float leftSiblingPadding = 0;
 				int indexInSiblings = 1;
 				int totalSiblings = 1;
-				if (parent != null)
+				if (parent != null) //if it isnt the root node
 				{
 					//parent x and parent padding - used to find left bounds of this branch
 					parentX = parent.GetComponent<RectTransform>().localPosition.x;
 					parentPadding = parent.GetPadding();
 
-					indexInSiblings = parent.childNodes.IndexOf(node);
-					totalSiblings = parent.childNodes.Count;
+					totalSiblings = parent.childNodes.FindAll(n => n!=null).Count;
+					indexInSiblings = parent.childNodes.FindAll(n => n != null).IndexOf(node);
 					if(indexInSiblings > 0)
 					{
 
@@ -175,24 +180,34 @@ public class SkillTreeMenu : TogglableMenu
 								leftSiblingPadding += sibling.GetPadding();
 						}
 					}
+					node.GetComponent<RectTransform>().localPosition = new Vector2(
+						parentX //-400
+						- parentPadding/2
+						+ parentPadding * indexInSiblings / totalSiblings + node.Width * 2/3,//- leftSiblingPadding,
+						((i - layers.Count/2) * 10) - i * node.Height * 1.5f);
 				}
 
-				node.GetComponent<RectTransform>().localPosition = new Vector2(
-					parentX //-400
-					- parentPadding/2 
-					+ parentPadding * ((float)indexInSiblings/totalSiblings),//- leftSiblingPadding,
-					((i - layers.Count/2) * 10) - i * SkillTreeNodePrefab.GetComponent<SkillTreeNode>().Height * 2);
 			}
 		}
 	}
-	
+
+	public void RearrangeEdges()
+	{
+		SkillTreeNodeIterator iterator = new DepthFirstPreorderSkillTreeNodeIterator(rootNode);
+		while(iterator.HasMore())
+		{
+			SkillTreeNode node = iterator.GetNext();
+			node.SetRelationshipLines();
+		}
+	}
+
 	public void UpdateDisplay()
 	{
 		//count up number of skill points needed to apply current changes
 		//if they are not enough, disable "Apply" button
 
 
-		SkillTreeNodeIterator treeIterator = new DepthFirstSkillTreeNodeIterator(rootNode);
+		SkillTreeNodeIterator treeIterator = new DepthFirstPreorderSkillTreeNodeIterator(rootNode);
 		while(treeIterator.HasMore())
 		{
 			SkillTreeNode node = treeIterator.GetNext();

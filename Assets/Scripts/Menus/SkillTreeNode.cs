@@ -25,6 +25,10 @@ public class SkillTreeNode : MonoBehaviour
 			return rect.rect.height * rect.localScale.y;
 		}
 	}
+	//tree drawing stuff
+	public float x;
+	public float y;
+	SkillTreeNode leftMostSibling;
 
 	[SerializeField]
 	float padding;
@@ -196,15 +200,6 @@ public class SkillTreeNode : MonoBehaviour
 
 		ComboText.text = mySkill.comboWord;
 
-		//sets branches to go to child nodes
-		for (int i = 0; i < childNodes.Count; i++)
-		{
-			LineRenderer lr = childBranchLines[i];
-			SkillTreeNode stn = childNodes[i];
-
-			if(stn != null)
-				lr.SetPosition(1, stn.gameObject.GetComponent<RectTransform>().localPosition);
-		}
 
 		
 	}
@@ -213,14 +208,16 @@ public class SkillTreeNode : MonoBehaviour
 	{
 		SetMushroom((Skill.PrimaryMushroom)LeftMushroom.value, 0);
 		UpdateMyDisplay();
-		menu.RearangeNodes();
+		menu.RearrangeNodes();
+		menu.RearrangeEdges();
 		menu.UpdateDisplay();
 	}
 	public void SetRightMushroom()
 	{
 		SetMushroom((Skill.PrimaryMushroom)RightMushroom.value, 1);
 		UpdateMyDisplay();
-		menu.RearangeNodes();
+		menu.RearrangeNodes();
+		menu.RearrangeEdges();
 		menu.UpdateDisplay();
 	}
 
@@ -302,14 +299,12 @@ public class SkillTreeNode : MonoBehaviour
 		float myBranchWidth = Width;
 		foreach(SkillTreeNode child in childNodes)
 		{
-			if(child != null)
+			if (child != null)
 				myBranchWidth += child.GetPadding();
 		}
-		/*
-		if (myBranchWidth == 0)
-			return Width * 2;//SkillTreeNode.WIDTH;
-			*/
-		padding = myBranchWidth;
+
+		if (myBranchWidth == 0) myBranchWidth = Width;
+
 		return myBranchWidth;
 	}
 
@@ -321,5 +316,30 @@ public class SkillTreeNode : MonoBehaviour
 				child.DestroyRecursive();
 		}
 		Destroy(gameObject);
+	}
+
+	public void SetRelationshipLines()
+	{
+		//sets branches to go to child nodes
+		for (int i = 0; i < childNodes.Count; i++)
+		{
+			LineRenderer lr = childBranchLines[i];
+			SkillTreeNode child = childNodes[i];
+
+
+
+			if (child != null)
+				lr.SetPosition(1,
+					transform.InverseTransformPoint(child.gameObject.transform.position)//child.gameObject.transform.position
+				);
+		}
+	}
+
+	private void OnDestroy()
+	{
+		if (ParentNode == null) return;
+		int myIndex = ParentNode.childNodes.IndexOf(this);
+		if (myIndex < 0) return;
+		ParentNode.childNodes[myIndex] = null;
 	}
 }

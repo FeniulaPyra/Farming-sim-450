@@ -33,9 +33,9 @@ public abstract class SkillTreeNodeIterator
 	public abstract void Reset();
 }
 
-public class DepthFirstSkillTreeNodeIterator : SkillTreeNodeIterator
+public class DepthFirstPreorderSkillTreeNodeIterator : SkillTreeNodeIterator
 {
-	public DepthFirstSkillTreeNodeIterator(SkillTreeNode root) : base(root)
+	public DepthFirstPreorderSkillTreeNodeIterator(SkillTreeNode root) : base(root)
 	{
 		GenerateCache(root);
 	}
@@ -56,3 +56,25 @@ public class DepthFirstSkillTreeNodeIterator : SkillTreeNodeIterator
 	}
 }
 
+public class DepthFirstPostorderSkillTreeNodeIterator : SkillTreeNodeIterator
+{
+	public DepthFirstPostorderSkillTreeNodeIterator(SkillTreeNode root) : base(root)
+	{
+		GenerateCache(root);
+	}
+
+	protected override void GenerateCache(SkillTreeNode element)
+	{
+		if (element == null) return;
+		foreach (SkillTreeNode child in element.childNodes)
+		{
+			if (child != null)
+				GenerateCache(child);
+		}
+		cache.Enqueue(element);
+	}
+	public override void Reset()
+	{
+		GenerateCache(root);
+	}
+}
