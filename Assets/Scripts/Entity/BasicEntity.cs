@@ -46,6 +46,9 @@ public class BasicEntity : MonoBehaviour
 
     public float distance;
 
+    //Used to keep certain entities from being destroyed by Entity Manager if they "weren't already in the scene".
+    public bool preplaced;
+
     public void SaveEntity(out SaveEntity entity)
     {
         entity = new SaveEntity(movementSpeed, menu, size, speedCurve, maxSeekDistance, minSeekDistance, sr, player, rb, facing, gameObject, gameObject.transform.position, gameObject);

@@ -17,7 +17,7 @@ public class EntityManager : MonoBehaviour
 				List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
 				foreach(BasicEntity e in entities)
 				{
-					if(e is InventoryEntity || e is BasicPet)
+					if(e is InventoryEntity && e.preplaced == false || e is BasicPet && e.preplaced == false)
 					{
 						Destroy(e.gameObject);
 					}
@@ -122,8 +122,8 @@ public class EntityManager : MonoBehaviour
 				List<BasicEntity> entities = FindObjectsOfType<BasicEntity>().ToList();
 				foreach (BasicEntity e in entities)
 				{
-					if (e is InventoryEntity || e is BasicPet)
-					{
+                    if (e is InventoryEntity && e.preplaced == false || e is BasicPet && e.preplaced == false)
+                    {
 						Destroy(e.gameObject);
 					}
 				}
