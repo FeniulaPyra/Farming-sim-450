@@ -13,6 +13,10 @@ public class SceneTransitioner : MonoBehaviour
     //A reference to the scene transition manager so it can call its functions
     [SerializeField]
     SceneTransitionManager manager;
+
+	[SerializeField]
+	int transitionRange = 1;
+
     //The level it loads
     public string levelToLoad;
 
@@ -31,7 +35,7 @@ public class SceneTransitioner : MonoBehaviour
     {
         float distance = Vector2.Distance(self.transform.position, player.transform.position);
         Debug.Log($"Distance beween object and player is: {distance}");
-        if (distance <= 2)
+        if (distance <= transitionRange)
         {
             manager.LoadScene(levelToLoad, playerPositionInScene);
         }

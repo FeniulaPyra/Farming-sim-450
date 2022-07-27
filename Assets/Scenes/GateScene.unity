@@ -211,7 +211,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -98
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1, y: 1, z: 0}
   m_MaxChunkCount: 16
@@ -2781,7 +2781,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -14996,6 +14996,10 @@ PrefabInstance:
       value: TownScene
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
+      propertyPath: transitionRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: playerPositionInScene.y
       value: 15
       objectReference: {fileID: 0}
@@ -15072,6 +15076,10 @@ PrefabInstance:
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: levelToLoad
       value: Wilderness
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
+      propertyPath: transitionRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: playerPositionInScene.x
@@ -15203,7 +15211,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -99
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -26039,7 +26047,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: -97
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0.5, z: 0}
   m_MaxChunkCount: 16

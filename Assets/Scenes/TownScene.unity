@@ -529,6 +529,10 @@ PrefabInstance:
       value: GroundScene
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
+      propertyPath: transitionRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: playerPositionInScene.x
       value: 12
       objectReference: {fileID: 0}

@@ -34,7 +34,11 @@ public class BasicPet : BasicEntity
     {
 		base.Update();
 		if (size) this.transform.localScale = new Vector3(size.value, size.value, 1);
-    }
+		if (distance > maxSeekDistance * 2)
+		{
+			transform.position = player.transform.position;
+		}
+	}
 
     protected override void FixedUpdate()
     {
