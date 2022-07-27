@@ -106,9 +106,10 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   isSellable: 0
-  sellValue: 0
+  sellValue: 200
   isEdible: 0
   staminaToRestore: 0
+  healthToRestore: 0
   staminaUsed: 0
   rare: 0
   type: 
@@ -155,6 +156,8 @@ MonoBehaviour:
   minSeekDistance: 0
   sr: {fileID: 7045756798802460592, guid: 1c7a1b801154d164285de8c006664fc5, type: 3}
   player: {fileID: 0}
+  distance: 0
+  preplaced: 0
 --- !u!114 &-4803297009196185757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +183,8 @@ MonoBehaviour:
   minSeekDistance: 1
   sr: {fileID: 0}
   player: {fileID: 0}
+  distance: 0
+  preplaced: 0
   playerObj: {fileID: 0}
 --- !u!50 &2408985976664963555
 Rigidbody2D:
