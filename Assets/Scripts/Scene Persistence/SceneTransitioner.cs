@@ -31,7 +31,7 @@ public class SceneTransitioner : MonoBehaviour
     {
         float distance = Vector2.Distance(self.transform.position, player.transform.position);
         Debug.Log($"Distance beween object and player is: {distance}");
-        if (distance <= 1)
+        if (distance <= 2)
         {
             manager.LoadScene(levelToLoad, playerPositionInScene);
         }
