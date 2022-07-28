@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 418931203}
+  selectedFlowchart: {fileID: 444348904}
 --- !u!4 &20066898
 Transform:
   m_ObjectHideFlags: 1
@@ -47572,7 +47572,7 @@ MonoBehaviour:
   itemId: 34
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47638,7 +47638,7 @@ MonoBehaviour:
   itemId: 18
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47659,7 +47659,7 @@ MonoBehaviour:
   itemId: 28
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47680,7 +47680,7 @@ MonoBehaviour:
   itemId: 32
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47701,7 +47701,7 @@ MonoBehaviour:
   itemId: 36
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47744,7 +47744,7 @@ MonoBehaviour:
   itemId: 35
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47798,7 +47798,7 @@ MonoBehaviour:
   itemId: 31
   indentLevel: 0
   _targetGameObject:
-    gameObjectRef: {fileID: 0}
+    gameObjectRef: {fileID: 418931179}
     gameObjectVal: {fileID: 0}
   activeState:
     booleanRef: {fileID: 0}
@@ -47831,6 +47831,17 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &444348904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7804082816238168524, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+  m_PrefabInstance: {fileID: 7804082815605196672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444348884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &481004156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48419,6 +48430,7 @@ MonoBehaviour:
   self: {fileID: 0}
   player: {fileID: 0}
   manager: {fileID: 370653520}
+  transitionRange: 1
   levelToLoad: EnemySpawnTestScene
   playerPositionInScene: {x: 0, y: 0}
 --- !u!1 &1233376416
@@ -51487,7 +51499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 918343259923656585, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: nodeRect.y
-      value: 50
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 918343259923656585, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: commandList.Array.size
@@ -51627,7 +51639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7804082816238168532, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: nodeRect.y
-      value: 108
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 7804082816238168532, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: commandList.Array.size
@@ -51662,9 +51674,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7804082816238168534, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectRef
+      value: 
+      objectReference: {fileID: 418931179}
+    - target: {fileID: 7804082816238168534, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7804082816238168535, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
+      propertyPath: _targetGameObject.gameObjectRef
+      value: 
+      objectReference: {fileID: 418931179}
     - target: {fileID: 7804082816238168535, guid: 366595a71aebcc64eb5c32ce5f001087, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
