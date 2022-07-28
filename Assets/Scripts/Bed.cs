@@ -48,7 +48,8 @@ public class Bed : MonoBehaviour
         Debug.Log("Worked");
         timeManager.isNight = false;
         timeManager.Sleep(8);
-		if (GameObject.FindObjectOfType<FarmManager>() != null)
+		FarmManager farm = GameObject.FindObjectOfType<FarmManager>();
+		if (farm != null && farm.isActiveAndEnabled)
 			timeManager.UpdateField();
         playerInteraction.isTalking = false;
 		menu.CloseBed();
