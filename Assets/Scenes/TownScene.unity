@@ -226,6 +226,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 938833115}
+  - {fileID: 1314553966}
   - {fileID: 1481073875}
   - {fileID: 1721344790}
   - {fileID: 1840140370}
@@ -273,7 +274,6 @@ Transform:
   - {fileID: 1923944271}
   - {fileID: 1693995289}
   - {fileID: 586891656}
-  - {fileID: 1314553966}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75205,7 +75205,7 @@ Transform:
   - {fileID: 935190009}
   - {fileID: 405427475}
   m_Father: {fileID: 43990442}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1025754823 stripped
 Transform:
@@ -75553,7 +75553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43990442}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1233376422
 MonoBehaviour:
@@ -76727,11 +76727,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1640776140808198371, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_Name
-      value: BeachTransitioner (1)
+      value: GateSceneTransitioner
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: levelToLoad
-      value: Beach
+      value: GateScene
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: transitionRange
@@ -76739,23 +76739,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: playerPositionInScene.x
-      value: -0.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198372, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: playerPositionInScene.y
-      value: 7
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_RootOrder
-      value: 48
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_LocalPosition.z
@@ -77362,7 +77362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1640776140808198373, guid: 121a054f94c276e4da85f208d098e988, type: 3}
       propertyPath: m_LocalPosition.x
@@ -135011,7 +135011,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43990442}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1693995288
 PrefabInstance:
@@ -135321,7 +135321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43990442}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1840140371
 MonoBehaviour:
@@ -135720,7 +135720,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 43990442}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1880965347
 MonoBehaviour:
@@ -136529,7 +136529,7 @@ Transform:
   - {fileID: 403543521}
   - {fileID: 1907959831}
   m_Father: {fileID: 43990442}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &2050432562
 PolygonCollider2D:
