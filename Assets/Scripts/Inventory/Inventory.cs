@@ -362,11 +362,14 @@ public class Inventory
 	public void SetSaveableInventory(List<int> sinv)
 	{
 		playerInvManager = GameObject.Find("Player").GetComponent<PlayerInventoryManager>();
-		//Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
-		//List<Item> itemsDict = menu.GetGameItemList();
-		ROWS = sinv[0];
-		COLUMNS = sinv[1];
-		items = new ItemSlot[ROWS, COLUMNS];
+        //Menu menu = GameObject.Find("Menus").GetComponent<Menu>();
+        //List<Item> itemsDict = menu.GetGameItemList();
+        if (sinv.Count > 2)
+        {
+            ROWS = sinv[0];
+            COLUMNS = sinv[1];
+            items = new ItemSlot[ROWS, COLUMNS];
+        }
 		for(int i = 2 , j = 0; i < sinv.Count - 1; i+=2, j++) //j is there to represent the actual item pos in the inventory because i am too lazy to do simple math :)
 		{
 			
