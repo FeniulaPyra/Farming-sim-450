@@ -92,6 +92,14 @@ public class Inventory
 					{
 						items[r, c].amt = i.amt + item.amt;
 					}
+                    if (ScenePersistence.Instance.addedItems.ContainsKey(item.item))
+                    {
+                        ScenePersistence.Instance.addedItems[item.item]++;
+                    }
+                    else
+                    {
+                        ScenePersistence.Instance.addedItems.Add(item.item, item.amt);
+                    }
 					return;
 				}
 				//if there is an empty slot, set it as a backup slot
@@ -230,10 +238,23 @@ public class Inventory
 			ItemSlot i = items[s[0], s[1]];
 			if (i.item.name == item.name)
 			{
+                //If amount is double leftovers, you get:
+                // 2 - 1 = 1
+                // 1 - 1 = 0
+                // 0, therefore delete slot
+                // No, there's supposed to be one left. Also happened with 4 items and removing 2, so it appears to not work if how many you have is exactly double of how many you want to get rid of
+
+                bool delete = true;
+
+                if (items[s[0], s[1]].amt == 2 * leftovers)
+                {
+                    delete = false;
+                }
+
 				items[s[0], s[1]].amt -= leftovers;
 				leftovers -= items[s[0], s[1]].amt;
 
-				if(leftovers == 0)
+				if(leftovers == 0 && delete == true)
 				{
 					DeleteSlot(s[0], s[1]);
 				}

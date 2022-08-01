@@ -38,7 +38,7 @@ public class SceneTransitionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.gKey.wasPressedThisFrame == true)//if (Input.GetKeyDown(KeyCode.G))
+        /*if (Keyboard.current.gKey.wasPressedThisFrame == true)//if (Input.GetKeyDown(KeyCode.G))
         {
             //LoadScene("FungusTestScene");
             LoadScene("GroundScene 1");
@@ -46,7 +46,7 @@ public class SceneTransitionManager : MonoBehaviour
         if (Keyboard.current.hKey.wasPressedThisFrame == true)//if (Input.GetKeyDown(KeyCode.H))
         {
             LoadScene("GroundScene");
-        }
+        }*/
     }
 
 	public void LoadScene(string sceneToLoad)
@@ -78,6 +78,8 @@ public class SceneTransitionManager : MonoBehaviour
         {
             bin.SaveInventory("persist");
         }
+
+        ScenePersistence.Instance.addedItems.Clear();
 
         SceneManager.LoadScene(sceneToLoad);
     }

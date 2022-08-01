@@ -458,7 +458,10 @@ public class EntityManager : MonoBehaviour
                 if (what == "persist")
                 {
                     e.SaveEntity(out SaveEntity entity);
-                    entity.type = entity.gameObject.GetComponent<Item>().type;
+                    if (entity.gameObject.GetComponent<Item>() != null)
+                    {
+                        entity.type = entity.gameObject.GetComponent<Item>().type;
+                    }
                     entity.sceneName = SceneManager.GetActiveScene().name;
                     ScenePersistence.Instance.entities.Add(entity);
                     if (ScenePersistence.Instance.entities[ScenePersistence.Instance.entities.Count - 1].self.name.Contains('('))

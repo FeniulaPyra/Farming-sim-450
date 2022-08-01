@@ -79,6 +79,9 @@ public class GlobalGameSaving : MonoBehaviour
     //public Inventory shippingInv;
     public List<int> shippingInv;
     public ShippingBin bin;
+
+    //Dictionary of items that have been picked up since entering a scene
+    //public Dictionary<Item, int> addedItems = new Dictionary<Item, int>();
     #endregion
 
     //boolean to let other scripts know to load a save
@@ -259,7 +262,9 @@ public class GlobalGameSaving : MonoBehaviour
 
         entityManager.SaveEntities("save");//
 
-        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames, playerEquipment, skills);
+        //addedItems = ScenePersistence.Instance.addedItems;
+
+        GameSave save = new GameSave(sceneName, position, isNight, date, stamina, gold, farmTiles, mushrooms,inventory, tutorialBools, tutorialObjective, farmNetWorth, NPCStartflowcharts, NPCQuestflowcharts, NPCQuests, NPCNames, entities, entityNames, pets, petNames, livestockPets, livestockPetNames, inventoryEntities, inventoryEntityNames, playerEquipment, skills, ScenePersistence.Instance.addedItems);
 
 
         var json = JsonUtility.ToJson(save);
@@ -312,6 +317,7 @@ public class GlobalGameSaving : MonoBehaviour
 		inventoryEntities = save.inventoryEntities;
 		inventoryEntityNames = save.inventoryEntityNames;
 		playerEquipment = save.Equipment;
+        ScenePersistence.Instance.addedItems = save.addedItems;
 
         sr.Close();
 
@@ -435,7 +441,10 @@ public class GameSave
 	public List<string> Equipment = new List<string>();
 	public string skills;
 
-    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames, List<string> equipment, string skills)
+    //Dictionary of items that have been picked up since entering a scene
+    public Dictionary<Item, int> addedItems = new Dictionary<Item, int>();
+
+    public GameSave(string s, Vector3 p, bool n, Vector4 d, int st, int g, List<SaveTile> fT, List<MushroomSaveTile> m, List<int> i, List<bool> tB, string t, int f, List<SaveStartChart> sC, List<SaveQuestChart> qC, List<SaveQuest> q, List<string> names, List<SaveEntity> ents, List<string> entNames, List<SavePet> pets, List<string> petNames, List<SaveLivestockPet> live, List<string> liveNames, List<SaveInventoryEntity> chests, List<string> chestNames, List<string> equipment, string skills, Dictionary<Item, int> added)
     {
         sceneName = s;
         position = p;
@@ -463,5 +472,6 @@ public class GameSave
 		inventoryEntityNames = chestNames;
 		Equipment = equipment;
 		this.skills = skills;
+        addedItems = added;
     }
 }
