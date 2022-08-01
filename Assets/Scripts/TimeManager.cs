@@ -436,6 +436,7 @@ public class TimeManager : MonoBehaviour
             Sleep(0);
             Sleep(2 + (3 * StaminaLossReduction)); //Stamina Loss Reduction is always at least 1, so 3 is automatically added on. Changed from 5 to 2 to keep some penalty
             isNight = false;
+            FindObjectOfType<SceneTransitionManager>().LoadScene("PlayerHouseScene", new Vector2(-5, 6.5f));
             //Since the bed is now in their house, something would have to be done about this
             //staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
         }
