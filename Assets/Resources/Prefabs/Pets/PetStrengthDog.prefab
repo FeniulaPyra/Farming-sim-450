@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8189669987783190266}
   - component: {fileID: 8189669987783190264}
   - component: {fileID: -3206004879240269141}
-  - component: {fileID: 2058181594974043960}
+  - component: {fileID: -6917903536277602098}
   m_Layer: 0
-  m_Name: PetDog 1
+  m_Name: PetStrengthDog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8189669987783190268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3748748, y: 5.674873, z: 0}
+  m_LocalPosition: {x: 0.5, y: 3, z: 0}
   m_LocalScale: {x: 0.8117153, y: 0.8117153, z: 0.8117153}
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: -0.11181692, y: -0.09908716}
   serializedVersion: 2
   m_Radius: 0.42909592
---- !u!114 &2058181594974043960
+--- !u!114 &-6917903536277602098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8189669987783190268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8f6c9a99c749c746862e94a162f23a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 82f874f263b39ec489517e176e7caba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 1
@@ -147,12 +147,25 @@ MonoBehaviour:
   minSeekDistance: 1.25
   sr: {fileID: 8189669987783190266}
   player: {fileID: 0}
+  distance: 0
+  preplaced: 0
   normalImage: {fileID: 6744946388815338076, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
   pettingImage: {fileID: -7434330180999361826, guid: 481f0ef6fc4d16042915f8b55c889513, type: 3}
-  petItem: {fileID: 8681727996585695852, guid: 6111bb653294fae4bb160b9484cf51c8, type: 3}
+  petItem: {fileID: 8681727996585695852, guid: dabc282cbded82d4897f801ae9eb486c, type: 3}
   manager: {fileID: 0}
   owner: {fileID: 0}
-  item: {fileID: 7683615097352399189, guid: 6111bb653294fae4bb160b9484cf51c8, type: 3}
+  movement: {fileID: 0}
+  stats: {fileID: 0}
   timer: 0
   baseTimer: 10
-  spawnChance: 50
+  activateChance: 100
+  increaseSpeed: 0
+  increaseDefense: 0
+  increaseStrength: 1
+  regenHealth: 1
+  buffApplied: 0
+  buffTimer: 0
+  baseBuffTimer: 30
+  buffNotification: {fileID: 0}
+  strMod: 3
+  defMod: 3

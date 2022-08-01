@@ -293,7 +293,8 @@ public class CombatantStats : MonoBehaviour
                     {
                         DefenseBuff buff = buffs[i] as DefenseBuff;
 
-                        Defense -= DefenseAdjustments;
+                        //Defense -= DefenseAdjustments;
+                        DefenseAdjustments -= buffs[i].Mod;
 
                         if (buff.IsDebuff == true)
                         {

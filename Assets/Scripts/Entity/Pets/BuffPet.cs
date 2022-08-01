@@ -63,7 +63,7 @@ public class BuffPet : BasicPet
         movement = FindObjectOfType<PlayerMovement>();
         stats = movement.gameObject.GetComponent<CombatantStats>();
         buffNotification = GameObject.Find("TutorialObjective").GetComponent<TextMeshProUGUI>();
-        buffNotification.text = "";
+        //buffNotification.text = "";
 
         regen = new RegenBuff(stats, Buff.BuffType.regen, 5, 5.0f, 5);
     }
@@ -108,23 +108,110 @@ public class BuffPet : BasicPet
 
     void ApplyBuff()
     {
+        buffApplied = true;
+        timer = baseTimer;
+
         if (increaseSpeed == true)
         {
             speed = new SpeedBuff(movement, Buff.BuffType.speed, buffNotification, false, 30.0f, this);
-            stats.buffs.Add(speed);
+            //stats.buffs.Add(speed);
+
+            if (stats.buffs.Count > 0)
+            {
+                for (int i = 0; i < stats.buffs.Count; i++)
+                {
+                    if (stats.buffs[i].type != Buff.BuffType.speed || stats.buffs[i].type == Buff.BuffType.speed && stats.buffs[i].IsDebuff == true)
+                    {
+                        if (i == stats.buffs.Count - 1)
+                        {
+                            stats.buffs.Add(speed);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        buffApplied = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                stats.buffs.Add(speed);
+            }
         }
 
         if (increaseStrength == true)
         {
             str = new StrengthBuff(buffNotification, strMod, false, Buff.BuffType.offense, 30.0f);
-            stats.buffs.Add(str);
+            //stats.buffs.Add(str);
+
+            if (stats.buffs.Count > 0)
+            {
+                for (int i = 0; i < stats.buffs.Count; i++)
+                {
+                    if (stats.buffs[i].type != Buff.BuffType.offense || stats.buffs[i].type == Buff.BuffType.offense && stats.buffs[i].IsDebuff == true)
+                    {
+                        if (i == stats.buffs.Count - 1)
+                        {
+                            stats.buffs.Add(str);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        buffApplied = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                stats.buffs.Add(str);
+            }
+
             Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
         }
 
         if (increaseDefense == true)
         {
-            def = new DefenseBuff(buffNotification, defMod, false, Buff.BuffType.defense, 30.0f);
-            stats.buffs.Add(def);
+            //stats.buffs.Add(def);
+
+            if (stats.buffs.Count > 0)
+            {
+                for (int i = 0; i < stats.buffs.Count; i++)
+                {
+                    if (stats.buffs[i].type != Buff.BuffType.defense || stats.buffs[i].type == Buff.BuffType.defense && stats.buffs[i].IsDebuff == true)
+                    {
+                        if (i == stats.buffs.Count - 1)
+                        {
+                            def = new DefenseBuff(buffNotification, defMod, false, Buff.BuffType.defense, 30.0f);
+                            stats.buffs.Add(def);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        buffApplied = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                def = new DefenseBuff(buffNotification, defMod, false, Buff.BuffType.defense, 30.0f);
+                stats.buffs.Add(def);
+            }
+
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
@@ -133,9 +220,6 @@ public class BuffPet : BasicPet
             stats.buffs.Add(regen);
             buffNotification.text += "\nRegenerating Health";
         }
-
-        buffApplied = true;
-        timer = baseTimer;
     }
 
     void CancelBuff()
@@ -143,6 +227,7 @@ public class BuffPet : BasicPet
         if (increaseSpeed == true)
         {
             speed.DecreaseSpeed();
+            stats.buffs.Remove(speed);
         }
 
         if (increaseDefense == true)
