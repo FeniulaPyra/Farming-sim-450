@@ -142,11 +142,12 @@ MonoBehaviour:
   stats: {fileID: -4169388183879288874}
   target: {fileID: 0}
   drops:
-  - {fileID: 6253543019733361348, guid: f74dfbb31b90b884abfcd7b4c4dc2aeb, type: 3}
-  - {fileID: 1898149099375235815, guid: 0f9d05d3986fe0b4a9e33a161579aa01, type: 3}
+  - {fileID: 4086091079808661588, guid: bfc0ac25ee392ea40b12008eae274b4f, type: 3}
+  - {fileID: 3890980996475780186, guid: 359c54a52d5c06646bfa69502a640b3f, type: 3}
+  - {fileID: 7548791109091204417, guid: 06555b43c02be664186a88a4da9f88da, type: 3}
   chest: {fileID: 7673969546450039493, guid: 239da8492eb199e43927b39f1f25bb9d, type: 3}
   friendlyMode: {fileID: 0}
-  preferredSeasons: 01000000
+  preferredSeasons: 01000000020000000300000004000000
   offSeasonSpawnChance: 0.5
   pellet: {fileID: 3463793939459626526, guid: 64b87d1044992014d933615e8543f91d, type: 3}
   attackTimer: 2
@@ -190,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffs: []
   iTimer: 0
+  buffNotification: {fileID: 0}
   healthBar: {fileID: 0}
   isBoss: 0
   maxHealthAdjustments: 0

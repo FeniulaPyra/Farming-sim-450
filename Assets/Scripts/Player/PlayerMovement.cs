@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 	public Sprite right;
 	public Sprite up;
 	public Sprite down;
+	public Animator anim;
 
     private Vector2 facing;
     public Vector2 Facing => facing;
@@ -111,15 +112,25 @@ public class PlayerMovement : MonoBehaviour
     {
         direction = new Vector2(value.Get<Vector2>().x, value.Get<Vector2>().y);
 
-        if (value.Get<Vector2>().y == 1) sr.sprite = up;
+        /*if (value.Get<Vector2>().y == 1) sr.sprite = up;
         else if (value.Get<Vector2>().x == -1) sr.sprite = left;
         else if (value.Get<Vector2>().y == -1) sr.sprite = down;
-        else if (value.Get<Vector2>().x == 1) sr.sprite = right;
+        else if (value.Get<Vector2>().x == 1) sr.sprite = right;*/
 
         if (frozen) return;
 
         var desiredVelocity = direction * MovementSpeed;
         var move = desiredVelocity - rb.velocity;
+		//https://www.youtube.com/watch?v=d_gSegD2FXo&t=0s
+		//https://www.youtube.com/watch?v=NgTf4av7vmE&t=296s
+		if (value.Get<Vector2>() != Vector2.zero)
+		{
+			anim.SetFloat("Xdir", value.Get<Vector2>().x);
+			anim.SetFloat("Ydir", value.Get<Vector2>().y);
+			anim.SetBool("Walking", true);
+		}
+		else
+			anim.SetBool("Walking", false);
         /*
         if (rb.velocity.magnitude > 0.1)
             sr.flipX = rb.velocity.x < 0;*/
@@ -146,6 +157,24 @@ public class PlayerMovement : MonoBehaviour
                 else facing.y = 0;
             }
         }
+
+		anim.SetBool("Walking", !frozen && rb.velocity.magnitude > .01);
+		
+		//if facing left or right
+		if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+		{
+			//left
+			if(direction.x < 0) anim.SetFloat("Direction", 3);
+			//right
+			else anim.SetFloat("Direction", 1);
+		}
+		//if facing up or down
+		else
+		{
+			//down
+			if(direction.y < 0) anim.SetFloat("Direction", 2);
+			else anim.SetFloat("Direction", 0);
+		}
 
 		//matches sprite to movement
 		Debug.Log("dir x " + direction.x);

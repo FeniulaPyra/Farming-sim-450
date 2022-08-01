@@ -21,7 +21,7 @@ public class CombatantStats : MonoBehaviour
 
     //player healthBar
     [SerializeField]
-    protected HealthBar healthBar;
+    public HealthBar healthBar;
 
     //Specifically for augmenting stats to make bosses more difficult then enemies of their same level
     public bool isBoss;
@@ -160,7 +160,7 @@ public class CombatantStats : MonoBehaviour
 	{
 		get
         {
-            exp = level * 5;
+            exp = level * 3;
 
             if (isBoss == true)
             {
@@ -183,7 +183,7 @@ public class CombatantStats : MonoBehaviour
 			Health = MaxHealth;
             if (healthBar != null)
             {
-                healthBar.SetMaxHealth(Health);
+                healthBar.SetMaxHealth(Health, true);
             }
 		}
 	}
@@ -199,7 +199,7 @@ public class CombatantStats : MonoBehaviour
             healthBar = GameObject.Find("Health Bar").GetComponent<HealthBar>();
             if (healthBar != null)
             {
-                healthBar.SetMaxHealth(Health);
+                healthBar.SetMaxHealth(Health, true);
             }
 
             isPlayer = true;
@@ -293,7 +293,8 @@ public class CombatantStats : MonoBehaviour
                     {
                         DefenseBuff buff = buffs[i] as DefenseBuff;
 
-                        Defense -= DefenseAdjustments;
+                        //Defense -= DefenseAdjustments;
+                        DefenseAdjustments -= buffs[i].Mod;
 
                         if (buff.IsDebuff == true)
                         {
@@ -392,7 +393,7 @@ public class CombatantStats : MonoBehaviour
 	//gets the amount of exp to get from the given level to the next level.
 	public int ExpToLevel(int level)
 	{
-		return (int)Mathf.Round(20 * Mathf.Pow(2, (level-1) / 5)); //why on earth does Mathf.Round return a float
+		return (int)Mathf.Round(100 * Mathf.Pow(2, (level-1) / 5)); //why on earth does Mathf.Round return a float
 	}
 
 }

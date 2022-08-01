@@ -138,11 +138,15 @@ public class ShopMenu : MonoBehaviour
 	{
 		BuyItem("pet sheep");
 	}
+	public void BuyChest()
+	{
+		BuyItem("chest");
+	}
 
 	private void BuyItem(string itemName)//int itemID)
 	{
-		Item shroom = itemManager.GetItemByName(itemName);//items[itemID];
-		float cost = shroom.sellValue * 1.5f;
+		Item item = itemManager.GetItemByName(itemName);//items[itemID];
+		float cost = item.sellValue * 1.5f;
 
 		if (player.playerGold < cost) return;
 
@@ -155,7 +159,7 @@ public class ShopMenu : MonoBehaviour
 			}
 		}
 
-		inv.AddItems(shroom, 1);
+		inv.AddItems(item, 1);
 		player.playerGold -= (int)Mathf.Floor(cost);
 
         goldDisplay.text = $"{player.playerGold} G";

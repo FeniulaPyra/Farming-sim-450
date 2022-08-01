@@ -61,6 +61,13 @@ public class ScenePersistence : MonoBehaviour
     //public Inventory shippingInv;
     public List<int> shippingInv;
 
+    //Dictionary of items that have been picked up since entering a scene
+    public Dictionary<Item, int> addedItems = new Dictionary<Item, int>();
+    //public Dictionary<Vector2, int> addedItems = new Dictionary<Vector2, int>();
+
+    //For checking player health?
+    public CombatantStats player;
+
     private void Awake()
     {
         //Makes sure this is the only instance in existence by destroying any others that aren't it
@@ -77,7 +84,33 @@ public class ScenePersistence : MonoBehaviour
 
     void Update()
     {
-        
+        if (GameObject.Find("Player").GetComponent<CombatantStats>().Health <= 0)
+        {
+            PlayerDeath();
+        }
+    }
+
+    void PlayerDeath()
+    {
+        //Remove items that you picked up in the scene
+        foreach (KeyValuePair<Item, int> item in addedItems)
+        {
+            FindObjectOfType<PlayerInventoryManager>().inv.RemoveItems(item.Key, item.Value);
+            //FindObjectOfType<PlayerInventoryManager>().inv.AddItems(item.Key, -item.Value);
+        }
+
+        /*foreach (KeyValuePair<Vector2, int> item in addedItems)
+        {
+            Vector2 key = (Vector2)item.Key;
+
+            FindObjectOfType<PlayerInventoryManager>().inv.RemoveFromSlot(item.Value, (int)key.x, (int)key.y);
+        }*/
+
+        //Restore Health
+        GameObject.Find("Player").GetComponent<CombatantStats>().Health = GameObject.Find("Player").GetComponent<CombatantStats>().MaxHealth;
+
+        //Load Home Scene
+        FindObjectOfType<SceneTransitionManager>().LoadScene("PlayerHouseScene", new Vector2(-5, 6.5f));
     }
 
     public void SavePlayer()

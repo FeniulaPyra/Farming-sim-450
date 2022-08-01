@@ -82,17 +82,74 @@ public class EnemyDebuffs : MonoBehaviour
 
     public void ApplyDebuff()
     {
+        debuffApplied = true;
+
         if (decreaseSpeed == true && debuffApplied == false)
         {
             speed = new SpeedBuff(movement, Buff.BuffType.speed, debuffNotification, true, 30.0f);
-            stats.buffs.Add(speed);
+            //stats.buffs.Add(speed);
+
+            if (stats.buffs.Count > 0)
+            {
+                for (int i = 0; i < stats.buffs.Count; i++)
+                {
+                    if (stats.buffs[i].type != Buff.BuffType.speed || stats.buffs[i].type == Buff.BuffType.speed && stats.buffs[i].IsDebuff == false)
+                    {
+                        if (i == stats.buffs.Count - 1)
+                        {
+                            stats.buffs.Add(speed);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        debuffApplied = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                stats.buffs.Add(speed);
+            }
 
         }
 
         if (decreaseStrength == true && debuffApplied == false)
         {
             str = new StrengthBuff(debuffNotification, strMod, true, Buff.BuffType.offense, 30.0f);
-            stats.buffs.Add(str);
+            //stats.buffs.Add(str);
+
+            if (stats.buffs.Count > 0)
+            {
+                for (int i = 0; i < stats.buffs.Count; i++)
+                {
+                    if (stats.buffs[i].type != Buff.BuffType.offense || stats.buffs[i].type == Buff.BuffType.offense && stats.buffs[i].IsDebuff == false)
+                    {
+                        if (i == stats.buffs.Count - 1)
+                        {
+                            stats.buffs.Add(str);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        debuffApplied = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                stats.buffs.Add(str);
+            }
+
             Debug.Log($"Strength Mod: {stats.StrengthAdjustments}");
         }
 
@@ -100,6 +157,34 @@ public class EnemyDebuffs : MonoBehaviour
         {
             def = new DefenseBuff(debuffNotification, defMod, true, Buff.BuffType.defense, 30.0f);
             stats.buffs.Add(def);
+
+            if (stats.buffs.Count > 0)
+            {
+                for (int i = 0; i < stats.buffs.Count; i++)
+                {
+                    if (stats.buffs[i].type != Buff.BuffType.defense || stats.buffs[i].type == Buff.BuffType.defense && stats.buffs[i].IsDebuff == false)
+                    {
+                        if (i == stats.buffs.Count - 1)
+                        {
+                            stats.buffs.Add(def);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        debuffApplied = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                stats.buffs.Add(def);
+            }
+
             Debug.Log($"Defense Mod: {stats.DefenseAdjustments}");
         }
 
@@ -108,8 +193,6 @@ public class EnemyDebuffs : MonoBehaviour
             stats.buffs.Add(poisonDebuff);
             debuffNotification.text += "\nPoisoned";
         }
-
-        debuffApplied = true;
     }
 
     /*public void SaveBuffPet(out SaveBuffPet buffPet)
