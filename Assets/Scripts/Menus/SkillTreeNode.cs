@@ -98,11 +98,16 @@ public class SkillTreeNode : MonoBehaviour
 	[SerializeField]
 	List<Sprite> SkillCrystals;
 	public Image SkillCrystal;
+
+    [SerializeField]
+    FarmingTutorial tutorial;
 	
 
     // Start is called before the first frame update
     void Start()
     {
+        //getting the farming tutorial
+        tutorial = FindObjectOfType<FarmingTutorial>();
 	}
 
     // Update is called once per frame
@@ -292,6 +297,17 @@ public class SkillTreeNode : MonoBehaviour
 				childNodes[2 * side + 1].mySkill.mushrooms = shrooms;
 			}
 		}
+
+        //Change something related to tutorial
+        if (tutorial != null)
+        {
+            if (tutorial.tutorialBools[20] == true)
+            {
+                //Signifying that the player has set a mushroom, but only after hybridization
+                tutorial.tutorialBools[22] = true;
+                GlobalGameSaving.Instance.tutorialBools[22] = tutorial.tutorialBools[22];
+            }
+        }
 	}
 
 	public float GetPadding()

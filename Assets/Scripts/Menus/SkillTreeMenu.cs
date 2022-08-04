@@ -32,6 +32,10 @@ public class SkillTreeMenu : TogglableMenu
 	public static int NODE_WIDTH = 400;
 	public static int LAYER_HEIGHT = 400;
 
+    //For the skills tutorial
+    [SerializeField]
+    FarmingTutorial tutorial;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -49,6 +53,8 @@ public class SkillTreeMenu : TogglableMenu
 		gameObject.SetActive(true);
 
 		workingRoot = (InfusionSkill)root.Copy();
+
+        tutorial = FindObjectOfType<FarmingTutorial>();
 
 		//UpdateDisplay();
 
@@ -305,6 +311,16 @@ public class SkillTreeMenu : TogglableMenu
 		pSkills.skillPoints -= totalSkillPointCost;
 		totalSkillPointCost = 0;
 		ResetSkills();
-		//UpdateDisplay();
+        //UpdateDisplay();
+
+        //If mushroom set but changes not applied yet
+        if (tutorial != null)
+        {
+            if (tutorial.tutorialBools[22] == true)
+            {
+                tutorial.tutorialBools[23] = true;
+                GlobalGameSaving.Instance.tutorialBools[23] = tutorial.tutorialBools[23];
+            }
+        }
 	}
 }

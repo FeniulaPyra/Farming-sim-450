@@ -421,7 +421,7 @@ public class PlayerInteraction : MonoBehaviour
 
 			//Debug.Log("try Interact with: " + objects[i].name + " " + distance + " far away.");
             //1 seems like a fine number
-            if (distance <= 0.5f && objects[i].enabled == true)
+            if (distance <= 0.5f && objects[i].enabled == true && isTalking == false)
             {
                 //switch on name to see what it is
                 switch (objects[i].name.ToLower().Split('(')[0])
