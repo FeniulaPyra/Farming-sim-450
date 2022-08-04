@@ -81,7 +81,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         ScenePersistence.Instance.addedItems.Clear();
 
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadSceneAsync(sceneToLoad);
     }
 
     public void SavePlayer()

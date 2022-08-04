@@ -37,6 +37,7 @@ public class SceneTransitioner : MonoBehaviour
         Debug.Log($"Distance beween object and player is: {distance}");
         if (distance <= transitionRange)
         {
+			GameObject.FindObjectOfType<Menu>().ShowLoadingScreen();
             manager.LoadScene(levelToLoad, playerPositionInScene);
         }
     }

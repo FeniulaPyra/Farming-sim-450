@@ -30,6 +30,7 @@ public class Menu : MonoBehaviour
 	public GameObject gameInfo;
 	public GameObject controls;
 	public GameObject SkillsMenu;
+	public GameObject loadingScreen;
 
 	public SkillTreeMenu skillTreeMenu;
 
@@ -435,4 +436,9 @@ public class Menu : MonoBehaviour
 		}
 	}
 
+
+	public void ShowLoadingScreen()
+	{
+		loadingScreen.SetActive(true);
+	}
 }
