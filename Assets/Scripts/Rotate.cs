@@ -16,6 +16,9 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.forward, rotateSpeed * Time.deltaTime);
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            transform.Rotate(Vector3.forward, rotateSpeed * Time.deltaTime);
+        }
     }
 }

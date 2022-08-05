@@ -121,6 +121,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Open/Close Skills",
+                    "type": "Button",
+                    "id": "d46acb4f-cac3-473e-a663-baca87de9fa2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -563,6 +572,17 @@
                     "action": "Camera Size",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c2ccc25c-3e1f-4774-ac5e-7abaa2449c44",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "Open/Close Skills",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

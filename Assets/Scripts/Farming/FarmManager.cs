@@ -127,36 +127,39 @@ public class FarmManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//When mushroom destroys itself, the tile stays
-		//Check the dictionary to see if the associated script still exists
-		//if it doesn't, set tile to null
-		List<Vector3Int> deadPlants = new List<Vector3Int>();
-		foreach (KeyValuePair<Vector3Int, Tile> shroom in mushroomsAndTiles)
-		{
-			if (shroom.Value == null && farmField != null)
-            {
-				farmField.SetTile(shroom.Key, null);
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            //When mushroom destroys itself, the tile stays
+            //Check the dictionary to see if the associated script still exists
+            //if it doesn't, set tile to null
+            List<Vector3Int> deadPlants = new List<Vector3Int>();
+		    foreach (KeyValuePair<Vector3Int, Tile> shroom in mushroomsAndTiles)
+		    {
+		    	if (shroom.Value == null && farmField != null)
+                {
+		    		farmField.SetTile(shroom.Key, null);
+                }
             }
+
+            //if (Input.GetKeyDown(KeyCode.Alpha4))
+            //{
+            //    tileManager.SaveFieldObjects();
+            //
+            //    Debug.Log("Saved");
+            //}
+            //if (Input.GetKeyDown(KeyCode.Alpha5))
+            //{
+            //    tileManager.LoadFieldObjects(tileManager.fieldObjects);
+            //
+            //    Debug.Log("Loaded");
+            //}
+
+            //clears dead plants
+            foreach (Vector3Int plantPosition in deadPlants)
+		    {
+		    	mushroomsAndTiles[plantPosition] = Instantiate(tilePrefab, plantPosition, Quaternion.identity, transform);
+		    }
         }
-
-        //if (Input.GetKeyDown(KeyCode.Alpha4))
-        //{
-        //    tileManager.SaveFieldObjects();
-        //
-        //    Debug.Log("Saved");
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha5))
-        //{
-        //    tileManager.LoadFieldObjects(tileManager.fieldObjects);
-        //
-        //    Debug.Log("Loaded");
-        //}
-
-        //clears dead plants
-        foreach (Vector3Int plantPosition in deadPlants)
-		{
-			mushroomsAndTiles[plantPosition] = Instantiate(tilePrefab, plantPosition, Quaternion.identity, transform);
-		}
     }
 
     public void TileInteract(Vector3Int tile, string tool)

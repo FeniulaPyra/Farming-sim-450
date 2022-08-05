@@ -13,7 +13,10 @@ public class FollowerEnemy : BasicEnemy
     // Update is called once per frame
     void Update()
     {
-        base.Update();
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            base.Update();
+        }
     }
 
     protected override void FixedUpdate()

@@ -160,49 +160,52 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        if (direction.magnitude > 1)
-            direction = direction.normalized;
-
-        if (frozen) return;
-
-        if (direction.magnitude > 0.1)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            facing = direction.normalized;
+            //direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            if (facing.y != 0 && facing.x != 0)
+            if (direction.magnitude > 1)
+                direction = direction.normalized;
+
+            if (frozen) return;
+
+            if (direction.magnitude > 0.1)
             {
-                if (facing.x < facing.y) facing.x = 0;
-                else facing.y = 0;
+                facing = direction.normalized;
+
+                if (facing.y != 0 && facing.x != 0)
+                {
+                    if (facing.x < facing.y) facing.x = 0;
+                    else facing.y = 0;
+                }
             }
+
+		    anim.SetBool("Walking", !frozen && rb.velocity.magnitude > .01);
+		    
+		    //if facing left or right
+		    if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+		    {
+		    	//left
+		    	if(direction.x < 0) anim.SetFloat("Direction", 3);
+		    	//right
+		    	else anim.SetFloat("Direction", 1);
+		    }
+		    //if facing up or down
+		    else
+		    {
+		    	//down
+		    	if(direction.y < 0) anim.SetFloat("Direction", 2);
+		    	else anim.SetFloat("Direction", 0);
+		    }
+
+		    //matches sprite to movement
+		    Debug.Log("dir x " + direction.x);
+		    Debug.Log("dir Y " + direction.y);
+		    /*if (Input.GetKeyDown(KeyCode.W)) sr.sprite = up;
+		    else if (Input.GetKeyDown(KeyCode.A)) sr.sprite = left;
+		    else if (Input.GetKeyDown(KeyCode.S)) sr.sprite = down;
+		    else if (Input.GetKeyDown(KeyCode.D)) sr.sprite = right;*/
         }
-
-		anim.SetBool("Walking", !frozen && rb.velocity.magnitude > .01);
-		
-		//if facing left or right
-		if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-		{
-			//left
-			if(direction.x < 0) anim.SetFloat("Direction", 3);
-			//right
-			else anim.SetFloat("Direction", 1);
-		}
-		//if facing up or down
-		else
-		{
-			//down
-			if(direction.y < 0) anim.SetFloat("Direction", 2);
-			else anim.SetFloat("Direction", 0);
-		}
-
-		//matches sprite to movement
-		Debug.Log("dir x " + direction.x);
-		Debug.Log("dir Y " + direction.y);
-		/*if (Input.GetKeyDown(KeyCode.W)) sr.sprite = up;
-		else if (Input.GetKeyDown(KeyCode.A)) sr.sprite = left;
-		else if (Input.GetKeyDown(KeyCode.S)) sr.sprite = down;
-		else if (Input.GetKeyDown(KeyCode.D)) sr.sprite = right;*/
 
     }
 

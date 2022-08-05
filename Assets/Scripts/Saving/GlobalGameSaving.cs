@@ -172,18 +172,21 @@ public class GlobalGameSaving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInteraction != null)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            if (playerInteraction.CanInteract == true)
+            if (playerInteraction != null)
             {
-                if (Keyboard.current.pKey.wasPressedThisFrame)
+                if (playerInteraction.CanInteract == true)
                 {
-                    displayLoadMenu = true;
-                    saves = FindAllSaves();
-                }
-                if (Keyboard.current.oKey.wasPressedThisFrame)
-                {
-                    OnManualSave();
+                    if (Keyboard.current.pKey.wasPressedThisFrame)
+                    {
+                        displayLoadMenu = true;
+                        saves = FindAllSaves();
+                    }
+                    if (Keyboard.current.oKey.wasPressedThisFrame)
+                    {
+                        OnManualSave();
+                    }
                 }
             }
         }

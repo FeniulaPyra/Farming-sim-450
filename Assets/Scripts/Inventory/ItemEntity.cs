@@ -31,14 +31,17 @@ public class ItemEntity : BasicEntity
 	// Update is called once per frame
 	void Update()
     {
-		if (Vector2.Distance(itemObj.transform.position, playerObj.transform.position) < .5)
-		{
-			if (!(inv.IsTooFull(i, 1)))
-			{
-				Debug.Log("LEP2738 AAAAAA" + i.name);
-				inv.AddItems(i, 1);
-				Object.Destroy(this.gameObject);
-			}
-		}
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            if (Vector2.Distance(itemObj.transform.position, playerObj.transform.position) < .5)
+		    {
+		    	if (!(inv.IsTooFull(i, 1)))
+		    	{
+		    		Debug.Log("LEP2738 AAAAAA" + i.name);
+		    		inv.AddItems(i, 1);
+		    		Object.Destroy(this.gameObject);
+		    	}
+		    }
+        }
 	}
 }

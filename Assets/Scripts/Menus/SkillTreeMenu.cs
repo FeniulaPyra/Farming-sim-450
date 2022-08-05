@@ -40,7 +40,8 @@ public class SkillTreeMenu : TogglableMenu
     // Start is called before the first frame update
     void Awake()
     {
-		//TODO traverse pskills and create nodes for everything
+        //TODO traverse pskills and create nodes for everything
+        //pSkills = FindObjectOfType<PlayerSkills>();
 		root = pSkills.Root;
 		workingRoot = (InfusionSkill)root.Copy();
 

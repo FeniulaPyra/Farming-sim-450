@@ -70,16 +70,19 @@ public class BasicEntity : MonoBehaviour
 
     protected virtual void Update()
     {
-
-		if (rb.velocity.magnitude > 0.1)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            facing = rb.velocity.normalized;
-
-            if (facing.y != 0 && facing.x != 0)
+            if (rb.velocity.magnitude > 0.1)
             {
-                facing.y = 0;
+                facing = rb.velocity.normalized;
+
+                if (facing.y != 0 && facing.x != 0)
+                {
+                    facing.y = 0;
+                }
             }
         }
+
     }
     protected virtual void FixedUpdate()
     {

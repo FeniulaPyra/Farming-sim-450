@@ -145,20 +145,26 @@ public class Menu : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(Keyboard.current.kKey.wasPressedThisFrame && state == MenuState.NO_MENU)
-		{
-			state = MenuState.SKILLS;
-			skillTreeMenu.Show();
-		}
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            Debug.Log($"Pause testing; is game paused?: {ScenePersistence.Instance.gamePaused}");
+        }
 
-		pi.CanInteract = state == MenuState.NO_MENU;
-		
-		inventoryMenu.UpdateDisplay();
-		hotbarMenu.UpdateDisplay();
+        if (Keyboard.current.kKey.wasPressedThisFrame && state == MenuState.NO_MENU)
+        {
+            state = MenuState.SKILLS;
+            skillTreeMenu.Show();
+            ScenePersistence.Instance.PauseGame();
+        }
+
+
+        pi.CanInteract = state == MenuState.NO_MENU;
+        player.GetComponent<PlayerInventoryManager>().inv.isShown = InventoryMenuObject.activeSelf;
+        inventoryMenu.UpdateDisplay();
+        hotbarMenu.UpdateDisplay();
         shippingMenu.UpdateDisplay();
         externalInventoryMenu.UpdateDisplay();
-        player.GetComponent<PlayerInventoryManager>().inv.isShown = InventoryMenuObject.activeSelf;
-	}
+    }
 	
 	//hides the pause menu - for button use
 	public void HidePauseMenu()
@@ -166,7 +172,8 @@ public class Menu : MonoBehaviour
 		PauseMenu.SetActive(false);
 		state = MenuState.NO_MENU;
 		pi.CanInteract = true;
-	}
+        ScenePersistence.Instance.UnpauseGame();
+    }
 
     void OnDropItem()
     {
@@ -181,6 +188,22 @@ public class Menu : MonoBehaviour
             pim.DropHeldItem();
         }
     }
+
+    /*void OnOpenCloseSkills()
+    {
+        if (state == MenuState.NO_MENU)
+        {
+            state = MenuState.SKILLS;
+            skillTreeMenu.Show();
+            ScenePersistence.Instance.PauseGame();
+        }
+        else if (state == MenuState.SKILLS)
+        {
+            skillTreeMenu.Hide();
+            state = MenuState.NO_MENU;
+            ScenePersistence.Instance.UnpauseGame();
+        }
+    }*/
 
     void OnOpenCloseInventory()
     {
@@ -200,6 +223,7 @@ public class Menu : MonoBehaviour
             ItemGrabber.Hide();
             StatsPanelMenu.SetActive(false);
             state = MenuState.NO_MENU;
+            ScenePersistence.Instance.UnpauseGame();
             pi.CanInteract = true;
 
             if (gamepad != null)
@@ -215,6 +239,7 @@ public class Menu : MonoBehaviour
             StatsPanelMenu.SetActive(true);//!InventoryMenu.activeSelf);
             ItemGrabber.Show();
             state = MenuState.INVENTORY;
+            ScenePersistence.Instance.PauseGame();
             pi.CanInteract = false;
 
             if (gamepad != null)
@@ -232,6 +257,7 @@ public class Menu : MonoBehaviour
                 pi.CanInteract = true;
                 PauseMenu.SetActive(true);
                 state = MenuState.PAUSE;
+                ScenePersistence.Instance.PauseGame();
                 break;
             case MenuState.INVENTORY:
                 //resets grabbed item
@@ -245,29 +271,34 @@ public class Menu : MonoBehaviour
                 StatsPanelMenu.SetActive(false);
                 ItemGrabber.Hide();
                 state = MenuState.NO_MENU;
+                ScenePersistence.Instance.UnpauseGame();
                 pi.CanInteract = true;
                 break;
             case MenuState.PAUSE:
                 PauseMenu.SetActive(false);
                 state = MenuState.NO_MENU;
+                ScenePersistence.Instance.UnpauseGame();
                 pi.CanInteract = true;
                 break;
             case MenuState.SETTINGS:
                 SettingsMenu.SetActive(false);
                 PauseMenu.SetActive(true);
                 state = MenuState.PAUSE;
+                ScenePersistence.Instance.PauseGame();
                 pi.CanInteract = true;
                 break;
             case MenuState.HELP:
                 HelpMenu.SetActive(false);
                 PauseMenu.SetActive(true);
                 state = MenuState.PAUSE;
+                ScenePersistence.Instance.PauseGame();
                 pi.CanInteract = true;
                 break;
             case MenuState.SHOP:
                 ShopMenu.SetActive(false);
                 //PauseMenu.SetActive(true);
                 state = MenuState.NO_MENU;//PAUSE;
+                ScenePersistence.Instance.UnpauseGame();
                 pi.CanInteract = true;
                 break;
             case MenuState.SHIPPING_BIN:
@@ -281,6 +312,7 @@ public class Menu : MonoBehaviour
                 inventoryMenu.Hide();
                 ItemGrabber.Hide();
                 state = MenuState.NO_MENU;
+                ScenePersistence.Instance.UnpauseGame();
                 pi.CanInteract = true;
                 break;
             case MenuState.BED:
@@ -290,7 +322,8 @@ public class Menu : MonoBehaviour
 			case MenuState.SKILLS:
 				skillTreeMenu.Hide();
 				state = MenuState.NO_MENU;
-				break;
+                ScenePersistence.Instance.UnpauseGame();
+                break;
             case MenuState.EXTERNAL_INVENTORY:
                 if (ItemGrabber.item != null && ItemGrabber.amount > 0)
                 {
@@ -302,6 +335,7 @@ public class Menu : MonoBehaviour
                 inventoryMenu.Hide();
                 ItemGrabber.Hide();
                 state = MenuState.NO_MENU;
+                ScenePersistence.Instance.UnpauseGame();
                 pi.CanInteract = true;
                 break;
             default:

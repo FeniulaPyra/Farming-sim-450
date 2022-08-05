@@ -102,69 +102,72 @@ public class EnemySpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < spawners.Count; i++)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            distance = Vector2.Distance(player.transform.position, spawners[i].transform.position);
-            if (distance < spawnDistance && waveStartedSpawn == false)//if (Vector2.Distance(player.transform.position, transform.position) < spawnDistance)
+            for (int i = 0; i < spawners.Count; i++)
             {
-                spawner = spawners[i];
-                StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
-
-                foreach (GameObject d in Doors)
+                distance = Vector2.Distance(player.transform.position, spawners[i].transform.position);
+                if (distance < spawnDistance && waveStartedSpawn == false)//if (Vector2.Distance(player.transform.position, transform.position) < spawnDistance)
                 {
-                    if (d.activeInHierarchy == false)
+                    spawner = spawners[i];
+                    StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
+
+                    foreach (GameObject d in Doors)
                     {
-                        d.SetActive(true);
+                        if (d.activeInHierarchy == false)
+                        {
+                            d.SetActive(true);
+                        }
                     }
                 }
-            }
 
-            /*if (distance < spawnDistance)
-            {
-                foreach (GameObject d in Doors)
+                /*if (distance < spawnDistance)
                 {
-                    if (d.activeInHierarchy == false)
+                    foreach (GameObject d in Doors)
                     {
-                        d.SetActive(true);
+                        if (d.activeInHierarchy == false)
+                        {
+                            d.SetActive(true);
+                        }
                     }
-                }
-            }*/
-        }
-
-        //Loop through the list of enemies, and if an index is null because the enemy is dead, 
-        for (int i = 0; i < waveEnemies.Count; i++)
-        {
-            if (waveEnemies[i] == null)
-            {
-                waveEnemies.RemoveAt(i);
-                waveEnemyCounter--;
+                }*/
             }
-        }
 
-        //In the event of five, all must be dead if it was <=, then it would still happen at only one left, which would immediately happen
-        if (waveEnemyCounter == 0 && waveFinishedSpawn == true)
-        //if (waveEnemyCounter == ((currentWave.numToSpawn / 2) - 1) && waveSpawned == true)
-        {
-            if (waveCounter < waves.Count - 1)
+            //Loop through the list of enemies, and if an index is null because the enemy is dead, 
+            for (int i = 0; i < waveEnemies.Count; i++)
             {
-                waveStartedSpawn = false;
-                waveFinishedSpawn = false;
-                waveCounter++;
-                currentWave = waves[waveCounter];
-                StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
-            }
-            else
-            {
-                foreach (GameObject d in Doors)
+                if (waveEnemies[i] == null)
                 {
-                    d.SetActive(false);
+                    waveEnemies.RemoveAt(i);
+                    waveEnemyCounter--;
                 }
+            }
 
-                if (chest != null)
+            //In the event of five, all must be dead if it was <=, then it would still happen at only one left, which would immediately happen
+            if (waveEnemyCounter == 0 && waveFinishedSpawn == true)
+            //if (waveEnemyCounter == ((currentWave.numToSpawn / 2) - 1) && waveSpawned == true)
+            {
+                if (waveCounter < waves.Count - 1)
                 {
-                    if (chest.activeInHierarchy == false)
+                    waveStartedSpawn = false;
+                    waveFinishedSpawn = false;
+                    waveCounter++;
+                    currentWave = waves[waveCounter];
+                    StartCoroutine(SpawnWave(currentWave.enemySpawnDelay, spawner));
+                }
+                else
+                {
+                    foreach (GameObject d in Doors)
                     {
-                        chest.SetActive(true);
+                        d.SetActive(false);
+                    }
+
+                    if (chest != null)
+                    {
+                        if (chest.activeInHierarchy == false)
+                        {
+                            chest.SetActive(true);
+                        }
                     }
                 }
             }

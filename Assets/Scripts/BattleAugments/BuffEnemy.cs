@@ -69,37 +69,41 @@ public class BuffEnemy : MonoBehaviour
     {
         //base.Update();
 
-        if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            if (GlobalGameSaving.Instance.loadingSave == true || ScenePersistence.Instance.changingScene == true)
+            if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
             {
-                if (buffApplied == true)
+                if (GlobalGameSaving.Instance.loadingSave == true || ScenePersistence.Instance.changingScene == true)
                 {
-                    ApplyBuff();
-                    ScenePersistence.Instance.changingScene = false;
-                    GlobalGameSaving.Instance.loadingSave = false;
+                    if (buffApplied == true)
+                    {
+                        ApplyBuff();
+                        ScenePersistence.Instance.changingScene = false;
+                        GlobalGameSaving.Instance.loadingSave = false;
+                    }
+                    else
+                    {
+                        //CancelBuff();
+                    }
                 }
-                else
+            }
+
+            if (buffApplied == false)
+            {
+                timer -= Time.deltaTime;
+
+                if (timer <= 0.0f)
                 {
-                    //CancelBuff();
+                    int chance = Random.Range(0, 101);
+
+                    if (chance <= activateChance)
+                    {
+                        ApplyBuff();
+                    }
                 }
             }
         }
 
-        if (buffApplied == false)
-        {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0.0f)
-            {
-                int chance = Random.Range(0, 101);
-
-                if (chance <= activateChance)
-                {
-                    ApplyBuff();
-                }
-            }
-        }
     }
 
     void ApplyBuff()

@@ -27,13 +27,16 @@ public class InteractableObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Vector2.Distance(gameObject.transform.position, player.transform.position) <= DIST_TO_INTERACT)
-		{
-			bubble.SetActive(true);
-		}
-		else
-		{
-			bubble.SetActive(false);
-		}
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            if (Vector2.Distance(gameObject.transform.position, player.transform.position) <= DIST_TO_INTERACT)
+		    {
+		    	bubble.SetActive(true);
+		    }
+		    else
+		    {
+		    	bubble.SetActive(false);
+		    }
+        }
     }
 }

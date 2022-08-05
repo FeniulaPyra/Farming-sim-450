@@ -71,36 +71,39 @@ public class BuffPet : BasicPet
     // Update is called once per frame
     void Update()
     {
-        base.Update();
-
-        if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            if (GlobalGameSaving.Instance.loadingSave == true || ScenePersistence.Instance.changingScene == true)
+            base.Update();
+
+            if (GlobalGameSaving.Instance != null && ScenePersistence.Instance != null)
             {
-                if (buffApplied == true)
+                if (GlobalGameSaving.Instance.loadingSave == true || ScenePersistence.Instance.changingScene == true)
                 {
-                    ApplyBuff();
-                    ScenePersistence.Instance.changingScene = false;
-                    GlobalGameSaving.Instance.loadingSave = false;
-                }
-                else
-                {
-                    CancelBuff();
+                    if (buffApplied == true)
+                    {
+                        ApplyBuff();
+                        ScenePersistence.Instance.changingScene = false;
+                        GlobalGameSaving.Instance.loadingSave = false;
+                    }
+                    else
+                    {
+                        CancelBuff();
+                    }
                 }
             }
-        }
 
-        if (buffApplied == false)
-        {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0.0f)
+            if (buffApplied == false)
             {
-                int chance = Random.Range(0, 101);
+                timer -= Time.deltaTime;
 
-                if (chance <= activateChance)
+                if (timer <= 0.0f)
                 {
-                    ApplyBuff();
+                    int chance = Random.Range(0, 101);
+
+                    if (chance <= activateChance)
+                    {
+                        ApplyBuff();
+                    }
                 }
             }
         }

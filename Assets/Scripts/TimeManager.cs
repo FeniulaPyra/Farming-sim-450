@@ -423,43 +423,46 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (staminaTracker.playerStamina >= 21)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            shakeStamina = false;
-            didShake = false;
-        }
+            if (staminaTracker.playerStamina >= 21)
+            {
+                shakeStamina = false;
+                didShake = false;
+            }
 
 
-        if (staminaTracker.playerStamina <= 20)
-        {
-            isNight = true;
-            shakeStamina = true;
-        }
+            if (staminaTracker.playerStamina <= 20)
+            {
+                isNight = true;
+                shakeStamina = true;
+            }
 
-        if (shakeStamina == true && didShake == false)
-        {
-            StartCoroutine(staminaTracker.StaminaShake());
-            StartCoroutine(staminaTracker.StaminaColor());
-            //shakeStamina = false;
-            didShake = true;
-        }
+            if (shakeStamina == true && didShake == false)
+            {
+                StartCoroutine(staminaTracker.StaminaShake());
+                StartCoroutine(staminaTracker.StaminaColor());
+                //shakeStamina = false;
+                didShake = true;
+            }
 
-        if (isNight == true)
-        {
-            nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.25f);
-        }
-        else
-        {
-            nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.0f);
-        }
+            if (isNight == true)
+            {
+                nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.25f);
+            }
+            else
+            {
+                nightImage.color = new Color(nightImage.color.r, nightImage.color.g, nightImage.color.b, 0.0f);
+            }
 
-        if (staminaTracker.playerStamina <= 0)
-        {
-            Sleep(0);
-            Sleep(2 + (3 * StaminaLossReduction)); //Stamina Loss Reduction is always at least 1, so 3 is automatically added on. Changed from 5 to 2 to keep some penalty
-            FindObjectOfType<SceneTransitionManager>().LoadScene("PlayerHouseScene", new Vector2(-5, 6.5f));
-            //Since the bed is now in their house, something would have to be done about this
-            //staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
+            if (staminaTracker.playerStamina <= 0)
+            {
+                Sleep(0);
+                Sleep(2 + (3 * StaminaLossReduction)); //Stamina Loss Reduction is always at least 1, so 3 is automatically added on. Changed from 5 to 2 to keep some penalty
+                FindObjectOfType<SceneTransitionManager>().LoadScene("PlayerHouseScene", new Vector2(-5, 6.5f));
+                //Since the bed is now in their house, something would have to be done about this
+                //staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
+            }
         }
     }
 
