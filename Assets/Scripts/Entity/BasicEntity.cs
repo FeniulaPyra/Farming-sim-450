@@ -72,7 +72,7 @@ public class BasicEntity : MonoBehaviour
     {
         if (ScenePersistence.Instance.gamePaused == false)
         {
-            if (rb.velocity.magnitude > 0.1)
+            if (rb != null && rb.velocity.magnitude > 0.1)
             {
                 facing = rb.velocity.normalized;
 

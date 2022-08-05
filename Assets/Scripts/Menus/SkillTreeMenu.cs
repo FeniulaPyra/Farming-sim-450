@@ -69,7 +69,7 @@ public class SkillTreeMenu : TogglableMenu
 
 		layers = new List<List<SkillTreeNode>>();
 		rootNode = GenerateRecursive(workingRoot, null);
-		rootNode.transform.position = new Vector3(0, 0);
+		rootNode.transform.localPosition = new Vector3(0, 0);
 
 		RearrangeNodes();
 		RearrangeEdges();
