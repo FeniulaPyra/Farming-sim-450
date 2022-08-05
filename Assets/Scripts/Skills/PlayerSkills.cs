@@ -42,12 +42,6 @@ public class PlayerSkills : MonoBehaviour
 		}
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	public string Serialize(Skill parent, string str)
 	{
 		for (int i = 0; i < parent.mushrooms.Count; i++)

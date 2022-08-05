@@ -42,12 +42,6 @@ public class Projectile : MonoBehaviour
 		transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.x, -dir.y));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         //Vector2 desiredVelocity = dir * speed;

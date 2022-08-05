@@ -156,12 +156,6 @@ public class DialogueManager : MonoBehaviour
         menu = FindObjectOfType<Menu>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Checking if the player can do a quest
-    }
-
     public void LoadQuests()
     {
         for (int i = 0; i < questIDs.Count; i++)

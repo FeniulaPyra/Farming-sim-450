@@ -47,11 +47,6 @@ public class InventoryEntity : BasicEntity
         PopulateMe();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     /// <summary>
     ///Just a foreach that sets the inventory based on the list 
     ///If a chest is instantiated on command outside of this script, the list can be edited and this function called to them make use of it

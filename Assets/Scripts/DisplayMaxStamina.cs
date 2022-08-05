@@ -14,12 +14,6 @@ void Start()
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     //As long as the player is hovering over the stamina symbol, they can see exactly how much stamina they have
     /*public void OnPointerEnter(PointerEventData pointer)
     {

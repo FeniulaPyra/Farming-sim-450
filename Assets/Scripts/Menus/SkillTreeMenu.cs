@@ -59,11 +59,6 @@ public class SkillTreeMenu : TogglableMenu
 		//UpdateDisplay();
 
 	}
-	// Update is called once per frame
-	void Update()
-    {
-		
-    }
 
 	public void Generate()
 	{

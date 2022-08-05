@@ -106,9 +106,4 @@ public class ShippingMenu : TogglableMenu
 			slot.UpdateDisplay();
 		}
 	}
-	// Update is called once per frame
-	void Update()
-    {
-        
-    }
 }
