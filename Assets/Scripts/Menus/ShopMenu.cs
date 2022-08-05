@@ -42,12 +42,6 @@ public class ShopMenu : MonoBehaviour
         farmingTutorial = FindObjectOfType<FarmingTutorial>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	public void BuyRedShroom()
 	{
 		BuyItem("Red Shroom");

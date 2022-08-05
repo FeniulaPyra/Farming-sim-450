@@ -63,53 +63,56 @@ public class PlayerInventoryManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(Keyboard.current.semicolonKey.wasPressedThisFrame)
-		{
-			foreach(Item i in im.gameItems)
-			{
-				inv.AddItems(im.GetItemByName(i.name), 1);
-			}
-		}
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            /*if (Keyboard.current.semicolonKey.wasPressedThisFrame)
+		    {
+		    	foreach(Item i in im.gameItems)
+		    	{
+		    		inv.AddItems(im.GetItemByName(i.name), 1);
+		    	}
+		    }*/
 
 
-        if (Keyboard.current.digit1Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 0 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit2Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 1 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit3Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 2 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit4Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 3 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit5Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 4 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit6Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 5 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit7Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 6 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit8Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 7 % (inv.COLUMNS + 1);
-        }
-        else if (Keyboard.current.digit9Key.wasPressedThisFrame == true)
-        {
-            HeldSlot = 8 % (inv.COLUMNS + 1);
-        }		
+            if (Keyboard.current.digit1Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 0 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit2Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 1 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit3Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 2 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit4Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 3 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit5Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 4 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit6Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 5 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit7Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 6 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit8Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 7 % (inv.COLUMNS + 1);
+            }
+            else if (Keyboard.current.digit9Key.wasPressedThisFrame == true)
+            {
+                HeldSlot = 8 % (inv.COLUMNS + 1);
+            }		
 
-		UpdateHeldItem();
+		    UpdateHeldItem();
+        }
 	}
 
     void OnMenuMovement(InputValue value)

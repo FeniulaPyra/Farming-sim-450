@@ -52,12 +52,6 @@ public class NPCManager : MonoBehaviour
         myName = gameObject.name;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SaveFlowcharts(out SaveStartChart start, out SaveQuestChart quests)
     {
         start = new SaveStartChart(myFlowchart.GetIntegerVariable("seasonNum"), myFlowchart.GetIntegerVariable("dateNum"), myFlowchart.GetIntegerVariable("playerNetWorth"), myFlowchart.GetBooleanVariable("spokenToOnce"), myFlowchart.GetBooleanVariable("spokenToTwice"), myFlowchart.GetBooleanVariable("questAccepted"), myFlowchart.GetBooleanVariable("questReadyToReport"), myFlowchart.GetBooleanVariable("questComplete"));

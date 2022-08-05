@@ -47,13 +47,16 @@ public class LivestockPet : BasicPet
     // Update is called once per frame
     void Update()
     {
-        base.Update();
-        //Stamina spawning
-        if (staminaExpended >= staminaThreshold)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            Instantiate(item, transform.position, Quaternion.identity);
+            base.Update();
+            //Stamina spawning
+            if (staminaExpended >= staminaThreshold)
+            {
+                Instantiate(item, transform.position, Quaternion.identity);
 
-            staminaExpended -= staminaThreshold;
+                staminaExpended -= staminaThreshold;
+            }
         }
 
         //timer and spawning

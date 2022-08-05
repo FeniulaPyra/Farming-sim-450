@@ -113,9 +113,9 @@ public class SkillTreeNode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if ((ParentNode == null || !ParentNode.childNodes.Contains(this)) &&  !(mySkill is InfusionSkill))
-			Destroy(gameObject);
-	}
+        if ((ParentNode == null || !ParentNode.childNodes.Contains(this)) && !(mySkill is InfusionSkill))
+            Destroy(gameObject);
+    }
 
 	public void SetPlayerSkillReference(Skill playerSkillReference)
 	{

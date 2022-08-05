@@ -62,13 +62,17 @@ public class BasicEnemy : BasicEntity
     // Update is called once per frame
     protected override void Update()
     {
-        //Ready for death
-        if (stats.Health <= 0 && dead == false)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            KillEnemy();
+            //Ready for death
+            if (stats.Health <= 0 && dead == false)
+            {
+                KillEnemy();
+            }
+
+            base.Update();
         }
 
-        base.Update();
     }
 
     protected  virtual void FixedUpdate()

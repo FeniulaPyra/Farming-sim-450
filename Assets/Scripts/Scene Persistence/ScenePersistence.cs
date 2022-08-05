@@ -68,6 +68,9 @@ public class ScenePersistence : MonoBehaviour
     //For checking player health?
     public CombatantStats player;
 
+    //For updates
+    public bool gamePaused;
+
     private void Awake()
     {
         //Makes sure this is the only instance in existence by destroying any others that aren't it
@@ -75,6 +78,7 @@ public class ScenePersistence : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
+            gamePaused = false;
         }
         else if (Instance != this)
         {
@@ -84,10 +88,31 @@ public class ScenePersistence : MonoBehaviour
 
     void Update()
     {
-        if (GameObject.Find("Player").GetComponent<CombatantStats>().Health <= 0)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            PlayerDeath();
+            if (GameObject.Find("Player").GetComponent<CombatantStats>().Health <= 0)
+            {
+                PlayerDeath();
+            }
         }
+    }
+
+    /// <summary>
+    /// Setting Timescale to 0 and setting paused boolean to stop all updates
+    /// </summary>
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        gamePaused = true;
+    }
+
+    /// <summary>
+    /// Setting timescale to 1 and setting paused boolean to resume all updates
+    /// </summary>
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1;
+        gamePaused = false;
     }
 
     void PlayerDeath()

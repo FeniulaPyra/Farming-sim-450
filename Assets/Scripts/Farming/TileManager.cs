@@ -32,12 +32,6 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SaveFarm(string what)
     {
         if (farmManager.farmField != null && farmManager.tillableGround != null)

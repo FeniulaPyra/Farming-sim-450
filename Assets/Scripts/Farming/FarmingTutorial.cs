@@ -161,255 +161,259 @@ public class FarmingTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//skips if tutorial is not enabled
-		if (!enableTutorial.isOn)
-		{
-			shippingBin.enabled = true;
-			return;
-		}
-        else if (!(tutorialBools[12] == true))//else if(!(eatingAfter == true))
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-			shippingBin.enabled = false;
-			
-		}
-		
-        //Rwplay Text
-        /*if (Input.GetKeyDown(KeyCode.T))
-        {
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-            myFlowchart.ExecuteBlock(currentTutorial);
-        }*/
+            //skips if tutorial is not enabled
+            if (!enableTutorial.isOn)
+		    {
+		    	shippingBin.enabled = true;
+		    	return;
+		    }
+            else if (!(tutorialBools[12] == true))//else if(!(eatingAfter == true))
+            {
+		    	shippingBin.enabled = false;
+		    	
+		    }
+		    
+            //Rwplay Text
+            /*if (Input.GetKeyDown(KeyCode.T))
+            {
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+                myFlowchart.ExecuteBlock(currentTutorial);
+            }*/
 
-        //First step
-        //Hoe
-        //Start Block
-        if (tutorialBools[0] == false)//(tutorialStarted == false)
-        {
-            tutorialBools[0] = true;//tutorialStarted = true;
-            //self.convoID = self.conversationIDs[0];
+            //First step
+            //Hoe
+            //Start Block
+            if (tutorialBools[0] == false)//(tutorialStarted == false)
+            {
+                tutorialBools[0] = true;//tutorialStarted = true;
+                //self.convoID = self.conversationIDs[0];
 
-            objective.text = $"Current Objective: Till the field using the hoe\n\nCurrent Progress: 0/10";
+                objective.text = $"Current Objective: Till the field using the hoe\n\nCurrent Progress: 0/10";
 
-            GlobalGameSaving.Instance.tutorialBools[0] = tutorialBools[0];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
+                GlobalGameSaving.Instance.tutorialBools[0] = tutorialBools[0];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
 
-            myFlowchart.ExecuteBlock("Start");
+                myFlowchart.ExecuteBlock("Start");
 
-            //StartCoroutine(self.PlayDialogue(self.convoID));
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+            }
+
+            //Ground hoe'd
+            //Plant
+            //After Tilling Block
+            if (tutorialBools[1] == false && tutorialBools[2] == true)//(tilledBefore == false && tilledAfter == true)
+            {
+                tutorialBools[1] = true;//tilledBefore = true;
+                //self.convoID = self.conversationIDs[1];
+
+                objective.text = $"Current Objective: Plant a Mushroom\n\nCurrent Progress: 1/11";
+
+                GlobalGameSaving.Instance.tutorialBools[1] = tutorialBools[1];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+                myFlowchart.ExecuteBlock("After Tilling");
+                currentTutorial = myFlowchart.FindBlock("After Tilling");
+            }
+
+            //Planted
+            //Water
+            //After Planting Block
+            if (tutorialBools[3] == false && tutorialBools[4] == true)//(plantedBefore == false && plantedAfter == true)
+            {
+                tutorialBools[3] = true;//plantedBefore = true;
+                //self.convoID = self.conversationIDs[2];
+
+                objective.text = $"Current Objective: Water the- mushroom\n\nCurrent Progress: 2/11";
+
+                GlobalGameSaving.Instance.tutorialBools[3] = tutorialBools[3];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+                myFlowchart.ExecuteBlock("After Planting");
+                currentTutorial = myFlowchart.FindBlock("After Planting");
+            }
+
+            //Watered
+            //Now sleep
+            //After Watering Block
+            if (tutorialBools[5] == false && tutorialBools[6] == true)//(wateredBefore == false && wateredAfter == true)
+            {
+                tutorialBools[5] = true;//wateredBefore = true;
+                //self.convoID = self.conversationIDs[3];
+
+                objective.text = $"Current Objective: Sleep so mushroom grows\n\nCurrent Progress: 3/11";
+
+                GlobalGameSaving.Instance.tutorialBools[5] = tutorialBools[5];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //Unnecessary at the moment:  It's completely up to you when you wake up.
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Watering");
+                currentTutorial = myFlowchart.FindBlock("After Watering");
+            }
+
+            //New Day
+            //Now Harvest
+            //After Sleeping Block 7, 8, 6
+            if (tutorialBools[7] == false && tutorialBools[8] == true && tutorialBools[6] == true)//(sleptBefore == false && sleptAfter == true && wateredAfter == true)
+            {
+                tutorialBools[7] = true;//sleptBefore = true;
+                //self.convoID = self.conversationIDs[4];
+
+                objective.text = $"Current Objective: Harvest grown mushroom\n\nCurrent Progress: 4/11";
+
+                GlobalGameSaving.Instance.tutorialBools[7] = tutorialBools[7];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Sleeping");
+                currentTutorial = myFlowchart.FindBlock("After Sleeping");
+            }
+
+            //Harvested
+            //Snack time
+            //After Harvesting Block 9, 10
+            if (tutorialBools[9] == false && tutorialBools[10] == true)//(harvestedBefore == false && harvestedAfter == true)
+            {
+                tutorialBools[9] = true;//harvestedBefore = true;
+                //self.convoID = self.conversationIDs[5];
+
+                objective.text = $"Current Objective: Eat Mushroom to recover stamina\n\nCurrent Progress: 5/11";
+
+                GlobalGameSaving.Instance.tutorialBools[9] = tutorialBools[9];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+                myFlowchart.ExecuteBlock("After Harvesting");
+                currentTutorial = myFlowchart.FindBlock("After Harvesting");
+            }
+
+            //Full
+            //Shipping Time + Spreading Prep
+            //After Eating Block 11, 12
+            if (tutorialBools[11] == false && tutorialBools[12] == true)//(eatingBefore == false && eatingAfter == true)
+            {
+                tutorialBools[11] = true;//eatingBefore = true;
+                //self.convoID = self.conversationIDs[6];
+
+                objective.text = $"Current Objective: Ship mushroom and go to sleep\n\nCurrent Progress: 6/11";
+
+                GlobalGameSaving.Instance.tutorialBools[11] = tutorialBools[11];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                shippingBin.enabled = true;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Eating");
+                currentTutorial = myFlowchart.FindBlock("After Eating");
+            }
+
+            //Sleep again and get paid
+            //After Shipping Block 13, 14
+            if (tutorialBools[13] == false && tutorialBools[14] == true)//(shippedBefore == false && shippedAfter == true)
+            {
+                tutorialBools[13] = true;//shippedBefore = true;
+                //self.convoID = self.conversationIDs[7];
+
+                objective.text = $"Current Objective: Buy a mushroom at the shop\n\nCurrent Progress: 7/11";
+
+                GlobalGameSaving.Instance.tutorialBools[13] = tutorialBools[13];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Shipping");
+                currentTutorial = myFlowchart.FindBlock("After Shipping");
+            }
+
+            //Shipping done
+            //New shop tutorial; buy mushroom and then prepare to spread
+            //After Shopping Block 15, 16
+            if (tutorialBools[15] == false && tutorialBools[16] == true && GameObject.Find("Menus").transform.Find("Shop").gameObject.activeInHierarchy == false)
+            {
+                tutorialBools[15] = true;//shippedBefore = true;
+                //self.convoID = self.conversationIDs[7];
+
+                objective.text = $"Current Objective: Buy a mushroom; Plant and water it with adjacent square tilled, then sleep for two days\n\nCurrent Progress: 8/11";
+
+                GlobalGameSaving.Instance.tutorialBools[15] = tutorialBools[15];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Shopping");
+                currentTutorial = myFlowchart.FindBlock("After Shopping");
+            }
+
+            //Spread
+            //Now hybridize
+            //After Spreading Block 17, 18
+            if (tutorialBools[17] == false && tutorialBools[18] == true)//(spreadBefore == false && spreadAfter == true)
+            {
+                Instantiate(redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+                Instantiate(glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+
+                tutorialBools[17] = true;//spreadBefore = true;
+                //self.convoID = self.conversationIDs[8];
+
+                objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread\n\nCurrent Progress: 9/11";
+
+                GlobalGameSaving.Instance.tutorialBools[17] = tutorialBools[17];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Spreading");
+                currentTutorial = myFlowchart.FindBlock("After Spreading");
+            }
+
+            //Hybridization
+            //Saving and tutorial done
+            //After Hybridization Block 19, 20, 21
+            if (tutorialBools[19] == false && tutorialBools[20] == true)//(hybridBefore == false && hybridAfter == true)
+            {
+                tutorialBools[19] = true;//hybridBefore = true;
+                //self.convoID = self.conversationIDs[9];
+
+                objective.text = $"Current Objective: Open the Skill Menu and set a skill\n\nCurrent Progress: 10/11";
+
+                GlobalGameSaving.Instance.tutorialBools[19] = tutorialBools[19];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                myFlowchart.ExecuteBlock("After Hybridization");
+                currentTutorial = myFlowchart.FindBlock("After Hybridization");
+            }
+
+            //Applying Skills
+            //Saving and Tutorial done
+            //You've opened the menu and set a skill
+            if (tutorialBools[21] == false && tutorialBools[23] == true)
+            {
+                tutorialBools[21] = true;
+
+                objective.gameObject.SetActive(false);
+
+                //StartCoroutine(self.PlayDialogue(self.convoID));
+
+                myFlowchart.ExecuteBlock("After Skills");
+                currentTutorial = myFlowchart.FindBlock("After Skills");
+
+                
+                GlobalGameSaving.Instance.tutorialBools[21] = tutorialBools[21];
+                GlobalGameSaving.Instance.tutorialObjective = objective.text;
+
+                //19
+                tutorialBools[24] = true;//tutorialComplete = true;
+                GlobalGameSaving.Instance.tutorialBools[23] = tutorialBools[23];
+            }
         }
 
-        //Ground hoe'd
-        //Plant
-        //After Tilling Block
-        if (tutorialBools[1] == false && tutorialBools[2] == true)//(tilledBefore == false && tilledAfter == true)
-        {
-            tutorialBools[1] = true;//tilledBefore = true;
-            //self.convoID = self.conversationIDs[1];
-
-            objective.text = $"Current Objective: Plant a Mushroom\n\nCurrent Progress: 1/11";
-
-            GlobalGameSaving.Instance.tutorialBools[1] = tutorialBools[1];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-            myFlowchart.ExecuteBlock("After Tilling");
-            currentTutorial = myFlowchart.FindBlock("After Tilling");
-        }
-
-        //Planted
-        //Water
-        //After Planting Block
-        if (tutorialBools[3] == false && tutorialBools[4] == true)//(plantedBefore == false && plantedAfter == true)
-        {
-            tutorialBools[3] = true;//plantedBefore = true;
-            //self.convoID = self.conversationIDs[2];
-
-            objective.text = $"Current Objective: Water the- mushroom\n\nCurrent Progress: 2/11";
-
-            GlobalGameSaving.Instance.tutorialBools[3] = tutorialBools[3];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-            myFlowchart.ExecuteBlock("After Planting");
-            currentTutorial = myFlowchart.FindBlock("After Planting");
-        }
-
-        //Watered
-        //Now sleep
-        //After Watering Block
-        if (tutorialBools[5] == false && tutorialBools[6] == true)//(wateredBefore == false && wateredAfter == true)
-        {
-            tutorialBools[5] = true;//wateredBefore = true;
-            //self.convoID = self.conversationIDs[3];
-
-            objective.text = $"Current Objective: Sleep so mushroom grows\n\nCurrent Progress: 3/11";
-
-            GlobalGameSaving.Instance.tutorialBools[5] = tutorialBools[5];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //Unnecessary at the moment:  It's completely up to you when you wake up.
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Watering");
-            currentTutorial = myFlowchart.FindBlock("After Watering");
-        }
-
-        //New Day
-        //Now Harvest
-        //After Sleeping Block 7, 8, 6
-        if (tutorialBools[7] == false && tutorialBools[8] == true && tutorialBools[6] == true)//(sleptBefore == false && sleptAfter == true && wateredAfter == true)
-        {
-            tutorialBools[7] = true;//sleptBefore = true;
-            //self.convoID = self.conversationIDs[4];
-
-            objective.text = $"Current Objective: Harvest grown mushroom\n\nCurrent Progress: 4/11";
-
-            GlobalGameSaving.Instance.tutorialBools[7] = tutorialBools[7];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Sleeping");
-            currentTutorial = myFlowchart.FindBlock("After Sleeping");
-        }
-
-        //Harvested
-        //Snack time
-        //After Harvesting Block 9, 10
-        if (tutorialBools[9] == false && tutorialBools[10] == true)//(harvestedBefore == false && harvestedAfter == true)
-        {
-            tutorialBools[9] = true;//harvestedBefore = true;
-            //self.convoID = self.conversationIDs[5];
-
-            objective.text = $"Current Objective: Eat Mushroom to recover stamina\n\nCurrent Progress: 5/11";
-
-            GlobalGameSaving.Instance.tutorialBools[9] = tutorialBools[9];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-            myFlowchart.ExecuteBlock("After Harvesting");
-            currentTutorial = myFlowchart.FindBlock("After Harvesting");
-        }
-
-        //Full
-        //Shipping Time + Spreading Prep
-        //After Eating Block 11, 12
-        if (tutorialBools[11] == false && tutorialBools[12] == true)//(eatingBefore == false && eatingAfter == true)
-        {
-            tutorialBools[11] = true;//eatingBefore = true;
-            //self.convoID = self.conversationIDs[6];
-
-            objective.text = $"Current Objective: Ship mushroom and go to sleep\n\nCurrent Progress: 6/11";
-
-            GlobalGameSaving.Instance.tutorialBools[11] = tutorialBools[11];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            shippingBin.enabled = true;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Eating");
-            currentTutorial = myFlowchart.FindBlock("After Eating");
-        }
-
-        //Sleep again and get paid
-        //After Shipping Block 13, 14
-        if (tutorialBools[13] == false && tutorialBools[14] == true)//(shippedBefore == false && shippedAfter == true)
-        {
-            tutorialBools[13] = true;//shippedBefore = true;
-            //self.convoID = self.conversationIDs[7];
-
-            objective.text = $"Current Objective: Buy a mushroom at the shop\n\nCurrent Progress: 7/11";
-
-            GlobalGameSaving.Instance.tutorialBools[13] = tutorialBools[13];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Shipping");
-            currentTutorial = myFlowchart.FindBlock("After Shipping");
-        }
-
-        //Shipping done
-        //New shop tutorial; buy mushroom and then prepare to spread
-        //After Shopping Block 15, 16
-        if (tutorialBools[15] == false && tutorialBools[16] == true && GameObject.Find("Menus").transform.Find("Shop").gameObject.activeInHierarchy == false)
-        {
-            tutorialBools[15] = true;//shippedBefore = true;
-            //self.convoID = self.conversationIDs[7];
-
-            objective.text = $"Current Objective: Buy a mushroom; Plant and water it with adjacent square tilled, then sleep for two days\n\nCurrent Progress: 8/11";
-
-            GlobalGameSaving.Instance.tutorialBools[15] = tutorialBools[15];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Shopping");
-            currentTutorial = myFlowchart.FindBlock("After Shopping");
-        }
-
-        //Spread
-        //Now hybridize
-        //After Spreading Block 17, 18
-        if (tutorialBools[17] == false && tutorialBools[18] == true)//(spreadBefore == false && spreadAfter == true)
-        {
-            Instantiate(redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-            Instantiate(glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-
-            tutorialBools[17] = true;//spreadBefore = true;
-            //self.convoID = self.conversationIDs[8];
-
-            objective.text = $"Current Objective: Plant glowy and red shrooms with the space between tilled and sleep until they spread\n\nCurrent Progress: 9/11";
-
-            GlobalGameSaving.Instance.tutorialBools[17] = tutorialBools[17];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Spreading");
-            currentTutorial = myFlowchart.FindBlock("After Spreading");
-        }
-
-        //Hybridization
-        //Saving and tutorial done
-        //After Hybridization Block 19, 20, 21
-        if (tutorialBools[19] == false && tutorialBools[20] == true)//(hybridBefore == false && hybridAfter == true)
-        {
-            tutorialBools[19] = true;//hybridBefore = true;
-            //self.convoID = self.conversationIDs[9];
-
-            objective.text = $"Current Objective: Open the Skill Menu and set a skill\n\nCurrent Progress: 10/11";
-
-            GlobalGameSaving.Instance.tutorialBools[19] = tutorialBools[19];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            myFlowchart.ExecuteBlock("After Hybridization");
-            currentTutorial = myFlowchart.FindBlock("After Hybridization");
-        }
-
-        //Applying Skills
-        //Saving and Tutorial done
-        //You've opened the menu and set a skill
-        if (tutorialBools[21] == false && tutorialBools[23] == true)
-        {
-            tutorialBools[21] = true;
-
-            objective.gameObject.SetActive(false);
-
-            //StartCoroutine(self.PlayDialogue(self.convoID));
-
-            myFlowchart.ExecuteBlock("After Skills");
-            currentTutorial = myFlowchart.FindBlock("After Skills");
-
-            
-            GlobalGameSaving.Instance.tutorialBools[21] = tutorialBools[21];
-            GlobalGameSaving.Instance.tutorialObjective = objective.text;
-
-            //19
-            tutorialBools[24] = true;//tutorialComplete = true;
-            GlobalGameSaving.Instance.tutorialBools[23] = tutorialBools[23];
-        }
     }
 }

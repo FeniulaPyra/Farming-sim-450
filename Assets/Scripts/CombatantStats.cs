@@ -211,118 +211,122 @@ public class CombatantStats : MonoBehaviour
 
     private void Update()
     {
-        if (invincible == true)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            iTimer -= Time.deltaTime;
-        }
-
-        if (iTimer <= 0.0f)
-        {
-            invincible = false;
-            iTimer = baseITimer;
-        }
-
-        //Looping through all buffs, doing regen/poison
-        //Decrement time.deltatime, if they've run out, remove them and call inverse if necessary.
-        for (int i = 0; i < buffs.Count; i++)
-        {
-            //regen/poison
-            if (buffs[i] is RegenBuff)
+            if (invincible == true)
             {
-                //cast buff
-                RegenBuff buff = buffs[i] as RegenBuff;
+                iTimer -= Time.deltaTime;
+            }
 
-                //They are identical, up until their actual functions
-                if (buffs[i].iterations < buffs[i].maxIterations)
+            if (iTimer <= 0.0f)
+            {
+                invincible = false;
+                iTimer = baseITimer;
+            }
+
+            //Looping through all buffs, doing regen/poison
+            //Decrement time.deltatime, if they've run out, remove them and call inverse if necessary.
+            for (int i = 0; i < buffs.Count; i++)
+            {
+                //regen/poison
+                if (buffs[i] is RegenBuff)
                 {
-                    buffs[i].effectTimer-= Time.deltaTime;
-                    if (buffs[i].effectTimer <= 0.0f)
+                    //cast buff
+                    RegenBuff buff = buffs[i] as RegenBuff;
+
+                    //They are identical, up until their actual functions
+                    if (buffs[i].iterations < buffs[i].maxIterations)
                     {
+                        buffs[i].effectTimer-= Time.deltaTime;
+                        if (buffs[i].effectTimer <= 0.0f)
+                        {
+                            if (buff.type == Buff.BuffType.regen)
+                            {
+                                Heal(buff.factor, false);
+                            }
+                            else if (buff.type == Buff.BuffType.poison)
+                            {
+                                //This triggers invincibility frames
+                                TakeDamage(buff.factor, true);
+                            }
+
+                            buffs[i].iterations++;
+                            buffs[i].effectTimer = buff.baseTimer;
+                        }
+                    }
+                    //After final iteration, remove it
+                    else
+                    {
+                        buffs.RemoveAt(i);
+
                         if (buff.type == Buff.BuffType.regen)
                         {
-                            Heal(buff.factor, false);
+                            buffNotification.text = buffNotification.text.Replace("\nRegenerating Health", "");
                         }
                         else if (buff.type == Buff.BuffType.poison)
                         {
                             //This triggers invincibility frames
-                            TakeDamage(buff.factor, true);
+                            buffNotification.text = buffNotification.text.Replace("\nPoisoned", "");
                         }
 
-                        buffs[i].iterations++;
-                        buffs[i].effectTimer = buff.baseTimer;
+                        continue;
                     }
                 }
-                //After final iteration, remove it
                 else
                 {
-                    buffs.RemoveAt(i);
+                    buffs[i].timer -= Time.deltaTime;
 
-                    if (buff.type == Buff.BuffType.regen)
+                    if (buffs[i].timer <= 0.0f)
                     {
-                        buffNotification.text = buffNotification.text.Replace("\nRegenerating Health", "");
-                    }
-                    else if (buff.type == Buff.BuffType.poison)
-                    {
-                        //This triggers invincibility frames
-                        buffNotification.text = buffNotification.text.Replace("\nPoisoned", "");
-                    }
+                        //Remove/invert effects of buffs
+                        if (buffs[i] is StrengthBuff)
+                        {
+                            StrengthBuff buff = buffs[i] as StrengthBuff;
+                            if (buff.IsDebuff == true)
+                            {
+                                buffNotification.text = buffNotification.text.Replace("\nStrength Decreased", "");
+                            }
+                            else
+                            {
+                                buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
+                            }
+                        }
+                        else if (buffs[i] is DefenseBuff)
+                        {
+                            DefenseBuff buff = buffs[i] as DefenseBuff;
 
-                    continue;
-                }
-            }
-            else
-            {
-                buffs[i].timer -= Time.deltaTime;
+                            //Defense -= DefenseAdjustments;
+                            DefenseAdjustments -= buffs[i].Mod;
 
-                if (buffs[i].timer <= 0.0f)
-                {
-                    //Remove/invert effects of buffs
-                    if (buffs[i] is StrengthBuff)
-                    {
-                        StrengthBuff buff = buffs[i] as StrengthBuff;
-                        if (buff.IsDebuff == true)
-                        {
-                            buffNotification.text = buffNotification.text.Replace("\nStrength Decreased", "");
+                            if (buff.IsDebuff == true)
+                            {
+                                buffNotification.text = buffNotification.text.Replace("\nDefense Decreased", "");
+                            }
+                            else
+                            {
+                                buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
+                            }
                         }
-                        else
+                        else if (buffs[i] is SpeedBuff)
                         {
-                            buffNotification.text = buffNotification.text.Replace("\nStrength Increased", "");
+                            SpeedBuff buff = buffs[i] as SpeedBuff;
+                            if (buff.IsDebuff == true)
+                            {
+                                buff.IncreaseSpeed();
+                            }
+                            else
+                            {
+                                buff.DecreaseSpeed();
+                            }
                         }
+                        //Remove buff from list
+                        buffs.RemoveAt(i);
+                        continue;
                     }
-                    else if (buffs[i] is DefenseBuff)
-                    {
-                        DefenseBuff buff = buffs[i] as DefenseBuff;
-
-                        //Defense -= DefenseAdjustments;
-                        DefenseAdjustments -= buffs[i].Mod;
-
-                        if (buff.IsDebuff == true)
-                        {
-                            buffNotification.text = buffNotification.text.Replace("\nDefense Decreased", "");
-                        }
-                        else
-                        {
-                            buffNotification.text = buffNotification.text.Replace("\nDefense Increased", "");
-                        }
-                    }
-                    else if (buffs[i] is SpeedBuff)
-                    {
-                        SpeedBuff buff = buffs[i] as SpeedBuff;
-                        if (buff.IsDebuff == true)
-                        {
-                            buff.IncreaseSpeed();
-                        }
-                        else
-                        {
-                            buff.DecreaseSpeed();
-                        }
-                    }
-                    //Remove buff from list
-                    buffs.RemoveAt(i);
-                    continue;
                 }
             }
         }
+
     }
 
     public void ResetStrength()

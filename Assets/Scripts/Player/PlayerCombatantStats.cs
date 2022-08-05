@@ -72,10 +72,4 @@ public class PlayerCombatantStats : CombatantStats
     {
         //base.Start();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

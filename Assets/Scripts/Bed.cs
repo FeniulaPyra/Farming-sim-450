@@ -37,12 +37,6 @@ public class Bed : MonoBehaviour
         myFlowchart = transform.Find("BedFlowchart").GetComponent<Flowchart>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SleepToMorning()
     {
         Debug.Log("Worked");

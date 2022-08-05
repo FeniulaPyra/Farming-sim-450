@@ -13,11 +13,15 @@ public class LootJarEnemy : BasicEnemy
     // Update is called once per frame
     protected override void Update()
     {
-        //Ready for death
-        if (stats.Health <= 0)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            KillEnemy();
+            //Ready for death
+            if (stats.Health <= 0)
+            {
+                KillEnemy();
+            }
         }
+
     }
 
     protected override void DropItems()

@@ -403,131 +403,30 @@ public class Quests : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //Quest has been started
-        if (questAccepted == true && readyToReport == false)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            if (questType == QuestType.Collection || questType == QuestType.TimedCollection)
+            //Quest has been started
+            if (questAccepted == true && readyToReport == false)
             {
-                for (int i = 0; i < requiredItemList.Count; i++)
+                if (questType == QuestType.Collection || questType == QuestType.TimedCollection)
                 {
-                    requiredItemsCountList[i] = inventory.CountItem(requiredItemList[i].name);
-                    //Debug.Log($"PRINT ME; You have {requiredItemsCountList[i]} of {requiredItemList[i].name}");
-
-                    //Ex. if 5> 4
-                    if (requiredItemsCountList[i] >= requiredItemsAmountList[i])
+                    for (int i = 0; i < requiredItemList.Count; i++)
                     {
-                        if (i == requiredItemList.Count - 1)
-                        {
-                            //quest complete
-                            //Account for Fungus, somehow
-                            Debug.Log("Quest complete item");
-                            readyToReport = true;
-                            myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
-                            //myNPC.oldConvoID = myNPC.convoID;
-                            //myNPC.convoID = myNPC.myQuests.activeQuest.endID;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-            else if (questType == QuestType.Fundraising || questType == QuestType.TimedFundraising)
-            {
-                if (moneyEarnedSinceQuestStart >= moneyRequired)
-                {
-                    //quest complete
-                    readyToReport = true;
-                    myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
-                }
-            }
-            else if (questType == QuestType.SearchAndDestroy || questType == QuestType.TimedSearchAndDestroy)
-            {
-                if (amountKilled >= amountToKill)
-                {
-                    //quest complete
-                    readyToReport = true;
-                    myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
-                }
-            }
-        }
-        /*if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log($"There are {inventory.CountItem(miniQuests[0].requiredItemList[0].name)} {miniQuests[0].requiredItemList[0].name}s");
-        }
+                        requiredItemsCountList[i] = inventory.CountItem(requiredItemList[i].name);
+                        //Debug.Log($"PRINT ME; You have {requiredItemsCountList[i]} of {requiredItemList[i].name}");
 
-        if (activeQuest.questComplete == true)
-        {
-            //moves on to next quest
-            if (questIndex < miniQuests.Count - 1)
-            {
-                questIndex++;
-                activeQuest = miniQuests[questIndex];
-                Debug.Log("New Quest");
-            }
-        }
-
-        if (activeQuest.questActive == true && activeQuest.readyToReport == false)
-        {
-            //The problem with collection quests is that they are dependend on somehow seeing how much of an item is in the player's inventory
-            if (activeQuest.questType == QuestType.Collection)
-            {
-                for (int i = 0; i < activeQuest.requiredItemList.Count; i++)
-                {
-                    activeQuest.requiredItemsCountList[i] = inventory.CountItem(activeQuest.requiredItemList[i].name);
-
-                    //Ex. if 5> 4
-                    if (activeQuest.requiredItemsCountList[i] >= activeQuest.requiredItemsAmountList[i])
-                    {
-                        if (i == activeQuest.requiredItemList.Count - 1)
-                        {
-                            //quest complete
-                            Debug.Log("Quest complete item");
-                            activeQuest.readyToReport = true;
-                            myNPC.oldConvoID = myNPC.convoID;
-                            myNPC.convoID = myNPC.myQuests.activeQuest.endID;
-                        }
-                        else
-                        { 
-                            continue;
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                    
-                }
-            }
-            else if (activeQuest.questType == QuestType.Fundraising)
-            {
-                if (activeQuest.moneyEarnedSinceQuestStart > activeQuest.moneyRequired)
-                {
-                    //quest complete
-                    activeQuest.readyToReport = true;
-                }
-            }
-            else if (activeQuest.questType == QuestType.TimedCollection)
-            {
-                if (activeQuest.daysToQuestFail > 0)
-                {
-                    for (int i = 0; i < activeQuest.requiredItemList.Count; i++)
-                    {
                         //Ex. if 5> 4
-                        if (activeQuest.requiredItemsCountList[i] >= activeQuest.requiredItemsAmountList[i])
+                        if (requiredItemsCountList[i] >= requiredItemsAmountList[i])
                         {
-                            if (i == activeQuest.requiredItemList.Count - 1)
+                            if (i == requiredItemList.Count - 1)
                             {
                                 //quest complete
+                                //Account for Fungus, somehow
                                 Debug.Log("Quest complete item");
-                                activeQuest.readyToReport = true;
+                                readyToReport = true;
+                                myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
+                                //myNPC.oldConvoID = myNPC.convoID;
+                                //myNPC.convoID = myNPC.myQuests.activeQuest.endID;
                             }
                             else
                             {
@@ -540,10 +439,75 @@ public class Quests : MonoBehaviour
                         }
                     }
                 }
+                else if (questType == QuestType.Fundraising || questType == QuestType.TimedFundraising)
+                {
+                    if (moneyEarnedSinceQuestStart >= moneyRequired)
+                    {
+                        //quest complete
+                        readyToReport = true;
+                        myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
+                    }
+                }
+                else if (questType == QuestType.SearchAndDestroy || questType == QuestType.TimedSearchAndDestroy)
+                {
+                    if (amountKilled >= amountToKill)
+                    {
+                        //quest complete
+                        readyToReport = true;
+                        myFlowchart.SetBooleanVariable("questReadyToReport", readyToReport);
+                    }
+                }
             }
-            else if (activeQuest.questType == QuestType.TimedFundraising)
+            /*if (Input.GetKeyDown(KeyCode.R))
             {
-                if (activeQuest.daysToQuestFail > 0)
+                Debug.Log($"There are {inventory.CountItem(miniQuests[0].requiredItemList[0].name)} {miniQuests[0].requiredItemList[0].name}s");
+            }
+
+            if (activeQuest.questComplete == true)
+            {
+                //moves on to next quest
+                if (questIndex < miniQuests.Count - 1)
+                {
+                    questIndex++;
+                    activeQuest = miniQuests[questIndex];
+                    Debug.Log("New Quest");
+                }
+            }
+
+            if (activeQuest.questActive == true && activeQuest.readyToReport == false)
+            {
+                //The problem with collection quests is that they are dependend on somehow seeing how much of an item is in the player's inventory
+                if (activeQuest.questType == QuestType.Collection)
+                {
+                    for (int i = 0; i < activeQuest.requiredItemList.Count; i++)
+                    {
+                        activeQuest.requiredItemsCountList[i] = inventory.CountItem(activeQuest.requiredItemList[i].name);
+
+                        //Ex. if 5> 4
+                        if (activeQuest.requiredItemsCountList[i] >= activeQuest.requiredItemsAmountList[i])
+                        {
+                            if (i == activeQuest.requiredItemList.Count - 1)
+                            {
+                                //quest complete
+                                Debug.Log("Quest complete item");
+                                activeQuest.readyToReport = true;
+                                myNPC.oldConvoID = myNPC.convoID;
+                                myNPC.convoID = myNPC.myQuests.activeQuest.endID;
+                            }
+                            else
+                            { 
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                        
+                    }
+                }
+                else if (activeQuest.questType == QuestType.Fundraising)
                 {
                     if (activeQuest.moneyEarnedSinceQuestStart > activeQuest.moneyRequired)
                     {
@@ -551,8 +515,46 @@ public class Quests : MonoBehaviour
                         activeQuest.readyToReport = true;
                     }
                 }
-            }
-        }*/
+                else if (activeQuest.questType == QuestType.TimedCollection)
+                {
+                    if (activeQuest.daysToQuestFail > 0)
+                    {
+                        for (int i = 0; i < activeQuest.requiredItemList.Count; i++)
+                        {
+                            //Ex. if 5> 4
+                            if (activeQuest.requiredItemsCountList[i] >= activeQuest.requiredItemsAmountList[i])
+                            {
+                                if (i == activeQuest.requiredItemList.Count - 1)
+                                {
+                                    //quest complete
+                                    Debug.Log("Quest complete item");
+                                    activeQuest.readyToReport = true;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (activeQuest.questType == QuestType.TimedFundraising)
+                {
+                    if (activeQuest.daysToQuestFail > 0)
+                    {
+                        if (activeQuest.moneyEarnedSinceQuestStart > activeQuest.moneyRequired)
+                        {
+                            //quest complete
+                            activeQuest.readyToReport = true;
+                        }
+                    }
+                }
+            }*/
+        }
     }
 }
 

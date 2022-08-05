@@ -52,27 +52,27 @@ public class StatsPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Combatant == null) return;
-		CombatantDisplay.sprite = CombatantSprite;
+        if (Combatant == null) return;
+        CombatantDisplay.sprite = CombatantSprite;
 
-		HelmetButton.sprite = equipment.Head != null ? equipment.Head.spr : null;
-		ChestButton.sprite = equipment.Chest != null ? equipment.Chest.spr : null;
-		LeftHandButton.sprite = equipment.Hands != null ? equipment.Hands.spr : null;
-		RightHandButton.sprite = equipment.Hands != null ? equipment.Hands.spr : null;
-		LegsButton.sprite = equipment.Legs != null ? equipment.Legs.spr : null;
-		FeetButton.sprite = equipment.Feet != null ? equipment.Feet.spr : null;
+        HelmetButton.sprite = equipment.Head != null ? equipment.Head.spr : null;
+        ChestButton.sprite = equipment.Chest != null ? equipment.Chest.spr : null;
+        LeftHandButton.sprite = equipment.Hands != null ? equipment.Hands.spr : null;
+        RightHandButton.sprite = equipment.Hands != null ? equipment.Hands.spr : null;
+        LegsButton.sprite = equipment.Legs != null ? equipment.Legs.spr : null;
+        FeetButton.sprite = equipment.Feet != null ? equipment.Feet.spr : null;
 
-		HelmetButton.color = equipment.Head != null ? Color.white : Color.clear;
-		ChestButton.color = equipment.Chest != null ? Color.white : Color.clear;
-		LeftHandButton.color = equipment.Hands != null ? Color.white : Color.clear;
-		RightHandButton.color = equipment.Hands != null ? Color.white : Color.clear;
-		LegsButton.color = equipment.Legs != null ? Color.white : Color.clear;
-		FeetButton.color = equipment.Feet != null ? Color.white : Color.clear;
+        HelmetButton.color = equipment.Head != null ? Color.white : Color.clear;
+        ChestButton.color = equipment.Chest != null ? Color.white : Color.clear;
+        LeftHandButton.color = equipment.Hands != null ? Color.white : Color.clear;
+        RightHandButton.color = equipment.Hands != null ? Color.white : Color.clear;
+        LegsButton.color = equipment.Legs != null ? Color.white : Color.clear;
+        FeetButton.color = equipment.Feet != null ? Color.white : Color.clear;
 
-		LevelValueText.text = "" + stats.Level;
-		HPValueText.text = "" + stats.Health;
-		MaxHPValueText.text = "" + stats.MaxHealth;
-		StrengthValueText.text = "" + stats.Strength;
+        LevelValueText.text = "" + stats.Level;
+        HPValueText.text = "" + stats.Health;
+        MaxHPValueText.text = "" + stats.MaxHealth;
+        StrengthValueText.text = "" + stats.Strength;
         DefenseValueText.text = "" + stats.Defense;
 
         /*if (Keyboard.current.mKey.wasPressedThisFrame == true)

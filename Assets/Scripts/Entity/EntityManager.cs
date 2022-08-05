@@ -222,12 +222,6 @@ public class EntityManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SaveLivestockPets()
     {
         //Get rid of any pets already in the list, so it doesn't spawn two dogs when the player goes through two scenes with their singular dog

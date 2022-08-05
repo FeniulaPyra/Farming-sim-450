@@ -36,12 +36,15 @@ public class SceneTransitioner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(self.transform.position, player.transform.position);
-        Debug.Log($"Distance beween object and player is: {distance}");
-        if (distance <= transitionRange)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-			GameObject.FindObjectOfType<Menu>().ShowLoadingScreen();
-            manager.LoadScene(levelToLoad, playerPositionInScene);
+            distance = Vector2.Distance(self.transform.position, player.transform.position);
+            Debug.Log($"Distance beween object and player is: {distance}");
+            if (distance <= transitionRange)
+            {
+		    	GameObject.FindObjectOfType<Menu>().ShowLoadingScreen();
+                manager.LoadScene(levelToLoad, playerPositionInScene);
+            }
         }
     }
 }

@@ -48,8 +48,8 @@ public class HotbarMenu : TogglableMenu
 	// Update is called once per frame
 	void Update()
 	{
-		UpdateDisplay();
-	}
+        UpdateDisplay();
+    }
 
 	public void UpdateDisplay()
 	{

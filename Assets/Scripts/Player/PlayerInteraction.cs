@@ -332,47 +332,49 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-
-		Item heldItem = playerInventoryManager.GetHeldItem();
-		int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
-
-        timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
-        if (playerStamina > 100 && playerStamina <= 200)
+        if (ScenePersistence.Instance.gamePaused == false)
         {
-            timeRadial2.fillAmount = Mathf.Lerp(timeRadial2.fillAmount, (float)(playerStamina % 100) / 100, 10 * Time.deltaTime);
-        }
-        else if (playerStamina > 200)
-        {
-            timeRadial3.fillAmount = Mathf.Lerp(timeRadial3.fillAmount, (float)(playerStamina % 100) / 100, 10 * Time.deltaTime);
-        }
+            Item heldItem = playerInventoryManager.GetHeldItem();
+		    int heldItemAmount = playerInventoryManager.GetHeldItemAmount();
 
-        if (playerStamina < 101)
-        {
-            timeRadial2.fillAmount = Mathf.Lerp(timeRadial2.fillAmount, 0, 10 * Time.deltaTime);
-        }
-        else if (playerStamina < 201)
-        {
-            timeRadial3.fillAmount = Mathf.Lerp(timeRadial3.fillAmount, 0, 10 * Time.deltaTime);
-        }
+            timeRadial.fillAmount = Mathf.Lerp(timeRadial.fillAmount, (float)playerStamina / 100, 10 * Time.deltaTime);
+            if (playerStamina > 100 && playerStamina <= 200)
+            {
+                timeRadial2.fillAmount = Mathf.Lerp(timeRadial2.fillAmount, (float)(playerStamina % 100) / 100, 10 * Time.deltaTime);
+            }
+            else if (playerStamina > 200)
+            {
+                timeRadial3.fillAmount = Mathf.Lerp(timeRadial3.fillAmount, (float)(playerStamina % 100) / 100, 10 * Time.deltaTime);
+            }
 
-        staminaDisplay.text = $"{playerStamina}";
+            if (playerStamina < 101)
+            {
+                timeRadial2.fillAmount = Mathf.Lerp(timeRadial2.fillAmount, 0, 10 * Time.deltaTime);
+            }
+            else if (playerStamina < 201)
+            {
+                timeRadial3.fillAmount = Mathf.Lerp(timeRadial3.fillAmount, 0, 10 * Time.deltaTime);
+            }
 
-        petCount = FindObjectsOfType<BasicPet>().ToList().Count;
+            staminaDisplay.text = $"{playerStamina}";
 
-        if (petCount <= PET_LIMIT - 1)
-        {
-            ableToPlacePet = true;
-            //petCount = oldPetCount;
+            petCount = FindObjectsOfType<BasicPet>().ToList().Count;
+
+            if (petCount <= PET_LIMIT - 1)
+            {
+                ableToPlacePet = true;
+                //petCount = oldPetCount;
+            }
+            else
+            {
+                ableToPlacePet = false;
+            }
+
+		    if(Keyboard.current.spaceKey.wasPressedThisFrame)
+		    {
+		    	OnInteraction();
+		    }
         }
-        else
-        {
-            ableToPlacePet = false;
-        }
-
-		if(Keyboard.current.spaceKey.wasPressedThisFrame)
-		{
-			OnInteraction();
-		}
         //StartCoroutine(InteractionChecker());
         //InteractionChecker();
     }

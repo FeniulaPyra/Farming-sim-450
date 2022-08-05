@@ -94,25 +94,27 @@ public class Mushrooms : Tile
     // Update is called once per frame
     void Update()
     {
-
-		//show bubble
-		if (daysWithoutWater >= MaxDaysWithoutWater - 1 && !isMoist)
-		{
-			bubble.sprite = popupBubbles[3];
-		}
-		else if(isMoist)
-		{
-			bubble.sprite = popupBubbles[2];
-		}
-		else if (growthStage >= maxGrowthStage)
-		{
-			bubble.sprite = popupBubbles[1];
-		}
-		else
-		{
-			bubble.sprite = popupBubbles[0];
-		}
-		bubble.enabled = ShowPopupBubblesToggle.isOn;
+        if (ScenePersistence.Instance.gamePaused == false)
+        {
+            //show bubble
+            if (daysWithoutWater >= MaxDaysWithoutWater - 1 && !isMoist)
+		    {
+		    	bubble.sprite = popupBubbles[3];
+		    }
+		    else if(isMoist)
+		    {
+		    	bubble.sprite = popupBubbles[2];
+		    }
+		    else if (growthStage >= maxGrowthStage)
+		    {
+		    	bubble.sprite = popupBubbles[1];
+		    }
+		    else
+		    {
+		    	bubble.sprite = popupBubbles[0];
+		    }
+		    bubble.enabled = ShowPopupBubblesToggle.isOn;
+        }
     }
 
     //Method where the mushrooms check to see if they grow or not
