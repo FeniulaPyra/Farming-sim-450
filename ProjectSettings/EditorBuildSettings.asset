@@ -21,9 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayerHouseScene.unity
     guid: a31fd41cc98c8d04c94841e25bca06db
   - enabled: 1
-    path: Assets/Scenes/EnemySpawnTestScene.unity
-    guid: 0834fbf8eca6a2946b923e97afbac385
-  - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: fc1b82a9c96216947aae55864ca462e2
   - enabled: 1
@@ -38,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GateScene.unity
     guid: b49670f720b8e1547934703a0fe3af84
+  - enabled: 1
+    path: Assets/Scenes/Beach.unity
+    guid: 90d9cf7e34d48e14bb9e02856c560452
   m_configObjects: {}

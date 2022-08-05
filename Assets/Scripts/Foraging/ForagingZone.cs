@@ -16,7 +16,24 @@ public class ForagingZone : MonoBehaviour
 
 	public void Awake()
 	{
-		foreach(int i in weights)
+        //I forgot to change the weights, and it threw me an error, so here's a safeguard
+        if (weights.Count > itemsToSpawn.Count)
+        {
+            List<int> tempList = new List<int>();
+            for (int i = 0; i < itemsToSpawn.Count; i++)
+            {
+                tempList.Add(weights[i]);
+            }
+
+            weights.Clear();
+
+            foreach (int i in tempList)
+            {
+                weights.Add(i);
+            }
+        }
+
+        foreach (int i in weights)
 		{
 			totalWeight += i;
 		}
@@ -26,6 +43,7 @@ public class ForagingZone : MonoBehaviour
 	public void SpawnRandom()
 	{
 		int rand = Random.Range(0, totalWeight);
+        
 		for (int i = 0; i < weights.Count; i++)
 		{
 			if (rand < weights[i])

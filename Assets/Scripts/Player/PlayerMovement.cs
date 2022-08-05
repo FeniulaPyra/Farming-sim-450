@@ -138,6 +138,26 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity += move;
     }
 
+    void OnCameraSize(InputValue value)
+    {
+        Camera camera = FindObjectOfType<Camera>();
+
+        //Scrolling forward zooms in
+        //Scrolling backward zooms out
+        float augment = value.Get<Vector2>().y * -0.01f;
+
+        camera.orthographicSize += augment;
+
+        if (camera.orthographicSize < 3.0f)
+        {
+            camera.orthographicSize = 3.0f;
+        }
+        else if (camera.orthographicSize > 15.0f)
+        {
+            camera.orthographicSize = 15.0f;
+        }
+    }
+
     void Update()
     {
         //direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
