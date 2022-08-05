@@ -79,6 +79,10 @@ public class BasicPet : BasicEntity
                 if (!pim.inv.IsTooFull(petItem, 1))
                 {
                     pim.inv.AddItems(petItem, 1);
+                    if (this is LivestockPet)
+                    {
+                        FindObjectOfType<PlayerInteraction>().livestocks.Remove(this as LivestockPet);
+                    }
                     Object.Destroy(this.gameObject);
 
                     owner.petCount -= 1;

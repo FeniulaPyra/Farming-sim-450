@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5992162945063800663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0928917, y: 5.8116217, z: 0}
+  m_LocalPosition: {x: 0.5, y: 3, z: 0}
   m_LocalScale: {x: 0.8117153, y: 0.8117153, z: 0.8117153}
   m_Children: []
   m_Father: {fileID: 0}
@@ -155,6 +155,6 @@ MonoBehaviour:
   manager: {fileID: 0}
   owner: {fileID: 0}
   item: {fileID: 1788414586340557121, guid: 5c321ccd351685f4abfda25d97d64a9c, type: 3}
-  timer: 0
-  baseTimer: 10
   spawnChance: 50
+  staminaExpended: 0
+  staminaThreshold: 0

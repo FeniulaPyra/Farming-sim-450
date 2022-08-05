@@ -44,7 +44,7 @@ public class EntityManager : MonoBehaviour
                         Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
                         GameObject g = (GameObject)Instantiate(Resources.Load($"Prefabs/Pets/{GlobalGameSaving.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
                         LivestockPet l = g.GetComponent<LivestockPet>();
-                        l.timer = GlobalGameSaving.Instance.livestockPets[i].timer;
+                        //l.timer = GlobalGameSaving.Instance.livestockPets[i].timer;
                     }
                 }
         
@@ -147,7 +147,7 @@ public class EntityManager : MonoBehaviour
                         Vector3 pos = new Vector3(playerPos.x + 2, playerPos.y, playerPos.z);
                         GameObject g = (GameObject)Instantiate(Resources.Load($"Prefabs/Pets/{ScenePersistence.Instance.livestockPetNames[i]}"), pos, Quaternion.identity);
                         LivestockPet l = g.GetComponent<LivestockPet>();
-                        l.timer = ScenePersistence.Instance.livestockPets[i].timer;
+                        //l.timer = ScenePersistence.Instance.livestockPets[i].timer;
                     }
                 }
         

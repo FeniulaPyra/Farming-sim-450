@@ -124,6 +124,9 @@ public class PlayerInteraction : MonoBehaviour
     //Enemies will refernce this when updating a quest's kill list
     public List<Quests> playerQuests = new List<Quests>();
 
+    //List of livestock pets
+    public List<LivestockPet> livestocks = new List<LivestockPet>();
+
     private void Start()
     {
 		menu = GameObject.Find("Menus").GetComponent<Menu>();
@@ -505,22 +508,27 @@ public class PlayerInteraction : MonoBehaviour
 
                     //before actually doing interaction, deduct player stamina accordingly
                     //switch on the four main item types, then some default value for everything else
-                    if (heldItem.type == "mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                    if (heldItem != null)
                     {
-                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
+                        int staminaUsed = heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject });
+
+                        if (heldItem.type == "mushroom" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].hasPlant == false)
+                        {
+                            ReduceStamina(staminaUsed);
+                        }
+                        else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
+                        {
+                            ReduceStamina(staminaUsed);
+                        }
+                        else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
+                        {
+                            ReduceStamina(staminaUsed);
+                        }
+                        else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
+                        {
+                            ReduceStamina(staminaUsed);
+                        }
                     }
-                    else if (itemName == "Sickle" && mushroomsAndTiles[focusTilePosition].hasPlant == true)
-                    {
-                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
-                    }
-                    else if (itemName == "Watering Can" && mushroomsAndTiles[focusTilePosition].isTilled == true && mushroomsAndTiles[focusTilePosition].isMoist == false)
-                    {
-                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
-                    }
-                    else if (itemName == "Hoe" && mushroomsAndTiles[focusTilePosition].isTilled == false)
-					{
-                        ReduceStamina(heldItem.staminaUsed + (int)playerSkills.SumSkillsOfType<StaminaEfficiencySkill>(new List<GameObject> { gameObject }));
-					}
 /*=======
                     if (mushroomsAndTiles.ContainsKey(focusTilePosition))
 >>>>>>> main
@@ -632,5 +640,9 @@ public class PlayerInteraction : MonoBehaviour
     public void ReduceStamina(int amount)
     {
         playerStamina -= amount;
+        foreach (LivestockPet p in livestocks)
+        {
+            p.staminaExpended += amount;
+        }
     }
 }
