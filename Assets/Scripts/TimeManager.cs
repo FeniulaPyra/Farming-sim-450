@@ -71,7 +71,11 @@ public class TimeManager : MonoBehaviour
 
     MushroomManager mushroomManager;
 
-	public float StaminaLossReduction
+    //For the stamina shaking when low
+    bool shakeStamina;
+    bool didShake;
+
+    public float StaminaLossReduction
 	{
 		get
 		{
@@ -142,6 +146,9 @@ public class TimeManager : MonoBehaviour
 		pSkills = staminaTracker.gameObject.GetComponent<PlayerSkills>();//FindObjectOfType<FarmManager>().GetComponent<FarmManager>().playerInventory;
 
         mushroomManager = FindObjectOfType<MushroomManager>();
+
+        shakeStamina = false;
+        didShake = false;
 
         if (GlobalGameSaving.Instance != null)
         {
@@ -416,10 +423,25 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (staminaTracker.playerStamina >= 21)
+        {
+            shakeStamina = false;
+            didShake = false;
+        }
+
 
         if (staminaTracker.playerStamina <= 20)
         {
             isNight = true;
+            shakeStamina = true;
+        }
+
+        if (shakeStamina == true && didShake == false)
+        {
+            StartCoroutine(staminaTracker.StaminaShake());
+            StartCoroutine(staminaTracker.StaminaColor());
+            //shakeStamina = false;
+            didShake = true;
         }
 
         if (isNight == true)
@@ -435,7 +457,6 @@ public class TimeManager : MonoBehaviour
         {
             Sleep(0);
             Sleep(2 + (3 * StaminaLossReduction)); //Stamina Loss Reduction is always at least 1, so 3 is automatically added on. Changed from 5 to 2 to keep some penalty
-            isNight = false;
             FindObjectOfType<SceneTransitionManager>().LoadScene("PlayerHouseScene", new Vector2(-5, 6.5f));
             //Since the bed is now in their house, something would have to be done about this
             //staminaTracker.gameObject.transform.position = FindObjectOfType<Bed>().transform.position;
@@ -455,7 +476,6 @@ public class TimeManager : MonoBehaviour
         if (seasonNum == 4 && dateNum == 30)
         {
             yearNum++;
-
         }
 
         //change season; reset NPC dialogue at end of season, otherwise, just move on to the next day's piece of dialogue
@@ -490,6 +510,8 @@ public class TimeManager : MonoBehaviour
         {
             dayNum++;
         }
+
+        //isNight = false;
 
         netWorth.CalculateNetWorth(5);
 
@@ -628,12 +650,14 @@ public class TimeManager : MonoBehaviour
 			{
 				if (inventory.CountItem("Red Shroom") <= 0)
 				{
-					Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-				}
+                    //Instantiate(farmingTutorial.redShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+                    Instantiate(farmingTutorial.redShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+                }
 				if (inventory.CountItem("Glowy Shroom") <= 0)
 				{
-					Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
-				}
+					//Instantiate(farmingTutorial.glowyShroom, FindObjectOfType<PlayerInteraction>().gameObject.transform.position, Quaternion.identity);
+                    Instantiate(farmingTutorial.glowyShroom, staminaTracker.gameObject.transform.position, Quaternion.identity);
+                }
 			}
 		}
 

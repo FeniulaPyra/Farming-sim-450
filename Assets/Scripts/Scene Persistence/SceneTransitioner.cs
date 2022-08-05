@@ -15,12 +15,15 @@ public class SceneTransitioner : MonoBehaviour
     SceneTransitionManager manager;
 
 	[SerializeField]
-	int transitionRange = 1;
+    int transitionRange = 1;
+    //float transitionRange = 0.9f;
 
     //The level it loads
     public string levelToLoad;
 
 	public Vector2 playerPositionInScene;
+
+    public float distance;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,7 @@ public class SceneTransitioner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector2.Distance(self.transform.position, player.transform.position);
+        distance = Vector2.Distance(self.transform.position, player.transform.position);
         Debug.Log($"Distance beween object and player is: {distance}");
         if (distance <= transitionRange)
         {

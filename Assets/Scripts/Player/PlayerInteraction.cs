@@ -645,4 +645,28 @@ public class PlayerInteraction : MonoBehaviour
             p.staminaExpended += amount;
         }
     }
+
+    public IEnumerator StaminaColor()
+    {
+        Color baseStaminaColor = timeRadial.color;
+        timeRadial.color = new Color32(255, 0, 0, 255);
+        yield return new WaitForSeconds(0.5f);
+        timeRadial.color = baseStaminaColor;
+    }
+
+    public IEnumerator StaminaShake()
+    {
+        float elapsed = 0.0f;
+        Quaternion originalRotation = timeRadial.transform.rotation;
+
+        while (elapsed < 0.5f)
+        {
+            elapsed += Time.deltaTime;
+            float z = Random.value * 20.0f - (10.0f);
+            timeRadial.transform.eulerAngles = new Vector3(originalRotation.x, originalRotation.y, originalRotation.z + z);
+            yield return null;
+        }
+
+        timeRadial.transform.rotation = originalRotation;
+    }
 }
