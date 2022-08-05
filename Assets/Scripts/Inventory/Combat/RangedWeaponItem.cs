@@ -7,7 +7,7 @@ public class RangedWeaponItem : WeaponItem
 {
 	public GameObject projectilePrefab;
 
-	override public void Attack(GameObject origin, GameObject target)
+	override public void Attack(GameObject origin, GameObject target, CombatantStats player)
 	{
 
 		//get dir of projectile
@@ -19,7 +19,8 @@ public class RangedWeaponItem : WeaponItem
 		Vector2 vec = worldMouse - (Vector2)origin.transform.position;
 
         Projectile projectileScript = projectilePrefab.GetComponent<Projectile>();
-        projectileScript.damage = this.strength;
+        //projectileScript.damage = this.strength;
+        projectileScript.damage = this.strength + ((int)(player.Strength / 2));
         projectileScript.dir = vec;
         projectileScript.origin = origin;
         GameObject projectile = Instantiate(projectilePrefab, origin.transform.position, Quaternion.identity);

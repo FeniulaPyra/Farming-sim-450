@@ -600,7 +600,7 @@ public class PlayerInteraction : MonoBehaviour
 			WeaponItem weapon = (WeaponItem)playerInventoryManager.heldItem;
 			if (playerInventoryManager.heldItem is RangedWeaponItem)
 			{
-				weapon.Attack(gameObject, null);
+				weapon.Attack(gameObject, null, stats);
 			}
 			else
 			{
@@ -609,7 +609,7 @@ public class PlayerInteraction : MonoBehaviour
 
 				foreach (BasicEnemy enemy in enemiesArray)
 				{
-					weapon.Attack(gameObject, enemy.gameObject);
+					weapon.Attack(gameObject, enemy.gameObject, stats);
 
 				}
 			}

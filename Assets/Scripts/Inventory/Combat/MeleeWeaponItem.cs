@@ -22,7 +22,7 @@ public class MeleeWeaponItem : WeaponItem
 	//         / <15deg                         / <7.5deg
 
 
-	public override void Attack(GameObject origin, GameObject target)
+	public override void Attack(GameObject origin, GameObject target, CombatantStats player)
 	{
 
 		//Collider2D col = target.gameObject.GetComponent<Collider2D>();
@@ -34,6 +34,7 @@ public class MeleeWeaponItem : WeaponItem
 
 		//if reachable, damage the enemy.
 		if (distance < reach && Mathf.Abs(angle) < this.angle)
-			target.GetComponent<CombatantStats>().TakeDamage(Mathf.CeilToInt(this.Strength + target.GetComponent<CombatantStats>().Strength));
-	}
+            //target.GetComponent<CombatantStats>().TakeDamage(Mathf.CeilToInt(this.Strength + target.GetComponent<CombatantStats>().Strength));
+            target.GetComponent<CombatantStats>().TakeDamage(Mathf.CeilToInt(this.Strength + (player.Strength/2)));
+    }
 }
