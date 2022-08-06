@@ -38,6 +38,8 @@ public class PlayerInteraction : MonoBehaviour
     //For healing
     CombatantStats stats;
 
+	public GameObject swordSwipe;
+
     private Vector3Int focusTilePosition;
     private Vector3 playerPosition;
     private bool interactInRange;
@@ -608,6 +610,8 @@ public class PlayerInteraction : MonoBehaviour
 			{
 				enemies = new List<BasicEnemy>();
 				enemiesArray = FindObjectsOfType<BasicEnemy>();
+				swordSwipe.transform.localScale = new Vector3(1,1,0) * ((MeleeWeaponItem)weapon).Reach/2;
+				swordSwipe.GetComponent<Animator>().SetTrigger("swipe");
 
 				foreach (BasicEnemy enemy in enemiesArray)
 				{

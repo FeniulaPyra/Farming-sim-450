@@ -26,13 +26,16 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sr;
 
     private Rigidbody2D rb;
-    private Vector2 direction;
+    public Vector2 direction;
 
 	public Sprite left;
 	public Sprite right;
 	public Sprite up;
 	public Sprite down;
 	public Animator anim;
+	public Animator swordSwipeAnim;
+
+	public GameObject SwordSwipe;
 
     private Vector2 facing;
     public Vector2 Facing => facing;
@@ -127,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
 		{
 			anim.SetFloat("Xdir", value.Get<Vector2>().x);
 			anim.SetFloat("Ydir", value.Get<Vector2>().y);
+			swordSwipeAnim.SetFloat("xDir", value.Get<Vector2>().x);
+			swordSwipeAnim.SetFloat("yDir", value.Get<Vector2>().y);
 			anim.SetBool("Walking", true);
 		}
 		else

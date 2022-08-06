@@ -132,6 +132,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   player: {fileID: 0}
   distance: 0
+  preplaced: 0
 --- !u!198 &5224215133558300700
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4864,6 +4865,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   player: {fileID: 0}
   distance: 0
+  preplaced: 0
   playerObj: {fileID: 0}
 --- !u!199 &1294781184224757762
 ParticleSystemRenderer:
@@ -4973,6 +4975,7 @@ MonoBehaviour:
   sellValue: 100000
   isEdible: 0
   staminaToRestore: 0
+  healthToRestore: 0
   staminaUsed: 0
   rare: 1
   type: weapon
