@@ -123,6 +123,7 @@ MonoBehaviour:
   bed: {fileID: 0}
   menu: {fileID: 0}
   playerQuests: []
+  livestocks: []
 --- !u!114 &5275481385977868881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9469ea1a702c44d9f8f658bff8a83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillPoints: 1000
+  skillPoints: 0
   usedPoints: 0
   time: {fileID: 0}
 --- !u!114 &5881527148712566067

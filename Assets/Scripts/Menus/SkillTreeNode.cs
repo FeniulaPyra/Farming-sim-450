@@ -77,7 +77,8 @@ public class SkillTreeNode : MonoBehaviour
 	//family relations
 	public SkillTreeNode ParentNode;
 	public List<SkillTreeNode> childNodes;
-	public List<LineRenderer> childBranchLines;
+	//public List<LineRenderer> childBranchLines;
+	public List<GameObject> childBranchLineImages;
 
 	///Descriptions
 	public Text MainDescription;
@@ -339,15 +340,28 @@ public class SkillTreeNode : MonoBehaviour
 		//sets branches to go to child nodes
 		for (int i = 0; i < childNodes.Count; i++)
 		{
-			LineRenderer lr = childBranchLines[i];
+
+			GameObject lineObject = childBranchLineImages[i];
+			Image lineImage = lineObject.GetComponent<Image>();
+			RectTransform lineTransform = lineObject.GetComponent<RectTransform>();
+
 			SkillTreeNode child = childNodes[i];
 
+			lineObject.SetActive(child != null && child.isActiveAndEnabled);
+			
+			if(child != null)
+			{
 
+				Vector3 childPosition = transform.InverseTransformPoint(child.gameObject.transform.position);
+				Vector3 lineOrigin = transform.InverseTransformPoint(lineTransform.position);
 
-			if (child != null)
-				lr.SetPosition(1,
-					transform.InverseTransformPoint(child.gameObject.transform.position)//child.gameObject.transform.position
-				);
+				float theta = Mathf.Atan2(childPosition.y, childPosition.x) * Mathf.Rad2Deg + 90;
+
+				float distanceToChild = Mathf.Abs(Vector3.Distance(childPosition, lineOrigin));
+
+				lineTransform.eulerAngles = new Vector3(0,0,theta);
+				lineTransform.sizeDelta = new Vector2(5, distanceToChild);
+			}
 		}
 	}
 

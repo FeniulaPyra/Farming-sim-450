@@ -351,6 +351,11 @@ public class CombatantStats : MonoBehaviour
             exp = 0;
             //increase level
             Level++;
+			PlayerSkills pSkills = gameObject.GetComponent<PlayerSkills>();
+			if(pSkills != null)
+			{
+				pSkills.skillPoints++;
+			}
             IncreaseExp(surplus); //recursive
         }
     }
@@ -397,7 +402,7 @@ public class CombatantStats : MonoBehaviour
 	//gets the amount of exp to get from the given level to the next level.
 	public int ExpToLevel(int level)
 	{
-		return (int)Mathf.Round(20 * Mathf.Pow(2, (level-1) / 5)); //why on earth does Mathf.Round return a float
+		return (int)Mathf.Round(10 * Mathf.Pow(2, (level-1) / 5)); //why on earth does Mathf.Round return a float
 	}
 
 }
