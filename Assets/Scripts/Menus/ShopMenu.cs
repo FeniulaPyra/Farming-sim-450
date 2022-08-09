@@ -137,6 +137,12 @@ public class ShopMenu : MonoBehaviour
 		BuyItem("chest");
 	}
 
+	public void BuyChestplate() { BuyItem("basic chestplate"); }
+	public void BuyHelmet() { BuyItem("basic helmet"); }
+	public void BuyBoots() { BuyItem("basic boots"); }
+	public void BuyLeggings() { BuyItem("basic leggings"); }
+	public void BuyGloves() { BuyItem("basic gloves"); }
+
 	private void BuyItem(string itemName)//int itemID)
 	{
 		Item item = itemManager.GetItemByName(itemName);//items[itemID];
