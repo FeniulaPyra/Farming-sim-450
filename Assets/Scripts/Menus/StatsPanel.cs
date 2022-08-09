@@ -41,7 +41,7 @@ public class StatsPanel : MonoBehaviour
 	{
 		Combatant = newCombatant;
 		if (newCombatant.name.ToLower().Contains("player")) //why on earth was the player set up like this T.T
-			CombatantSprite = Combatant.GetComponentInChildren<SpriteRenderer>().sprite;
+			CombatantSprite = Combatant.GetComponentsInChildren<SpriteRenderer>()[1].sprite;
 		else
 			CombatantSprite = Combatant.GetComponent<SpriteRenderer>().sprite;
 		equipment = Combatant.GetComponent<CombatantEquipment>();
