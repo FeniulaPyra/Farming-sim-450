@@ -220,7 +220,7 @@ public class SkillTreeMenu : TogglableMenu
 		totalSkillPointCost = 0;
 		CheckChanges(root, rootNode);
 
-		ApplyButton.interactable = totalSkillPointCost < pSkills.skillPoints;
+		ApplyButton.interactable = totalSkillPointCost <= pSkills.skillPoints;
 		SPCostLabel.text = "" + totalSkillPointCost;
 
 	} 

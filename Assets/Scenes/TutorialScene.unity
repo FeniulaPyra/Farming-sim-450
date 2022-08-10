@@ -53122,6 +53122,10 @@ PrefabInstance:
       propertyPath: time
       value: 
       objectReference: {fileID: 1471869791}
+    - target: {fileID: 8515982003547436222, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
+      propertyPath: skillPoints
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2665b074e50fcfe41b60447d55f0f6e4, type: 3}
 --- !u!114 &7752269456879133807 stripped
