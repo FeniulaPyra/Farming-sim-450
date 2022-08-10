@@ -402,6 +402,8 @@ public class PlayerInteraction : MonoBehaviour
 
     void OnInteraction()//private void CheckInteraction()
     {
+		if (ScenePersistence.Instance.gamePaused || isTalking) return;
+
 		objects = new List<InteractableObjects>();
 		objectsArray = FindObjectsOfType<InteractableObjects>();
 
