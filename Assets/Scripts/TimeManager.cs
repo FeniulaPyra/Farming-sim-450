@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Fungus;
 using System.Linq;
 
 public class TimeManager : MonoBehaviour
@@ -241,6 +242,12 @@ public class TimeManager : MonoBehaviour
                             }
                             NPCList[i].gameObject.GetComponent<Quests>().LoadQuest(ScenePersistence.Instance.NPCQuests[index]);
 
+                        }
+                        //If the NPC isn't in the list, they've never been met before. Just set their date and season
+                        else
+                        {
+                            NPCList[i].MyFlowchart.SetIntegerVariable("dateNum", dateNum);
+                            NPCList[i].MyFlowchart.SetIntegerVariable("seasonNum", seasonNum);
                         }
                     }
                 }
@@ -520,16 +527,23 @@ public class TimeManager : MonoBehaviour
 
 
         //Final thing in a day that determines net worth. If it goes over a threshold, activate a quest
-        foreach (NPCManager npc in NPCList)
+        //Since there aren't NPCs in the player's house, the list was eempty, and nothign was happening.
+        //Now directly manipulating the saveStartChrts to give them the correct numbers, which are then set when entering a scene
+        foreach (SaveStartChart npc in ScenePersistence.Instance.NPCStartflowcharts)//foreach (NPCManager npc in NPCList)
         {
             //change dialogue and quest variables
-            npc.MyFlowchart.SetIntegerVariable("seasonNum", seasonNum);
+            npc.seasonNum = seasonNum;
+            npc.dateNum = dateNum;
+            npc.playerNetWorth = netWorth.FarmNetWorth;
+            npc.spokenToOnce = false;
+            npc.spokenToTwice = false;
+            /*npc.MyFlowchart.SetIntegerVariable("seasonNum", seasonNum);
             npc.MyFlowchart.SetIntegerVariable("dateNum", dateNum);
             npc.MyFlowchart.SetIntegerVariable("playerNetWorth", netWorth.FarmNetWorth);
             npc.MyFlowchart.SetBooleanVariable("spokenToOnce", false);
-            npc.MyFlowchart.SetBooleanVariable("spokenToTwice", false);
+            npc.MyFlowchart.SetBooleanVariable("spokenToTwice", false);*/
 
-            if (npc.gameObject.GetComponent<Quests>().GetQuestAccepted() == true)
+            /*if (npc.gameObject.GetComponent<Quests>().GetQuestAccepted() == true)
             {
                 if (npc.gameObject.GetComponent<Quests>().questType == Quests.QuestType.TimedCollection || npc.gameObject.GetComponent<Quests>().questType == Quests.QuestType.TimedFundraising)
                 {
@@ -547,7 +561,7 @@ public class TimeManager : MonoBehaviour
                         Debug.Log($"Days remaining: {npc.gameObject.GetComponent<Quests>().GetDaysToFail()}; Failed Quest?: {npc.gameObject.GetComponent<Quests>().GetQuestFailed()}");
                     }
                 }
-            }
+            }*/
 
         }
 
