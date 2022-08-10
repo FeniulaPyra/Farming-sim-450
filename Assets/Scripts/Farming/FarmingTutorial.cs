@@ -190,7 +190,7 @@ public class FarmingTutorial : MonoBehaviour
                 tutorialBools[0] = true;//tutorialStarted = true;
                 //self.convoID = self.conversationIDs[0];
 
-                objective.text = $"Current Objective: Till the field using the hoe\n\nCurrent Progress: 0/10";
+                objective.text = $"Current Objective: Till the field using the hoe\n\nCurrent Progress: 0/11";
 
                 GlobalGameSaving.Instance.tutorialBools[0] = tutorialBools[0];
                 GlobalGameSaving.Instance.tutorialObjective = objective.text;

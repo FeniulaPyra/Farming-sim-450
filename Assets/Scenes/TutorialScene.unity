@@ -283,33 +283,53 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1281256933}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
-      propertyPath: commandList.Array.size
-      value: 8
+      propertyPath: nodeRect.width
+      value: 134.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: commandList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: commandList.Array.data[0]
+      value: 
+      objectReference: {fileID: 39624739}
+    - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 39624737}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[2]
       value: 
-      objectReference: {fileID: 39624718}
+      objectReference: {fileID: 39624736}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[3]
       value: 
-      objectReference: {fileID: 39624713}
+      objectReference: {fileID: 39624718}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[4]
       value: 
-      objectReference: {fileID: 39624716}
+      objectReference: {fileID: 39624713}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[5]
       value: 
-      objectReference: {fileID: 39624715}
+      objectReference: {fileID: 39624716}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[6]
       value: 
-      objectReference: {fileID: 39624758}
+      objectReference: {fileID: 39624715}
     - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: commandList.Array.data[7]
       value: 
+      objectReference: {fileID: 39624758}
+    - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: commandList.Array.data[8]
+      value: 
       objectReference: {fileID: 39624717}
+    - target: {fileID: 1936455826902648484, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+      propertyPath: commandList.Array.data[9]
+      value: 
+      objectReference: {fileID: 39624738}
     - target: {fileID: 1970235611861375517, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
       propertyPath: targetObject
       value: 
@@ -1029,7 +1049,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 490.08685
     y: 78.87455
-    width: 77.58619
+    width: 77.2
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1332,7 +1352,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 795.0331
     y: 207.58546
-    width: 128.62064
+    width: 130.8
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1610,7 +1630,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1532.3604
     y: 198.18428
-    width: 109.3103
+    width: 111.6
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1629,6 +1649,84 @@ MonoBehaviour:
   - {fileID: 39624728}
   - {fileID: 39624727}
   suppressAllAutoSelections: 0
+--- !u!114 &39624736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1997596231077126178, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+  m_PrefabInstance: {fileID: 39624696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39624698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &39624737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1702295595226996351, guid: 70f139fcd6b8408478da653db74ec75c, type: 3}
+  m_PrefabInstance: {fileID: 39624696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39624698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &39624738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39624698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 190
+  indentLevel: 0
+  description: 
+  targetObject: {fileID: 1281256933}
+  targetComponentAssemblyName: PlayerInteraction, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: PlayerInteraction
+  targetMethod: StartPlayer
+  targetMethodText: 'StartPlayer (): Void'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
+--- !u!114 &39624739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39624698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688e35811870d403f9e2b1ab2a699d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 189
+  indentLevel: 0
+  description: 
+  targetObject: {fileID: 1281256933}
+  targetComponentAssemblyName: PlayerInteraction, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  targetComponentFullname: UnityEngine.Component[]
+  targetComponentText: PlayerInteraction
+  targetMethod: StopPlayer
+  targetMethodText: 'StopPlayer (): Void'
+  methodParameters: []
+  saveReturnValue: 0
+  returnValueVariableKey: 
+  returnValueType: System.Void
+  showInherited: 0
+  callMode: 0
 --- !u!114 &39624758
 MonoBehaviour:
   m_ObjectHideFlags: 2
