@@ -52,6 +52,8 @@ namespace Fungus
         {
             writer = GetComponent<Writer>();
 
+            cancelEnabled = false;
+
             CheckEventSystem();
         }
 

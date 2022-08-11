@@ -7,8 +7,8 @@ public class NPCManager : MonoBehaviour
 {
     //The NPC's Start Block. The rest will just naturally follow, so this is the only one it needs to know
 
-    Flowchart myFlowchart;
-    Flowchart myQuestFlowchart;
+    public Flowchart myFlowchart;
+    public Flowchart myQuestFlowchart;
     [SerializeField]
     string myName;
 
@@ -47,8 +47,8 @@ public class NPCManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myFlowchart = transform.Find("Start").GetComponent<Flowchart>();
-        myQuestFlowchart = transform.Find("Quests").GetComponent<Flowchart>();
+        //myFlowchart = transform.Find("Start").GetComponent<Flowchart>();
+        //myQuestFlowchart = transform.Find("Quests").GetComponent<Flowchart>();
         myName = gameObject.name;
     }
 
